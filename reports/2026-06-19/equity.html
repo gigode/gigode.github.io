@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股权投资日报 · 2026年6月19日</title>
+<style>
+:root {
+  --bg-primary: #0f0f0a;
+  --bg-card: #1a1a12;
+  --bg-card-hover: #222218;
+  --text-primary: #f5f0e8;
+  --text-secondary: #a8a090;
+  --text-muted: #706a60;
+  --border-color: #2a2a1e;
+  --accent-gold: #f59e0b;
+  --accent-gold-dim: #b8860b;
+  --tag-invest: #2563eb;
+  --tag-fund: #7c3aed;
+  --tag-policy: #059669;
+  --tag-opinion: #dc2626;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --radius: 12px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.cover {
+  background: linear-gradient(135deg, #1a1a0f 0%, #3d2e0a 40%, #f59e0b 100%);
+  padding: 60px 20px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(245,158,11,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover h1 { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: 2px; position: relative; }
+.cover p { font-size: 14px; color: #d4b87a; margin-top: 10px; position: relative; }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  padding: 28px 0 14px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .count {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-left: auto;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: background 0.2s, border-color 0.2s;
+}
+.card:hover { background: var(--bg-card-hover); border-color: #3a3a2a; }
+.card-top {
+  padding: 16px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  user-select: none;
+}
+.card-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  color: #1a1a0f;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.card-num.tag-invest { background: var(--tag-invest); color: #fff; }
+.card-num.tag-fund { background: var(--tag-fund); color: #fff; }
+.card-num.tag-policy { background: var(--tag-policy); color: #fff; }
+.card-num.tag-opinion { background: var(--tag-opinion); color: #fff; }
+.card-title-wrap { flex: 1; min-width: 0; }
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+.card-tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+.tag-invest-text { background: rgba(37,99,235,0.2); color: #60a5fa; }
+.tag-fund-text { background: rgba(124,58,237,0.2); color: #a78bfa; }
+.tag-policy-text { background: rgba(5,150,105,0.2); color: #34d399; }
+.tag-opinion-text { background: rgba(220,38,38,0.2); color: #f87171; }
+.card-toggle-icon {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 18px;
+  transition: transform 0.3s;
+  margin-top: 4px;
+}
+.card.open .card-toggle-icon { transform: rotate(180deg); }
+.card-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 18px;
+}
+.card.open .card-detail {
+  max-height: 2000px;
+  padding: 0 18px 20px;
+}
+.card-detail p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  text-indent: 2em;
+  margin-bottom: 10px;
+}
+.card-source {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+  word-break: break-all;
+}
+.card-source a {
+  color: var(--accent-gold-dim);
+  text-decoration: none;
+}
+.card-source a:hover { color: var(--accent-gold); text-decoration: underline; }
+@media (max-width: 600px) {
+  .cover h1 { font-size: 22px; }
+  .container { padding: 16px 10px 40px; }
+  .card-top { padding: 14px 14px; gap: 10px; }
+  .card-title { font-size: 14px; }
+  .card-detail p { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="cover">
+  <h1>股权投资日报</h1>
+  <p>2026年6月19日 · 全球私募股权与创业投资动态</p>
+</div>
+
+<div class="container" id="app">
+
+  <!-- ===== Section 1: 投资案例 ===== -->
+  <div class="section-title">
+    <span>投资案例</span>
+    <span class="count">15 项</span>
+  </div>
+
+  <!-- 1 -->
+  <div class="card open" id="card-1">
+    <div class="card-top" onclick="toggleCard(1)">
+      <span class="card-num tag-invest">1</span>
+      <div class="card-title-wrap">
+        <div class="card-title">NewLimit 完成 4.35 亿美元 C 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>2026年6月，抗衰老与长寿生物技术公司 NewLimit 宣布完成 4.35 亿美元 C 轮融资，成为今年生物技术领域规模最大的融资案例之一。NewLimit 由 Y Combinator 前总裁 Sam Altman 等科技界知名人物联合创立，专注于通过表观遗传重编程技术延缓甚至逆转衰老过程。本轮资金将主要用于推进其针对脂肪性肝病（NASH/MASH）等年龄相关疾病的核心管线进入临床阶段，同时加速下一代去衰老疗法的研发。NewLimit 的技术路径区别于传统的基因编辑方向，而是聚焦于在不改变 DNA 序列的前提下重置细胞的表观遗传状态，理论上具有更广的安全性窗口和可逆性优势。本轮融资的规模反映出资本市场对长寿医学赛道的持续热情——据行业数据，2025年全球长寿科技投资总额已突破 80 亿美元，且仍在加速增长。不过，抗衰老领域仍面临临床终点定义模糊、监管路径不确定等结构性挑战。NewLimit 能否率先在脂肪性肝病这一明确适应症上取得临床突破，将是衡量其投资价值的关键里程碑。</p>
+      <span class="card-source">来源: <a href="https://www.fiercebiotech.com" target="_blank" rel="noopener">fiercebiotech.com</a></span>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card" id="card-2">
+    <div class="card-top" onclick="toggleCard(2)">
+      <span class="card-num tag-invest">2</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Odyssey 完成 3.1 亿美元 B 轮融资，估值 14.5 亿美元</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>2026年6月新晋独角兽 Odyssey 宣布完成 3.1 亿美元 B 轮融资，投后估值达 14.5 亿美元。这家总部位于旧金山的 AI 实验室打出了"构建世界模型"的旗帜，目标是为机器人和自动驾驶系统打造能够理解物理世界因果关系的底层 AI 架构。与当前主流的语言大模型路线不同，Odyssey 的"世界模型"试图模拟物理交互的底层规律，使 AI 主体具备空间推理和物理常识能力，这对具身智能和工业自动化的落地至关重要。本轮融资由知名科技投资机构领投，多家战略投资者参与跟投。Odyssey 的崛起代表了一股正在酝酿的行业趋势——在 LLM 军备竞赛趋于饱和的背景下，越来越多的资本正在向"世界模型"和具身智能倾斜。Odyssey 面临的挑战是如何在 OpenAI、Google DeepMind 等巨头的夹击下构建差异化的技术护城河。其团队声称已在小规模物理模拟环境中实现了超过传统强化学习 10 倍以上的样本效率提升，但距离真正的商业化仍有一定距离。</p>
+      <span class="card-source">来源: <a href="https://www.tipranks.com" target="_blank" rel="noopener">tipranks.com</a></span>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card" id="card-3">
+    <div class="card-top" onclick="toggleCard(3)">
+      <span class="card-num tag-invest">3</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Mistral AI 洽谈约 30 亿欧元新一轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>法国 AI 明星公司 Mistral AI 正在洽谈约 30 亿欧元的新一轮融资，这将是欧洲 AI 领域有史以来规模最大的融资之一。Mistral AI 由前 DeepMind 和 Meta AI 研究人员创立，以其开源大语言模型路线和高效的小参数模型闻名全球。如果本轮融资顺利完成，Mistral 的估值将大幅攀升，进一步缩小与美国头部 AI 公司的差距。值得注意的是，Mistral 的崛起引发了欧盟层面的政策关注——欧洲正在寻求培育自己的 AI 冠军企业，以避免在全球 AI 竞赛中被美国和中国边缘化。Mistral 采用的"开放核心"策略既保留了商业闭源模型的盈利能力，又通过开源版本吸引开发者生态，被视为一种务实的第三条道路。然而，30 亿欧元的巨额融资也意味着 Mistral 需要向投资者展示清晰的商业化路径。目前，Mistral 的企业客户主要集中在欧洲金融机构和政府机构，其全球市场份额与 OpenAI、Anthropic 相比仍有较大差距。</p>
+      <span class="card-source">来源: web results</span>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card" id="card-4">
+    <div class="card-top" onclick="toggleCard(4)">
+      <span class="card-num tag-invest">4</span>
+      <div class="card-title-wrap">
+        <div class="card-title">深朴智能完成数亿元 Pre-A 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>具身智能机器人公司深朴智能（Simple AI）宣布完成数亿元人民币 Pre-A 轮融资，由滴滴出行领投，普华资本、柯力传感等机构跟投。值得注意的是，这是深朴智能在过去一年内的第四次融资，其融资节奏之密集在早期机器人创业公司中极为罕见。深朴智能专注于通用型具身智能机器人的研发，其技术路线强调"感知-决策-执行"全链路自主可控，而非单纯依赖外采硬件模组。滴滴的战略投资暗示了具身智能在出行服务和物流场景中的潜在应用——滴滴正在积极探索自动驾驶之外的新一代移动服务基础设施。深朴智能的快速融资也反映了中国一级市场对具身智能赛道的狂热情绪。据行业统计，2026年上半年中国具身智能赛道融资总额已超 150 亿元人民币，超过 2025 年全年水平。但市场也存在隐忧：大量初创公司涌向同一赛道，产品同质化严重，真正具备技术壁垒和商业化能力的团队仍是少数。</p>
+      <span class="card-source">来源: <a href="https://www.eastmoney.com" target="_blank" rel="noopener">eastmoney.com</a></span>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card" id="card-5">
+    <div class="card-top" onclick="toggleCard(5)">
+      <span class="card-num tag-invest">5</span>
+      <div class="card-title-wrap">
+        <div class="card-title">千诀科技完成亿元级 A 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>源自清华大学的具身智能"大脑"研发商千诀科技宣布完成亿元级 A 轮融资，由精品资本领投，英诺天使、尚势资本等老股东继续跟投。千诀科技的核心产品是面向机器人的"具身大脑"——一套集感知、决策、运动控制于一体的智能操作系统，可适配多种机器人硬件平台。清华大学的学术基因赋予了千诀科技在仿生控制和多模态感知方面的深厚积累，其团队在 IROS、ICRA 等顶会论文发表数量居国内创业公司前列。千诀科技选择的"大脑"路线避开了与机器人本体厂商的直接竞争，而是试图成为行业内的"安卓"——一种标准化的机器人操作系统层。这一策略的挑战在于，机器人硬件尚未形成像智能手机那样的标准化平台，不同厂商的硬件接口和控制协议差异极大，使得"大脑"的通用性大打折扣。千诀科技需要在平台化和深度定制之间找到平衡点，这也是投资者密切关注的核心问题。</p>
+      <span class="card-source">来源: <a href="https://www.stcn.com" target="_blank" rel="noopener">stcn.com</a></span>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card" id="card-6">
+    <div class="card-top" onclick="toggleCard(6)">
+      <span class="card-num tag-invest">6</span>
+      <div class="card-title-wrap">
+        <div class="card-title">星源智 10 个月内融资总额达 10 亿元人民币</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>由北京智源人工智能研究院孵化的星源智宣布，在过去 10 个月内累计融资总额已达 10 亿元人民币，成为具身智能基础设施赛道最受资本追捧的公司之一。星源智主打"软硬一体、边缘部署"的技术路线，自研计算平台能够为机器人提供低延迟、高能效的本地智能处理能力。其客户已覆盖超过 70% 的头部具身智能企业，同时还是 NVIDIA Jetson Thor 在全球的最大分销商。星源智的快速崛起揭示了一个关键趋势：具身智能的产业化正在带动上游基础设施层的爆发。正如云计算时代的 AWS 和移动互联网时代的高通，具身智能也需要专门的算力平台和软硬件一体化解决方案。智源研究院作为中国顶级 AI 研究机构，其孵化能力在星源智身上得到了验证。不过，10 个月 10 亿元的融资规模也引发了对估值泡沫的担忧——当前一级市场对具身智能概念的追捧是否已经过度透支了未来数年的增长预期，值得投资者审慎评估。</p>
+      <span class="card-source">来源: <a href="https://www.pedaily.cn" target="_blank" rel="noopener">pedaily.cn</a></span>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card" id="card-7">
+    <div class="card-top" onclick="toggleCard(7)">
+      <span class="card-num tag-invest">7</span>
+      <div class="card-title-wrap">
+        <div class="card-title">光联芯科完成近 5 亿元 A 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>AI 光互连（OIO）芯片设计公司光联芯科宣布完成近 5 亿元人民币 A 轮融资，由高榕资本、联想创投和基石资本联合领投，红杉中国、高瓴创投、联想控股等老股东大幅超额追投。光联芯科专注于基于硅光子技术的 AI 数据中心光互连芯片，其产品可大幅降低 AI 集群中 GPU 之间的通信延迟和功耗。在 AI 模型规模持续膨胀的背景下，传统电互连正在成为算力瓶颈，光互连被视为下一代 AI 基础设施的核心技术之一。光联芯科的技术团队来自国际顶尖光子学研发机构，拥有从芯片设计到封装的完整能力。本轮融资的超额认购表明，资本市场正在积极寻找 AI 产业链中的"卖铲人"——那些不直接参与模型竞赛但为 AI 基础设施提供关键组件的公司。光互连赛道竞争激烈，国际上有 Intel、Ayar Labs 等巨头和明星创业公司，光联芯科需要在性能、成本和量产时间表上展现出明确的竞争优势。</p>
+      <span class="card-source">来源: <a href="https://www.cnfin.com" target="_blank" rel="noopener">cnfin.com</a></span>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="card" id="card-8">
+    <div class="card-top" onclick="toggleCard(8)">
+      <span class="card-num tag-invest">8</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Twenty 完成 1 亿美元 B 轮融资，估值达 10 亿美元</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>网络安全初创公司 Twenty 宣布完成 1 亿美元 B 轮融资，估值突破 10 亿美元，成为 2026 年 6 月的新晋独角兽。Twenty 专注于网络战领域的攻防技术，为客户提供模拟国家级网络攻击的防御训练平台。在地缘政治紧张局势加剧的背景下，网络战防御已成为政府和大型企业的刚性需求。Twenty 的客户包括多个北约成员国的国防机构和全球前 50 强企业中的半数。Twenty 的快速增长折射出全球网络安全支出结构的转变——从传统的合规驱动型采购转向威胁驱动型采购，客户更加关注主动防御和实战演练能力。然而，网络战领域也面临着双重用途技术出口管制和道德争议等敏感问题，这可能对 Twenty 的全球市场扩张形成一定制约。</p>
+      <span class="card-source">来源: <a href="https://www.tipranks.com" target="_blank" rel="noopener">tipranks.com</a></span>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card" id="card-9">
+    <div class="card-top" onclick="toggleCard(9)">
+      <span class="card-num tag-invest">9</span>
+      <div class="card-title-wrap">
+        <div class="card-title">SolarSquare Energy 完成 5300 万美元 C 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>印度居民屋顶太阳能公司 SolarSquare Energy 宣布完成 5300 万美元 C 轮融资，由 B Capital 领投。SolarSquare 专注于印度中产阶级家庭的屋顶光伏安装和服务，通过"零首付+电费分期"的商业模式大幅降低了居民的初始安装门槛。印度居民太阳能市场尚处于早期渗透阶段，全国屋顶太阳能安装率不足 5%，增长空间极为广阔。在印度政府 2022 年提出的"屋顶太阳能计划"和电价持续上涨的双重推动下，居民太阳能需求正在加速释放。SolarSquare 的差异化在于其端到端的服务能力——从屋顶勘测、系统设计、政府补贴申请到安装维护的全链条覆盖。B Capital 的投资逻辑是看好印度清洁能源转型中的结构性机会。但 SolarSquare 也面临激烈竞争，Tata Power、Amplus 等大型能源集团同样在积极拓展居民太阳能业务，市场最终格局尚未明朗。</p>
+      <span class="card-source">来源: <a href="https://www.vccircle.com" target="_blank" rel="noopener">vccircle.com</a></span>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="card" id="card-10">
+    <div class="card-top" onclick="toggleCard(10)">
+      <span class="card-num tag-invest">10</span>
+      <div class="card-title-wrap">
+        <div class="card-title">穿越者完成超亿元 Pre-A 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>中国商业载人航天公司穿越者宣布完成超亿元人民币 Pre-A 轮融资。该公司主营亚轨道载人太空旅行业务，单张"太空票"定价 300 万元人民币，已预售超过 20 位游客，计划建造 3 艘以上飞船，目标在 2028 年实现首次亚轨道载人飞行。穿越者的出现标志着中国商业航天正式从"火箭发射服务"进入"载人太空旅游"阶段。与美国 SpaceX、蓝色起源和维珍银河等先行者相比，中国商业载人航天起步较晚，但增长潜力巨大——据行业测算，中国高净值人群中约有 1 万人有意愿且有能力支付 300 万元的太空旅行费用，潜在市场规模超过 300 亿元人民币。穿越者的技术路线选择了相对成熟的亚轨道方案，相比轨道飞行技术难度更低、成本更可控、安全性验证周期更短。但商业载人航天仍面临极高的安全风险、监管审批复杂性和保险定价难题，这些因素将在很大程度上决定穿越者能否如期实现 2028 年的首飞目标。</p>
+      <span class="card-source">来源: <a href="https://www.eastmoney.com" target="_blank" rel="noopener">eastmoney.com</a></span>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="card" id="card-11">
+    <div class="card-top" onclick="toggleCard(11)">
+      <span class="card-num tag-invest">11</span>
+      <div class="card-title-wrap">
+        <div class="card-title">SonoThera 完成 1.25 亿美元 B 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>基因药物公司 SonoThera 宣布完成 1.25 亿美元 B 轮融资，资金将主要用于推进其针对杜氏肌营养不良症（Duchenne MD）和慢性肾病的基因疗法管线。SonoThera 的核心技术平台是基于超声介导的基因递送系统——利用聚焦超声能量在特定组织部位打开血-组织屏障，实现基因药物的精准靶向递送。这一技术路径有望解决基因治疗领域长期存在的两大痛点：系统性给药的肝脏脱靶问题和病毒载体的免疫原性风险。如果 SonoThera 的超声递送技术在临床中得到验证，将有可能重塑基因药物的给药范式，从"打遍全身"的低效模式转向"指哪打哪"的精准模式。杜氏肌营养不良症是基因疗法竞争最激烈的适应症之一，SonoThera 面临的不仅是技术验证挑战，还有来自 Sarepta、辉瑞等巨头的竞争压力。本轮融资的规模表明，投资者对基因递送技术创新的支付意愿仍然很高，但真正的价值验证将取决于临床数据而非融资额度。</p>
+      <span class="card-source">来源: <a href="https://www.fiercebiotech.com" target="_blank" rel="noopener">fiercebiotech.com</a></span>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="card" id="card-12">
+    <div class="card-top" onclick="toggleCard(12)">
+      <span class="card-num tag-invest">12</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Vetic 完成 4000 万美元融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>印度宠物医疗平台 Vetic 宣布完成 4000 万美元新一轮融资，由 Bessemer Venture Partners 和 Greenoaks Capital 联合领投。Vetic 是印度增长最快的线上宠物医疗服务平台，提供在线问诊、药品配送、疫苗预约和体检套餐等一站式服务。随着印度中产阶级的壮大和宠物饲养率的快速提升，宠物医疗正在成为印度消费领域的新蓝海。据行业数据，印度宠物医疗市场规模已超过 20 亿美元，年复合增长率达 25%。Vetic 的商业模式借鉴了中国和美国宠物医疗平台的成熟经验，但根据印度市场的特点进行了本地化调整，包括与当地宠物诊所建立合作网络、推出针对印度常见宠物疾病的定制化保险产品等。Greenoaks 和 Bessemer 的投资表明，国际顶级 VC 对印度消费升级赛道的信心不减。然而，印度宠物医疗行业仍面临兽医人才短缺、药品供应链分散等基础设施层面的挑战。</p>
+      <span class="card-source">来源: <a href="https://www.moneycontrol.com" target="_blank" rel="noopener">moneycontrol.com</a></span>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="card" id="card-13">
+    <div class="card-top" onclick="toggleCard(13)">
+      <span class="card-num tag-invest">13</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Coram AI 完成 3500 万美元 A 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>物理安防 AI 公司 Coram AI 宣布完成 3500 万美元 A 轮融资，至此其累计融资总额已达 6600 万美元。Coram AI 将计算机视觉和深度学习技术应用于物理安防场景，其平台能够实时分析监控摄像头画面，识别异常行为、入侵者、遗留物等安全威胁，并向安保人员发出预警。与传统安防系统依赖人工监控不同，Coram AI 的 AI 监控系统可以 7×24 小时不间断运行，大幅降低了人力成本并提升了响应速度。随着全球企业对工作场所安全、零售防损和公共安全的关注度持续上升，AI 安防市场正在快速增长，预计 2027 年将突破 500 亿美元。Coram AI 的差异化在于其专有的小样本学习算法——能够在极少量标注数据的情况下快速适配新的监控场景，这使其在部署灵活性和成本上优于需要大量训练数据的竞争对手。但 AI 安防也面临着日益严格的隐私法规监管，尤其是在欧盟和美国的某些州，这可能是 Coram AI 未来扩张的主要政策风险。</p>
+      <span class="card-source">来源: web results</span>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="card" id="card-14">
+    <div class="card-top" onclick="toggleCard(14)">
+      <span class="card-num tag-invest">14</span>
+      <div class="card-title-wrap">
+        <div class="card-title">HyperLight 完成 8000 万美元 C 轮融资</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>薄膜铌酸锂光子学公司 HyperLight 宣布完成 8000 万美元 C 轮融资。HyperLight 基于薄膜铌酸锂（TFLN）平台开发高速光电器件，其产品可广泛应用于数据中心光互连、5G/6G 通信、激光雷达和量子计算等前沿领域。铌酸锂被称为"光学领域的硅"，因其优异的光电效应和低损耗特性，被认为是下一代光子集成电路的理想衬底材料。HyperLight 的技术突破在于解决了传统铌酸锂器件尺寸大、驱动电压高的难题，实现了 CMOS 兼容的薄膜化制造工艺。本轮融资将用于扩大产能和加速商业化。HyperLight 的快速发展是光子学投资热潮的一个缩影——在 AI 算力需求暴增的推动下，光通信和光子计算赛道正在吸引大量资本。据估计，2025 年全球光子学 VC 投资已超过 50 亿美元，其中与 AI 数据中心相关的光互连领域占比最大。HyperLight 面临的主要竞争来自于硅光子和磷化铟等其他光子学平台，以及英特尔等半导体巨头的内部研发项目。</p>
+      <span class="card-source">来源: web results</span>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="card" id="card-15">
+    <div class="card-top" onclick="toggleCard(15)">
+      <span class="card-num tag-invest">15</span>
+      <div class="card-title-wrap">
+        <div class="card-title">印度初创企业 6 月第二周融资 2.25 亿美元</div>
+        <span class="card-tag tag-invest-text">投资案例</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>据印度经济时报报道，2026 年 6 月第二周印度初创企业共完成 2.25 亿美元融资，同比增长 22%，其中清洁科技领域表现最为突出。这一数据表明印度创业生态系统正在经历一轮强烈的复苏，尤其是清洁能源和气候科技赛道。2025 年以来，印度政府加大了在可再生能源、电动汽车电池和碳减排技术领域的政策支持力度，包括扩大生产挂钩激励计划（PLI）覆盖范围和推出绿色信贷指引。清洁科技占据印度创业融资领先地位的背后，是印度作为全球第三大碳排放国所面临的减排压力与经济转型需求的叠加。与此同时，印度 SaaS、金融科技和消费互联网等传统优势赛道的融资也有所回暖。值得关注的是，印度早期融资（种子轮和 A 轮）占比持续提升，表明投资者正在重新关注早期创新，而非仅仅追逐后期确定性标的。不过，印度创业生态的整体融资水平仍低于 2021-2022 年的峰值阶段，资本向头部项目集中的趋势依然明显。</p>
+      <span class="card-source">来源: <a href="https://economictimes.indiatimes.com" target="_blank" rel="noopener">economictimes.indiatimes.com</a></span>
+    </div>
+  </div>
+
+  <!-- ===== Section 2: 基金设立 ===== -->
+  <div class="section-title">
+    <span>基金设立</span>
+    <span class="count">10 项</span>
+  </div>
+
+  <!-- 16 -->
+  <div class="card" id="card-16">
+    <div class="card-top" onclick="toggleCard(16)">
+      <span class="card-num tag-fund">16</span>
+      <div class="card-title-wrap">
+        <div class="card-title">黑石完成 131 亿美元亚洲 PE 基金募集（BCP Asia III）</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>全球最大另类资产管理公司黑石集团宣布完成旗下第三期亚洲私募股权基金（Blackstone Capital Partners Asia III，简称 BCP Asia III）的募集，最终规模达 131 亿美元，远超初始目标，成为有史以来最大的亚洲 PE 基金。该基金在硬上限（hard cap）处完成关闭，LP 结构呈现全球化特征：35% 来自北美，25% 来自亚洲，20% 来自中东，15% 来自欧洲，另有 5% 来自其他地区。值得注意的是，本基金吸引了 173 个新投资者，显示出 LP 对亚洲 PE 市场的配置意愿仍在增强。黑石此前第二期亚洲基金的净 IRR 达到 27%，如此优异的业绩表现是吸引 LP 超额认购的关键驱动力。BCP Asia III 的投资策略将继续聚焦于亚洲地区的私募股权收购和控制型投资，重点关注中国、印度、东南亚和日本市场。黑石在亚洲 PE 市场的强势地位也反映出全球巨头对亚洲经济增长长期看好的信心。然而，地缘政治不确定性、中国经济增长放缓和退出渠道收窄等因素仍是亚洲 PE 投资面临的现实挑战。</p>
+      <span class="card-source">来源: <a href="https://www.36kr.com" target="_blank" rel="noopener">36kr.com</a> · <a href="https://www.qq.com" target="_blank" rel="noopener">qq.com</a></span>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="card" id="card-17">
+    <div class="card-top" onclick="toggleCard(17)">
+      <span class="card-num tag-fund">17</span>
+      <div class="card-title-wrap">
+        <div class="card-title">凯雷集团第九期旗舰基金目标规模约 140 亿美元+</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>凯雷集团 CEO Harvey Schwartz 公开表示，公司正在筹集的第九期旗舰并购基金（Carlyle Partners IX）正处于"超级周期"的募资环境中，目标规模预计将超过 140 亿美元，且已获得约 85 亿美元的初始种子投资作为启动资金。Schwartz 强调，当前 PE 市场正处于历史性的"超级周期"之中——低利率环境虽然已经发生变化，但大量 dry powder 的存在、GP 主导的延续基金交易日益主流化、以及机构投资者对 PE 配置比例的结构性提升，共同构成了这一超级周期的底层逻辑。凯雷作为全球 PE 行业的头部玩家，其募资节奏和策略变化往往是行业风向标。Carlyle Partners IX 的募资进展也反映了当前 PE 行业的两极分化趋势——头部机构凭借品牌效应和历史业绩持续吸引资本，而中小型 GP 则面临越来越大的募资压力。对于 LP 而言，如何在这一超级周期中避免"追高"、选择具备真正 alpha 创造能力的 GP，已成为资产配置中的核心命题。</p>
+      <span class="card-source">来源: web results</span>
+    </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="card" id="card-18">
+    <div class="card-top" onclick="toggleCard(18)">
+      <span class="card-num tag-fund">18</span>
+      <div class="card-title-wrap">
+        <div class="card-title">EQT 第十一期基金目标 230 亿欧元</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>欧洲私募巨头 EQT 宣布其第十一期并购基金（EQT XI）的目标规模为 230 亿欧元（约合 245 亿美元），这将是 EQT 成立以来最大的基金，也是欧洲 PE 市场有史以来规模最大的并购基金之一。EQT XI 预计于 2026 年中期正式激活，主要聚焦欧洲市场的控制型收购机会。EQT 近年来经历了从北欧区域性 PE 到全球顶级投资机构的蜕变，其独特的"产业驱动"投资方法论和深厚的运营增值能力赢得了全球 LP 的广泛认可。EQT XI 的庞大目标规模也引发了市场讨论：在欧洲经济增长乏力、并购交易量下滑的背景下，如此大规模的资金能否以合理价格投出足够多的优质项目？尤其是在与凯雷、黑石、KKR 等美国巨头在欧洲市场正面竞争的格局下，EQT 如何维持其投资回报率将是 LP 关注的核心焦点。EQT XI 的募资进展将成为观察 2026 年欧洲 PE 市场温度的重要窗口。</p>
+      <span class="card-source">来源: web results</span>
+    </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="card" id="card-19">
+    <div class="card-top" onclick="toggleCard(19)">
+      <span class="card-num tag-fund">19</span>
+      <div class="card-title-wrap">
+        <div class="card-title">贝恩资本完成 105 亿美元第六期亚洲基金募集</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>贝恩资本宣布完成其第六期亚洲私募股权基金（Bain Capital Asia Fund VI）的募集，最终规模达 105 亿美元，大幅超过 70 亿美元的原定目标。这一结果进一步证实了全球 LP 对亚洲 PE 市场的配置热情在 2026 年仍在升温。贝恩资本的亚洲基金主要投资于中国、印度、日本、韩国和东南亚地区的收购和成长型股权机会。贝恩资本在亚洲 PE 领域的竞争优势在于其深厚的本地化运营能力和丰富的投后增值经验。与其全球竞争对手相比，贝恩在亚洲的团队规模不是最大的，但以其精准的行业选择和 disciplined 的投资纪律著称。Fund VI 的超额认购反映出 LP 对贝恩亚洲团队历史业绩的高度认可——其第五期基金截至 2025 年底的净 IRR 超过 20%。但同时需要注意的是，亚洲 PE 市场的退出环境正在发生变化，尤其是中国 A 股 IPO 审核节奏的不确定性为退出带来了挑战。贝恩需要证明其在大规模资金管理下仍能维持优异的回报水平。</p>
+      <span class="card-source">来源: web results</span>
+    </div>
+  </div>
+
+  <!-- 20 -->
+  <div class="card" id="card-20">
+    <div class="card-top" onclick="toggleCard(20)">
+      <span class="card-num tag-fund">20</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Bpifrance 寻求募集 40-50 亿欧元"蓝海"基金</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>法国国家投资银行 Bpifrance 正在筹划募集一只规模在 40 至 50 亿欧元之间的"蓝海"基金，目标是对未上市的法国及欧洲优质公司进行少数股权投资。该基金的 LP 目标群体包括主权财富基金、北美养老金和亚洲机构投资者。"蓝海"基金的设立反映了欧洲 PE 市场的一个重要趋势：在全球 PE 巨头大举进入欧洲市场的背景下，欧洲本土机构正在通过更大规模、更专业化的大额少数股权投资工具来留住优质企业的股权。Bpifrance 作为法国政府旗下的投资机构，在获取法国本土优质交易方面具有天然优势，但也面临着"国字号"身份在国际 LP 募资中的某些结构性约束。该基金能否成功吸引到足够多的国际机构投资者，将取决于 Bpifrance 展示出的市场化运作能力和独立投资判断力。如果"蓝海"基金成功落地，可能引发其他欧洲国家政策性投资机构的跟风效仿，从而重塑欧洲 PE 市场的竞争格局。</p>
+      <span class="card-source">来源: <a href="https://www.marketscreener.com" target="_blank" rel="noopener">marketscreener.com</a></span>
+    </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="card" id="card-21">
+    <div class="card-top" onclick="toggleCard(21)">
+      <span class="card-num tag-fund">21</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Conifer Infrastructure Partners 完成 9 亿美元首期基金募集</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>Conifer Infrastructure Partners 宣布完成其首期基础设施基金的募集，最终规模为 9 亿美元，超过原定目标且在不到 5 个月内即完成关闭，显示出 LP 对基础设施资产配置的强烈需求。该基金将专注于能源和关键原材料基础设施领域的投资，包括可再生能源发电设施、储能系统、电网升级和关键矿产供应链基础设施等。基础设施资产因其长期稳定的现金流和通胀对冲属性，在全球利率波动加剧的背景下尤其受到养老金和保险资金的青睐。Conifer 的创始团队来自全球顶级基础设施投资机构，拥有丰富的项目开发和运营经验。首期基金的超募和快速关闭表明，尽管 PE 整体募资环境趋于分化，但基础设施赛道仍然处于资本配置的"热区"。Conifer 面临的挑战是如何在资产估值高企、竞争激烈的环境下找到具备足够安全边际和增长潜力的项目。对于 LP 而言，首次募集的 GP 往往需要在首只基金中证明自己的投资能力和纪律。</p>
+      <span class="card-source">来源: <a href="https://www.businesswirenews.com" target="_blank" rel="noopener">businesswirenews.com</a></span>
+    </div>
+  </div>
+
+  <!-- 22 -->
+  <div class="card" id="card-22">
+    <div class="card-top" onclick="toggleCard(22)">
+      <span class="card-num tag-fund">22</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Align Capital Partners 完成 11.45 亿美元双基金募集</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>Align Capital Partners 宣布同时完成其第四期旗舰基金（Fund IV）和 Collaborate II 基金的募集，两只基金合计规模达 11.45 亿美元，均于 6 月 15 日在硬上限处关闭。Fund IV 将继续专注于北美中端市场的控制型收购，而 Collaborate II 则是其面向少数股权投资的协同策略基金。双基金结构允许 Align Capital 在同一平台上同时覆盖控制型和少数股权投资两种策略，为 LP 提供了更加灵活的投资选择。Align Capital 的投资重点领域包括工业制造、商业服务和软件等中端市场中最活跃的赛道。硬上限关闭意味着 LP 的需求远超基金的最终接受规模，这在当前募资环境下是 GP 实力和 LP 信任度的重要证明。中端市场 PE 近年来持续受到 LP 追捧，原因在于该市场段的交易机会众多、估值相对合理、运营增值空间大。Align Capital 需要在资本规模扩大的同时保持其投资纪律和运营增值能力，避免陷入"资金规模诅咒"。</p>
+      <span class="card-source">来源: <a href="https://www.kirkland.com" target="_blank" rel="noopener">kirkland.com</a></span>
+    </div>
+  </div>
+
+  <!-- 23 -->
+  <div class="card" id="card-23">
+    <div class="card-top" onclick="toggleCard(23)">
+      <span class="card-num tag-fund">23</span>
+      <div class="card-title-wrap">
+        <div class="card-title">国务院 54 号文重塑 PE/VC 监管格局</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>6 月 3 日发布的国务院 54 号文件正在对中国私募股权和风险投资行业产生深远影响。文件核心要点包括：新设基金需经过"充分论证和协商"——由省级金融监管机构和证监会派出机构联合审查；县级及以下人民政府原则上不得新设政府投资基金；首次明确提出"规范对赌协议（VAM）制度体系"；明确支持"投早、投小、投长、投硬科技"。54 号文的出台是中央层面首次对 PE/VC 行业进行系统性制度设计，其影响将覆盖从基金设立、募资、投资到退出的全链条。限制县级政府设立投资基金有助于遏制地方债风险和地方招商恶性竞争，但对依赖地方政府出资的三四线城市创投生态可能造成短期冲击。规范 VAM 制度则是回应了此前对赌协议执行中大量法律纠纷的现实困境，有望为 GP 和创始人之间提供更加清晰透明的权利义务框架。总体而言，54 号文标志着中国 PE/VC 行业从"野蛮生长"阶段正式迈向"规范发展"新阶段，行业洗牌和专业化提速将在所难免。</p>
+      <span class="card-source">来源: <a href="https://www.sohu.com" target="_blank" rel="noopener">sohu.com</a> · <a href="https://www.lantai.cn" target="_blank" rel="noopener">lantai.cn</a></span>
+    </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="card" id="card-24">
+    <div class="card-top" onclick="toggleCard(24)">
+      <span class="card-num tag-fund">24</span>
+      <div class="card-title-wrap">
+        <div class="card-title">中国硬科技 CVC 大爆发</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>2026 年中国企业风险投资（CVC）正在经历一场以硬科技为核心的爆发式增长。长鑫存储（CXMT，国内存储芯片龙头企业）联合中微公司和阿里巴巴设立了约 40 亿元人民币的产业基金；兆易创新设立了半导体专项基金；国盾量子成立了 15 亿元的量子产业基金。据行业统计，2026 年以来已有约 20 家上市公司设立了产业投资基金，而 2025 年全年这一数字仅为 5 家。这一轮 CVC 热潮与前几年的互联网 CVC 热潮有本质区别：上一轮是互联网平台企业为争夺流量入口而进行的财务投资，而本轮则是硬科技上市公司为完善产业链布局、加速技术协同而设立的战略投资工具。产业资本的深度参与正在改变一级市场的竞争格局——与财务 VC 相比，CVC 能够为被投企业提供技术验证场景、供应链导入和客户资源等更加务实的投后赋能。但 CVC 的涌入也带来了一定的市场扭曲效应，尤其是在估值层面，CVC 往往愿意为战略价值支付高于财务回报合理水平的溢价。</p>
+      <span class="card-source">来源: <a href="https://www.21jingji.com" target="_blank" rel="noopener">21jingji.com</a> · <a href="https://www.cnstock.com" target="_blank" rel="noopener">cnstock.com</a></span>
+    </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="card" id="card-25">
+    <div class="card-top" onclick="toggleCard(25)">
+      <span class="card-num tag-fund">25</span>
+      <div class="card-title-wrap">
+        <div class="card-title">蜜雪冰城出资 15 亿元做 LP</div>
+        <span class="card-tag tag-fund-text">基金设立</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>中国消费巨头蜜雪冰城宣布以有限合伙人（LP）身份出资 15 亿元参与一只科技投资基金，这是近年来消费类企业作为 LP 参与股权投资的典型案例之一。蜜雪冰城旗下拥有超过 3.6 万家门店，是中国最大的连锁茶饮品牌之一。其以 LP 身份进入股权投资领域，反映出中国龙头企业"产业+资本"双轮驱动战略的普及化趋势。蜜雪冰城此次选择的是一只聚焦硬科技方向的基金，而非消费赛道基金，这表明公司试图通过股权投资布局与其主业相关或前瞻性的技术领域，如数字化供应链、智能零售设备等。蜜雪冰城作为 LP 的优势在于其庞大的实业现金流能够提供稳定的出资来源，而无需像传统金融机构 LP 那样受到资产负债表的严格约束。但消费企业做 LP 也面临着专业投资能力不足、投资周期认知偏差等潜在风险。此类非传统 LP 的大量涌入，正在改变中国 PE/VC 募资端的结构，也在推动 GP 在投资者关系管理上的进一步专业化。</p>
+      <span class="card-source">来源: <a href="https://www.nbd.com.cn" target="_blank" rel="noopener">nbd.com.cn</a></span>
+    </div>
+  </div>
+
+  <!-- ===== Section 3: 政策与行情 ===== -->
+  <div class="section-title">
+    <span>政策与行情</span>
+    <span class="count">5 项</span>
+  </div>
+
+  <!-- 26 -->
+  <div class="card" id="card-26">
+    <div class="card-top" onclick="toggleCard(26)">
+      <span class="card-num tag-policy">26</span>
+      <div class="card-title-wrap">
+        <div class="card-title">2026 年 IPO 大爆发：上半年已有约 150 家上市</div>
+        <span class="card-tag tag-policy-text">政策与行情</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>2026 年上半年，A 股和港股合计已有约 150 家企业完成上市，IPO 市场呈现明显的回暖态势。其中科创板 PE 倍数（市盈率）达到约 60 倍，而半导体赛道更为夸张——科创 50 指数成分股的 PE 估值区间达到 150 至 170 倍。行业共识认为，2026 年是股权投资机构通过 IPO 实现退出的"大年"。IPO 复苏背后的驱动力是多方面的：一是注册制改革的深化效应持续显现，上市审核的确定性和可预期性明显提升；二是国家对硬科技企业的上市支持力度空前，尤其是针对半导体、AI 和生物医药等战略新兴领域开辟了专门的加速通道；三是二级市场的风险偏好回升，投资者对科技股的配置意愿增强。高估值水平虽然有利于机构退出，但也引发了对于估值泡沫的担忧。对于 PE/VC 机构而言，关键策略在于把握好上市窗口期，在市场情绪仍处高位时完成退出。预计下半年 IPO 节奏将进一步加快，全年有望突破 300 家。</p>
+      <span class="card-source">来源: <a href="https://www.chnfund.com" target="_blank" rel="noopener">chnfund.com</a> · <a href="https://www.pedaily.cn" target="_blank" rel="noopener">pedaily.cn</a></span>
+    </div>
+  </div>
+
+  <!-- 27 -->
+  <div class="card" id="card-27">
+    <div class="card-top" onclick="toggleCard(27)">
+      <span class="card-num tag-policy">27</span>
+      <div class="card-title-wrap">
+        <div class="card-title">证监会主席吴清在陆家嘴论坛发言：支持硬科技上市</div>
+        <span class="card-tag tag-policy-text">政策与行情</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>6 月 17 日，中国证监会主席吴清在 2026 年陆家嘴论坛上发表重要讲话，明确表示支持量子科技、生物制造、具身智能等前沿领域的公司在科创板上市。吴清还宣布将科创板第五套上市标准扩展至 AI 大模型领域，同时创业板将新增第四套上市标准，专门面向新型消费和现代服务业企业。这一政策信号具有多重含义：首先，科创板第五套标准以"市值+研发投入"为核心指标，不设盈利要求，其适用范围从生物医药扩展至 AI 大模型，意味着大量尚处亏损期但研发投入巨大的 AI 创业公司获得了直接上市的机会。其次，创业板新增的第四套标准为新型消费和现代服务企业打开了资本市场通道，这与国家推动消费升级和现代服务业发展的政策方向高度一致。对于一级市场投资者而言，吴清的发言意味着硬科技和 AI 领域的退出通道更加多元化，IPO 不再是"千军万马过独木桥"，这将在中长期降低一级市场的估值泡沫风险。</p>
+      <span class="card-source">来源: <a href="https://www.sohu.com" target="_blank" rel="noopener">sohu.com</a></span>
+    </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="card" id="card-28">
+    <div class="card-top" onclick="toggleCard(28)">
+      <span class="card-num tag-policy">28</span>
+      <div class="card-title-wrap">
+        <div class="card-title">退出渠道多元化：从"唯 IPO 论"到多路径并行</div>
+        <span class="card-tag tag-policy-text">政策与行情</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>中国股权投资行业正在经历从"唯 IPO 论"到多路径退出的深刻转变。目前行业公认的三大退出支柱正在形成：第一，IPO 仍然是硬科技企业退出的"黄金窗口"，科创板对前沿科技领域保持高度包容性；第二，并购重组正在加速成为主流退出方式——"并购六条"等政策措施正在推动产业整合，上市公司通过并购获取技术和人才的意愿大增；第三，S 基金（二手份额转让基金）市场从占退出总额不到 1% 提升至约 10-15%，为 PE/VC 提供了更加灵活的中期流动性解决方案。此外，一种新兴的退出模式正在出现——PE 机构主动培养新的产业平台，将被投企业资产注入该平台，再通过平台上市或出售实现退出。退出渠道多元化对行业健康发展的意义重大：它降低了对单一 IPO 通道的过度依赖，使基金管理人可以更加理性地进行投资决策，而非为了"IPO 故事"而扭曲投资逻辑。对于 LP 而言，退出渠道的丰富也意味着 DPI（已分配收益占实缴资本比）指标有望改善。</p>
+      <span class="card-source">来源: <a href="https://www.stcn.com" target="_blank" rel="noopener">stcn.com</a></span>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="card" id="card-29">
+    <div class="card-top" onclick="toggleCard(29)">
+      <span class="card-num tag-policy">29</span>
+      <div class="card-title-wrap">
+        <div class="card-title">SpaceX 启动 IPO 申报，估值约 1.75 万亿美元</div>
+        <span class="card-tag tag-policy-text">政策与行情</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>据《财富》杂志报道，SpaceX 已正式启动 IPO 申报流程，目标估值约为 1.75 万亿美元。如果顺利完成，这将成为人类历史上规模最大的首次公开发行。SpaceX 的 IPO 将是 2026 年全球资本市场最受瞩目的事件之一，其估值超过了全球大多数上市公司的市值，包括许多老牌蓝筹企业。然而，一个值得关注的现象是：据调查，约 80% 的活跃风险投资机构并未持有 SpaceX、OpenAI 或 Anthropic 的任何股份。这意味着这一轮 AI 和太空科技的价值创造高度集中在少数头部机构和战略投资者手中，大多数 VC 基金实际上错过了这波最大的技术浪潮。SpaceX 的 IPO 也将对早期太空科技投资产生显著的"示范效应"，可能推动更多资本涌入商业航天赛道。但投资者需要注意，SpaceX 的成功是建立在二十年技术积累和 SpaceX 独特的工程文化之上的，其经验难以简单复制到其他商业航天公司。</p>
+      <span class="card-source">来源: <a href="https://www.fortune.com" target="_blank" rel="noopener">fortune.com</a></span>
+    </div>
+  </div>
+
+  <!-- 30 -->
+  <div class="card" id="card-30">
+    <div class="card-top" onclick="toggleCard(30)">
+      <span class="card-num tag-policy">30</span>
+      <div class="card-title-wrap">
+        <div class="card-title">2025-2026 VC 退出数据：繁荣背后的结构性隐忧</div>
+        <span class="card-tag tag-policy-text">政策与行情</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>根据硅谷银行和 PitchBook 发布的最新数据，2025 年美国 VC 退出总价值达到 2976 亿美元，几乎是 2024 年的两倍。2025 年共有 48 家 VC 支持的企业完成 IPO，创下 2021 年以来的最佳纪录。然而，这些光鲜的总量数据背后隐藏着结构性隐忧：仅 10 宗 IPO 就贡献了全部退出价值的 76%。2026 年第一季度 VC 退出价值达到创纪录的 3470 亿美元，但若剔除最大的 5 宗退出交易，总价值骤降 86.6%。这一数据揭示出当前 VC 退出的"头重脚轻"特征——极少数超级独角兽的成功退出掩盖了大多数被投企业的退出困境。对于大多数 VC 基金而言，DPI 指标仍然不尽人意，许多基金面临退出周期延长和回报率下行的压力。这一趋势正在推动两个结构性变化：一是 GP 越来越多地采用延续基金（continuation fund）等工具为 LP 提供流动性，二是 LP 在基金选择时更加注重 GP 的退出能力和 DPI 历史表现，而非仅仅关注账面回报（TVPI）。</p>
+      <span class="card-source">来源: <a href="https://www.svb.com" target="_blank" rel="noopener">svb.com</a> · <a href="https://www.pitchbook.com" target="_blank" rel="noopener">pitchbook.com</a></span>
+    </div>
+  </div>
+
+  <!-- ===== Section 4: 大咖观点 ===== -->
+  <div class="section-title">
+    <span>大咖观点</span>
+    <span class="count">10 项</span>
+  </div>
+
+  <!-- 31 -->
+  <div class="card" id="card-31">
+    <div class="card-top" onclick="toggleCard(31)">
+      <span class="card-num tag-opinion">31</span>
+      <div class="card-title-wrap">
+        <div class="card-title">福布斯："欢迎来到价值创造时代"</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>福布斯杂志发表评论文章指出，风险投资行业正在从"增长至上"的时代转向"纪律性价值创造"的新范式。尽管 2025 年全球 VC 投资总额接近 3400 亿美元，接近历史最高水平，但这一数据被 AI 领域的超级交易严重扭曲——AI 赛道独占了美国 VC 投资总额的 65.4%。非 AI 初创企业正处于"争抢残羹"的尴尬境地。文章认为，真正的"价值创造时代"意味着投资者需要回归基本面分析，关注企业的单位经济模型、客户留存率和现金消耗效率等核心指标，而非仅仅追逐增长率和市场规模的故事。对于非 AI 赛道的创业者而言，这意味着需要更加务实地展示商业模式的可行性和资本效率。福布斯的观点代表了一部分市场参与者的反思，但也有人持不同意见——他们认为 AI 革命本身就是一个真实的价值创造机会，而非泡沫。无论立场如何，行业共识是在估值回归理性的过程中，真正具备技术壁垒和商业执行力的公司将脱颖而出。</p>
+      <span class="card-source">来源: <a href="https://www.forbes.com" target="_blank" rel="noopener">forbes.com</a></span>
+    </div>
+  </div>
+
+  <!-- 32 -->
+  <div class="card" id="card-32">
+    <div class="card-top" onclick="toggleCard(32)">
+      <span class="card-num tag-opinion">32</span>
+      <div class="card-title-wrap">
+        <div class="card-title">汇丰调查：78% 预计 2026 年 AI 资本支出增加</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>汇丰银行最新调查显示，78% 的受访机构预计 2026 年 AI 相关的资本支出将继续增加，但超过 80% 的受访者认为当前的 AI 投入规模"大致合适"或"过度配置"。VC/PE 投资者对 AI 的情绪较 2025 年 10 月的调查略有降温——看好 AI 的投资者比例从 55% 下降至 42%。与此同时，医疗健康超越了 AI 成为投资者最看好的行业。这一调查结果反映了市场对 AI 投资的复杂心态：一方面，几乎所有机构都认为 AI 是未来最重要的技术趋势，必须投入；另一方面，经过两年多的 AI 投资热潮，部分投资者开始担忧过度集中带来的风险。医疗健康行业的崛起则受益于 AI 技术在药物发现和诊断中的应用正在产生实际成果，以及人口老龄化带来的结构性需求增长。汇丰调查的数据提醒我们，即便是在 AI 最为火热的时期，资产配置的分散化仍然是机构投资者的核心原则。对于 GP 而言，理解 LP 的这种心态变化对于募资策略的调整至关重要。</p>
+      <span class="card-source">来源: <a href="https://www.hsbc.com" target="_blank" rel="noopener">hsbc.com</a></span>
+    </div>
+  </div>
+
+  <!-- 33 -->
+  <div class="card" id="card-33">
+    <div class="card-top" onclick="toggleCard(33)">
+      <span class="card-num tag-opinion">33</span>
+      <div class="card-title-wrap">
+        <div class="card-title">格隆："锚定时代的核心资产"</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>知名财经评论人格隆在其专栏中撰文指出，投资者必须首先认清自己身处怎样的时代，才能做出正确的资产配置决策。"很多人炒了一辈子股票，却从未买过茅台、腾讯或者宁德时代——这些是一个时代的核心资产。"格隆的观点直指投资中的一个根本性问题：大部分投资者的注意力过于集中在短期波动和交易性机会上，而忽视了识别和持有"时代核心资产"的重要性。每一轮技术革命和经济转型都会催生一批核心资产——2000 年代的互联网、2010 年代的移动互联网和消费升级、2020 年代以来的 AI 和新能源。格隆认为，当前中国资本市场的核心资产正在从传统消费和互联网向硬科技、AI 和新能源方向迁移。对于股权投资者而言，这一逻辑同样适用：识别并长期持有代表时代方向的优质企业，远比频繁交易和追逐热点更能创造可持续的超额回报。格隆的观点也呼应了巴菲特"买入并持有"的投资哲学，但在中国语境下注入了对时代特征的深度理解。</p>
+      <span class="card-source">来源: <a href="https://www.gelonghui.com" target="_blank" rel="noopener">gelonghui.com</a></span>
+    </div>
+  </div>
+
+  <!-- 34 -->
+  <div class="card" id="card-34">
+    <div class="card-top" onclick="toggleCard(34)">
+      <span class="card-num tag-opinion">34</span>
+      <div class="card-title-wrap">
+        <div class="card-title">摩根士丹利：中国市场的"应配而未配"资金远未到位</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>摩根士丹利最新研究报告指出，中国是全球除美国之外唯一拥有独立、完整 AI 生态系统的市场，这一独特地位意味着中国市场存在潜在的 3 至 4 万亿美元增量市值空间。但报告同时强调，全球资本对中国市场的配置仍然严重不足——大量的"应配而未配"资金（should-flow funds）尚未实际流入。造成这一配置缺口的原因包括地缘政治不确定性、人民币汇率波动风险以及对中国监管环境可预测性的担忧等。摩根士丹利认为，随着中国 AI 生态系统不断完善、资本市场开放程度进一步提升以及上市公司治理的持续改善，全球资金对中国市场的配置比例将逐步向中国经济在全球 GDP 中的占比靠拢。对于 PE/VC 机构而言，这意味着中国市场的优质资产仍然具有长期吸引力，尤其是在 AI、新能源和先进制造等战略领域。但短期来看，全球资金的实际流入仍将受到宏观环境和政策因素的制约，需要投资者保持耐心和战略定力。</p>
+      <span class="card-source">来源: <a href="https://www.cnfin.com" target="_blank" rel="noopener">cnfin.com</a></span>
+    </div>
+  </div>
+
+  <!-- 35 -->
+  <div class="card" id="card-35">
+    <div class="card-top" onclick="toggleCard(35)">
+      <span class="card-num tag-opinion">35</span>
+      <div class="card-title-wrap">
+        <div class="card-title">达利欧：AI 市场集中度是风险，分散化是"圣杯"</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>全球最大对冲基金桥水基金创始人瑞·达利欧（Ray Dalio）近日警告，当前 AI 市场的极端集中化构成了显著的投资风险。达利欧指出，15 个不相关的优质投资组合可以将风险-回报比从 0.3 提升至 1.29，分散化是穿越技术周期的"圣杯"。达利欧的观点建立在其长期遵循的"风险平价"投资哲学之上：真正的投资安全不是来自对某个热门赛道的重仓押注，而是来自在不同资产类别、不同行业和不同地域之间建立有效的分散化配置。他的这一警告在当前 AI 投资热潮席卷全球的背景下具有特殊意义——大量机构和个人投资者正在将资金集中投向 AI 领域，尤其是少数几家头部 AI 公司。达利欧并非否定 AI 的革命性价值，而是提醒投资者不要因为技术变革的兴奋感而忽视了基本的风险管理原则。对于 PE/VC 投资者而言，这意味着在追逐 AI 等热门赛道的同时，仍需保持投资组合的行业多元化和阶段多元化，避免"把所有鸡蛋放在一个篮子里"的风险。</p>
+      <span class="card-source">来源: <a href="https://www.gate.com" target="_blank" rel="noopener">gate.com</a></span>
+    </div>
+  </div>
+
+  <!-- 36 -->
+  <div class="card" id="card-36">
+    <div class="card-top" onclick="toggleCard(36)">
+      <span class="card-num tag-opinion">36</span>
+      <div class="card-title-wrap">
+        <div class="card-title">90% VC 资金集中于热门赛道</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>据《21 世纪经济报道》调查，当前中国 VC 市场约 90% 的资金集中涌入具身智能、机器人、量子计算、核聚变、集成电路和商业航天等热门赛道。一个引人注目的案例是，"某脑机接口项目的估值在两个月内翻了 3 倍"。更为极端的是，部分硬科技创业项目在融资时开出"NO VAM、NO Buyback（不对赌、不回购），接受与否随你"的条件，这在传统 PE/VC 交易中几乎不可想象。这种极端卖方市场的形成有多重原因：一是全球硬科技竞赛的背景下，优质技术团队极度稀缺，创始人在融资谈判中占据绝对强势地位；二是大量资金追逐有限优质标的，造成严重的供需失衡；三是地缘政治因素使得硬科技资产的战略溢价大幅提升。然而，这种"非正常状态"能否持续值得深思。历史上，每一次类似的"卖方融资市场"之后都伴随着估值回调。对于 GP 而言，如何在热门赛道中保持投资纪律、不在估值高峰期追高，是对其专业判断力的真正考验。</p>
+      <span class="card-source">来源: <a href="https://www.21jingji.com" target="_blank" rel="noopener">21jingji.com</a></span>
+    </div>
+  </div>
+
+  <!-- 37 -->
+  <div class="card" id="card-37">
+    <div class="card-top" onclick="toggleCard(37)">
+      <span class="card-num tag-opinion">37</span>
+      <div class="card-title-wrap">
+        <div class="card-title">陈平（汇丰晋信，一年回报 +220%）："不要猜顶"</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>汇丰晋信基金经理陈平以过去一年实现 220% 回报的骄人业绩引发市场关注。他在最新观点中表示，AI 已经进入了"正向循环"阶段——AI 基础设施的投资正在推动模型能力提升，模型能力提升正在催生更多的应用场景，而应用场景的爆发反过来又验证了基础设施投资的合理性。陈平认为投资者不应该试图"猜顶"，因为 AI 的产业趋势仍处于早期阶段。他尤其看好光通信板块——认为到 2030 年光模块需求可能是当前水平的 20 倍。陈平提出了三个观察 AI 趋势的核心信号：模型能力的提升速度、资本支出增长率以及 AI 对社会的实际影响。他的观点对股权投资者同样具有参考价值：在一级市场中，判断 AI 投资时机同样不能简单以"估值高低"作为唯一标准，而需要深入理解技术发展的内在规律和商业化的实际进程。陈平的"正向循环"理论为投资者提供了一个理解 AI 投资时机的框架，但投资者也需注意，他的 220% 回报是在特定市场环境下实现的，不应简单复制其策略。</p>
+      <span class="card-source">来源: <a href="https://www.hafoo.com.hk" target="_blank" rel="noopener">hafoo.com.hk</a></span>
+    </div>
+  </div>
+
+  <!-- 38 -->
+  <div class="card" id="card-38">
+    <div class="card-top" onclick="toggleCard(38)">
+      <span class="card-num tag-opinion">38</span>
+      <div class="card-title-wrap">
+        <div class="card-title">Dechert PE 展望："渐进式解冻"与 DPI 为王</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>国际律所 Dechert 发布的最新私募股权市场展望报告描绘了一幅"渐进式解冻"的行业图景：目前全球 PE 行业持有约 3.6 万亿美元的未售出投资组合公司资产，另有 1.2 万亿美元 dry powder（未动用资本）等待部署。在退出节奏缓慢的背景下，DPI（已分配收益占实缴资本比）已成为 LP 评估 GP 的最核心指标。报告还揭示了几个关键趋势：49% 的受访者将地缘政治不确定性列为最大风险；GP 主导的延续基金交易已经从小众工具变为主流策略，使用率从几年前的不及 20% 跃升至 46%，几乎翻倍。Dechert 的报告本质上向行业传递了一个信号：PE 行业正处于一个"存量消化期"，如何从存量资产中创造价值和实现退出，比募集新基金更加重要。对于 LP 而言，在评估 GP 时，DPI 和退出执行力应优先于 TVPI（总价值倍数）和募资规模。报告也提醒 GP，延续基金虽然在短期内可以缓解退出压力，但如果过度使用而不真正创造价值，最终将损害 GP 在 LP 群体中的信誉。</p>
+      <span class="card-source">来源: <a href="https://www.dechert.com" target="_blank" rel="noopener">dechert.com</a></span>
+    </div>
+  </div>
+
+  <!-- 39 -->
+  <div class="card" id="card-39">
+    <div class="card-top" onclick="toggleCard(39)">
+      <span class="card-num tag-opinion">39</span>
+      <div class="card-title-wrap">
+        <div class="card-title">普华永道警告"SaaS-pocalypse"风险</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>普华永道（PwC）发布研究报告，警告传统 SaaS 行业正面临一场潜在的"SaaS-pocalypse"（SaaS 末日）风险。报告指出，AI 原生竞争对手正在快速侵蚀传统 SaaS 企业的订阅收入模式，压缩其盈利空间并收窄退出选项。传统 SaaS 模式的核心优势——标准化的订阅式收入和高客户粘性——正在被 AI 公司颠覆。AI 原生产品能够以更低的成本提供更强的功能，并且能够通过持续的模型迭代实现产品能力的快速升级，传统 SaaS 公司很难跟上这种创新节奏。普华永道的报告建议传统 SaaS 企业必须在两条路径中做出选择：要么积极投入 AI 转型，将 AI 能力深度融入产品体系；要么聚焦于 AI 难以替代的领域，如复杂的工作流集成和行业特定的合规功能。对于专注于 SaaS 投资的 VC 基金而言，这意味着其投资组合中大量传统 SaaS 公司的估值面临重估压力。PE 机构在收购 SaaS 标的时也需要更加审慎地评估其 AI 转型能力——缺乏 AI 能力的传统 SaaS 公司可能在 3-5 年内沦为"数字恐龙"。</p>
+      <span class="card-source">来源: web results</span>
+    </div>
+  </div>
+
+  <!-- 40 -->
+  <div class="card" id="card-40">
+    <div class="card-top" onclick="toggleCard(40)">
+      <span class="card-num tag-opinion">40</span>
+      <div class="card-title-wrap">
+        <div class="card-title">"巴菲特与 VC 必有一输"</div>
+        <span class="card-tag tag-opinion-text">大咖观点</span>
+      </div>
+      <span class="card-toggle-icon">▾</span>
+    </div>
+    <div class="card-detail">
+      <p>投中网发表题为"巴菲特与 VC 必有一输"的评论文章，将"股神"沃伦·巴菲特的投资策略变化作为讨论当代风险投资行业估值泡沫的切入点。文章指出，伯克希尔·哈撒韦的现金储备已达到创纪录的 3970 亿美元，且巴菲特已经连续近 3 年处于股票净卖出状态。文章质疑：巴菲特是否在借此传递对科技泡沫的信号？巴菲特以其价值投资哲学闻名，始终强调安全边际和现金流折现，这与当前 VC 行业普遍采用的"增长优先、盈利靠后"的估值逻辑形成了鲜明对比。文章的核心论点是：在极端的科技牛市行情中，巴菲特式的审慎和 VC 式的激进必然有一方是错的——如果巴菲特是对的，那么大量以高估值融资的科技公司将面临估值修正；如果 VC 是对的，那么巴菲特的保守将使其错失人类历史上最大的技术革命。这篇文章实际上提出了一个投资哲学层面的根本问题：在技术范式转换的时代，传统价值投资框架是否仍然适用？对这一问题的不同回答，将在很大程度上决定未来十年各类投资机构的兴衰。</p>
+      <span class="card-source">来源: <a href="https://www.chinaventure.com.cn" target="_blank" rel="noopener">chinaventure.com.cn</a></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleCard(id) {
+  var el = document.getElementById('card-' + id);
+  if (!el) return;
+  el.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
