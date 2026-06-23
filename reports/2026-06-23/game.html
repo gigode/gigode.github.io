@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏产业日报 | 2026年6月23日</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  background: #0a0a1a;
+  color: #e0e0e0;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: #a78bfa; text-decoration: none; transition: color .2s; }
+a:hover { color: #c4b5fd; }
+
+/* Cover */
+.cover {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 40%, #7c3aed 100%);
+  padding: 60px 20px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(124,58,237,.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(139,92,246,.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover h1 {
+  font-size: 2.4em;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 2px;
+  position: relative;
+}
+.cover .subtitle {
+  color: #c4b5fd;
+  font-size: 1em;
+  margin-top: 8px;
+  position: relative;
+}
+.cover .stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.cover .stat-item {
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 12px 24px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.cover .stat-item .num {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #a78bfa;
+}
+.cover .stat-item .label {
+  font-size: .78em;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+.cover .back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #c4b5fd;
+  font-size: .85em;
+  border: 1px solid rgba(196,181,253,.3);
+  padding: 6px 18px;
+  border-radius: 20px;
+  transition: all .2s;
+  position: relative;
+}
+.cover .back-link:hover {
+  background: rgba(196,181,253,.12);
+  border-color: #a78bfa;
+}
+
+/* TOC */
+.toc {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px 10px;
+}
+.toc h2 {
+  font-size: 1.1em;
+  color: #a78bfa;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.toc-item {
+  background: rgba(124,58,237,.08);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: .85em;
+  transition: background .2s;
+  border-left: 3px solid #7c3aed;
+  cursor: pointer;
+}
+.toc-item:hover { background: rgba(124,58,237,.18); }
+.toc-item .tag {
+  display: inline-block;
+  font-size: .7em;
+  padding: 1px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+  font-weight: 600;
+}
+.tag-new { background: #2563eb; color: #fff; }
+.tag-industry { background: #7c3aed; color: #fff; }
+.tag-esports { background: #d97706; color: #fff; }
+.tag-hardware { background: #059669; color: #fff; }
+.tag-review { background: #dc2626; color: #fff; }
+
+/* Section */
+.section { max-width: 900px; margin: 0 auto; padding: 10px 20px 30px; }
+.section-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #fff;
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid rgba(124,58,237,.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title .badge {
+  font-size: .5em;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: rgba(124,58,237,.25);
+  color: #a78bfa;
+}
+
+/* Cards */
+.card {
+  background: linear-gradient(135deg, rgba(31,31,59,.8), rgba(26,26,62,.6));
+  border: 1px solid rgba(124,58,237,.2);
+  border-radius: 14px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: border-color .3s;
+}
+.card:hover { border-color: rgba(124,58,237,.45); }
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px 20px;
+  cursor: pointer;
+  gap: 14px;
+  user-select: none;
+}
+.card-header .num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  display: flex;
+  align-items: center; justify-content: center;
+  font-size: .8em; font-weight: 700; color: #fff;
+}
+.card-header .meta { flex: 1; min-width: 0; }
+.card-header .meta .card-title {
+  font-size: .98em;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+}
+.card-header .meta .card-source {
+  font-size: .75em;
+  color: #6b7280;
+  margin-top: 3px;
+}
+.card-header .meta .card-source a { color: #8b8fa3; }
+.card-header .arrow {
+  flex-shrink: 0;
+  font-size: .8em;
+  color: #6b7280;
+  transition: transform .3s;
+  margin-top: 6px;
+}
+.card.open .card-header .arrow { transform: rotate(180deg); }
+.card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .45s ease, padding .3s;
+}
+.card.open .card-body {
+  max-height: 4000px;
+  padding: 0 20px 20px;
+}
+.card-body .content {
+  font-size: .9em;
+  color: #d1d5db;
+  line-height: 1.8;
+}
+.card-body .content p { margin-bottom: 10px; }
+.card-body .content strong { color: #c4b5fd; }
+.card-body .content .url-box {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,.3);
+  border-radius: 8px;
+  font-size: .8em;
+  word-break: break-all;
+}
+.card-body .content .url-box a { color: #93c5fd; }
+.card-body .content .url-box .label { color: #6b7280; margin-right: 6px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .cover h1 { font-size: 1.6em; }
+  .cover .stats { gap: 12px; }
+  .cover .stat-item { padding: 10px 16px; }
+  .cover .stat-item .num { font-size: 1.2em; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .card-header { padding: 12px 14px; }
+  .card.open .card-body { padding: 0 14px 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <h1>游戏产业日报</h1>
+  <div class="subtitle">2026年6月23日 &middot; 星期二</div>
+  <div class="stats">
+    <div class="stat-item"><div class="num">16</div><div class="label">收录资讯</div></div>
+    <div class="stat-item"><div class="num">5</div><div class="label">内容板块</div></div>
+    <div class="stat-item"><div class="num">4</div><div class="label">新游发布</div></div>
+    <div class="stat-item"><div class="num">4</div><div class="label">行业动态</div></div>
+    <div class="stat-item"><div class="num">3</div><div class="label">电竞资讯</div></div>
+    <div class="stat-item"><div class="num">3</div><div class="label">硬件技术</div></div>
+    <div class="stat-item"><div class="num">1</div><div class="label">评测观点</div></div>
+  </div>
+  <a class="back-link" href="https://gigode.github.io/gamehot/">← 返回游戏产业日报首页</a>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>📋 今日速览</h2>
+  <div class="toc-grid">
+    <div class="toc-item" onclick="document.querySelector('[data-idx=1]')?.click()"><span class="tag tag-new">新游</span>Dimhaven 解谜发售</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=2]')?.click()"><span class="tag tag-new">新游</span>Stronghold 4 试玩</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=3]')?.click()"><span class="tag tag-new">新游</span>Steam 本周新游榜</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=4]')?.click()"><span class="tag tag-new">新游</span>六月新品节落幕</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=5]')?.click()"><span class="tag tag-industry">行业</span>Nexters 收购 One Store</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=6]')?.click()"><span class="tag tag-industry">行业</span>腾讯收购 Nexon 动向</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=7]')?.click()"><span class="tag tag-industry">行业</span>Kakao Games 人事变动</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=8]')?.click()"><span class="tag tag-industry">行业</span>CDPR 谈 AI 游戏</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=9]')?.click()"><span class="tag tag-esports">电竞</span>印度 UNITE 亚军</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=10]')?.click()"><span class="tag tag-esports">电竞</span>PUBG Nations Cup</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=11]')?.click()"><span class="tag tag-esports">电竞</span>GEN 横扫 KT</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=12]')?.click()"><span class="tag tag-esports">电竞</span>CS2 科隆 Major</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=13]')?.click()"><span class="tag tag-hardware">硬件</span>Steam Machine 发布</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=14]')?.click()"><span class="tag tag-hardware">硬件</span>NVIDIA RTX Spark</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=15]')?.click()"><span class="tag tag-hardware">硬件</span>华硕 ROG 20 周年</div>
+    <div class="toc-item" onclick="document.querySelector('[data-idx=16]')?.click()"><span class="tag tag-review">评测</span>007 / 鬼泣5 评分</div>
+  </div>
+</div>
+
+<!-- Section: 新游发布 -->
+<div class="section">
+  <div class="section-title">
+    🎮 新游发布 / 更新
+    <span class="badge">4 条</span>
+  </div>
+
+  <!-- Card 1 -->
+  <div class="card open" data-idx="1">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">1</div>
+      <div class="meta">
+        <div class="card-title">Dimhaven: The Lost Source 今日 Steam 发售 — Quern 团队全新解谜冒险</div>
+        <div class="card-source"><span class="tag tag-new">新游</span> 来源：<a href="https://in.ign.com/dimhaven-enigmas/263051/dimhaven-the-lost-source-official-release-date-trailer" target="_blank">IGN</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>由《Quern: Undying Thoughts》开发团队带来的全新第一人称解谜冒险游戏 <strong>Dimhaven: The Lost Source</strong> 于今日正式在 Steam 平台发售。这款作品延续了开发团队一贯的沉浸式解谜风格，将玩家带入一个被遗弃的海岛度假村，在荒凉而充满神秘气息的环境中展开探索之旅。</p>
+        <p>游戏的核心玩法围绕环境解谜展开，玩家需要仔细观察场景中的每一处细节，收集线索并解开层层递进的谜题。与传统的"找物品"式解谜不同，Dimhaven 更强调逻辑推理与空间理解，许多谜题需要玩家理解整个岛屿的生态系统和背后的故事线索才能破解。荒废的度假村本身就是一个巨大的谜题箱，从废弃的酒店大堂到杂草丛生的高尔夫球场，每个区域都隐藏着通往真相的钥匙。</p>
+        <p>从目前公开的预告片和试玩反馈来看，游戏的画面表现力相当出色，光影效果和材质细节都达到了相当高的水准，荒岛氛围的营造尤为到位。海风拂过破败建筑时的声音设计，配合若隐若现的背景音乐，为探索过程增添了浓厚的沉浸感。对于喜欢《神秘岛》系列和《见证者》等硬核解谜游戏的玩家来说，这款作品无疑是本月不可错过的佳作。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://in.ign.com/dimhaven-enigmas/263051/dimhaven-the-lost-source-official-release-date-trailer" target="_blank">https://in.ign.com/dimhaven-enigmas/263051/dimhaven-the-lost-source-official-release-date-trailer</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card" data-idx="2">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">2</div>
+      <div class="meta">
+        <div class="card-title">Stronghold 4 正式公布，6月23日开放试玩 Demo — UE5 引擎打造中世纪策略新篇</div>
+        <div class="card-source"><span class="tag tag-new">新游</span> 来源：<a href="https://vgtimes.com/gaming-news/157715-stronghold-4-announced-medieval-strategy-returns-with-demo-on-june-23.html" target="_blank">VG Times</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>经典中世纪策略系列沉寂多年后重磅回归。<strong>Stronghold 4（要塞4）</strong> 正式公布，并于今日（6月23日）同步开放试玩 Demo，玩家可第一时间登陆 Steam 下载体验。本作采用虚幻引擎 5 开发，标志着这个拥有二十余年历史的经典 RTS 系列在画面上实现质的飞跃。</p>
+        <p>据官方公布的信息，Stronghold 4 的单人战役模式将包含 22 个精心设计的任务，延续系列经典的城堡建造、资源管理与军队指挥玩法。UE5 引擎的加持让城堡的每一块砖石、每一面旗帜都拥有前所未有的细节表现。动态天气系统和昼夜循环的引入也为战略决策增加了新的维度——夜袭、迷雾中的伏击等战术将成为可能。</p>
+        <p>多人模式方面，本作支持最多 8 名玩家同场竞技，提供经典的占点、死亡竞赛和全新的"大建造者"模式。玩家可以自由设计城堡布局，布置陷阱和防御工事，在实时对战中考验自己的战略头脑。Demo 版本将开放前两个战役任务和一张多人地图，让玩家提前感受 UE5 重铸的中世纪战场魅力。对于系列老粉丝而言，Stronghold 4 的公布无疑是今年最令人振奋的消息之一。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://vgtimes.com/gaming-news/157715-stronghold-4-announced-medieval-strategy-returns-with-demo-on-june-23.html" target="_blank">https://vgtimes.com/gaming-news/157715-stronghold-4-announced-medieval-strategy-returns-with-demo-on-june-23.html</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card" data-idx="3">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">3</div>
+      <div class="meta">
+        <div class="card-title">Steam 本周（6月22-28日）前20款新游戏榜单出炉</div>
+        <div class="card-source"><span class="tag tag-new">新游</span> 来源：<a href="https://www.gamegrin.com/news/top-20-new-steam-games-this-week-22nd28th-of-june-2026/" target="_blank">GameGrin</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>GameGrin 发布了 Steam 平台本周（6月22日至28日）最值得关注的 20 款新游戏榜单，为玩家在琳琅满目的 Steam 商店中提供了精选导览。本周榜单涵盖了多种类型，从硬核策略到休闲解谜一应俱全。</p>
+        <p>榜单中备受瞩目的作品包括像素风动作游戏 <strong>Moldwasher</strong>，以其独特的霉菌清洁主题和爽快的战斗系统吸引了大量关注；<strong>Rift Wizard 3</strong> 作为经典法术构筑 Roguelike 系列的第三部，在前作基础上进一步深化了技能组合系统，法术种类和装备词缀大幅扩充；休闲冒险游戏 <strong>Deer & Boy</strong> 则以温馨的叙事和手绘画风赢得了媒体的一致好评，讲述了男孩与鹿之间的友谊故事。</p>
+        <p>其他值得关注的作品还包括科幻生存恐怖游戏《NIGHTMARION》、复古街机风格射击游戏《Void Rift》以及国产独立游戏《墨境》的正式版发布。本周榜单整体质量较高，独立游戏占据了大部分席位，反映出 Steam 平台上独立开发者持续旺盛的创作活力。对于有"游戏荒"的玩家来说，这份榜单提供了丰富的选择空间，无论是追求深度策略体验还是轻松的休闲时光，都能找到适合自己的作品。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://www.gamegrin.com/news/top-20-new-steam-games-this-week-22nd28th-of-june-2026/" target="_blank">https://www.gamegrin.com/news/top-20-new-steam-games-this-week-22nd28th-of-june-2026/</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card" data-idx="4">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">4</div>
+      <div class="meta">
+        <div class="card-title">Steam 六月新品节落幕，近4000款试玩 Demo 上线创历史新高</div>
+        <div class="card-source"><span class="tag tag-new">新游</span> 来源：<a href="https://gamerant.com/best-steam-next-fest-games-must-play-best-demo-june-2026/" target="_blank">GameRant</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>为期一周的 Steam 六月新品节（Next Fest）落下帷幕。本届新品节规模创下历史之最，共有近 4000 款游戏的试玩 Demo 上线，让玩家在游戏正式发售前就能抢先体验海量作品。这一数字较去年同期增长了约 15%，显示出全球独立游戏开发的蓬勃发展态势。</p>
+        <p>在众多 Demo 中，最受玩家热捧的作品包括：<strong>Bom Banana</strong> — 一款画风夸张的物理模拟动作游戏，凭借魔性的玩法和社交媒体传播迅速走红；<strong>Iron Nest</strong> — 机甲主题的 Roguelite 动作游戏，以其硬核的战斗系统和高自由度机甲定制受到核心玩家好评；<strong>Echoes of Aincrad</strong> — 基于《刀剑神域》世界观的同人动作 RPG，在动漫粉丝群体中引发了巨大关注，尽管只是 Demo，已完成度相当高。</p>
+        <p>新品节不仅是玩家的试玩盛宴，也是独立开发者检验产品、获取反馈的重要窗口。据统计，往届新品节中表现突出的作品，在正式发售后平均销量比未参加者高出 2-3 倍。本届大量 Demo 中涌现出的优质作品，有望在未来数月内陆续以正式版面貌与玩家见面。GameRant 还整理了一份"必玩 Demo 清单"，帮助玩家从近 4000 款作品中筛选出最值得一试的精品。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://gamerant.com/best-steam-next-fest-games-must-play-best-demo-june-2026/" target="_blank">https://gamerant.com/best-steam-next-fest-games-must-play-best-demo-june-2026/</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section: 行业动态 -->
+<div class="section">
+  <div class="section-title">
+    🏢 行业动态
+    <span class="badge">4 条</span>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card" data-idx="5">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">5</div>
+      <div class="meta">
+        <div class="card-title">Nexters 以 6.26 亿美元收购韩国应用商店 One Store，转型 Web3 游戏商店</div>
+        <div class="card-source"><span class="tag tag-industry">行业</span> 来源：<a href="https://www.ajupress.com/view/20260618213670147" target="_blank">AJU PRESS</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>游戏开发商 Nexters 宣布以 6.26 亿美元收购韩国领先的应用商店平台 One Store 的 89.03% 股权，这一重磅交易标志着全球游戏分发格局的重大变革。通过此次收购，Nexters 计划将 One Store 转型为全球首个基于 Web3 技术的游戏专用商店，并将平台代币 <strong>$CROSS 更名为 $ONE</strong>，作为新生态系统的核心通证。</p>
+        <p>One Store 是韩国三大移动应用商店之一，由 SK Telecom、KT、LG U+ 等韩国电信巨头联合创立，在韩国本土市场拥有稳定的用户基础和成熟的支付体系。Nexters 的入主将为这一传统应用商店注入区块链基因，利用 NFT 和去中心化技术重构游戏分发和数字资产交易方式。新平台将允许开发者以更灵活的方式发布游戏，玩家则能真正拥有游戏内物品的所有权。</p>
+        <p>分析人士指出，这笔交易反映了游戏行业向 Web3 转型的大趋势。Nexters 创始人表示，One Store 将成为一个"游戏优先、玩家所有"的下一代分发平台，$ONE 代币将用于平台治理、交易手续费和开发者激励。虽然 Web3 游戏在过去一年经历了泡沫破裂和市场调整，但大型资本的持续入局表明行业对区块链游戏的长远前景仍保持信心。收购完成后，One Store 预计将在年内完成技术架构升级并推出新版本。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://www.ajupress.com/view/20260618213670147" target="_blank">https://www.ajupress.com/view/20260618213670147</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card" data-idx="6">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">6</div>
+      <div class="meta">
+        <div class="card-title">彭博社：腾讯计划收购 Nexon（DNF/冒险岛开发商），市值约 150 亿美元</div>
+        <div class="card-source"><span class="tag tag-industry">行业</span> 来源：<a href="https://en.theblockbeats.news/flash/298088" target="_blank">The Blockbeats</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>据彭博社援引知情人士消息报道，中国科技巨头 <strong>腾讯</strong> 正计划收购韩国游戏巨头 <strong>Nexon</strong>（《地下城与勇士》《冒险岛》《跑跑卡丁车》开发商）。腾讯已与 Nexon 已故创始人金正宙的家族成员进行了接触，就收购事宜展开初步谈判。Nexon 目前市值约为 150 亿美元。</p>
+        <p>这并非腾讯首次尝试收购 Nexon。早在 2019 年，金正宙曾计划出售其持有的 Nexon 多数股权，当时腾讯参与了竞购，但最终因创始人家族内部意见分歧而放弃出售。金正宙于 2022 年去世后，其家族继承的股权处置问题再次浮出水面。Nexon 作为全球最具影响力的游戏公司之一，旗下拥有多款生命周期超十年的常青 IP，《地下城与勇士》在中国市场尤其为腾讯带来了长期稳定的收入流。</p>
+        <p>如果此次收购成功，将成为腾讯历史上最大规模的海外收购案之一，进一步巩固其在全球游戏市场的霸主地位。腾讯目前已是全球最大的游戏公司，持有 Epic Games、Riot Games、Supercell 等众多知名开发商股份。收购 Nexon 将使腾讯获得一系列顶级 PC 和移动端 MMORPG IP 的控制权，并与腾讯旗下 già 有的游戏业务形成强大的协同效应。不过，鉴于交易涉及韩国核心数字资产，预计将面临韩国政府和监管机构的严格审查。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://en.theblockbeats.news/flash/298088" target="_blank">https://en.theblockbeats.news/flash/298088</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 7 -->
+  <div class="card" data-idx="7">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">7</div>
+      <div class="meta">
+        <div class="card-title">Kakao Games 任命联席 CEO，LAAA Investment 注资 3000 亿韩元成第一大股东</div>
+        <div class="card-source"><span class="tag tag-industry">行业</span> 来源：<a href="https://m.ajupress.com/view/20260622125301337" target="_blank">AJU PRESS</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>韩国游戏公司 <strong>Kakao Games</strong> 宣布重大人事与资本变动。公司正式任命了新的联席 CEO，采用双 CEO 制度以强化管理与业务拓展能力。与此同时，<strong>LAAA Investment</strong> 向 Kakao Games 注资 3000 亿韩元（约合 2.3 亿美元），从而获得 33.43% 的股份，成为公司第一大股东。</p>
+        <p>此次注资将显著改善 Kakao Games 的财务状况，为公司旗下游戏的研发和全球发行提供充裕资金。Kakao Games 是韩国 Kakao 集团旗下的游戏子公司，拥有《奥丁：神叛》《永恒轮回》等知名产品线，并在韩国手游发行市场占据重要地位。近年来公司积极拓展全球市场，在日本、东南亚等地区取得了不错的成绩。</p>
+        <p>值得注意的是，Kakao Games 与 Line Games 的合并事宜目前尚未做出最终决定。此前市场曾广泛预期两家公司将在 Kakao 集团的重组框架下合并，以整合资源提升竞争力。但随着 LAAA Investment 的入主和新 CEO 的任命，合并计划的前景变得更加不确定。分析人士认为，新的大股东可能希望 Kakao Games 保持独立运营，以最大化投资回报。Kakao Games 方面表示，将继续评估各种战略选项，目前尚未就合并事宜做出任何确定性决定。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://m.ajupress.com/view/20260622125301337" target="_blank">https://m.ajupress.com/view/20260622125301337</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 8 -->
+  <div class="card" data-idx="8">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">8</div>
+      <div class="meta">
+        <div class="card-title">CDPR 联合 CEO：纯 AI 生成游戏即将问世，但并非行业发展正道</div>
+        <div class="card-source"><span class="tag tag-industry">行业</span> 来源：<a href="https://www.ithome.com/0/966/755.htm" target="_blank">IT之家</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>CD Projekt Red（CDPR）联合 CEO <strong>Adam Badowski</strong> 近日在接受采访时谈及 AI 在游戏开发中的应用，发表了引人深思的见解。Badowski 认为，完全由 AI 生成的游戏"即将成为现实"，但他同时强调这并非游戏行业应该追求的"正道"。</p>
+        <p>Badowski 指出，AI 在游戏开发中可以作为强大的辅助工具，例如用于程序化生成开放世界的地形、建筑和 NPC 对话，或在美术资产制作过程中加速重复性工作。然而，他强烈反对将 AI 视为替代人类创意核心的手段。"游戏之所以打动人心，是因为背后有人的温度——有设计师的巧思、艺术家的审美、编剧的情感投入，"Badowski 表示，"完全由 AI 生成的内容可能会在技术上令人惊叹，但缺乏真正触动人心的灵魂。"</p>
+        <p>这番言论正值游戏行业对 AI 应用展开激烈辩论之际。一方面，越来越多的工作室正在利用生成式 AI 加速开发流程、降低成本；另一方面，关于 AI 替代人类创作者、版权问题和作品艺术价值的担忧始终挥之不去。作为《巫师》系列和《赛博朋克 2077》的开发商，CDPR 一直以其精心打磨的手工内容著称。Badowski 的表态与公司的传统一脉相承，也代表了行业中重视"手工艺精神"一派的立场。他最后强调，CDPR 会将 AI 用作工具而非替代品，"人的创造力永远是第一位的"。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://www.ithome.com/0/966/755.htm" target="_blank">https://www.ithome.com/0/966/755.htm</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section: 电竞 -->
+<div class="section">
+  <div class="section-title">
+    🏆 电竞资讯
+    <span class="badge">4 条</span>
+  </div>
+
+  <!-- Card 9 -->
+  <div class="card" data-idx="9">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">9</div>
+      <div class="meta">
+        <div class="card-title">印度队获 Pokémon UNITE 亚洲国际锦标赛亚军，5 名选手入选亚运会阵容</div>
+        <div class="card-source"><span class="tag tag-esports">电竞</span> 来源：<a href="https://aninews.in/news/sports/others/india-finish-runners-up-at-aesf-sanctioned-pokemon-unite-asia-international-tournament-in-bangkok20260623013557/" target="_blank">ANI India</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>在曼谷举行的 <strong>Pokémon UNITE 亚洲国际锦标赛</strong> 上，印度代表队表现出色，最终斩获亚军。这一由亚洲电子体育联合会（AESF）认证的赛事汇聚了亚洲各国家和地区的顶尖 Pokémon UNITE 选手，竞争异常激烈。印度队在决赛中与冠军队伍展开了多局鏖战，虽然最终未能登顶，但其展现出的战术素养和团队配合赢得了观众和对手的尊重。</p>
+        <p>更值得关注的是，印度队中的 5 名选手凭借本次比赛的优异表现，成功入选了亚运会电子竞技项目印度国家队的阵容。这意味着在即将到来的亚运会上，这些选手将代表印度在 Pokémon UNITE 项目中争夺荣誉。对于印度电子竞技而言，这是一个里程碑式的进展——印度电竞选手在国际舞台上的能见度正在迅速提升。</p>
+        <p>Pokémon UNITE 作为宝可梦公司推出的 MOBA 类手游，凭借低门槛的上手难度和颇具深度的团队配合机制，在全球范围内积累了庞大的玩家群体。亚洲电子体育联合会将其纳入正式赛事体系，进一步推动了这款游戏的竞技化发展。印度队在本次比赛中的出色表现，也反映出南亚地区在移动电竞领域日益增强的竞争力。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://aninews.in/news/sports/others/india-finish-runners-up-at-aesf-sanctioned-pokemon-unite-asia-international-tournament-in-bangkok20260623013557/" target="_blank">https://aninews.in/news/sports/others/india-finish-runners-up-at-aesf-sanctioned-pokemon-unite-asia-international-tournament-in-bangkok20260623013557/</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 10 -->
+  <div class="card" data-idx="10">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">10</div>
+      <div class="meta">
+        <div class="card-title">PUBG Nations Cup 2026 全明星赛今日首尔开赛，24 支国家队角逐</div>
+        <div class="card-source"><span class="tag tag-esports">电竞</span> 来源：<a href="https://pubg.com/zh-tw/events/pnc2026" target="_blank">PUBG Esports</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>备受瞩目的 <strong>PUBG Nations Cup 2026（PNC 2026）</strong> 全明星赛今日在韩国首尔正式拉开战幕。来自全球 24 个国家和地区的代表队将在 6 月 23 日至 28 日期间展开激烈角逐，争夺 PUBG 国家队的最高荣誉。PNC 是 PUBG 电竞体系中唯一以国家/地区为单位参赛的官方赛事，每年都吸引着全球 PUBG 玩家的目光。</p>
+        <p>本届 PNC 的赛制延续了往年的经典模式，24 支队伍将在六天的赛程中进行多轮比赛，每轮包含三场艾伦格和三场米拉玛地图的比赛。各队由来自本国/地区顶级职业战队的选手组成，代表了各地 PUBG 竞技的最高水平。中国队、韩国队、美国队等传统强队的阵容尤其受到关注。</p>
+        <p>首尔作为全球电竞之都，为本次赛事提供了顶级的场馆和赛事组织支持。比赛将在主舞台进行线下对决，同时在各大直播平台进行全球多语言直播。值得注意的是，PUBG 电竞在 2026 年经历了多项规则和地图调整，包括更快的毒圈收缩速度和全新的道具系统，这些变化将如何在 PNC 的顶级对抗中体现，值得所有观众拭目以待。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://pubg.com/zh-tw/events/pnc2026" target="_blank">https://pubg.com/zh-tw/events/pnc2026</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 11 -->
+  <div class="card" data-idx="11">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">11</div>
+      <div class="meta">
+        <div class="card-title">GEN 3-0 横扫 KT 晋级 LCK 败者组决赛，将对阵 T1 争夺 MSI 名额</div>
+        <div class="card-source"><span class="tag tag-esports">电竞</span> 来源：<a href="https://www.langd.org.cn/news/tiyu/dianjing/137714.html" target="_blank">朗德电竞</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>在 LCK 夏季赛季后赛败者组的比赛中，<strong>GEN.G（GEN）</strong> 以 3-0 的碾压比分横扫 KT Rolster（KT），强势晋级败者组决赛。三局比赛中，GEN 展现了统治级别的表现，从对线期到团战阶段完全压制了对手。特别是中单选手 <strong>Chovy</strong> 的丽桑卓发挥极为亮眼，多次在关键团战中精准切入，为队伍奠定胜局。</p>
+        <p>这场胜利使 GEN 距离 MSI（Mid-Season Invitational）名额仅一步之遥。接下来他们将在败者组决赛中迎战 T1，这场比赛的胜者将获得 LCK 赛区通往 MSI 的门票。GEN 与 T1 之间的对决历来是 LCK 最受关注的经典对战，两队都拥有顶级选手和深厚的战术储备。Chovy 与 Faker 的中路对决尤为引人注目，两名选手代表了 LCK 中单选手的两个时代。</p>
+        <p>本次 LCK 夏季赛季后赛竞争异常激烈，多个强队之间的实力差距微乎其微。GEN 能够以 3-0 的比分干净利落地击败 KT，证明了队伍在关键比赛中的调整能力和执行力已臻化境。如果 GEN 能够在接下来的比赛中延续这一状态，他们不仅有望获得 MSI 名额，更是 LCK 夏季赛冠军的有力争夺者。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://www.langd.org.cn/news/tiyu/dianjing/137714.html" target="_blank">https://www.langd.org.cn/news/tiyu/dianjing/137714.html</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 12 -->
+  <div class="card" data-idx="12">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">12</div>
+      <div class="meta">
+        <div class="card-title">CS2 科隆 Major：Spirit 击败 Aurora 扳平比分，donk 多次四杀</div>
+        <div class="card-source"><span class="tag tag-esports">电竞</span> 来源：<a href="https://www.langd.org.cn/news/tiyu/dianjing/137738.html" target="_blank">朗德电竞</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>CS2 科隆 Major 淘汰赛阶段再掀高潮。<strong>Spirit</strong> 战队在与 Aurora 的对决中成功扳平大比分，将系列赛拖入决胜局。Spirit 队中的俄罗斯天才少年 <strong>donk</strong> 再次成为全场焦点，在比赛中多次完成四杀（四连击杀），其惊人的瞄准能力和残局处理让观众叹为观止。</p>
+        <p>donk 作为 CS2 赛场上最炙手可热的新星之一，凭借超乎年龄的成熟表现和绝对的个人能力，已经成为 Spirit 当之无愧的核心选手。在本次科隆 Major 的关键局中，donk 的 AK-47 多次在局面上为队伍打开突破口，特别是几次 1v4 的残局处理展示了极高的阅读比赛能力和精准的枪法。Aurora 虽然在战术层面做出了针对性布置，但在 donk 的个人爆发面前仍然难以有效限制。</p>
+        <p>科隆 Major 作为 CS2 赛季中最具分量的赛事之一，汇聚了全球最顶尖的 CS2 战队。Spirit 作为独联体赛区的代表，近年来的成绩稳步提升。队伍整体战术体系的成熟和核心选手的个人能力爆发，使他们在本届 Major 上被视为夺冠热门之一。比赛的结果将直接影响各队的世界排名和后续赛事种子席位。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://www.langd.org.cn/news/tiyu/dianjing/137738.html" target="_blank">https://www.langd.org.cn/news/tiyu/dianjing/137738.html</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section: 硬件 -->
+<div class="section">
+  <div class="section-title">
+    💻 硬件 / 技术
+    <span class="badge">3 条</span>
+  </div>
+
+  <!-- Card 13 -->
+  <div class="card" data-idx="13">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">13</div>
+      <div class="meta">
+        <div class="card-title">Valve Steam Machine 正式发布，起售价 1049 美元 — AMD Zen4 + RDNA3 架构</div>
+        <div class="card-source"><span class="tag tag-hardware">硬件</span> 来源：<a href="https://www.techspot.com/news/112858-valve-steam-machine-here-starts-1049-512gb-or.html" target="_blank">TechSpot</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>在经历了多年的传闻和猜测后，Valve 终于正式发布了新一代 <strong>Steam Machine</strong> 游戏主机。这款搭载 AMD Zen4 CPU 和 RDNA3 GPU 架构的客厅游戏设备，起售价为 1049 美元（512GB 版），2TB 版本售价为 1349 美元。Steam Machine 的正式发布标志着 Valve 再次向客厅游戏市场发起进攻。</p>
+        <p>Steam Machine 的核心硬件配置相当强劲：采用 AMD 定制 SoC，集成 Zen4 架构 CPU 核心和 RDNA3 架构 GPU，支持 FSR 4 超分辨率技术，能够在 4K 分辨率下流畅运行大多数 AAA 游戏。相较于上一代尝试，新一代 Steam Machine 在性能上有了质的飞跃，基本可以视作一台高性能游戏 PC 的家用主机化版本。运行 SteamOS 系统，用户可以直接访问整个 Steam 游戏库，享受无缝的主机式体验。</p>
+        <p>Valve 此次的策略也有所不同，不再像 2015 年那样依赖第三方厂商生产，而是亲自操刀硬件设计和制造。Steam Machine 的外观设计延续了 Steam Deck 的设计语言，简洁的黑色机身配合可自定义的 RGB 灯带，既低调又不失科技感。接口方面提供了 HDMI 2.1、USB4、以太网等完整的连接选项。对于希望在客厅享受 PC 游戏体验的玩家来说，Steam Machine 提供了一个"即插即玩"的便捷选择，尽管 1049 美元的起售价相比 PlayStation 和 Xbox 并不占优势。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://www.techspot.com/news/112858-valve-steam-machine-here-starts-1049-512gb-or.html" target="_blank">https://www.techspot.com/news/112858-valve-steam-machine-here-starts-1049-512gb-or.html</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 14 -->
+  <div class="card" data-idx="14">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">14</div>
+      <div class="meta">
+        <div class="card-title">NVIDIA 在 Computex 2026 发布 RTX Spark 平台与 DLSS 4.5</div>
+        <div class="card-source"><span class="tag tag-hardware">硬件</span> 来源：<a href="https://www.techpowerup.com/349907/nvidia-at-computex-2026-rtx-spark-gaming-hands-on-dlss-4-5-and-more" target="_blank">TechPowerUp</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>NVIDIA 在 Computex 2026 上发布了备受瞩目的 <strong>RTX Spark</strong> 平台，这是一款基于 Arm 架构的全新超级芯片，专为游戏和 AI 推理场景设计。RTX Spark 的功耗仅为 45-80W，但性能表现却非常惊人，据 NVIDIA 官方数据，其性能接近 RTX 5070 笔记本显卡的水平。这意味着在极低的功耗预算下，RTX Spark 能够提供接近中高端游戏本的图形性能。</p>
+        <p>Arm 架构的采用是 RTX Spark 最令人意外的设计选择。传统的游戏 GPU 市场一直由 x86 架构主导，NVIDIA 此次转向 Arm 架构，可能是为了在低功耗设备（如轻薄本、游戏掌机甚至未来的 AR 眼镜）上实现更高效的图形处理。RTX Spark 集成了 NVIDIA 最新的 Tensor Core 和 RT Core，支持完整的光线追踪和 DLSS 技术。</p>
+        <p>除了硬件新品，NVIDIA 还同步发布了 <strong>DLSS 4.5</strong> 技术。新版本在超分辨率、帧生成和光线重建三大核心功能上均实现了显著改进。DLSS 4.5 引入了全新的"自适应帧生成"技术，能够根据游戏场景的复杂度动态调整帧生成策略，在保证画质的前提下进一步提升帧率。此外，光线重建（Ray Reconstruction）的算法也得到了升级，减少了光追画面中的噪点和伪影，画面清晰度提高了约 30%。NVIDIA 表示，DLSS 4.5 将在发布首周即获得超过 80 款游戏的支持。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://www.techpowerup.com/349907/nvidia-at-computex-2026-rtx-spark-gaming-hands-on-dlss-4-5-and-more" target="_blank">https://www.techpowerup.com/349907/nvidia-at-computex-2026-rtx-spark-gaming-hands-on-dlss-4-5-and-more</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 15 -->
+  <div class="card" data-idx="15">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">15</div>
+      <div class="meta">
+        <div class="card-title">华硕 ROG 20 周年纪念版系列 Computex 2026 亮相 — RTX 5090 NUC、Thor 3000W 电源</div>
+        <div class="card-source"><span class="tag tag-hardware">硬件</span> 来源：<a href="https://www.gadgets360.com/laptops/news/asus-rog-edition-20-lineup-crosshair-motherboard-astral-geforce-rtx-5090-pc-desktop-ally-computex-2026-11576417" target="_blank">Gadgets360</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>在 Computex 2026 展会上，<strong>华硕 ROG（玩家国度）</strong> 为庆祝品牌成立 20 周年，推出了全套 "Edition 20" 纪念版产品线，涵盖主板、显卡、整机和电源等多个品类。其中最引人注目的产品包括搭载 RTX 5090 的 NUC 迷你主机、Astral RTX 5090 Edition 20 显卡以及 Thor 3000W 铂金电源。</p>
+        <p>ROG RTX 5090 NUC 是本次展示中最令人惊叹的产品之一。在仅 3 升的超小机箱内，华硕成功塞入了 NVIDIA 最新的旗舰级 RTX 5090 显卡和高端 CPU，打造了一台性能怪兽级的迷你主机。这得益于全新的散热架构设计，包括定制的均热板和液态金属导热方案。对于追求极致性能又不愿牺牲桌面空间的高端玩家而言，这是一款极具吸引力的产品。</p>
+        <p>Astral RTX 5090 Edition 20 显卡则采用了独特的设计语言，以太空为主题，散热器外壳采用银色和紫色的配色方案，并配备了可自定义的星空灯效面板。Thor 3000W 电源的发布同样震撼业界——3000W 的额定功率是目前消费级电源市场的巅峰，专为多 GPU 工作站和极端超频场景设计。ROG 20 周年系列产品将在 2026 年下半年陆续上市，价格尚未公布，但可以预见的是，作为纪念版旗舰产品，其售价将定位在高端市场。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="https://www.gadgets360.com/laptops/news/asus-rog-edition-20-lineup-crosshair-motherboard-astral-geforce-rtx-5090-pc-desktop-ally-computex-2026-11576417" target="_blank">https://www.gadgets360.com/laptops/news/asus-rog-edition-20-lineup-crosshair-motherboard-astral-geforce-rtx-5090-pc-desktop-ally-computex-2026-11576417</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section: 评测 -->
+<div class="section">
+  <div class="section-title">
+    ⭐ 评测与观点
+    <span class="badge">1 条</span>
+  </div>
+
+  <!-- Card 16 -->
+  <div class="card" data-idx="16">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="num">16</div>
+      <div class="meta">
+        <div class="card-title">《007：初露锋芒》获 Fami 通 37 分白金殿堂，《鬼泣5》Switch 2 版 85 分</div>
+        <div class="card-source"><span class="tag tag-review">评测</span> 来源：<a href="http://360game.360.cn/article/content?id=6a2e96545b0d51d312bd6421" target="_blank">360Game</a></div>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="card-body">
+      <div class="content">
+        <p>最新一期 Fami 通杂志公布了多款游戏的评分。由 IO Interactive 开发的 007 系列新作 <strong>《007：初露锋芒》</strong> 获得了 37 分（满分 40 分）的高分，成功进入白金殿堂。这是 007 系列游戏历史上获得的最高评分，也是 IO Interactive 继《杀手》系列之后的又一力作。</p>
+        <p>《007：初露锋芒》讲述了詹姆斯·邦德早期职业生涯的故事，融合了潜行、动作和谍战剧情元素。Fami 通的四位评审均给出了 9 分以上的评价，一致称赞游戏的剧情叙事、关卡设计和画面表现。评审指出，IO Interactive 在《杀手》系列中积累的潜行游戏设计经验在 007 新作中得到了完美传承，同时加入了更符合 007 风格的快节奏动作场景。游戏的原创剧情也被认为是近年来游戏改编作品中的佼佼者，成功捕捉了 007 系列电影的精髓。</p>
+        <p>与此同时，<strong>《鬼泣 5》Switch 2 版</strong> 获得了 85 分（满分 100 分）的评价。评测指出，Switch 2 版能够稳定保持 60 帧运行，充分发挥了鬼泣 5 高速华丽战斗系统的优势。虽然相比 PC 版在画质细节上有所妥协，但掌机模式下能够随时随地体验"但丁皇家护卫"的快感，对于系列粉丝来说无疑是极具吸引力的选择。Switch 2 版还收录了所有已发布的 DLC 内容，包括维吉尔的可用角色和血宫模式，内容完整性方面无可挑剔。</p>
+        <div class="url-box"><span class="label">🔗 原文：</span><a href="http://360game.360.cn/article/content?id=6a2e96545b0d51d312bd6421" target="_blank">http://360game.360.cn/article/content?id=6a2e96545b0d51d312bd6421</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align: center; padding: 30px 20px 40px; color: #6b7280; font-size: .8em; border-top: 1px solid rgba(124,58,237,.15); max-width: 900px; margin: 20px auto 0;">
+  <p>游戏产业日报 &middot; 2026年6月23日</p>
+  <p style="margin-top: 4px;">数据来源：IGN / VG Times / GameGrin / GameRant / AJU PRESS / The Blockbeats / IT之家 / ANI / PUBG Esports / 朗德电竞 / TechSpot / TechPowerUp / Gadgets360 / 360Game</p>
+  <p style="margin-top: 4px;">仅供信息参考，不构成投资建议</p>
+</div>
+
+<script>
+// Auto-open first card (already open via class)
+// Click on TOC items to scroll to cards
+document.querySelectorAll('.toc-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    var idx = this.getAttribute('onclick').match(/\d+/);
+    if (idx) {
+      var card = document.querySelector('[data-idx="' + idx[0] + '"]');
+      if (card) {
+        card.classList.add('open');
+        setTimeout(function() {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>

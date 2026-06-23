@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EquityHOT 一级市场日报 | 2026年6月23日</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #0f0a06;
+    color: #e8d5c0;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  a { color: #fbbf24; text-decoration: none; transition: color .2s; }
+  a:hover { color: #f59e0b; }
+
+  /* ===== Cover ===== */
+  .cover {
+    position: relative;
+    background: linear-gradient(135deg, #451a03 0%, #78350f 40%, #b45309 70%, #d97706 100%);
+    padding: 72px 24px 56px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(251,191,36,.15) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(217,119,6,.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cover-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border: 1px solid rgba(251,191,36,.35);
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fde68a;
+    margin-bottom: 20px;
+    background: rgba(69,26,3,.35);
+    backdrop-filter: blur(4px);
+  }
+  .cover h1 {
+    font-size: clamp(28px,5vw,48px);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 20px rgba(0,0,0,.4);
+    position: relative;
+    z-index: 1;
+  }
+  .cover-sub {
+    font-size: clamp(14px,2vw,18px);
+    color: #fde68a;
+    margin-top: 8px;
+    position: relative; z-index: 1;
+  }
+  .cover-stats {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px;
+    margin-top: 28px;
+    position: relative; z-index: 1;
+  }
+  .cover-stat {
+    text-align: center;
+  }
+  .cover-stat-num {
+    font-size: 28px; font-weight: 700; color: #fbbf24;
+  }
+  .cover-stat-label {
+    font-size: 12px; color: rgba(253,230,138,.7);
+  }
+
+  /* ===== Back link ===== */
+  .back-bar {
+    background: #1a120c;
+    padding: 12px 24px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(251,191,36,.08);
+  }
+  .back-bar a { color: #d97706; }
+  .back-bar a:hover { color: #fbbf24; }
+
+  /* ===== Container ===== */
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  /* ===== TOC ===== */
+  .toc {
+    background: linear-gradient(135deg, #1a120c, #231a12);
+    border: 1px solid rgba(251,191,36,.12);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .toc-title {
+    font-size: 14px; font-weight: 700; color: #b45309;
+    letter-spacing: 2px; margin-bottom: 12px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    gap: 4px 16px;
+  }
+  .toc-item {
+    font-size: 13px;
+    padding: 3px 0;
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .toc-num {
+    color: #92400e; font-weight: 700; font-size: 11px;
+    min-width: 20px;
+  }
+  .toc-section-tag {
+    display: inline-block;
+    font-size: 10px; padding: 1px 8px; border-radius: 4px;
+    background: rgba(251,191,36,.12);
+    color: #b45309;
+    margin-left: 4px;
+  }
+
+  /* ===== Section header ===== */
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 0 8px;
+    margin-top: 28px;
+    border-bottom: 1px solid rgba(251,191,36,.1);
+  }
+  .section-header:first-of-type { margin-top: 0; }
+  .section-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .section-icon.tg-deals { background: linear-gradient(135deg,#065f46,#059669); }
+  .section-icon.tg-fund   { background: linear-gradient(135deg,#1e3a5f,#2563eb); }
+  .section-icon.tg-policy { background: linear-gradient(135deg,#5b1e3a,#be185d); }
+  .section-icon.tg-opinion{ background: linear-gradient(135deg,#451a03,#b45309); }
+  .section-title {
+    font-size: 18px; font-weight: 700; color: #fbbf24;
+  }
+  .section-count {
+    font-size: 12px; color: #92400e;
+    margin-left: auto;
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: linear-gradient(135deg, #18120c, #201810);
+    border: 1px solid rgba(251,191,36,.08);
+    border-radius: 10px;
+    margin: 12px 0;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: rgba(251,191,36,.18); }
+  .card-header {
+    display: flex; align-items: flex-start;
+    gap: 12px;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(251,191,36,.1);
+    border: 1px solid rgba(251,191,36,.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #d97706;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .card-header-text { flex: 1; min-width: 0; }
+  .card-title {
+    font-size: 15px; font-weight: 600; color: #fde68a;
+    line-height: 1.4;
+  }
+  .card-meta {
+    font-size: 12px; color: #92400e; margin-top: 4px;
+  }
+  .card-meta a { color: #b45309; }
+  .card-arrow {
+    font-size: 14px; color: #92400e;
+    transition: transform .3s; flex-shrink: 0; margin-top: 6px;
+  }
+  .card.open .card-arrow { transform: rotate(180deg); color: #fbbf24; }
+
+  .card-body {
+    display: none;
+    padding: 0 18px 20px 58px;
+  }
+  .card.open .card-body { display: block; }
+
+  .card-body p {
+    font-size: 14px;
+    color: #d4c5b0;
+    margin-bottom: 10px;
+    text-align: justify;
+  }
+  .card-body .highlight {
+    background: rgba(251,191,36,.06);
+    border-left: 3px solid #b45309;
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 10px 0;
+    font-size: 13px;
+    color: #d4c5b0;
+  }
+  .card-body .source-link {
+    display: inline-block;
+    font-size: 12px;
+    color: #92400e;
+    margin-top: 6px;
+  }
+  .card-body .source-link:hover { color: #d97706; }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #4a3520;
+    border-top: 1px solid rgba(251,191,36,.06);
+    margin-top: 40px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 600px) {
+    .cover { padding: 48px 16px 36px; }
+    .cover-stats { gap: 8px 16px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .card-body { padding: 0 14px 16px 48px; }
+    .card-header { padding: 12px 14px; }
+  }
+
+  /* print */
+  @media print {
+    .card-body { display: block !important; }
+    .card-arrow { display: none; }
+    .back-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Cover ===== -->
+<div class="cover">
+  <div class="cover-badge">EquityHOT Daily</div>
+  <h1>一级市场日报</h1>
+  <div class="cover-sub">2026年6月23日 星期二</div>
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <div class="cover-stat-num">11</div>
+      <div class="cover-stat-label">重要资讯</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-num">4</div>
+      <div class="cover-stat-label">资讯板块</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-num">7</div>
+      <div class="cover-stat-label">信息来源</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Back link ===== -->
+<div class="back-bar">
+  <a href="https://gigode.github.io/equityhot/" target="_blank">&larr; EquityHOT 首页</a>
+  &nbsp;·&nbsp; <a href="https://gigode.github.io/equityhot/archive" target="_blank">历史报告</a>
+  &nbsp;·&nbsp; <span style="color:#4a3520;">数据截至 2026-06-23</span>
+</div>
+
+<div class="container">
+
+<!-- ===== TOC ===== -->
+<div class="toc">
+  <div class="toc-title">目 录</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01</span> DeepSeek 超500亿美元估值融资 <span class="toc-section-tag">投资案例</span></div>
+    <div class="toc-item"><span class="toc-num">02</span> Odyssey 3.1亿美元B轮 <span class="toc-section-tag">投资案例</span></div>
+    <div class="toc-item"><span class="toc-num">03</span> 硅基流动超20亿元B轮 <span class="toc-section-tag">投资案例</span></div>
+    <div class="toc-item"><span class="toc-num">04</span> 黑石131亿美元亚洲PE基金 <span class="toc-section-tag">基金设立</span></div>
+    <div class="toc-item"><span class="toc-num">05</span> EQT殷拓BPEA九期156亿美元 <span class="toc-section-tag">基金设立</span></div>
+    <div class="toc-item"><span class="toc-num">06</span> 上海科创三期基金61.5亿元 <span class="toc-section-tag">基金设立</span></div>
+    <div class="toc-item"><span class="toc-num">07</span> 超级IPO浪潮与VC二级市场 <span class="toc-section-tag">政策与行情</span></div>
+    <div class="toc-item"><span class="toc-num">08</span> 中国VC/PE转向并购退出 <span class="toc-section-tag">政策与行情</span></div>
+    <div class="toc-item"><span class="toc-num">09</span> 国办54号文私募强监管 <span class="toc-section-tag">政策与行情</span></div>
+    <div class="toc-item"><span class="toc-num">10</span> 百亿私募掌门人AI激辩 <span class="toc-section-tag">大咖观点</span></div>
+    <div class="toc-item"><span class="toc-num">11</span> 外资巨头看多A股科技 <span class="toc-section-tag">大咖观点</span></div>
+  </div>
+</div>
+
+<!-- ================================================================== -->
+<!-- SECTION 1: 投资案例 -->
+<!-- ================================================================== -->
+<div class="section-header">
+  <div class="section-icon tg-deals">&#x1F4B0;</div>
+  <div class="section-title">投资案例</div>
+  <div class="section-count">3 条</div>
+</div>
+
+<!-- Card 1 -->
+<div class="card open" data-tag="tg-deals">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">1</div>
+    <div class="card-header-text">
+      <div class="card-title">DeepSeek以超500亿美元估值完成逾74亿美元融资</div>
+      <div class="card-meta">
+        腾讯、宁德时代参投 &nbsp;·&nbsp; <a href="https://www.axios.com/pro/all-deals/2026/06/16/pro-rata-premium-first-look" target="_blank">Axios Pro Rata</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>DeepSeek以超过500亿美元的估值完成了逾74亿美元的融资，成为2026年6月全球风险投资市场最大的一笔交易。本轮融资由多家重量级机构参与，其中包括互联网巨头腾讯和新能源电池龙头企业宁德时代。这一融资规模不仅刷新了国内AI创业公司的融资纪录，也标志着中国大模型赛道正式进入"百亿美元俱乐部"竞争阶段。</p>
+    <p>从交易结构来看，DeepSeek此次融资既有老股东增持，也有新战略投资者的加入。腾讯的入局意味着DeepSeek的大模型能力有望与腾讯的云服务、社交生态和内容业务深度结合；而宁德时代的参与则反映出AI基础设施对能源管理、智能制造场景的需求正在被产业资本高度重视。值得注意的是，本轮融资后DeepSeek的估值已跻身全球AI独角兽前列，仅次于OpenAI和Anthropic等头部玩家。</p>
+    <p>市场分析人士指出，DeepSeek在大模型训练效率、推理成本和中文语义理解方面的差异化优势是其备受资本追捧的核心原因。其开源的MoE架构模型在多项基准测试中表现优异，且推理成本仅为同类模型的30%-50%，这为企业级客户的大规模部署提供了可行性。融资资金预计将用于算力基础设施扩建、研发团队扩充以及海外市场的拓展布局。</p>
+    <p>从更宏观的视角看，DeepSeek本轮融资也是中国AI产业资本热情持续高涨的一个缩影。2026年上半年，中国AI领域融资总额已接近去年同期水平的两倍，资本正在向头部企业加速集中。对于VC/PE市场而言，这样的超级融资轮也为LP退出和估值锚定提供了新的参照系。</p>
+    <div class="highlight">核心看点：DeepSeek以超500亿美元估值完成74亿美元融资，腾讯与宁德时代参投，系6月全球最大VC交易，中国大模型赛道进入新竞争阶段。</div>
+    <a class="source-link" href="https://www.axios.com/pro/all-deals/2026/06/16/pro-rata-premium-first-look" target="_blank">&#x1F517; 来源：Axios Pro Rata</a>
+  </div>
+</div>
+
+<!-- Card 2 -->
+<div class="card" data-tag="tg-deals">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">2</div>
+    <div class="card-header-text">
+      <div class="card-title">Odyssey以14.5亿美元估值完成3.1亿美元B轮融资</div>
+      <div class="card-meta">
+        世界模型公司 &nbsp;·&nbsp; Amazon、AMD Ventures、GV参投 &nbsp;·&nbsp; <a href="https://news.crunchbase.com/venture/biggest-funding-rounds-cybersecurity-defense-startup-ai-odyssey-leads/" target="_blank">Crunchbase News</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>Odyssey以14.5亿美元的估值完成了3.1亿美元的B轮融资，这家专注于"世界模型"的AI初创公司迅速成为硅谷最受瞩目的新星之一。此轮融资由Amazon、AMD Ventures和GV（Google Ventures）联合参投，此外还有多家顶级风投机构跟投。Odyssey的核心产品是一个能够理解物理世界运行规律并生成高保真3D场景的AI引擎，在游戏开发、影视制作、机器人仿真和自动驾驶等领域具有广泛的应用前景。</p>
+    <p>世界模型的概念最早由Yann LeCun和Fei-Fei Li等AI领军人物提出，旨在构建一个能够像人类一样理解空间关系、物理法则和因果逻辑的AI系统。Odyssey的技术路线在2025年底取得突破性进展，其生成的3D场景在视觉质量和物理一致性上显著优于传统的NeRF和扩散模型方法。本轮融资将主要用于扩展模型规模、建设更大的训练集群以及与更多行业标杆客户建立合作。</p>
+    <p>Amazon和AMD的战略投资颇具深意。Amazon一方面通过AWS为Odyssey提供算力支持，另一方面也在积极探索将世界模型技术整合到其机器人物流系统和Amazon Studios的影视制作管线中。AMD Ventures的参与则反映了GPU/加速计算厂商对AI应用生态的押注——更强大的下游模型意味着对高性能计算硬件的更大需求。GV的持续跟投则体现了Google在世界模型赛道上的战略布局意愿。</p>
+    <p>从整个AI投资版图来看，世界模型正在成为继大语言模型之后的下一波投资热点。2026年上半年，全球至少有8家世界模型方向的初创公司完成了超亿美元的融资。分析师认为，如果Odyssey能够按计划在未来18个月内推出面向开发者的API产品，其估值有望在下一轮融资中冲击50亿美元。</p>
+    <div class="highlight">核心看点：Odyssey以14.5亿美元估值完成3.1亿美元B轮，Amazon、AMD Ventures、GV联合投资，世界模型赛道升温为AI投资新焦点。</div>
+    <a class="source-link" href="https://news.crunchbase.com/venture/biggest-funding-rounds-cybersecurity-defense-startup-ai-odyssey-leads/" target="_blank">&#x1F517; 来源：Crunchbase News</a>
+  </div>
+</div>
+
+<!-- Card 3 -->
+<div class="card" data-tag="tg-deals">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">3</div>
+    <div class="card-header-text">
+      <div class="card-title">硅基流动完成超20亿元B轮融资</div>
+      <div class="card-meta">
+        AI基础设施 &nbsp;·&nbsp; 携程、晶科能源、蔚来资本、纪源资本参投 &nbsp;·&nbsp; <a href="https://m.cnstock.com/commonDetail/730144" target="_blank">上海证券报</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>硅基流动（SiliconFlow）宣布完成超过20亿元人民币的B轮融资，这是中国AI基础设施赛道2026年以来最大的一笔融资之一。本轮融资的参投方阵容涵盖产业资本和财务投资机构两大阵营：携程作为在线旅游行业的头部企业，晶科能源作为全球光伏龙头，蔚来资本代表智能电动汽车产业链的视角，加上纪源资本等一线VC的加持，显示出硅基流动的商业模式得到了多个垂直行业的认可。</p>
+    <p>硅基流动的核心业务是为AI大模型的训练和推理提供高效的基础设施平台。其自研的推理加速引擎能够将大模型的部署成本降低50%以上，同时提升响应速度。在AI算力日益紧缺的背景下，硅基流动的解决方案恰好切中了企业客户的痛点——如何在保证模型性能的前提下控制基础设施支出。目前，硅基流动已服务数百家企业客户，覆盖金融、医疗、制造、互联网等多个领域。</p>
+    <p>此轮融资中尤其值得关注的是携程的入局。携程作为在线旅游平台，拥有大量涉及行程规划、客户服务和内容生成的需求场景，硅基流动的推理优化技术可以帮助携程在不增加硬件投入的情况下承载更多的AI应用流量。晶科能源的参与则反映了新能源企业对AI技术的需求正在快速增长——从光伏面板的缺陷检测到智能运维，AI正在重塑新能源行业的运营效率。</p>
+    <p>从投资趋势来看，AI基础设施在2026年已成为中国一级市场最活跃的赛道之一。随着大模型厂商的竞争从"参数军备竞赛"转向"落地效率竞赛"，推理优化、模型部署和算力调度等基础设施层的创业公司正在享受资本溢出的红利。硅基流动本轮融资的完成，也将进一步加剧国内AI基础设施领域的竞争格局。</p>
+    <div class="highlight">核心看点：硅基流动完成超20亿元B轮融资，携程、晶科能源、蔚来资本、纪源资本参投，AI基础设施赛道持续火热，推理优化成为资本关注焦点。</div>
+    <a class="source-link" href="https://m.cnstock.com/commonDetail/730144" target="_blank">&#x1F517; 来源：上海证券报</a>
+  </div>
+</div>
+
+<!-- ================================================================== -->
+<!-- SECTION 2: 基金设立 -->
+<!-- ================================================================== -->
+<div class="section-header">
+  <div class="section-icon tg-fund">&#x1F4CA;</div>
+  <div class="section-title">基金设立</div>
+  <div class="section-count">3 条</div>
+</div>
+
+<!-- Card 4 -->
+<div class="card" data-tag="tg-fund">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">4</div>
+    <div class="card-header-text">
+      <div class="card-title">黑石完成131亿美元亚洲私募股权基金募集——亚洲最大</div>
+      <div class="card-meta">
+        260家LP &nbsp;·&nbsp; 超额认购达硬上限 &nbsp;·&nbsp; 规模较上期翻倍 &nbsp;·&nbsp; <a href="https://www.21jingji.com/article/20260603/herald/66b5e79bb8b585695273273bed353076.html" target="_blank">21世纪经济报道</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>黑石集团（Blackstone）宣布完成其亚洲私募股权基金的募资工作，总规模达131亿美元，创下了亚洲私募股权基金募资的历史纪录。该基金的LP阵容包括260家机构投资者，规模较上一期翻了近一倍。基金在募资过程中获得了超额认购，最终触及硬上限（hard cap）关闭。这一里程碑式的募资结果不仅彰显了全球资本对亚洲市场的强烈信心，也标志着黑石在亚洲PE市场的统治力进一步巩固。</p>
+    <p>260家LP的构成颇为多元：除了传统的养老金基金、主权财富基金和保险公司外，还有相当比例的亚洲本土家族办公室和高净值个人参与。这种LP结构的多样化降低了基金对单一类型投资者的依赖，也反映了亚洲财富积累正在为PE基金提供更深厚的内生资本基础。据知情人士透露，来自中东主权基金的出资额在其中占据显著比例，这延续了近两年来中东资本加速布局亚洲PE市场的趋势。</p>
+    <p>黑石此次募资之所以能超额完成，根本上还是源于其过往在亚洲市场的投资业绩。黑石在亚洲PE领域深耕多年，在消费升级、科技赋能和产业整合等方向积累了丰富的投资经验和退出案例。尤其是上一期基金的DPI表现优异，为LP带来了可观的现金回报，这直接助推了新一期基金的路演成功。基金将继续聚焦亚洲市场的高增长赛道，包括科技、医疗健康、消费服务和商业服务等领域。</p>
+    <p>从更宏观的维度看，黑石131亿美元亚洲PE基金的落地是2026年全球PE募资市场的一个标志性事件。在经历了2024-2025年的募资低谷后，头部PE基金在2026年迎来了募资的强劲复苏。市场分析认为，LP对亚洲市场的配置意愿正在持续走强，亚洲PE市场在未来3-5年内有望迎来黄金发展期。</p>
+    <div class="highlight">核心看点：黑石完成131亿美元亚洲PE基金募集，260家LP参与，规模较上期翻倍，创亚洲PE募资纪录，中东及亚洲本土资本涌入。</div>
+    <a class="source-link" href="https://www.21jingji.com/article/20260603/herald/66b5e79bb8b585695273273bed353076.html" target="_blank">&#x1F517; 来源：21世纪经济报道</a>
+  </div>
+</div>
+
+<!-- Card 5 -->
+<div class="card" data-tag="tg-fund">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">5</div>
+    <div class="card-header-text">
+      <div class="card-title">EQT殷拓BPEA九期基金完成156亿美元募集</div>
+      <div class="card-meta">
+        亚太最大专注型PE基金 &nbsp;·&nbsp; 贝恩资本亚洲第六支基金105亿美元同期超募 &nbsp;·&nbsp; <a href="https://www.dakota.com/resources/blog/top-10-funds-to-watch-june-2026" target="_blank">Dakota</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>EQT殷拓旗下的BPEA九期基金完成了156亿美元的募资，成为亚太地区规模最大的专注型私募股权基金。与此同时，贝恩资本（Bain Capital）的亚洲第六支基金也以105亿美元完成超募。两大国际PE巨头同时在亚洲市场完成大规模募资，反映出全球资本对亚洲另类资产的配置需求正处于历史高位。亚洲正在从全球PE的"增长市场"演变为"核心市场"。</p>
+    <p>BPEA九期基金的募资规模较上一期增长了约30%，这得益于EQT在亚太地区尤其是日本、澳大利亚和印度市场的优异业绩。基金将继续执行EQT在亚太地区的价值创造策略，重点关注科技赋能的企业服务、医疗健康和消费升级等方向。EQT独有的产业赋能模式和ESG整合框架是其吸引LP的核心优势之一，尤其是在欧洲和北美养老金基金中拥有很高的认可度。</p>
+    <p>贝恩资本同期募集的105亿美元亚洲第六支基金同样引发市场关注。贝恩资本在亚洲的布局已有近20年历史，在金融服务、科技和工业领域拥有深厚的交易网络和运营能力。该基金的超募表明LP对贝恩资本亚洲团队的投后管理和退出能力持高度信任态度。两家基金合计超过260亿美元的资金规模，意味着未来2-3年内亚太PE市场的交易竞争将更加激烈，资产定价可能面临上行压力。</p>
+    <p>从LP视角看，亚洲PE基金的配置逻辑正在发生结构性变化。过去LP投资亚洲PE更多是为了获取中国市场的经济增长红利，而现在多元化配置需求更加突出——印度、东南亚、日本和澳大利亚都在成为重要标的区域。这一趋势也推动了专注型区域基金和服务多市场的泛亚洲基金同步升温。BPEA九期基金和贝恩亚洲六期基金的成功募资，都将显著改变亚太PE市场的供给格局。</p>
+    <div class="highlight">核心看点：EQT BPEA九期156亿美元完成募资，贝恩资本亚洲六期105亿美元同期超募，亚太PE市场迎来历史性募资潮。</div>
+    <a class="source-link" href="https://www.dakota.com/resources/blog/top-10-funds-to-watch-june-2026" target="_blank">&#x1F517; 来源：Dakota</a>
+  </div>
+</div>
+
+<!-- Card 6 -->
+<div class="card" data-tag="tg-fund">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">6</div>
+    <div class="card-header-text">
+      <div class="card-title">上海科创三期基金终关61.5亿元，首引QFLP境外资金</div>
+      <div class="card-meta">
+        母基金总规模突破200亿元 &nbsp;·&nbsp; <a href="https://fund.eastmoney.com/a/202606223778130654.html" target="_blank">东方财富网</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>上海科创三期母基金正式完成终关，总规模达61.5亿元人民币，至此上海科创母基金系列的总管理规模突破200亿元大关。尤为值得关注的是，本期基金首次引入了QFLP（合格境外有限合伙人）境外资金，这标志着上海在跨境私募基金投资便利化方面迈出了实质性步伐。上海作为国际金融中心的制度创新优势正在转化为实实在在的资本吸引力。</p>
+    <p>上海科创基金是由上海市政府引导、多家国有企业和金融机构共同发起的市场化母基金，旨在通过投资子基金的方式引导社会资本投向上海地区的科技创新企业。三期基金延续了前两期的投资策略，重点覆盖集成电路、生物医药和人工智能三大先导产业，同时适度扩展至新能源、新材料和高端装备等战略性新兴产业。母基金的LP阵容包括多家大型国企、金融机构和保险公司。</p>
+    <p>引入QFLP境外资金是本期基金的一大制度创新亮点。QFLP试点允许境外投资者将境外资金结汇后投资于国内的私募基金，这为海外养老金、主权基金和家族办公室参与中国科创投资提供了便利通道。上海自2011年启动QFLP试点以来，参与机构和投资规模持续扩大，但将其应用于政府引导母基金层面仍属首例。这一模式有望在全国范围内形成示范效应，推动更多地方政府引导基金向境外资本开放。</p>
+    <p>从投资环境来看，上海科创三期基金在2026年完成募资具有特殊的意义。当前中国一级市场正经历从"美元基金主导"向"人民币基金主导"的结构性转换，政府引导基金和国有资本在募资端扮演着越来越重要的角色。上海科创基金能够在三期募资中吸引到境外资本，说明国际投资者对中国科技创新和中国PE市场的中长期前景保持信心。基金设立后预计将撬动超过300亿元的社会资本投入上海科创生态。</p>
+    <div class="highlight">核心看点：上海科创三期母基金61.5亿元终关，首引QFLP境外资金，母子基金总规模破200亿元，政府引导基金向境外资本开放的标志性事件。</div>
+    <a class="source-link" href="https://fund.eastmoney.com/a/202606223778130654.html" target="_blank">&#x1F517; 来源：东方财富网</a>
+  </div>
+</div>
+
+<!-- ================================================================== -->
+<!-- SECTION 3: 政策与行情 -->
+<!-- ================================================================== -->
+<div class="section-header">
+  <div class="section-icon tg-policy">&#x1F4C8;</div>
+  <div class="section-title">政策与行情</div>
+  <div class="section-count">3 条</div>
+</div>
+
+<!-- Card 7 -->
+<div class="card" data-tag="tg-policy">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">7</div>
+    <div class="card-header-text">
+      <div class="card-title">2026年超级IPO浪潮预计将重塑VC二级市场</div>
+      <div class="card-meta">
+        SpaceX、OpenAI、Anthropic预计上市 &nbsp;·&nbsp; <a href="https://pitchbook.com/news/articles/2026s-fast-approaching-mega-ipo-wave-is-expected-to-reset-the-vc-secondaries-market" target="_blank">PitchBook</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>PitchBook发布深度研究报告指出，2026年即将到来的超级IPO浪潮将对VC二级市场产生深远影响。SpaceX（估值约1.5万亿美元）、OpenAI（约8400亿美元）和Anthropic（约3800亿美元）等超级独角兽预计将陆续启动上市进程，三者合计估值规模超过1万亿美元。如此体量的IPO事件在风险投资历史上从未出现过，其对于整个VC生态的冲击将是系统性的。</p>
+    <p>报告分析认为，超级IPO对VC二级市场的影响主要体现在三个层面。第一，大量存量VC份额的变现需求将催生二级市场的交易活跃度飙升——这些公司背后数百家投资机构持有的早期股权将寻求在IPO前后通过二级市场部分变现。第二，超级IPO将为VC二级市场的定价体系提供新的锚定基准，当前二级市场交易的NAV折价率可能因此收窄。第三，大额IPO锁定期到期后的抛售压力可能引发短期市场波动，但中长期将吸引更多专业二手份额基金进入市场。</p>
+    <p>从LP的角度来看，超级IPO将带来可观的现金分配（distribution），这对于缓解LP层面普遍存在的"流动性困境"（denominator effect）有直接帮助。2022-2025年间，由于传统IPO通道不畅，大量LP面临资金被过度占用的问题，DPI持续走低。SpaceX、OpenAI等超级IPO的落地将释放数千亿美元级别的流动性，LP得以将回收资金重新配置到新的PE/VC基金中去，从而激活整个募资循环。</p>
+    <p>但报告也提示了潜在风险：超级IPO的市场吸收能力存在不确定性。尤其是如果多家超级独角兽集中在同一时间窗口内上市，可能对市场资金面形成阶段性压力。投行人士建议这些公司采用分阶段上市或通过SPAC等替代路径来分散市场冲击。无论如何，2026-2027年注定将成为VC/PE行业历史上最具标志性的IPO窗口之一。</p>
+    <div class="highlight">核心看点：PitchBook预计SpaceX、OpenAI、Anthropic等超级IPO将重塑VC二级市场，合计超万亿美元估值，LP流动性困境或迎转机。</div>
+    <a class="source-link" href="https://pitchbook.com/news/articles/2026s-fast-approaching-mega-ipo-wave-is-expected-to-reset-the-vc-secondaries-market" target="_blank">&#x1F517; 来源：PitchBook</a>
+  </div>
+</div>
+
+<!-- Card 8 -->
+<div class="card" data-tag="tg-policy">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">8</div>
+    <div class="card-header-text">
+      <div class="card-title">中国VC/PE全面转向并购退出：部分项目估值虚高成隐忧</div>
+      <div class="card-meta">
+        头部机构设专职并购部门 &nbsp;·&nbsp; 地方并购基金密集落地 &nbsp;·&nbsp; <a href="https://stcn.com/article/detail/3957159.html" target="_blank">证券时报</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>证券时报报道指出，中国VC/PE行业正在经历一场系统性的退出策略转型——从过去以IPO为主要退出通道，全面转向以并购退出为核心。头部机构如红杉中国、高瓴、CPE源峰等已设立专职的并购退出部门，地方层面的并购基金也在密集落地。这一趋势的背后是A股IPO节奏放缓、上市公司并购重组政策放松以及一级市场存量项目退出压力的共同驱动。</p>
+    <p>数据显示，2026年前五个月，中国VC/PE通过并购方式实现退出的案例数同比增长超过80%，而IPO退出的数量则同比下降约35%。这一剪刀差意味着并购正在取代IPO成为一级市场最主要的流动性出口。监管层也在积极推动这一转型：证监会近期优化了上市公司重大资产重组的审核流程，鼓励产业资本通过并购整合提升上市公司质量。</p>
+    <p>然而，转型并非一帆风顺。报道特别指出，当前中国一级市场中部分项目的估值虚高问题正成为并购退出的隐忧。在2020-2022年募资热潮期间成立的许多项目，其估值建立在高速增长预期之上，但实际业务进展未达预期，导致在并购谈判中买卖双方的估值预期差距较大。"一年接触200个项目，最终不到5个有落地价值"——一位头部机构的并购负责人如此形容当前的并购退出难度。</p>
+    <p>从长远来看，并购退出主导的格局其实更接近成熟市场的VC生态。美国VC行业每年约80%的退出通过并购实现，IPO仅占20%左右。中国VC/PE正在经历这一"成人礼"，但过程中需要解决估值体系重构、并购人才储备和交易执行能力建设等多重挑战。地方并购基金的密集设立是一个积极信号，但能否真正跑通"募投管退"的闭环，还需要市场和时间来检验。</p>
+    <div class="highlight">核心看点：中国VC/PE全面转向并购退出，头部机构设立专职并购部门，但项目估值虚高问题突出，一年200项目中仅不到5个有落地价值。</div>
+    <a class="source-link" href="https://stcn.com/article/detail/3957159.html" target="_blank">&#x1F517; 来源：证券时报</a>
+  </div>
+</div>
+
+<!-- Card 9 -->
+<div class="card" data-tag="tg-policy">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">9</div>
+    <div class="card-header-text">
+      <div class="card-title">国办54号文落地：私募基金行业进入强监管新时代</div>
+      <div class="card-meta">
+        综合研判会商前置程序 &nbsp;·&nbsp; 名称含"私募基金"须获批 &nbsp;·&nbsp; <a href="https://www.lantai.cn/news_view.aspx?nid=2&typeid=5&id=1661" target="_blank">兰台律师事务所</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>国务院办公厅印发的54号文件正式落地实施，标志着中国私募基金行业进入了强监管的新时代。根据54号文的主要规定，新设私募基金管理人须经过综合研判会商前置程序，且企业名称中含有"私募基金"字样的须获得监管部门的事先批准。这一政策的出台是对近年来私募基金行业乱象的回应，也是中国金融监管体系完善的重要一环。</p>
+    <p>综合研判会商前置程序是54号文最核心的制度创新。在此前，私募基金管理人设立采取的是登记制——只需在中国证券投资基金业协会完成登记即可展业。而新规要求，申请设立私募基金管理人的机构首先要通过地方金融监管局组织的综合研判会商，由金融监管、市场监管、公安、税务等多部门联合对企业实际控制人、股东背景、业务模式和合规能力进行综合评估。会商通过后方可进行工商注册，注册后再向中基协申请登记。这一变化相当于将监管关口大幅前置。</p>
+    <p>关于名称管理的条款同样影响深远。新规要求，未经批准，任何企业和组织不得在名称中使用"私募基金""私募基金管理""股权投资基金管理"字样。这意味着过去大量存在的"擦边球"式命名方式将不再可行，私募基金行业的品牌管理将更加规范。对于存量机构，监管部门给予了过渡期安排，但预计大量不合规的"僵尸机构"将被清退出市场。</p>
+    <p>从行业影响来看，54号文的落地短期内可能带来私募基金设立数量的下降和行业门槛的提升，但中长期有利于行业的健康有序发展。对于合格的私募基金管理人而言，监管门槛的提高意味着行业竞争环境的优化——"劣币驱逐良币"的局面将得到遏制。此外，54号文与《私募投资基金监督管理条例》形成了制度合力，中国私募基金监管的法治化体系正在加速构建。</p>
+    <div class="highlight">核心看点：国办54号文正式落地，新设私募须过综合研判会商前置程序，名称含"私募基金"须获批，行业准入门槛大幅提升。</div>
+    <a class="source-link" href="https://www.lantai.cn/news_view.aspx?nid=2&typeid=5&id=1661" target="_blank">&#x1F517; 来源：兰台律师事务所</a>
+  </div>
+</div>
+
+<!-- ================================================================== -->
+<!-- SECTION 4: 大咖观点 -->
+<!-- ================================================================== -->
+<div class="section-header">
+  <div class="section-icon tg-opinion">&#x1F4AC;</div>
+  <div class="section-title">大咖观点</div>
+  <div class="section-count">2 条</div>
+</div>
+
+<!-- Card 10 -->
+<div class="card" data-tag="tg-opinion">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">10</div>
+    <div class="card-header-text">
+      <div class="card-title">百亿私募掌门人激辩：AI是"50年一遇的大周期"</div>
+      <div class="card-meta">
+        中欧瑞博吴伟志 vs 半夏投资李蓓 &nbsp;·&nbsp; <a href="https://fund.eastmoney.com/a/202606203776946254.html" target="_blank">东方财富网</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>2026年中，中国百亿私募基金掌门人之间爆发了一场关于AI投资价值的高规格辩论。中欧瑞博董事长吴伟志旗帜鲜明地将AI定义为"50年一遇的大周期"，将其比作"大海啸式的产业革命"，认为AI对经济社会的颠覆性将超越互联网革命。而半夏投资创始人李蓓则坚持相对谨慎的立场，认为AI板块当前存在显著的"高预期、高风险"特征，市场对AI的商业化速度和盈利能力可能过于乐观。</p>
+    <p>吴伟志在多个公开场合阐述其看多AI的核心逻辑：第一，AI不是单一的技术突破，而是一个涉及算力、模型、应用、数据的系统性产业生态，其投资机会的广度和深度远超以往的科技周期；第二，中国在AI应用端具有显著的场景优势和人口规模优势，国内AI公司的商业化路径比海外市场更加多元；第三，全球资本的持续涌入为AI产业的研发和基础设施建设提供了充足的弹药。他管理的产品已将AI相关持仓提升至历史最高水平。</p>
+    <p>李蓓的反向观点同样具有说服力。她指出，当前市场对AI的定价已经隐含了非常乐观的未来预期——很多AI相关公司的PS倍数已超过2021年互联网泡沫时期的水平。她质疑部分AI概念公司的盈利能力：除了GPU等基础设施层，应用层的大多数AI公司尚未证明可持续的商业模式。她认为AI确实重要，但投资需要回归到估值和现金流的基本面框架，"好的产业不等于好的投资标的"。</p>
+    <p>这场辩论在中国私募圈引发了广泛的讨论和反思。事实上，两位掌门人的观点并非完全对立——吴伟志关注的是产业趋势的长期价值，而李蓓强调的是投资时点和估值的短期风险。对于机构投资者而言，如何平衡"产业大趋势"和"估值安全边际"之间的关系，始终是投资决策中最核心的命题。而两人作为百亿私募的掌舵人，其观点分歧本身也反映了当前市场对AI投资正处于深度分歧期，这往往也意味着重要投资机会正在酝酿之中。</p>
+    <div class="highlight">核心看点：中欧瑞博吴伟志称AI为"50年一遇的大周期""大海啸式产业革命"，半夏投资李蓓坚持AI"高预期高风险"，百亿私募掌门人激辩AI投资价值。</div>
+    <a class="source-link" href="https://fund.eastmoney.com/a/202606203776946254.html" target="_blank">&#x1F517; 来源：东方财富网</a>
+  </div>
+</div>
+
+<!-- Card 11 -->
+<div class="card" data-tag="tg-opinion">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">11</div>
+    <div class="card-header-text">
+      <div class="card-title">摩根士丹利、高盛等外资巨头：A股中长期回报仍由科技贡献</div>
+      <div class="card-meta">
+        中国AI生态有望创造3-4万亿美元增量市值 &nbsp;·&nbsp; <a href="https://stcn.com/article/detail/3970021.html" target="_blank">证券时报</a>
+      </div>
+    </div>
+    <div class="card-arrow">&#x25BC;</div>
+  </div>
+  <div class="card-body">
+    <p>多家国际顶级投行在2026年中期策略报告中一致看好中国A股市场中长期回报，认为科技板块将成为回报的主要贡献者。摩根士丹利、高盛、瑞银等外资巨头的最新研究报告指出，中国AI生态系统的加速成熟有望创造3-4万亿美元的增量市值空间，这将为A股市场带来结构性的投资机会。瑞银更直接上调了对A股盈利增速的预测至11%，显著高于年初的市场共识。</p>
+    <p>摩根士丹利在其报告中强调，中国AI产业的发展路径与海外市场存在本质差异：中国在AI应用层的创新速度全球领先，尤其在智能制造、智慧城市、金融科技和医疗AI等领域具有独特的竞争优势。大摩的定量模型显示，AI对中国GDP的年均贡献率在2026-2030年间有望达到0.8-1.2个百分点，这一增量效应将直接转化为上市公司的盈利增长。大摩建议投资者超配AI应用和半导体国产替代两大主线。</p>
+    <p>高盛从全球资产配置的视角进行分析，指出中国A股在全球投资组合中的权重严重偏低，未来存在显著的"补仓"空间。高盛测算认为，如果全球机构投资者将中国A股的配置比例从当前的约2.5%提升至与MSCI中国指数权重相匹配的水平（约6%），将带来超过4000亿美元的资金流入。在这一过程中，科技板块作为A股市场市值最大、流动性最好的板块之一，将成为外资流入的主要承接方。</p>
+    <p>瑞银则从盈利预测的角度给出了更为具体的判断。瑞银中国股票策略团队预计，2026年A股上市公司整体盈利增速将从2025年的约6%提升至11%，其中科技板块的盈利增速有望超过20%。瑞银特别指出，AI算力需求爆发和半导体自主化进程是支撑科技板块盈利增长的两大核心驱动力。不过，瑞银也提示了地缘政治风险和国内经济复苏节奏的不确定性，建议投资者采用多元化策略而非单纯押注单一板块。</p>
+    <div class="highlight">核心看点：摩根士丹利、高盛、瑞银一致看好A股中长期回报，预计中国AI生态创造3-4万亿美元增量市值，瑞银上调A股盈利增速至11%。</div>
+    <a class="source-link" href="https://stcn.com/article/detail/3970021.html" target="_blank">&#x1F517; 来源：证券时报</a>
+  </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<div class="footer">
+  EquityHOT 一级市场日报 &middot; 2026年6月23日 &middot; 数据来源：Axios Pro Rata, Crunchbase News, 上海证券报, 21世纪经济报道, Dakota, 东方财富网, PitchBook, 证券时报, 兰台律师事务所<br>
+  本报告仅供参考，不构成投资建议。投资有风险，入市须谨慎。
+</div>
+
+</div><!-- /container -->
+
+<script>
+(function(){
+  // First card already open by default (class "open" on card 1)
+  // Support URL hash deep linking
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target && target.classList.contains('card-body')) {
+      target.parentElement.classList.add('open');
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
