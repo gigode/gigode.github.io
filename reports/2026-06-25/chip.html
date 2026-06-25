@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半导体/芯片行业日报 — 2026年6月25日</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    line-height: 1.6;
+  }
+  a { color: #34d399; text-decoration: none; }
+  a:hover { color: #6ee7b7; text-decoration: underline; }
+
+  /* ── cover ── */
+  .cover {
+    background: linear-gradient(135deg, #0c4a2e 0%, #14532d 40%, #059669 100%);
+    padding: 64px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(5,150,105,.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(16,185,129,.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cover h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 2px;
+    position: relative;
+  }
+  .cover .subtitle {
+    margin-top: 8px;
+    font-size: .95rem;
+    color: #a7f3d0;
+    opacity: .9;
+    position: relative;
+  }
+  .cover .date-badge {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 6px 20px;
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(4px);
+    border-radius: 999px;
+    font-size: .85rem;
+    color: #d1fae5;
+    border: 1px solid rgba(255,255,255,.15);
+    position: relative;
+  }
+
+  /* ── stats bar ── */
+  .stats-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 16px;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+  }
+  .stats-bar .stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .82rem;
+    color: #94a3b8;
+    background: #0f172a;
+    padding: 4px 14px;
+    border-radius: 999px;
+    border: 1px solid #334155;
+  }
+  .stats-bar .stat .dot {
+    width: 8px; height: 8px; border-radius: 50%; display: inline-block;
+  }
+
+  /* ── toc ── */
+  .toc {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 16px 8px;
+  }
+  .toc h2 {
+    font-size: 1.1rem;
+    color: #34d399;
+    margin-bottom: 12px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #1e293b;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    font-size: .82rem;
+    cursor: pointer;
+    transition: .2s;
+  }
+  .toc-item:hover { background: #334155; border-color: #059669; }
+  .toc-item .num { color: #64748b; font-weight: 600; min-width: 22px; }
+  .toc-item .tag {
+    font-size: .7rem;
+    padding: 1px 8px;
+    border-radius: 4px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .toc-item .title { color: #cbd5e1; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ── sections ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 16px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #334155;
+  }
+  .section-header .section-tag {
+    font-size: .78rem;
+    padding: 3px 14px;
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 600;
+  }
+  .section-header h2 { font-size: 1.05rem; color: #f1f5f9; }
+  .section-header .count { font-size: .82rem; color: #64748b; margin-left: auto; }
+
+  /* ── cards ── */
+  .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: .2s;
+  }
+  .card:hover { border-color: #475569; }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-header .num {
+    font-size: .8rem;
+    font-weight: 700;
+    color: #475569;
+    min-width: 26px;
+    padding-top: 2px;
+  }
+  .card-header .body { flex: 1; min-width: 0; }
+  .card-header .body h3 {
+    font-size: .95rem;
+    color: #f1f5f9;
+    line-height: 1.4;
+  }
+  .card-header .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 5px;
+    font-size: .75rem;
+    color: #64748b;
+  }
+  .card-header .meta .src { color: #94a3b8; }
+  .card-header .meta .date { color: #64748b; }
+  .card-header .arrow {
+    font-size: .85rem;
+    color: #64748b;
+    transition: transform .3s;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .card.open .card-header .arrow { transform: rotate(180deg); }
+
+  .card-body {
+    display: none;
+    padding: 0 16px 16px calc(26px + 12px + 12px);
+  }
+  .card.open .card-body { display: block; }
+
+  .card-body .analysis {
+    font-size: .88rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .card-body .link {
+    display: inline-block;
+    font-size: .78rem;
+    color: #34d399;
+    word-break: break-all;
+  }
+  .card-body .link:hover { color: #6ee7b7; }
+
+  /* ── tag pills ── */
+  .tag {
+    font-size: .68rem;
+    padding: 1px 10px;
+    border-radius: 999px;
+    color: #fff;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  /* ── footer ── */
+  .footer {
+    text-align: center;
+    padding: 32px 16px;
+    color: #475569;
+    font-size: .78rem;
+    border-top: 1px solid #1e293b;
+    margin-top: 24px;
+  }
+
+  /* ── responsive ── */
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 1.5rem; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .card-body { padding-left: 16px; }
+    .card-header { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+
+<div class="cover">
+  <h1>芯片行业日报</h1>
+  <p class="subtitle">Semiconductor &amp; Chip Industry Daily</p>
+  <div class="date-badge">2026 年 6 月 25 日 &nbsp;·&nbsp; 29 条</div>
+</div>
+
+<div class="stats-bar">
+  <span class="stat"><span class="dot" style="background:#7c3aed"></span> 新产品/技术 7</span>
+  <span class="stat"><span class="dot" style="background:#2563eb"></span> 企业动态 8</span>
+  <span class="stat"><span class="dot" style="background:#d97706"></span> 大咖观点 8</span>
+  <span class="stat"><span class="dot" style="background:#dc2626"></span> 政策资本 6</span>
+</div>
+
+<!-- ===== TOC ===== -->
+<div class="toc">
+  <h2>目录</h2>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<!-- ===== CARDS ===== -->
+<div class="container" id="cardContainer"></div>
+
+<div class="footer">
+  芯片行业日报 &copy; 2026 &nbsp;·&nbsp; 数据来源见各条目链接 &nbsp;·&nbsp; 仅供参考，不构成投资建议
+</div>
+
+<script>
+(function() {
+  const data = [
+    {
+      id: 1,
+      title: "NVIDIA与台积电将AI引入晶圆厂：cuLitho/cuEST/Omniverse FabTwin",
+      section: "新产品/技术",
+      source: "NVIDIA",
+      date: "6月",
+      url: "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-and-TSMC-Bring-AI-Into-Fabs-to-Advance-Semiconductor-Design-and-Manufacturing/default.aspx",
+      analysis: "NVIDIA与台积电联合宣布将AI加速计算全面部署到晶圆制造全流程。cuLitho利用GPU加速光刻计算，将计算光刻速度提升数十倍；cuEST通过AI模拟蚀刻工艺参数，减少试错周期；Omniverse FabTwin构建数字孪生工厂，实现实时监控与预测性维护。三款工具覆盖设计、制造、运营三大环节，标志着半导体制造正式进入AI原生时代，有望将先进制程的良率爬坡周期缩短30%以上。"
+    },
+    {
+      id: 2,
+      title: "Intel 18A-P工艺进入风险试产，性能提升9%/功耗降低18%",
+      section: "新产品/技术",
+      source: "太平洋电脑网",
+      date: "6月16日",
+      url: "https://diy.pconline.com.cn/2174/21746683.html",
+      analysis: "Intel 18A-P（18A增强版）工艺正式进入风险试产阶段，相比标准18A实现性能提升9%、同频功耗降低18%。该工艺采用改进型PowerVia背面供电和RibbonFET环绕栅极技术，主要面向AI加速器和高性能计算芯片。Intel计划2026年Q4启动量产爬坡，目标是在2027年重新夺回制程领先地位。18A-P的量产节奏将是Intel代工业务IFS能否获得外部客户信任的关键试金石。"
+    },
+    {
+      id: 3,
+      title: "Intel晒出未来芯片\"三张底牌\"：CFET、GaN+硅集成、钌互连",
+      section: "新产品/技术",
+      source: "泡泡网",
+      date: "6月",
+      url: "https://www.pcpop.com/article/6936352.shtml",
+      analysis: "Intel在近期技术峰会上展示了超越GAA晶体管的三大未来技术方向。CFET（互补场效应晶体管）将NMOS和PMOS垂直堆叠，逻辑密度可较GAA再提升50%以上；GaN+硅异质集成将氮化镓功率器件与硅逻辑芯片融合，适用于高频射频和电源管理；钌（Ruthenium）互连替代铜互连，解决先进制程中电阻急剧增大的瓶颈。三张底牌瞄准2nm以下世代，展示Intel在基础器件物理层面的深厚积累。"
+    },
+    {
+      id: 4,
+      title: "OpenAI+博通首款自研AI芯片Jalapeno亮相，9个月完成流片",
+      section: "新产品/技术",
+      source: "36氪/凤凰网",
+      date: "6月24日",
+      url: "https://36kr.com/p/3867736555705603",
+      analysis: "OpenAI与博通合作的首款自研AI推理芯片Jalapeno正式披露，从设计到流片仅用时9个月，创下高性能AI芯片开发纪录。Jalapeno为推理专用ASIC，在GPT-4级别模型推理场景下性能媲美NVIDIA Blackwell B200，但成本节省约50%。芯片采用台积电3nm制程，集成高带宽内存和定制数值精度引擎。此举标志着头部AI公司从依赖GPU采购向自研芯片的战略转折，未来可能重塑AI算力供应链格局。"
+    },
+    {
+      id: 5,
+      title: "闪迪新专利：将NAND闪存堆叠在计算芯片下方",
+      section: "新产品/技术",
+      source: "凤凰网科技",
+      date: "6月22日",
+      url: "https://tech.ifeng.com/c/8u9v4K8zbJP",
+      analysis: "闪迪（Sandisk）获得一项突破性3D堆叠架构专利，将NAND闪存直接堆叠在计算芯片（SoC/控制器）下方，而非传统的并排放置。这一架构使单封装容量最高可达4TB，同时通过缩短芯片间数据通路大幅降低延迟和功耗。该技术对AI边缘设备、高端智能手机和数据中心存储级内存（SCM）场景具有重大意义，有望在2027-2028年进入商业化阶段。"
+    },
+    {
+      id: 6,
+      title: "快手/凌川科技全国产3D堆叠芯片已流片，SL200销量近十万颗",
+      section: "新产品/技术",
+      source: "网易",
+      date: "6月24日",
+      url: "https://www.163.com/dy/article/L06GUIBI0511CPVM.html",
+      analysis: "快手投资的凌川科技宣布其全国产3D堆叠芯片已完成流片验证，同时透露现有产品SL200累计销量已接近十万颗。凌川科技同时完成数亿元A+轮融资，资金将用于下一代3D堆叠AI推理芯片的研发和量产线建设。这一进展表明国产3D先进封装和异构集成能力正在从实验室走向规模商用，在AI推理算力国产替代路径上迈出实质性一步。"
+    },
+    {
+      id: 7,
+      title: "意法半导体推出全球首款后量子密码移动安全芯片ST54M",
+      section: "新产品/技术",
+      source: "财联社",
+      date: "6月24日",
+      url: "https://www.cls.cn/detail/2408245",
+      analysis: "意法半导体（ST）发布全球首款集成后量子密码（PQC）硬件加速器的移动安全芯片ST54M，采用单芯片方案同时支持传统密码算法和NIST标准化的PQC算法（CRYSTALS-Kyber/Dilithium）。该芯片面向智能手机安全元件、eSIM和物联网安全模块，可抵御量子计算机对现有公钥密码体系的攻击威胁。ST54M的量产标志着后量子密码从学术研究正式进入消费电子商用部署阶段。"
+    },
+    {
+      id: 8,
+      title: "Vera Rubin量产出货：NVIDIA推升台积电营收占比超20%",
+      section: "企业动态",
+      source: "TrendForce",
+      date: "6月",
+      url: "https://www.trendforce.com/news/2026/06/01/news-vera-rubin-buildout-nvidia-reportedly-pushes-tsmc-above-20-revenue-share-power-and-cooling-suppliers-benefit/",
+      analysis: "NVIDIA新一代AI GPU平台Vera Rubin正式进入量产阶段，Q3起批量出货，单rack价格约780万美元。TrendForce预估Vera Rubin的量产将推升NVIDIA在台积电的营收占比突破20%，使NVIDIA成为台积电仅次于Apple的第二大客户。同时，更高的功耗需求带动散热和电力供应链受益，液冷方案供应商和电源管理IC厂商订单能见度延伸至2027年。"
+    },
+    {
+      id: 9,
+      title: "台积电CEO：AI芯片需求将持续超过供应多年",
+      section: "企业动态",
+      source: "Yahoo Finance",
+      date: "6月4日",
+      url: "https://au.finance.yahoo.com/news/taiwan-semiconductor-tsm-sees-ai-153712637.html",
+      analysis: "台积电CEO魏哲家在年度股东大会上表示，AI芯片需求将持续超过供应能力数年，全年销售增长率将超过30%。他强调台积电正在全球范围内扩张产能，包括美国亚利桑那、日本熊本和德国德累斯顿三座新厂，但新增产能仍无法完全满足爆炸性增长的AI算力需求。管理层认为AI需求的结构性而非周期性增长特征明显，对公司中长期毛利率维持在53%以上抱有信心。"
+    },
+    {
+      id: 10,
+      title: "SK集团会长崔泰源赴台会见台积电/英伟达高层，加强HBM合作",
+      section: "企业动态",
+      source: "Pulse News",
+      date: "6月3-4日",
+      url: "https://pulse.mk.co.kr/news/english/12066647",
+      analysis: "SK集团会长崔泰源亲赴台湾，先后拜会台积电董事长刘德音和NVIDIA创始人黄仁勋，重点讨论HBM4高带宽内存的供应合作。在Computex展会期间，黄仁勋在SK展台题写\"Please make more\"的签名引发行业热议，侧面印证HBM产能极度紧张。SK海力士作为HBM市场领导者，正加速推进HBM4的研发和量产，计划2026年下半年开始向NVIDIA供应HBM4样品。"
+    },
+    {
+      id: 11,
+      title: "三星获比亚迪、Google、AMD等新订单，受益于台积电产能紧张",
+      section: "企业动态",
+      source: "Investing.com",
+      date: "6月中旬",
+      url: "https://ng.investing.com/news/stock-market-news/samsung-sees-higher-chip-orders-from-byd-google-amd-amid-tight-tsmc-capacity-ni-2562161",
+      analysis: "三星电子代工业务近期获得比亚迪、Google和AMD等多家大厂的新订单，主因台积电先进制程产能满载导致客户寻求第二供应来源。三星即将量产的2nm SF2工艺成为吸引客户的核心卖点，采用GAA架构的SF2在性能和能效上对标台积电N2。不过市场对三星SF2的良率仍有疑虑，能否从台积电手中持续分流订单将取决于年底前的良率爬坡进展。"
+    },
+    {
+      id: 12,
+      title: "Intel激进重组：从三星/SK招募高管掌舵代工与封装业务",
+      section: "企业动态",
+      source: "Yonhap Infomax",
+      date: "6月",
+      url: "https://en.infomaxai.com/news/articleView.html?idxno=126684",
+      analysis: "Intel新任CEO Lip-Bu Tan（陈立武）启动激进的代工业务重组，从三星电子和SK海力士招募多名高级管理人员，分别执掌先进封装和晶圆代工运营部门。这是Intel历史上首次大规模从韩国半导体企业挖角高层，凸显其重塑IFS代工业务的紧迫性。重组后的代工部门将直接向CEO汇报，目标是在2030年前跻身全球代工市场前两位。资本市场对此反应积极，Intel股价在消息公布后上涨逾4%。"
+    },
+    {
+      id: 13,
+      title: "特朗普公开支持Intel：呼吁苹果通过Intel造芯片",
+      section: "企业动态",
+      source: "Pulse News",
+      date: "6月22日",
+      url: "https://pulse.mk.co.kr/m/news/english/12079875",
+      analysis: "美国前总统特朗普公开发声支持Intel，呼吁苹果公司将其芯片订单交给Intel而非台积电。特朗普的言论引发三星对其中美代工地位的担忧——若美国政策大力倾斜Intel，三星在美国的泰勒工厂可能面临客户获取竞争。这一政治干预芯片供应链的举动反映出半导体制造业回归美国已成为两党共识，但芯片客户更关注的是技术实力和产能保障而非政治站队。"
+    },
+    {
+      id: 14,
+      title: "中芯国际完成收购中芯北方49%股权，交易总价406亿元",
+      section: "企业动态",
+      source: "财联社/东方财富",
+      date: "6月24日",
+      url: "https://www.cls.cn/detail/2408160",
+      analysis: "中芯国际公告完成对中芯北方49%股权的收购，交易总价高达406亿元人民币，通过发行5.47亿股A股完成对价支付。此次收购后中芯国际对中芯北方的持股比例增至100%，实现对北京12英寸晶圆厂的完全控股。中芯北方主要生产成熟制程（28nm及以上）芯片，年产能约12万片/月。此次整合有助于中芯国际统一管理平台、提升决策效率和扩大成熟制程产能。"
+    },
+    {
+      id: 15,
+      title: "中芯国际A股涨6.94%，南向资金连续8日净买入65亿港元",
+      section: "企业动态",
+      source: "中国证券网",
+      date: "6月24日",
+      url: "https://www.cnstock.com/commonDetail/733365",
+      analysis: "中芯国际A股单日大涨6.94%，南向资金连续8个交易日净买入累计约65亿港元，显示内地和香港资本对中国半导体自主可控主题的强烈看好。中芯国际Q1营收达25.05亿美元，毛利率维持较高水平。市场预期在国产替代加速和AI算力需求爆发的双重驱动下，中芯国际2026年全年营收有望首次突破100亿美元大关，成为全球第三大晶圆代工厂。"
+    },
+    {
+      id: 16,
+      title: "伯恩斯坦：18年来首个真正\"芯片超级周期\"",
+      section: "大咖观点",
+      source: "Blockbeats",
+      date: "6月",
+      url: "https://baijiahao.baidu.com/s?id=1868605993466979515",
+      analysis: "伯恩斯坦（Bernstein）发布重磅研报，称当前正处于2008年金融危机以来首个真正的\"芯片超级周期\"。报告指出，过去18年的芯片周期都是库存驱动的短周期波动，而本轮由AI算力需求结构性爆发驱动，行业营收有望从当前的约8000亿美元一路奔向1.3万亿美元。不同于以往周期中\"涨价-扩产-过剩-暴跌\"的循环，AI需求具有持续性特征，仅数据中心AI加速器单一品类2030年市场规模就有望超过5000亿美元。"
+    },
+    {
+      id: 17,
+      title: "UBS：半导体\"世代性繁荣\"，2026年行业营收将达1.62万亿美元",
+      section: "大咖观点",
+      source: "Yahoo Finance",
+      date: "6月",
+      url: "https://finance.yahoo.com/markets/stocks/articles/ubs-sees-generational-semiconductor-boom-113010497.html",
+      analysis: "瑞银（UBS）将其对2026年全球半导体行业营收预测大幅上调至1.62万亿美元，同比增速高达118%。UBS使用\"世代性繁荣\"（generational boom）一词形容本轮周期，认为AI正在从根本上改变芯片行业的增长范式，从周期性行业转向结构性增长行业。报告特别指出，HBM、AI加速器、以太网互联芯片和先进封装四个细分领域的增速将远超行业均值，年复合增长率分别达到85%、72%、45%和40%。"
+    },
+    {
+      id: 18,
+      title: "美银美林：AI需求可见度延伸至2028年，存储不会供过于求",
+      section: "大咖观点",
+      source: "东方财富",
+      date: "6月24日",
+      url: "https://fund.eastmoney.com/a/202606243781173112.html",
+      analysis: "美银美林发布深度报告，指出AI芯片需求的可见度已延伸至2028年，远超过往芯片周期中6-12个月的订单能见度。报告驳斥了市场对存储芯片供过于求的担忧，认为HBM和DDR5的产能扩张速度远落后于AI服务器出货增速，存储供需将维持紧平衡格局。美银美林将2030年全球半导体TAM从之前的2万亿美元上调至2.7万亿美元，其中AI相关芯片占比将超过45%。"
+    },
+    {
+      id: 19,
+      title: "美银：五大\"AI推手\"带飞芯片行业，上调美光目标价至1500美元",
+      section: "大咖观点",
+      source: "财联社",
+      date: "6月24日",
+      url: "https://www.cls.cn/detail/2407525",
+      analysis: "美银证券列出五大\"AI推手\"——大模型参数狂飙、AI推理需求爆发、边缘AI渗透加速、自动驾驶落地、机器人智能化——认为这五大引擎将持续拉动芯片需求。美银特别看好存储龙头美光（Micron），将其目标价从1100美元大幅上调至1500美元，预计HBM市场规模到2030年将达2460亿美元，美光作为三大HBM供应商之一将显著受益。上调目标价的逻辑基于HBM的定价能力和长期供需缺口。"
+    },
+    {
+      id: 20,
+      title: "摩根士丹利等四大机构2026年芯片共识：AI推理取代训练成主引擎",
+      section: "大咖观点",
+      source: "36氪",
+      date: "6月",
+      url: "https://36kr.com/p/3619251933922563",
+      analysis: "摩根士丹利、高盛、花旗和巴克莱四大投行联合发布2026年半导体行业共识报告，核心结论是AI推理（Inference）将取代AI训练（Training）成为芯片需求增长的主引擎。报告指出CoT（思维链）、多模态推理和AI Agent等技术的兴起使推理算力需求正以每6个月翻倍的速度增长，远超训练端。推理芯片对成本和能效更敏感，这意味着ASIC定制芯片在推理市场的份额将从当前的15%快速攀升至2028年的40%以上。"
+    },
+    {
+      id: 21,
+      title: "伯恩斯坦警告：电力瓶颈是AI芯片最被低估的风险",
+      section: "大咖观点",
+      source: "Blockbeats",
+      date: "6月",
+      url: "https://en.theblockbeats.news/flash/352353",
+      analysis: "伯恩斯坦发布警示报告，认为电力基础设施瓶颈是当前AI芯片投资热潮中最被低估的风险因素。单座大型AI数据中心功耗已从2022年的200MW飙升至2026年的1GW以上，美国国家电网需要保持年均约5%的扩容速度才能满足AI负载增长，而当前实际扩容速度仅为2-3%。报告警告电力供应不足可能成为AI芯片出货量继续高速增长的\"天花板\"，建议投资者关注电网升级和核电/天然气发电相关产业链的投资机会。"
+    },
+    {
+      id: 22,
+      title: "交银国际：AI主题主导科技行情，上调半导体评级至超配",
+      section: "大咖观点",
+      source: "证券之星",
+      date: "6月9日",
+      url: "https://hk.stockstar.com/IG2026060900017165.shtml",
+      analysis: "交银国际发布科技行业策略报告，明确表示AI主题将持续主导2026年下半年科技板块行情，正式将半导体行业评级从\"标配\"上调至\"超配\"。报告认为中国AI芯片国产化（华为昇腾、寒武纪、凌川等）和HBM产业链（通富微电、长电科技等先进封装）是两大核心主线。交银国际还特别指出港股半导体板块估值仍处历史中低位，相对美股半导体存在明显折价，具备估值修复空间。"
+    },
+    {
+      id: 23,
+      title: "TrendForce：预计2026年晶圆代工产值年增近25%至2188亿美元",
+      section: "大咖观点",
+      source: "搜狐",
+      date: "6月",
+      url: "https://m.sohu.com/a/998673192_115433/",
+      analysis: "TrendForce发布2026年全球晶圆代工市场展望，预估全年产值年增近25%达到2188亿美元。其中台积电预计增长32%，市占率将进一步提升至65%以上，主要受NVIDIA、AMD、Apple和Qualcomm四大客户先进制程订单驱动。成熟制程（28nm及以上）产能利用率维持在85-90%的较高水平，受益于物联网、汽车电子和显示驱动芯片需求稳健。TrendForce还指出中国大陆代工厂份额将从2025年的12%提升至14%。"
+    },
+    {
+      id: 24,
+      title: "美国BIS新规封堵漏洞：总部在中国的实体一律不准买尖端芯片",
+      section: "政策资本",
+      source: "新浪财经",
+      date: "6月1日",
+      url: "https://finance.sina.com.cn/roll/2026-06-01/doc-inhzwckt8598008.shtml",
+      analysis: "美国商务部工业安全局（BIS）出台新规封堵对华芯片出口管制漏洞，核心条款是：凡总部在中国的实体，无论其子公司注册地或股权结构如何，一律不允许购买美国尖端AI芯片和半导体制造设备。新规以企业总部股权归属为管控基准，而非传统的注册地标准，意在堵住此前通过海外子公司规避管制的渠道。这是美国对华芯片管制政策的又一次重大升级，覆盖范围显著扩大。"
+    },
+    {
+      id: 25,
+      title: "美国全链条堵芯，欧盟加速筑墙，中国立法全域反制",
+      section: "政策资本",
+      source: "凤凰秀",
+      date: "6月",
+      url: "https://www.fengshows.com/article/57c737c0-60ef-11f1-a5a7-07d176a53529",
+      analysis: "全球芯片产业的地缘博弈进入新阶段：美国实施\"全链条堵芯\"战略，从设备、设计软件、制造到封装全面收紧对华限制；欧盟加速\"筑墙\"，推进欧洲芯片法案第二期，补贴力度翻倍至300亿欧元；中国则以全域立法反制，加速推进《反外国制裁法》实施细则和半导体国产化促进条例。三方博弈使全球半导体供应链从\"全球化分工\"加速走向\"区域化割裂\"，设备、材料和EDA工具环节受影响最为深远。"
+    },
+    {
+      id: 26,
+      title: "荷兰部长赴美游说：反对强迫盟友配合MATCH法案对华芯片禁令",
+      section: "政策资本",
+      source: "The Star",
+      date: "6月24-25日",
+      url: "https://www.thestar.com.my/business/business-news/2026/06/25/the-netherlands-lobbies-us-to-drop-chip-curbs",
+      analysis: "荷兰经济事务部长紧急赴美游说，反对美国强迫盟友配合MATCH法案（对华芯片技术出口管制法案）中的对华芯片禁令条款。荷兰政府明确表示单方面扩大出口管制将严重损害ASML的商业利益，ASML的DUV光刻机销售已经因限制措施出现明显下滑。荷兰的立场反映了美国盟友在芯片管制问题上的裂痕加深，欧洲国家更倾向于平衡安全利益与商业利益，而非完全追随美国步伐。"
+    },
+    {
+      id: 27,
+      title: "美国国会推进四项芯片出口管制立法（MATCH/Chip Security等）",
+      section: "政策资本",
+      source: "Punchbowl News",
+      date: "6月",
+      url: "https://punchbowl.news/article/tech/chips-markup/",
+      analysis: "美国国会正在同时推进四项与芯片出口管制相关的立法，包括MATCH法案（对华芯片技术出口管制）、Chip Security法案（半导体供应链安全审查）、出口管制改革法案和外国实体审查法案。其中最引人关注的是MATCH法案拟将管制范围从EUV光刻机延伸至DUV光刻机，如果通过，将直接影响ASML的DUV（浸润式）光刻机对华出口，对中芯国际等中国代工厂的成熟制程扩产计划构成直接威胁。"
+    },
+    {
+      id: 28,
+      title: "中国稀土反制见效：六氟化钨价格暴涨190%",
+      section: "政策资本",
+      source: "网易/里昂证券",
+      date: "6月",
+      url: "https://www.163.com/dy/article/L0765NAR05568W0A.html",
+      analysis: "中国稀土出口反制措施成效显著，半导体关键材料六氟化钨（WF6）价格暴涨190%。六氟化钨是半导体化学气相沉积（CVD）工艺中的关键原料，用于钨互连层的沉积。中国对日本高纯钨粉出口已归零，导致全球钨基半导体材料供应链出现严重短缺。里昂证券报告指出，若中国进一步扩大稀土出口限制范围（如镓、锗），全球半导体材料价格将面临更大上行压力，芯片制造成本将显著上升。"
+    },
+    {
+      id: 29,
+      title: "韩国股市剧烈波动：三星宣布90万亿韩元回购，股价单日暴涨9.84%",
+      section: "政策资本",
+      source: "朝鲜日报",
+      date: "6月24日",
+      url: "https://chosun-chosun-prod.cdn.arcpublishing.com/english/market-money-en/2026/06/24/7CVJ6HXKRVD4TNDF7A44UIUWBM/",
+      analysis: "韩国股市出现剧烈波动，三星电子宣布总额高达90万亿韩元（约合680亿美元）的大规模股票回购计划，创下韩国企业史上最大规模回购纪录。受此消息刺激，三星电子股价单日暴涨9.84%，带动韩国KOSPI指数大幅反弹。三星此次大规模回购的背景是近期股价因代工业务良率问题、HBM供应份额被SK海力士压制而持续低迷。回购计划向市场传递了管理层对公司中长期价值的信心，但能否扭转基本面颓势仍需观察。"
+    }
+  ];
+
+  const sectionMeta = {
+    "新产品/技术": { color: "#7c3aed", label: "新产品/技术" },
+    "企业动态":     { color: "#2563eb", label: "企业动态" },
+    "大咖观点":     { color: "#d97706", label: "大咖观点" },
+    "政策资本":     { color: "#dc2626", label: "政策资本" }
+  };
+
+  const sections = ["新产品/技术","企业动态","大咖观点","政策资本"];
+  const container = document.getElementById("cardContainer");
+  const tocGrid = document.getElementById("tocGrid");
+
+  // Build TOC
+  data.forEach(d => {
+    const meta = sectionMeta[d.section];
+    const div = document.createElement("div");
+    div.className = "toc-item";
+    div.addEventListener("click", () => {
+      const el = document.getElementById("card-" + d.id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    div.innerHTML = `<span class="num">#${d.id}</span><span class="tag" style="background:${meta.color}">${meta.label}</span><span class="title">${d.title}</span>`;
+    tocGrid.appendChild(div);
+  });
+
+  // Build cards by section
+  sections.forEach(section => {
+    const items = data.filter(d => d.section === section);
+    const meta = sectionMeta[section];
+
+    const header = document.createElement("div");
+    header.className = "section-header";
+    header.innerHTML = `<span class="section-tag" style="background:${meta.color}">${meta.label}</span><h2>${section}</h2><span class="count">${items.length} 条</span>`;
+    container.appendChild(header);
+
+    items.forEach((d, idx) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.id = "card-" + d.id;
+      if (d.id === 1) card.classList.add("open");
+
+      card.innerHTML = `
+        <div class="card-header">
+          <span class="num">#${d.id}</span>
+          <div class="body">
+            <h3>${d.title}</h3>
+            <div class="meta">
+              <span class="tag" style="background:${meta.color}">${meta.label}</span>
+              <span class="src">${d.source}</span>
+              <span class="date">${d.date}</span>
+            </div>
+          </div>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="card-body">
+          <div class="analysis">${d.analysis}</div>
+          <a class="link" href="${d.url}" target="_blank" rel="noopener">${d.url}</a>
+        </div>
+      `;
+
+      const headerEl = card.querySelector(".card-header");
+      headerEl.addEventListener("click", () => {
+        card.classList.toggle("open");
+      });
+
+      container.appendChild(card);
+    });
+  });
+})();
+</script>
+</body>
+</html>
