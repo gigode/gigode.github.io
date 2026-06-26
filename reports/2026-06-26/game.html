@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏日报 2026.06.26</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0a0a1a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 40%,#7c3aed 100%);padding:40px 20px 50px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237c3aed' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");opacity:0.5}
+.header h1{font-size:2.2em;font-weight:800;margin-bottom:8px;position:relative;letter-spacing:2px;background:linear-gradient(90deg,#fff,#c4b5fd,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .sub{font-size:1em;color:#c4b5fd;opacity:0.9;position:relative;letter-spacing:4px}
+.header .date-badge{display:inline-block;margin-top:14px;padding:6px 22px;background:rgba(124,58,237,0.25);border:1px solid rgba(124,58,237,0.5);border-radius:20px;font-size:0.9em;color:#c4b5fd;position:relative}
+.header .stats{display:flex;justify-content:center;gap:24px;margin-top:18px;position:relative;flex-wrap:wrap}
+.header .stat-item{padding:8px 16px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08)}
+.header .stat-item .num{font-size:1.2em;font-weight:700;color:#a78bfa}
+.header .stat-item .label{font-size:0.75em;color:#94a3b8;margin-top:2px}
+.container{max-width:820px;margin:0 auto;padding:24px 16px 60px}
+.nav-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;justify-content:center}
+.nav-btn{padding:6px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#94a3b8;font-size:0.82em;cursor:pointer;transition:.2s}
+.nav-btn:hover{border-color:#7c3aed;color:#c4b5fd}
+.nav-btn.active{background:#7c3aed22;border-color:#7c3aed;color:#a78bfa}
+
+.card{background:linear-gradient(135deg,#14142a,#1a1a3e);border-radius:14px;border:1px solid rgba(124,58,237,0.12);margin-bottom:14px;overflow:hidden;transition:.25s}
+.card:hover{border-color:rgba(124,58,237,0.3);box-shadow:0 4px 24px rgba(124,58,237,0.08)}
+.card.open{border-color:rgba(124,58,237,0.35);box-shadow:0 6px 32px rgba(124,58,237,0.12)}
+.card-top{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.card-num{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);display:flex;align-items:center;justify-content:center;font-size:0.85em;font-weight:700;color:#a78bfa;margin-top:2px}
+.card-main{flex:1;min-width:0}
+.card-main h3{font-size:0.98em;font-weight:600;color:#e2e8f0;line-height:1.5;margin-bottom:6px}
+.card-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:0.75em;margin-bottom:6px}
+.card-meta .src{color:#94a3b8}
+.card-meta .t{color:#64748b}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:0.73em;font-weight:600;line-height:1.6;white-space:nowrap}
+.tag-tg1{background:rgba(124,58,237,0.15);color:#a78bfa;border:1px solid rgba(124,58,237,0.25)}
+.tag-tg2{background:rgba(37,99,235,0.15);color:#93c5fd;border:1px solid rgba(37,99,235,0.25)}
+.tag-tg3{background:rgba(220,38,38,0.15);color:#fca5a5;border:1px solid rgba(220,38,38,0.25)}
+.tag-tg4{background:rgba(217,119,6,0.15);color:#fcd34d;border:1px solid rgba(217,119,6,0.25)}
+.tag-tg5{background:rgba(5,150,105,0.15);color:#6ee7b7;border:1px solid rgba(5,150,105,0.25)}
+.card-brief{font-size:0.83em;color:#94a3b8;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-arrow{flex-shrink:0;color:#64748b;font-size:1.1em;transition:transform .3s;margin-top:4px;width:20px;text-align:center}
+.card.open .card-arrow{transform:rotate(180deg)}
+.card-detail{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 18px}
+.card.open .card-detail{max-height:600px;padding:0 18px 18px}
+.card-detail h4{font-size:0.85em;color:#a78bfa;margin-bottom:8px;font-weight:600}
+.card-detail p{font-size:0.83em;color:#94a3b8;line-height:1.7;margin-bottom:8px}
+.card-detail a{color:#7c3aed;text-decoration:none;border-bottom:1px solid rgba(124,58,237,0.3)}
+.card-detail a:hover{color:#a78bfa;border-color:#a78bfa}
+.footer{text-align:center;padding:30px 20px;color:#475569;font-size:0.8em;border-top:1px solid rgba(255,255,255,0.04)}
+.footer a{color:#7c3aed;text-decoration:none}
+@media(max-width:600px){.header h1{font-size:1.6em}.card-top{padding:14px 14px;gap:10px}.card-num{width:28px;height:28px;font-size:0.78em}.card-main h3{font-size:0.92em}}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+
+<div class="header">
+  <h1>游戏日报</h1>
+  <div class="sub">GAME DAILY</div>
+  <div class="date-badge">2026.06.26 星期五</div>
+  <div class="stats">
+    <div class="stat-item"><div class="num">30</div><div class="label">精选条目</div></div>
+    <div class="stat-item"><div class="num">5</div><div class="label">栏目分类</div></div>
+    <div class="stat-item"><div class="num">7</div><div class="label">新游发布</div></div>
+    <div class="stat-item"><div class="num">7</div><div class="label">行业动态</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="nav-bar">
+  <span class="nav-btn active" onclick="filterCards('all')">全部</span>
+  <span class="nav-btn" onclick="filterCards('新游发布')">新游发布</span>
+  <span class="nav-btn" onclick="filterCards('行业动态')">行业动态</span>
+  <span class="nav-btn" onclick="filterCards('电竞资讯')">电竞资讯</span>
+  <span class="nav-btn" onclick="filterCards('硬件技术')">硬件/技术</span>
+  <span class="nav-btn" onclick="filterCards('评测观点')">评测与观点</span>
+</div>
+
+<!-- ========== 新游发布/更新 ========== -->
+<!-- 1 -->
+<div class="card open" data-cat="新游发布">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">1</div>
+    <div class="card-main">
+      <h3>EMPULSE 6月24日开启抢先体验</h3>
+      <div class="card-meta"><span class="src">Gematsu</span><span class="t">6月24日</span><span class="tag tg-tg1">新游发布/更新</span></div>
+      <div class="card-brief">6v6机甲跑酷射击，售价$19.99</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《EMPULSE》是一款融合跑酷与机甲射击的6v6多人对战游戏，采用虚幻引擎5开发，支持高速立体移动与丰富的机甲自定义系统。游戏于6月24日正式登陆Steam抢先体验，定价19.99美元。开发商表示抢先体验阶段将持续约6-12个月，期间将逐步加入新地图、机甲和游戏模式。本作独特的高速跑酷机制与机甲战斗的结合在测试阶段获得了玩家积极反馈，被视为机甲题材竞技游戏的新尝试。</p>
+    <p>来源：<a href="https://www.gematsu.com/2026/06/empulse-early-access-launch-trailer" target="_blank">Gematsu</a></p>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="card" data-cat="新游发布">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">2</div>
+    <div class="card-main">
+      <h3>SAND 6月22日正式发售</h3>
+      <div class="card-meta"><span class="src">虎牙资讯</span><span class="t">6月22日</span><span class="tag tg-tg1">新游发布/更新</span></div>
+      <div class="card-brief">硬核机甲生存射击，支持6人联机</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《SAND》是一款以机甲为主题的硬核生存射击游戏，背景设定在末日废土世界，玩家需要操控机甲在广袤的沙漠环境中探索、搜集资源并与其他玩家展开对抗。游戏支持最多6人联机合作，强调战术配合与资源管理。本作以其硬核的生存机制、精细的机甲定制系统和逼真的环境交互获得核心玩家群体的关注，正式版在发售首日即获得Steam"多半好评"评价。</p>
+    <p>来源：<a href="https://np.huya.com/news/articles/ccb200fbbc84cf06dd20c3664cc3ea.html" target="_blank">虎牙资讯</a></p>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="card" data-cat="新游发布">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">3</div>
+    <div class="card-main">
+      <h3>《雾影猎人》Steam新品节免费试玩，7月30日发售</h3>
+      <div class="card-meta"><span class="src">九游</span><span class="t">6月</span><span class="tag tg-tg1">新游发布/更新</span></div>
+      <div class="card-brief">国产黑暗奇幻PvPvE搜打撤</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《雾影猎人》是一款国产黑暗奇幻题材的PvPvE"搜打撤"（Extraction）类型游戏，玩家在充满迷雾的奇幻世界中既要对抗环境中的怪物，也要提防其他猎人的偷袭。游戏融合了魂系战斗风格与搜打撤的紧张节奏，在Steam新品节期间开放免费试玩，吸引了大量玩家关注。本作计划于7月30日正式发售，被视为国产独立游戏在搜打撤品类中的一次重要尝试。</p>
+    <p>来源：<a href="https://www.9game.cn/wuyinglieren/11910559.html" target="_blank">九游</a></p>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="card" data-cat="新游发布">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">4</div>
+    <div class="card-main">
+      <h3>Onimusha: Way of the Sword Demo上线</h3>
+      <div class="card-meta"><span class="src">ScreenRant</span><span class="t">6月</span><span class="tag tg-tg1">新游发布/更新</span></div>
+      <div class="card-brief">卡普空经典20年后回归</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《Onimusha: Way of the Sword》是卡普空经典《鬼武者》系列沉寂近20年后的回归之作。本作在Steam新品节期间上线了免费Demo，延续了系列标志性的"一闪"系统和战国背景设定，同时采用RE Engine打造全新的视觉体验。Demo展示了流畅的剑斗系统、解谜要素以及系列粉丝熟悉的吸魂机制。游戏受到媒体和玩家的高度期待，被认为是卡普空重新激活经典IP战略的重要一步。</p>
+    <p>来源：<a href="https://screenrant.com/steam-next-fest-2026-must-try-games/" target="_blank">ScreenRant</a></p>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="card" data-cat="新游发布">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">5</div>
+    <div class="card-main">
+      <h3>Echoes of Aincrad 7月9日发售</h3>
+      <div class="card-meta"><span class="src">TheGamer</span><span class="t">6月</span><span class="tag tg-tg1">新游发布/更新</span></div>
+      <div class="card-brief">SAO题材JRPG</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《Echoes of Aincrad》是一款以《刀剑神域》（SAO）为背景的JRPG，故事聚焦于艾恩葛朗特篇章的未讲述故事。游戏将在7月9日正式发售，采用回合制战斗系统，融入SAO粉丝熟悉的技能连击和切换机制。本作包含了全新的原创剧情、多个可玩角色以及忠实还原的艾恩葛朗特浮游城场景。对于SAO系列的粉丝而言，本作提供了在原作动画基础上扩展的全新叙事体验。</p>
+    <p>来源：<a href="https://www.thegamer.com/best-steam-next-fest-games-demos-june-2026/" target="_blank">TheGamer</a></p>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="card" data-cat="新游发布">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">6</div>
+    <div class="card-main">
+      <h3>SpiritVale 7月16日发售，好评率97%</h3>
+      <div class="card-meta"><span class="src">TheGamer</span><span class="t">6月</span><span class="tag tg-tg1">新游发布/更新</span></div>
+      <div class="card-brief">温馨生活模拟解谜</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《SpiritVale》是一款温馨治愈风格的生活模拟解谜游戏，玩家将在一个与世隔绝的宁静山谷中经营家园、与性格各异的居民互动、探索自然景观并解开古老谜题。本作在Steam新品节Demo期间获得了高达97%的好评率，以其精美的手绘美术风格、舒缓的配乐和富有深度的解谜设计赢得了广泛赞誉。游戏将于7月16日正式发售，被多家媒体列为2026年最值得期待的独立游戏之一。</p>
+    <p>来源：<a href="https://www.thegamer.com/best-steam-next-fest-games-demos-june-2026/" target="_blank">TheGamer</a></p>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="card" data-cat="新游发布">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">7</div>
+    <div class="card-main">
+      <h3>《星际火狐》重制版Switch 2发售</h3>
+      <div class="card-meta"><span class="src">九游</span><span class="t">6月25日</span><span class="tag tg-tg1">新游发布/更新</span></div>
+      <div class="card-brief">6月25日，N64经典重制</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《星际火狐》重制版于6月25日登陆Switch 2平台，这是任天堂N64时代经典作品的现代化重制。重制版在保留原作核心玩法和经典关卡设计的基础上，采用了全新的视觉引擎进行画面升级，支持更高的分辨率和帧率，并利用了Switch 2的新硬件特性。作为任天堂经典IP的重启之作，本作承载着老玩家的怀旧情怀，同时也通过现代化改进吸引新一代玩家。</p>
+    <p>来源：<a href="https://www.9game.cn/news/11928095.html" target="_blank">九游</a></p>
+  </div>
+</div>
+
+<!-- ========== 行业动态 ========== -->
+<!-- 8 -->
+<div class="card" data-cat="行业动态">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">8</div>
+    <div class="card-main">
+      <h3>EA被400亿美元收购，7月22日欧盟裁决</h3>
+      <div class="card-meta"><span class="src">Yahoo Finance</span><span class="t">6月</span><span class="tag tg-tg2">行业动态</span></div>
+      <div class="card-brief">沙特PIF+Silver Lake联合体</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>艺电（Electronic Arts）被以400亿美元的价格收购，买方为由沙特公共投资基金（PIF）和Silver Lake组成的联合体。该收购案已提交欧盟反垄断审查，预计于7月22日做出裁决。这笔交易若完成将成为游戏行业史上最大规模的收购之一，标志着中东主权基金在全球游戏产业中的影响力进一步扩大。PIF此前已持有任天堂、动视暴雪、Take-Two等多家游戏公司的股份。</p>
+    <p>来源：<a href="https://finance.yahoo.com" target="_blank">Yahoo Finance</a></p>
+  </div>
+</div>
+
+<!-- 9 -->
+<div class="card" data-cat="行业动态">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">9</div>
+    <div class="card-main">
+      <h3>Nexters以6.26亿美元收购韩国OneStore</h3>
+      <div class="card-meta"><span class="src">AJU PRESS</span><span class="t">6月19日</span><span class="tag tg-tg2">行业动态</span></div>
+      <div class="card-brief">转型Web3游戏商店</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>塞浦路斯游戏公司Nexters以6.26亿美元收购韩国应用商店OneStore。OneStore是韩国第三大应用商店，由SK Planet、KT和LG U+等韩国电信巨头联合运营。Nexters计划通过此次收购将OneStore转型为以Web3和区块链游戏为核心的全球游戏分发平台。这笔交易反映了游戏行业对Web3和区块链技术整合的持续投入，也显示出新兴分发渠道在数字游戏生态中的战略价值。</p>
+    <p>来源：<a href="https://www.ajupress.com/view/20260619162470290" target="_blank">AJU PRESS</a></p>
+  </div>
+</div>
+
+<!-- 10 -->
+<div class="card" data-cat="行业动态">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">10</div>
+    <div class="card-main">
+      <h3>腾讯调整日本投资策略，洽谈退出Marvelous等</h3>
+      <div class="card-meta"><span class="src">36氪/IT之家</span><span class="t">6月23日</span><span class="tag tg-tg2">行业动态</span></div>
+      <div class="card-brief">腾讯重新评估日本游戏投资布局</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>腾讯正在调整其日本游戏投资策略，据消息人士透露，腾讯已开始洽谈退出对日本游戏公司Marvelous等企业的持股。这一调整反映出腾讯对海外投资组合的重新评估，可能受到日本游戏市场竞争加剧、日元汇率波动及投资回报不及预期等因素影响。此前腾讯曾在日本游戏领域进行大规模投资，持股了FromSoftware、Kadokawa、Marvelous等多家知名日本游戏开发商。</p>
+    <p>来源：<a href="https://36kr.com" target="_blank">36氪/IT之家</a></p>
+  </div>
+</div>
+
+<!-- 11 -->
+<div class="card" data-cat="行业动态">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">11</div>
+    <div class="card-main">
+      <h3>腾讯据报探索收购Nexon（市值约150亿美元）</h3>
+      <div class="card-meta"><span class="src">BlockBeats</span><span class="t">6月</span><span class="tag tg-tg2">行业动态</span></div>
+      <div class="card-brief">腾讯寻求扩大韩国游戏版图</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>据媒体报道，腾讯正在探索收购韩国游戏巨头Nexon的可能性，后者市值约为150亿美元。Nexon旗下拥有《冒险岛》《地下城与勇士》《跑跑卡丁车》等众多知名IP。若收购成功，这将是腾讯在游戏领域最大规模的收购之一，将极大增强其在韩国及全球游戏市场的控制力。不过，这笔潜在交易可能面临韩国监管审查以及Nexon创始人家族意愿等多重挑战。</p>
+    <p>来源：<a href="https://en.theblockbeats.news/flash/298088" target="_blank">BlockBeats</a></p>
+  </div>
+</div>
+
+<!-- 12 -->
+<div class="card" data-cat="行业动态">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">12</div>
+    <div class="card-main">
+      <h3>Epic CEO反对Steam强制披露AI使用要求</h3>
+      <div class="card-meta"><span class="src">IT之家</span><span class="t">6月</span><span class="tag tg-tg2">行业动态</span></div>
+      <div class="card-brief">称阻碍开发者效率</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>Epic Games CEO Tim Sweeney公开反对Valve旗下Steam平台要求开发商强制披露游戏中AI使用情况的政策。Sweeney认为，该政策会给开发者带来不必要的行政负担，阻碍开发效率，并可能抑制AI技术在游戏开发中的创新应用。这一争论反映了游戏行业内对AI监管态度的分歧——Steam试图为玩家提供透明度以应对AI生成内容的版权和伦理问题，而开发者则担心过度监管会限制技术创新的空间。</p>
+    <p>来源：<a href="https://m.ithome.com" target="_blank">IT之家</a></p>
+  </div>
+</div>
+
+<!-- 13 -->
+<div class="card" data-cat="行业动态">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">13</div>
+    <div class="card-main">
+      <h3>2026 ChinaJoy"与AI同游"主题，7月31日开幕</h3>
+      <div class="card-meta"><span class="src">澎湃新闻</span><span class="t">6月</span><span class="tag tg-tg2">行业动态</span></div>
+      <div class="card-brief">近900家企业参展</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>2026年中国国际数码互动娱乐展览会（ChinaJoy）定于7月31日至8月3日在上海新国际博览中心举行，本届主题为"与AI同游"，凸显人工智能在游戏产业中的核心地位。据悉将有近900家企业参展，规模创历史新高。展会将重点展示AI驱动的游戏开发工具、智能NPC、AI辅助美术设计、AI游戏测试等前沿应用。ChinaJoy已成为观察中国乃至全球游戏产业趋势的重要窗口。</p>
+    <p>来源：<a href="https://www.thepaper.cn" target="_blank">澎湃新闻</a></p>
+  </div>
+</div>
+
+<!-- 14 -->
+<div class="card" data-cat="行业动态">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">14</div>
+    <div class="card-main">
+      <h3>卡普空明确"不会将AI素材用于最终游戏"</h3>
+      <div class="card-meta"><span class="src">36氪</span><span class="t">6月</span><span class="tag tg-tg2">行业动态</span></div>
+      <div class="card-brief">仅作为研发辅助</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>卡普空（Capcom）官方明确表态，公司在游戏开发中使用AI生成技术仅限于研发辅助阶段，不会将任何AI生成的素材直接用于最终商业游戏产品中。卡普空强调，AI技术用于概念构思、早期原型制作和内部效率提升等方面，但所有最终游戏内容均由开发者手工制作和打磨。这一立场体现了一线大厂在AI应用上的谨慎态度，试图在利用AI技术提升开发效率的同时，保护游戏艺术性和原创价值。</p>
+    <p>来源：<a href="https://36kr.com" target="_blank">36氪</a></p>
+  </div>
+</div>
+
+<!-- ========== 电竞资讯 ========== -->
+<!-- 15 -->
+<div class="card" data-cat="电竞资讯">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">15</div>
+    <div class="card-main">
+      <h3>MSI 2026 6月28日韩国大田开幕，11队确认</h3>
+      <div class="card-meta"><span class="src">LoLEsports</span><span class="t">6月28日-7月12日</span><span class="tag tg-tg3">电竞资讯</span></div>
+      <div class="card-brief">英雄联盟季中冠军赛再度在韩举办</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>2026年英雄联盟季中冠军赛（MSI 2026）将于6月28日在韩国大田广域市正式开幕，持续至7月12日。本届MSI共有11支来自全球各赛区的代表队确认参赛，是继2023年MSI在韩国举办后，这一国际赛事再次落地韩国。大田作为韩国科技文化重镇，为赛事提供了高规格的场馆设施和电竞氛围。这一赛事也是各赛区在年中检验实力、争夺全球荣誉的重要舞台。</p>
+    <p>来源：<a href="https://www.thestate.com/entertainment/article316144652.html" target="_blank">LoLEsports</a></p>
+  </div>
+</div>
+
+<!-- 16 -->
+<div class="card" data-cat="电竞资讯">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">16</div>
+    <div class="card-main">
+      <h3>开幕战：T1 vs Team Liquid</h3>
+      <div class="card-meta"><span class="src">Invenglobal</span><span class="t">6月</span><span class="tag tg-tg3">电竞资讯</span></div>
+      <div class="card-brief">T1时隔8年冲击MSI首冠</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>MSI 2026的开幕战将由韩国豪门T1对阵北美老牌强队Team Liquid。这场比赛备受瞩目——T1自2017年MSI夺冠后，时隔8年再次冲击MSI冠军奖杯。在此期间T1经历了阵容重组、Faker的伤病以及多次世界赛的起落。本届MSI是T1新一代阵容证明自己的重要机会，而Team Liquid作为北美代表，也将力求在揭幕战中制造惊喜，打破外界对北美赛区的刻板印象。</p>
+    <p>来源：<a href="https://www.invenglobal.com" target="_blank">Invenglobal</a></p>
+  </div>
+</div>
+
+<!-- 17 -->
+<div class="card" data-cat="电竞资讯">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">17</div>
+    <div class="card-main">
+      <h3>BLG以LPL一号种子直进淘汰赛</h3>
+      <div class="card-meta"><span class="src">直播吧</span><span class="t">6月</span><span class="tag tg-tg3">电竞资讯</span></div>
+      <div class="card-brief">3:0横扫TES夺冠</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>Bilibili Gaming（BLG）在LPL春季赛中展现了统治级表现，以3:0的比分横扫TES夺得冠军，从而以LPL一号种子的身份直接晋级MSI 2026淘汰赛阶段。BLG凭借其强大的团队协作和选手个人能力在季后赛中一路过关斩将，成为本届MSI的夺冠热门之一。作为LPL的旗帜性战队，BLG在MSI上的表现将直接关系到LPL赛区在全球电竞格局中的地位。</p>
+    <p>来源：<a href="https://news.zhibo8.com" target="_blank">直播吧</a></p>
+  </div>
+</div>
+
+<!-- 18 -->
+<div class="card" data-cat="电竞资讯">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">18</div>
+    <div class="card-main">
+      <h3>HLE与T1代表LCK出战，Kanavi创纪录</h3>
+      <div class="card-meta"><span class="src">Invenglobal</span><span class="t">6月</span><span class="tag tg-tg3">电竞资讯</span></div>
+      <div class="card-brief">第二位代表LPL和LCK出战MSI的选手</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>韩华生命（Hanwha Life Esports）与T1将代表LCK赛区出战本届MSI。值得一提的是，HLE的打野选手Kanavi创造了新的历史纪录——他成为第二位先后代表LPL和LCK两个赛区出战MSI的选手。Kanavi此前在JD Gaming效力时曾代表LPL出战MSI，此番随HLE代表LCK出征，展现出顶级选手跨赛区的适应能力和竞技水准。Kanavi的双赛区经历也体现了英雄联盟电竞全球化的人才流动趋势。</p>
+    <p>来源：<a href="https://www.invenglobal.com" target="_blank">Invenglobal</a></p>
+  </div>
+</div>
+
+<!-- 19 -->
+<div class="card" data-cat="电竞资讯">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">19</div>
+    <div class="card-main">
+      <h3>淘汰赛7月3日打响，双败淘汰+无畏征召</h3>
+      <div class="card-meta"><span class="src">直播吧</span><span class="t">6月</span><span class="tag tg-tg3">电竞资讯</span></div>
+      <div class="card-brief">总决赛7月12日</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>MSI 2026淘汰赛将于7月3日正式打响，采用双败淘汰制（Double Elimination）和无畏征召（Fearless Draft）模式。双败赛制为强队提供了更多容错空间，而无畏征召则对选手的英雄池深度提出了更高要求——比赛中已选用过的英雄将不能在后续对局中重复使用，这增加了BP策略的复杂性和比赛的观赏性。总决赛定于7月12日举行，届时将决出2026年MSI冠军归属。</p>
+    <p>来源：<a href="https://news.zhibo8.com" target="_blank">直播吧</a></p>
+  </div>
+</div>
+
+<!-- 20 -->
+<div class="card" data-cat="电竞资讯">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">20</div>
+    <div class="card-main">
+      <h3>MSI观赛掉宝：限定头像+表情</h3>
+      <div class="card-meta"><span class="src">u.gg</span><span class="t">6月</span><span class="tag tg-tg3">电竞资讯</span></div>
+      <div class="card-brief">Pick'Ems赢取限定奖励</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>Riot Games为MSI 2026观众推出了观赛掉宝活动，通过Pick'Ems预测玩法，玩家可以获得限定头像、表情等游戏内奖励。观众只需在比赛期间登录指定直播平台并参与赛事预测，就有机会赢取这些限定数字藏品。这类观赛互动活动已成为Riot Games电竞赛事的标准配置，旨在提升观众参与度和赛事黏性，同时也为玩家提供了独特的收藏品和炫耀资本。</p>
+    <p>来源：<a href="https://u.gg/lol/news/msi-2026" target="_blank">u.gg</a></p>
+  </div>
+</div>
+
+<!-- ========== 硬件/技术 ========== -->
+<!-- 21 -->
+<div class="card" data-cat="硬件技术">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">21</div>
+    <div class="card-main">
+      <h3>Valve Steam Machine发布：起售价$1,049</h3>
+      <div class="card-meta"><span class="src">TechPowerUp</span><span class="t">6月30日发售</span><span class="tag tg-tg4">硬件/技术</span></div>
+      <div class="card-brief">Valve重返客厅游戏硬件市场</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>Valve正式发布了新一代Steam Machine游戏主机，起售价为1,049美元，定于6月30日发售。经历了Steam Machine 1.0时代的不温不火之后，Valve此番重返客厅游戏硬件市场，搭载了定制AMD处理器与GPU，运行SteamOS系统，支持无缝的客厅PC游戏体验。新Steam Machine强调与Steam生态的深度整合，支持Steam Deck游戏兼容性、云存档同步以及大屏模式下的优化UI。能否弥补初代Steam Machine的遗憾，市场将很快给出答案。</p>
+    <p>来源：<a href="https://www.techpowerup.com" target="_blank">TechPowerUp</a></p>
+  </div>
+</div>
+
+<!-- 22 -->
+<div class="card" data-cat="硬件技术">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">22</div>
+    <div class="card-main">
+      <h3>Valve撤回"4K 60fps"宣传，改为"Up to 4K with FSR 4.1"</h3>
+      <div class="card-meta"><span class="src">TechPowerUp</span><span class="t">6月</span><span class="tag tg-tg4">硬件/技术</span></div>
+      <div class="card-brief">性能预期调整引发讨论</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>在发布新一代Steam Machine后，Valve迅速调整了其性能宣传口径，撤回了最初声称的"4K 60fps"原生性能表述，改为"Up to 4K with FSR 4.1（通过FSR超分辨率技术实现至高4K画质）"。这一调整引发了玩家和技术媒体的广泛讨论：一方面，Valve的诚实态度值得肯定；另一方面，也反映出新一代Steam Machine在原生4K游戏性能上可能不及玩家预期。FSR 4.1作为AMD的最新超分辨率技术，将成为实现4K游戏体验的关键。</p>
+    <p>来源：<a href="https://www.techpowerup.com" target="_blank">TechPowerUp</a></p>
+  </div>
+</div>
+
+<!-- 23 -->
+<div class="card" data-cat="硬件技术">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">23</div>
+    <div class="card-main">
+      <h3>Switch 2底座模式~3.09 TFLOPS，算力碾压Steam Deck</h3>
+      <div class="card-meta"><span class="src">什么值得买</span><span class="t">6月</span><span class="tag tg-tg4">硬件/技术</span></div>
+      <div class="card-brief">任天堂新主机性能参数曝光</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>任天堂Switch 2的底座模式算力曝光，达到约3.09 TFLOPS，这一性能指标在掌机/主机混合形态设备中表现突出，超越了Valve Steam Deck的算力水平。更强的底座模式性能意味着Switch 2在连接电视时可以运行更高质量的画面效果，同时保持掌机模式的便携性和续航。Switch 2性能的大幅跃升，使其能够兼容更多主流3A游戏，或将改变掌机市场的竞争格局。</p>
+    <p>来源：<a href="https://post.smzdm.com" target="_blank">什么值得买</a></p>
+  </div>
+</div>
+
+<!-- 24 -->
+<div class="card" data-cat="硬件技术">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">24</div>
+    <div class="card-main">
+      <h3>下一代GPU（RDNA 5/RTX 60）延期至2027-2028</h3>
+      <div class="card-meta"><span class="src">Digital Foundry</span><span class="t">6月</span><span class="tag tg-tg4">硬件/技术</span></div>
+      <div class="card-brief">GPU架构迭代节奏放缓</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>据Digital Foundry报道，AMD和NVIDIA的下一代GPU架构——RDNA 5和RTX 60系列——均将延期至2027-2028年才能问世。GPU架构迭代周期的延长反映了半导体行业面临的制造工艺瓶颈和设计复杂度提升等挑战。这意味着当前的RDNA 4和RTX 50系列将拥有更长的市场生命周期，玩家可能需要等待更长时间才能看到下一代性能飞跃。同时也给了主机平台（如PS6和Xbox Next）更多的时间窗口进行硬件规划。</p>
+    <p>来源：<a href="https://www.digitalfoundry.net" target="_blank">Digital Foundry</a></p>
+  </div>
+</div>
+
+<!-- 25 -->
+<div class="card" data-cat="硬件技术">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">25</div>
+    <div class="card-main">
+      <h3>COMPUTEX 2026：RTX 50系列全面铺开，DLSS 4.5标配</h3>
+      <div class="card-meta"><span class="src">NVIDIA/技嘉</span><span class="t">6月</span><span class="tag tg-tg4">硬件/技术</span></div>
+      <div class="card-brief">NVIDIA在COMPUTEX展示完整RTX 50产品线</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>在COMPUTEX 2026台北国际电脑展上，NVIDIA联合技嘉等AIC合作伙伴全面展示了GeForce RTX 50系列完整产品线，覆盖从主流到旗舰的各个价位段。DLSS 4.5已成为RTX 50系列标配技术，在画质提升和帧生成方面带来了新的突破。RTX 50系列的全面铺开标志着新一代图形技术的普及，为玩家带来了更强大的光线追踪性能和AI驱动渲染体验。各品牌非公版设计也在展会上集中亮相，产品丰富度远超上一代。</p>
+    <p>来源：<a href="https://www.gigabyte.com" target="_blank">NVIDIA/技嘉</a></p>
+  </div>
+</div>
+
+<!-- ========== 评测与观点 ========== -->
+<!-- 26 -->
+<div class="card" data-cat="评测观点">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">26</div>
+    <div class="card-main">
+      <h3>007 First Light Fami通37分白金殿堂</h3>
+      <div class="card-meta"><span class="src">九游/360游戏</span><span class="t">6月</span><span class="tag tg-tg5">评测与观点</span></div>
+      <div class="card-brief">IO Interactive邦德起源故事</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《007 First Light》由IO Interactive（《杀手》系列开发商）打造，获得了日本权威游戏杂志Fami通37分（满分40分）的评分，成功进入白金殿堂。本作作为詹姆斯邦德游戏的全新演绎，聚焦于邦德的起源故事，融合了IO Interactive擅长的潜行、战术和沙盒式关卡设计。Fami通评价指出本作在叙事深度、关卡自由度和电影级演出方面表现出色，是"近年来最好的授权改编游戏之一"。</p>
+    <p>来源：<a href="https://www.9game.cn" target="_blank">九游/360游戏</a></p>
+  </div>
+</div>
+
+<!-- 27 -->
+<div class="card" data-cat="评测观点">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">27</div>
+    <div class="card-main">
+      <h3>《极限竞速：地平线6》Fami通37分，MC均分91-92</h3>
+      <div class="card-meta"><span class="src">360游戏</span><span class="t">6月</span><span class="tag tg-tg5">评测与观点</span></div>
+      <div class="card-brief">日本赛道开放世界</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《极限竞速：地平线6》（Forza Horizon 6）获得Fami通37分评价，Metacritic媒体均分达到91-92分，延续了该系列一贯的高品质口碑。本作将舞台设定在日本，首次在系列中引入了日本赛道和开放世界环境，玩家可以驾驶各式赛车驰骋于富士山、东京城市赛道和乡村公路之间。媒体称赞本作在画面表现、车辆物理、内容丰富度和文化氛围营造方面都达到了系列新高，是开放世界赛车游戏的标杆之作。</p>
+    <p>来源：<a href="http://360game.360.cn" target="_blank">360游戏</a></p>
+  </div>
+</div>
+
+<!-- 28 -->
+<div class="card" data-cat="评测观点">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">28</div>
+    <div class="card-main">
+      <h3>The Guardian 2026上半年最佳游戏盘点</h3>
+      <div class="card-meta"><span class="src">The Guardian</span><span class="t">6月11日</span><span class="tag tg-tg5">评测与观点</span></div>
+      <div class="card-brief">FH6/Pragmata/RE:Requiem上榜</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>英国《卫报》（The Guardian）发布了2026上半年最佳游戏盘点，评选出上半年最具影响力的游戏作品。《极限竞速：地平线6》、卡普空科幻新作《Pragmata》以及《生化危机：安魂曲》（RE:Requiem）等多款大作名列其中。该盘点涵盖了3A大作和独立精品，反映了2026年上半年游戏行业的多元化和高质量产出。卫报的评选标准注重创新性、文化影响力和玩家体验的平衡。</p>
+    <p>来源：<a href="https://www.theguardian.com/culture/ng-interactive/2026/jun/11/the-best-games-of-2026-so-far" target="_blank">The Guardian</a></p>
+  </div>
+</div>
+
+<!-- 29 -->
+<div class="card" data-cat="评测观点">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">29</div>
+    <div class="card-main">
+      <h3>Steam新品节18款银河城游戏试玩报告</h3>
+      <div class="card-meta"><span class="src">机核GCORES</span><span class="t">6月</span><span class="tag tg-tg5">评测与观点</span></div>
+      <div class="card-brief">推荐Polly's Puzzle Box等</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>机核网（GCORES）发布了Steam新品节银河城（Metroidvania）品类18款游戏的集中试玩报告，为品类爱好者提供了全面的选购参考。报告中重点推荐了《Polly's Puzzle Box》等作品，称赞其在关卡设计、能力解锁和探索节奏方面的出色表现。银河城品类近年来持续繁荣，Steam新品节为独立开发者提供了展示平台，也为玩家提供了丰富的试玩选择。机核的深度试玩报告在社区中具有较强的影响力。</p>
+    <p>来源：<a href="https://www.gcores.com/articles/216312" target="_blank">机核GCORES</a></p>
+  </div>
+</div>
+
+<!-- 30 -->
+<div class="card" data-cat="评测观点">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">30</div>
+    <div class="card-main">
+      <h3>《米娜与霍洛威》MC 92分，年度最佳候选</h3>
+      <div class="card-meta"><span class="src">GamesRadar+</span><span class="t">6月</span><span class="tag tg-tg5">评测与观点</span></div>
+      <div class="card-brief">仅售$20</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《米娜与霍洛威》（Mina & Hollaway）以Metacritic 92分的超高媒体评分成为2026年年度最佳游戏的有力竞争者，而其售价仅为20美元，堪称性价比之王。本作以其深刻的情感叙事、独特的艺术风格和精妙的玩法设计获得了媒体和玩家的一致赞誉。在3A游戏普遍售价70美元的市场环境下，本作以独立游戏的定价提供了堪比顶级大作的游戏体验，引发了业界对于游戏定价与价值关系的广泛讨论。</p>
+    <p>来源：<a href="https://www.gamesradar.com" target="_blank">GamesRadar+</a></p>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>游戏日报 · 每日精选游戏资讯 | 数据来源：多家游戏媒体综合整理</p>
+  <p style="margin-top:4px">Generated on 2026-06-26 · <a href="#">订阅</a> · <a href="#">往期回顾</a></p>
+</div>
+
+<script>
+function filterCards(cat) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    let txt = b.textContent.trim();
+    if ((cat === 'all' && txt === '全部') || txt.includes(cat)) b.classList.add('active');
+  });
+  document.querySelectorAll('.card').forEach(c => {
+    if (cat === 'all') {
+      c.style.display = '';
+    } else {
+      c.style.display = c.dataset.cat.includes(cat) ? '' : 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
