@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股权投资日报 | Equity Daily Report</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: #0d0d08;
+    color: #e8e0c8;
+    min-height: 100vh;
+  }
+  /* ── Cover ── */
+  .cover {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a0f 0%, #3d3520 50%, #d4a017 100%);
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 48px;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(212,160,23,0.20) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(26,26,15,0.60) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cover h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #f5e8b0;
+    text-shadow: 0 2px 16px rgba(212,160,23,0.35);
+    position: relative;
+    z-index: 1;
+  }
+  .cover .sub {
+    margin-top: 10px;
+    font-size: 1.05rem;
+    color: #b8a878;
+    letter-spacing: 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .date-line {
+    margin-top: 16px;
+    font-size: 0.92rem;
+    color: #8a7a50;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .stats {
+    margin-top: 20px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .stats span {
+    font-size: 0.82rem;
+    color: #c8b888;
+    background: rgba(26,26,15,0.55);
+    padding: 5px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(212,160,23,0.25);
+  }
+  .cover .stats em { font-style: normal; color: #d4a017; font-weight: 700; }
+
+  /* ── Container ── */
+  .container { max-width: 780px; margin: 0 auto; padding: 32px 16px 80px; }
+
+  /* ── Section Divider ── */
+  .section { margin-bottom: 6px; }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 0 12px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #d4a017;
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(212,160,23,0.15);
+    margin-bottom: 8px;
+  }
+  .section-title .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .section-title .cnt {
+    margin-left: auto;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: #6a5a30;
+    letter-spacing: 0;
+  }
+
+  /* ── Card ── */
+  .card {
+    background: linear-gradient(135deg, #14140e 0%, #1a1a12 100%);
+    border: 1px solid #2a2a1a;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card:hover { border-color: #3d3520; }
+  .card.open { border-color: rgba(212,160,23,0.35); box-shadow: 0 0 24px rgba(212,160,23,0.06); }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .card-num {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #1a1a0f;
+    border: 1px solid #3d3520;
+    color: #d4a017;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .card-main { flex: 1; min-width: 0; }
+  .card-main h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f0e4c0;
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    margin-bottom: 4px;
+  }
+  .card-meta .src {
+    color: #8a7a50;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .card-meta .t { color: #5a4a30; }
+  .card-meta .tag {
+    display: inline-block;
+    padding: 1px 10px;
+    border-radius: 10px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .tg-投资案例 { background: #2563eb; }
+  .tg-基金设立 { background: #7c3aed; }
+  .tg-政策行情 { background: #d97706; }
+  .tg-大咖观点 { background: #dc2626; }
+
+  .card-brief {
+    font-size: 0.78rem;
+    color: #7a7a5a;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-arrow {
+    font-size: 1rem;
+    color: #5a4a30;
+    transition: transform 0.3s;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .card.open .card-arrow { transform: rotate(180deg); color: #d4a017; }
+
+  .card-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease, padding 0.45s ease;
+    padding: 0 18px;
+    border-top: 0 solid rgba(212,160,23,0.1);
+  }
+  .card.open .card-detail {
+    max-height: 800px;
+    padding: 14px 18px 18px;
+    border-top-width: 1px;
+  }
+  .card-detail h4 {
+    font-size: 0.82rem;
+    color: #d4a017;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .card-detail p {
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: #b8b090;
+    margin-bottom: 10px;
+    text-align: justify;
+  }
+  .card-detail a {
+    color: #d4a017;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212,160,23,0.25);
+    transition: border-color 0.2s;
+  }
+  .card-detail a:hover { border-color: #d4a017; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 40px 16px 32px;
+    color: #3a3a20;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    border-top: 1px solid #1a1a0f;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 540px) {
+    .cover h1 { font-size: 1.6rem; }
+    .cover { min-height: 220px; padding: 40px 16px 32px; }
+    .container { padding: 20px 12px 60px; }
+    .card-top { padding: 12px 14px; gap: 10px; }
+    .card-num { width: 26px; min-width: 26px; height: 26px; font-size: 0.7rem; }
+    .card-main h3 { font-size: 0.88rem; }
+    .card-detail { padding: 0 14px; }
+    .card.open .card-detail { padding: 12px 14px 16px; }
+    .cover .stats { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+
+<!-- ═══════ COVER ═══════ -->
+<header class="cover">
+  <h1>股权投资日报</h1>
+  <p class="sub">EQUITY INVESTMENT DAILY</p>
+  <p class="date-line">2026 年 6 月 27 日  ·  星期六</p>
+  <div class="stats">
+    <span>投资案例 <em>8</em></span>
+    <span>基金设立 <em>7</em></span>
+    <span>政策行情 <em>6</em></span>
+    <span>大咖观点 <em>4</em></span>
+    <span>共计 <em>25</em> 条</span>
+  </div>
+</header>
+
+<!-- ═══════ CONTAINER ═══════ -->
+<div class="container">
+
+<!-- ──────────── 投资案例 ──────────── -->
+<div class="section">
+<div class="section-title">
+  <span class="dot" style="background:#2563eb;"></span>
+  投资案例
+  <span class="cnt">8 条 · 周报</span>
+</div>
+
+<!-- 1 -->
+<div class="card open" id="card1">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">1</div>
+    <div class="card-main">
+      <h3>AI推理平台Baseten估值130亿美元，获15亿美元融资</h3>
+      <div class="card-meta">
+        <span class="src">Yahoo Finance</span>
+        <span class="t">6月</span>
+        <span class="tag tg-投资案例">投资案例</span>
+      </div>
+      <div class="card-brief">AI推理基础设施独角兽Baseten完成15亿美元新一轮融资，估值跃升至130亿美元，成为全球AI Infra赛道估值最高的未上市公司之一。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>Baseten作为AI推理基础设施平台，于2026年6月宣布完成15亿美元的新一轮融资，公司估值飙升至130亿美元，较前一轮估值大幅跃升。Baseten提供的核心服务是AI模型推理的云端部署和运行平台，帮助企业高效地将大语言模型和其他AI模型投入生产环境。在AI应用全面爆发的2026年，推理成本已成为制约AI规模化的最大瓶颈之一，Baseten通过GPU资源池化、动态批处理和模型优化等技术手段，显著降低了客户的推理成本并提升了响应速度。此轮融资由多家顶级风投和战略投资者参与，资金将用于扩建全球算力基础设施、拓展亚太市场以及深化与主流大模型厂商的技术集成。Baseten的爆发式增长印证了"AI Infra优先于AI应用"的投资逻辑——基础设施层往往最先受益于技术浪潮。</p>
+    <p>来源：<a href="https://ca.finance.yahoo.com" target="_blank">Yahoo Finance</a></p>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="card" id="card2">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">2</div>
+    <div class="card-main">
+      <h3>Meta投资9亿美元入股印度Cred，估值达45亿美元</h3>
+      <div class="card-meta">
+        <span class="src">ETtech</span>
+        <span class="t">6月22日</span>
+        <span class="tag tg-投资案例">投资案例</span>
+      </div>
+      <div class="card-brief">Meta战略投资印度信用卡账单管理平台Cred 9亿美元，Cred估值升至45亿美元，社交巨头加速布局印度金融科技生态。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>Meta于6月22日宣布以9亿美元战略投资印度金融科技公司Cred，后者估值随之攀升至45亿美元。Cred是印度领先的信用卡账单管理和忠诚度积分平台，拥有超过5000万高端用户，其用户群体以高信用评分和高消费能力的城市中产阶级为主。Meta此次投资的战略意图清晰：一是借Cred的高价值用户群体拓展印度市场的支付和电商业务，二是将WhatsApp支付与Cred的信用体系深度整合，打造"社交+支付+信用"的超级生态闭环。印度拥有超过7亿互联网用户，但信用卡渗透率仅约5%，增长空间极为广阔。Meta的投资折射出一个重要趋势：全球科技巨头正通过战略投资而非自主建设的方式切入海外金融科技市场，以降低监管风险和缩短市场培育周期。</p>
+    <p>来源：<a href="https://m.economictimes.com" target="_blank">ETtech</a></p>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="card" id="card3">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">3</div>
+    <div class="card-main">
+      <h3>抗衰老公司NewLimit完成4.35亿美元C轮融资</h3>
+      <div class="card-meta">
+        <span class="src">Fierce Biotech</span>
+        <span class="t">6月</span>
+        <span class="tag tg-投资案例">投资案例</span>
+      </div>
+      <div class="card-brief">抗衰老生物技术明星公司NewLimit完成4.35亿美元C轮融资，创抗衰老领域年度最大融资纪录。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>NewLimit于6月完成4.35亿美元C轮融资，创下2026年全球抗衰老生物技术领域最大单笔融资纪录。该公司由知名科学家创立，专注于通过表观遗传重编程技术逆转细胞衰老过程，其核心管线包括针对年龄相关疾病的新型基因疗法和细胞治疗产品。NewLimit的技术路线基于山中因子（Yamanaka factors）的改良递送系统，在动物模型中已成功实现了多个器官组织的年轻化指标改善。此轮融资由多家大型医疗健康基金和科技投资者共同参与，资金将主要用于推进其核心管线进入临床I/II期试验、扩展表观遗传学平台技术以及招募更多顶尖科研人才。抗衰老赛道正从"补充剂和生活方式干预"的1.0时代升级到"基因和细胞层面干预"的2.0时代，NewLimit的融资热潮正是这一趋势的缩影。</p>
+    <p>来源：<a href="https://www.fiercebiotech.com" target="_blank">Fierce Biotech</a></p>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="card" id="card4">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">4</div>
+    <div class="card-main">
+      <h3>硅基流动完成超20亿元B轮融资，全产业链资本入局</h3>
+      <div class="card-meta">
+        <span class="src">上证报</span>
+        <span class="t">6月</span>
+        <span class="tag tg-投资案例">投资案例</span>
+      </div>
+      <div class="card-brief">AI基础设施独角兽硅基流动B轮融资超20亿元，算力层、模型层、应用层全产业链资本联合入局。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>硅基流动于6月宣布完成B轮融资，融资金额超过20亿元人民币，投资方阵容覆盖AI全产业链——从上游算力芯片厂商到中游大模型公司再到下游应用场景企业，实现了罕见的"全产业链资本入局"。硅基流动定位于AI基础设施层，核心产品是面向大模型训练的算力调度平台和模型推理加速引擎，能够帮助企业和开发者以更低成本、更高效率地训练和部署AI模型。公司团队来自国内外顶尖AI实验室和互联网公司，在分布式计算和模型优化领域拥有深厚的技术积累。B轮融资的超募和全产业链资本的参与，反映出市场对AI基础设施层"水电煤"式价值定位的高度认可。在AI应用需求爆发但算力成本依然高昂的背景下，硅基流动有望成为中国AI算力市场化服务的关键基础设施。</p>
+    <p>来源：<a href="https://m.cnstock.com" target="_blank">上证报</a></p>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="card" id="card5">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">5</div>
+    <div class="card-main">
+      <h3>世航智能完成超10亿元A轮融资，海洋机器人最大单轮</h3>
+      <div class="card-meta">
+        <span class="src">中国基金报</span>
+        <span class="t">6月</span>
+        <span class="tag tg-投资案例">投资案例</span>
+      </div>
+      <div class="card-brief">世航智能A轮融资超10亿元，创海洋机器人领域单轮融资纪录，多家中外机构联合参投。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>世航智能完成超10亿元人民币A轮融资，创下海洋机器人领域单轮融资规模的历史新高。该公司专注于自主水下航行器（AUV）、水面无人船（USV）以及海洋智能传感系统的研发与制造，核心产品已广泛应用于深海勘探、海底管线巡检、海洋牧场管理和海洋国防安全等领域。此轮融资由多家国内外知名机构联合参投，资金将用于扩充研发团队、建设新一代智能生产基地以及拓展海外市场。海洋机器人作为"海洋经济"战略的核心技术支撑，近年来受到越来越多的政策关注和资本青睐。全球海洋经济规模预计在2030年突破3万亿美元，而海洋机器人作为海洋资源开发和海洋安全保障的关键工具，正处于产业化爆发的前夜。世航智能有望成为这一蓝海赛道的领军企业。</p>
+    <p>来源：<a href="https://www.chnfund.com" target="_blank">中国基金报</a></p>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="card" id="card6">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">6</div>
+    <div class="card-main">
+      <h3>星能玄光完成5亿元A轮融资，蚂蚁集团参投可控核聚变</h3>
+      <div class="card-meta">
+        <span class="src">东方财富</span>
+        <span class="t">6月22日</span>
+        <span class="tag tg-投资案例">投资案例</span>
+      </div>
+      <div class="card-brief">可控核聚变创业公司星能玄光完成5亿元A轮融资，蚂蚁集团首次涉足核聚变赛道引发关注。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>星能玄光于6月22日宣布完成5亿元人民币A轮融资，其中蚂蚁集团的参投成为最大亮点——这是这家互联网支付巨头首次涉足可控核聚变赛道。星能玄光专注于磁约束聚变技术的小型化和工程化路线，其核心技术团队来自国内主要聚变研究机构，在等离子体约束和稳定控制方面拥有丰富的理论积累和实验经验。蚂蚁集团的入局揭示了科技巨头在能源领域的深层布局逻辑：AI时代的算力需求爆发式增长，而算力的瓶颈归根结底是电力的瓶颈。据估算，到2030年全球AI数据中心的电力消耗可能占到总发电量的5%-10%。因此，可控核聚变作为终极清洁能源解决方案，正在从"政府主导的大科学工程"转变为"企业参与的商业化探索"。星能玄光此轮融资将用于建设新一代实验装置和扩大工程团队。</p>
+    <p>来源：<a href="https://fund.eastmoney.com" target="_blank">东方财富</a></p>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="card" id="card7">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">7</div>
+    <div class="card-main">
+      <h3>基因治疗公司SonoThera完成1.25亿美元B轮融资</h3>
+      <div class="card-meta">
+        <span class="src">Fierce Biotech</span>
+        <span class="t">6月</span>
+        <span class="tag tg-投资案例">投资案例</span>
+      </div>
+      <div class="card-brief">SonoThera专注杜氏肌营养不良症基因疗法，B轮融资1.25亿美元推进关键性临床试验。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>SonoThera完成1.25亿美元B轮融资，资金将用于推进其核心管线——针对杜氏肌营养不良症（DMD）的基因疗法进入关键性临床试验。DMD是一种致命的X连锁隐性遗传病，全球每3500名男婴中约有1名患病，患者通常在青少年时期丧失行走能力，20-30岁因心肺衰竭去世，目前尚无治愈性疗法。SonoThera的差异化优势在于其创新的超声介导基因递送平台——利用聚焦超声技术实现肌肉组织的高效靶向基因递送，无需使用传统病毒载体，从而显著降低免疫原性和安全性风险。这一平台技术不仅适用于DMD，还有望拓展到其他肌肉相关疾病的基因治疗。1.25亿美元的B轮融资规模在DMD基因治疗领域处于领先水平，反映出投资者对公司技术平台的信心和对罕见病基因治疗市场前景的看好。</p>
+    <p>来源：<a href="https://www.fiercebiotech.com" target="_blank">Fierce Biotech</a></p>
+  </div>
+</div>
+
+<!-- 8 -->
+<div class="card" id="card8">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">8</div>
+    <div class="card-main">
+      <h3>无界动力完成超2亿美元天使轮融资，京东C资本联合</h3>
+      <div class="card-meta">
+        <span class="src">东方财富</span>
+        <span class="t">6月</span>
+        <span class="tag tg-投资案例">投资案例</span>
+      </div>
+      <div class="card-brief">新能源航空创业公司无界动力天使轮融资超2亿美元，京东和C资本联合领投。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>无界动力于6月宣布完成超2亿美元的天使轮融资，由京东和C资本联合领投，刷新了国内新能源航空领域天使轮融资规模纪录。该公司专注于电动垂直起降飞行器（eVTOL）和氢能支线飞机的研发，目标是在2028年前实现商业化运营。京东的投资具有明确的产业协同逻辑——作为中国最大的自营电商平台，京东拥有覆盖全国的仓储物流网络和对次日达时效的极致追求，电动航空器将在"最后一公里"配送和城际快运场景中发挥关键作用。C资本作为知名跨境风险投资机构，此前在新能源和航空科技领域均有成功布局。天使轮即超2亿美元的融资规模在创投圈极为罕见，但也反映出新能源航空这一赛道的资本密集特性——从适航认证到生产制造到基础设施建设，全链条均需巨额资金投入。</p>
+    <p>来源：<a href="https://fund.eastmoney.com" target="_blank">东方财富</a></p>
+  </div>
+</div>
+</div>
+
+<!-- ──────────── 基金设立 ──────────── -->
+<div class="section">
+<div class="section-title">
+  <span class="dot" style="background:#7c3aed;"></span>
+  基金设立
+  <span class="cnt">7 条 · 周报</span>
+</div>
+
+<!-- 9 -->
+<div class="card" id="card9">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">9</div>
+    <div class="card-main">
+      <h3>黑石完成131亿美元亚洲最大PE基金募集</h3>
+      <div class="card-meta">
+        <span class="src">投资界</span>
+        <span class="t">6月2日</span>
+        <span class="tag tg-基金设立">基金设立</span>
+      </div>
+      <div class="card-brief">最终规模131亿美元，大幅超100亿目标，创亚洲PE基金历史纪录，重点聚焦印度和日本市场。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>黑石集团于6月初宣布其亚洲私募股权基金完成最终募集，规模达131亿美元，大幅超过最初设定的100亿美元目标，创下亚洲PE基金规模的历史最高纪录。这只基金将重点投向印度和日本两大市场，在两个全球增长最快的经济体之间进行战略性资本配置。印度的投资逻辑聚焦于人口红利驱动的消费升级和数字化转型，日本的逻辑则围绕公司治理改革催生的企业价值重估和资产价格修复。黑石的超募反映了全球LP对亚洲经济前景的强烈信心，尤其是对印度经济的乐观预期——印度已超越中国成为全球增长最快的主要经济体。该基金的设立将对亚洲PE市场格局产生深远影响，预计将带动更多全球顶级PE机构加大在亚洲市场的布局力度，亚洲PE市场有望迎来新一轮繁荣周期。</p>
+    <p>来源：<a href="https://www.pedaily.cn" target="_blank">投资界</a></p>
+  </div>
+</div>
+
+<!-- 10 -->
+<div class="card" id="card10">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">10</div>
+    <div class="card-main">
+      <h3>QIA与ORIX联合设立25亿美元日本PE投资平台</h3>
+      <div class="card-meta">
+        <span class="src">OkazInvest</span>
+        <span class="t">6月22日</span>
+        <span class="tag tg-基金设立">基金设立</span>
+      </div>
+      <div class="card-brief">卡塔尔投资局与日本ORIX联手设立25亿美元PE平台，瞄准日本企业重组和并购机会。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>6月22日，卡塔尔投资局（QIA）与日本欧力士集团（ORIX）宣布联合设立规模为25亿美元的私募股权投资平台，专项聚焦日本市场的企业重组和并购交易。这一合作将QIA的雄厚资本实力与ORIX深耕日本市场数十年的本地资源网络深度结合。近年来，日本政府推动的"企业治理改革"催生了大量企业分拆、非核心业务剥离和MBO交易机会，吸引了全球PE机构纷纷涌入日本市场。东京证券交易所的市净率改革进一步加大了上市公司改善资本效率的压力，为企业重组交易提供了制度性催化剂。QIA作为全球最活跃的主权财富基金之一，通过这一平台进一步增强了其在亚太地区的PE投资能力。日美利差收窄和日元汇率企稳也为外资进入日本市场提供了有利的宏观环境。</p>
+    <p>来源：<a href="http://okazinvest.com" target="_blank">OkazInvest</a></p>
+  </div>
+</div>
+
+<!-- 11 -->
+<div class="card" id="card11">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">11</div>
+    <div class="card-main">
+      <h3>上海科创三期基金61.5亿元终关，首引QFLP机制</h3>
+      <div class="card-meta">
+        <span class="src">东方财富</span>
+        <span class="t">6月22日</span>
+        <span class="tag tg-基金设立">基金设立</span>
+      </div>
+      <div class="card-brief">上海科创三期基金以61.5亿元完成最终关闭，首次引入QFLP机制吸引境外资本参与。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>上海科技创新投资基金三期于6月22日以61.5亿元人民币的规模完成最终关闭，其中最大的亮点是首次引入合格境外有限合伙人（QFLP）机制，成功吸引了境外资本参与上海科创投资。上海科创系列基金是上海市级引导基金体系的重要组成部分，前两期已累计投资了上百家上海本地科创企业，培育了多家上市公司和独角兽。三期基金继续聚焦集成电路、生物医药和人工智能三大先导产业，同时扩展至量子科技、脑机接口等未来产业。引入QFLP机制的创新意义在于：为境外资本参与中国早期硬科技投资开辟了一条合规高效的新通道，有助于缓解人民币基金募资难的问题，同时也能引入国际化的投后管理经验和全球产业资源。这一模式有望被其他地方政府引导基金借鉴和复制。</p>
+    <p>来源：<a href="https://fund.eastmoney.com" target="_blank">东方财富</a></p>
+  </div>
+</div>
+
+<!-- 12 -->
+<div class="card" id="card12">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">12</div>
+    <div class="card-main">
+      <h3>蜜雪冰城出资15亿元做LP，跨界科技创投基金</h3>
+      <div class="card-meta">
+        <span class="src">东方财富</span>
+        <span class="t">6月15日</span>
+        <span class="tag tg-基金设立">基金设立</span>
+      </div>
+      <div class="card-brief">蜜雪冰城以98.68%出资比例、15亿元规模参与科技创投基金，消费巨头跨界创投引发热议。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>蜜雪冰城于6月15日公告出资15亿元参与设立科技创业投资基金，出资比例高达98.68%，几乎是"一人包场"。作为中国门店数量最多、下沉市场渗透率最高的茶饮连锁品牌，蜜雪冰城凭借极致的供应链效率和性价比定价模式创造了充沛的现金流。企业账上现金如何高效配置，已成为蜜雪冰城等消费巨头面临的重要课题。此次跨界科技创投，既是资产多元化的财务考量，也包含战略协同的深层意图——基金将重点投向与数字化供应链、智能零售和AI应用相关的科技初创企业，与蜜雪冰城正在推进的全链路数字化升级形成战略呼应。蜜雪冰城的案例折射出一个重要趋势：在消费增长放缓的背景下，手握巨额现金的消费品牌正加速以LP身份切入科技投资领域，实现"消费+科技"的双轮驱动战略。</p>
+    <p>来源：<a href="https://fund.eastmoney.com" target="_blank">东方财富</a></p>
+  </div>
+</div>
+
+<!-- 13 -->
+<div class="card" id="card13">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">13</div>
+    <div class="card-main">
+      <h3>中国芯片行业设立5.77亿美元"耐心资本"基金</h3>
+      <div class="card-meta">
+        <span class="src">SCMP</span>
+        <span class="t">6月</span>
+        <span class="tag tg-基金设立">基金设立</span>
+      </div>
+      <div class="card-brief">中国半导体行业设立5.77亿美元"耐心资本"专项基金，支持芯片产业链长期研发和产能建设。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>据《南华早报》报道，中国半导体行业在6月设立了一只规模5.77亿美元（约合41亿元人民币）的"耐心资本"专项基金，旨在为芯片产业链的长期研发和产能建设提供持续稳定的资金支持。"耐心资本"这一概念今年被首次写入政府工作报告，核心要义是鼓励长期投资、容忍短期回报波动、支持硬科技领域的持续研发投入。该基金的投资方向覆盖芯片设计、制造工艺、封装测试、半导体材料和国产EDA工具等全产业链环节，重点关注那些需要5-10年甚至更长周期才能实现商业回报的基础性技术。在国际地缘政治持续紧张的背景下，中国半导体产业对外技术引进的通道不断收窄，自主创新的紧迫性空前提升。"耐心资本"基金的设立标志着中国半导体投融资模式正在从"短周期、高回报"的美元风投逻辑向"长周期、重投入"的产业投资逻辑转变。</p>
+    <p>来源：<a href="https://www.scmp.com" target="_blank">SCMP</a></p>
+  </div>
+</div>
+
+<!-- 14 -->
+<div class="card" id="card14">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">14</div>
+    <div class="card-main">
+      <h3>Pengana推3.5亿美元AI私募市场上市信托产品</h3>
+      <div class="card-meta">
+        <span class="src">Pengana</span>
+        <span class="t">6月</span>
+        <span class="tag tg-基金设立">基金设立</span>
+      </div>
+      <div class="card-brief">Pengana Capital推出3.5亿美元AI主题私募市场上市信托，为散户投资者提供AI私募投资通道。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>澳大利亚资产管理公司Pengana Capital于6月推出了一只规模为3.5亿美元的AI主题私募市场上市信托产品，该产品将在公开市场挂牌交易，使散户投资者能够间接参与AI领域的高增长私募公司投资。这一金融创新的核心架构是"私募市场+公开上市"的双层结构：信托通过投资于AI领域的未上市公司股权和Pre-IPO项目获取高成长收益，同时通过在公开市场上市为投资者提供日常流动性。AI赛道在2026年持续火爆，但顶级AI创业公司的投资机会主要被机构投资者垄断，散户投资者几乎无法直接参与。Pengana的产品设计精准地填补了这一市场空白，预计将受到个人投资者和财富管理渠道的欢迎。此类"私募市场上市化"产品正在全球范围内兴起，有望成为连接庞大散户资金与高增长私募市场的桥梁。</p>
+    <p>来源：<a href="https://pengana.com" target="_blank">Pengana</a></p>
+  </div>
+</div>
+
+<!-- 15 -->
+<div class="card" id="card15">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">15</div>
+    <div class="card-main">
+      <h3>EQT目标230亿欧元旗舰基金，Carlyle预备148亿美元</h3>
+      <div class="card-meta">
+        <span class="src">Dakota</span>
+        <span class="t">6月</span>
+        <span class="tag tg-基金设立">基金设立</span>
+      </div>
+      <div class="card-brief">EQT启动230亿欧元目标旗舰基金募资，Carlyle预备148亿美元新基金，全球PE募资大战升级。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>6月，全球PE行业迎来两只巨型基金的募资消息：欧洲PE巨头EQT启动目标230亿欧元的新旗舰基金募资，若成功将创下欧洲PE基金规模历史纪录；而美国PE巨头Carlyle也在预备148亿美元的新基金。两大基金的同时募资，标志着后疫情时代全球PE行业"巨型化"趋势的进一步加速。EQT的策略聚焦于欧洲企业分拆和数字化转型主题，Carlyle则侧重于北美市场的杠杆收购和能源转型投资。巨型基金的持续涌现反映了GP对"越大越好"策略的坚持——大基金能够参与更大规模的交易、享受更低的运营费率比、并对优质标的形成资金优势。然而，巨型基金也面临着"规模诅咒"——过大规模的基金能否在当前估值水平下持续为LP创造超额回报，正成为LP圈内争议的焦点。</p>
+    <p>来源：<a href="https://www.dakota.com" target="_blank">Dakota</a></p>
+  </div>
+</div>
+</div>
+
+<!-- ──────────── 政策行情 ──────────── -->
+<div class="section">
+<div class="section-title">
+  <span class="dot" style="background:#d97706;"></span>
+  政策行情
+  <span class="cnt">6 条 · 周报</span>
+</div>
+
+<!-- 16 -->
+<div class="card" id="card16">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">16</div>
+    <div class="card-main">
+      <h3>科创板第五套标准正式扩容至AI大模型行业</h3>
+      <div class="card-meta">
+        <span class="src">东方财富</span>
+        <span class="t">6月17日</span>
+        <span class="tag tg-政策行情">政策行情</span>
+      </div>
+      <div class="card-brief">科创板第五套上市标准正式扩展至AI大模型行业，未盈利AI企业上市通道全面打开。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>上交所于6月17日正式宣布将科创板第五套上市标准的适用范围扩展至AI大模型行业。第五套上市标准是科创板为未盈利企业设置的差异化上市通道，此前仅适用于生物医药企业。此次扩容至AI大模型行业，意味着训练大模型需要大量算力投入、短期内难以盈利的AI公司，可以在不满足传统盈利指标的情况下通过科创板实现上市融资。这是继2025年科创板推出"AI+制造"专项通道后，监管层对AI产业的又一次重大制度性支持。据估算，国内至少有20-30家AI大模型和AI基础设施公司有资格选择这一通道上市。这一政策将产生深远影响：一方面为AI创企提供了清晰的退出路径，有望激活一级市场的AI投资热情；另一方面也将加速A股市场的AI产业生态建设，丰富投资者的可投标的。</p>
+    <p>来源：<a href="https://finance.eastmoney.com" target="_blank">东方财富</a></p>
+  </div>
+</div>
+
+<!-- 17 -->
+<div class="card" id="card17">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">17</div>
+    <div class="card-main">
+      <h3>武汉创投新政：设立百亿种子天使基金，允许100%亏损</h3>
+      <div class="card-meta">
+        <span class="src">科技日报</span>
+        <span class="t">6月14日</span>
+        <span class="tag tg-政策行情">政策行情</span>
+      </div>
+      <div class="card-brief">武汉出台创投重磅新政，设立百亿级种子天使基金，首创允许100%亏损的容错机制。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>武汉市于6月14日发布创新投资领域重磅新政，核心内容包括设立百亿级种子基金和天使投资基金集群，并在全国率先提出"允许100%亏损"的容错机制。这意味着投资于种子期和天使期项目的资金，即使全部亏损也不会被追责，为政府引导基金的早期投资行为提供了最大程度的"免责保障"。这一政策的出台背景是：国有资本和政府引导基金已成为中国早期投资市场最大的LP群体，但国资管理机构由于面临国有资产保值增值的考核压力，对高风险的天使投资天然趋于保守。"允许100%亏损"的机制创新，实质上是对早期投资规律的尊重——种子期和天使期项目的失败率本就极高，但这种高风险对应的是颠覆性创新的高回报潜力。武汉的新政有望在全国范围内形成示范效应，推动更多地方政府以更包容的态度布局早期科技投资。</p>
+    <p>来源：<a href="https://www.stdaily.com" target="_blank">科技日报</a></p>
+  </div>
+</div>
+
+<!-- 18 -->
+<div class="card" id="card18">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">18</div>
+    <div class="card-main">
+      <h3>多渠道完善退出，并购与S基金加速分流IPO堰塞湖</h3>
+      <div class="card-meta">
+        <span class="src">证券时报</span>
+        <span class="t">6月10日</span>
+        <span class="tag tg-政策行情">政策行情</span>
+      </div>
+      <div class="card-brief">监管层推动并购重组和S基金交易加速分流IPO堰塞湖，12.51万亿基金面临退出压力。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>据《证券时报》6月10日报道，当前有约12.51万亿元规模的基金已进入退出期或延长期，退出压力已成为中国股权投资行业面临的最大系统性挑战。监管层正在从多个方向深度发力：一是大力推动并购重组退出，鼓励上市公司通过并购实现产业整合，为PE/VC提供并购退出通道；二是加速发展私募股权二级市场（S基金），上海、北京等地S基金交易所的交易规模持续扩大；三是完善区域性股权市场的份额转让功能。2026年以来，IPO退出的占比正在下降，并购和S基金交易的占比显著提升，"三条腿走路"的多元退出格局正在形成。这一结构性变化对LP和GP都具有深远影响：LP需要调整对退出时间和回报率的预期，GP则需将投后管理和并购退出能力作为核心竞争力来建设。</p>
+    <p>来源：<a href="https://finance.eastmoney.com" target="_blank">证券时报</a></p>
+  </div>
+</div>
+
+<!-- 19 -->
+<div class="card" id="card19">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">19</div>
+    <div class="card-main">
+      <h3>Q1中国VC/PE新设基金1904支，同比接近翻番</h3>
+      <div class="card-meta">
+        <span class="src">网易</span>
+        <span class="t">4月发布</span>
+        <span class="tag tg-政策行情">政策行情</span>
+      </div>
+      <div class="card-brief">2026年Q1中国VC/PE新设基金1904支，同比增长95.88%，募资市场持续回暖。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>根据最新发布的行业统计，2026年第一季度中国VC/PE市场共计新设立基金1904支，同比大幅增长95.88%，几乎实现了翻番，创下近年来同期的新高。这一数据释放出多重积极信号：首先，"募资难"问题正在明显缓解，LP的出资意愿正在从2023-2024年的低谷中强劲反弹；其次，地方引导基金和国资LP的出资力度持续加大，成为推动新基金设立的核心动力；第三，AI、新能源、新材料等战略性新兴产业的快速发展催生了大量主题型产业基金的设立需求。值得注意的是，新设基金的结构也在发生变化——纯财务型盲池基金的占比下降，而产业基金、专项基金和CVC基金的占比显著上升。这一趋势表明，中国股权投资市场正在从"财务投资驱动"向"产业协同驱动"转型，LP对基金的要求也从简单的财务回报扩展到了产业赋能和生态建设。</p>
+    <p>来源：<a href="http://www.163.com" target="_blank">网易</a></p>
+  </div>
+</div>
+
+<!-- 20 -->
+<div class="card" id="card20">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">20</div>
+    <div class="card-main">
+      <h3>加速摆脱"IPO为王"，创投并购与S交易引领多元退出</h3>
+      <div class="card-meta">
+        <span class="src">证券时报</span>
+        <span class="t">6月</span>
+        <span class="tag tg-政策行情">政策行情</span>
+      </div>
+      <div class="card-brief">中国创投行业加速摆脱对IPO的单一依赖，并购重组和S基金交易正在成为退出新主流。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>《证券时报》6月深度报道指出，中国创投行业正在经历一场退出的结构性变革，长期以来的"IPO为王"单一退出模式正在被打破。2024-2026年间，A股IPO审核节奏变化和二级市场估值波动使IPO退出的不确定性显著增加，倒逼行业探索多元化退出路径。并购重组退出正在快速崛起——2026年上半年上市公司公告的并购交易中，PE/VC作为出售方的案例数量同比增长超过60%。与此同时，S基金市场也迎来加速发展，年度交易规模有望首次突破千亿元人民币。这种退出格局的转变本质上是行业成熟度提升的标志——成熟市场的经验表明，并购退出通常占PE/VC退出的70%以上，IPO仅占10%-15%。中国创投行业正在经历从"IPO崇拜"到"退出专业化"的认知升级，并购能力和S交易能力将成为GP的核心竞争力之一。</p>
+    <p>来源：<a href="https://stcn.com" target="_blank">证券时报</a></p>
+  </div>
+</div>
+
+<!-- 21 -->
+<div class="card" id="card21">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">21</div>
+    <div class="card-main">
+      <h3>政府工作报告创历史性重视创投，国家级并购基金预计超万亿</h3>
+      <div class="card-meta">
+        <span class="src">凤凰网</span>
+        <span class="t">3月</span>
+        <span class="tag tg-政策行情">政策行情</span>
+      </div>
+      <div class="card-brief">2026年政府工作报告对创投的重视程度创历史之最，国家级并购基金规模预计超万亿元。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>2026年《政府工作报告》对创业投资和股权投资行业的重视程度前所未有，多个段落直接提及创投相关内容，涵盖募资、投资、退出和税收优惠等全链条环节。报告明确提出"鼓励发展创业投资、股权投资"，"优化国有资本参与创投的考核机制"，"完善私募股权二级市场建设"以及"探索设立国家级并购基金"等具体措施。其中，国家级并购基金预计规模将超过万亿元，旨在通过市场化并购重组手段化解大量存量基金的退出压力，同时支持上市公司进行产业整合和技术升级。这一系列政策信号的释放，标志着创投行业已上升到国家战略层面。政策的系统性和执行力均高于以往，预计2026年下半年将有更多配套细则出台。万亿级并购基金的设立将从根本上改变中国创投行业的退出生态。</p>
+    <p>来源：<a href="https://finance.ifeng.com" target="_blank">凤凰网</a></p>
+  </div>
+</div>
+</div>
+
+<!-- ──────────── 大咖观点 ──────────── -->
+<div class="section">
+<div class="section-title">
+  <span class="dot" style="background:#dc2626;"></span>
+  大咖观点
+  <span class="cnt">4 条 · 周报</span>
+</div>
+
+<!-- 22 -->
+<div class="card" id="card22">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">22</div>
+    <div class="card-main">
+      <h3>吴伟志、丁楹：AI是大海啸式产业革命，GPU是新时代蒸汽机</h3>
+      <div class="card-meta">
+        <span class="src">中国网</span>
+        <span class="t">6月24日</span>
+        <span class="tag tg-大咖观点">大咖观点</span>
+      </div>
+      <div class="card-brief">中欧瑞博吴伟志与康曼德资本丁楹一致认为AI是"大海啸式"产业革命，GPU相当于新时代的蒸汽机。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>在6月24日的公开论坛上，中欧瑞博董事长吴伟志与康曼德资本创始人丁楹两位私募大佬就AI投资发表了极具冲击力的观点。吴伟志认为AI是一场"大海啸式"产业革命，其带来的年新增投资规模接近5万亿元，规模之大、速度之快远超此前任何一轮技术浪潮。丁楹则从更宏大的视角提出，GPU实现了人类历史上第一次"智力的工业化"——正如蒸汽机实现了体力的工业化、电力实现了能源的工业化，GPU让"智力"第一次可以被大规模生产。丁楹进一步从康德拉季耶夫长波周期理论出发，认为当前AI技术的爆发对应着新一轮康波周期的起点，这意味着未来数十年的经济增长和产业变迁都将围绕AI技术展开。两位大佬的共识是：AI不是一个行业或赛道，而是定义未来所有行业的基础设施，投资者需要以"时代级"的眼光来配置AI资产。</p>
+    <p>来源：<a href="http://finance.china.com.cn" target="_blank">中国网</a></p>
+  </div>
+</div>
+
+<!-- 23 -->
+<div class="card" id="card23">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">23</div>
+    <div class="card-main">
+      <h3>武超则：AI应用落地是下一波产业机遇</h3>
+      <div class="card-meta">
+        <span class="src">央广网</span>
+        <span class="t">6月25日</span>
+        <span class="tag tg-大咖观点">大咖观点</span>
+      </div>
+      <div class="card-brief">中信建投武超则预判AI投资正从基础设施向应用层切换，应用落地是下一波核心产业机遇。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>中信建投证券研究所所长武超则在6月25日的公开演讲中提出，AI产业的投资重心正在从基础设施层向应用层快速切换，AI应用的全面落地将成为下一波最大的产业机遇。武超则从产业演进的规律出发分析：第一阶段（2023-2025）以算力基础设施和基础大模型为核心，资本主要流向GPU芯片、数据中心和模型训练；第二阶段（2026-2028）将进入应用爆发的窗口期，AI与各行各业的深度融合将催生大量新业态和新模式。她特别强调，中国在AI应用层面具有独特优势——庞大的用户基数和丰富的应用场景为AI产品的快速迭代提供了天然土壤。武超则建议投资者重点关注的AI应用方向包括：AI+企业服务、AI+医疗健康、AI+智能制造和AI+自动驾驶。她的观点与市场趋势高度吻合——2026年上半年AI应用领域的投资案例数量已首次超过基础设施层。</p>
+    <p>来源：<a href="https://finance.cnr.cn" target="_blank">央广网</a></p>
+  </div>
+</div>
+
+<!-- 24 -->
+<div class="card" id="card24">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">24</div>
+    <div class="card-main">
+      <h3>外资巨头集体看好中国AI价值洼地：高盛、瑞银、大摩齐发声</h3>
+      <div class="card-meta">
+        <span class="src">东方财富</span>
+        <span class="t">6月22日</span>
+        <span class="tag tg-大咖观点">大咖观点</span>
+      </div>
+      <div class="card-brief">高盛、瑞银、摩根士丹利三大外资投行罕见同步看好中国AI板块，称中国AI为全球"价值洼地"。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>6月22日，高盛、瑞银和摩根士丹利三大全球顶级投行罕见地同时发布研报，集体看好中国AI板块的投资价值，认为中国AI资产是全球范围内的"价值洼地"。高盛指出，中国AI公司的估值水平仅为美国同行的30%-50%，但技术差距正在快速缩小，尤其在大模型应用落地和AI与制造业融合方面，中国甚至展现出独特的竞争优势。瑞银强调，中国拥有全球最完整的制造业产业链，AI赋能制造业的潜在效率提升空间巨大，这一"AI+制造"的主题在美国市场并不存在。摩根士丹利则从政策面分析，认为中国监管层对AI产业的支持力度远超市场预期，且中国庞大的工程师红利和用户数据优势为AI发展提供了坚实基础。三大投行的同步看好，有望引导全球资本重新审视中国AI资产的配置价值，推动海外资金回流中国科技板块。</p>
+    <p>来源：<a href="https://finance.eastmoney.com" target="_blank">东方财富</a></p>
+  </div>
+</div>
+
+<!-- 25 -->
+<div class="card" id="card25">
+  <div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+    <div class="card-num">25</div>
+    <div class="card-main">
+      <h3>HSBC调研：42%投资者预期VC/PE活动增加，78%看好AI资本开支</h3>
+      <div class="card-meta">
+        <span class="src">汇丰</span>
+        <span class="t">6月</span>
+        <span class="tag tg-大咖观点">大咖观点</span>
+      </div>
+      <div class="card-brief">汇丰最新私募投资者调研：42%预期下半年VC/PE活动增加，78%看好AI资本开支持续增长。</div>
+    </div>
+    <div class="card-arrow">▾</div>
+  </div>
+  <div class="card-detail">
+    <h4>深度解读</h4>
+    <p>汇丰银行（HSBC）最新发布的全球私募投资者调研报告提供了一组极具洞察力的数据：42%的受访投资者预期2026年下半年VC/PE活动将较上半年有所增加，78%的投资者表示看好AI领域的资本开支持续增长。然而，数据中同样暗含隐忧——超过80%的受访者认为AI相关支出已经"接近合理水平"或"过度"，反映市场对AI投资泡沫的警惕正在上升。这一"看多又怕贵"的矛盾心态，恰是当前全球AI投资的真实写照。汇丰调研还揭示了一个关键趋势：LP对GP的筛选标准正在变得更加严格，单纯讲述"AI故事"已不足以获得LP出资承诺，GP需要展示清晰的AI投资方法论、可验证的投后增值能力以及可量化的退出路径。调研结果整体传递的信号是谨慎乐观——行业活动正在回暖，但价格发现和投后管理的重要性前所未有地凸显。</p>
+    <p>来源：<a href="https://www.business.hsbc.com" target="_blank">汇丰</a></p>
+  </div>
+</div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="footer">
+  Equity Investment Daily Report &mdash; 2026.06.27 &mdash; Data collected from public sources<br>
+  Generated for informational purposes only, not investment advice.
+</div>
+
+<script>
+// Ensure first card is open on load (already marked as open in HTML)
+// Keyboard shortcut: press '1'-'9' to scroll to card by number
+document.addEventListener('keydown', function(e) {
+  var n = parseInt(e.key);
+  if (n >= 1 && n <= 9) {
+    var el = document.getElementById('card' + n);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+</script>
+
+</body>
+</html>

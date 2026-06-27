@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>芯片半导体日报 — 2026年6月27日</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0fdf4;
+    color: #1c1917;
+    min-height: 100vh;
+  }
+  .cover {
+    background: linear-gradient(135deg, #0c4a2e 0%, #14532d 50%, #059669 100%);
+    padding: 48px 20px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 80%, rgba(5,150,105,.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.7);
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .badge {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 4px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+  .container { max-width: 820px; margin: 0 auto; padding: 20px 16px 60px; }
+  .count-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0 16px;
+    font-size: 13px;
+    color: #4b5563;
+    border-bottom: 1px solid #d1fae5;
+    margin-bottom: 16px;
+  }
+  .count-bar span { font-weight: 600; color: #059669; }
+
+  /* ---------- tag pills ---------- */
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: .3px; }
+
+  /* ---------- card ---------- */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    margin-bottom: 12px;
+    border: 1px solid #e4e4e7;
+    overflow: hidden;
+    transition: box-shadow .2s;
+  }
+  .card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+
+  /* card-top: clickable header. card-arrow INSIDE. */
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+  }
+  .card-top .num {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 1px;
+  }
+  .card-top .body { flex: 1; min-width: 0; }
+  .card-top .body .title { font-size: 14px; font-weight: 600; line-height: 1.5; color: #1c1917; }
+  .card-top .body .meta { font-size: 12px; color: #78716c; margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px 12px; }
+  .card-top .body .meta a { color: #059669; text-decoration: none; }
+  .card-top .body .meta a:hover { text-decoration: underline; }
+
+  /* card-arrow INSIDE card-top */
+  .card-arrow {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #a8a29e;
+    transition: transform .3s ease, color .3s ease;
+    margin-top: 3px;
+    border-radius: 50%;
+    background: #f5f5f4;
+  }
+  .card.open .card-arrow {
+    transform: rotate(180deg);
+    color: #059669;
+    background: #d1fae5;
+  }
+
+  /* card-detail: DIRECT child of .card AFTER .card-top. */
+  .card-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .45s ease, padding .3s ease;
+    padding: 0 16px;
+    border-top: 0 solid transparent;
+  }
+  .card.open .card-detail {
+    max-height: 600px;
+    padding: 14px 16px;
+    border-top: 1px solid #e4e4e7;
+  }
+  .card-detail p {
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: #292524;
+    text-align: justify;
+  }
+  .card-detail .source-line {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #a8a29e;
+    word-break: break-all;
+  }
+  .card-detail .source-line a { color: #059669; text-decoration: none; }
+  .card-detail .source-line a:hover { text-decoration: underline; }
+
+  /* ---------- footer ---------- */
+  .footer {
+    text-align: center;
+    padding: 24px 16px 32px;
+    font-size: 12px;
+    color: #a8a29e;
+    border-top: 1px solid #d1fae5;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 480px) {
+    .cover { padding: 36px 16px 28px; }
+    .cover h1 { font-size: 22px; }
+    .card-top { padding: 12px 12px; }
+    .card-top .body .title { font-size: 13px; }
+    .card-detail p { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+
+<div class="cover">
+  <h1>芯片半导体日报</h1>
+  <div class="sub">2026年6月27日  ·  25条精选深度解读</div>
+  <div class="badge">SEMICONDUCTOR DAILY</div>
+</div>
+
+<div class="container">
+  <div class="count-bar">
+    <div>共 <span>25</span> 条</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <span class="tag" style="background:#ede9fe;color:#7c3aed;">新产品/技术 7</span>
+      <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态 8</span>
+      <span class="tag" style="background:#fef3c7;color:#d97706;">大咖观点 6</span>
+      <span class="tag" style="background:#fee2e2;color:#dc2626;">政策资本 5</span>
+    </div>
+  </div>
+
+  <!-- ===================== 新产品/技术 ===================== -->
+  <div style="display:flex;align-items:center;gap:8px;padding:8px 0 10px;">
+    <span style="display:inline-block;width:4px;height:18px;border-radius:2px;background:#7c3aed;"></span>
+    <span style="font-size:15px;font-weight:700;color:#7c3aed;">新产品 / 技术</span>
+  </div>
+
+  <!-- 1 -->
+  <div class="card open" id="card1">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#7c3aed;">1</span>
+      <div class="body">
+        <div class="title">IBM发布全球首款0.7nm芯片 — 3D Nanostack架构近1000亿晶体管</div>
+        <div class="meta">
+          <span class="tag" style="background:#ede9fe;color:#7c3aed;">新产品/技术</span>
+          <span>东方财富 · 财新</span>
+          <span>6/25</span>
+          <a href="https://fund.eastmoney.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>IBM发布全球首款0.7nm制程芯片，采用革命性3D Nanostack架构，集成近1000亿个晶体管，标志着摩尔定律在三维方向上的延续。该技术通过垂直堆叠纳米片结构实现密度飞跃，较当前3nm制程提升约3倍晶体管密度，预计2028年量产将重新定义HPC与AI加速器格局。IBM这一突破证明三维集成是后摩尔时代核心路径，对台积电、三星、Intel的2nm以下竞争格局产生深远影响，但量产良率与热管理仍是产业化关键挑战。</p>
+      <div class="source-line">🔗 <a href="https://fund.eastmoney.com" target="_blank">https://fund.eastmoney.com</a></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#7c3aed;">2</span>
+      <div class="body">
+        <div class="title">华为提出"韬定律" — 以时间缩微替代几何缩微</div>
+        <div class="meta">
+          <span class="tag" style="background:#ede9fe;color:#7c3aed;">新产品/技术</span>
+          <span>财新</span>
+          <span>6/1</span>
+          <a href="https://companies.caixin.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>华为提出"韬定律"概念，主张以时间维度上的缩微替代传统几何缩微，通过先进封装、芯片堆叠和系统级优化实现等效制程进步。这一理论突破了经典摩尔定律的物理极限思维，为国内半导体在受限环境下开辟了系统创新路径。韬定律强调架构创新与异构集成，将芯片性能提升从单纯依赖制程微缩转向多维协同优化。该理论对华为自主芯片生态具有战略指导意义，可能重塑行业对制程进步的认知范式，也反映了中国半导体在外部限制下的创新转向。</p>
+      <div class="source-line">🔗 <a href="https://companies.caixin.com" target="_blank">https://companies.caixin.com</a></div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#7c3aed;">3</span>
+      <div class="body">
+        <div class="title">华为麒麟9030 Pro N+3制程突破</div>
+        <div class="meta">
+          <span class="tag" style="background:#ede9fe;color:#7c3aed;">新产品/技术</span>
+          <span>中国时报</span>
+          <span>6/16</span>
+          <a href="https://www.chinatimes.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>华为麒麟9030 Pro采用N+3制程技术，在性能和能效比上实现重大突破，标志着华为在先进制程领域持续取得进展。该芯片在CPU和GPU架构上进行了深度优化，NPU算力大幅提升以适应端侧AI需求激增。N+3制程虽非最新EUV节点，但通过设计-工艺协同优化（DTCO）达到接近先进制程水平。麒麟9030 Pro的推出证明了受限条件下系统级创新的可行性，对国产手机旗舰芯片竞争格局产生重要影响，也为华为重返高端手机市场提供了核心硬件支撑。</p>
+      <div class="source-line">🔗 <a href="https://www.chinatimes.com" target="_blank">https://www.chinatimes.com</a></div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#7c3aed;">4</span>
+      <div class="body">
+        <div class="title">HBM4战略分化：三星激进上量 vs SK海力士优化利润</div>
+        <div class="meta">
+          <span class="tag" style="background:#ede9fe;color:#7c3aed;">新产品/技术</span>
+          <span>TrendForce</span>
+          <span>6/23</span>
+          <a href="https://www.trendforce.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>三星与SK海力士在HBM4战略上出现明显分化：三星采取激进上量策略，大规模扩产抢占市场份额，以规模效应压低成本；SK海力士则专注优化利润率，选择高附加值客户和定制化方案。两者策略差异反映了对HBM市场生命周期判断的分歧——三星认为需求爆发期应优先卡位，SK海力士则看重可持续盈利能力。TrendForce分析指出，这一分化将深刻影响2026下半年HBM定价和供应格局。值得注意的是，两种策略各有风险：三星面临库存压力，SK海力士则可能因产能不足而错失份额。</p>
+      <div class="source-line">🔗 <a href="https://www.trendforce.com" target="_blank">https://www.trendforce.com</a></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#7c3aed;">5</span>
+      <div class="body">
+        <div class="title">A股六大存储龙头股价齐创历史新高</div>
+        <div class="meta">
+          <span class="tag" style="background:#ede9fe;color:#7c3aed;">新产品/技术</span>
+          <span>东方财富</span>
+          <span>6/25</span>
+          <a href="https://finance.eastmoney.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>A股存储板块六大龙头公司股价齐创历史新高，包括长江存储概念、兆易创新、北京君正、澜起科技等，受到存储涨价周期、国产替代加速和政策利好三重驱动。市场情绪高涨源自全球存储芯片供需收紧趋势，加之HBM需求爆发带动整个存储产业链估值重构。此轮行情验证了中国存储产业从跟跑到并跑的质变，但需警惕短期过热风险与全球贸易摩擦的不确定性。存储板块已成为A股半导体风向标，其走势与全球存储周期高度联动，投资者需关注下半年供需拐点信号。</p>
+      <div class="source-line">🔗 <a href="https://finance.eastmoney.com" target="_blank">https://finance.eastmoney.com</a></div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#7c3aed;">6</span>
+      <div class="body">
+        <div class="title">存储涨价：HBM下半年采购成本或再涨超50%</div>
+        <div class="meta">
+          <span class="tag" style="background:#ede9fe;color:#7c3aed;">新产品/技术</span>
+          <span>界面新闻</span>
+          <span>6/25</span>
+          <a href="https://www.jiemian.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>下半年HBM采购成本或再涨超50%，主要受三大因素驱动：HBM3E与HBM4世代切换导致产能分配紧张，三星与SK海力士产能已被NVIDIA等客户提前锁定至2028年，以及TSV封装和测试环节产能瓶颈持续。此轮涨价对AI服务器BOM成本影响显著，单台AI服务器的HBM成本占比已从15%攀升至25%以上。涨价将推动下游厂商加速自研替代方案布局，同时也为国产HBM产业链带来窗口期机遇。值得注意的是，持续涨价可能引发终端客户反弹和长期合约重新谈判，供需再平衡正在酝酿。</p>
+      <div class="source-line">🔗 <a href="https://www.jiemian.com" target="_blank">https://www.jiemian.com</a></div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#7c3aed;">7</span>
+      <div class="body">
+        <div class="title">国产先进封装掀扩产潮，合计超150亿元</div>
+        <div class="meta">
+          <span class="tag" style="background:#ede9fe;color:#7c3aed;">新产品/技术</span>
+          <span>证券时报</span>
+          <span>6/26</span>
+          <a href="https://www.cnfin.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>国内先进封装领域掀起新一轮扩产潮，合计投资规模超150亿元人民币，涵盖2.5D/3D封装、扇出型封装和Chiplet集成等关键技术方向。此轮扩产由AI芯片需求爆发和国产替代双重驱动，长电科技、通富微电、华天科技等头部企业纷纷加码。先进封装被视为摩尔定律放缓背景下提升芯片性能的关键路径，国内封装产业链有望借此实现技术跃迁和全球份额提升。不过，高端封装设备和材料（如TSV刻蚀机、临时键合胶）仍依赖进口，设备国产化是下一阶段攻关重点。</p>
+      <div class="source-line">🔗 <a href="https://www.cnfin.com" target="_blank">https://www.cnfin.com</a></div>
+    </div>
+  </div>
+
+  <!-- ===================== 企业动态 ===================== -->
+  <div style="display:flex;align-items:center;gap:8px;padding:16px 0 10px;margin-top:4px;">
+    <span style="display:inline-block;width:4px;height:18px;border-radius:2px;background:#2563eb;"></span>
+    <span style="font-size:15px;font-weight:700;color:#2563eb;">企业动态</span>
+  </div>
+
+  <!-- 8 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#2563eb;">8</span>
+      <div class="body">
+        <div class="title">Google向Intel下单超300万颗AI芯片，2028年交付</div>
+        <div class="meta">
+          <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态</span>
+          <span>Quartz / TechSpot</span>
+          <span>6/8</span>
+          <a href="https://qz.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>Google向Intel下达超过300万颗AI芯片订单，计划2028年交付，标志着科技巨头在AI芯片供应上加速多元化布局。该订单规模超百亿美元级别，对Intel代工业务是重大利好，验证了其制程工艺和封装能力已获超大规模客户认可。此举也反映出Google降低对单一供应商依赖的战略意图，同时对NVIDIA在AI加速器市场的垄断地位构成潜在挑战。Google作为全球最大AI算力需求方之一，其供应链策略对行业风向具有标杆意义，预计将带动更多超大规模客户启动多供应商策略。</p>
+      <div class="source-line">🔗 <a href="https://qz.com" target="_blank">https://qz.com</a></div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#2563eb;">9</span>
+      <div class="body">
+        <div class="title">Intel获Tesla/Apple/Hitachi多家客户签约</div>
+        <div class="meta">
+          <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态</span>
+          <span>Yahoo Finance</span>
+          <span>6月</span>
+          <a href="https://uk.finance.yahoo.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>Intel代工服务（IFS）持续扩大客户基础，相继获得Tesla、Apple、Hitachi等多家重量级客户签约。Tesla签约聚焦自动驾驶芯片代工，Apple则可能在Chiplet封装层面展开合作，Hitachi侧重于车用和工业芯片。这一系列签约表明Intel IDM 2.0战略取得实质进展，其先进制程（18A/14A）和美国本土制造能力成为差异化竞争优势。Intel代工业务在经历初期客户验证阶段后，正进入规模化量产爬坡期，有望在2027-2028年对台积电构成实质性竞争，重塑全球晶圆代工市场格局。</p>
+      <div class="source-line">🔗 <a href="https://uk.finance.yahoo.com" target="_blank">https://uk.finance.yahoo.com</a></div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#2563eb;">10</span>
+      <div class="body">
+        <div class="title">SK Hynix超越三星成韩国市值最高公司，市值1.35万亿美元</div>
+        <div class="meta">
+          <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态</span>
+          <span>Yonhap</span>
+          <span>6/22</span>
+          <a href="https://m-en.yna.co.kr" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>SK海力士凭借HBM和AI存储产品的强劲需求，市值攀升至1.35万亿美元，超越三星电子成为韩国市值最高公司。这一历史性转变反映了AI时代存储芯片的战略价值重估——HBM作为AI算力核心组件，其稀缺性和高利润率为SK海力士带来显著估值溢价。SK海力士在HBM3E领域的先发优势和与NVIDIA的深度绑定是其超越三星的关键驱动力。然而，三星正通过HBM4激进扩产计划展开反击，且三星集团整体在半导体、显示器和手机领域仍有综合优势，韩国半导体双雄格局正在改写。</p>
+      <div class="source-line">🔗 <a href="https://m-en.yna.co.kr" target="_blank">https://m-en.yna.co.kr</a></div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#2563eb;">11</span>
+      <div class="body">
+        <div class="title">三星集团拟投6480亿美元推动新增长周期</div>
+        <div class="meta">
+          <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态</span>
+          <span>Reuter</span>
+          <span>6/26</span>
+          <a href="https://www.vietnam.vn" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>三星集团宣布未来五年拟投资6480亿美元推动新增长周期，聚焦半导体、AI、生物技术和6G通信等领域。这是三星史上最大规模投资计划，其中半导体占比超过60%，涵盖存储芯片、代工产能和先进封装。此举凸显三星面对SK海力士在HBM领域的挑战，以及台积电在代工领域持续领先的双重压力下的战略反击。大规模资本投入是三星重建技术护城河的必要手段，但巨额投资也带来资金效率和回报周期的挑战，能否在HBM4和2nm代工等领域实现突破是关键看点。</p>
+      <div class="source-line">🔗 <a href="https://www.vietnam.vn" target="_blank">https://www.vietnam.vn</a></div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#2563eb;">12</span>
+      <div class="body">
+        <div class="title">高通加速"去手机化"，与字节跳动洽谈ASIC定制</div>
+        <div class="meta">
+          <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态</span>
+          <span>智通财经</span>
+          <span>6月</span>
+          <a href="https://www.zhitongcaijing.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>高通加速推进业务多元化战略，积极与字节跳动洽谈ASIC定制芯片合作，拓展AI计算和边缘智能市场。"去手机化"战略旨在降低对智能手机芯片业务的依赖，向汽车、IoT、AI基础设施等领域转型。与字节跳动的合作若达成，将推动高通在数据中心AI推理芯片领域取得突破——字节跳动的海量推荐算法和视频处理需求正是高通AI引擎的发力场景。同时这也为字节跳动提供自研芯片的灵活替代方案，双方在AI生态上形成互补，并对现有AI芯片市场格局带来变量。</p>
+      <div class="source-line">🔗 <a href="https://www.zhitongcaijing.com" target="_blank">https://www.zhitongcaijing.com</a></div>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#2563eb;">13</span>
+      <div class="body">
+        <div class="title">安森美拟70亿美元收购Synaptics</div>
+        <div class="meta">
+          <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态</span>
+          <span>财新</span>
+          <span>6/26</span>
+          <a href="https://companies.caixin.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>安森美（onsemi）计划以约70亿美元收购人机交互芯片设计公司Synaptics，打造智能传感与边缘AI芯片平台。该收购将使安森美从传统功率半导体和传感器领域拓展至触控、显示和生物识别芯片，增强在汽车智能座舱和IoT领域的产品整合能力。Synaptics在触控控制器、指纹传感器和显示驱动领域拥有深厚IP积累，与安森美的汽车和工业客户群形成协同效应。70亿美元估值体现了芯片行业整合加速趋势，以及边缘AI交互芯片的战略价值正在被市场重估，可能引发新一轮并购浪潮。</p>
+      <div class="source-line">🔗 <a href="https://companies.caixin.com" target="_blank">https://companies.caixin.com</a></div>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#2563eb;">14</span>
+      <div class="body">
+        <div class="title">中芯国际Q1营收25.1亿美元，7月起涨价</div>
+        <div class="meta">
+          <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态</span>
+          <span>开源证券</span>
+          <span>6月</span>
+          <a href="https://wap.stockstar.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>中芯国际2026年Q1实现营收25.1亿美元，同比增长显著，并宣布7月起上调代工价格。涨价反映全球成熟制程产能持续紧张，尤其是CIS、MCU和功率器件需求强劲。中芯国际产能利用率接近满载，受益于国产替代浪潮和下游客户积极备货。涨价策略将提升盈利能力，但也考验其在产能扩张与客户关系之间的平衡能力。中芯国际目前是国产芯片代工的核心支柱，其扩产节奏和定价策略直接影响整个国内IC设计行业的成本结构和供应链安全，下半年关注其产能扩建进展。</p>
+      <div class="source-line">🔗 <a href="https://wap.stockstar.com" target="_blank">https://wap.stockstar.com</a></div>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#2563eb;">15</span>
+      <div class="body">
+        <div class="title">长鑫科技过会，295亿元IPO为2026年A股最大</div>
+        <div class="meta">
+          <span class="tag" style="background:#dbeafe;color:#2563eb;">企业动态</span>
+          <span>财新</span>
+          <span>6月</span>
+          <a href="https://companies.caixin.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>长鑫科技以295亿元IPO规模过会，成为2026年A股最大IPO项目，标志着国产DRAM龙头正式启动资本市场征程。长鑫科技在DRAM领域已实现从DDR4到DDR5、LPDDR5的量产突破，产能持续攀升至月产20万片以上。本次IPO募资将用于先进制程研发和产能扩建，加速追赶三星、SK海力士和美光。其上市对国内存储产业链生态完善具有标志性意义，可吸引更多资本进入半导体领域。长鑫科技的成功上市也将为其后续研发投入和产能扩张提供长期资金保障，缩小与国际巨头的差距。</p>
+      <div class="source-line">🔗 <a href="https://companies.caixin.com" target="_blank">https://companies.caixin.com</a></div>
+    </div>
+  </div>
+
+  <!-- ===================== 大咖观点 ===================== -->
+  <div style="display:flex;align-items:center;gap:8px;padding:16px 0 10px;margin-top:4px;">
+    <span style="display:inline-block;width:4px;height:18px;border-radius:2px;background:#d97706;"></span>
+    <span style="font-size:15px;font-weight:700;color:#d97706;">大咖观点</span>
+  </div>
+
+  <!-- 16 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#d97706;">16</span>
+      <div class="body">
+        <div class="title">Bernstein：首个真正芯片超级周期来临，行业奔向1.3万亿</div>
+        <div class="meta">
+          <span class="tag" style="background:#fef3c7;color:#d97706;">大咖观点</span>
+          <span>BlockBeats</span>
+          <span>6月</span>
+          <a href="https://en.theblockbeats.news" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>Bernstein研报指出首个真正意义上的芯片超级周期正在来临，全球半导体行业规模正奔向1.3万亿美元。该周期驱动力独特——AI需求范式转变、存储价格攀升以及地缘政治驱动的区域化产能建设三重叠加，与以往PC/手机驱动的周期性繁荣有本质区别。Bernstein认为此轮周期将持续更长时间（预计至2028年后），且AI芯片和HBM等高价值产品将成为核心增长引擎。研报特别指出此轮周期的"超级"属性体现在供需两侧的结构性变化——供给侧产能区域化推高资本开支门槛，需求侧AI算力需求具有非线性增长特征，行业波动性将显著降低。</p>
+      <div class="source-line">🔗 <a href="https://en.theblockbeats.news" target="_blank">https://en.theblockbeats.news</a></div>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#d97706;">17</span>
+      <div class="body">
+        <div class="title">UBS：世代级半导体繁荣，2026年1.62万亿美元</div>
+        <div class="meta">
+          <span class="tag" style="background:#fef3c7;color:#d97706;">大咖观点</span>
+          <span>Yahoo Finance</span>
+          <span>6月</span>
+          <a href="https://finance.yahoo.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>UBS发布研报称全球半导体行业正经历世代级繁荣，预计2026年市场规模将达1.62万亿美元，创历史新高。强劲AI需求、电动汽车渗透率持续提升、IoT设备爆发以及各国半导体本地化政策共同推动行业进入超长景气周期。UBS特别指出，HBM和AI加速器成为增长最快的细分领域，年复合增长率超过40%，彻底改变了半导体行业的增长曲线和周期特征。UBS还强调，与历史周期不同，此轮繁荣具有更强的结构化支撑——全球芯片法案推动的产能建设周期长达5-7年，为行业提供了罕见的长期需求可见性。</p>
+      <div class="source-line">🔗 <a href="https://finance.yahoo.com" target="_blank">https://finance.yahoo.com</a></div>
+    </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#d97706;">18</span>
+      <div class="body">
+        <div class="title">BofA美林：AI需求可见度至2028年，存储不会过剩</div>
+        <div class="meta">
+          <span class="tag" style="background:#fef3c7;color:#d97706;">大咖观点</span>
+          <span>东方财富</span>
+          <span>6/24</span>
+          <a href="https://fund.eastmoney.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>美银美林研报指出AI相关芯片需求可见度已延伸至2028年，存储芯片不会出现过剩风险。核心逻辑在于AI模型训练和推理需求仍在指数级增长，HBM和DDR5的供需缺口持续扩大，且主要客户NVIDIA、Google等已提前锁定产能。报告认为存储行业已从周期性行业转向结构性增长行业，供需关系和定价逻辑发生根本性改变。BofA特别指出，即便各厂商扩产计划全部落地，2027年前HBM供应仍有至少20%的缺口，供需紧平衡将成为新常态，投资者应对存储芯片估值体系进行重构。</p>
+      <div class="source-line">🔗 <a href="https://fund.eastmoney.com" target="_blank">https://fund.eastmoney.com</a></div>
+    </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#d97706;">19</span>
+      <div class="body">
+        <div class="title">陈立武：AI智能体时代，CPU:GPU从1:8走向1:1</div>
+        <div class="meta">
+          <span class="tag" style="background:#fef3c7;color:#d97706;">大咖观点</span>
+          <span>中国证券报</span>
+          <span>6/23</span>
+          <a href="https://paper.cnstock.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>陈立武提出AI智能体时代CPU:GPU的比例将从当前的1:8走向1:1，意味着CPU在AI计算中的角色将大幅提升。未来AI智能体需要强化的调度、决策和逻辑推理能力，这正是CPU的擅长领域；而GPU主要负责大规模并行计算。这一架构变革将深刻影响处理器设计思路，推动异构计算架构向更均衡方向演进。对Intel和AMD而言是战略利好——x86 CPU在数据中心AI推理中的角色将被重估；对ARM生态也提供了切入AI服务器的机遇。陈立武的观点暗示未来AI系统将是CPU-GPU深度协同的异构计算架构，而非GPU单极主导。</p>
+      <div class="source-line">🔗 <a href="https://paper.cnstock.com" target="_blank">https://paper.cnstock.com</a></div>
+    </div>
+  </div>
+
+  <!-- 20 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#d97706;">20</span>
+      <div class="body">
+        <div class="title">黄仁勳：CPU是指挥家，GPU是乐团</div>
+        <div class="meta">
+          <span class="tag" style="background:#fef3c7;color:#d97706;">大咖观点</span>
+          <span>中国网</span>
+          <span>6/23</span>
+          <a href="http://big5.china.com.cn" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>黄仁勳以"CPU是指挥家、GPU是乐团"的比喻阐述AI计算架构中CPU与GPU的协同关系。CPU负责复杂决策和任务调度，GPU则发挥大规模并行计算优势。这一观点强调了异构计算的重要性，暗示未来AI系统需要更紧密的CPU-GPU协同设计。黄仁勳的比喻也反映了NVIDIA在系统级计算架构上的战略思考——从单一GPU加速器向全系统优化的方向演进。值得注意的是，这一观点与NVIDIA即将推出的CPU产品布局相呼应，表明NVIDIA正从GPU公司向全栈计算平台公司转型，未来可能推出自有架构的AI CPU产品。</p>
+      <div class="source-line">🔗 <a href="http://big5.china.com.cn" target="_blank">http://big5.china.com.cn</a></div>
+    </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#d97706;">21</span>
+      <div class="body">
+        <div class="title">TrendForce：晶圆代工产值年增25%至2188亿美元</div>
+        <div class="meta">
+          <span class="tag" style="background:#fef3c7;color:#d97706;">大咖观点</span>
+          <span>搜狐</span>
+          <span>6月</span>
+          <a href="https://www.stcn.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>TrendForce报告显示2026年全球晶圆代工产值年增25%至2188亿美元，创历史新高。增长主要来自三大引擎：AI芯片需求爆发推动先进制程产能利用率超95%，成熟制程涨价效应持续发酵，以及中国代工厂受益于国产替代加速。台积电仍占据超60%市场份额，但Intel代工和国内代工厂份额正在提升。从制程节点看，5nm以下营收占比首次突破40%，先进制程成为代工行业增长的核心驱动力。TrendForce预计2027年增速将有所放缓至15%左右，但仍保持两位数增长，行业长期景气趋势不变。</p>
+      <div class="source-line">🔗 <a href="https://www.stcn.com" target="_blank">https://www.stcn.com</a></div>
+    </div>
+  </div>
+
+  <!-- ===================== 政策资本 ===================== -->
+  <div style="display:flex;align-items:center;gap:8px;padding:16px 0 10px;margin-top:4px;">
+    <span style="display:inline-block;width:4px;height:18px;border-radius:2px;background:#dc2626;"></span>
+    <span style="font-size:15px;font-weight:700;color:#dc2626;">政策资本</span>
+  </div>
+
+  <!-- 22 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#dc2626;">22</span>
+      <div class="body">
+        <div class="title">美国两党提出"云安全法案"封堵AI芯片云算力漏洞</div>
+        <div class="meta">
+          <span class="tag" style="background:#fee2e2;color:#dc2626;">政策资本</span>
+          <span>Benton</span>
+          <span>6/26</span>
+          <a href="https://www.benton.org" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>美国两党议员提出云安全法案，旨在封堵通过云服务获取AI芯片算力的监管漏洞。该法案要求美国云服务商对海外用户进行严格尽调，防止受制裁实体通过云端访问高端AI芯片算力。此举将扩大出口管制的覆盖范围，从硬件出口延伸至云服务层面——这意味着即使不直接购买芯片，通过AWS、Azure等云平台租用AI算力也将受到严格限制。该法案对全球AI云服务市场格局影响重大，国内AI厂商获取海外算力的渠道将进一步受限，可能加速国内AI算力基础设施的自主建设和国产芯片适配进程。</p>
+      <div class="source-line">🔗 <a href="https://www.benton.org" target="_blank">https://www.benton.org</a></div>
+    </div>
+  </div>
+
+  <!-- 23 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#dc2626;">23</span>
+      <div class="body">
+        <div class="title">MATCH法案引荷兰强烈反对，官员赴华盛顿施压</div>
+        <div class="meta">
+          <span class="tag" style="background:#fee2e2;color:#dc2626;">政策资本</span>
+          <span>凤凰网</span>
+          <span>6/23</span>
+          <a href="https://www.zaobao.com" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>MATCH法案引发荷兰政府强烈反对，官员专程赴华盛顿施压。该法案拟进一步限制ASML设备和服务对华出口，荷兰认为这将严重损害本国经济利益和ASML的全球竞争力。荷兰的强烈反应凸显了美国出口管制政策在盟友间引发的分歧持续加深——荷兰担心管制范围扩大将缩小ASML的市场空间，促使其中国客户加速自研替代，最终削弱ASML的长期技术领先地位。该分歧可能影响管制措施的最终落地和执行力度，也反映了半导体地缘政治博弈的复杂性与各国利益博弈的深化，预计双方将围绕管制范围和执行机制进行多轮磋商。</p>
+      <div class="source-line">🔗 <a href="https://www.zaobao.com" target="_blank">https://www.zaobao.com</a></div>
+    </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#dc2626;">24</span>
+      <div class="body">
+        <div class="title">BIS禁止向中国企业海外子公司出口AI芯片</div>
+        <div class="meta">
+          <span class="tag" style="background:#fee2e2;color:#dc2626;">政策资本</span>
+          <span>芯智讯</span>
+          <span>5/31</span>
+          <a href="https://www.icsmart.cn" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>BIS出台新规，明确禁止向中国企业的海外子公司出口AI芯片，补上了此前通过第三国转运的监管漏洞。新规扩大了实体清单的管辖范围，将中国企业在全球范围内的子公司纳入管制——意味着即使中资企业在海外设立的研发中心和子公司，也无法获取受管制AI芯片。此举对中资背景的全球芯片设计公司和AI企业影响深远，可能加速中国芯片产业链的完全自主化进程。然而，新规也增加了全球半导体供应链的合规成本和复杂性，跨国芯片企业需要重新评估其与中国实体的业务往来，全球半导体产业链可能面临更深层次的结构性调整。</p>
+      <div class="source-line">🔗 <a href="https://www.icsmart.cn" target="_blank">https://www.icsmart.cn</a></div>
+    </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <span class="num" style="background:#dc2626;">25</span>
+      <div class="body">
+        <div class="title">欧盟Chips Act 2.0聚焦先进封装与印太合作</div>
+        <div class="meta">
+          <span class="tag" style="background:#fee2e2;color:#dc2626;">政策资本</span>
+          <span>CEIAS</span>
+          <span>6/3</span>
+          <a href="https://ceias.eu" target="_blank">来源</a>
+        </div>
+      </div>
+      <span class="card-arrow">▼</span>
+    </div>
+    <div class="card-detail">
+      <p>欧盟发布Chips Act 2.0，政策重心从制造产能转向先进封装和印太合作。新版本强调通过支持先进封装技术研发提升欧洲在芯片产业链后道环节的竞争力，同时加强与日本、韩国、新加坡等印太国家的半导体合作。这一政策转向反映了欧洲对全球半导体产业链分工变化的认知更新——先进封装已成为决定芯片性能的关键环节，而不仅仅是制造工艺的附属。欧盟还计划建立印太半导体供应链弹性基金，降低对单一区域的依赖。Chips Act 2.0标志着欧洲半导体战略从自主可控向全球合作共赢的务实转向，但资金规模和执行力仍需观察。</p>
+      <div class="source-line">🔗 <a href="https://ceias.eu" target="_blank">https://ceias.eu</a></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Chip Semiconductor Daily Report  ·  2026-06-27  ·  数据来源见各卡片链接
+</div>
+
+<script>
+function toggleCard(el) {
+  var card = el.parentElement;
+  var isOpen = card.classList.contains('open');
+  // close all
+  var allCards = document.querySelectorAll('.card.open');
+  for (var i = 0; i < allCards.length; i++) {
+    allCards[i].classList.remove('open');
+  }
+  // toggle current
+  if (!isOpen) {
+    card.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>

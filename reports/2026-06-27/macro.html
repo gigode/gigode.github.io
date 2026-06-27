@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球宏观日报 | 2026年6月27日 周六</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#1a0f0a;color:#e5d5c0;min-height:100vh}
+.bg-gradient{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#1a0f0a 0%,#3d2517 40%,#b45309 100%);z-index:-1}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+
+/* header */
+.header{text-align:center;padding:40px 20px 30px;border-bottom:1px solid rgba(180,83,9,0.3);margin-bottom:30px}
+.header h1{font-size:2em;color:#fbbf24;letter-spacing:2px;text-shadow:0 2px 10px rgba(180,83,9,0.5)}
+.header .date{font-size:1.1em;color:#d97706;margin-top:6px}
+.header .subtitle{font-size:0.85em;color:#a0785a;margin-top:4px}
+
+/* market overview section */
+.section-title{font-size:1.3em;color:#fbbf24;margin:30px 0 16px;padding-left:12px;border-left:4px solid #b45309}
+.section-title .tag{display:inline-block;font-size:0.55em;padding:2px 10px;border-radius:10px;background:#b45309;color:#fff;vertical-align:middle;margin-left:8px}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:30px}
+.metric-card{background:rgba(61,37,23,0.6);border:1px solid rgba(180,83,9,0.25);border-radius:10px;padding:14px 16px;transition:border-color 0.2s}
+.metric-card:hover{border-color:rgba(180,83,9,0.6)}
+.metric-card .label{font-size:0.72em;color:#a0785a;text-transform:uppercase;letter-spacing:1px}
+.metric-card .value{font-size:1.3em;font-weight:700;margin:2px 0}
+.metric-card .value.up{color:#34d399}
+.metric-card .value.down{color:#ef4444}
+.metric-card .value.neutral{color:#e5d5c0}
+.metric-card .change{font-size:0.78em}
+.metric-card .change.up{color:#34d399}
+.metric-card .change.down{color:#ef4444}
+
+/* toc */
+.toc{background:rgba(61,37,23,0.5);border:1px solid rgba(180,83,9,0.2);border-radius:10px;padding:20px 24px;margin-bottom:30px}
+.toc h3{color:#fbbf24;font-size:1em;margin-bottom:10px}
+.toc ol{list-style:none;counter-reset:item}
+.toc ol li{counter-increment:item;padding:4px 0}
+.toc ol li a{color:#d97706;text-decoration:none;font-size:0.9em;display:flex;align-items:center;gap:8px}
+.toc ol li a::before{content:counter(item);background:#b45309;color:#fff;font-size:0.7em;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.toc ol li a:hover{color:#fbbf24}
+.toc .toc-sub{margin-left:26px;list-style:none;padding:2px 0}
+.toc .toc-sub li{padding:2px 0}
+.toc .toc-sub li a{font-size:0.82em;color:#a0785a}
+.toc .toc-sub li a:hover{color:#d97706}
+.toc .toc-sub li a::before{display:none}
+
+/* category labels */
+.cat-label{display:inline-block;font-size:0.6em;padding:2px 10px;border-radius:10px;color:#fff;vertical-align:middle;margin-left:8px}
+.cat-pb{background:#dc2626}.cat-sc{background:#2563eb}.cat-gj{background:#059669}.cat-dy{background:#d97706}.cat-sp{background:#7c3aed}
+
+/* card */
+.card{background:rgba(61,37,23,0.4);border:1px solid rgba(180,83,9,0.2);border-radius:10px;margin-bottom:12px;overflow:hidden;transition:border-color 0.2s}
+.card:hover{border-color:rgba(180,83,9,0.45)}
+.card-top{display:flex;align-items:center;padding:14px 18px;cursor:pointer;position:relative;gap:10px}
+.card-top .card-num{color:#b45309;font-size:0.75em;font-weight:700;min-width:22px}
+.card-top .card-title{flex:1;font-size:0.92em;font-weight:600;color:#e5d5c0;line-height:1.4}
+.card-top .card-cat{font-size:0.6em;padding:2px 10px;border-radius:10px;color:#fff;white-space:nowrap;flex-shrink:0}
+.card-arrow{font-size:0.75em;color:#b45309;transition:transform 0.3s;flex-shrink:0;margin-left:auto}
+.card.active .card-arrow{transform:rotate(180deg)}
+.card-detail{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;padding:0 18px;border-top:0 solid rgba(180,83,9,0.15)}
+.card.active .card-detail{max-height:800px;padding:14px 18px;border-top-width:1px}
+.card-detail p{font-size:0.85em;line-height:1.7;color:#c4b5a0;margin-bottom:8px}
+.card-detail .highlight{color:#fbbf24;font-weight:600}
+.card-detail .source{font-size:0.72em;color:#7a6a55;margin-top:6px;border-top:1px solid rgba(180,83,9,0.1);padding-top:6px}
+
+/* footer */
+.footer{text-align:center;padding:30px 20px;color:#7a6a55;font-size:0.78em;border-top:1px solid rgba(180,83,9,0.15);margin-top:30px}
+.footer a{color:#d97706;text-decoration:none}
+
+@media(max-width:600px){
+  .header h1{font-size:1.4em}
+  .metric-grid{grid-template-columns:1fr}
+  .card-top{flex-wrap:wrap}
+  .card-top .card-cat{order:3}
+  .card-arrow{order:4}
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+<div class="bg-gradient"></div>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>全球宏观日报</h1>
+  <div class="date">2026年6月27日 周六 | Global Macro Daily Report</div>
+  <div class="subtitle">数据截至纽约收盘 · 深度解读市场脉动</div>
+</div>
+
+<!-- ==================== SECTION 1: 市场概览 ==================== -->
+<h2 class="section-title">市场概览 <span class="tag" style="background:#b45309">Market Overview</span></h2>
+
+<div class="metric-grid">
+  <div class="metric-card"><div class="label">SPY (S&P 500 ETF)</div><div class="value down">728.99</div><div class="change down">周跌 2.07%</div></div>
+  <div class="metric-card"><div class="label">QQQ (Nasdaq ETF)</div><div class="value down">706.52</div><div class="change down">周跌 4.26%</div></div>
+  <div class="metric-card"><div class="label">DIA (Dow ETF)</div><div class="value up">517.75</div><div class="change up">周涨 0.13%</div></div>
+  <div class="metric-card"><div class="label">IWM (Russell 2000 ETF)</div><div class="value up">299.83</div><div class="change up">周涨 0.55%</div></div>
+  <div class="metric-card"><div class="label">S&P 500</div><div class="value down">7,354.02</div><div class="change down">-0.05%</div></div>
+  <div class="metric-card"><div class="label">Nasdaq Composite</div><div class="value down">25,297.62</div><div class="change down">-0.24%</div></div>
+  <div class="metric-card"><div class="label">Dow Jones</div><div class="value down">51,876.11</div><div class="change down">-0.09%</div></div>
+  <div class="metric-card"><div class="label">FTSE 100</div><div class="value up">10,529.90</div><div class="change up">+0.65%</div></div>
+  <div class="metric-card"><div class="label">Nikkei 225</div><div class="value up">72,366.34</div><div class="change up">+4.61% 反弹</div></div>
+  <div class="metric-card"><div class="label">恒生指数 HSI</div><div class="value down">23,076.91</div><div class="change down">-1.43%</div></div>
+  <div class="metric-card"><div class="label">Fed Funds 利率</div><div class="value neutral">3.63%</div><div class="change neutral">目标区间上限</div></div>
+  <div class="metric-card"><div class="label">10Y-2Y 利差</div><div class="value up">0.31%</div><div class="change up">+1bp</div></div>
+  <div class="metric-card"><div class="label">失业率</div><div class="value neutral">4.3%</div><div class="change neutral">持平</div></div>
+  <div class="metric-card"><div class="label">美国 10 年期国债</div><div class="value down">4.40%</div><div class="change down">-1bp</div></div>
+  <div class="metric-card"><div class="label">美国 2 年期国债</div><div class="value down">4.09%</div><div class="change down">-2bp</div></div>
+  <div class="metric-card"><div class="label">VIX 恐慌指数</div><div class="value up">18.89</div><div class="change up">+0.26</div></div>
+  <div class="metric-card"><div class="label">黄金</div><div class="value up">$4,103</div><div class="change up">+1.8%</div></div>
+  <div class="metric-card"><div class="label">WTI 原油</div><div class="value down">$70.24</div><div class="change down">-2.34%</div></div>
+  <div class="metric-card"><div class="label">布伦特原油</div><div class="value down">$73.57</div><div class="change down">-2.25%</div></div>
+  <div class="metric-card"><div class="label">白银</div><div class="value up">$59.60</div><div class="change up">+2.15%</div></div>
+  <div class="metric-card"><div class="label">铜</div><div class="value up">$6.20</div><div class="change up">+2.09%</div></div>
+  <div class="metric-card"><div class="label">欧元/美元</div><div class="value up">1.1390</div><div class="change up">+0.3%</div></div>
+  <div class="metric-card"><div class="label">美元/日元</div><div class="value neutral">161.73</div><div class="change neutral">持平</div></div>
+  <div class="metric-card"><div class="label">英镑/美元</div><div class="value up">1.3198</div><div class="change up">+0.2%</div></div>
+  <div class="metric-card"><div class="label">美元/人民币</div><div class="value neutral">6.7897</div><div class="change neutral">平</div></div>
+</div>
+
+<!-- ==================== TOC ==================== -->
+<div class="toc">
+  <h3> 目录 Table of Contents</h3>
+  <ol>
+    <li><a href="#sec2">央行政策 · Central Bank Policy</a><span class="cat-label cat-pb" style="margin-left:8px">3 项</span></li>
+    <li><a href="#sec3">市场动态 · Market Moves</a><span class="cat-label cat-sc" style="margin-left:8px">5 项</span></li>
+    <li><a href="#sec4">全球经济 · Global Economy</a><span class="cat-label cat-gj" style="margin-left:8px">4 项</span></li>
+    <li><a href="#sec5">地缘贸易 · Geopolitics & Trade</a><span class="cat-label cat-dy" style="margin-left:8px">4 项</span></li>
+    <li><a href="#sec6">商品外汇 · Commodities & FX</a><span class="cat-label cat-sp" style="margin-left:8px">4 项</span></li>
+  </ol>
+</div>
+
+<!-- ==================== SECTION 2: 央行政策 ==================== -->
+<h2 id="sec2" class="section-title">央行政策 <span class="cat-label cat-pb">央行政策</span></h2>
+
+<!-- Card 1 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#1</span>
+    <span class="card-title">卡什卡利意外转鹰：预计 2026 年加息一次，通胀压力"更趋广泛"</span>
+    <span class="card-cat cat-pb">央行政策</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>明尼阿波利斯联储主席卡什卡利在 6 月 27 日讲话中作出惊人转向——从预期降息转为预计年内 <span class="highlight">加息一次</span>。他指出通胀压力已不再局限于中东能源冲击，而是 <span class="highlight">全面扩散</span> 至关税传导、AI 基础设施投资和供应链重构等多个领域。卡什卡利强调"不急于行动"但需更多数据确认。美联储 6 月点阵图显示 19 位官员中有 9 位预计至少一次加息，鸽派与鹰派分歧创年内最大。市场隐含的 2026 年加息概率在讲话后迅速攀升至 42%。</p>
+    <div class="source">来源：Minneapolis Fed, CME FedWatch, Reuters</div>
+  </div>
+</div>
+
+<!-- Card 2 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#2</span>
+    <span class="card-title">新主席沃什激活"强势美元"逻辑，华尔街大行齐声唱多</span>
+    <span class="card-cat cat-pb">央行政策</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>新任美联储主席凯文·沃什上任后迅速确立 <span class="highlight">恢复价格稳定</span> 为核心使命，公开支持"强势美元"政策。华尔街反应迅速：摩根大通认为美联储已"激活"美元看涨逻辑，利率差将支撑美元进一步上行；美银预计年内加息三次；高盛看好美元相对低收益及石油敏感货币的表现；Man Group 预测美元年底前还有约 <span class="highlight">5% 上涨空间</span>。美元指数 DXY 微跌至 101.37 但仍处于近一年最强月度通道。</p>
+    <div class="source">来源：JPMorgan, BofA, Goldman Sachs, Man Group, Bloomberg</div>
+  </div>
+</div>
+
+<!-- Card 3 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#3</span>
+    <span class="card-title">核心 PCE 升至 4.1% 创两年新高，5 年通胀攻坚战未竟</span>
+    <span class="card-cat cat-pb">央行政策</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>美国 5 月核心 PCE 同比上涨 <span class="highlight">4.1%</span>，为 2023 年 4 月以来最高，且已连续超过 60 个月高于美联储 2% 目标。东京 6 月核心 CPI 录得 1.6% 符合预期，但日美利差持续扩大令日元承压。纽约联储主席威廉姆斯立场相对鸽派，认为通胀将逐步降温；芝加哥联储的古尔斯比表示"保持警惕"但拒绝预测利率路径。分析师指出，若核心 PCE 持续高于 4%，美联储年内加息或从"尾部风险"变为"基准情景"。</p>
+    <div class="source">来源：BEA, BOJ, NY Fed, Chicago Fed, MarketWatch</div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3: 市场动态 ==================== -->
+<h2 id="sec3" class="section-title">市场动态 <span class="cat-label cat-sc">市场动态</span></h2>
+
+<!-- Card 4 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#4</span>
+    <span class="card-title">AI 交易退潮：科技股经历"压力测试"，七巨头全线周跌</span>
+    <span class="card-cat cat-sc">市场动态</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>本周美股科技板块遭遇剧烈回调，纳斯达克周跌 4.26%，QQQ 跌至 706.52。"七巨头"全线收跌，Alphabet 周跌 8.92%，英伟达连跌五日累计下挫 8.62%。费城半导体指数暴跌约 <span class="highlight">8%</span> 创一年来最大周跌幅。资金从科技股大规模撤出转向防御板块——医疗保健周涨 7.9%、房地产涨 4%、公用事业涨 3.9%。分析师将此定性为"AI 泡沫挤压"而非趋势终结，<span class="highlight">Dan Ives</span> 称之为"十年 AI 建设周期的第三年调整"。</p>
+    <div class="source">来源：Bloomberg, Wedbush, FactSet</div>
+  </div>
+</div>
+
+<!-- Card 5 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#5</span>
+    <span class="card-title">OpenAI IPO 延迟传闻引发半导体雪崩，安森美暴跌 24%</span>
+    <span class="card-cat cat-sc">市场动态</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>据《纽约时报》报道，OpenAI 正考虑将 IPO 推迟至 2027 年，消息瞬间引爆芯片板块抛售。安森美半导体宣布以 <span class="highlight">70 亿美元</span> 收购 Synaptics 后单日暴跌 24%。甲骨文创下 2001 年以来最大周跌幅 19.4%。美光科技周五续跌超 6%。特斯拉、Meta 等依赖 AI 叙事的个股均遭重挫。市场开始质疑万亿美元 AI 基建开支的回报周期——从"信仰驱动"转向"盈利验证"阶段，任何盈利不及预期的信号都会被放大。</p>
+    <div class="source">来源：NYT, ON Semiconductor, Oracle, Bloomberg</div>
+  </div>
+</div>
+
+<!-- Card 6 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#6</span>
+    <span class="card-title">道指独善其身：防御轮动支撑蓝筹，医疗保健并购潮点燃板块</span>
+    <span class="card-cat cat-sc">市场动态</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>在科技股血洗中，道琼斯工业指数本周微涨 0.13%，IWM 小盘股指数涨 0.55%，显示资金正在向价值和防御端迁移。医疗保健板块周涨 7.9% 领跑全市场，Bio-Techne 因默克 KGaA 以 <span class="highlight">113 亿美元</span> 收购而飙升 23%。房地产和公用事业分别上涨 4% 和 3.9%。分析师认为轮动可能延续至 7 月，但长期 AI 基建主题未变——当前更像是 <span class="highlight">"高空换气"</span> 而非引擎熄火。</p>
+    <div class="source">来源：Dow Jones, S&P, Nationwide, Baird</div>
+  </div>
+</div>
+
+<!-- Card 7 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#7</span>
+    <span class="card-title">苹果/微软齐涨价：存储成本飙升传导至消费者，通胀螺旋隐忧浮现</span>
+    <span class="card-cat cat-sc">市场动态</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>苹果宣布 iPad 和 MacBook 全线涨价 <span class="highlight">16%-25%</span>，理由是 AI 驱动的存储芯片成本飙升。微软亦同步上调 Xbox 定价。两家巨头的涨价行为引发市场对 <span class="highlight">"成本推动型通胀螺旋"</span> 的担忧：AI 投资潮推高芯片和存储价格，企业转嫁成本给消费者，进而推升 CPI。苹果股价单日跌 6.1%，微软跟跌。若更多消费科技公司跟进提价，美联储抗通胀压力将进一步加大。</p>
+    <div class="source">来源：Apple, Microsoft, CNBC, supply chain reports</div>
+  </div>
+</div>
+
+<!-- Card 8 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#8</span>
+    <span class="card-title">SpaceX 上市第二周再跌 17%，IPO 狂热迅速退潮</span>
+    <span class="card-cat cat-sc">市场动态</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>SpaceX 在上市第二周继续暴跌逾 <span class="highlight">17%</span>，几乎抹去 IPO 以来全部涨幅。市场情绪从首日狂热的"太空淘金热"迅速冷却为对估值和盈利时间的理性审视。作为 2026 年最受瞩目的 IPO 之一，SpaceX 的动荡表现给后续拟上市科技公司蒙上阴影。分析指出，在 AI 板块整体遭遇信任危机的背景下，任何 <span class="highlight">"高估值+长回报周期"</span> 的标的都面临相似的下行压力。</p>
+    <div class="source">来源：Bloomberg, IPO data, Reuters</div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 4: 全球经济 ==================== -->
+<h2 id="sec4" class="section-title">全球经济 <span class="cat-label cat-gj">全球经济</span></h2>
+
+<!-- Card 9 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#9</span>
+    <span class="card-title">IMF 首席警告：战略石油储备"明显枯竭"，全球经济缓冲空间大幅收窄</span>
+    <span class="card-cat cat-gj">全球经济</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>IMF 首席经济学家皮埃尔-奥利维耶·古兰沙在离任前最后一次专访中发出严厉警告：全球 <span class="highlight">战略石油储备已"显著消耗"</span>，各国应对新一轮供给冲击的能力远不如两年前。他透露，本轮伊朗冲突期间实际供给中断仅约 3%（远低于此前担忧的 10%-15%），多亏了快速释放储备和炼厂调整。但 <span class="highlight">"各国回旋余地已大大缩小"</span>——若霍尔木兹海峡停火破裂，全球经济将面临严重下行风险。</p>
+    <div class="source">来源：IMF, Yonhap News, KBS</div>
+  </div>
+</div>
+
+<!-- Card 10 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#10</span>
+    <span class="card-title">美国消费者信心回升至 49.5，但仍在历史低位徘徊</span>
+    <span class="card-cat cat-gj">全球经济</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>密歇根大学 6 月消费者信心指数终值录得 <span class="highlight">49.5</span>，高于前值 44.8 但低于市场预期，仍处于 2022 年以来最低区间之一。高通胀和高利率持续侵蚀购买力，尽管就业市场依然稳健。分项数据显示，受访者对耐用品购买意愿降至历史冰点，但就业前景预期略有好转。信心指数的低位徘徊与股市（尤其科技板块）的剧烈波动形成共振，暗示 <span class="highlight">"财富效应"</span> 正在逆转。</p>
+    <div class="source">来源：University of Michigan, Bloomberg</div>
+  </div>
+</div>
+
+<!-- Card 11 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#11</span>
+    <span class="card-title">日经 225 强力反弹 4.61%，但亚洲市场分化加剧</span>
+    <span class="card-cat cat-gj">全球经济</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>日经 225 指数本周大涨 <span class="highlight">4.61%</span> 收于 72,366.34 点，走出前期科技股拖累的阴霾，受益于日元贬值和超卖后的技术性反弹。但亚洲市场内部分化严重：恒生指数跌 1.43% 至 23,076.91，韩国 KOSPI 暴跌约 6% 并触发交易暂停，SK 海力士跌 8%，软银重挫超 12%。东京核心 CPI 仅 1.6% 令日银加息预期降温，日美利差维持高位支撑美元/日元在 <span class="highlight">161.73</span> 附近震荡，市场对日本当局干预保持警惕。</p>
+    <div class="source">来源：Nikkei, KOSPI, BOJ, Bloomberg</div>
+  </div>
+</div>
+
+<!-- Card 12 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#12</span>
+    <span class="card-title">FTSE 100 逆势走强 +0.65%，低油价缓解英国通胀焦虑</span>
+    <span class="card-cat cat-gj">全球经济</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>英国富时 100 指数收涨 0.65% 至 10,529.90，成为本周少数录得正收益的主要指数之一。支撑因素包括：布伦特原油回落至 73.57 美元缓解英国输入性通胀压力；英镑/美元小幅升值至 1.3198 但幅度温和，未冲击出口竞争力；英国服务业 PMI 维持在扩张区间。然而，欧洲整体前景仍面临 <span class="highlight">中东局势</span> 和 <span class="highlight">美国关税威胁</span> 的双重不确定性——特朗普威胁对征收数字服务税的欧洲国家加征 100% 关税。</p>
+    <div class="source">来源：FTSE, UK ONS, S&P Global PMI</div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 5: 地缘贸易 ==================== -->
+<h2 id="sec5" class="section-title">地缘贸易 <span class="cat-label cat-dy">地缘贸易</span></h2>
+
+<!-- Card 13 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#13</span>
+    <span class="card-title">美国空袭伊朗军事设施：停火几近破裂，霍尔木兹海峡再陷危机</span>
+    <span class="card-cat cat-dy">地缘贸易</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>6 月 26 日晚间（报道于 27 日），美军对伊朗位于霍尔木兹海峡沿岸的 <span class="highlight">导弹/无人机仓库和雷达设施</span> 发动空袭，作为对伊朗无人机袭击新加坡籍货轮"M/V Ever Lovely"的报复。特朗普总统称此次袭击是"对停火协议的愚蠢违反"。6 月中旬刚签署的美伊谅解备忘录要求伊朗 60 天内免费放行商船，但仅维持不到两周即濒临崩溃。伊朗副外长加里巴巴迪警告：不承认伊朗角色就无法保障海峡安全通行。</p>
+    <div class="source">来源：US Central Command, Xinhua, NST, Arab Times</div>
+  </div>
+</div>
+
+<!-- Card 14 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#14</span>
+    <span class="card-title">油价悖论：空袭落地反跌 4%，航运悄然恢复暴露市场"脱敏"</span>
+    <span class="card-cat cat-dy">地缘贸易</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>尽管美军空袭伊朗，布伦特原油和 WTI 反而分别下跌 2.25% 和 2.34%，呈现典型的 <span class="highlight">"买预期卖事实"</span> 走势。原因在于：部分船只沿阿曼海岸"非批准航道"继续通行；沙特阿美恢复拉斯坦努拉港原油装运（近四个月来首次）；化肥运输也重新启动缓解了全球粮食价格担忧。市场正在对中东风险 <span class="highlight">"脱敏"</span>——除非发生实质性断供，否则溢价难以维持。但 IMF 警告储备缓冲已近极限，脱敏可能是假象。</p>
+    <div class="source">来源：ICE, NYMEX, Saudi Aramco, IMF</div>
+  </div>
+</div>
+
+<!-- Card 15 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#15</span>
+    <span class="card-title">以色列-黎巴嫩框架协议签署，真主党拒绝恐引发内战隐忧</span>
+    <span class="card-cat cat-dy">地缘贸易</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>在美国国务卿卢比奥斡旋下，以色列和黎巴嫩政府在华盛顿签署了 <span class="highlight">框架协议</span>，要求真主党解除武装、以色列从南黎巴嫩撤军。然而真主党立即拒绝该协议，警告可能引发黎巴嫩内战。内塔尼亚胡强硬表态："黎巴嫩没有你们的位子，没有真主党的位子，也没有任何恐怖组织的位子。"此协议与美伊停火同步推进，凸显拜登/特朗普政府在中东的 <span class="highlight">"双轨外交"</span> 策略——但两条轨道均极其脆弱。</p>
+    <div class="source">来源：State Department, Reuters, Haaretz</div>
+  </div>
+</div>
+
+<!-- Card 16 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#16</span>
+    <span class="card-title">全球贸易重构加速：欧盟绕过美国与拉美、印度达成协议</span>
+    <span class="card-cat cat-dy">地缘贸易</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>IMF 首席经济学家古兰沙指出，特朗普关税政策正在加速全球贸易的 <span class="highlight">根本性重组</span>。欧盟已最终敲定与拉丁美洲和印度的两项长期搁置的贸易协定，均 <span class="highlight">将美国排除在外</span>。古兰沙认为关税和制裁只有短期效果——"目标国从不被动"，总会寻找替代路线和合作伙伴。与此同时，特朗普威胁对任何向美国科技公司征收数字服务税的欧洲国家加征 <span class="highlight">100% 关税</span>。全球贸易正加速形成"去美国化"和"去中国化"的双向平行体系。</p>
+    <div class="source">来源：IMF, EU Trade Commission, Financial Times</div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 6: 商品外汇 ==================== -->
+<h2 id="sec6" class="section-title">商品外汇 <span class="cat-label cat-sp">商品外汇</span></h2>
+
+<!-- Card 17 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#17</span>
+    <span class="card-title">黄金冲破 4100 美元创历史新高，避险与去美元化双重驱动</span>
+    <span class="card-cat cat-sp">商品外汇</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>国际金价本周大涨 <span class="highlight">1.8%</span> 至 4,103 美元/盎司，再创历史新高。驱动力来自三重共振：中东战火重燃推升避险需求；全球央行（尤其是新兴市场）持续增持黄金推进 <span class="highlight">"去美元化"</span> 储备多元化；市场对美联储可能加息导致经济放缓的担忧反而强化了黄金的避险吸引力。白银跟涨 2.15% 至 59.60 美元，金银比维持在约 69 的合理区间。分析师看好黄金年内挑战 4500 美元。</p>
+    <div class="source">来源：COMEX, World Gold Council, LBMA</div>
+  </div>
+</div>
+
+<!-- Card 18 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#18</span>
+    <span class="card-title">油价"脱敏"背后藏隐忧：布伦特跌至 73.57 美元，但供给脆弱性未减</span>
+    <span class="card-cat cat-sp">商品外汇</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>WTI 原油收于 70.24 美元（周跌 2.34%），布伦特收于 73.57 美元（周跌 2.25%），市场在美伊冲突升级背景下反而走低。短期利空包括：沙特恢复出口、部分船只绕行非批准航道、IEA 成员国继续释放储备。然而 <span class="highlight">战略储备已大幅消耗</span>，若霍尔木兹航运完全中断，OPEC 剩余产能能否快速填补仍是未知数。铜价涨 2.09% 至 6.20 美元，反映市场对中国需求复苏的谨慎乐观和能源转型金属的长期需求。</p>
+    <div class="source">来源：EIA, OPEC, IEA, LME</div>
+  </div>
+</div>
+
+<!-- Card 19 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#19</span>
+    <span class="card-title">欧元/美元反弹至 1.1390，但强势美元逻辑中期仍占上风</span>
+    <span class="card-cat cat-sp">商品外汇</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>欧元/美元周五反弹 0.3% 至 1.1390，受到月末资金流和欧元区服务业 PMI 好于预期的支撑。但多家华尔街大行认为这只是 <span class="highlight">熊市反弹</span>——在沃什领导下的美联储"强势美元"政策框架下，美欧利差扩大将推动欧元/美元下探 1.10 甚至更低。英镑/美元涨 0.2% 至 1.3198，英国相对较低的能源依赖度提供支撑，但英国自身增长疲弱限制上行空间。美元/人民币持稳于 6.7897，中国央行继续通过中间价维持汇率稳定。</p>
+    <div class="source">来源：ECB, Fed, JPMorgan, BofA, PBOC</div>
+  </div>
+</div>
+
+<!-- Card 20 -->
+<div class="card">
+  <div class="card-top">
+    <span class="card-num">#20</span>
+    <span class="card-title">USD/JPY 逼近 162 关口，日本央行干预预期升温</span>
+    <span class="card-cat cat-sp">商品外汇</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <p>美元/日元持稳于 <span class="highlight">161.73</span>，距 162 心理关口仅一步之遥，接近 1986 年以来的最低水平。美日 10 年期国债利差维持在约 310 个基点的极宽水平，美债收益率虽小幅回落但仍具吸引力。日本财务省官员本周密集发声但未实际入市干预，市场对 <span class="highlight">"干预警戒线"</span> 的预期从 160 上移至 165。东京核心 CPI 仅 1.6% 使日银缺乏加息紧迫性，日元弱势短期内难以扭转。分析师警告若美伊冲突升级触发套利平仓，日元可能迎来暴力反弹。</p>
+    <div class="source">来源：BOJ, MOF, Bloomberg, Tokyo CPI</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>全球宏观日报 | 2026年6月27日 周六</p>
+  <p>数据来源：Bloomberg, Reuters, FRED, IMF, 各交易所。本报告仅供参考，不构成投资建议。</p>
+  <p>Generated on 2026-06-27</p>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var cards = document.querySelectorAll('.card');
+  // First card open by default
+  if(cards.length > 0) {
+    cards[0].classList.add('active');
+  }
+  cards.forEach(function(card){
+    var top = card.querySelector('.card-top');
+    top.addEventListener('click', function(e){
+      var isActive = card.classList.contains('active');
+      // optional: close others
+      // cards.forEach(function(c){c.classList.remove('active')});
+      card.classList.toggle('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
