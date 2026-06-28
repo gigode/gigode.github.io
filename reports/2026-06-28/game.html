@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameHot 游戏日报 2026-06-28</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;background:#0a0a1a;color:#e2e8f0;min-height:100vh;-webkit-font-smoothing:antialiased}
+.cover{background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 50%,#7c3aed 100%);padding:64px 20px 44px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 40%,rgba(124,58,237,0.2) 0%,transparent 60%),radial-gradient(circle at 80% 60%,rgba(59,130,246,0.1) 0%,transparent 60%)}
+.cover::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(124,58,237,0.04) 0%,transparent 50%);animation:coverPulse 8s ease-in-out infinite}
+@keyframes coverPulse{0%,100%{opacity:0.5}50%{opacity:1}}
+.cover h1{font-size:2.6em;font-weight:800;letter-spacing:3px;position:relative;background:linear-gradient(to right,#fff,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cover .subtitle{font-size:1.05em;color:rgba(255,255,255,0.55);margin-top:6px;position:relative}
+.cover .date-badge{display:inline-block;background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);padding:6px 22px;border-radius:20px;font-size:0.88em;margin-top:14px;position:relative;color:rgba(255,255,255,0.7)}
+.cover .total-badge{display:inline-block;background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.25);padding:4px 14px;border-radius:12px;font-size:0.78em;margin-left:8px;position:relative;color:#a78bfa}
+.container{max-width:960px;margin:0 auto;padding:28px 20px 60px}
+.stats-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;justify-content:center}
+.stat-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:8px 16px;font-size:0.78em;display:flex;align-items:center;gap:8px}
+.stat-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.stat-label{color:rgba(255,255,255,0.5)}
+.stat-value{color:rgba(255,255,255,0.8);font-weight:600}
+.section-title{font-size:1.25em;font-weight:700;margin:32px 0 4px;padding-bottom:10px;border-bottom:2px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.9)}
+.section-count{font-size:0.7em;background:rgba(255,255,255,0.07);padding:2px 10px;border-radius:12px;font-weight:500;color:rgba(255,255,255,0.4)}
+.card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:10px;margin-bottom:6px;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
+.card:hover{border-color:rgba(255,255,255,0.1);box-shadow:0 2px 12px rgba(0,0,0,0.2)}
+.card-top{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;user-select:none;transition:background 0.25s}
+.card-top:hover{background:rgba(255,255,255,0.03)}
+.card-top.active{background:rgba(255,255,255,0.04)}
+.card-index{width:24px;height:24px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:600;color:rgba(255,255,255,0.35);flex-shrink:0}
+.card-tag{font-size:0.62em;font-weight:600;padding:3px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:0.3px}
+.card-title{flex:1;font-size:0.9em;font-weight:500;line-height:1.4;min-width:0}
+.card-arrow{font-size:0.65em;color:rgba(255,255,255,0.25);transition:transform 0.35s ease;flex-shrink:0;margin-left:4px}
+.card-arrow.open{transform:rotate(180deg);color:rgba(255,255,255,0.6)}
+.card-detail{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.35s ease;padding:0 16px}
+.card-detail.open{max-height:600px;padding:0 16px 16px}
+.card-summary{font-size:0.84em;line-height:1.75;color:rgba(255,255,255,0.65);text-align:justify}
+.card-meta{display:flex;align-items:center;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap}
+.card-source{font-size:0.76em;color:rgba(255,255,255,0.35)}
+.card-date{font-size:0.76em;color:rgba(255,255,255,0.35)}
+.card-link{font-size:0.76em;color:#a78bfa;text-decoration:none;font-weight:500;margin-left:auto;padding:3px 12px;border:1px solid rgba(124,58,237,0.2);border-radius:6px;transition:background 0.2s}
+.card-link:hover{background:rgba(124,58,237,0.1)}
+.tag-新游{background:rgba(124,58,237,0.18);color:#a78bfa}
+.tag-行业{background:rgba(37,99,235,0.18);color:#93c5fd}
+.tag-电竞{background:rgba(220,38,38,0.18);color:#fca5a5}
+.tag-硬件{background:rgba(217,119,6,0.18);color:#fcd34d}
+.tag-评测{background:rgba(5,150,105,0.18);color:#6ee7b7}
+.nav-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.nav-tab{padding:7px 14px;border-radius:8px;font-size:0.8em;font-weight:500;cursor:pointer;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);transition:all 0.25s}
+.nav-tab:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.75)}
+.nav-tab.active{background:rgba(124,58,237,0.12);border-color:rgba(124,58,237,0.25);color:#a78bfa}
+.footer{text-align:center;padding:30px 0 10px;color:rgba(255,255,255,0.2);font-size:0.75em;border-top:1px solid rgba(255,255,255,0.04);margin-top:30px}
+@media(max-width:640px){
+.cover h1{font-size:1.7em}
+.cover{padding:44px 16px 32px}
+.card-top{padding:11px 12px;gap:7px}
+.card-title{font-size:0.82em}
+.card-tag{font-size:0.58em;padding:2px 5px}
+.card-index{width:20px;height:20px;font-size:0.6em}
+.card-detail{padding:0 12px}
+.card-detail.open{padding:0 12px 12px}
+.card-summary{font-size:0.78em}
+.section-title{font-size:1.1em}
+.stats-row{gap:6px}
+.stat-item{font-size:0.72em;padding:5px 10px}
+.container{padding:20px 12px 40px}
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+
+<div class="cover">
+  <h1>GameHot 游戏日报</h1>
+  <p class="subtitle">游戏行业热点资讯追踪</p>
+  <div>
+    <span class="date-badge">2026年6月28日 · 星期日</span>
+    <span class="total-badge">28 条热闻</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="stats-row">
+  <span class="stat-item"><span class="stat-dot" style="background:#7c3aed"></span><span class="stat-label">新游</span><span class="stat-value">6</span></span>
+  <span class="stat-item"><span class="stat-dot" style="background:#2563eb"></span><span class="stat-label">行业</span><span class="stat-value">8</span></span>
+  <span class="stat-item"><span class="stat-dot" style="background:#dc2626"></span><span class="stat-label">电竞</span><span class="stat-value">6</span></span>
+  <span class="stat-item"><span class="stat-dot" style="background:#d97706"></span><span class="stat-label">硬件</span><span class="stat-value">5</span></span>
+  <span class="stat-item"><span class="stat-dot" style="background:#059669"></span><span class="stat-label">评测</span><span class="stat-value">5</span></span>
+</div>
+
+<div class="nav-tabs">
+  <span class="nav-tab active" onclick="filterSection(this,'all')">全部</span>
+  <span class="nav-tab" onclick="filterSection(this,'新游')">新游发布</span>
+  <span class="nav-tab" onclick="filterSection(this,'行业')">行业动态</span>
+  <span class="nav-tab" onclick="filterSection(this,'电竞')">电竞资讯</span>
+  <span class="nav-tab" onclick="filterSection(this,'硬件')">硬件技术</span>
+  <span class="nav-tab" onclick="filterSection(this,'评测')">评测观点</span>
+</div>
+
+<!-- ====== 新游发布/更新 ====== -->
+<div class="section-title" data-section="新游"><span style="width:12px;height:12px;border-radius:3px;background:#7c3aed;display:inline-block"></span>新游发布 / 更新<span class="section-count">6</span></div>
+
+<div class="card" data-tag="新游">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">1</span>
+    <span class="card-tag tag-新游">新游</span>
+    <span class="card-title">Steam夏季特卖火热 — 巫师3仅$3.99</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">Steam夏季特卖作为年度最大规模促销活动之一，今年以《巫师3：狂猎》仅3.99美元的史低价格引爆玩家抢购热潮。这款2015年发售的经典RPG至今仍保持着极高的口碑与百万级月活跃玩家，CD Projekt Red持续推出的内容更新与次世代免费升级让这款作品历经近十年依然魅力不减。此次特卖覆盖数千款游戏，从3A大作到精品独立游戏均有大幅折扣，是玩家补充游戏库的黄金窗口。考虑到近年全球通胀背景下游戏定价普遍上涨至69.99美元的新基准，Steam年度两次大型特卖愈发成为玩家以合理价格获取正版游戏的核心渠道。Kotaku的报道指出本次特卖中多款长期不打折的游戏首次参与，进一步推高了玩家的消费热情。<br><br>值得注意的是，Steam同步开启了点数商店限时兑换活动，玩家可用消费累积的点数兑换专属头像框、聊天贴纸与社区个人资料皮肤，进一步提升了特卖期间的社区互动活跃度。对于预算有限的玩家而言，善用Stedb等比价工具追踪史低价格曲线，可在本次特卖中实现最优购买决策。</div>
+    <div class="card-meta">
+      <span class="card-source">Kotaku</span>
+      <a class="card-link" href="https://kotaku.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="新游">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">2</span>
+    <span class="card-tag tag-新游">新游</span>
+    <span class="card-title">Steam Next Fest 6月 — 《鬼武者》等Demo上线</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">Steam Next Fest是Valve每年举办多次的独立游戏与中型作品试玩盛会，6月特别版带来了包括CAPCOM《鬼武者》重制版在内的大量备受期待的游戏Demo。玩家无需任何费用即可在限时一周内体验即将发售游戏的第一手内容，开发者借此获取宝贵的用户反馈与Steam愿望单收藏数据。本次Next Fest阵容覆盖动作、策略、解谜、模拟经营、Roguelike等十余种类型，充分展现了PC游戏生态日益多元化的活力。对于小型独立团队而言，Next Fest的曝光效果往往远超传统媒体宣发渠道，一次成功的Demo发布即可为产品积累数万愿望单。<br><br>ScreenRant的专题分析指出，本届Next Fest中最受关注的Demo作品集中在复古风格FPS与类银河战士恶魔城两大品类，反映出当前独立游戏市场的创作趋势与玩家的怀旧偏好。Valve也在Next Fest期间同步推出了Steam Deck兼容性验证促销，进一步强化了掌机生态与PC游戏库的联动效应。</div>
+    <div class="card-meta">
+      <span class="card-source">ScreenRant</span>
+      <a class="card-link" href="https://screenrant.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="新游">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">3</span>
+    <span class="card-tag tag-新游">新游</span>
+    <span class="card-title">《英雄无敌：旧世遗产》Early Access上线</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">《英雄无敌：旧世遗产》作为经典回合制策略游戏系列的最新作，以Early Access形式登陆Steam后迅速引发老玩家群体的广泛关注。本作在保留系列核心的回合制策略战斗与英雄养成系统基础上，引入了全新的动态地图机制与深度英雄成长树，画面也进行了全面的高清化重制，支持4K分辨率与超宽屏显示。开发团队承诺在Early Access期间与社区保持紧密沟通，定期更新新种族、战役章节与多人对战模式，预计EA阶段将持续12-18个月。<br><br>Gamespress的报道指出，本作在EA首周即售出超过15万份，表明经典策略游戏IP依然拥有坚实的受众基础。对于策略游戏爱好者而言，见证经典IP通过现代技术焕发新生是一次难得的沉浸式体验。不过EA版本目前仅包含3个种族与20小时左右战役内容，内容的完整度仍有待开发团队的后续更新来充实完善。</div>
+    <div class="card-meta">
+      <span class="card-source">Gamespress</span>
+      <a class="card-link" href="https://www.gamespress.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="新游">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">4</span>
+    <span class="card-tag tag-新游">新游</span>
+    <span class="card-title">Xbox Game Pass 6月阵容 — 《Abyssus》等入库</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">微软Xbox Game Pass 6月新增阵容正式公布，包括深海探索冒险游戏《Abyssus》在内的多款作品于本月首发入库，持续巩固其"游戏界Netflix"的订阅制领先优势。本月阵容涵盖了来自中日欧美等不同地区的独立新作与第三方大作，体现了微软在内容采购上的全球化视野与积极策略。Game Pass作为微软游戏生态的核心增长引擎，通过第一方大作首发入库与第三方精品持续补充的双轨策略维持着强劲的用户粘性，订阅用户数在上季度突破4500万。<br><br>WindowsReport的深度分析指出，微软近期加大了与亚洲开发者的合作力度，更多来自中国与日本的精品游戏正在被纳入Game Pass库中，这反映了微软对亚洲游戏市场战略重要性的重新评估。对于玩家而言，每月不到10美元的订阅费用即可畅玩数百款游戏，大幅降低了尝试新作品的决策门槛，但这一模式对游戏品质评估体系与行业长期可持续性的影响仍在持续讨论之中。</div>
+    <div class="card-meta">
+      <span class="card-source">WindowsReport</span>
+      <a class="card-link" href="https://windowsreport.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="新游">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">5</span>
+    <span class="card-tag tag-新游">新游</span>
+    <span class="card-title">Steam 6月免费游戏阵容盘点</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">Steam平台6月限时免费游戏阵容正式公布，涵盖多款口碑佳作，Notebookcheck对此进行了详细盘点。限时免费领取策略已成为Steam发行商吸引用户关注、积累社区热度的标准营销手段，通过"限时免费"的紧迫感有效促进玩家转化与社交传播。本月免费游戏覆盖动作冒险、解谜推理、模拟经营等多种类型，部分作品在领取后可永久保留至游戏库中，极具收藏价值。对于预算有限但希望不断丰富游戏体验的玩家而言，关注Steam定期免费活动是零成本获取优质内容的有效途径。<br><br>需要注意的是，Steam免费游戏的领取窗口期通常极为有限，多数作品仅开放24至48小时免费领取，错过即需等待下次活动或直接购买。Notebookcheck建议玩家养成每周定期查看Steam免费游戏动态的习惯，并善用社交媒体上的游戏资讯账号获取即时推送通知。</div>
+    <div class="card-meta">
+      <span class="card-source">Notebookcheck</span>
+      <a class="card-link" href="https://www.notebookcheck.net" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="新游">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">6</span>
+    <span class="card-tag tag-新游">新游</span>
+    <span class="card-title">Valve Steam Machine 6/29发货 $1049起</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">Valve新一代Steam Machine定于6月29日正式发货，起售价1049美元，标志着Valve在历经初代Steam Machine的教训后重返客厅游戏硬件战场。本代机型搭载深度定制的Steam OS 3.0系统与高性能AMD定制芯片，GPU性能对标RTX 4070级别，旨在提供近似家用游戏主机的Steam客厅体验。定价策略直接对标索尼PS5 Pro与微软下一代Xbox，但在便携性、系统开放性以及PC游戏库兼容性上拥有独特的差异化优势。ArsTechnica的深度评测指出，Steam Machine能否成功仍取决于Steam OS的游戏兼容性覆盖度、实际性能表现以及开发者对Linux生态的持续优化意愿，早期用户评价将对后续市场表现产生决定性影响。<br><br>Valve此次为Steam Machine设计了模块化升级方案，未来用户可单独更换GPU模块，这一创新设计在游戏主机领域尚属首次，有望延长硬件的生命周期与用户的重复购买价值。</div>
+    <div class="card-meta">
+      <span class="card-source">ArsTechnica</span>
+      <a class="card-link" href="https://arstechnica.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 行业动态 ====== -->
+<div class="section-title" data-section="行业"><span style="width:12px;height:12px;border-radius:3px;background:#2563eb;display:inline-block"></span>行业动态<span class="section-count">8</span></div>
+
+<div class="card" data-tag="行业">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">7</span>
+    <span class="card-tag tag-行业">行业</span>
+    <span class="card-title">2026年全球游戏裁员超3700人</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">ZeeNews最新统计数据显示，2026年全球游戏行业裁员规模已超过3700人，延续了自2023年以来持续三年的行业紧缩趋势。后疫情时代玩家回归线下生活导致的行业回调、资本市场对游戏投资回报预期的日趋谨慎、以及生成式AI工具对部分美术与设计岗位的结构性替代效应，被公认为本轮裁员的三大核心驱动因素。受影响的企业涵盖大型发行商与中小型工作室，项目取消与团队精简成为行业普遍现象。值得关注的是，此次裁员潮中项目管理与QA测试岗位的占比显著上升，反映出行业对"降本增效"的追求正从执行层向管理层延伸。<br><br>对于全球游戏从业者而言，持续三年的行业调整带来了显著的就业压力与职业焦虑，但也倒逼从业者提升跨领域技能与AI工具运用能力。行业观察人士指出，这轮调整可能促使游戏开发模式从"人海战术"向"精英小团队+AI辅助"的方向加速转变。</div>
+    <div class="card-meta">
+      <span class="card-source">ZeeNews</span>
+      <a class="card-link" href="https://zeenews.india.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="行业">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">8</span>
+    <span class="card-tag tag-行业">行业</span>
+    <span class="card-title">黄仁勋会见NCsoft与Krafton</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">NVIDIA CEO黄仁勋近期接连会见韩国两大游戏巨头NCsoft与Krafton，InsightKorea报道称这一高层互动引发了市场对AI与游戏产业深度合作前景的广泛猜测。此次会晤的核心议题很可能涉及NVIDIA最新AI技术在游戏开发全流程中的应用，包括基于大语言模型的动态NPC对话系统、AI驱动的程序化内容生成、以及基于DLSS 4.0超级采样与帧生成技术的图形渲染优化方案。韩国游戏公司作为全球MMO与移动游戏市场的重要力量，正积极寻找AI技术突破口以提升开发效率并创造差异化的玩家体验。<br><br>此次黄仁勋与韩国游戏高层的面对面交流也被视为NVIDIA在游戏AI商业化落地方面加速战略布局的信号。据悉双方讨论了联合建立AI游戏开发实验室的可能性，若合作落地，将有望为行业树立AI赋能游戏开发的新标杆。</div>
+    <div class="card-meta">
+      <span class="card-source">InsightKorea</span>
+      <a class="card-link" href="https://www.insightkorea.co.kr" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="行业">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">9</span>
+    <span class="card-tag tag-行业">行业</span>
+    <span class="card-title">腾讯回应调整日本游戏投资</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">腾讯就调整日本游戏市场投资策略一事作出正式官方回应，称将根据市场环境变化与具体项目进展情况动态优化全球投资组合。近年来腾讯在日本游戏市场进行了大规模系统性投入，先后投资了FromSoftware（《艾尔登法环》开发商母公司）、Koei Tecmo（《三国志》系列）、PlatinumGames（《猎天使魔女》系列）等多家日本顶级工作室及其母集团，投资总额据估算超过百亿人民币。此次策略调整信号被市场分析人士解读为腾讯在全球游戏投资布局上的审慎转向，未来将更聚焦于精品IP的深度绑定与可预期的财务回报。<br><br>IT之家的分析评论指出，这一调整折射出中国游戏巨头在全球化扩张中面临的现实考量：如何在文化差异、地缘政治风险与投资收益之间取得平衡。腾讯在日本的部分投资案例尚未达到预期的协同效应，优化投资组合是理性的商业决策。</div>
+    <div class="card-meta">
+      <span class="card-source">IT之家</span>
+      <a class="card-link" href="https://m.ithome.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="行业">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">10</span>
+    <span class="card-tag tag-行业">行业</span>
+    <span class="card-title">阿里拟70-90亿出售灵犀互娱</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">阿里巴巴集团计划以70至90亿元人民币的估值区间出售旗下游戏子公司灵犀互娱，华夏时报援引接近交易的知情人士消息进行了披露。灵犀互娱旗下拥有《三国志·战略版》等月流水超亿的头部SLG产品，此前被视为阿里大文娱板块中最为核心的游戏资产。此次出售意向的公开化反映出阿里在非核心业务上的持续剥离战略日趋清晰，集团正在聚焦电商与云计算两大主航道。对于潜在买方而言，灵犀互娱的SLG研发能力与成熟的长线运营体系在行业内具有稀缺价值，但当前游戏行业面临的市场增速放缓与监管政策不确定性也将成为估值谈判中的重要博弈变量。<br><br>市场消息称多家私募股权基金与游戏行业战略投资者已表达初步收购意向，交易进展值得持续关注。若交易最终以接近估值上限的价格完成，将成为近年来中国游戏行业最大规模的资产交易之一。</div>
+    <div class="card-meta">
+      <span class="card-source">华夏时报</span>
+      <a class="card-link" href="https://www.chinatimes.net.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="行业">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">11</span>
+    <span class="card-tag tag-行业">行业</span>
+    <span class="card-title">ChinaJoy 2026 定档7/31-8/3</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">中国国际数码互动娱乐展览会ChinaJoy 2026正式定于7月31日至8月3日在上海新国际博览中心举办，央广网报道了这一年度游戏盛会的筹备进展。作为亚洲规模最大的游戏展会之一，本届ChinaJoy预计将汇聚超过500家参展商，覆盖PC客户端游戏、手机游戏、主机游戏、VR/AR虚拟现实等全平台领域，并特设电竞专区、独立游戏街区、AI技术应用展区等多个主题板块。在全球游戏行业面临紧缩调整的背景下，ChinaJoy成为展示新品、洽谈商务合作、观察行业风向的关键窗口。<br><br>今年展会的核心看点包括AI技术在游戏研发管线中的深度应用成果展示、小游戏赛道爆发式增长背后的商业逻辑解析、以及中国游戏出海战略在欧美日韩等成熟市场的最新进展。此外，ChinaJoy官方确认将恢复举办ChinaJoy Cosplay嘉年华与电子竞技大赛等配套活动，全面提升到场观众的参与体验。</div>
+    <div class="card-meta">
+      <span class="card-source">央广网</span>
+      <a class="card-link" href="https://news.cnr.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="行业">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">12</span>
+    <span class="card-tag tag-行业">行业</span>
+    <span class="card-title">日本游戏产业面临芯片通胀股价暴跌</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">人民网援引日媒报道指出，日本游戏产业正面临由半导体芯片成本持续通胀引发的连锁负面反应，多家日本上市游戏公司股价在过去一个月内出现显著下跌。全球半导体供应链成本上升直接传导至游戏硬件制造与大型3A游戏开发环节，对索尼、任天堂、SEGA等日本游戏巨头的利润空间构成了严重挤压。与此同时，日元对美元汇率的持续贬值进一步加重了以进口芯片为主要成本的日本游戏产业的负担，形成了成本上升与收入缩水的双重挤压效应。<br><br>市场分析人士认为，此轮芯片通胀叠加全球游戏市场整体增速放缓，使得日本游戏产业正面临自2010年代初以来最为严峻的宏观经营挑战。部分日本游戏公司已开始调整产品策略，转向更依赖软件订阅收入与服务型游戏商业模式以对冲硬件成本压力。行业洗牌的风险正在上升，中小型日本游戏工作室的生存环境尤为艰难。</div>
+    <div class="card-meta">
+      <span class="card-source">人民网</span>
+      <a class="card-link" href="http://cjkeizai.j.people.com.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="行业">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">13</span>
+    <span class="card-tag tag-行业">行业</span>
+    <span class="card-title">EA推出游戏内广告平台</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">EA正式宣布推出基于程序化广告技术的新一代游戏内广告平台，The Verge在报道中详细解读了这一战略举措对行业格局的潜在影响。该平台允许品牌广告主在EA旗下《FIFA》系列、《Madden NFL》体育系列、《战地》系列等大作中动态植入原生广告素材，覆盖主机与PC平台，广告形式包括球场边广告牌、比赛暂停画面植入、以及角色服装品牌合作等非侵入式场景。EA计划在2027财年内通过游戏内广告业务创造超过5亿美元的增量营收，弥补传统买断制销售与内购消费之外的收入空白。<br><br>然而游戏内广告的商业化模式在玩家群体中向来存在争议，EA需要在广告收入最大化与玩家体验保护之间找到精准的平衡点，避免因过度商业化引发社区反弹。The Verge评论指出，EA的这一举措可能带动更多大型发行商跟进，游戏内广告或将成为继订阅制之后游戏行业的下一个营收增长极。</div>
+    <div class="card-meta">
+      <span class="card-source">The Verge</span>
+      <a class="card-link" href="https://www.theverge.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="行业">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">14</span>
+    <span class="card-tag tag-行业">行业</span>
+    <span class="card-title">Roblox全球推出儿童账户系统</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">Roblox面向全球市场正式推出专门的儿童账户管理系统，The Verge对此进行了详细的功能解读与行业影响分析。全新的儿童账户系统为13岁以下用户提供了更加严格的家长管控功能，包括消费限额设定、内容分级过滤、社交互动权限精细化管理、以及游戏时长控制等一系列安全设置选项。此举是Roblox在面临美国FTC、英国ICO以及欧盟多个国家监管机构对其未成年用户安全保护措施不足的持续质疑后，所采取的重大平台安全改进措施。Roblox作为全球最大的UGC游戏平台之一，其月活跃用户中约40%为16岁以下未成年人，儿童保护问题一直是悬在其头顶的达摩克利斯之剑。<br><br>在元宇宙与现实世界界限日益模糊的数字时代，Roblox如何在有效保护未成年用户的同时维持社区创作活力与社交互动体验，将是平台长期可持续发展中需要持续探索的核心命题。新系统的实际执行效果仍有待上线后的第三方评估验证。</div>
+    <div class="card-meta">
+      <span class="card-source">The Verge</span>
+      <a class="card-link" href="https://www.theverge.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 电竞资讯 ====== -->
+<div class="section-title" data-section="电竞"><span style="width:12px;height:12px;border-radius:3px;background:#dc2626;display:inline-block"></span>电竞资讯<span class="section-count">6</span></div>
+
+<div class="card" data-tag="电竞">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">15</span>
+    <span class="card-tag tag-电竞">电竞</span>
+    <span class="card-title">MSI 2026今日大田开幕 T1 vs TL揭幕战</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">MSI 2026季中冠军赛今日在韩国大田广域市正式开幕，T1对阵TL的揭幕战聚焦了全球《英雄联盟》电竞粉丝的目光。作为每年仅次于全球总决赛的顶级国际赛事，MSI汇聚了全球各赛区的春季赛冠军队伍，是检验赛区间真实实力对比与版本理解差异的最重要竞技舞台。本届赛事在韩国举办，主场作战的T1作为LCK赛区代表队，面对来自北美LCS赛区的TL战队，比赛走向不仅关乎揭幕战的胜利归属，更将为整个赛事定下竞技基调。<br><br>FNNews的赛前分析认为，T1在版本适应速度与选手个人能力上占据明显优势，但TL在团队配合与战术储备方面的进步不容小觑。本届MSI采用了全新的双败淘汰赛制，增加了比赛的悬念与观赏性，也为中韩赛区以外的队伍提供了更多的爆冷空间。</div>
+    <div class="card-meta">
+      <span class="card-source">FNNews</span>
+      <a class="card-link" href="https://www.fnnews.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="电竞">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">16</span>
+    <span class="card-tag tag-电竞">电竞</span>
+    <span class="card-title">MSI赛制公布 BLG/G2/TES直通淘汰赛</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">MSI 2026正式赛制公布，来自LPL赛区的BLG与TES、以及LEC赛区的G2三支顶级战队凭借赛区历史战绩与季中表现获得直通淘汰赛阶段的资格，虎扑对赛制安排进行了详细解读。这一赛制安排体现了拳头游戏对各赛区竞技水平的差异化评估与管理思路，给予顶级赛区队伍更多的战术准备时间与高曝光度的比赛机会。直通淘汰赛意味着这三支队伍无需经历小组赛阶段的消耗战与战术暴露风险，能够以更充沛的状态迎战从小组赛晋级而来的对手。<br><br>然而这一赛制也引发了一定程度的讨论，部分观众认为直通机制削弱了赛事的公平性，使得中韩赛区以外的队伍面临更大的晋级难度。拳头游戏表示将在赛事结束后根据各方反馈对MSI赛制进行进一步的评估与优化调整，在赛区公平性与赛事观赏性之间寻求更优的平衡方案。</div>
+    <div class="card-meta">
+      <span class="card-source">虎扑</span>
+      <a class="card-link" href="https://www.lhszscqw.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="电竞">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">17</span>
+    <span class="card-tag tag-电竞">电竞</span>
+    <span class="card-title">亚运会电竞 印度24人代表团</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">印度组建了规模达24人的电竞代表团参加即将举行的亚运会电竞赛事，The Tribune报道了此次具有里程碑意义的阵容组建情况。作为全球人口最多的国家之一，印度电竞产业近年来发展势头迅猛，在《绝地求生》手游版、《Free Fire》、《VALORANT》等项目中积累起了庞大的玩家基础与活跃的竞技社区。此次大规模代表团的组建标志着印度政府层面对电竞产业的正式认可与支持力度提升到了前所未有的高度。亚运会将电竞项目正式计入奖牌榜统计，对于印度电竞从业者而言，这是向世界展示竞技实力的重要舞台。<br><br>印度电竞协会表示，代表团成员经过了严格的多轮选拔与专项训练，目标是在亚运会上力争至少两枚奖牌。此次参赛也将反哺印度国内电竞生态系统的建设，推动更多资本与人才进入这一快速发展的新兴领域。</div>
+    <div class="card-meta">
+      <span class="card-source">The Tribune</span>
+      <a class="card-link" href="https://in.ign.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="电竞">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">18</span>
+    <span class="card-tag tag-电竞">电竞</span>
+    <span class="card-title">印尼《王者荣耀》全胜晋级</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">印度尼西亚《王者荣耀》代表队在地区赛事中以全胜战绩强势晋级淘汰赛阶段，RRI对此进行了专题报道。东南亚地区作为《王者荣耀》海外版（Honor of Kings）最重要的海外市场，近年来整体竞技水平取得了显著提升。印尼队在比赛中展现出的精密团队配合与灵活的战术执行能力，标志着东南亚赛区已具备与传统中韩强队正面抗衡的竞技实力。对于全球《王者荣耀》电竞赛事格局而言，东南亚力量的快速崛起打破了中韩两强长期独大的传统竞争格局，为赛事增添了更多的不确定性与观赏价值。<br><br>分析人士指出，印尼队的成功并非偶然，而是得益于东南亚地区移动游戏普及率的持续攀升、电竞赛训体系的逐步完善、以及游戏发行商在当地持续投入资源建设赛事生态的综合结果。东南亚电竞的整体崛起有望带动更多国际品牌与赞助商关注这一充满活力的新兴市场。</div>
+    <div class="card-meta">
+      <span class="card-source">RRI</span>
+      <a class="card-link" href="https://rri.co.id" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="电竞">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">19</span>
+    <span class="card-tag tag-电竞">电竞</span>
+    <span class="card-title">HLE 3-1 T1 首获MSI席位</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">Hanwha Life Esports在LCK春季赛决赛中以3-1击败T1，队史首次获得MSI季中冠军赛参赛席位，Vietnam.vn报道了这场LCK赛区格局重塑的重要对决。HLE在本赛季展现出了罕见的团队化学反应与深厚的战术储备，成功突破了T1在LCK赛区长年以来的统治地位，成为LCK赛区新的冠军代表力量。这一结果也清晰地反映出LCK赛区内部的竞争格局正在发生深刻的结构性变化，新生代战队通过科学的训练体系与数据分析手段，已逐渐具备了挑战传统电竞豪门的能力。<br><br>对于即将开幕的MSI赛事而言，HLE作为LCK新鲜血液的注入将极大提升比赛的竞争激烈度与战术多样性看点。HLE的打法风格与T1存在明显差异，对手需要花费更多时间研究其战术体系，这也为MSI增添了更多的不可预测性。</div>
+    <div class="card-meta">
+      <span class="card-source">Vietnam.vn</span>
+      <a class="card-link" href="https://www.vietnam.vn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="电竞">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">20</span>
+    <span class="card-tag tag-电竞">电竞</span>
+    <span class="card-title">全球电竞产业周在科隆举行</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">全球电竞产业周在德国科隆盛大举行，DotEsports对这场年度最具影响力的电竞行业盛会进行了全程报道。活动汇聚了来自世界各地超过200家电竞组织、赛事运营商、品牌赞助商与专业媒体机构，是年度最重要的电竞B2B与B2C综合交流平台之一。今年议程的核心议题聚焦于电竞教育的规范化与学历认证体系建设、职业选手的福利保障与心理健康支持机制、以及人工智能技术在训练数据分析与赛事战术预测中的创新应用前景。科隆作为传统游戏展会Gamescom的长期举办地，正在逐步发展成为欧洲电竞产业的战略枢纽城市。<br><br>本届产业周期间，多家欧洲电竞组织联合签署了选手权益保障倡议书，承诺在合同透明化、最低薪资标准与退役转型支持等方面建立行业自律标准。这一共识的达成为全球电竞行业的规范化发展提供了重要的参考范本。</div>
+    <div class="card-meta">
+      <span class="card-source">DotEsports</span>
+      <a class="card-link" href="https://dotesports.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 硬件/技术 ====== -->
+<div class="section-title" data-section="硬件"><span style="width:12px;height:12px;border-radius:3px;background:#d97706;display:inline-block"></span>硬件 / 技术<span class="section-count">5</span></div>
+
+<div class="card" data-tag="硬件">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">21</span>
+    <span class="card-tag tag-硬件">硬件</span>
+    <span class="card-title">ASUS ROG 20周年 Computex 展示</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">华硕ROG玩家国度品牌迎来创立20周年纪念，在Computex台北国际电脑展上展示了多款极具代表性的创新产品与未来技术路线图。作为全球高端游戏硬件的标杆品牌，ROG的20年发展历程见证了游戏硬件从简单的散热改造到沉浸式RGB灯效生态、从单一主板品类到覆盖显卡、笔记本、显示器、外设的全品类游戏装备帝国的完整进化过程。本次Computex上ROG重点展示了新一代AI驱动的动态散热优化系统、采用OLED面板的超轻薄高性能游戏本、以及跨设备无缝生态协同方案，包括手机与PC之间的游戏进度同步与外设共享功能。<br><br>20周年纪念节点上，ROG宣布将与多家知名游戏开发商合作推出联名限定版硬件产品，进一步强化品牌在高端游戏玩家群体中的文化符号属性与收藏价值。</div>
+    <div class="card-meta">
+      <span class="card-source">ASUS Press</span>
+      <a class="card-link" href="https://press.asus.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="硬件">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">22</span>
+    <span class="card-tag tag-硬件">硬件</span>
+    <span class="card-title">技嘉INFINITY 40周年纪念</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">技嘉科技以INFINITY（无限）为核心理念庆祝品牌成立40周年，The Korea Herald报道了其系列纪念活动与特别版产品发布。40年的发展历程中，技嘉从最初的主板制造商逐步成长为涵盖主板、显卡、笔记本电脑、显示器、服务器等多元业务线的全球科技集团。此次40周年主题强调"无限"概念，象征技嘉对性能极限的持续探索与技术创新边界的不断拓展。在周年庆期间，技嘉推出了搭载最新AI计算引擎与先进散热技术的限量版主板与显卡产品，并在数据中心AI加速计算领域展示了其服务器业务的最新技术成果。<br><br>值得关注的是，技嘉在40周年之际宣布将加大对可持续发展技术的投入，计划在未来三年内将产品线中的再生材料使用比例提升至30%以上，响应全球电子产业绿色转型的行业趋势与消费者期待。</div>
+    <div class="card-meta">
+      <span class="card-source">The Korea Herald</span>
+      <a class="card-link" href="https://www.koreaherald.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="硬件">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">23</span>
+    <span class="card-tag tag-硬件">硬件</span>
+    <span class="card-title">RTX 50 Super 显存规格升级</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">NVIDIA RTX 50 Super系列显卡在显存配置上进行了重大规格升级，PChome进行了深入详细的技术解析与性能影响分析。新一代Super型号在显存容量与带宽方面均实现了显著提升，旗舰型号有望搭载28GB GDDR7显存，旨在全面应对4K/8K分辨率游戏与AI内容创作场景日益增长的显存容量需求。此次升级延续了NVIDIA在Super系列上强化性价比的产品定位策略，在不改变核心架构的前提下通过显存扩容与频率优化实现可观的性能提升。DirectX 12 Ultimate的全面支持与光线追踪性能的进一步优化，也为次世代游戏体验的落地奠定了更加坚实的硬件基础。<br><br>对于追求极致画质与高帧率游戏体验的硬核玩家而言，RTX 50 Super系列是继标准版之后最值得关注的升级选项。预计Super系列将在今年晚些时候正式发布，届时将与AMD RDNA 5系列展开新一轮市场角逐。</div>
+    <div class="card-meta">
+      <span class="card-source">PChome</span>
+      <a class="card-link" href="https://article.pchome.net" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="硬件">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">24</span>
+    <span class="card-tag tag-硬件">硬件</span>
+    <span class="card-title">Steam Machine 定价 $1049 解析</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">ArsTechnica针对Valve新一代Steam Machine的定价策略进行了深度解码分析。起售价1049美元的定价使其直接与索尼PS5 Pro（预计699美元）以及微软下一代Xbox主机形成不同程度的市场竞争。Steam Machine的核心差异化卖点在于Steam OS针对客厅大屏体验的深度优化、与Steam游戏库的无缝对接、以及Valve对硬件与软件深度整合的极致追求。然而相对高昂的定价也意味着Steam Machine需要通过卓越的玩家体验来充分证明其溢价合理性，尤其是在与同价位传统PC的性价比对比中。<br><br>ArsTechnica的评测编辑指出，Steam Machine的真正目标用户并非追求极致性价比的主流玩家，而是那些已经拥有大量Steam游戏库存、看重客厅游戏体验且愿意为生态整合付费的深度Steam用户。首发销量与核心玩家的口碑评价将直接影响Valve在客厅游戏硬件市场的长期战略走向与后续产品迭代节奏。</div>
+    <div class="card-meta">
+      <span class="card-source">ArsTechnica</span>
+      <a class="card-link" href="https://arstechnica.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="硬件">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">25</span>
+    <span class="card-tag tag-硬件">硬件</span>
+    <span class="card-title">任天堂严厉打击Switch2黄牛倒卖</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">任天堂针对Switch2主机发售后出现的黄牛倒卖现象采取了近年来最为严厉的打击措施，VGC报道了具体的行动方案与执行细节。任天堂通过严格限制首发销售渠道、在主要市场推行实名购买制度、以及加大对电商平台与二手交易平台的监控执法力度等多管齐下的方式，试图遏制机器被批量抢购后加价倒卖的现象。黄牛问题长期以来是热门游戏硬件发布时的顽疾，不仅严重损害了普通消费者的公平购买权益，也影响了任天堂的品牌形象与市场秩序管控能力。<br><br>VGC报道称任天堂此次与各国执法机构合作，在日本、美国与欧洲多地开展了针对大型黄牛团伙的联合打击行动，已有多人被捕。任天堂此次强硬态度赢得了游戏社区的广泛好评与玩家支持，但真正的执行效果仍需观察Switch2在后续批量补货阶段的市场秩序维持情况。任天堂方面表示将建立长期监控机制，持续维护消费者权益。</div>
+    <div class="card-meta">
+      <span class="card-source">VGC</span>
+      <a class="card-link" href="https://www.videogameschronicle.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 评测与观点 ====== -->
+<div class="section-title" data-section="评测"><span style="width:12px;height:12px;border-radius:3px;background:#059669;display:inline-block"></span>评测与观点<span class="section-count">5</span></div>
+
+<div class="card" data-tag="评测">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">26</span>
+    <span class="card-tag tag-评测">评测</span>
+    <span class="card-title">《哥特王朝1》重制版 IGN 7分</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">《哥特王朝1》重制版获得IGN 7分评价，IT之家转发了这一评分结果及相关评测内容。这款由德国Piranha Bytes开发的经典开放世界RPG的重制版，在保留原版无引导探索精神与复杂任务设计的核心魅力的同时，对画面表现、操作手感与用户界面进行了符合现代标准的全面现代化改造。IGN评测编辑认为，重制版在氛围营造与任务网状叙事结构上保持了原版的高水准，那些标志性的NPC日程系统与派系关系设计至今依然令人印象深刻。<br><br>然而评测中也明确指出，原版中备受诟病的僵硬的近战战斗系统在重制版中未能得到根本性改善，锁定系统与打击反馈依然存在问题，这在很大程度上限制了整体游戏体验的全面提升。7分的评价反映了重制版品质尚可但未达经典重置标杆的水准。对于曾经历过原版老玩家而言，这是一趟值得的情怀重温之旅；但对于新玩家来说，战斗系统的瑕疵可能构成一定的体验障碍。</div>
+    <div class="card-meta">
+      <span class="card-source">IT之家</span>
+      <a class="card-link" href="https://www.ithome.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="评测">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">27</span>
+    <span class="card-tag tag-评测">评测</span>
+    <span class="card-title">《异度之刃》决定版 M站86分</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">《异度之刃》决定版在Metacritic上获得86分的综合媒体评分，网易报道了这款Monolith Soft经典JRPG名作在重制后获得的专业认可。决定版在画面分辨率、帧率稳定性以及UI操作便利性方面实现了全面且显著的升级优化，同时完整收录了原版发售后推出的追加剧情章节"相连的未来"，为玩家提供了超过100小时的沉浸式游戏内容。86分的MC综合评分充分反映了专业媒体对本作品质的高度认可，广阔无垠的开放世界地图设计、深邃感人的剧情叙事以及独具特色的连锁攻击战斗系统依然是其超越时代的核心竞争魅力。<br><br>对于当年错过Wii原版的玩家而言，决定版无疑是体验这款经典名作的最佳时机——更好的画面、更流畅的帧率、更便利的操作，外加完整的追加内容。评测普遍认为这是目前体验《异度之刃》系列的终极版本，也是Switch生命周期末期最具分量的JRPG作品之一。</div>
+    <div class="card-meta">
+      <span class="card-source">网易</span>
+      <a class="card-link" href="https://www.163.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="评测">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">28</span>
+    <span class="card-tag tag-评测">评测</span>
+    <span class="card-title">《Forza Horizon 6》Fami通37分</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">《极限竞速：地平线6》获得日本权威游戏杂志Fami通37分的高评价（40分满分制），360游戏报道了评分详情与媒体评语。Fami通的四位评审一致认为本作在开放世界赛车游戏的自由探索性与赛车物理的驾驶拟真度之间找到了系列前所未有的精妙平衡，新增的热带雨林赛道环境与动态极端天气系统进一步提升了驾驶沉浸感与视觉冲击力。37分的高评价使其成功跻身Fami通白金殿堂，巩固了地平线系列作为开放世界赛车游戏品类绝对标杆的地位。<br><br>本作在Xbox Series X|S上支持4K/60fps与光追反射，车辆数量突破900台创下系列历史之最。跨平台存档同步功能与持续更新的赛事活动内容为游戏的长期运营提供了坚实的保障。Fami通特别称赞了本作的辅助驾驶系统对新手玩家的友好度，大幅降低了竞速游戏的入门门槛，同时保留了让硬核玩家挑战极限的深度调校系统。</div>
+    <div class="card-meta">
+      <span class="card-source">360游戏</span>
+      <a class="card-link" href="http://360game.360.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="评测">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">29</span>
+    <span class="card-tag tag-评测">评测</span>
+    <span class="card-title">Steam Machine 实测性能缩水</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">中关村在线发布了Steam Machine上市前的详细实测报告，指出其实际游戏性能表现相较于早期官方宣传材料存在一定程度的缩水。实测数据显示，在多款主流3A大作的Steam OS环境下，其帧率表现在部分场景中不及同价位搭载Windows系统的传统PC，Linux系统下的驱动优化不足与部分游戏的反作弊系统兼容性问题也导致了一些热门作品无法完美运行。这一实测结果给Steam Machine原本备受期待的市场前景蒙上了一层阴影，Valve需要通过后续的GPU驱动更新、Proton兼容层优化以及与游戏开发商合作推送兼容性补丁等多种手段来逐步挽回技术口碑。<br><br>对于正在持币观望的潜在购买者而言，这份实测报告提供了不可忽视的重要购买决策参考。中关村在线建议轻度用户可考虑首发尝鲜，但对游戏兼容性与性能有严格要求的硬核玩家不妨等待Valve推送首批系统更新后再做购买决定。</div>
+    <div class="card-meta">
+      <span class="card-source">中关村在线</span>
+      <a class="card-link" href="https://diy.zol.com.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="评测">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">30</span>
+    <span class="card-tag tag-评测">评测</span>
+    <span class="card-title">The Guardian 评选上半年最佳游戏</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">The Guardian发布了2026年上半年最佳游戏榜单，综合评选出上半年最具品质与影响力的游戏作品。排行榜前五名依次为：《塞尔达传说：王国之泪》大型DLC"远古回响"凭借极致开放的探索体验与充满想象力的场景设计荣登榜首；《最终幻想VII 重生》PC版以其感人至深的叙事与华丽战斗系统紧随其后；《黑神话：悟空》作为中国开发团队的3A级力作以独特的东方神话美学与硬核战斗体验闯入前三；《Hades II》正式版在初代基础上实现了全方位的超越式进化；《动物井》则以其精妙的迷宫设计与无与伦比的氛围营造成为独立游戏的最大亮点。<br><br>Guardian编辑团队强调，今年上半年的游戏整体品质明显优于往年同期，多款经历跳票打磨的大作在最终呈现中展现出了极高的完成度与艺术水准。上半年游戏阵容的强势表现为下半年《GTA6》等超级大作的登场奠定了良好的市场基础与玩家期待。</div>
+    <div class="card-meta">
+      <span class="card-source">The Guardian</span>
+      <a class="card-link" href="https://www.theguardian.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  GameHot &mdash; 2026年6月28日 &mdash; 数据来源为各新闻机构，仅供参考
+</div>
+
+</div>
+
+<script>
+function toggleCard(el) {
+  var detail = el.nextElementSibling;
+  var arrow = el.querySelector('.card-arrow');
+  var isOpen = detail.classList.contains('open');
+  var allDetails = document.querySelectorAll('.card-detail.open');
+  for (var i = 0; i < allDetails.length; i++) {
+    if (allDetails[i] !== detail) {
+      allDetails[i].classList.remove('open');
+      allDetails[i].style.maxHeight = null;
+      var a = allDetails[i].previousElementSibling.querySelector('.card-arrow');
+      if (a) a.classList.remove('open');
+      allDetails[i].previousElementSibling.classList.remove('active');
+    }
+  }
+  if (!isOpen) {
+    detail.classList.add('open');
+    detail.style.maxHeight = detail.scrollHeight + 'px';
+    arrow.classList.add('open');
+    el.classList.add('active');
+  } else {
+    detail.classList.remove('open');
+    detail.style.maxHeight = null;
+    arrow.classList.remove('open');
+    el.classList.remove('active');
+  }
+}
+
+function filterSection(el, section) {
+  var tabs = document.querySelectorAll('.nav-tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active');
+  }
+  el.classList.add('active');
+  var cards = document.querySelectorAll('.card');
+  for (var j = 0; j < cards.length; j++) {
+    if (section === 'all') {
+      cards[j].style.display = '';
+    } else {
+      cards[j].style.display = cards[j].getAttribute('data-tag') === section ? '' : 'none';
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var firstCard = document.querySelector('.card');
+  if (firstCard) {
+    var top = firstCard.querySelector('.card-top');
+    if (top) toggleCard(top);
+  }
+});
+</script>
+
+</body>
+</html>
