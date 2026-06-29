@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FootballHot 足球日报 2026-06-29</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;background:#052e16;color:#e2e8f0;min-height:100vh;-webkit-font-smoothing:antialiased}
+.cover{background:linear-gradient(135deg,#0c4a2e 0%,#14532d 50%,#16a34a 100%);padding:64px 20px 44px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 40%,rgba(22,163,74,0.2) 0%,transparent 60%),radial-gradient(circle at 80% 60%,rgba(34,197,94,0.1) 0%,transparent 60%)}
+.cover::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(22,163,74,0.04) 0%,transparent 50%);animation:coverPulse 8s ease-in-out infinite}
+@keyframes coverPulse{0%,100%{opacity:0.5}50%{opacity:1}}
+.cover h1{font-size:2.6em;font-weight:800;letter-spacing:3px;position:relative;background:linear-gradient(to right,#fff,#86efac);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cover .subtitle{font-size:1.05em;color:rgba(255,255,255,0.55);margin-top:6px;position:relative}
+.cover .date-badge{display:inline-block;background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);padding:6px 22px;border-radius:20px;font-size:0.88em;margin-top:14px;position:relative;color:rgba(255,255,255,0.7)}
+.cover .total-badge{display:inline-block;background:rgba(22,163,74,0.2);border:1px solid rgba(22,163,74,0.25);padding:4px 14px;border-radius:12px;font-size:0.78em;margin-left:8px;position:relative;color:#86efac}
+.container{max-width:960px;margin:0 auto;padding:28px 20px 60px}
+.stats-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;justify-content:center}
+.stat-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:8px 16px;font-size:0.78em;display:flex;align-items:center;gap:8px}
+.stat-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.stat-label{color:rgba(255,255,255,0.5)}
+.stat-value{color:rgba(255,255,255,0.8);font-weight:600}
+.section-title{font-size:1.25em;font-weight:700;margin:32px 0 4px;padding-bottom:10px;border-bottom:2px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.9)}
+.section-count{font-size:0.7em;background:rgba(255,255,255,0.07);padding:2px 10px;border-radius:12px;font-weight:500;color:rgba(255,255,255,0.4)}
+.card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:10px;margin-bottom:6px;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
+.card:hover{border-color:rgba(255,255,255,0.1);box-shadow:0 2px 12px rgba(0,0,0,0.2)}
+.card-top{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;user-select:none;transition:background 0.25s}
+.card-top:hover{background:rgba(255,255,255,0.03)}
+.card-top.active{background:rgba(255,255,255,0.04)}
+.card-index{width:24px;height:24px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:600;color:rgba(255,255,255,0.35);flex-shrink:0}
+.card-tag{font-size:0.62em;font-weight:600;padding:3px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:0.3px}
+.card-title{flex:1;font-size:0.9em;font-weight:500;line-height:1.4;min-width:0}
+.card-arrow{font-size:0.65em;color:rgba(255,255,255,0.25);transition:transform 0.35s ease;flex-shrink:0;margin-left:4px}
+.card-arrow.open{transform:rotate(180deg);color:rgba(255,255,255,0.6)}
+.card-detail{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.35s ease;padding:0 16px}
+.card-detail.open{max-height:600px;padding:0 16px 16px}
+.card-summary{font-size:0.84em;line-height:1.75;color:rgba(255,255,255,0.65);text-align:justify}
+.card-meta{display:flex;align-items:center;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap}
+.card-source{font-size:0.76em;color:rgba(255,255,255,0.35)}
+.card-date{font-size:0.76em;color:rgba(255,255,255,0.35)}
+.card-link{font-size:0.76em;color:#86efac;text-decoration:none;font-weight:500;margin-left:auto;padding:3px 12px;border:1px solid rgba(22,163,74,0.2);border-radius:6px;transition:background 0.2s}
+.card-link:hover{background:rgba(22,163,74,0.1)}
+.tag-赛事战报{background:rgba(220,38,38,0.18);color:#fca5a5}
+.tag-转会动态{background:rgba(37,99,235,0.18);color:#93c5fd}
+.tag-球员焦点{background:rgba(217,119,6,0.18);color:#fcd34d}
+.tag-深度分析{background:rgba(5,150,105,0.18);color:#6ee7b7}
+.nav-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.nav-tab{padding:7px 14px;border-radius:8px;font-size:0.8em;font-weight:500;cursor:pointer;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);transition:all 0.25s}
+.nav-tab:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.75)}
+.nav-tab.active{background:rgba(22,163,74,0.12);border-color:rgba(22,163,74,0.25);color:#86efac}
+.footer{text-align:center;padding:30px 0 10px;color:rgba(255,255,255,0.2);font-size:0.75em;border-top:1px solid rgba(255,255,255,0.04);margin-top:30px}
+@media(max-width:640px){
+.cover h1{font-size:1.7em}
+.cover{padding:44px 16px 32px}
+.card-top{padding:11px 12px;gap:7px}
+.card-title{font-size:0.82em}
+.card-tag{font-size:0.58em;padding:2px 5px}
+.card-index{width:20px;height:20px;font-size:0.6em}
+.card-detail{padding:0 12px}
+.card-detail.open{padding:0 12px 12px}
+.card-summary{font-size:0.78em}
+.section-title{font-size:1.1em}
+.stats-row{gap:6px}
+.stat-item{font-size:0.72em;padding:5px 10px}
+.container{padding:20px 12px 40px}
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+
+<div class="cover">
+  <h1>FootballHot 足球日报</h1>
+  <p class="subtitle">世界杯 &amp; 足球行业热点资讯</p>
+  <div>
+    <span class="date-badge">2026年6月29日 · 星期一</span>
+    <span class="total-badge">30 条热闻</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="stats-row">
+  <span class="stat-item"><span class="stat-dot" style="background:#dc2626"></span><span class="stat-label">赛事战报</span><span class="stat-value">7</span></span>
+  <span class="stat-item"><span class="stat-dot" style="background:#2563eb"></span><span class="stat-label">转会动态</span><span class="stat-value">10</span></span>
+  <span class="stat-item"><span class="stat-dot" style="background:#d97706"></span><span class="stat-label">球员焦点</span><span class="stat-value">7</span></span>
+  <span class="stat-item"><span class="stat-dot" style="background:#059669"></span><span class="stat-label">深度分析</span><span class="stat-value">6</span></span>
+</div>
+
+<div class="nav-tabs">
+  <span class="nav-tab active" onclick="filterSection(this,'all')">全部</span>
+  <span class="nav-tab" onclick="filterSection(this,'赛事战报')">赛事战报</span>
+  <span class="nav-tab" onclick="filterSection(this,'转会动态')">转会动态</span>
+  <span class="nav-tab" onclick="filterSection(this,'球员焦点')">球员焦点</span>
+  <span class="nav-tab" onclick="filterSection(this,'深度分析')">深度分析</span>
+</div>
+
+<!-- ====== 赛事战报 ====== -->
+<div class="section-title" data-section="赛事战报"><span style="width:12px;height:12px;border-radius:3px;background:#dc2626;display:inline-block"></span>赛事战报<span class="section-count">7</span></div>
+
+<div class="card" data-tag="赛事战报">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">1</span>
+    <span class="card-tag tag-赛事战报">战报</span>
+    <span class="card-title">加拿大补时绝杀南非1-0 队史首进16强</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">加拿大在世界杯1/32决赛中凭借欧斯塔奇欧的补时绝杀，以1-0击败南非，队史首次晋级16强，新华网报道了这场历史性胜利。对于首次以联合主办国身份参赛的加拿大而言，这一晚注定载入国家足球史册。终场哨响时全场球迷陷入疯狂，球员们相拥而泣。加拿大此役展现出了极强的战术纪律性与意志力，在常规时间久攻不下的情况下始终保持阵型紧凑，最终在补时阶段利用一次定位球二次进攻由欧斯塔奇欧完成致命一击。南非队整场防守组织严密，却在最后时刻功亏一篑。加拿大晋级后将在16强战中对阵一支小组头名球队，他们的黑马之旅能否延续值得期待。</div>
+    <div class="card-meta">
+      <span class="card-source">新华网</span>
+      <span class="card-date">6/29</span>
+      <a class="card-link" href="http://www.xinhuanet.com.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="赛事战报">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">2</span>
+    <span class="card-tag tag-赛事战报">战报</span>
+    <span class="card-title">世界杯淘汰赛打响 加拿大绝杀首进16强</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">2026年世界杯淘汰赛阶段正式打响，中国宁波网报道了加拿大凭借补时绝杀首次晋级16强的震撼消息。这场比赛的结束标志着世界杯正式进入单场淘汰制的残酷阶段，每一场比赛都将决定一支球队的命运。加拿大的胜利不仅是该国足球的历史性突破，更是世界杯扩军至48队后"新势力"崛起的最佳注脚。比赛进程中加拿大占据控球优势但始终无法攻破南非的铁桶阵，直到补时第3分钟才由一次混战中的捅射打破僵局。这粒进球改写了加拿大足球的历史走向。对于南非而言，虽然遗憾出局但整体表现赢得了尊重，他们距离创造历史只差最后几秒钟。</div>
+    <div class="card-meta">
+      <span class="card-source">中国宁波网</span>
+      <span class="card-date">6/29</span>
+      <a class="card-link" href="http://www.cnnb.com.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="赛事战报">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">3</span>
+    <span class="card-tag tag-赛事战报">战报</span>
+    <span class="card-title">六大欧洲豪门扎堆上半区 亚足联7队淘汰</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">世界杯淘汰赛签表出炉后，光明网分析了极其残酷的赛区分布——六支欧洲传统豪门齐齐扎堆上半区，意味着多支顶级球队将在16强和8强阶段提前火并；与此同时亚足联旗下已有7支球队遭到淘汰，亚洲足球在本届扩军世界杯中的整体表现远低于预期。欧洲豪门集中在一个半区将导致多场"决赛级别"的提前对决，德国、法国、西班牙、英格兰、葡萄牙等队中最多只有一支能够通往决赛。亚洲球队的大面积出局则暴露出亚洲足球在世界杯扩军背景下竞争力不升反降的尴尬现实，如何在更激烈的全球竞争中突围成为亚足联亟需面对的结构性课题。</div>
+    <div class="card-meta">
+      <span class="card-source">光明网</span>
+      <span class="card-date">6/29</span>
+      <a class="card-link" href="https://m.gmw.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="赛事战报">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">4</span>
+    <span class="card-tag tag-赛事战报">战报</span>
+    <span class="card-title">Canada reach last 16 late strike sinks South Africa</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">GulfTimes报道了加拿大在世界杯历史上最激动人心的时刻——欧斯塔奇欧在伤停补时阶段的绝杀进球将南非送回老家，也将加拿大送入16强。这一刻对加拿大足球的意义无论怎样强调都不为过，自1986年首次参赛以来加拿大从未突破小组赛，如今作为联合东道主终于捅破了这层窗户纸。欧斯塔奇欧的绝杀进球堪称教科书般的定位球二次进攻——角球被解围后加拿大在外围重新组织，传中至禁区造成混战，皮球经过两次折射后落到欧斯塔奇欧脚下，他冷静推射远角入网。这粒进球在加拿大国内引发了举国欢庆的浪潮，多伦多、温哥华等城市的球迷广场涌入数万名庆祝人群。</div>
+    <div class="card-meta">
+      <span class="card-source">GulfTimes</span>
+      <span class="card-date">6/29</span>
+      <a class="card-link" href="https://www.gulf-times.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="赛事战报">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">5</span>
+    <span class="card-tag tag-赛事战报">战报</span>
+    <span class="card-title">Historic scenes co-hosts sneak into knockouts stoppage-time</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">FOX Sports以"历史性的场景"为题报道了加拿大作为联合东道主在伤停补时阶段惊险晋级淘汰赛的全过程。这场比赛的戏剧性在于它几乎是小组赛阶段加拿大表现的一个缩影——场面不占绝对优势、进攻效率有待提升，但球队在关键时刻展现出了超乎寻常的心理韧性。加拿大在小组赛阶段的表现一直备受质疑，进攻端创造力不足的问题尤为突出。然而足球比赛终究以结果论英雄，加拿大用一场补时绝杀将所有质疑暂时搁置。阿方索·戴维斯本场伤愈复出后在左路的冲击力成为改变比赛走势的关键变量，他的出场为加拿大前场注入了急需的速度与突破能力。</div>
+    <div class="card-meta">
+      <span class="card-source">FoxSports</span>
+      <span class="card-date">6/29</span>
+      <a class="card-link" href="https://www.foxsports.com.au" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="赛事战报">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">6</span>
+    <span class="card-tag tag-赛事战报">战报</span>
+    <span class="card-title">世界杯32强出炉 奥地利阿尔及利亚出线</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">光明网报道了世界杯预选赛最终轮战罢，32支正赛参赛球队全部出炉，奥地利与阿尔及利亚在最后时刻惊险抢到入场券。奥地利凭借在欧洲区附加赛中的稳定发挥锁定了一个正赛名额，这支拥有阿拉巴、萨比策等实力派球员的中欧劲旅将在世界杯舞台上展示其整体足球理念。阿尔及利亚则在非洲区预选赛中脱颖而出，北非之狐保留了上届世界杯的多名核心球员，马赫雷斯与本拉赫马组成的攻击线具备搅局实力。32强中既有传统豪门的强势回归，也有黑马新军的历史性突破，世界杯扩军至48队后的首届赛事在参赛球队多样性上已经有了明显提升。各大洲名额分配及其引发的竞争格局变化也将成为足球界持续讨论的话题。</div>
+    <div class="card-meta">
+      <span class="card-source">光明网</span>
+      <span class="card-date">6/28</span>
+      <a class="card-link" href="https://m.gmw.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="赛事战报">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">7</span>
+    <span class="card-tag tag-赛事战报">战报</span>
+    <span class="card-title">Colombia 0-0 Portugal 双雄携手出线</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">南方网报道了哥伦比亚与葡萄牙在小组赛最后一轮中以0-0握手言和、凭借积分优势携手出线的结果。这场比赛在确定双方均可接受平局晋级的情况下，整体节奏偏慢，双方均有意避免冒险进攻以保留核心球员体能。哥伦比亚在本届赛事中延续了南美传统防守硬度与快速反击的战术特点，中场的拦截效率与边路推进能力是其冲击淘汰赛的核心武器。葡萄牙则在老将经验与新秀活力之间寻求最佳化学反应。这场缺乏进球的平局虽在观赏性上有所欠缺，却从侧面体现了世界杯赛场上球队战略计算意识与务实心态的成熟。接下来淘汰赛的表现才是真正检验两队成色的试金石。</div>
+    <div class="card-meta">
+      <span class="card-source">南方网</span>
+      <span class="card-date">6/28</span>
+      <a class="card-link" href="http://news.southcn.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 转会动态 ====== -->
+<div class="section-title" data-section="转会动态"><span style="width:12px;height:12px;border-radius:3px;background:#2563eb;display:inline-block"></span>转会动态<span class="section-count">10</span></div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">8</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#10004; 皇马官宣库库雷利亚5500万签6年</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">皇家马德里官方宣布以5500万欧元签下边后卫库库雷利亚，双方签约至2030年，新华网报道了这笔银河战舰防线升级的重要操作。库库雷利亚在效力布莱顿和切尔西期间展现出了出色的边路往返能力与传中精准度，其战术适应性和稳定的出勤率是皇马防线长期规划中极为看重的一点。5500万欧元的转会费在当今转会市场中属于合理区间，球员26岁的年龄也正处于职业生涯黄金期的起点。库库雷利亚的加盟将有效缓解皇马左后卫位置长期以来的深度不足问题，门迪频繁的伤病隐患使这一补强尤为迫切。安切洛蒂期待这名西班牙边卫在新的体系中实现职业生涯的进一步提升，库库雷利亚自己也表达了加盟伯纳乌的激动之情。</div>
+    <div class="card-meta">
+      <span class="card-source">新华网</span>
+      <span class="card-date">6/16</span>
+      <a class="card-link" href="http://www.xinhuanet.com.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">9</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#10004; 皇马官宣贝尔纳多席尔瓦自由身加盟2028</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">皇家马德里官方宣布贝尔纳多·席尔瓦以自由球员身份正式加盟，双方签约至2028年，央视报道了这笔堪称夏窗最具影响力的免签操作。B席与曼城的合同到期后未续约，皇马抓住机会以零转会费将这位葡萄牙中场大师招致麾下。贝尔纳多·席尔瓦在曼城效力期间赢得了包括欧冠和英超在内的几乎所有重要荣誉，其细腻的脚下技术、超高的球商以及不遗余力的奔跑覆盖使其成为最契合皇马中场哲学的理想拼图。自由身加盟意味着皇马在薪资结构上拥有了更大的操作空间，B席的到来也将进一步丰富安切洛蒂在中前场的人员调配选择，为多线作战提供顶级阵容深度。银河战舰的中场控制力有望因此提升一个档次。</div>
+    <div class="card-meta">
+      <span class="card-source">央视</span>
+      <span class="card-date">6/18</span>
+      <a class="card-link" href="https://big5.cctv.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">10</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#10004; 皇马官宣科纳特自由身加盟2030年</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">皇马官方再度宣布一笔重磅免签操作——法国中后卫科纳特以自由球员身份加盟，合同签至2030年，央视进行了详细报道。科纳特在利物浦效力期间凭借出色的身体条件、强悍的一对一防守能力以及不断进步的出球技术成长为英超顶级中卫之一。合同到期后他没有与利物浦续约，转而选择加盟皇马开启职业生涯新篇章。科纳特与米利唐组成的双中卫搭档兼具力量、速度和空中统治力，这可能是皇马近年来组建的最具潜力的中卫组合。阿拉巴年龄增长和频繁的伤病使得防线更新换代成为皇马的优先级事项，科纳特的到来恰好填补了这一空缺。对于皇马而言，连续完成B席和科纳特两笔免签操作展现了管理层在转会市场上的精明运作能力。</div>
+    <div class="card-meta">
+      <span class="card-source">央视</span>
+      <span class="card-date">6/18</span>
+      <a class="card-link" href="https://big5.cctv.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">11</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#9674; AC米兰7400万签贡萨洛拉莫斯创队史纪录</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">AC米兰以7400万欧元的天价签下本菲卡前锋贡萨洛·拉莫斯，创下了红黑军团队史引援转会费新纪录，直播吧率先报道了这笔震撼意甲的重磅交易。拉莫斯在2022年世界杯上横空出世，之后在本菲卡持续保持着高效的进球输出，其全面的中锋技术——背身拿球、禁区抢点、远射和头球——使他成为当今转会市场上最炙手可热的年轻中锋之一。米兰在重返欧冠赛场后持续加大投入，拉莫斯的加盟标志着红黑军团在锋线位置上的终极升级。7400万的投入对于米兰而言是一场豪赌，但若拉莫斯能够适应意甲的节奏并在圣西罗兑现天赋，这笔投资将在未来数年内为米兰带来丰厚的竞技回报。拉莫斯本人表示加盟米兰是其职业生涯的重要一步。</div>
+    <div class="card-meta">
+      <span class="card-source">直播吧</span>
+      <span class="card-date">6/27</span>
+      <a class="card-link" href="https://news.zhibo8.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">12</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#9674; 拜仁5500万签塞巴里 世界杯后官宣</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">拜仁慕尼黑以5500万欧元签下中场组织者塞巴里，计划在世界杯结束后正式官宣，直播吧报道了德甲巨人在转会市场上的重要布局。塞巴里在本届世界杯上表现抢眼，其出色的盘带推进能力、精准的直塞球以及大范围的跑动覆盖吸引了多家欧洲豪门的关注。拜仁凭借提前锁定的协议在这场争夺战中胜出。5500万欧元的转会费在拜仁近年来的引援投入中属于较高水平，体现了俱乐部管理层对塞巴里发展潜力的充分信心。塞巴里的加盟将有效弥补拜仁中场创造力的不足，其与穆西亚拉、格雷茨卡等人的组合令人期待。拜仁近年来在中场年轻化方面的持续投入正在逐步成型，塞巴里有望成为安联球场未来十年的中场核心。</div>
+    <div class="card-meta">
+      <span class="card-source">直播吧</span>
+      <span class="card-date">6/19</span>
+      <a class="card-link" href="https://news.zhibo8.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">13</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#9674; 曼城1.16亿镑签安德森</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">曼城以惊人的1.16亿英镑签下攻击型中场安德森，体坛+报道了这笔刷新英超转会费纪录的重磅交易。安德森在近两个赛季中展现出了令人瞠目结舌的进攻数据——超过30粒进球和20次助攻的双重贡献使其成为欧洲足坛最炙手可热的进攻天才。瓜迪奥拉将安德森视为德布劳内未来的长期接班人，后者已经步入职业生涯末期。1.16亿英镑的投入虽然数额巨大，但考虑到安德森年仅22岁的年龄以及已经兑现的顶级天赋，曼城管理层认为这是一笔值得长期投资的交易。安德森的技术特点——出色的盘带、精准的远射以及超凡的比赛视野——被认为完美契合曼城的传控体系。这笔交易也再次证明了曼城在转会市场上不惜重金追求顶级天赋的决心。</div>
+    <div class="card-meta">
+      <span class="card-source">体坛+</span>
+      <span class="card-date">6/28</span>
+      <a class="card-link" href="https://www.ttplus.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">14</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#9674; 科莫6000万签尼科帕斯 皇马保留回购权</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">意甲升班马科莫以6000万欧元签下皇马青训出身的阿根廷新星尼科·帕斯，PPSport报道了这笔令整个欧洲足坛为之侧目的巨额交易。引人注目的是，皇马在出售协议中保留了回购权，这意味着白衣军团未来可以以一个预设价格将尼科·帕斯重新带回伯纳乌。对于科莫而言，6000万欧元的投资代表了俱乐部升入意甲后的雄心壮志——他们不满足于仅仅保级，而是希望通过引进年轻天才逐步建立竞争力。尼科·帕斯在租借至西甲球队期间展现出了出色的技术功底和战术理解力，他的成长潜力是科莫愿意豪赌的根本原因。皇马保留回购权的安排则体现了弗洛伦蒂诺对自家青训球员一贯的"放养但保留优先收购"策略，这是一笔对三方都有潜在好处的精巧交易结构。</div>
+    <div class="card-meta">
+      <span class="card-source">PPSport</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="http://www.ppsport.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">15</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#10004; 富勒姆600万买断拜仁阿萨雷 签约5+1年</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">富勒姆以仅600万欧元的超低价从拜仁买断前锋阿萨雷，并与之签约5+1年合同，PPSport报道了这笔堪称夏窗性价比之王的交易。阿萨雷在上赛季租借富勒姆期间交出了出色的进球数据，其强悍的身体对抗能力与敏锐的门前嗅觉完全适应了英超的高强度节奏。600万欧元的买断费用在当今转会费溢价的背景下简直犹如白菜价，富勒姆管理层在转会市场上的精准眼光和果断执行力令人印象深刻。5+1年的长约也说明富勒姆将阿萨雷视为球队未来锋线的长期核心。对于拜仁而言，虽然低价放走了一名潜力前锋略显遗憾，但球员本人坚定的留队意愿使德甲巨人不得不接受这一结果。阿萨雷的案例再次证明了租借加买断模式对于中小俱乐部的极高实用价值。</div>
+    <div class="card-meta">
+      <span class="card-source">PPSport</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="http://www.ppsport.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">16</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#10004; 利物浦3450万签穆诺兹</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">利物浦以3450万欧元正式签下后卫穆诺兹，BBC确认了这笔红军在夏窗的务实补强操作。克洛普离任后利物浦的球队重建正有条不紊地推进，穆诺兹的加盟是针对后防线年龄结构老化问题的战略性补强。3450万欧元的转会费在当今溢价严重的市场中显得相当合理且务实，球员在防守端的稳健表现以及在进攻端的插上助攻能力符合现代足球对边后卫的全面要求。穆诺兹在效力原俱乐部期间以其稳定的出勤率和全面的防守技术赢得了球探部门的重点关注。对于经历了上赛季战绩波动的利物浦而言，每一笔引援都承载着重返英超争冠行列的期望。新帅的战术体系构建需要合适的球员来落实，穆诺兹的加入能否帮助利物浦防线重拾稳固将是新赛季的重要看点。</div>
+    <div class="card-meta">
+      <span class="card-source">BBC</span>
+      <span class="card-date">6/18</span>
+      <a class="card-link" href="https://www.bbc.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="转会动态">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">17</span>
+    <span class="card-tag tag-转会动态">转会</span>
+    <span class="card-title">&#9674; 切尔西接近4300万签帕莱斯特拉</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">切尔西接近以4300万欧元签下拉齐奥中场悍将帕莱斯特拉，BBC报道了蓝军在夏季转会窗的又一轮重要运作。帕莱斯特拉近年来在意甲赛场上成长为最具统治力的中场防守者之一，其恐怖的覆盖面积、凶狠的抢断能力以及由守转攻时的快速出球能力完美契合英超的高节奏对抗。4300万欧元的价格在当今市场中属于合理的"即战力溢价"，而帕莱斯特拉今年26岁的年龄正处于职业生涯黄金期。切尔西在新老板伯利持续投入的背景下继续推进中场的年轻化与硬朗化改造。帕莱斯特拉的加盟将有效解决蓝军中场硬度不足的顽疾，他与恩佐、凯塞多的中场组合兼具技术、跑动与对抗能力。若交易最终完成，切尔西的中场配置将跻身英超顶级行列。</div>
+    <div class="card-meta">
+      <span class="card-source">BBC</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="https://www.bbc.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 球员焦点 ====== -->
+<div class="section-title" data-section="球员焦点"><span style="width:12px;height:12px;border-radius:3px;background:#d97706;display:inline-block"></span>球员焦点<span class="section-count">7</span></div>
+
+<div class="card" data-tag="球员焦点">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">18</span>
+    <span class="card-tag tag-球员焦点">球员</span>
+    <span class="card-title">梅西6球领跑射手榜 19球历史第一</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">梅西在本届世界杯上以6粒进球强势领跑射手榜，其世界杯累计总进球数达到19球，超越克洛泽成为历史第一人，直播吧报道了这一载入足球史册的伟大时刻。37岁的梅西依然在世界最高水平的赛场上贡献着统治级表现，他在小组赛到淘汰赛阶段持续提升的状态曲线令全世界球迷惊叹。每一步历史纪录的刷新都在进一步巩固其作为足球史上最伟大球员之一的地位。阿根廷全队围绕梅西精心打造的战术体系运转流畅，队友们的无私跑动与战术牺牲为梅西创造了最佳发挥空间。梅西从小组赛到淘汰赛持续升温的表现是阿根廷卫冕之路上最强的信心来源。如果阿根廷最终夺冠，梅西将以空前绝后的成就为自己的传奇篇章添上最浓墨重彩的一笔。</div>
+    <div class="card-meta">
+      <span class="card-source">直播吧</span>
+      <span class="card-date">6/28</span>
+      <a class="card-link" href="https://news.zhibo8.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="球员焦点">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">19</span>
+    <span class="card-tag tag-球员焦点">球员</span>
+    <span class="card-title">姆巴佩4球2助攻 力争夺靴</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">姆巴佩在本届世界杯上已攻入4球并送出2次助攻，在射手榜上紧追梅西，HK01报道了法国前锋冲击连续两届世界杯金靴奖的强烈势头。姆巴佩令人生畏的冲刺速度与冷静的临门终结能力在本届赛事中依旧是无解的存在，法国队深厚的整体实力和中后场的强大支持也为其提供了源源不断的进攻机会。若能成功实现背靠背世界杯金靴的壮举，姆巴佩将进一步确立其作为后梅西C罗时代足坛新一代领军人物的地位。尽管法国队所在的淘汰赛半区强敌环伺，但姆巴佩在关键比赛中展现出的"大赛基因"与决胜时刻的沉着冷静使其始终是金靴奖最热门竞争者。姆巴佩与梅西之间的金靴对决也成为本届世界杯最具看点的个人荣誉悬念，吸引了全球球迷的目光。</div>
+    <div class="card-meta">
+      <span class="card-source">HK01</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="https://www.hk01.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="球员焦点">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">20</span>
+    <span class="card-tag tag-球员焦点">球员</span>
+    <span class="card-title">哈兰德首次世界杯4球 挪威28年最佳</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">哈兰德在个人首次世界杯之旅中即攻入4球，创造了挪威国家队28年来在世界杯上的最佳进球数据，APNews报道了这位挪威神锋在国际赛场上同样令人叹为观止的表现。经历俱乐部赛季的辉煌与多项纪录的打破后，哈兰德将火热的进球状态完美延续到了世界杯舞台。其恐怖的进球效率与在禁区内的统治级身体对抗力让所有对手防线都感到束手无策，身高腿长结合灵活的移动创造出了独一无二的进攻威胁。对于挪威足球而言，哈兰德的横空出世意味着国家队在多年沉寂之后终于重新拥有了世界级的超级球星。世界杯处子秀即攻入4球的惊艳表现只是这位新一代锋线杀神国际赛场征程的起点。哈兰德的表现也将进一步巩固其在金球奖评选中的竞争力。</div>
+    <div class="card-meta">
+      <span class="card-source">APNews</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="https://apnews.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="球员焦点">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">21</span>
+    <span class="card-tag tag-球员焦点">球员</span>
+    <span class="card-title">C罗梅开二度 六届世界杯进球第一人</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">C罗在比赛中完成梅开二度，从而成为足球历史上首位在连续六届世界杯中均有进球的球员，Onefootball报道了葡萄牙巨星创下的这一前无古人的历史纪录。39岁的C罗用无可辩驳的实际表现回击了所有关于年龄与状态的质疑，其令人敬佩的职业精神与永不停歇的求胜欲望在世界杯舞台上再次得到完美诠释。虽然已不再处于巅峰速度和爆发力的竞技状态，但C罗通过顶级的无球跑位意识、精准的射门技巧以及强大的心理素质依然保持着致命的进球效率。六届世界杯横跨近二十年的进球纪录是对C罗职业生涯持久性与超凡竞技状态保持能力的最高礼赞。即便已进入职业生涯末期，C罗依然是葡萄牙队不可或缺的精神领袖与战术核心，他的存在本身就是对手防线的心理负担。</div>
+    <div class="card-meta">
+      <span class="card-source">Onefootball</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="https://onefootball.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="球员焦点">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">22</span>
+    <span class="card-tag tag-球员焦点">球员</span>
+    <span class="card-title">欧斯塔奇欧补时绝杀 助加拿大创造历史</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">欧斯塔奇欧在补时阶段的绝杀进球帮助加拿大1-0击败南非，首次晋级世界杯16强，新华网报道了这位英雄球员的闪耀时刻。这粒进球不仅改写了加拿大足球的历史，也让欧斯塔奇欧本人一夜之间成为国家英雄。作为一名中场球员，欧斯塔奇欧在比赛中以不懈的奔跑和出色的位置感著称，而这粒绝杀进球正是他"永不停歇直到最后一刻"比赛态度的最佳回报。进球过程中他在禁区混战中的冷静令人印象深刻——面对近在咫尺的机会他没有选择大力抽射，而是稳稳推射远角，展现了一名成熟球员的大心脏。对于28岁的欧斯塔奇欧而言，这粒进球无疑是他职业生涯的最高光时刻。加拿大国内已有球迷呼吁为其树立雕像，以纪念这粒改变了加拿大足球历史进程的进球。</div>
+    <div class="card-meta">
+      <span class="card-source">新华网</span>
+      <span class="card-date">6/29</span>
+      <a class="card-link" href="http://www.xinhuanet.com.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="球员焦点">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">23</span>
+    <span class="card-tag tag-球员焦点">球员</span>
+    <span class="card-title">阿方索戴维斯伤愈复出 改变比赛</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">阿方索·戴维斯在加拿大的关键战中伤愈复出，替补登场后彻底改变了比赛走势，搜狐报道了这位拜仁飞翼在左路掀起的进攻风暴。戴维斯因伤缺席了小组赛前两场比赛，加拿大的进攻端明显缺乏速度和纵深威胁。本场他在下半场替补登场后，加拿大的左路进攻立刻焕然一新——戴维斯以标志性的高速突破屡屡撕开南非防线，为中路创造出宝贵的空间。加拿大的绝杀进球也与戴维斯在左路的牵制密切相关。戴维斯的复出不仅提供了战术层面的巨大提升，更重要的是给全队注入了信心和斗志。作为加拿大队中最大牌的球星，戴维斯的存在本身就令对手不得不投入更多防守资源。他的回归使加拿大的淘汰赛前景更加值得期待，健康的戴维斯具备在关键时刻决定比赛走向的能力。</div>
+    <div class="card-meta">
+      <span class="card-source">搜狐</span>
+      <span class="card-date">6/29</span>
+      <a class="card-link" href="https://www.sohu.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="球员焦点">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">24</span>
+    <span class="card-tag tag-球员焦点">球员</span>
+    <span class="card-title">登贝莱帽子戏法 法国全胜</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">登贝莱在小组赛中完成技惊四座的帽子戏法，帮助法国队以全胜战绩昂首出线，新华网对这位法国边锋的全面爆发进行了专题报道。登贝莱的天赋与技术潜力一直以来都受到足坛广泛认可，但伤病史与状态稳定性的不足始终制约其生涯发展。本届世界杯上，登贝莱展现出了前所未有的成熟与专注，其犀利的边路突破与精准的传中成为法国队进攻体系中不可或缺的武器。法国队目前全员健康且竞技状态上佳，姆巴佩与登贝莱的两翼齐飞组合令所有对手防线感到恐惧。吉鲁在中路的支点作用与格列兹曼的串联调度为边锋群创造了极致发挥空间。登贝莱的爆发让法国队的攻击线拥有了更多战术选择，卫冕冠军无疑是本届世界杯最具冠军相的球队之一。法国队的进攻火力令所有争冠对手感到压力。</div>
+    <div class="card-meta">
+      <span class="card-source">新华网</span>
+      <span class="card-date">6/27</span>
+      <a class="card-link" href="http://www.xinhuanet.com.cn" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 深度分析 ====== -->
+<div class="section-title" data-section="深度分析"><span style="width:12px;height:12px;border-radius:3px;background:#059669;display:inline-block"></span>深度分析<span class="section-count">6</span></div>
+
+<div class="card" data-tag="深度分析">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">25</span>
+    <span class="card-tag tag-深度分析">分析</span>
+    <span class="card-title">淘汰赛签表阿根廷最优 法德或16强相遇</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">Yahoo体育对世界杯淘汰赛签表进行了深度分析，认为阿根廷队获得了最为有利的半区分布，而法国与德国则可能在16强阶段就提前上演决赛级别的对决。阿根廷所在半区的传统豪门数量较少，晋级决赛的赛程阻力相对较小，这为梅西率队冲击连冠创造了极为有利的条件。相比之下，法国与德国两支欧洲顶级球队被抽入同一半区，意味着其中至多一支能进入四强，这对于纸面实力足以争冠的两队而言都是巨大的遗憾。淘汰赛对阵的博弈不仅仅是纸面实力的对比，更涉及紧凑赛程下的体能分配、核心球员的健康管理以及球队心理调节等综合因素。德法两强的提前相遇意味着其中一方的世界杯之旅将止步于四强门外，这无疑是淘汰赛阶段最令人遗憾但也最为刺激的看点。</div>
+    <div class="card-meta">
+      <span class="card-source">Yahoo</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="https://tw.sports.yahoo.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="深度分析">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">26</span>
+    <span class="card-tag tag-深度分析">分析</span>
+    <span class="card-title">Opta预测阿根廷晋级概率87.9%最高</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">数据机构Opta发布了最新一期的世界杯夺冠与晋级概率预测，阿根廷队以87.9%的晋级概率高居所有球队之首，懂球帝对这一数据预测进行了详细解读。Opta的预测模型综合了球队历史战绩、球员当前竞技状态评分、战术适配度指标以及赛程难度系数等多维变量。阿根廷的高概率得益于小组赛全胜且零失球的统治级表现，以及淘汰赛半区的相对有利分布。梅西持续高光的状态是阿根廷被数据模型高度看好的核心因素。不过Opta也指出，足球比赛的不可预测性意味着数据模型只能作为参考框架。阿根廷需要将纸面优势和概率优势转化为场上实实在在的胜利，任何微小的疏忽都可能在单场淘汰制中付出惨痛代价。其他争冠球队如法国、巴西的晋级概率紧随其后。</div>
+    <div class="card-meta">
+      <span class="card-source">懂球帝</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="https://beta.dongqiudi.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="深度分析">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">27</span>
+    <span class="card-tag tag-深度分析">分析</span>
+    <span class="card-title">FOX分析各队晋级路径 最艰难区域</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">FOX Sports发布了一份详尽的各队晋级路径分析报告，标出了本届世界杯淘汰赛中的"最艰难区域"——即欧洲六大豪门扎堆的上半区。报告指出，任何一支从该半区突围的球队都需要在连续三场单场淘汰赛中击败至少两支世界前十级别的对手，这对球队的战术储备、阵容深度和心理承受力都是极限考验。FOX的分析师认为，能够从"死亡半区"中杀出重围的球队将在决赛中拥有独特的心理优势——他们已经经历了最残酷的考验。而阿根廷所在的半区虽然整体实力相对较弱，但也暗藏陷阱——缺乏高水平热身赛的磨练可能使球队在决赛中出现准备不足的问题。FOX同时分析了东道主美国队的晋级路线，认为其进入八强的概率约为40%，关键取决于16强战的对手。</div>
+    <div class="card-meta">
+      <span class="card-source">FOXSports</span>
+      <span class="card-date">6/28</span>
+      <a class="card-link" href="https://www.foxsports.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="深度分析">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">28</span>
+    <span class="card-tag tag-深度分析">分析</span>
+    <span class="card-title">八强预测 阿根廷vs哥伦比亚 巴西vs英格兰</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">FOX13发布了基于小组赛表现和淘汰赛签表展开的八强对阵预测，其中最受关注的对决包括阿根廷对阵哥伦比亚、巴西对阵英格兰的重磅交锋。阿根廷与哥伦比亚的南美内战将成为八强战中的一大看点——两支南美球队彼此极为熟悉，战术上没有太多秘密可言，胜负将更多取决于球星个人能力的发挥。巴西与英格兰之间的欧洲-南美对决则代表着两种截然不同足球哲学的碰撞——桑巴足球的即兴创造力对阵英超体系的纪律性与高强度。FOX13的预测认为阿根廷和巴西在各自半区中具备明显的纸面实力优势，但英格兰在近年大赛中的稳定表现使其成为最有可能颠覆预测的搅局者。八强预测的结果将为全球球迷提供一份理性而详尽的观赛指南，但足球的魅力恰恰在于其不可预测性。</div>
+    <div class="card-meta">
+      <span class="card-source">FOX13</span>
+      <span class="card-date">6/28</span>
+      <a class="card-link" href="https://www.fox13seattle.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="深度分析">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">29</span>
+    <span class="card-tag tag-深度分析">分析</span>
+    <span class="card-title">经济学家Klement预测葡萄牙淘汰阿根廷荷兰夺冠</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">经济学家Klement发表了一份另类的世界杯夺冠预测，他认为葡萄牙将在淘汰赛中击败阿根廷，而荷兰将最终捧起大力神杯，DailyPost报道了这一基于经济模型而非传统足球数据的独特预测。Klement的预测模型融合了宏观经济指标、球队身价与工资总额、球员转会市场估值波动以及历史大赛数据回归分析等多维经济变量。模型预测葡萄牙将在淘汰赛阶段展现出超越纸面实力的竞争力，而荷兰则凭借其攻守极度平衡的阵容结构和极高的战术执行力最终夺冠。这一来自经济学界的预测虽然在足球圈内引发了调侃和质疑，但也提供了一个跳出传统足球思维的观察视角。无论Klement的预测最终是否准确，这种跨学科的预测方法本身为世界杯增添了别样的趣味性和话题性。</div>
+    <div class="card-meta">
+      <span class="card-source">DailyPost</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="https://dailypost.ng" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-tag="深度分析">
+  <div class="card-top" onclick="toggleCard(this)">
+    <span class="card-index">30</span>
+    <span class="card-tag tag-深度分析">分析</span>
+    <span class="card-title">TA分析美国队1/4或碰西班牙葡萄牙</span>
+    <span class="card-arrow">&#9660;</span>
+  </div>
+  <div class="card-detail">
+    <div class="card-summary">The Athletic发布分析报告，预测东道主美国队在晋级八强的道路上很有可能遭遇西班牙或葡萄牙这两支欧洲技术型强队，PPSport进行了转载报道。美国队在本届小组赛中展现出了令人鼓舞的竞技状态，普利西奇、雷纳、巴洛贡等年轻核心经过欧洲顶级联赛的历练已经趋于成熟。然而倘若八强战中面对西班牙的传控体系或葡萄牙的球星个人能力，美国队在整体战术素养和大赛经验方面的短板可能被放大。TA的分析师认为美国队想要突破八强需要满足三个条件：后防线在整个淘汰赛阶段保持零失误、中场至少在一两场比赛中实现战术上的以弱胜强、以及普利西奇必须在关键时刻拿出世界级表现。作为东道主，主场球迷的助威将是美国队最强大的第12人，这种无形的力量在单场淘汰制中往往能产生决定性影响。</div>
+    <div class="card-meta">
+      <span class="card-source">PPSport</span>
+      <span class="card-date">6月</span>
+      <a class="card-link" href="http://www.ppsport.com" target="_blank" rel="noopener">阅读原文 &#8599;</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  FootballHot &mdash; 2026年6月29日 &mdash; 数据来源为各新闻机构，仅供参考
+</div>
+
+</div>
+
+<script>
+function toggleCard(el) {
+  var detail = el.nextElementSibling;
+  var arrow = el.querySelector('.card-arrow');
+  var isOpen = detail.classList.contains('open');
+  var allDetails = document.querySelectorAll('.card-detail.open');
+  for (var i = 0; i < allDetails.length; i++) {
+    if (allDetails[i] !== detail) {
+      allDetails[i].classList.remove('open');
+      allDetails[i].style.maxHeight = null;
+      var a = allDetails[i].previousElementSibling.querySelector('.card-arrow');
+      if (a) a.classList.remove('open');
+      allDetails[i].previousElementSibling.classList.remove('active');
+    }
+  }
+  if (!isOpen) {
+    detail.classList.add('open');
+    detail.style.maxHeight = detail.scrollHeight + 'px';
+    arrow.classList.add('open');
+    el.classList.add('active');
+  } else {
+    detail.classList.remove('open');
+    detail.style.maxHeight = null;
+    arrow.classList.remove('open');
+    el.classList.remove('active');
+  }
+}
+
+function filterSection(el, section) {
+  var tabs = document.querySelectorAll('.nav-tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active');
+  }
+  el.classList.add('active');
+  var cards = document.querySelectorAll('.card');
+  for (var j = 0; j < cards.length; j++) {
+    if (section === 'all') {
+      cards[j].style.display = '';
+    } else {
+      cards[j].style.display = cards[j].getAttribute('data-tag') === section ? '' : 'none';
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var firstCard = document.querySelector('.card');
+  if (firstCard) {
+    var top = firstCard.querySelector('.card-top');
+    if (top) toggleCard(top);
+  }
+});
+</script>
+
+</body>
+</html>

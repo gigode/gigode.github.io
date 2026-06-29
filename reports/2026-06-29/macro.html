@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macro Report | 2026-06-29</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0a0a0a;color:#e5e5e5;min-height:100vh}
+.cover{background:linear-gradient(135deg,#1a0f0a,#3d2517,#b45309);min-height:380px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(180,83,9,0.12),transparent 70%)}
+.cover-content{position:relative;z-index:1;padding:60px 20px}
+.cover h1{font-size:3.8rem;font-weight:800;color:#fff;text-shadow:0 2px 30px rgba(0,0,0,0.5);letter-spacing:-0.5px}
+.cover .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.7);margin-top:16px;letter-spacing:2px}
+.cover .date{font-size:0.95rem;color:rgba(255,255,255,0.45);margin-top:8px;font-family:'Courier New',monospace}
+.cover .badge-row{display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.cover .badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;color:#fff;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.15)}
+.container{max-width:960px;margin:0 auto;padding:40px 20px}
+.market-header{margin-bottom:40px}
+.market-header h2{font-size:1.1rem;font-weight:700;margin-bottom:14px;color:#b45309;letter-spacing:1px}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:24px}
+.metric-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px 10px;text-align:center}
+.metric-label{font-size:0.68rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px}
+.metric-value{font-size:1rem;font-weight:700;margin-top:3px;font-family:'Courier New',monospace;color:#f0f0f0}
+.metric-change{font-size:0.68rem;margin-top:1px}
+.metric-change.pos{color:#22c55e}
+.metric-change.neg{color:#ef4444}
+.metric-group-label{font-size:0.75rem;color:rgba(255,255,255,0.3);grid-column:1/-1;margin-top:8px;margin-bottom:2px;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.04);padding-bottom:4px}
+.toc{margin-bottom:44px}
+.toc h2{font-size:1.2rem;font-weight:700;margin-bottom:16px;color:#b45309;letter-spacing:1px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.toc-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 14px;cursor:pointer;transition:all 0.25s;font-size:0.82rem;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:8px}
+.toc-item:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.18)}
+.toc-item .toc-num{flex-shrink:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:0.65rem;font-weight:700;color:#fff}
+.toc-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:600;color:#fff;margin-left:auto;flex-shrink:0}
+.section{margin-bottom:40px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.section-header h2{font-size:1.3rem;font-weight:700}
+.section-tag{display:inline-block;padding:4px 12px;border-radius:6px;font-size:0.75rem;font-weight:600;color:#fff}
+.section-count{color:rgba(255,255,255,0.35);font-size:0.8rem;font-weight:400;margin-left:auto}
+.card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:10px;margin-bottom:10px;overflow:hidden;transition:all 0.3s}
+.card:hover{border-color:rgba(255,255,255,0.14);background:rgba(255,255,255,0.04)}
+.card-top{display:flex;align-items:center;padding:14px 18px;cursor:pointer;gap:12px;user-select:none}
+.card-arrow{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;transition:transform 0.35s ease;color:rgba(255,255,255,0.3);font-size:0.65rem;background:rgba(255,255,255,0.04);border-radius:50%;border:1px solid rgba(255,255,255,0.06)}
+.card.active .card-arrow{transform:rotate(90deg);color:#b45309;border-color:rgba(180,83,9,0.3);background:rgba(180,83,9,0.1)}
+.card-num{flex-shrink:0;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:0.7rem;font-weight:700;color:#fff}
+.card-info{flex:1;min-width:0}
+.card-title{font-size:0.95rem;font-weight:600;color:#eee;line-height:1.4}
+.card-meta{font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
+.card-meta a{color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}
+.card-meta a:hover{color:#b45309;text-decoration:underline}
+.card-detail{max-height:0;overflow:hidden;transition:max-height 0.45s ease, padding 0.3s ease, border-top-width 0.3s ease;padding:0 18px;border-top:0 solid rgba(255,255,255,0.04)}
+.card.active .card-detail{max-height:900px;padding:14px 18px;border-top-width:1px}
+.card-analysis{font-size:0.88rem;line-height:1.85;color:rgba(255,255,255,0.7);text-align:justify}
+.card-source{margin-top:12px;font-size:0.78rem;color:rgba(255,255,255,0.3)}
+.card-source a{text-decoration:none;font-weight:500}
+.footer{text-align:center;padding:36px 20px;color:rgba(255,255,255,0.2);font-size:0.75rem;border-top:1px solid rgba(255,255,255,0.04);margin-top:20px;letter-spacing:0.5px}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px}
+@media(max-width:768px){
+.cover h1{font-size:2.2rem}.cover{min-height:300px}.container{padding:20px 14px}.toc-grid{grid-template-columns:1fr}.card-top{padding:12px 14px}.card-title{font-size:0.88rem}.metric-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+.cover h1{font-size:1.8rem}.cover .subtitle{font-size:0.9rem}.card-num{width:22px;height:22px;font-size:0.6rem}.card-arrow{width:20px;height:20px;font-size:0.55rem}.metric-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+
+<header class="cover">
+<div class="cover-content">
+<h1>Macro Report</h1>
+<div class="subtitle">全球宏观 · 央行动态 · 市场脉动</div>
+<div class="date">2026.06.29  WEEK 26</div>
+<div class="badge-row">
+<span class="badge">央行政策 3</span>
+<span class="badge">市场动态 5</span>
+<span class="badge">全球经济 4</span>
+<span class="badge">地缘贸易 4</span>
+<span class="badge">商品外汇 4</span>
+</div>
+</div>
+</header>
+
+<div class="container">
+
+<div class="market-header">
+<h2>Market Data &middot; Friday Close</h2>
+
+<div class="metric-grid">
+<div class="metric-group-label">US ETFs</div>
+<div class="metric-card"><div class="metric-label">SPY</div><div class="metric-value">728.99</div><div class="metric-change neg">-2.07% WoW</div></div>
+<div class="metric-card"><div class="metric-label">QQQ</div><div class="metric-value">706.52</div><div class="metric-change neg">-4.26% WoW</div></div>
+<div class="metric-card"><div class="metric-label">DIA</div><div class="metric-value">517.75</div><div class="metric-change pos">+0.13% WoW</div></div>
+<div class="metric-card"><div class="metric-label">IWM</div><div class="metric-value">299.83</div><div class="metric-change pos">+0.55% WoW</div></div>
+
+<div class="metric-group-label">Global Indices</div>
+<div class="metric-card"><div class="metric-label">SPX</div><div class="metric-value">7,354.02</div></div>
+<div class="metric-card"><div class="metric-label">IXIC</div><div class="metric-value">25,297.62</div></div>
+<div class="metric-card"><div class="metric-label">DOW</div><div class="metric-value">51,876.11</div></div>
+<div class="metric-card"><div class="metric-label">FTSE</div><div class="metric-value">10,529.90</div></div>
+<div class="metric-card"><div class="metric-label">NIKKEI</div><div class="metric-value">72,366.34</div></div>
+<div class="metric-card"><div class="metric-label">HSI</div><div class="metric-value">23,076.91</div></div>
+
+<div class="metric-group-label">Rates & VIX</div>
+<div class="metric-card"><div class="metric-label">Fed Funds</div><div class="metric-value">3.63%</div></div>
+<div class="metric-card"><div class="metric-label">US 10Y</div><div class="metric-value">4.40%</div></div>
+<div class="metric-card"><div class="metric-label">US 2Y</div><div class="metric-value">4.09%</div></div>
+<div class="metric-card"><div class="metric-label">Spread</div><div class="metric-value">0.31%</div></div>
+<div class="metric-card"><div class="metric-label">VIX</div><div class="metric-value">18.89</div></div>
+<div class="metric-card"><div class="metric-label">Unemp</div><div class="metric-value">4.3%</div></div>
+
+<div class="metric-group-label">Commodities</div>
+<div class="metric-card"><div class="metric-label">Gold</div><div class="metric-value">$4,079</div></div>
+<div class="metric-card"><div class="metric-label">WTI</div><div class="metric-value">$69.23</div></div>
+<div class="metric-card"><div class="metric-label">Brent</div><div class="metric-value">$71.99</div></div>
+<div class="metric-card"><div class="metric-label">Silver</div><div class="metric-value">$59.22</div></div>
+<div class="metric-card"><div class="metric-label">Copper</div><div class="metric-value">$6.14</div></div>
+
+<div class="metric-group-label">FX</div>
+<div class="metric-card"><div class="metric-label">EUR/USD</div><div class="metric-value">1.1400</div></div>
+<div class="metric-card"><div class="metric-label">USD/JPY</div><div class="metric-value">161.95</div></div>
+<div class="metric-card"><div class="metric-label">USD/CNY</div><div class="metric-value">6.79</div></div>
+</div>
+</div>
+
+<nav class="toc">
+<h2>目录</h2>
+<div class="toc-grid">
+<div class="toc-item" data-target="s-cenbank"><span class="toc-num" style="background:#dc2626">1</span>央行政策<span class="toc-tag" style="background:#dc2626">3</span></div>
+<div class="toc-item" data-target="s-market"><span class="toc-num" style="background:#2563eb">2</span>市场动态<span class="toc-tag" style="background:#2563eb">5</span></div>
+<div class="toc-item" data-target="s-global"><span class="toc-num" style="background:#059669">3</span>全球经济<span class="toc-tag" style="background:#059669">4</span></div>
+<div class="toc-item" data-target="s-geo"><span class="toc-num" style="background:#d97706">4</span>地缘贸易<span class="toc-tag" style="background:#d97706">4</span></div>
+<div class="toc-item" data-target="s-commodity"><span class="toc-num" style="background:#7c3aed">5</span>商品外汇<span class="toc-tag" style="background:#7c3aed">4</span></div>
+</div>
+</nav>
+
+<section class="section" id="s-cenbank">
+<div class="section-header">
+<span class="section-tag" style="background:#dc2626">央行政策</span>
+<h2 style="color:#dc2626">Central Bank</h2>
+<span class="section-count">3 items</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#dc2626">1</span>
+<div class="card-info">
+<div class="card-title">Warsh首次FOMC鹰派hold</div>
+<div class="card-meta">JPMorgan · <a href="https://www.jpmorgan.com" target="_blank">jpmorgan.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">新任美联储主席Warsh在首次FOMC会议上释放鹰派按兵不动信号，令市场对年内降息的预期进一步回落。Warsh的立场延续了美联储对抗通胀的谨慎基调，尽管近期通胀数据有所缓和，但核心服务价格和薪资增长仍具粘性。市场需重新定价利率路径，股债双杀风险上升，投资者应关注7月会议的点阵图变化。</div>
+<div class="card-source">来源：<a href="https://www.jpmorgan.com" target="_blank" style="color:#dc2626">JPMorgan</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#dc2626">2</span>
+<div class="card-info">
+<div class="card-title">ECB 6月加息 Sintra论坛</div>
+<div class="card-meta">NetDania · <a href="https://m.netdania.com" target="_blank">m.netdania.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">欧洲央行在6月会议上继续加息，行长拉加德在Sintra论坛上重申通胀斗争的持久性。尽管欧元区经济增速放缓，但核心通胀仍远超目标水平，ECB被迫在增长与物价之间艰难平衡。市场关注ECB是否会在夏季后暂停加息周期，但高盛预计终端利率可能高于当前市场定价，欧元汇率面临双向波动风险。</div>
+<div class="card-source">来源：<a href="https://m.netdania.com" target="_blank" style="color:#dc2626">NetDania</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#dc2626">3</span>
+<div class="card-info">
+<div class="card-title">BOJ东京CPI回升 加息预期升温</div>
+<div class="card-meta">华尔街见闻 · <a href="https://wallstreetcn.com" target="_blank">wallstreetcn.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">东京CPI数据超预期回升，推动市场对日本央行进一步加息的预期升温。BOJ行长植田和男近期多次暗示若通胀持续性得到确认将调整货币政策。日本作为全球最后一个负利率实验场，其政策正常化对全球资本市场具有深远影响。日元套利交易若大规模平仓，可能引发全球资产价格的连锁反应。</div>
+<div class="card-source">来源：<a href="https://wallstreetcn.com" target="_blank" style="color:#dc2626">华尔街见闻</a></div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-market">
+<div class="section-header">
+<span class="section-tag" style="background:#2563eb">市场动态</span>
+<h2 style="color:#2563eb">Market Moves</h2>
+<span class="section-count">5 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">4</span>
+<div class="card-info">
+<div class="card-title">S&P连跌五日 十个月最长</div>
+<div class="card-meta">ATB · <a href="https://www.atb.com" target="_blank">atb.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">标普500指数连续五个交易日下跌，创下近十个月以来的最长连跌纪录。科技股领跌的格局反映出市场对高估值和利率持续高企的担忧加剧。二季末机构调仓和被动资金再平衡进一步放大了抛压。技术面上，SPX已跌穿50日均线，若不能快速收复4600关口，短期调整可能延续至7月中旬。</div>
+<div class="card-source">来源：<a href="https://www.atb.com" target="_blank" style="color:#2563eb">ATB</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">5</span>
+<div class="card-info">
+<div class="card-title">Apple涨8% 因芯片成本提价</div>
+<div class="card-meta">华尔街见闻 · <a href="https://wallstreetcn.com" target="_blank">wallstreetcn.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">Apple逆势大涨8%，市场将其解读为芯片成本提价后利润预期上调的积极信号。Apple通过供应链谈判成功将部分成本压力转嫁给供应商，同时自研芯片策略的长期效益开始显现。在市场整体承压的背景下，Apple的强势表现凸显了超级权重股在指数中的护盘作用，但也反映出资金向确定性龙头的集中避险趋势。</div>
+<div class="card-source">来源：<a href="https://wallstreetcn.com" target="_blank" style="color:#2563eb">华尔街见闻</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">6</span>
+<div class="card-info">
+<div class="card-title">SoftBank跌13% OpenAI IPO推迟</div>
+<div class="card-meta">华尔街见闻 · <a href="https://wallstreetcn.com" target="_blank">wallstreetcn.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">SoftBank股价暴跌13%，主因是OpenAI的IPO计划推迟，直接打击了市场对SoftBank愿景基金退出预期的信心。作为软银资产组合中最重要的未上市资产，OpenAI的上市时间表直接影响软银的估值锚点。此次推迟反映出AI独角兽在当前的监管和估值环境下上市面临的不确定性，也令软银的NAV折价进一步扩大。</div>
+<div class="card-source">来源：<a href="https://wallstreetcn.com" target="_blank" style="color:#2563eb">华尔街见闻</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">7</span>
+<div class="card-info">
+<div class="card-title">Micron涨15.7% 业绩炸裂</div>
+<div class="card-meta">MarketIndex · <a href="https://www.marketindex.com.au" target="_blank">marketindex.com.au</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">Micron财报超预期推动股价大涨15.7%，存储芯片行业景气度持续超预期。AI服务器对HBM高带宽存储器的需求爆发式增长，叠加存储芯片供给端收缩，行业进入新一轮上升周期。Micron作为存储三巨头之一率先受益，其财报反映了下游AI产业链资本开支的强劲势头，也为半导体板块提供了业绩支撑。</div>
+<div class="card-source">来源：<a href="https://www.marketindex.com.au" target="_blank" style="color:#2563eb">MarketIndex</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">8</span>
+<div class="card-info">
+<div class="card-title">纳指周跌4.6% 道指+0.6% 轮动加速</div>
+<div class="card-meta">综合</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">纳斯达克指数周跌幅达4.6%，而道琼斯指数逆势微涨0.6%，鲜明的反差揭示了市场内部剧烈的风格轮动。资金正从前期涨幅过大的科技成长股流向价值周期板块，反映出投资者对AI主题过热后的获利了结和防御性调仓。如果轮动持续，金融、能源和工业板块可能在第三季度获得相对收益。</div>
+<div class="card-source">来源：综合市场数据</div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-global">
+<div class="section-header">
+<span class="section-tag" style="background:#059669">全球经济</span>
+<h2 style="color:#059669">Global Economy</h2>
+<span class="section-count">4 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">9</span>
+<div class="card-info">
+<div class="card-title">BIS三重警钟：AI泡沫 通胀 债务</div>
+<div class="card-meta">金融界 · <a href="https://finance.jrj.com.cn" target="_blank">finance.jrj.com.cn</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">国际清算银行在最新报告中同时敲响AI资产泡沫、通胀粘性和全球债务高企三重警钟。BIS认为当前AI相关资产估值已脱离基本面支撑，同时服务通胀的持续性超出预期，而全球政府债务水平已达到二战以来最高。三重风险的叠加意味着各大央行在政策操作空间上受到严重制约，一旦风险共振爆发将引发系统性冲击。</div>
+<div class="card-source">来源：<a href="https://finance.jrj.com.cn" target="_blank" style="color:#059669">金融界</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">10</span>
+<div class="card-info">
+<div class="card-title">IMF首席经济学家警告全球不确定</div>
+<div class="card-meta">GulfTimes · <a href="https://www.gulf-times.com" target="_blank">gulf-times.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">IMF首席经济学家古林查斯就全球经济面临的不确定性发出严厉警告，指出地缘分裂、贸易碎片化和金融条件收紧三重压力正在削弱全球经济增长动能。IMF可能在7月更新全球经济展望时再度下调增速预测。新兴市场尤其面临资本外流和本币贬值的双重压力，政策制定者需在稳增长与防风险之间谨慎权衡。</div>
+<div class="card-source">来源：<a href="https://www.gulf-times.com" target="_blank" style="color:#059669">GulfTimes</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">11</span>
+<div class="card-info">
+<div class="card-title">World Cup GDP贡献$40.9B</div>
+<div class="card-meta">FinancialExpress · <a href="https://today.thefinancialexpress.com.bd" target="_blank">today.thefinancialexpress.com.bd</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">研究报告显示世界杯对主办国经济的GDP贡献可达409亿美元，涵盖基建投资、旅游消费和品牌价值提升等多重效应。这一测算凸显了大型体育赛事作为经济增长催化剂的价值。然而，主办国的巨大前期投入和赛后场馆利用问题仍需审慎评估。对于新兴市场国家而言，申办世界杯已成为提升国际影响力的战略举措。</div>
+<div class="card-source">来源：<a href="https://today.thefinancialexpress.com.bd" target="_blank" style="color:#059669">FinancialExpress</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">12</span>
+<div class="card-info">
+<div class="card-title">美伊同意重启卡塔尔谈判</div>
+<div class="card-meta">EdgeMalaysia · <a href="https://dev.theedgemalaysia.com" target="_blank">dev.theedgemalaysia.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美国和伊朗同意在多哈重启核谈判，这一外交突破为缓解中东紧张局势带来一丝曙光。如果谈判取得进展，伊朗原油回归国际市场的预期将打压油价，同时降低霍尔木兹海峡的地缘风险溢价。然而，双方在铀浓缩水平和制裁解除范围上仍存在根本分歧，市场对谈判前景持谨慎乐观态度。</div>
+<div class="card-source">来源：<a href="https://dev.theedgemalaysia.com" target="_blank" style="color:#059669">EdgeMalaysia</a></div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-geo">
+<div class="section-header">
+<span class="section-tag" style="background:#d97706">地缘贸易</span>
+<h2 style="color:#d97706">Geopolitics & Trade</h2>
+<span class="section-count">4 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#d97706">13</span>
+<div class="card-info">
+<div class="card-title">美伊冲突 霍尔木兹</div>
+<div class="card-meta">Tribune · <a href="https://tribune.com.pk" target="_blank">tribune.com.pk</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美伊在霍尔木兹海峡附近的军事对峙持续升级，霍尔木兹海峡作为全球最重要的石油运输通道之一，其通行安全直接关系到全球能源供应的稳定性。尽管双方表达了谈判意愿，但局部摩擦仍在发生。市场对供应中断的担忧推动油价波动率上升，船运保险费用跳涨，全球供应链成本面临上行压力。</div>
+<div class="card-source">来源：<a href="https://tribune.com.pk" target="_blank" style="color:#d97706">Tribune</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#d97706">14</span>
+<div class="card-info">
+<div class="card-title">Iran拒参加技术谈判</div>
+<div class="card-meta">VietnamPlus · <a href="https://www.vietnamplus.vn" target="_blank">vietnamplus.vn</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">伊朗拒绝参加原定的技术级别谈判，给刚刚显露曙光的外交进程蒙上阴影。伊朗方面可能在利用谈判作为筹码，争取更有利的制裁解除条件。这一反复也反映出伊朗内部强硬派的阻力。谈判的反复无常令原油市场维持供应溢价，油价短期内难以大幅回落，能源进口国的通胀压力持续存在。</div>
+<div class="card-source">来源：<a href="https://www.vietnamplus.vn" target="_blank" style="color:#d97706">VietnamPlus</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#d97706">15</span>
+<div class="card-info">
+<div class="card-title">Trump威胁100%数字税关税</div>
+<div class="card-meta">华尔街见闻 · <a href="https://wallstreetcn.com" target="_blank">wallstreetcn.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">特朗普威胁对征收数字税的国家实施最高100%的报复性关税，将贸易战的战线延伸至数字经济领域。此举针对欧洲多国对美国科技巨头征收的数字服务税，可能引发新一轮跨大西洋贸易摩擦。全球数字税协调进程本就艰难，美国的单边威胁将进一步撕裂多边税收治理框架，科技公司的全球合规成本面临上升。</div>
+<div class="card-source">来源：<a href="https://wallstreetcn.com" target="_blank" style="color:#d97706">华尔街见闻</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#d97706">16</span>
+<div class="card-info">
+<div class="card-title">Lebanon-Israel三方框架协议</div>
+<div class="card-meta">综合</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">黎巴嫩与以色列在三方框架下达成协议，为两国长期的海上边界争端提供了解决方案。该协议有助于东地中海天然气资源的开发，对欧洲能源供应多元化具有战略意义。协议的达成也展示了第三方调解在解决中东复杂争端中的有效性，但黎以两国国内的政治变数仍可能对协议执行构成挑战。</div>
+<div class="card-source">来源：综合媒体</div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-commodity">
+<div class="section-header">
+<span class="section-tag" style="background:#7c3aed">商品外汇</span>
+<h2 style="color:#7c3aed">Commodities & FX</h2>
+<span class="section-count">4 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">17</span>
+<div class="card-info">
+<div class="card-title">油价周跌8.7%</div>
+<div class="card-meta">NoorTrends · <a href="https://noortrends.ae" target="_blank">noortrends.ae</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">原油价格本周重挫8.7%，创下年内最大单周跌幅。需求端担忧和供应端预期变化共同施压：全球经济放缓信号削弱了需求预期，而美伊重启谈判带来的潜在供应增量也让市场提前定价。技术面上，WTI跌破70美元关口后，下一支撑位在65美元附近。OPEC+可能面临进一步的减产压力以稳定市场。</div>
+<div class="card-source">来源：<a href="https://noortrends.ae" target="_blank" style="color:#7c3aed">NoorTrends</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">18</span>
+<div class="card-info">
+<div class="card-title">Gold -3.44% 周线7连跌</div>
+<div class="card-meta">NoorTrends · <a href="https://noortrends.ae" target="_blank">noortrends.ae</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">黄金价格本周下跌3.44%，周线七连跌创下近年来最长下跌周期。鹰派美联储推动实际利率和美元同步上行，黄金的持有成本大幅增加，ETF持仓持续外流。技术性抛售和止损单的连锁触发加剧了跌势。短期来看，金价在4000美元关口附近有一定支撑，但若美元继续走强，金价可能进一步下探。</div>
+<div class="card-source">来源：<a href="https://noortrends.ae" target="_blank" style="color:#7c3aed">NoorTrends</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">19</span>
+<div class="card-info">
+<div class="card-title">DXY 107.50 创13月高</div>
+<div class="card-meta">MarketScreener · <a href="https://in.marketscreener.com" target="_blank">in.marketscreener.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美元指数攀升至107.50，创下13个月新高，鹰派美联储立场和全球避险情绪共同推动了美元的强劲表现。美元的持续走强对新兴市场货币和全球流动性形成压力，各国央行面临本币贬值和输入性通胀的两难处境。美元的强势周期尚未见顶，市场预计DXY可能在第三季度测试108关口。</div>
+<div class="card-source">来源：<a href="https://in.marketscreener.com" target="_blank" style="color:#7c3aed">MarketScreener</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">20</span>
+<div class="card-info">
+<div class="card-title">USD/JPY 161.95 40年高</div>
+<div class="card-meta">MarketScreener · <a href="https://in.marketscreener.com" target="_blank">in.marketscreener.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美元兑日元汇率突破161.95，刷新40年以来的最高纪录。美日利差的持续扩大是日元贬值的主要推手，美国利率维持高位而日本央行加息步伐缓慢。日元的大幅贬值虽然利好日本出口企业，但严重推高了进口成本，日本家庭实际购买力持续受损。日本财务省可能随时干预汇市，但短期内扭转趋势的难度较大。</div>
+<div class="card-source">来源：<a href="https://in.marketscreener.com" target="_blank" style="color:#7c3aed">MarketScreener</a></div>
+</div>
+</div>
+
+</section>
+
+</div>
+
+<footer class="footer">
+Macro Report &middot; 2026.06.29 &middot; Data sourced from public markets &middot; All values as of Friday close
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+var cards=document.querySelectorAll('.card');
+cards.forEach(function(card){
+var top=card.querySelector('.card-top');
+if(top){
+top.addEventListener('click',function(e){
+e.stopPropagation();
+var isActive=card.classList.contains('active');
+cards.forEach(function(c){c.classList.remove('active')});
+if(!isActive){card.classList.add('active')}
+});
+}
+});
+var tocItems=document.querySelectorAll('.toc-item');
+tocItems.forEach(function(item){
+item.addEventListener('click',function(){
+var target=document.getElementById(this.dataset.target);
+if(target){
+target.scrollIntoView({behavior:'smooth',block:'start'});
+}
+});
+});
+});
+</script>
+</body>
+</html>

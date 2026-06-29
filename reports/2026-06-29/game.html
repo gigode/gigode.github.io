@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏热报 · 2026-06-29</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(145deg, #0f0f23 0%, #1a1a3e 50%, #7c3aed 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 0 16px 60px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  .cover {
+    padding: 48px 0 32px;
+    text-align: center;
+    position: relative;
+  }
+  .cover h1 {
+    font-size: 2.4rem; font-weight: 800;
+    background: linear-gradient(135deg, #e0e7ff, #a78bfa, #7c3aed);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+  }
+  .cover .sub {
+    margin-top: 8px; font-size: 0.95rem; color: #94a3b8;
+  }
+  .cover .badge {
+    display: inline-block; margin-top: 12px;
+    background: #7c3aed22; border: 1px solid #7c3aed66;
+    padding: 4px 16px; border-radius: 20px;
+    font-size: 0.8rem; color: #c4b5fd;
+  }
+
+  .filter-bar {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+    justify-content: center;
+  }
+  .filter-btn {
+    padding: 6px 16px; border-radius: 20px; border: 1px solid #334155;
+    background: #1e293b88; color: #94a3b8; cursor: pointer;
+    font-size: 0.82rem; transition: all 0.2s;
+    user-select: none;
+  }
+  .filter-btn:hover { border-color: #7c3aed; color: #c4b5fd; }
+  .filter-btn.active {
+    background: #7c3aed33; border-color: #7c3aed; color: #a78bfa;
+  }
+
+  .toc {
+    background: #1e1e3e88; border: 1px solid #334155;
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+    backdrop-filter: blur(6px);
+  }
+  .toc-title { font-size: 0.85rem; color: #64748b; margin-bottom: 8px; }
+  .toc-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .toc-list li { font-size: 0.88rem; }
+  .toc-list a {
+    color: #94a3b8; text-decoration: none; transition: color 0.2s;
+    cursor: pointer;
+  }
+  .toc-list a:hover { color: #a78bfa; }
+
+  .section { margin-bottom: 32px; }
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; border-radius: 10px;
+    margin-bottom: 12px; cursor: pointer; user-select: none;
+  }
+  .section-header .icon { font-size: 1.2rem; }
+  .section-header h2 { font-size: 1.15rem; font-weight: 700; }
+  .section-header .count {
+    margin-left: auto; font-size: 0.8rem; opacity: 0.7;
+  }
+
+  .card {
+    background: #1e1e3ecc;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    transition: border-color 0.25s;
+  }
+  .card:hover { border-color: #475569; }
+  .card.active { border-color: #7c3aed66; }
+
+  .card-top {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  .card-number {
+    flex-shrink: 0; width: 28px; height: 28px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+    background: #334155; color: #94a3b8;
+    margin-top: 2px;
+  }
+  .card-content { flex: 1; min-width: 0; }
+  .card-content h3 {
+    font-size: 0.95rem; font-weight: 600; line-height: 1.4;
+    color: #f1f5f9;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .card-meta {
+    font-size: 0.75rem; color: #64748b; margin-top: 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .card-arrow {
+    flex-shrink: 0; width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: #475569;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+  }
+  .card.active .card-arrow { transform: rotate(180deg); color: #a78bfa; }
+
+  .card-detail {
+    padding: 0 16px 14px;
+    display: none;
+    border-top: 1px solid #33415555;
+    margin: 0 16px;
+    padding-top: 12px;
+    padding-left: 0; padding-right: 0;
+  }
+  .card.active .card-detail { display: block; }
+  .card-detail p {
+    font-size: 0.88rem; line-height: 1.7; color: #cbd5e1;
+    margin-bottom: 10px;
+  }
+  .card-detail .source-link {
+    display: inline-block; font-size: 0.8rem;
+    color: #a78bfa; text-decoration: none;
+    padding: 4px 12px; border-radius: 6px;
+    background: #7c3aed22; border: 1px solid #7c3aed44;
+    transition: background 0.2s;
+  }
+  .card-detail .source-link:hover { background: #7c3aed44; }
+
+  .footer {
+    text-align: center; padding: 32px 0 16px;
+    border-top: 1px solid #334155; margin-top: 40px;
+    font-size: 0.8rem; color: #475569;
+  }
+  .footer a { color: #64748b; text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .cover h1 { font-size: 1.6rem; }
+    .card-top { padding: 12px; gap: 10px; }
+    .card-content h3 { font-size: 0.88rem; }
+    .card-detail p { font-size: 0.84rem; }
+    .toc-list li { font-size: 0.82rem; }
+  }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">&larr; Back to Reports</a>
+
+<div class="container">
+
+  <div class="cover">
+    <div class="badge">&#x1f3ae; 游戏热报</div>
+    <h1>游戏日报</h1>
+    <div class="sub">2026年6月29日 · 星期一 · 北京时区 · 30 条精选</div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">&#x1f50d; 全部</button>
+    <button class="filter-btn" data-filter="newgame">&#x1f4e6; 新游发布</button>
+    <button class="filter-btn" data-filter="industry">&#x1f30d; 行业</button>
+    <button class="filter-btn" data-filter="esports">&#x26bd; 电竞</button>
+    <button class="filter-btn" data-filter="hardware">&#x1f5a5; 硬件</button>
+    <button class="filter-btn" data-filter="review">&#x2b50; 评测</button>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">&#x1f4cb; 目录导航</div>
+    <ul class="toc-list">
+      <li><a href="#s-newgame">&#x1f4e6; 新游发布</a></li>
+      <li><a href="#s-industry">&#x1f30d; 行业动态</a></li>
+      <li><a href="#s-esports">&#x26bd; 电竞</a></li>
+      <li><a href="#s-hardware">&#x1f5a5; 硬件</a></li>
+      <li><a href="#s-review">&#x2b50; 评测</a></li>
+    </ul>
+  </div>
+
+  <!-- ============ 新游发布 ============ -->
+  <div class="section" id="s-newgame" data-category="newgame">
+    <div class="section-header" style="background:#7c3aed22;border-left:4px solid #7c3aed;">
+      <span class="icon">&#x1f4e6;</span>
+      <h2 style="color:#a78bfa;">新游发布</h2>
+      <span class="count">6 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">1</span>
+        <div class="card-content">
+          <h3>Steam 夏季特卖：巫师 3 仅售 $3.99</h3>
+          <div class="card-meta">Mashable · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Steam 夏季特卖正式开启，年度 RPG 巨作《巫师 3：狂猎》年度版仅售 3.99 美元，堪称史上最低价。本次特卖覆盖数千款游戏，包含 3A 大作和独立精品的大幅折扣。对于尚未体验杰洛特冒险的玩家来说，这是入坑的最佳时机。同时大量热门游戏如《博德之门 3》、《艾尔登法环》等也有不同程度的折扣，夏季特卖将持续两周，建议玩家关注每日闪促。</p>
+        <a class="source-link" href="https://me.mashable.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">2</span>
+        <div class="card-content">
+          <h3>Steam Next Fest 6 月 Demo 上线，IronNest 获 99% 好评</h3>
+          <div class="card-meta">Shacknews · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Steam Next Fest 六月活动正式上线，数百款即将发布的游戏提供免费 Demo 试玩。其中 IronNest 以 99% 的好评率高居榜首，这款融合了生存建造与策略元素的独立作品凭借精致的像素美术和深度的游戏机制赢得了玩家的一致认可。Next Fest 是独立开发者展示作品的最佳窗口，也是玩家发现宝藏游戏的好机会，建议重点关注高好评率的 Demo。</p>
+        <a class="source-link" href="https://www.shacknews.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">3</span>
+        <div class="card-content">
+          <h3>《最终幻想 7 重生》Switch 2 版发布</h3>
+          <div class="card-meta">ezone · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>《最终幻想 7 重生》正式登陆 Nintendo Switch 2 平台，这是该作首次登陆任天堂平台。Switch 2 版本针对新硬件进行了优化，加载速度大幅提升，掌机模式下画面表现令人满意。作为 FF7 重制三部曲的第二部，游戏延续了克劳德一行人逃离米德加的冒险，战斗系统在保留即时动作要素的同时加入了更多策略深度。对于没玩过 PS5 版的玩家来说，Switch 2 版是一个绝佳的选择。</p>
+        <a class="source-link" href="https://dev.e-zone.com.hk" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">4</span>
+        <div class="card-content">
+          <h3>6 月 22-28 日共 27 款游戏开测</h3>
+          <div class="card-meta">GameRes · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>据 GameRes 统计，6 月 22 日至 28 日期间共有 27 款游戏开启测试，涵盖 MMORPG、卡牌策略、动作闯关等多种类型。其中多款国产手游开启付费测试，包括几款备受瞩目的二次元题材作品。本周开测游戏中，有数款采用了 AI NPC 对话和智能关卡生成等新技术，展现出行业对 AI 融合游戏体验的持续探索。建议关注各游戏的测试反馈和品质表现。</p>
+        <a class="source-link" href="https://www.gameres.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">5</span>
+        <div class="card-content">
+          <h3>Zyntaris：Roguelike 生存新作上架 Steam</h3>
+          <div class="card-meta">Steam · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Roguelike 生存游戏 Zyntaris 正式登陆 Steam 平台。游戏融合了卡牌构筑、实时生存和基地建造等元素，玩家需要在不断变化的环境中收集资源、打造装备并抵御敌人的进攻。每局游戏的地图和事件均为随机生成，保证了高度的重玩价值。游戏采用手绘暗黑风格，配合沉浸式的氛围音乐，为 Roguelike 爱好者提供了又一款值得深度体验的作品。</p>
+        <a class="source-link" href="https://store.steampowered.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">6</span>
+        <div class="card-content">
+          <h3>B 站《激战大牌英雄》CCG 游戏公布</h3>
+          <div class="card-meta">扬子晚报 · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>B 站公布了新款 CCG（集换式卡牌游戏）《激战大牌英雄》，游戏将 B 站知名 UP 主和虚拟主播作为卡牌角色，每位角色拥有独特的技能和战斗风格。游戏采用实时对战模式，支持 1v1 和 2v2 对战，融入了弹幕互动等 B 站特色元素。CCG 品类近年来热度持续走高，《激战大牌英雄》凭借 B 站的社区生态和 IP 资源，有望在细分市场打开局面。</p>
+        <a class="source-link" href="http://www.yzwb.net" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 行业动态 ============ -->
+  <div class="section" id="s-industry" data-category="industry">
+    <div class="section-header" style="background:#2563eb22;border-left:4px solid #2563eb;">
+      <span class="icon">&#x1f30d;</span>
+      <h2 style="color:#60a5fa;">行业动态</h2>
+      <span class="count">9 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">7</span>
+        <div class="card-content">
+          <h3>Xbox 利润率仅 3% 面临战略重置</h3>
+          <div class="card-meta">Eurogamer · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>据 Eurogamer 报道，Xbox 业务的利润率仅为 3%，远远低于微软其他业务板块，公司内部正在酝酿一场"重置"。Xbox 一直以来以低价硬件换市场份额的策略在 Game Pass 增长放缓的背景下难以为继。报道称微软正在重新评估 Xbox 的未来方向，可能包括进一步扩大第一方游戏多平台发行策略，以及调整 Game Pass 的定价层级。硬件销售放缓使得 Xbox 比以往任何时候都更需要证明其业务模式的可持续性。</p>
+        <a class="source-link" href="https://www.eurogamer.net" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">8</span>
+        <div class="card-content">
+          <h3>GTA VI 预购 PS5 以 8:1 大幅领先 Xbox</h3>
+          <div class="card-meta">Eurogamer · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>《GTA VI》的预购数据曝光，PS5 版本以 8:1 的绝对优势领先 Xbox Series X|S 版本，这一悬殊的比例反映了本世代主机竞争的残酷现实。Rockstar 的这款超级大作被视为主机平台的"核弹级"作品，玩家选择倾向直接反映出 PlayStation 在本世代建立的品牌优势和用户基础优势。这一数据也进一步巩固了 Take-Two 与索尼之间的营销合作关系，对 Xbox 的市场策略形成更大压力。</p>
+        <a class="source-link" href="https://www.eurogamer.net" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">9</span>
+        <div class="card-content">
+          <h3>Epic CEO 呼吁跨平台互通，发起 TeamOpen 倡议</h3>
+          <div class="card-meta">网易 · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Epic Games CEO Tim Sweeney 再次公开呼吁游戏行业实现跨平台互通，并发起 TeamOpen 倡议。Sweeney 长期以来一直批评苹果和谷歌的应用商店政策，此次将焦点扩大到主机平台之间的互操作壁垒。TeamOpen 倡议获得多家独立开发者和中小团队的支持，旨在推动跨平台进度、社交和购买记录的打通。Epic 自身通过《堡垒之夜》一直在推动跨平台联机，但真正的全面互通仍面临技术和商业层面的巨大障碍。</p>
+        <a class="source-link" href="https://www.163.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">10</span>
+        <div class="card-content">
+          <h3>Nvidia 黄仁勋会见 NCsoft 和 Krafton 高管</h3>
+          <div class="card-meta">InsightKorea · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Nvidia CEO 黄仁勋访问韩国，与 NCsoft 和 Krafton（PUBG 母公司）高层会面，讨论 AI 在游戏开发中的深度应用。会晤重点包括利用 Nvidia 的 AI 技术加速游戏内容生成、NPC 智能化以及云游戏基础设施升级。韩国游戏公司对 AI 驱动的开发工具和实时渲染技术表现出浓厚兴趣，NCsoft 和 Krafton 均表示将扩大与 Nvidia 在 AI 领域的合作。此次会面标志着 AI+游戏融合正在从概念走向落地。</p>
+        <a class="source-link" href="https://www.insightkorea.co.kr" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">11</span>
+        <div class="card-content">
+          <h3>日本游戏产业受芯片通胀影响股价暴跌</h3>
+          <div class="card-meta">环球时报 · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>受全球芯片通胀持续加剧的影响，日本游戏公司股价遭遇集体暴跌。任天堂、索尼、万代南梦宫等主要厂商的股价在过去一周内跌幅显著，市场担忧芯片成本上升将侵蚀硬件利润并推迟下一代设备的研发进度。日本游戏产业高度依赖全球半导体供应链，芯片短缺和价格上涨直接影响了硬件产量和开发成本。分析人士指出，短期内日本游戏产业面临较大的盈利压力。</p>
+        <a class="source-link" href="http://cjkeizai.j.people.com.cn" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">12</span>
+        <div class="card-content">
+          <h3>《赛博朋克 2077》续作总监感叹行业崩塌</h3>
+          <div class="card-meta">IT之家 · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>CD Projekt Red 的《赛博朋克 2077》续作总监在社交媒体上感叹游戏行业正在经历结构性崩塌。他表示开发成本飙升、玩家期望膨胀、裁员潮持续等因素正在压垮许多工作室。即使 CDPR 这样的一线厂商也在面对前所未有的挑战，续作的开发需要在创新和风险管理之间找到平衡。这番言论引发了行业内的广泛共鸣，许多开发者分享了自己的困境，再次引发对游戏行业可持续性的讨论。</p>
+        <a class="source-link" href="https://m.ithome.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">13</span>
+        <div class="card-content">
+          <h3>Riot 云顶之弈迁移至 Unreal 引擎，月活 3000 万</h3>
+          <div class="card-meta">GamesBeat · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Riot Games 宣布将《云顶之弈》迁移至 Unreal 引擎，同时披露该模式的月活跃用户已达 3000 万。迁移至 Unreal 将带来更好的视觉效果、更流畅的动画表现以及更高效的开发迭代能力。这是 Riot 在其旗舰产品《英雄联盟》生态系统之外对技术栈的一次重大升级。3000 万的月活数据也证明了自走棋品类的持久生命力，《云顶之弈》多年来持续的内容更新策略收效显著。</p>
+        <a class="source-link" href="https://gamesbeat.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">14</span>
+        <div class="card-content">
+          <h3>Steam 夏季特卖部分游戏折扣高达 95%</h3>
+          <div class="card-meta">TweakTown · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Steam 夏季特卖在已有大幅折扣的基础上，部分游戏推出 95% 的极限折扣，引发玩家抢购。这些游戏多为已发售多年的经典作品或小众独立游戏，但 95% off 的价格几乎等同于免费赠送。Valve 通过这种超深折扣策略来激活用户库存并维持平台活跃度。对于喜欢"薅羊毛"的玩家来说，夏季特卖是每年补充游戏库的最佳时机，建议优先关注折扣幅度大且评价较高的作品。</p>
+        <a class="source-link" href="https://me.mashable.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">15</span>
+        <div class="card-content">
+          <h3>EA 推出游戏内广告平台</h3>
+          <div class="card-meta">行业资讯 · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>EA 宣布推出游戏内广告平台，计划在旗下体育游戏（如《FIFA》、《Madden NFL》）中植入动态广告。该平台将允许广告主在游戏内投放随现实赛事更新的动态广告位，例如球场边的电子广告牌。EA 表示这一举措旨在建立新的收入来源，在不影响核心游戏体验的前提下为玩家提供更真实的环境。然而玩家社区对此反应不一，担心广告会破坏沉浸感进而影响付费体验。</p>
+        <a class="source-link" href="#" target="_blank">&#x1f517; 了解详情</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 电竞 ============ -->
+  <div class="section" id="s-esports" data-category="esports">
+    <div class="section-header" style="background:#dc262622;border-left:4px solid #dc2626;">
+      <span class="icon">&#x26bd;</span>
+      <h2 style="color:#f87171;">电竞</h2>
+      <span class="count">6 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">16</span>
+        <div class="card-content">
+          <h3>MSI 揭幕战 T1 3-0 横扫 TL，Faker 达成 100 胜</h3>
+          <div class="card-meta">InvenGlobal · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>MSI（季中冠军赛）揭幕战上，T1 以 3-0 的压倒性比分横扫 TL，Faker 在这场比赛中达成了个人 MSI 第 100 胜的里程碑。T1 全队状态火热，中野联动节奏完美，下路也展现出统治级的对线能力。TL 虽然在北美赛区表现强势，但在面对 T1 时暴露出明显的中期运营差距。Faker 的 100 胜纪录再次证明了他在国际赛事中的统治地位，也为 T1 的 MSI 征程开了个好头。</p>
+        <a class="source-link" href="https://www.invenglobal.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">17</span>
+        <div class="card-content">
+          <h3>MSI: KC 3-0 横扫 DCG 晋级</h3>
+          <div class="card-meta">NOWnews / 搜狐 · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>MSI 赛事中 KC 战队以 3-0 的比分横扫 DCG，强势晋级下一轮。KC 在这场比赛中展现了极高的战术执行力和个人操作水平，尤其是上野组合的配合全程压制了 DCG。DCG 在 BP 阶段多次陷入被动，未能有效应对 KC 的进攻节奏。KC 的胜利也证明了欧洲赛区的竞争力正在持续提升，他们在后续比赛中的表现值得期待，下一轮将对阵实力更强的小组赛对手。</p>
+        <a class="source-link" href="https://www.sohu.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">18</span>
+        <div class="card-content">
+          <h3>MSI 6/29 赛程：T1 vs KC、TL vs DCG</h3>
+          <div class="card-meta">Esports.gg · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>今日 MSI 赛程公布，两场焦点对决即将上演：T1 将迎战 KC，TL 对阵 DCG。T1 在揭幕战中展现了强大的实力，对阵 KC 的比赛中 Faker 能否延续火热手感是最大看点。而 TL 与 DCG 的对决则被视为两支实力相当的队伍之间的关键战役，败者将面临淘汰危机。两场比赛都将采用 BO5 赛制，对选手的体力和英雄池深度提出更高要求。</p>
+        <a class="source-link" href="https://esports.gg" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">19</span>
+        <div class="card-content">
+          <h3>MSI 完整赛程公布：6/28 - 7/12</h3>
+          <div class="card-meta">Esports.gg · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>MSI 2026 完整赛程正式公布，赛事将从 6 月 28 日持续至 7 月 12 日，共计 15 天。赛程分为入围赛、小组赛和淘汰赛三个阶段。入围赛采用双败淘汰制，小组赛为 BO1 双循环，淘汰赛则为 BO5 单败。本次 MSI 汇聚了来自全球各赛区的冠军队伍，LPL、LCK、LEC、LCS 四大赛区的顶尖战队将争夺赛季中最高荣誉。7 月 12 日的决赛将决定谁将捧起 MSI 冠军奖杯。</p>
+        <a class="source-link" href="https://esports.gg" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">20</span>
+        <div class="card-content">
+          <h3>HLE 3-1 击败 T1 获得 LCK 头号种子</h3>
+          <div class="card-meta">Vietnam.vn · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>在 LCK 资格赛中，HLE 以 3-1 的比分击败 T1，成功获得 LCK 赛区一号种子席位。HLE 在这场比赛中展现出全面的实力提升，中野组合的配合默契度远超常规赛阶段。T1 虽然先下一城，但随后被 HLE 连扳三局，暴露出战术储备不足的问题。HLE 的胜利打破了 T1 对 LCK 的长期统治地位，也预示着新赛季 LCK 格局可能发生重大变化。</p>
+        <a class="source-link" href="https://www.vietnam.vn" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">21</span>
+        <div class="card-content">
+          <h3>AMD 成为 S8UL 战队 EWC 硬件合作伙伴</h3>
+          <div class="card-meta">Outlook India · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>AMD 正式宣布成为电子竞技战队 S8UL 的硬件合作伙伴，双方将合作征战 EWC（电子竞技世界杯）。AMD 将为 S8UL 提供基于最新 Ryzen 处理器和 Radeon 显卡的顶级电竞设备，确保队员在比赛中获得最佳性能表现。S8UL 作为印度最具影响力的电竞战队之一，在多个项目中拥有竞争力。此次合作也是 AMD 扩大电竞领域影响力的重要布局。</p>
+        <a class="source-link" href="https://respawn.outlookindia.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 硬件 ============ -->
+  <div class="section" id="s-hardware" data-category="hardware">
+    <div class="section-header" style="background:#d9770622;border-left:4px solid #d97706;">
+      <span class="icon">&#x1f5a5;</span>
+      <h2 style="color:#fbbf24;">硬件</h2>
+      <span class="count">5 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">22</span>
+        <div class="card-content">
+          <h3>Steam Machine 正式发售，起售价 $1049</h3>
+          <div class="card-meta">ArsTechnica · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Valve 与多家硬件厂商合作的 Steam Machine 正式开售，起售价 1049 美元。新一代 Steam Machine 搭载了定制化的 AMD 处理器和 NVIDIA GPU，预装 SteamOS，主打客厅 PC 游戏体验。设备支持 4K 60 帧游戏运行，可与 Steam 生态无缝对接，支持游戏串流和云存档。Valve 将 Steam Machine 定位为"客厅游戏 PC"，试图在主机市场打开新局面。</p>
+        <a class="source-link" href="https://arstechnica.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">23</span>
+        <div class="card-content">
+          <h3>ASUS ROG 20 周年全系产品发布</h3>
+          <div class="card-meta">ASUS · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>ASUS 玩家国度 ROG 迎来 20 周年，发布全系新品阵容，涵盖主板、显卡、笔记本和外设全产品线。旗舰新品搭载下一代 Intel 和 AMD 处理器，配备全新散热设计和 RGB 灯效系统。ROG 20 周年特别版产品采用银白配色主题，在保留电竞基因的同时融入更多高端质感。20 年来 ROG 从一块主板发展成全球领先的电竞品牌，此次全系发布标志着其产品矩阵的全面升级。</p>
+        <a class="source-link" href="https://www.asus.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">24</span>
+        <div class="card-content">
+          <h3>MSI 在 Computex 展示 Agentic AI 显示器</h3>
+          <div class="card-meta">MSI · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>MSI 在 Computex 上展示了搭载 Agentic AI 技术的概念显示器，该显示器内置 AI 芯片，可根据游戏类型自动优化显示参数。AI 系统能够识别玩家正在游玩的游戏类型，实时调整色彩、对比度、响应时间和刷新率等参数以获得最佳画质。此外还具备 AI 降噪麦克风、环境光自适应等辅助功能。虽然目前仍是概念产品，但 MSI 表示 AI 显示器将在未来两年内进入量产。</p>
+        <a class="source-link" href="https://www.msi.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">25</span>
+        <div class="card-content">
+          <h3>技嘉 40 周年发布 ENTER INFINITY 系列</h3>
+          <div class="card-meta">Korea Herald · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>技嘉科技在成立 40 周年之际发布 ENTER INFINITY 系列高端硬件产品，包括旗舰级主板、显卡和电竞显示器。ENTER INFINITY 系列采用全新设计语言，融合了 Infinity Mirror 无限镜面灯效和创新散热技术。该系列主打极限性能，面向高端游戏玩家和内容创作者。技嘉在 40 年间从一个小型主板厂商成长为全球一线硬件品牌，ENTER INFINITY 象征着其技术实力的集大成。</p>
+        <a class="source-link" href="https://www.koreaherald.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">26</span>
+        <div class="card-content">
+          <h3>CORSAIR 在 Computex 发布全新外设系列</h3>
+          <div class="card-meta">CORSAIR · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>CORSAIR 在 Computex 上发布了一系列全新游戏外设，包括搭载最新光学传感器的游戏鼠标、采用全新轴体的机械键盘以及高保真游戏耳机。新品全线支持 CORSAIR iCUE 生态系统，可实现跨设备的 RGB 灯效同步和宏设置联动。其中旗舰级键盘采用了 CORSAIR 自研的磁轴技术，支持可调节触发行程。CORSAIR 持续通过技术创新巩固其在高端游戏外设市场的领导地位。</p>
+        <a class="source-link" href="https://ir.corsair.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 评测 ============ -->
+  <div class="section" id="s-review" data-category="review">
+    <div class="section-header" style="background:#05966922;border-left:4px solid #059669;">
+      <span class="icon">&#x2b50;</span>
+      <h2 style="color:#34d399;">评测</h2>
+      <span class="count">5 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">27</span>
+        <div class="card-content">
+          <h3>《星际火狐》重制版 M 站评分 81</h3>
+          <div class="card-meta">Kotaku · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>任天堂经典 IP《星际火狐》重制版在 Metacritic 上获得 81 分的媒体均分。评测普遍赞扬了游戏在保留原作核心玩法基础上进行的现代化改进，包括焕然一新的画面表现、流畅的 60 帧运行体验以及重新设计的关卡结构。但也指出游戏流程偏短、新增内容有限等不足。作为一款情怀向重制作品，81 分是一个相当不错的成绩，既满足了老玩家的怀旧需求，也降低了新玩家的上手门槛。</p>
+        <a class="source-link" href="https://kotaku.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">28</span>
+        <div class="card-content">
+          <h3>《卫报》评选 2026 上半年最佳 6 款游戏</h3>
+          <div class="card-meta">The Guardian · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>《卫报》评选出 2026 年上半年最佳 6 款游戏，涵盖了 3A 大作和精品独立游戏。入选作品包括开放世界 RPG、叙事驱动冒险、多人竞技和艺术风格突出的实验性作品。《卫报》的评选标准注重创新性和文化影响力而非单纯的制作规模，其中一款以 AI 为核心的叙事游戏因其对科技伦理的深刻探讨而获得特别推荐。上半年的游戏阵容被评价为近年来品质最均衡的一个周期。</p>
+        <a class="source-link" href="https://www.theguardian.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">29</span>
+        <div class="card-content">
+          <h3>《战地 6》获评近年最佳 Battlefield 作品</h3>
+          <div class="card-meta">PushSquare · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>EA DICE 开发的《战地 6》获得 PushSquare 高度评价，被誉为"近年最佳的 Battlefield 作品"。评测称赞本作回归了系列经典的全面战争模式，128 人超大战场、动态天气系统和可破坏环境带来了前所未有的沉浸感。单人战役部分也获得了大幅改进，剧情演出和角色塑造达到系列新高度。尽管首发存在少量技术问题，但整体品质证明了 DICE 在经历《战地 2042》的低谷后成功重回正轨。</p>
+        <a class="source-link" href="https://www.pushsquare.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">30</span>
+        <div class="card-content">
+          <h3>行业 AI 态度分化：EA 拥抱 vs 卡普空保守</h3>
+          <div class="card-meta">36氪 · 6月29日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>36氪刊文分析了全球游戏大厂对 AI 技术的态度分化。EA 积极拥抱 AI，已将生成式 AI 应用于游戏资产创建和 QA 测试流程，并推动内部 AI 工具开发。而日本卡普空则持保守立场，强调手工打磨的艺术品质不可替代，将 AI 定位为辅助工具而非生产力替代方案。这种分化的背后是不同制作理念和市场竞争策略的差异，也反映出 AI 在创意产业中应用模式的多元化探索。</p>
+        <a class="source-link" href="https://36kr.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>数据来源: 各游戏媒体 & 资讯平台 | 报告生成: 2026-06-29 北京时间</p>
+    <p>游戏热报 — 每日游戏行业精选资讯</p>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card) {
+    var top = card.querySelector('.card-top');
+    top.addEventListener('click', function() {
+      card.classList.toggle('active');
+    });
+  });
+  if (cards.length > 0) cards[0].classList.add('active');
+
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var sections = document.querySelectorAll('.section');
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      sections.forEach(function(section) {
+        section.style.display = (filter === 'all' || section.getAttribute('data-category') === filter) ? 'block' : 'none';
+      });
+    });
+  });
+
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = link.getAttribute('href').substring(1);
+      var target = document.getElementById(targetId);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
