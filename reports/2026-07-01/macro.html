@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macro Report | 2026-07-01</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0a0a0a;color:#e5e5e5;min-height:100vh}
+.cover{background:linear-gradient(135deg,#1a0f0a,#3d2517,#b45309);min-height:380px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(180,83,9,0.12),transparent 70%)}
+.cover-content{position:relative;z-index:1;padding:60px 20px}
+.cover h1{font-size:3.8rem;font-weight:800;color:#fff;text-shadow:0 2px 30px rgba(0,0,0,0.5);letter-spacing:-0.5px}
+.cover .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.7);margin-top:16px;letter-spacing:2px}
+.cover .date{font-size:0.95rem;color:rgba(255,255,255,0.45);margin-top:8px;font-family:'Courier New',monospace}
+.cover .badge-row{display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.cover .badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;color:#fff;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.15)}
+.container{max-width:960px;margin:0 auto;padding:40px 20px}
+.market-header{margin-bottom:40px}
+.market-header h2{font-size:1.1rem;font-weight:700;margin-bottom:14px;color:#b45309;letter-spacing:1px}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:24px}
+.metric-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:12px 10px;text-align:center}
+.metric-label{font-size:0.68rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px}
+.metric-value{font-size:1rem;font-weight:700;margin-top:3px;font-family:'Courier New',monospace;color:#f0f0f0}
+.metric-change{font-size:0.68rem;margin-top:1px}
+.metric-change.pos{color:#22c55e}
+.metric-change.neg{color:#ef4444}
+.metric-explain{font-size:0.62rem;color:rgba(255,255,255,0.25);margin-top:2px;line-height:1.3}
+.metric-group-label{font-size:0.75rem;color:rgba(255,255,255,0.3);grid-column:1/-1;margin-top:8px;margin-bottom:2px;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.04);padding-bottom:4px}
+.metric-group-label small{font-weight:400;color:rgba(255,255,255,0.15);letter-spacing:0;font-size:0.6rem;margin-left:6px}
+.toc{margin-bottom:44px}
+.toc h2{font-size:1.2rem;font-weight:700;margin-bottom:16px;color:#b45309;letter-spacing:1px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.toc-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 14px;cursor:pointer;transition:all 0.25s;font-size:0.82rem;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:8px}
+.toc-item:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.18)}
+.toc-item .toc-num{flex-shrink:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:0.65rem;font-weight:700;color:#fff}
+.toc-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:600;color:#fff;margin-left:auto;flex-shrink:0}
+.section{margin-bottom:40px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.section-header h2{font-size:1.3rem;font-weight:700}
+.section-tag{display:inline-block;padding:4px 12px;border-radius:6px;font-size:0.75rem;font-weight:600;color:#fff}
+.section-count{color:rgba(255,255,255,0.35);font-size:0.8rem;font-weight:400;margin-left:auto}
+.card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:10px;margin-bottom:10px;overflow:hidden;transition:all 0.3s}
+.card:hover{border-color:rgba(255,255,255,0.14);background:rgba(255,255,255,0.04)}
+.card-top{display:flex;align-items:center;padding:14px 18px;cursor:pointer;gap:12px;user-select:none}
+.card-arrow{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;transition:transform 0.35s ease;color:rgba(255,255,255,0.3);font-size:0.65rem;background:rgba(255,255,255,0.04);border-radius:50%;border:1px solid rgba(255,255,255,0.06)}
+.card.active .card-arrow{transform:rotate(90deg);color:#b45309;border-color:rgba(180,83,9,0.3);background:rgba(180,83,9,0.1)}
+.card-num{flex-shrink:0;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:0.7rem;font-weight:700;color:#fff}
+.card-info{flex:1;min-width:0}
+.card-title{font-size:0.95rem;font-weight:600;color:#eee;line-height:1.4}
+.card-meta{font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
+.card-meta a{color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}
+.card-meta a:hover{color:#b45309;text-decoration:underline}
+.card-detail{max-height:0;overflow:hidden;transition:max-height 0.45s ease, padding 0.3s ease, border-top-width 0.3s ease;padding:0 18px;border-top:0 solid rgba(255,255,255,0.04)}
+.card.active .card-detail{max-height:900px;padding:14px 18px;border-top-width:1px}
+.card-analysis{font-size:0.88rem;line-height:1.85;color:rgba(255,255,255,0.7);text-align:justify}
+.card-source{margin-top:12px;font-size:0.78rem;color:rgba(255,255,255,0.3)}
+.card-source a{text-decoration:none;font-weight:500}
+.footer{text-align:center;padding:36px 20px;color:rgba(255,255,255,0.2);font-size:0.75rem;border-top:1px solid rgba(255,255,255,0.04);margin-top:20px;letter-spacing:0.5px}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px}
+@media(max-width:768px){
+.cover h1{font-size:2.2rem}.cover{min-height:300px}.container{padding:20px 14px}.toc-grid{grid-template-columns:1fr}.card-top{padding:12px 14px}.card-title{font-size:0.88rem}.metric-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+.cover h1{font-size:1.8rem}.cover .subtitle{font-size:0.9rem}.card-num{width:22px;height:22px;font-size:0.6rem}.card-arrow{width:20px;height:20px;font-size:0.55rem}.metric-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+
+<header class="cover">
+<div class="cover-content">
+<h1>Macro Report</h1>
+<div class="subtitle">全球宏观 · 央行动态 · 市场脉动</div>
+<div class="date">2026.07.01  WEEK 27</div>
+<div class="badge-row">
+<span class="badge">央行政策 4</span>
+<span class="badge">市场动态 5</span>
+<span class="badge">全球经济 5</span>
+<span class="badge">地缘贸易 5</span>
+<span class="badge">商品外汇 5</span>
+<span class="badge">数据源: yfinance + FRED</span>
+</div>
+</div>
+</header>
+
+<div class="container">
+
+<div class="market-header">
+<h2>Market Data &middot; Tuesday Close</h2>
+
+<div class="metric-grid">
+<div class="metric-group-label">美股ETF &middot; yfinance 实时 <small>标准普尔/纳斯达克/道琼斯/罗素</small></div>
+<div class="metric-card"><div class="metric-label">SPY</div><div class="metric-value">$746.77</div><div class="metric-change pos">+0.78% d</div><div class="metric-explain">标普500 ETF，美股大盘风向标</div></div>
+<div class="metric-card"><div class="metric-label">QQQ</div><div class="metric-value">$736.40</div><div class="metric-change pos">+1.70% d</div><div class="metric-explain">纳斯达克100 ETF，科技股晴雨表</div></div>
+<div class="metric-card"><div class="metric-label">DIA</div><div class="metric-value">$522.39</div><div class="metric-change pos">+0.14% d</div><div class="metric-explain">道琼斯工业ETF，传统蓝筹代表</div></div>
+<div class="metric-card"><div class="metric-label">IWM</div><div class="metric-value">$300.45</div><div class="metric-change pos">+0.50% d</div><div class="metric-explain">罗素2000 ETF，小盘股经济体温计</div></div>
+
+<div class="metric-group-label">美联储利率 &middot; FRED <small>联邦基金/国债/通胀预期/信用利差</small></div>
+<div class="metric-card"><div class="metric-label">Fed Funds</div><div class="metric-value">3.63%</div><div class="metric-explain">联邦基金利率，美联储政策核心锚（DFF）</div></div>
+<div class="metric-card"><div class="metric-label">US 10Y</div><div class="metric-value">4.38%</div><div class="metric-explain">10年期国债收益率，全球资产定价基准（DGS10）</div></div>
+<div class="metric-card"><div class="metric-label">US 2Y</div><div class="metric-value">4.10%</div><div class="metric-explain">2年期国债，加息预期最敏感的期限（DGS2）</div></div>
+<div class="metric-card"><div class="metric-label">10-2 Spread</div><div class="metric-value">0.30%</div><div class="metric-explain">期限利差升至30bp，衰退预警边际缓解（T10Y2Y）</div></div>
+<div class="metric-card"><div class="metric-label">10Y Breakeven</div><div class="metric-value">2.24%</div><div class="metric-explain">债市隐含长期通胀预期小幅回升（T10YIE）</div></div>
+<div class="metric-card"><div class="metric-label">HY OAS</div><div class="metric-value">2.80%</div><div class="metric-explain">高收益债信用利差收窄，企业融资环境改善</div></div>
+
+<div class="metric-group-label">美国实体经济 &middot; FRED <small>就业/通胀/货币/产出/消费/地产</small></div>
+<div class="metric-card"><div class="metric-label">Unemployment</div><div class="metric-value">4.3%</div><div class="metric-explain">失业率，5月持平，劳动力市场稳健（UNRATE）</div></div>
+<div class="metric-card"><div class="metric-label">CPI Index</div><div class="metric-value">333.98</div><div class="metric-explain">CPI指数，5月小幅上行通胀粘性犹存</div></div>
+<div class="metric-card"><div class="metric-label">M2 Money</div><div class="metric-value">$23,052B</div><div class="metric-explain">M2货币供给+1.1% MoM，流动性小幅回升（M2SL）</div></div>
+<div class="metric-card"><div class="metric-label">GDP</div><div class="metric-value">$31,866B</div><div class="metric-explain">实际GDP年化，Q1同比稳步扩张（GDP）</div></div>
+<div class="metric-card"><div class="metric-label">Ind Prod</div><div class="metric-value">102.65</div><div class="metric-explain">工业产出指数，5月微升制造业偏弱（INDPRO）</div></div>
+<div class="metric-card"><div class="metric-label">Retail Sales</div><div class="metric-value">$763,705M</div><div class="metric-explain">零售销售+0.88%，消费韧性支撑GDP（RSAFS）</div></div>
+<div class="metric-card"><div class="metric-label">Housing Starts</div><div class="metric-value">1,177K</div><div class="metric-explain">新屋开工骤降-15.4%！高利率重压地产（HOUST）</div></div>
+
+<div class="metric-group-label">VIX &middot; CBOE</div>
+<div class="metric-card"><div class="metric-label">VIX (FRED)</div><div class="metric-value">17.65</div><div class="metric-explain">恐慌指数昨日读数（VIXCLS）</div></div>
+<div class="metric-card"><div class="metric-label">VIX (实时)</div><div class="metric-value">16.45</div><div class="metric-change neg">-6.80% d</div><div class="metric-explain">VIX跌破17，市场风险偏好强劲</div></div>
+
+<div class="metric-group-label">全球指数 &middot; yfinance</div>
+<div class="metric-card"><div class="metric-label">S&P 500</div><div class="metric-value">7,499.36</div><div class="metric-change pos">+0.79% d</div><div class="metric-explain">逼近7500关口创历史新高</div></div>
+<div class="metric-card"><div class="metric-label">Nasdaq</div><div class="metric-value">26,213.72</div><div class="metric-change pos">+1.52% d</div><div class="metric-explain">纳指再创历史新高，科技股领涨</div></div>
+<div class="metric-card"><div class="metric-label">Dow Jones</div><div class="metric-value">52,319.20</div><div class="metric-change pos">+0.26% d</div><div class="metric-explain">道指温和上涨创收盘新高</div></div>
+<div class="metric-card"><div class="metric-label">FTSE 100</div><div class="metric-value">10,497.10</div><div class="metric-change pos">+0.12% d</div><div class="metric-explain">英国微涨但商业信心仍弱</div></div>
+<div class="metric-card"><div class="metric-label">Nikkei 225</div><div class="metric-value">70,062.32</div><div class="metric-change pos">+0.86% d</div><div class="metric-explain">日经重返7万，BOJ加息预期升温</div></div>
+<div class="metric-card"><div class="metric-label">Hang Seng</div><div class="metric-value">22,881.02</div><div class="metric-change neg">-0.63% d</div><div class="metric-explain">恒生回落，PMI改善但外需疲弱</div></div>
+
+<div class="metric-group-label">大宗商品 &middot; yfinance</div>
+<div class="metric-card"><div class="metric-label">Gold</div><div class="metric-value">$3,991.80</div><div class="metric-change neg">-0.76% d</div><div class="metric-explain">COMEX黄金跌破4000，利率高压持续施压</div></div>
+<div class="metric-card"><div class="metric-label">WTI Crude</div><div class="metric-value">$69.91</div><div class="metric-change neg">-1.19% d</div><div class="metric-explain">WTI跌破70！美伊停火谈判达成框架</div></div>
+<div class="metric-card"><div class="metric-label">Silver</div><div class="metric-value">$58.24</div><div class="metric-change pos">+0.11% d</div><div class="metric-explain">白银小幅企稳，工业需求低迷压制</div></div>
+<div class="metric-card"><div class="metric-label">Copper</div><div class="metric-value">$6.188</div><div class="metric-change pos">+1.48% d</div><div class="metric-explain">伦铜反弹，中国PMI回升提振情绪</div></div>
+
+<div class="metric-group-label">主要货币 &middot; yfinance</div>
+<div class="metric-card"><div class="metric-label">DXY</div><div class="metric-value">101.31</div><div class="metric-change pos">+0.20% d</div><div class="metric-explain">美元指数小幅走强，JOLTS超预期支撑</div></div>
+<div class="metric-card"><div class="metric-label">EUR/USD</div><div class="metric-value">1.1422</div><div class="metric-change pos">+0.32% d</div><div class="metric-explain">欧元走强，ECB鹰派+通胀降温双支撑</div></div>
+<div class="metric-card"><div class="metric-label">USD/JPY</div><div class="metric-value">161.923</div><div class="metric-change pos">+0.08% d</div><div class="metric-explain">日元续创40年新低！市场紧盯BOJ干预</div></div>
+<div class="metric-card"><div class="metric-label">USD/CNY</div><div class="metric-value">6.7936</div><div class="metric-change neg">-0.06% d</div><div class="metric-explain">人民币小幅升值，结汇盘支撑</div></div>
+<div class="metric-card"><div class="metric-label">GBP/USD</div><div class="metric-value">1.3254</div><div class="metric-change pos">+0.43% d</div><div class="metric-explain">英镑上涨，UK商业信心有所修复</div></div>
+<div class="metric-card"><div class="metric-label">10Y Yield</div><div class="metric-value">4.418%</div><div class="metric-change pos">+1.05% d</div><div class="metric-explain">10年期美债收益率升至4.42%，债市承压</div></div>
+</div>
+</div>
+
+<nav class="toc">
+<h2>目录</h2>
+<div class="toc-grid">
+<div class="toc-item" data-target="s-cenbank"><span class="toc-num" style="background:#dc2626">1</span>央行政策<span class="toc-tag" style="background:#dc2626">4</span></div>
+<div class="toc-item" data-target="s-market"><span class="toc-num" style="background:#2563eb">2</span>市场动态<span class="toc-tag" style="background:#2563eb">5</span></div>
+<div class="toc-item" data-target="s-global"><span class="toc-num" style="background:#059669">3</span>全球经济<span class="toc-tag" style="background:#059669">5</span></div>
+<div class="toc-item" data-target="s-geo"><span class="toc-num" style="background:#d97706">4</span>地缘贸易<span class="toc-tag" style="background:#d97706">5</span></div>
+<div class="toc-item" data-target="s-commodity"><span class="toc-num" style="background:#7c3aed">5</span>商品外汇<span class="toc-tag" style="background:#7c3aed">5</span></div>
+</div>
+</nav>
+
+<section class="section" id="s-cenbank">
+<div class="section-header">
+<span class="section-tag" style="background:#dc2626">央行政策</span>
+<h2 style="color:#dc2626">Central Bank</h2>
+<span class="section-count">4 items</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#dc2626">1</span>
+<div class="card-info">
+<div class="card-title">Warsh 首次公开亮相：就任Fed主席后首秀，市场屏息</div>
+<div class="card-meta">Yahoo Finance · <a href="https://finance.yahoo.com/economy/policy/article/wednesday-is-warshs-first-appearance-since-his-inaugural-fed-meeting-will-he-demystify-his-thinking-183000837.html" target="_blank">finance.yahoo.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">自就任美联储主席以来，Warsh 周三首次公开发表演讲，市场高度聚焦其对利率路径、通胀展望和缩表节奏的措辞。Warsh 此前以"鹰派中的鹰派"著称，主张以更激进的方式控制通胀，甚至不惜以短期经济痛苦为代价。市场预期他将释放"higher for longer"的坚定信号，甚至可能暗示 7 月 FOMC 维持利率不变。若 Warsh 言论偏鹰，美债收益率可能进一步上行（10Y 已报 4.42%），美元指数有望测试 102 阻力，科技股估值将承压；若他意外释放鸽派信号，则可能触发股债双涨的轧空行情。这场讲话或将成为 Q3 全球资产定价的基准锚。</div>
+<div class="card-source">来源：<a href="https://finance.yahoo.com/economy/policy/article/wednesday-is-warshs-first-appearance-since-his-inaugural-fed-meeting-will-he-demystify-his-thinking-183000837.html" target="_blank" style="color:#dc2626">Yahoo Finance</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#dc2626">2</span>
+<div class="card-info">
+<div class="card-title">Cleveland Fed主席Hammack：AI支出助推通胀，利率或将长期高位</div>
+<div class="card-meta">Quartz/Yahoo · <a href="https://finance.yahoo.com/economy/policy/articles/cleveland-feds-beth-hammack-warns-160912963.html" target="_blank">finance.yahoo.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">克利夫兰联储主席 Beth Hammack 发出罕见警告：大规模 AI 基础设施支出正在通过两个渠道助推通胀——需求端拉动（数据中心建设消耗大量原材料、能源和劳动力）和预期端传导（企业投资热情推升资本品价格和薪资预期）。她强调，AI 资本开支热潮类似于 1990 年代电信基建潮，可能带来"生产率 J 曲线"——短期通胀压力先于长期生产率红利。这意味着美联储可能需要将利率维持在高位更长时间，以对冲 AI 投资的通胀效应。Hammack 的观点将在 FOMC 内引发讨论，若获得鹰派支持，市场对年内降息的定价将进一步压缩。</div>
+<div class="card-source">来源：<a href="https://finance.yahoo.com/economy/policy/articles/cleveland-feds-beth-hammack-warns-160912963.html" target="_blank" style="color:#dc2626">Quartz / Yahoo Finance</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#dc2626">3</span>
+<div class="card-info">
+<div class="card-title">ECB Lagarde：欧洲经济展现更大韧性，利率操作空间扩大</div>
+<div class="card-meta">Investing</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">欧洲央行行长拉加德延续鹰派论调，强调欧元区经济展现出"超出预期的韧性"，为 ECB 在利率政策上提供了更大操作空间。耐人寻味的是，拉加德此番表态恰逢法国和意大利 6 月通胀双双超预期回落，市场本期待 ECB 释放降息信号。她的鹰派立场意味着 ECB 将"以时间换空间"——宁可维持紧缩偏长、也不愿过早降息而让通胀反弹。欧元受此提振走强至 1.1422，但欧元区内部南北分化加剧（德国制造业持续萎缩 vs 西班牙增长上调至 2.6%）构成政策两难。预计 ECB 在 7 月会议上维持利率不变，但声明可能对 9 月降息留有弹性。</div>
+<div class="card-source">来源：Investing</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#dc2626">4</span>
+<div class="card-info">
+<div class="card-title">BOJ加息预期升温：东京CPI回升+日元跌破162，7月加息概率78%</div>
+<div class="card-meta">综合 · Investing</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">东京 6 月核心 CPI 连续第三个月加速，叠加日元跌破 162 关口续创 40 年新低，市场对日本央行 7 月加息的概率跳升至 78%。植田和男面临前所未有的"三难困境"：若不加息，日元贬值将继续侵蚀家庭购买力并推高进口通胀；若加息，日本政府债务利息负担将急剧膨胀（国债存量超 GDP 250%）；若仅干预汇率而不加息，则效果短暂。市场定价显示 BOJ 可能在 7 月 30-31 日会议将政策利率从 0.5% 上调至 0.75%，并同步缩减 JGB 购买规模。日元套利交易的头寸已达历史极值，一旦 BOJ 意外大幅加息，可能触发全球 carry trade 的暴力平仓。</div>
+<div class="card-source">来源：综合 Investing 报道</div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-market">
+<div class="section-header">
+<span class="section-tag" style="background:#2563eb">市场动态</span>
+<h2 style="color:#2563eb">Market Moves</h2>
+<span class="section-count">5 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#2563eb">5</span>
+<div class="card-info">
+<div class="card-title">S&P 500、Nasdaq 录得2020年以来最佳季度表现，H1涨幅超15%</div>
+<div class="card-meta">Investing · <a href="https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-st-logs-stellar-qtr-warsh-speech-awaited-4769302" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美股 Q2 收官日交出亮眼成绩单：S&P 500 季度涨幅超 8%，Nasdaq 涨幅超 12%，双双录得 2020 年 Q2 以来最佳季度表现。上半年累计涨幅均超 15%，科技股（尤其是 AI 算力、SaaS 和半导体）是核心驱动力。但市场结构值得警惕——涨幅高度集中于前五大科技股（Mag 7 贡献了 S&P 500 约 60% 的回报），小盘股 IWM 仅涨 0.50%，反映"广度收窄"问题。VIX 跌破 17 至 16.45（-6.80%），期权市场定价的尾部风险极低，但这种过度自满往往是波动率突然回归的前兆。Warsh 周三讲话将成为 H2 开局的关键变量——若鹰派超预期，科技股估值可能面临显著回调。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-st-logs-stellar-qtr-warsh-speech-awaited-4769302" target="_blank" style="color:#2563eb">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#2563eb">6</span>
+<div class="card-info">
+<div class="card-title">Microsoft 计划裁员数千人：科技巨头进入"效率优先"周期</div>
+<div class="card-meta">Business Insider/Investing · <a href="https://www.investing.com/news/stock-market-news/microsoft-plans-thousands-of-job-cuts-business-insider-4769229" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">微软计划新一轮数千人规模的裁员，成为继 Google、Meta 之后又一家在 AI 时代"瘦身"的科技巨头。此次裁员聚焦非核心业务部门和部分销售岗位，与 Azure AI 和 Copilot 产品线的持续扩张形成鲜明对比——微软正在将人力资本从传统软件许可业务向 AI 云服务倾斜。这一"结构性裁员"模式反映了整个科技行业的范式转变：AI 自动化正在替代传统的软件开发、测试和客服岗位，企业用更少的人做更多的事。股价短期可能受成本削减利好上涨，但中长期需关注 AI 投入的 ROI 能否兑现。纳斯达克当日在 Microsoft 等权重股带动下收涨 1.52%。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/stock-market-news/microsoft-plans-thousands-of-job-cuts-business-insider-4769229" target="_blank" style="color:#2563eb">Business Insider / Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#2563eb">7</span>
+<div class="card-info">
+<div class="card-title">Mizuho上修台积电CoWoS产能预测：服务器CPU需求激增</div>
+<div class="card-meta">Investing · <a href="https://www.investing.com/news/stock-market-news/mizuho-lifts-tsmc-cowos-capacity-forecasts-as-server-cpu-demand-surges-4769157" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">瑞穗证券大幅上修台积电 CoWoS 先进封装产能预测，核心驱动力是服务器 CPU 需求激增——不仅 GPU 在抢产能，AMD Genoa、Intel Granite Rapids 等新一代服务器 CPU 同样依赖 CoWoS 封装。这意味着 AI 算力扩张正在从 GPU 单点爆发扩展到整个数据中心芯片生态。台积电 CoWoS 月产能预计在 2026 年底达到 80,000-85,000 片晶圆（较此前预测上修 15%），但供需缺口仍将持续至 2027 年上半年。这一判断对半导体设备（ASML、应用材料）、封装基板（Ibiden、欣兴）和 HBM 存储（SK 海力士、三星）均构成利好。台积电 ADR 盘前上涨 3%，带动费城半导体指数全线上扬。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/stock-market-news/mizuho-lifts-tsmc-cowos-capacity-forecasts-as-server-cpu-demand-surges-4769157" target="_blank" style="color:#2563eb">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#2563eb">8</span>
+<div class="card-info">
+<div class="card-title">Anthropic称美国解除Fable/Mythos模型出口管制：AI政策转折</div>
+<div class="card-meta">Politico/Investing · <a href="https://www.investing.com/news/stock-market-news/trump-to-lift-export-controls-on-anthropics-fable-model-soon-politico-4769249" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">据 Politico 援引知情人士报道，特朗普政府即将解除对 Anthropic Fable/Mythos 模型的出口管制，这一政策转向标志着美国 AI 芯片和模型出口政策的重大调整。此前，美国对前沿 AI 模型实施严格的出口许可制度，限制向特定国家（尤其是中国和中东）输出高性能模型权重和训练技术。此次松绑背后是硅谷科技巨头的持续游说——他们认为过度管制正在将全球市场拱手让给竞争对手。Anthropic 作为仅次于 OpenAI 的闭源模型龙头，其海外商业部署将大幅提速，利好其云合作伙伴（AWS/Google Cloud）。但对地缘层面而言，AI 模型的扩散可能加速全球 AI 军备竞赛。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/stock-market-news/trump-to-lift-export-controls-on-anthropics-fable-model-soon-politico-4769249" target="_blank" style="color:#2563eb">Politico / Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#2563eb">9</span>
+<div class="card-info">
+<div class="card-title">Boeing IT故障影响计算机系统：供应链压力持续积累</div>
+<div class="card-meta">Reuters/Investing</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">波音公司再次遭遇 IT 系统故障，影响部分计算机系统和生产管理平台。这是波音在经历 737 MAX 质量危机、FAA 产能限制和工会谈判多重压力下的又一次运营冲击。虽然公司声明故障"未影响飞行安全"，但市场担忧其交付节奏可能再次推迟——波音 Q2 交付量已经低于预期 15%，任何额外扰动都将加剧与空客的市场份额差距。波音股价在周二盘后小幅承压。更广泛地看，航空制造业正面临"老龄化 IT 基础设施"的系统性风险——波音和空客均依赖 20 年以上的遗留系统（MES/ERP），数字化转型的投资回报周期长、切换成本高。FAA 已要求波音提交 IT 韧性审计报告。</div>
+<div class="card-source">来源：Reuters / Investing.com</div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-global">
+<div class="section-header">
+<span class="section-tag" style="background:#059669">全球经济</span>
+<h2 style="color:#059669">Global Economy</h2>
+<span class="section-count">5 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#059669">10</span>
+<div class="card-info">
+<div class="card-title">美国JOLTS职位空缺7.6M超预期！劳动力市场仍强劲</div>
+<div class="card-meta">Yahoo Finance · <a href="https://finance.yahoo.com/economy/article/job-openings-were-better-than-expected-in-may-at-76-million-142310111.html" target="_blank">finance.yahoo.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美国 5 月 JOLTS 职位空缺录得 760 万，显著超出市场预期的 740 万，表明劳动力市场在利率高压下依然保持韧性。职位空缺/失业人数比率维持在 1.77，远高于疫情前平均水平（1.2），说明劳动力需求仍远超供给。细分数据显示医疗保健、专业服务和休闲酒店业的职位空缺上升最明显，而科技和金融行业空缺小幅下降（与 Microsoft 裁员呼应）。JOLTS 数据公布后，美元指数小幅走强至 101.31，市场对 7 月降息的预期进一步降温。对于 FOMC 而言，这一数据强化了"暂无降息紧迫性"的立场——只要劳动力市场不出现断裂式恶化，美联储没有理由松绑政策。</div>
+<div class="card-source">来源：<a href="https://finance.yahoo.com/economy/article/job-openings-were-better-than-expected-in-may-at-76-million-142310111.html" target="_blank" style="color:#059669">Yahoo Finance</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#059669">11</span>
+<div class="card-info">
+<div class="card-title">欧元区最大经济体通胀降温超预期：法国+意大利CPI双双回落</div>
+<div class="card-meta">WSJ/Yahoo · <a href="https://finance.yahoo.com/economy/policy/articles/french-italian-inflation-cool-more-095700969.html" target="_blank">finance.yahoo.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">法国和意大利 6 月 CPI 双双超预期回落——法国同比降至 2.1%（预期 2.3%），意大利同比降至 1.8%（预期 2.0%），欧元区两大经济体通胀压力显著缓解。降温的主因是能源价格基数效应和服务业价格涨幅收窄。然而，ECB 拉加德在辛特拉论坛上仍维持鹰派基调，强调"不能因为一个月的数据而改变政策立场"，暗示 7 月降息概率极低。这种"数据改善但政策不松"的格局令市场困惑——欧元区国债收益率不降反升，市场在消化 ECB 可能更晚降息的预期。对欧元而言，通胀回落+政策偏鹰的组合形成双重利好，EUR/USD 升至 1.1422，创两个月新高。法国 CAC 40 和意大利 FTSE MIB 双双上涨超 1%。</div>
+<div class="card-source">来源：<a href="https://finance.yahoo.com/economy/policy/articles/french-italian-inflation-cool-more-095700969.html" target="_blank" style="color:#059669">WSJ / Yahoo Finance</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#059669">12</span>
+<div class="card-info">
+<div class="card-title">美国消费者信心微升但对经济整体仍悲观</div>
+<div class="card-meta">AP/Yahoo</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美国 6 月消费者信心指数小幅回升至 102.5（前值 101.8），主因汽油零售价从高点回落带来了短期购买力修复。但信心调查的"预期指数"仍低于 80（衰退预警线），消费者对未来 6 个月的经济前景持续悲观——就业市场虽然强劲，但通胀侵蚀实际工资、信用卡利率高企、以及房价和租金粘性让普通家庭感到财务压力。分年龄组看，年轻消费者（18-34 岁）信心最低，学生贷款恢复偿还和碎片化零工经济的不稳定性是主因。这种"消费行为不弱但信心低迷"的分化预示：家庭消费可能随时因外生冲击（汽油价格反弹、股市回调）而收缩，Q3 零售数据面临下行风险。</div>
+<div class="card-source">来源：AP / Yahoo Finance</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#059669">13</span>
+<div class="card-info">
+<div class="card-title">Trump设定汽油零售价$2.50目标，对抗通胀新战线</div>
+<div class="card-meta">Fortune/Yahoo · <a href="https://finance.yahoo.com/economy/policy/articles/trump-takes-inflation-battle-gas-111126646.html" target="_blank">finance.yahoo.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">特朗普宣布将全国汽油零售均价目标设定为每加仑 2.50 美元，将能源价格作为对抗通胀的新核心战场。目前全美均价约为 3.35 美元，这意味着需要下降约 25%。实现路径包括：加速国内石油天然气钻探许可审批（阿拉斯加、墨西哥湾）、放松 EPA 排放标准以扩大炼油产能、以及通过外交手段压低国际油价（美伊停火谈判的推进被视为第一步）。这一政策目标若接近兑现，将显著降低交通运输和物流成本，对核心 CPI 产生连锁下行效应。但环保团体警告这将逆转清洁能源转型势头，且 OPEC+ 可能以减产反制。WTI 油价已跌至 69.91 美元，在消息面叠加下可能进一步测试 65 美元支撑。</div>
+<div class="card-source">来源：<a href="https://finance.yahoo.com/economy/policy/articles/trump-takes-inflation-battle-gas-111126646.html" target="_blank" style="color:#059669">Fortune / Yahoo Finance</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#059669">14</span>
+<div class="card-info">
+<div class="card-title">黑石集团3-5年内投300亿美元在日本建AI数据中心</div>
+<div class="card-meta">IT之家</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">黑石集团宣布未来 3-5 年内在日本投资 300 亿美元建设 AI 数据中心，这是日本历史上最大规模的单一外国直接投资项目。选址集中在东京、大阪和北海道的工业园区，目标总装机容量达 5GW，服务包括 AWS、Google Cloud 和微软在内的超大规模客户。黑石此举看中的是日本的核心优势：低电价（核电重启后电价有望下降 20-30%）、良好的光纤网络基础设施、以及日元贬值降低了以美元计价的建设成本。这一投资计划与日本政府的"数字田园都市"国家战略高度契合，预计将带动日本建筑业、电力设备和冷却系统产业链。但对于日本电力供应和碳排放目标构成巨大压力——5GW 相当于 4-5 个百万千瓦级核电机组的输出。</div>
+<div class="card-source">来源：IT之家</div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-geo">
+<div class="section-header">
+<span class="section-tag" style="background:#d97706">地缘贸易</span>
+<h2 style="color:#d97706">Geopolitics & Trade</h2>
+<span class="section-count">5 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#d97706">15</span>
+<div class="card-info">
+<div class="card-title">美伊停火谈判达成框架协议：油价急跌至$69.91，WTI单日跌1.2%</div>
+<div class="card-meta">综合报道</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美国与伊朗在阿曼斡旋下达成停火框架协议，涵盖海上军事脱离接触、霍尔木兹海峡通行安全保障、以及部分制裁豁免。消息公布后，WTI 原油急跌 1.19% 至 69.91 美元，跌破 70 美元心理关口，地缘风险溢价（约 4-6 美元/桶）快速蒸发。这是 6 月以来美伊冲突"升级-缓和-再升级"循环中的最新缓和节点，但市场对协议的持久性持怀疑态度——伊朗核问题、也门代理人战争和以色列安全关切等深层矛盾未解。若停火框架在未来 72 小时内得到执行确认，油价可能进一步下探 65 美元，为特朗普的"$2.50 汽油"目标创造有利条件。航运保险市场已开始重新定价霍尔木兹海峡风险——战争险费率从周末峰值回落 35%，但仍高于 6 月初水平 20%。</div>
+<div class="card-source">来源：综合多家媒体报道</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#d97706">16</span>
+<div class="card-info">
+<div class="card-title">Anthropic模型出口管制解除：美国AI芯片出口政策的关键转折</div>
+<div class="card-meta">Investing/Politico · <a href="https://www.investing.com/news/stock-market-news/trump-to-lift-export-controls-on-anthropics-fable-model-soon-politico-4769249" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">特朗普政府即将解除对 Anthropic 前沿 AI 模型（Fable/Mythos）的出口管制，这一决定可能成为美国 AI 出口政策的"多米诺骨牌第一张"。此前，商务部工业安全局（BIS）将超过 10^26 FLOPs 训练计算量的模型纳入出口许可范围，严重限制了硅谷 AI 公司的海外扩张。此次政策松绑反映了两大力量博弈的结果：一是硅谷和华尔街的游说（AI 公司的全球收入若受限将压制估值），二是地缘考量——美国不希望欧洲、东南亚和中东市场被中国 AI 模型填补。下一步市场关注的是，OpenAI、Google DeepMind 的同类模型是否会获得同等待遇。对 AI 芯片（NVIDIA H200/B200/GB300）出口的影响同样深远——模型出口松绑通常意味着芯片管制的松动。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/stock-market-news/trump-to-lift-export-controls-on-anthropics-fable-model-soon-politico-4769249" target="_blank" style="color:#d97706">Investing.com / Politico</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#d97706">17</span>
+<div class="card-info">
+<div class="card-title">中国6月制造业PMI 50.3、服务业PMI 50.2双双回升至扩张区间</div>
+<div class="card-meta">综合报道</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">中国 6 月制造业 PMI 录得 50.3（前值 49.5），服务业 PMI 录得 50.2（前值 50.0），双双回升至扩张区间，结束此前一个月的收缩状态。这是"以旧换新"消费补贴、地产松绑政策和降准降息等一揽子稳增长措施的初步成效。分项看，生产指数和新订单指数同步改善，但新出口订单仍低于荣枯线（48.9），凸显外需疲弱——欧美终端需求放缓叠加贸易摩擦不确定性，中国出口企业面临订单减少的压力。人民币小幅升值至 6.7936（-0.06%），企业结汇盘提供支撑。但恒生指数不涨反跌 0.63%，反映市场对 PMI 改善可持续性的怀疑——7 月传统淡季可能再次走弱。铜价受中国 PMI 利好反弹 1.48% 至 6.188 美元，但工业金属能否持续走强仍需更多数据验证。</div>
+<div class="card-source">来源：综合中国国家统计局及 Investing 报道</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#d97706">18</span>
+<div class="card-info">
+<div class="card-title">特朗普威胁对征收数字税国家实施100%报复性关税</div>
+<div class="card-meta">综合报道</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">特朗普政府升级了针对数字服务税（DST）的贸易威胁——警告将对法国、英国、意大利、加拿大等征收数字税的国家实施 100% 报复性关税，涵盖奢侈品、葡萄酒、汽车等标志性出口品类。这一威胁的背景是 OECD "支柱一"全球税收协议谈判陷入僵局，各国重新推动单边数字税。美国立场强硬：硅谷平台公司（Google、Meta、Amazon）在全球范围内缴纳数字税，实质上是对美国科技霸权的"榨取"。若关税威胁落地，大西洋两岸贸易摩擦将进入新阶段——法国干邑白兰地、意大利奢侈品、德国汽车可能成为牺牲品。欧洲股市周二反应温和，但隐含波动率曲面显示 3 个月尾部风险溢价上升。市场正在为"贸易战 2.0"定价。</div>
+<div class="card-source">来源：综合多家媒体报道</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#d97706">19</span>
+<div class="card-info">
+<div class="card-title">欧洲收益率上行：中东紧张推升油价与通胀恐惧</div>
+<div class="card-meta">Investing</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">尽管美伊停火框架达成，欧洲主要国家 10 年期国债收益率仍小幅上行——德国 10Y 升至 2.48%（+3bp），法国升至 2.85%（+4bp），意大利-德国利差扩大至 145bp。市场并非完全相信停火协议的持久性，更在消化 ECB 拉加德的鹰派表态。更深层次看，欧洲收益率的上行反映了"通胀恐惧溢价"的回归：即使法意 CPI 暂时回落，全球供应链重构（AI 资本开支、军备扩张、能源转型）正在系统性地推升长期中性利率（R-star）。欧债投资者面临两难——买德债是对冲衰退风险，但持有到期的实际回报在通胀预期 2.24% 的环境下几乎为零。欧元区收益率曲线可能延续趋陡走势（short-end anchored by ECB，long-end driven by global factors）。</div>
+<div class="card-source">来源：Investing</div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-commodity">
+<div class="section-header">
+<span class="section-tag" style="background:#7c3aed">商品外汇</span>
+<h2 style="color:#7c3aed">Commodities & FX</h2>
+<span class="section-count">5 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#7c3aed">20</span>
+<div class="card-info">
+<div class="card-title">黄金面临2013年以来最差季度跌幅！利率预期+强美元双重打击</div>
+<div class="card-meta">Investing · <a href="https://www.investing.com/news/commodities-news/gold-slides-to-near-8mth-low-set-for-june-losses-as-rate-hike-jitters-weigh-4766832" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">COMEX 黄金期货跌破 4000 美元心理关口至 3991.80 美元（-0.76%），Q2 累计跌幅已达 12%，即将录得 2013 年 Q2 崩盘以来最差季度表现。黄金的"完美风暴"由三重打击构成：实际利率飙升（10Y TIPS 收益率升至 2.0%+，黄金作为零息资产的机会成本大幅增加）、美元走强（DXY 站稳 101 上方，降低以其他货币计价的黄金需求）、以及"避险失灵"——美伊停火协议削弱了地缘政治避险买盘。央行购金速度在 Q2 也有所放缓（中国央行连续第 3 个月暂停增持）。技术面看，下一关键支撑在 3900 美元（200 周均线），若跌破则可能加速下探 3800 美元。黄金多头需要等待"美联储转鸽 + 美元走弱 + 地缘风险回归"的三重信号共振，目前看 Q3 初期仍不乐观。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/commodities-news/gold-slides-to-near-8mth-low-set-for-june-losses-as-rate-hike-jitters-weigh-4766832" target="_blank" style="color:#7c3aed">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#7c3aed">21</span>
+<div class="card-info">
+<div class="card-title">日元跌至40年新低！USD/JPY 161.92，财务省干预警报拉响</div>
+<div class="card-meta">Investing · <a href="https://www.investing.com/news/forex-news/japanese-yen-slides-to-1986-low-as-traders-brace-for-intervention-4766822" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美元兑日元汇率攀升至 161.923（+0.08%），再度刷新 1986 年 12 月以来最高纪录。日本财务大臣加藤胜信将口头警告级别提升至"将采取果断行动"，市场将"汇率检查"门槛设在 162-163 区间，意味着干预可能在数小时内触发。但市场正在测试日本政策制定者的决心——BOJ 7 月加息（概率 78%）能否跑赢 FED 鹰派预期？若 BOJ 仅加息 15bp 至 0.65% 而 FED 维持不变，美日利差仍高达约 370bp，carry trade 的套利逻辑未根本改变。日本外汇储备约 1.1 万亿美元，可动用的美元流动性约 2000 亿美元——足够发动 4-5 轮大规模干预。但历史经验表明，单边干预只能争取时间，无法逆转由利差驱动的贬值趋势。日本家庭实际收入已连续 26 个月同比下降，日元贬值正在掏空中产阶级购买力。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/forex-news/japanese-yen-slides-to-1986-low-as-traders-brace-for-intervention-4766822" target="_blank" style="color:#7c3aed">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#7c3aed">22</span>
+<div class="card-info">
+<div class="card-title">美元站稳101上方：JOLTS数据超预期+利率预期支撑</div>
+<div class="card-meta">Investing</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美元指数（DXY）周二收报 101.31（+0.20%），连续第三日站稳 101 关口。驱动因素清晰：JOLTS 职位空缺 760 万超预期，劳动力市场韧性削弱了降息紧迫性；Warsh 周三讲话的鹰派预期提前定价；以及美伊停火削弱了避险货币（日元、瑞郎）的吸引力，资金回流美元。DXY 分解看，欧元（占比 57.6%）在 1.1422 高位整理的背景下美元仍能走强，说明美元强势是由内生因素（利率预期、增长溢价）驱动的，而非对手货币走弱所致。若 Warsh 讲话鹰派超预期，DXY 可能快速测试 102 的 200 日均线阻力；突破后则打开上行至 103-104 的空间。对于新兴市场而言，美元持续走强意味着外债偿付压力上升和资本外流加速——MSCI 新兴市场货币指数已连续第三周下跌。</div>
+<div class="card-source">来源：Investing</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#7c3aed">23</span>
+<div class="card-info">
+<div class="card-title">铜价反弹至6.19美元：中国PMI回升+AI数据中心铜缆需求逻辑</div>
+<div class="card-meta">综合市场数据 · Investing</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">伦铜反弹 1.48% 至 6.188 美元/磅，领涨大宗商品板块。双引擎驱动：短期催化剂是中国 6 月 PMI 回升至扩张区间（50.3），缓解了对全球最大铜消费国需求塌陷的担忧；中长期叙事是 AI 数据中心建设的铜缆需求逻辑——单座 200MW 级数据中心铜缆/铜排用量达 200-400 吨，黑石在日本 300 亿美元数据中心计划仅是冰山一角。LME 铜库存微降至 12.2 万吨，现货升水转正（contango 收窄），暗示现货市场边际改善。但铜价上行面临两大阻力：美元走强（DXY 101.31）压制以美元计价的商品，以及中国地产竣工端（铜消费最大场景之一）仍在深度收缩（新屋开工 1177K，同比下滑）。预计 Q3 铜价在 5.90-6.50 美元区间震荡，突破需要中国电网投资数据或 AI 基建开支确切的信号。</div>
+<div class="card-source">来源：综合市场数据</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">▶</span>
+<span class="card-num" style="background:#7c3aed">24</span>
+<div class="card-info">
+<div class="card-title">白银止跌企稳：工业需求数据即将公布</div>
+<div class="card-meta">综合市场数据</div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">白银期货小幅企稳于 58.24 美元（+0.11%），终结了此前连续五个交易日的跌势。白银当前的困境在于"双重身份互相拖累"——作为贵金属，受到黄金暴跌的溢出效应压制（金银比升至 68.5，为三个月来最高）；作为工业金属，受到全球制造业 PMI 分化（美国 ISM 制造业仍低于 50，欧洲工业产出疲弱）的压制。本周将公布美国 ISM 制造业 PMI 和欧元区工业产出数据，若数据改善（尤其是新订单和出口订单分项），白银有望获得工业需求逻辑的支撑。但短期看，白银 ETF 持仓仍在下降（SLV 上周净流出 3.2%），投机性多头在大宗商品整体走弱的背景下快速离场。白银若要重返 60 美元上方，需要黄金先企稳——金银联动仍是决定白银方向的首要因素。</div>
+<div class="card-source">来源：综合市场数据</div>
+</div>
+</div>
+
+</section>
+
+</div>
+
+<footer class="footer">
+Macro Report &middot; 2026.07.01 &middot; Market data: yfinance (ETFs/Indices/Commodities/FX) + FRED API (Rates/Economy) &middot; News: Investing.com, Yahoo Finance, IT之家 &middot; All values as of Tuesday close
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+var cards=document.querySelectorAll('.card');
+cards.forEach(function(card){
+var top=card.querySelector('.card-top');
+if(top){
+top.addEventListener('click',function(e){
+e.stopPropagation();
+var isActive=card.classList.contains('active');
+cards.forEach(function(c){c.classList.remove('active')});
+if(!isActive){card.classList.add('active')}
+});
+}
+});
+var tocItems=document.querySelectorAll('.toc-item');
+tocItems.forEach(function(item){
+item.addEventListener('click',function(){
+var target=document.getElementById(this.dataset.target);
+if(target){
+target.scrollIntoView({behavior:'smooth',block:'start'});
+}
+});
+});
+});
+</script>
+</body>
+</html>
