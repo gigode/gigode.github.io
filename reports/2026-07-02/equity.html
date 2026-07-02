@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equity Hot Report | 2026-07-02</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0a0a0a;color:#e5e5e5;min-height:100vh}
+.cover{background:linear-gradient(145deg, #78350f 0%, #92400e 50%, #f59e0b 100%);min-height:380px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(245,158,11,0.18),transparent 70%)}
+.cover-content{position:relative;z-index:1;padding:60px 20px}
+.cover h1{font-size:3.8rem;font-weight:800;color:#fff;text-shadow:0 2px 30px rgba(0,0,0,0.5);letter-spacing:-0.5px}
+.cover .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.75);margin-top:16px;letter-spacing:2px}
+.cover .date{font-size:0.95rem;color:rgba(255,255,255,0.5);margin-top:8px;font-family:'Courier New',monospace}
+.cover .badge-row{display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.cover .badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;color:#fff;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2)}
+.container{max-width:960px;margin:0 auto;padding:40px 20px}
+.toc{margin-bottom:44px}
+.toc h2{font-size:1.2rem;font-weight:700;margin-bottom:16px;color:#f59e0b;letter-spacing:1px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.toc-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 14px;cursor:pointer;transition:all 0.25s;font-size:0.82rem;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:8px}
+.toc-item:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.18)}
+.toc-item .toc-num{flex-shrink:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:0.65rem;font-weight:700;color:#fff}
+.toc-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:600;color:#fff;margin-left:auto;flex-shrink:0}
+.section{margin-bottom:40px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.section-header h2{font-size:1.3rem;font-weight:700}
+.section-tag{display:inline-block;padding:4px 12px;border-radius:6px;font-size:0.75rem;font-weight:600;color:#fff}
+.section-count{color:rgba(255,255,255,0.35);font-size:0.8rem;font-weight:400;margin-left:auto}
+.card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:10px;margin-bottom:10px;overflow:hidden;transition:all 0.3s}
+.card:hover{border-color:rgba(255,255,255,0.14);background:rgba(255,255,255,0.04)}
+.card-top{display:flex;align-items:center;padding:14px 18px;cursor:pointer;gap:12px;user-select:none}
+.card-arrow{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;transition:transform 0.35s ease;color:rgba(255,255,255,0.3);font-size:0.65rem;background:rgba(255,255,255,0.04);border-radius:50%;border:1px solid rgba(255,255,255,0.06)}
+.card.active .card-arrow{transform:rotate(90deg);color:#f59e0b;border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.1)}
+.card-num{flex-shrink:0;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:0.7rem;font-weight:700;color:#fff}
+.card-info{flex:1;min-width:0}
+.card-title{font-size:0.95rem;font-weight:600;color:#eee;line-height:1.4}
+.card-meta{font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
+.card-meta a{color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}
+.card-meta a:hover{color:#f59e0b;text-decoration:underline}
+.card-detail{max-height:0;overflow:hidden;transition:max-height 0.45s ease, padding 0.3s ease, border-top-width 0.3s ease;padding:0 18px;border-top:0 solid rgba(255,255,255,0.04)}
+.card.active .card-detail{max-height:900px;padding:14px 18px;border-top-width:1px}
+.card-analysis{font-size:0.88rem;line-height:1.85;color:rgba(255,255,255,0.7);text-align:justify}
+.card-source{margin-top:12px;font-size:0.78rem;color:rgba(255,255,255,0.3)}
+.card-source a{text-decoration:none;font-weight:500}
+.footer{text-align:center;padding:36px 20px;color:rgba(255,255,255,0.2);font-size:0.75rem;border-top:1px solid rgba(255,255,255,0.04);margin-top:20px;letter-spacing:0.5px}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px}
+@media(max-width:768px){
+.cover h1{font-size:2.2rem}.cover{min-height:300px}.container{padding:20px 14px}.toc-grid{grid-template-columns:1fr}.card-top{padding:12px 14px}.card-title{font-size:0.88rem}
+}
+@media(max-width:480px){
+.cover h1{font-size:1.8rem}.cover .subtitle{font-size:0.9rem}.card-num{width:22px;height:22px;font-size:0.6rem}.card-arrow{width:20px;height:20px;font-size:0.55rem}
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+
+<header class="cover">
+<div class="cover-content">
+<h1>Equity Hot</h1>
+<div class="subtitle">一级市场 · 募资风向标</div>
+<div class="date">2026.07.02  WEEK 27</div>
+<div class="badge-row">
+<span class="badge">💼 投资案例 8</span>
+<span class="badge">🏦 基金设立 6</span>
+<span class="badge">📊 政策行情 7</span>
+<span class="badge">🎤 大咖观点 5</span>
+</div>
+</div>
+</header>
+
+<div class="container">
+
+<nav class="toc">
+<h2>目录</h2>
+<div class="toc-grid">
+<div class="toc-item" data-target="s-deals"><span class="toc-num" style="background:#f59e0b">1</span>投资案例<span class="toc-tag" style="background:#f59e0b">8</span></div>
+<div class="toc-item" data-target="s-funds"><span class="toc-num" style="background:#2563eb">2</span>基金设立<span class="toc-tag" style="background:#2563eb">6</span></div>
+<div class="toc-item" data-target="s-policy"><span class="toc-num" style="background:#059669">3</span>政策行情<span class="toc-tag" style="background:#059669">7</span></div>
+<div class="toc-item" data-target="s-experts"><span class="toc-num" style="background:#7c3aed">4</span>大咖观点<span class="toc-tag" style="background:#7c3aed">5</span></div>
+</div>
+</nav>
+
+<section class="section" id="s-deals">
+<div class="section-header">
+<span class="section-tag" style="background:#f59e0b">💼 投资案例</span>
+<h2 style="color:#f59e0b">Investment Deals</h2>
+<span class="section-count">8 items</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#f59e0b">1</span>
+<div class="card-info">
+<div class="card-title">🔥 Bending Spoons IPO首日暴涨40% 逆势SaaS寒冬创奇迹</div>
+<div class="card-meta">TechCrunch · 7/1 · <a href="https://techcrunch.com/2026/07/01/bending-spoons-defies-saas-slump-surges-40-on-first-day-of-trading/" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">意大利移动应用开发商Bending Spoons在IPO首日暴涨40%，以逆势姿态打破全球SaaS寒冬的悲观论调。这家以收购并重新运营成熟移动应用为核心商业模式的公司，证明了"运营优化型SaaS聚合器"模式的资本效率远超传统SaaS创业。首日40%的涨幅意味着公开市场投资者对公司独特并购+运营策略的强烈认可，对欧洲VC生态具有里程碑意义。对LP而言，Bending Spoons成功打破了"欧洲没有规模化科技公司"的刻板印象，将为整个欧洲科技创业生态输送信心和退出标杆，同时验证了非硅谷SaaS模式的全球可投资性。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com/2026/07/01/bending-spoons-defies-saas-slump-surges-40-on-first-day-of-trading/" target="_blank" style="color:#f59e0b">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#f59e0b">2</span>
+<div class="card-info">
+<div class="card-title">DeepMind三人组做扑克AI 现为量化对冲基金赚钱</div>
+<div class="card-meta">TechCrunch · 6/30 · <a href="https://techcrunch.com/2026/06/30/the-deepmind-trio-who-built-a-poker-ai-are-now-making-money-for-quant-hedge-funds/" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">DeepMind核心三人组将其在扑克AI（Pluribus/Libratus级别的不完全信息博弈算法）的技术积累成功迁移至量化对冲基金领域，实现了从学术研究到金融变现的华丽转型。扑克AI的核心能力——在不完全信息下进行概率推理与博弈均衡计算——天然适配做市商策略和衍生品定价场景。对VC而言，这一案例揭示了AI人才的最高价值变现路径不再是加入大厂或创办SaaS公司，而是直接进入资本市场的alpha捕获赛道。AI从"降本增效工具"向"直接产生金融收益的引擎"转变，将对科技创业的人才流向和估值逻辑产生深远的结构性影响。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com/2026/06/30/the-deepmind-trio-who-built-a-poker-ai-are-now-making-money-for-quant-hedge-funds/" target="_blank" style="color:#f59e0b">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#f59e0b">3</span>
+<div class="card-info">
+<div class="card-title">Etched $50亿估值AI芯片独角兽 营收突破10亿美元</div>
+<div class="card-meta">TechCrunch · 6/30 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">Etched以50亿美元估值跻身AI芯片独角兽第一梯队，营收突破10亿美元大关，标志着专用Transformer推理芯片的商业化拐点已经到来。其放弃通用GPU架构、专攻单一模型架构的技术路线在能效比上实现了数量级优势，同时也意味着技术栈的高度集中化风险。对VC/PE而言，Etched的估值/营收比为5倍，在AI芯片赛道处于合理偏高水平，但参照Nvidia万亿美元市值天花板，50亿美元估值仍有充足的上行空间。LP需关注的关键变量是：未来12-18个月内，ASIC芯片路线能否在云厂商大规模采购中击败GPU的生态系统锁定优势，以及新制程节点的流片成本和良率风险。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#f59e0b">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#f59e0b">4</span>
+<div class="card-info">
+<div class="card-title">Chamath Palihapitiya $1.35亿A轮AI编程公司 亲自出任CEO</div>
+<div class="card-meta">TechCrunch · 6/29 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">前SPAC之王Chamath Palihapitiya以创始人兼CEO身份完成AI编程公司1.35亿美元A轮融资，完成了从二级套利者到AI builder的身份重塑。1.35亿美元的A轮规模位于AI编程赛道绝对头部，充分反映了明星创始人的估值溢价效应与AI开发者工具赛道的高景气度共振。Chamath选择all in而非单纯出资，验证了顶尖投资人将AI Coding视为下一个万亿美元级TAM赛道的高度共识。但对LP而言需保持清醒：当明星投资人扎堆涌入同一赛道时，估值泡沫风险不可忽视，精选差异化策略和关注PMF验证里程碑至关重要。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#f59e0b">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#f59e0b">5</span>
+<div class="card-info">
+<div class="card-title">Arena AI排行榜商业化 成为年收入$1亿业务</div>
+<div class="card-meta">TechCrunch · 6/29 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">AI领域广为人知的Chatbot Arena排行榜运营方已成长为ARR达1亿美元的商业实体，商业化速度在开发者基础设施领域极为罕见。其核心策略是依托社区流量入口切入门槛极高的企业级模型评估与采购决策市场，本质上是AI时代的Gartner魔力象限。对VC而言，这一案例为基础设施层的"流量型"估值提供了标杆参照——社区效应与数据飞轮的双重护城河正在重塑传统软件估值倍数。1亿美元ARR对应的潜在退出估值在30-50亿美元区间，为LP提供极具吸引力的回报预期。后续关注点在于企业级客户的付费转化率与合同留存率能否支撑估值溢价。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#f59e0b">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#f59e0b">6</span>
+<div class="card-info">
+<div class="card-title">General Intuition $23亿估值押注游戏训练AI智能体</div>
+<div class="card-meta">TechCrunch · 6/25 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">General Intuition以23亿美元估值完成大额融资，将视频游戏定位为AI agent的合成数据训练场，核心赌注是游戏引擎生成的仿真环境能否替代昂贵的物理世界数据采集。23亿美元估值在世界模型与具身智能交叉领域属于头部定价，反映出LP对AGI基础设施层的极高风险偏好。项目的商业逻辑依赖于3A游戏内容生产管线向AI训练数据管线的转化效率，技术壁垒在于物理仿真精度与真实世界之间的sim-to-real gap。对VC而言，估值兑现的关键观察指标是3-5年内是否出现具身智能在工业场景中的规模化部署，版权合规性是潜在的灰犀牛风险。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#f59e0b">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#f59e0b">7</span>
+<div class="card-info">
+<div class="card-title">a16z-backed Base Power 提供廉价分布式电力解决方案</div>
+<div class="card-meta">TechCrunch · 6/25 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">a16z投资的Base Power瞄准AI数据中心电力短缺的刚性需求，通过分布式电池储能网络提供廉价且稳定的电力供应，精准切入AI基础设施最稀缺的电力瓶颈。该项目的核心创新是将家庭和商业场所的分布式电池聚合为虚拟电厂，既为AI数据中心提供调峰电力，又为终端用户降低电费。对VC而言，AI数据中心对电力的指数级需求已在全球范围内推高电价并加剧电网压力，Base Power的"电力基础设施即服务"模式具有明确的需求确定性，但商业化的关键挑战在于电池资产的资本密集属性与监管审批周期的双重约束。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#f59e0b">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#f59e0b">8</span>
+<div class="card-info">
+<div class="card-title">Groq $6.5亿融资确认 重组后重返AI芯片战场</div>
+<div class="card-meta">TechCrunch · 6/22 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">AI芯片制造商Groq确认完成6.5亿美元融资并完成团队重组，在错失英伟达潜在收购后以独立姿态重返推理芯片战场。6.5亿美元融资规模在百亿级推理芯片市场中属于充足的独立发展弹药，LPU专用推理芯片在延迟指标上的优势为Groq赢得了差异化定位。对LP而言，Groq的融资成功意味着AI算力供应链的多元化趋势不可逆转，推理芯片赛道的独立估值体系正在加速形成。关键观察指标是未来18个月能否拿下至少一家头部云厂商的大规模推理订单，以及团队重组后的执行力改善程度。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#f59e0b">TechCrunch</a></div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-funds">
+<div class="section-header">
+<span class="section-tag" style="background:#2563eb">🏦 基金设立</span>
+<h2 style="color:#2563eb">Fund Formation</h2>
+<span class="section-count">6 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">9</span>
+<div class="card-info">
+<div class="card-title">Valor Equity Partners $25亿Fund VII 特斯拉早期投资人再出手</div>
+<div class="card-meta">TechCrunch · 6/24 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">特斯拉早期投资人Valor Equity Partners启动第七只基金募集，规模25亿美元，反映出顶级成长型PE机构在AI与新能源转型浪潮下的持续募资能力。25亿美元规模在2026年PE募资市场属于绝对头部区间，暗示LP配置加速向"特斯拉生态投资专家"集中。Valor在特斯拉和SpaceX上的惊人回报使其在主权基金和家族办公室中拥有无与伦比的品牌溢价，但LP也需关注规模膨胀后的回报倍数稀释风险——25亿美元级Fund VII的MOIC要维持前几期3-5倍的水平，需要更多百亿美元级别的退出案例支撑。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#2563eb">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">10</span>
+<div class="card-info">
+<div class="card-title">SoftBank续谈$100亿OpenAI持股贷款 超大额结构性融资</div>
+<div class="card-meta">Investing · 6月 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">软银继续推进以OpenAI股权为抵押的100亿美元贷款谈判，这将是AI领域史上最大规模的单一结构性融资安排。该交易的核心逻辑在于软银利用其持有的OpenAI股份作为抵押品获取流动性，以支持其在AI基础设施领域更大规模的资本部署。对一级市场而言，100亿美元级别的股权质押贷款标志着AI资产正在从传统VC/PE估值框架向"类房地产/基础设施"的资产证券化方向演进。LP需关注的是：超大额结构性融资可能为AI公司创造估值泡沫的温床，但也为早期投资者提供了全新的流动性获取通道。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#2563eb">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">11</span>
+<div class="card-info">
+<div class="card-title">Dan Ives离开Wedbush创办AI投行 明星分析师创业潮</div>
+<div class="card-meta">CNBC/Investing · 6月 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">华尔街最知名的科技分析师Dan Ives正式离开Wedbush，创办专注AI领域的精品投行，标志着AI掀起的金融人才迁移已从买方/技术圈扩展到卖方/投行圈。Ives以其对苹果、特斯拉等科技巨头的精准判断而闻名，他的转型不仅验证了AI赛道对资本中介服务的强劲需求，也预示着一批专注于AI垂直领域的精品投行将应运而生。对PE/VC市场而言，更多专业化投行的出现将提升AI并购和IPO的交易执行质量，但也意味着AI领域的金融人才竞争将更加激烈，GP挖人成本将水涨船高。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#2563eb">CNBC / Investing</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">12</span>
+<div class="card-info">
+<div class="card-title">Meta $9亿投资印度CRED + 云业务布局 跨境CVC新范式</div>
+<div class="card-meta">TechCrunch · 6月 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">Meta以9亿美元战略投资印度金融科技独角兽CRED，同时推进云业务合作，开创了"战略投资+商业合作+人才整合"的三位一体跨境CVC模式。9亿美元的单笔投资规模在印度科技生态中属于历史级别，标志着美国科技巨头对印度市场从轻度试水正式升级为重仓押注。对VC/PE而言，Meta此举具有双重意义：一是为印度金融科技赛道的早期投资者提供了极具吸引力的战略退出通道，二是推升了整个南亚科技生态的估值锚点。跨境CVC正在成为继传统IPO和M&A之后的第三大一级市场退出渠道。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#2563eb">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">13</span>
+<div class="card-info">
+<div class="card-title">黑石$300亿日本AI数据中心基金 亚太基础设施投资潮</div>
+<div class="card-meta">Bloomberg · 6月 · <a href="https://www.bloomberg.com" target="_blank">bloomberg.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">黑石集团设立300亿美元日本AI数据中心专项基金，这是全球另类资产管理巨头对亚太AI基础设施最大规模的单笔押注。日本凭借稳定的电力供应、较低的地缘政治风险和优质的工业用地资源，正成为全球AI数据中心投资的战略高地。300亿美元基金规模意味着实际撬动的项目总投资可能超过1000亿美元。对LP而言，数据中心资产具有长期稳定现金流和抗通胀属性，天然匹配养老金和保险资金的配置需求。但风险侧需关注日本电力供应结构的碳中合规压力，以及亚太地区超大规模数据中心供给过剩的潜在风险。</div>
+<div class="card-source">来源：<a href="https://www.bloomberg.com" target="_blank" style="color:#2563eb">Bloomberg</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#2563eb">14</span>
+<div class="card-info">
+<div class="card-title">Bending Spoons IPO成功为欧洲VC生态注入退出信心</div>
+<div class="card-meta">PitchBook/TechCrunch · 7/1 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">Bending Spoons首日暴涨40%的成功IPO不仅是一个公司的胜利，更是整个欧洲VC生态的里程碑式事件。过去十年，欧洲VC/PE面临的最大困境就是缺乏足够规模的退出案例来向LP证明回报能力，Bending Spoons的成功打破了"欧洲无法诞生规模化科技退出"的恶性循环。首日涨幅的强信号将直接催化欧洲LP对新基金的配置意愿升温，同时提升欧洲科技公司的全球估值锚定。对亚洲VC（尤其是中国）而言，Bending Spoons的案例也提供了"运营优化型SaaS聚合器"模式的路线图参考。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#2563eb">PitchBook / TechCrunch</a></div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-policy">
+<div class="section-header">
+<span class="section-tag" style="background:#059669">📊 政策行情</span>
+<h2 style="color:#059669">Policy & Market</h2>
+<span class="section-count">7 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">15</span>
+<div class="card-info">
+<div class="card-title">华尔街结束六年来最佳季度后回落 获利了结压力显现</div>
+<div class="card-meta">Investing · 7/2 · <a href="https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-st-logs-stellar-qtr-warsh-speech-awaited-4769302" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">华尔街在结束六年来最佳季度表现后出现技术性回落，美股期货持平，获利了结压力在新季度首日显现。对VC/PE退出端而言，季末效应后的回调是正常的技术性调整，重要的是Q2强反弹积累的估值修复基础是否能在Q3得以维持。如果回调幅度受控且科技股估值中枢不下移，下半年IPO窗口仍然有望保持开放。LP需警惕的是：Warsh鹰派讲话可能催化更深度的回调，从而推迟退出计划。GP应利用当前窗口加速推进已进入退出通道的项目，避免过度依赖对二级市场持续走强的假设。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-st-logs-stellar-qtr-warsh-speech-awaited-4769302" target="_blank" style="color:#059669">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">16</span>
+<div class="card-info">
+<div class="card-title">US与AI公司商谈自愿模型标准 监管框架加速成形</div>
+<div class="card-meta">FT/Investing · 7/2 · <a href="https://www.investing.com/news/stock-market-news/us-in-talks-with-ai-companies-for-voluntary-model-standards-ft-reports-4772143" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美国政府与AI头部公司展开自愿模型标准谈判，标志着AI监管从"是否需要"进入"如何实施"的阶段，对VC/PE投资的AI基础模型公司影响深远。自愿标准框架意味着短期内不会有强制性立法冲击，为AI初创企业提供了宝贵的合规缓冲期。但自愿标准也是强制监管的前奏——一旦自愿框架无法有效执行，具有法律约束力的监管将大概率跟进。GP需推动被投AI公司主动参与标准制定的行业讨论，将合规能力转化为竞争壁垒。LP端则需将AI监管风险正式纳入投资尽调清单，重点关注模型安全性和数据合规性两个维度。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/stock-market-news/us-in-talks-with-ai-companies-for-voluntary-model-standards-ft-reports-4772143" target="_blank" style="color:#059669">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">17</span>
+<div class="card-info">
+<div class="card-title">ADP 6月私营就业增9.8万 远不及预期 劳动力市场降温</div>
+<div class="card-meta">Investing · 7/2 · <a href="https://www.investing.com/news/economic-indicators/us-private-employers-add-98000-jobs-in-june-adp-says-4770399" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">ADP报告显示美国6月私营部门仅新增9.8万个就业岗位，大幅不及预期的13万，劳动力市场出现明显的降温信号。对VC/PE市场而言，就业数据走弱是一把双刃剑：一方面，劳动力市场降温意味着薪资通胀压力缓解，降低了美联储继续加息的理由，有利于风险资产估值；另一方面，就业市场疲软若演变为消费需求萎缩，将直接冲击消费者导向的被投企业收入。GP应密切关注本周五的非农数据确认趋势——如果非农同样大幅不及预期，降息预期将加速升温，利好科技股估值和IPO窗口。</div>
+<div class="card-source">来源：<a href="https://www.investing.com/news/economic-indicators/us-private-employers-add-98000-jobs-in-june-adp-says-4770399" target="_blank" style="color:#059669">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">18</span>
+<div class="card-info">
+<div class="card-title">Warsh鹰派讲话定调: 会让任何认为他容忍通胀超2%的人失望</div>
+<div class="card-meta">Investing · 7/2 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美联储重要人物Warsh在首次公开讲话中释放超预期鹰派信号，明确表态"会让任何认为他会容忍通胀超2%的人失望"，市场对7月加息的概率预期应声跳升。这对VC/PE市场具有深远影响：如果美联储在7月重启加息，意味着高利率环境将持续更长时间，杠杆收购的融资成本将进一步攀升，同时高估值AI独角兽将面临更大的估值下行压力。GP应立即重新评估portfolio中对利率敏感的LBO项目和未盈利高估值公司的退出时间表，LP端则需考虑增加防御性行业（医疗、基础设施）的配置比例以对冲利率风险。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#059669">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">19</span>
+<div class="card-info">
+<div class="card-title">Meta股价大涨9% 云业务计划引发市场重估</div>
+<div class="card-meta">Investing/Bloomberg · 7/2 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">Meta股价单日大涨9%，市场对公司宣布的云业务计划反应热烈，投资者正在重新评估Meta在AI基础设施领域的战略价值。云业务计划的公布意味着Meta正从社交媒体广告公司向AI基础设施平台转型，其庞大的自研算力集群（此前主要用于内部AI训练）将向外部客户开放，开辟全新的收入来源。对VC/PE而言，大型科技公司向云/AI基础设施的战略转型将催生大量上下游产业链的投资机会——从芯片散热到光模块，从数据中心电力管理到AI运维工具，基础设施生态投资将成为下一个重要赛道。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#059669">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">20</span>
+<div class="card-info">
+<div class="card-title">半导体板块暴跌: Micron -10%, KLA -11.8% 行业景气分化</div>
+<div class="card-meta">Investing · 7/2 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">半导体板块遭遇重挫，美光科技下跌10%、KLA暴跌11.8%，存储器与半导体设备细分领域出现集中抛售。这一分化行情反映出市场对半导体行业周期性的担忧正在升温——AI芯片（GPU/ASIC）需求持续旺盛，但存储器与非AI用途芯片正面临库存修正压力。对VC/PE而言，半导体赛道的投资逻辑需要进一步细分：AI专用芯片（如Etched、Groq等）仍享有结构性需求红利，但传统存储器/设备赛道的风险正在上升。LP在配置半导体相关基金时，应明确投资主题是否聚焦AI专用芯片而非广泛半导体行业敞口。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#059669">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#059669">21</span>
+<div class="card-info">
+<div class="card-title">比特币走势: Strategy资本框架$25.5亿 BTC生态制度化</div>
+<div class="card-meta">Investing · 6/29 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">原MicroStrategy的Strategy公司发布25.5亿美元资本框架并预留BTC定期出售计划，标志着上市公司数字资产财库管理进入制度化运作新阶段。该框架的核心是将比特币配置从"CEO的个人信念驱动"升级为"董事会批准的机构化资本管理策略"，对加密VC/PE生态具有标杆意义。BTC定期出售计划短期内可能对加密市场流动性形成压力，但长期来看制度化的资本框架将大幅降低传统LP对加密基金的风险感知，从而催化更多机构资金进入Web3领域。加密赛道的投资逻辑正从叙事驱动转向资产配置驱动。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#059669">Investing.com</a></div>
+</div>
+</div>
+
+</section>
+
+<section class="section" id="s-experts">
+<div class="section-header">
+<span class="section-tag" style="background:#7c3aed">🎤 大咖观点</span>
+<h2 style="color:#7c3aed">Expert Views</h2>
+<span class="section-count">5 items</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">22</span>
+<div class="card-info">
+<div class="card-title">Warsh首次公开讲话: 鹰派定调 7月加息概率跳升</div>
+<div class="card-meta">Investing · 7/2 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">美联储核心人物Warsh在其首次公开讲话中明确释放鹰派信号，称将"让任何认为他容忍通胀超2%的人失望"，市场对7月加息的概率预期从讲话前的15%跳升至38%。这一定调对VC/PE市场的影响路径清晰而深远：加息预期升温将推高折现率，直接压缩高增长低盈利科技公司的DCF估值；LBO融资成本上升将抑制PE交易活跃度；IPO窗口的打开时点可能从Q3推迟至Q4甚至2027年。GP应在投后管理中优先关注被投企业的现金储备和盈利路径，LP则应重新评估基金的IRR假设和流动性规划。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#7c3aed">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">23</span>
+<div class="card-info">
+<div class="card-title">Dan Ives离开Wedbush创办AI投行: 华尔街分析师创业潮</div>
+<div class="card-meta">CNBC/Investing · 7/2 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">Dan Ives离开效力多年的Wedbush创办AI精品投行，这一转型不仅仅是个人职业选择，更代表了华尔街研究人才向AI金融中介领域大规模迁移的开端。Ives的转型逻辑在于：AI赛道的融资、并购和IPO需求正以指数级增长，传统投行的通用覆盖模式已无法满足AI公司对行业专精金融顾问的需求。对VC/PE退出端而言，更多专注AI的精品投行出现将提升交易执行质量和估值发现效率。但从人才竞争角度看，AI精品投行的兴起意味着GP在招募投资团队时将面临来自投行侧的更大薪酬竞争压力，人力成本结构将因此改变。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#7c3aed">CNBC / Investing</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">24</span>
+<div class="card-info">
+<div class="card-title">DeepMind量化转型: AI人才从学术到金融的结构性迁移</div>
+<div class="card-meta">TechCrunch · 6/30 · <a href="https://techcrunch.com" target="_blank">techcrunch.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">DeepMind三人组从扑克AI研究到量化对冲基金alpha捕获的转型，揭示了AI顶级人才最高价值实现路径正在从"加入大厂拿高薪"或"创办SaaS公司求退出"向"直接进入资本市场获取超额收益"演变。这一趋势对VC/PE生态产生深远的结构性影响：AI人才流向金融市场意味着创业生态中顶尖AI人才供给减少，初创企业的技术竞争力面临稀释风险；但另一方面，量化基金对AI技术的深度应用也为科技创业创造了全新的并购退出通道——对冲基金和量化交易公司正在成为AI初创企业的新型战略买家。GP需在地缘政治不确定性中保持灵活配置，避免过度集中单一市场敞口。</div>
+<div class="card-source">来源：<a href="https://techcrunch.com" target="_blank" style="color:#7c3aed">TechCrunch</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">25</span>
+<div class="card-info">
+<div class="card-title">全球策略师: Q3美元能否维持强势 影响全球资本流动格局</div>
+<div class="card-meta">Investing · 7月 · <a href="https://www.investing.com" target="_blank">investing.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">全球宏观策略师聚焦Q3美元走势，美元指数能否维持强势将直接影响全球资本流动方向和PE/VC的跨境投资决策。如果美元维持强势，新兴市场PE基金将面临本币贬值带来的回报侵蚀压力，以本币计价的MOIC可能在换算为美元后大幅缩水。另一方面，强势美元将降低美国LP配置海外基金的意愿，加剧非美VC/PE的募资难度。对亚洲和中国GP而言，美元强势周期意味着募资策略需向人民币基金倾斜，而出海投资的美元成本上升也将影响跨境并购交易的标的筛选逻辑和定价能力。欧元区降息周期启动后美元/欧元利差走势是关键观察变量。</div>
+<div class="card-source">来源：<a href="https://www.investing.com" target="_blank" style="color:#7c3aed">Investing.com</a></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-arrow">&#9654;</span>
+<span class="card-num" style="background:#7c3aed">26</span>
+<div class="card-info">
+<div class="card-title">PitchBook: 欧洲VC生态受益于Bending Spoons成功IPO</div>
+<div class="card-meta">PitchBook · 7月 · <a href="https://pitchbook.com" target="_blank">pitchbook.com</a></div>
+</div>
+</div>
+<div class="card-detail">
+<div class="card-analysis">PitchBook发布分析指出，Bending Spoons首日暴涨40%的IPO成功将对欧洲VC生态产生远超单一公司层面的系统性能量注入。欧洲VC长期面临"有投资无退出"的困境，缺乏足够规模的典型案例向LP证明回报能力，Bending Spoons的里程碑式成功有望打破这一恶性循环。PitchBook预计该事件将产生三重正向传导：一是LP对欧洲VC基金的配置意愿边际改善，二是欧洲科技初创公司的全球估值锚定上移，三是吸引更多美国顶级VC在欧洲开设办公室和建立投资团队。对中国VC而言，这一事件也提供了"运营优化型增长"模式的路线图参考，尤其是面向全球市场的2C产品赛道。</div>
+<div class="card-source">来源：<a href="https://pitchbook.com" target="_blank" style="color:#7c3aed">PitchBook</a></div>
+</div>
+</div>
+
+</section>
+
+</div>
+
+<footer class="footer">
+Equity Hot Report &middot; 2026.07.02 &middot; Data sourced from public markets
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+var cards=document.querySelectorAll('.card');
+cards.forEach(function(card){
+var top=card.querySelector('.card-top');
+if(top){
+top.addEventListener('click',function(e){
+e.stopPropagation();
+var isActive=card.classList.contains('active');
+cards.forEach(function(c){c.classList.remove('active')});
+if(!isActive){card.classList.add('active')}
+});
+}
+});
+var tocItems=document.querySelectorAll('.toc-item');
+tocItems.forEach(function(item){
+item.addEventListener('click',function(){
+var target=document.getElementById(this.dataset.target);
+if(target){
+target.scrollIntoView({behavior:'smooth',block:'start'});
+}
+});
+});
+});
+</script>
+</body>
+</html>
