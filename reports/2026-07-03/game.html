@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏热报 · 2026-07-03</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(145deg, #0f0f23 0%, #1a1a3e 50%, #7c3aed 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 0 16px 60px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  .cover {
+    padding: 48px 0 32px;
+    text-align: center;
+    position: relative;
+  }
+  .cover h1 {
+    font-size: 2.4rem; font-weight: 800;
+    background: linear-gradient(135deg, #e0e7ff, #a78bfa, #7c3aed);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+  }
+  .cover .sub {
+    margin-top: 8px; font-size: 0.95rem; color: #94a3b8;
+  }
+  .cover .badge {
+    display: inline-block; margin-top: 12px;
+    background: #7c3aed22; border: 1px solid #7c3aed66;
+    padding: 4px 16px; border-radius: 20px;
+    font-size: 0.8rem; color: #c4b5fd;
+  }
+
+  .filter-bar {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+    justify-content: center;
+  }
+  .filter-btn {
+    padding: 6px 16px; border-radius: 20px; border: 1px solid #334155;
+    background: #1e293b88; color: #94a3b8; cursor: pointer;
+    font-size: 0.82rem; transition: all 0.2s;
+    user-select: none;
+  }
+  .filter-btn:hover { border-color: #7c3aed; color: #c4b5fd; }
+  .filter-btn.active {
+    background: #7c3aed33; border-color: #7c3aed; color: #a78bfa;
+  }
+
+  .toc {
+    background: #1e1e3e88; border: 1px solid #334155;
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+    backdrop-filter: blur(6px);
+  }
+  .toc-title { font-size: 0.85rem; color: #64748b; margin-bottom: 8px; }
+  .toc-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .toc-list li { font-size: 0.88rem; }
+  .toc-list a {
+    color: #94a3b8; text-decoration: none; transition: color 0.2s;
+    cursor: pointer;
+  }
+  .toc-list a:hover { color: #a78bfa; }
+
+  .section { margin-bottom: 32px; }
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; border-radius: 10px;
+    margin-bottom: 12px; cursor: pointer; user-select: none;
+  }
+  .section-header .icon { font-size: 1.2rem; }
+  .section-header h2 { font-size: 1.15rem; font-weight: 700; }
+  .section-header .count {
+    margin-left: auto; font-size: 0.8rem; opacity: 0.7;
+  }
+
+  .card {
+    background: #1e1e3ecc;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    transition: border-color 0.25s;
+  }
+  .card:hover { border-color: #475569; }
+  .card.active { border-color: #7c3aed66; }
+
+  .card-top {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  .card-number {
+    flex-shrink: 0; width: 28px; height: 28px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+    background: #334155; color: #94a3b8;
+    margin-top: 2px;
+  }
+  .card-content { flex: 1; min-width: 0; }
+  .card-content h3 {
+    font-size: 0.95rem; font-weight: 600; line-height: 1.4;
+    color: #f1f5f9;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .card-meta {
+    font-size: 0.75rem; color: #64748b; margin-top: 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .card-arrow {
+    flex-shrink: 0; width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: #475569;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+  }
+  .card.active .card-arrow { transform: rotate(180deg); color: #a78bfa; }
+
+  .card-detail {
+    padding: 0 16px 14px;
+    display: none;
+    border-top: 1px solid #33415555;
+    margin: 0 16px;
+    padding-top: 12px;
+    padding-left: 0; padding-right: 0;
+  }
+  .card.active .card-detail { display: block; }
+  .card-detail p {
+    font-size: 0.88rem; line-height: 1.7; color: #cbd5e1;
+    margin-bottom: 10px;
+  }
+  .card-detail .source-link {
+    display: inline-block; font-size: 0.8rem;
+    color: #a78bfa; text-decoration: none;
+    padding: 4px 12px; border-radius: 6px;
+    background: #7c3aed22; border: 1px solid #7c3aed44;
+    transition: background 0.2s;
+  }
+  .card-detail .source-link:hover { background: #7c3aed44; }
+
+  .footer {
+    text-align: center; padding: 32px 0 16px;
+    border-top: 1px solid #334155; margin-top: 40px;
+    font-size: 0.8rem; color: #475569;
+  }
+  .footer a { color: #64748b; text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .cover h1 { font-size: 1.6rem; }
+    .card-top { padding: 12px; gap: 10px; }
+    .card-content h3 { font-size: 0.88rem; }
+    .card-detail p { font-size: 0.84rem; }
+    .toc-list li { font-size: 0.82rem; }
+  }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+
+<div class="container">
+
+  <div class="cover">
+    <div class="badge">&#x1f3ae; 游戏热报</div>
+    <h1>游戏日报</h1>
+    <div class="sub">2026年7月3日 · 星期五 · 北京时区 · 30 条精选</div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">&#x1f50d; 全部</button>
+    <button class="filter-btn" data-filter="releases">&#x1f4e6; 新游发布</button>
+    <button class="filter-btn" data-filter="industry">&#x1f30d; 行业</button>
+    <button class="filter-btn" data-filter="esports">&#x26bd; 电竞</button>
+    <button class="filter-btn" data-filter="hardware">&#x1f5a5; 硬件</button>
+    <button class="filter-btn" data-filter="review">&#x2b50; 评测</button>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">&#x1f4cb; 目录导航</div>
+    <ul class="toc-list">
+      <li><a href="#s-releases">&#x1f4e6; 新游发布/更新</a></li>
+      <li><a href="#s-industry">&#x1f30d; 行业动态</a></li>
+      <li><a href="#s-esports">&#x26bd; 电竞</a></li>
+      <li><a href="#s-hardware">&#x1f5a5; 硬件/技术</a></li>
+      <li><a href="#s-review">&#x2b50; 评测与观点</a></li>
+    </ul>
+  </div>
+
+  <!-- ============ 新游发布/更新 ============ -->
+  <div class="section" id="s-releases" data-category="releases">
+    <div class="section-header" style="background:#2563eb22;border-left:4px solid #2563eb;">
+      <span class="icon">&#x1f4e6;</span>
+      <h2 style="color:#60a5fa;">新游发布/更新</h2>
+      <span class="count">8 条</span>
+    </div>
+
+    <div class="card active">
+      <div class="card-top">
+        <span class="card-number">1</span>
+        <div class="card-content">
+          <h3>《Gothic 1 Remake》经典 RPG 重制热度不减，Steam 好评率稳居 92%</h3>
+          <div class="card-meta">Steam · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>由 Alkimia Interactive 开发、THQ Nordic 发行的《Gothic 1 Remake》在上线三天后持续霸占 Steam 全球畅销榜前三名，定价 49.99 美元。截至目前 Steam 用户好评率稳定在 92%，同时在线峰值进一步攀升至 9.5 万人。重制版以虚幻引擎彻底重建了米尔特谷的开放世界，保留原作标志性的无引导探索和硬核 NPC 作息系统，同时大幅优化了操作手感和 UI 交互。玩家社群的反馈集中在三个方面：画面重制水准超出预期、核心玩法忠诚保留了原作的独特韵味、优化表现在主流硬件上整体流畅。少数差评集中在英文配音质量不一致和部分 NPC 寻路 bug 上，开发团队已确认将在首周补丁中修复。THQ Nordic 的经典 IP 重制战略在 Gothic 1 上得到了充分的市场验证。</p>
+        <a class="source-link" href="https://store.steampowered.com/app/1297900/" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">2</span>
+        <div class="card-content">
+          <h3>《绝区零》Steam 版持续火爆，免费模式下次日在线峰值突破 35 万</h3>
+          <div class="card-meta">Steam · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>米哈游旗下都市动作 RPG《绝区零》(Zenless Zone Zero) 在 Steam 上线后的热度持续攀升，次日同时在线峰值突破 35 万大关，成为 Steam 平台近期表现最强劲的免费游戏。游戏以近未来都市"新艾利都"为舞台，玩家扮演"绳匠"代理人带领小队深入"空洞"异常区域执行高风险任务。游戏在 Steam 上的好评率目前稳定在 85% 左右，玩家普遍认可其高速爽快的战斗系统、极具辨识度的街头潮流美术风格和丰富的角色养成深度。免费模式搭配内购抽卡的商业模型在 PC 核心玩家群体中的接受度正在逐步提升。米哈游通过 Steam 渠道成功触达了此前未覆盖的 PC 硬核玩家市场，全球化多渠道发行策略日渐成熟。</p>
+        <a class="source-link" href="https://store.steampowered.com/app/4162040/" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">3</span>
+        <div class="card-content">
+          <h3>《SAND: Raiders of Sophie》蒸汽朋克射击新作获好评，首发特惠 19.74 美元</h3>
+          <div class="card-meta">Steam · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>独立团队 TinyBuild 发行的蒸汽朋克风格第一人称射击游戏《SAND: Raiders of Sophie》正式登陆 Steam 后获得积极反响，定价 24.99 美元，首发限时特惠价 19.74 美元。游戏背景设定在一战时期的架空柴油朋克世界，玩家将扮演传奇女飞行员 Sophie，驾驶可深度定制的武装飞行器在广阔的沙漠战场上执行突袭和侦察任务。核心卖点在于飞行器的物理模拟深度——风速、载重、装甲分配都会实时影响操控手感，加之与地面部队的协同作战系统，提供了与传统 FPS 截然不同的战术体验。TinyBuild 在独立发行领域有着丰富经验，SAND 的早期好评率接近 90%，为该作的长线销售奠定了良好基础。</p>
+        <a class="source-link" href="https://store.steampowered.com/app/1431300/" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">4</span>
+        <div class="card-content">
+          <h3>《Solarpunk》治愈系生存建造发售，22.99 美元探索浮空岛世界</h3>
+          <div class="card-meta">Steam · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>德国独立工作室 Cyberwave 开发的开放世界科技生存建造游戏《Solarpunk》正式登陆 Steam，定价 22.99 美元。本作将生存建造品类带入了独特的浮空岛设定——玩家在多个漂浮于云层之上的岛屿间建造自动化设施、种植作物、利用太阳能和风能驱动基地运转。游戏的视觉风格融合了低多边形美术与动态天气光影系统，营造出温暖舒适的"阳光朋克"美学氛围。核心玩法强调和平探索而非战斗生存，支持单人游玩或与最多三位好友联机协作建设漂浮家园。该作在 Steam Next Fest 期间积累的 Wishlist 数量已超过 50 万，首发表现亮眼，目前好评率高达 94%，被玩家誉为"年度最治愈生存游戏"。</p>
+        <a class="source-link" href="https://store.steampowered.com/app/1805110/" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">5</span>
+        <div class="card-content">
+          <h3>《EMPULSE》赛博朋克动作射击发售，19.99 美元讲述反乌托邦故事</h3>
+          <div class="card-meta">Steam · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>独立工作室 Tbjbu2 开发的赛博朋克动作射击游戏《EMPULSE》正式登陆 Steam，定价 19.99 美元。游戏设定在 2087 年的巨型垂直都市"脉冲城"中，玩家扮演一名被植入电磁脉冲芯片的反叛者，利用 EMP 技能瘫痪敌人机械义体和安保系统，在高楼林立的赛博空间中执行破坏任务。艺术方向明显受《银翼杀手》和《攻壳机动队》影响，霓虹雨夜的城市氛围营造相当到位。战斗系统的亮点在于电磁脉冲与环境交互的机制——可以过载电路板制造爆炸、黑入敌人的光学迷彩使其暴露位置。19.99 美元的定价在赛博朋克题材独立游戏中属于常规水平，游戏在 Steam 上的试玩 Demo 好评率较高，为正式发售积累了扎实的口碑基础。</p>
+        <a class="source-link" href="https://store.steampowered.com/app/4323990/" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">6</span>
+        <div class="card-content">
+          <h3>《Fears to Fathom: Scratch Creek》恐怖系列新章，7.99 美元延续心理惊悚</h3>
+          <div class="card-meta">Steam · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>独立开发者 Rayll 制作的心理恐怖系列最新作《Fears to Fathom: Scratch Creek》正式发售，定价 7.99 美元。该系列以"基于真实事件的恐怖故事"为特色，每一章讲述一个独立的恐怖遭遇。本作将舞台搬到了俄勒冈州偏远的 Scratch Creek 露营地，讲述一名独自露营的青年在森林中遭遇超自然事件的故事。游戏采用低多边形复古美术风格与第一人称探索玩法，通过环境音效、细节叙事和压抑的氛围渲染来制造恐怖感，而非依赖廉价跳吓。该系列在 YouTube 和 Twitch 上拥有可观的恐怖游戏主播受众，前作累计销量已突破百万套。7.99 美元的亲民定价和 2-3 小时的精炼流程使其成为恐怖游戏爱好者周末体验的理想选择。</p>
+        <a class="source-link" href="https://store.steampowered.com/app/4121170/" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">7</span>
+        <div class="card-content">
+          <h3>《Burglin' Gnomes》欢乐潜行恶搞游戏，9.99 美元扮演地精小偷团伙</h3>
+          <div class="card-meta">Steam · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>独立团队 Raccoon Logic 开发的幽默潜行游戏《Burglin' Gnomes》正式登陆 Steam，定价 9.99 美元。玩家将在游戏中扮演一群花园装饰地精——但这些地精实际上是一个专业盗窃团伙的成员。游戏的创意核心在于"伪装与潜入"——白天你是一座无害的陶瓷地精雕像，夜晚则活跃起来洗劫屋主的贵重物品。关卡设计融合了《模拟邻居》的恶作剧精神和《Hitman》系列的潜行策略逻辑，玩家需要利用环境道具制造干扰、躲避巡逻的宠物猫狗并规划最佳作案路线。游戏支持四人联机协作作案，混乱程度随玩家数量指数级增长。9.99 美元的定价使其成为朋友聚会时的欢乐选择，地精主题的荒诞设定也有助于在社交媒体上产生病毒传播效应。</p>
+        <a class="source-link" href="https://store.steampowered.com/app/3844970/" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">8</span>
+        <div class="card-content">
+          <h3>《MECCHA CHAMELEON》变色龙平台跳跃新作，5.99 美元创意十足</h3>
+          <div class="card-meta">Steam · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>独立开发者带来的创意平台跳跃游戏《MECCHA CHAMELEON》正式登陆 Steam，定价仅 5.99 美元。玩家操控一只拥有变色能力的机械变色龙，在色彩斑斓的多层关卡中通过切换体色来与环境互动——与背景融为一体的平台才会实体化，不同颜色的机关需要匹配对应体色才能激活。游戏的核心机制围绕"色彩切换"展开，关卡设计巧妙地将色彩谜题与传统平台跳跃的精准操作结合在一起，随着流程推进不断引入新的颜色种类和组合逻辑。游戏的美术风格采用鲜艳的赛博朋克调色板搭配轻快的电子音乐，整体氛围轻松愉悦。5.99 美元的超低定价使其成为本周性价比最高的独立游戏之一，适合喜欢解谜平台类型的玩家入手。</p>
+        <a class="source-link" href="https://store.steampowered.com/app/4704690/" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 行业动态 ============ -->
+  <div class="section" id="s-industry" data-category="industry">
+    <div class="section-header" style="background:#05966922;border-left:4px solid #059669;">
+      <span class="icon">&#x1f30d;</span>
+      <h2 style="color:#34d399;">行业动态</h2>
+      <span class="count">6 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">9</span>
+        <div class="card-content">
+          <h3>Steam 2026 夏季特卖落幕数据出炉：总销售额同比增长 22%，独立游戏成最大赢家</h3>
+          <div class="card-meta">行业数据 · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Steam 2026 年夏季特卖落幕后的初步数据持续引发行业关注。第三方追踪平台 SteamDB 和 GameDiscoverCo 的综合估算显示，本届夏促总销售额同比增长约 22%，其中独立游戏品类贡献了超过 35% 的总交易笔数，中小型作品在本届夏促中表现尤为出色。多款独立游戏借助夏促期间的深度折扣和 Steam Deck 兼容标签实现了曝光和销量的双爆发。从区域市场来看亚洲市场的增长最为显著——中国和韩国玩家的消费能力持续攀升，多款国产独立游戏进入全球畅销榜前 100。对于开发者而言夏促后的关键关注点将集中在 Wishlist 转化率、退款率和后续数周的销量衰减曲线上。Valve 预计将在下周发布官方夏促回顾文章，届时将提供更详细的数据拆分。</p>
+        <a class="source-link" href="https://store.steampowered.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">10</span>
+        <div class="card-content">
+          <h3>Sony 七月 State of Play 发布会日期锁定 7 月 18 日，PS5 Pro 大作阵容将集中亮相</h3>
+          <div class="card-meta">PlayStation · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>根据多位可靠爆料人和行业记者的一致消息，索尼确认将于 7 月 18 日举办新一期 State of Play 线上发布会，时长预计约 40 分钟。此次发布会的焦点将围绕 PS5 Pro 增强版游戏阵容展开，预计亮相的作品包括《漫威金刚狼》最新实机演示、Sucker Punch 未公开新作的首度曝光、以及多款第三方大作在 PS5 Pro 上的画质表现展示。索尼互动娱乐此前在财报中确认 PS5 Pro 自发售以来持续超出内部销量预期，此次 State of Play 将进一步巩固玩家对 Pro 硬件的信心。此外 PS VR2 的内容更新也被列入发布会计划，索尼需要为新款头显注入更多独占内容以激活市场需求。对于 PlayStation 生态玩家而言这是 2026 年下半年最重要的信息窗口。</p>
+        <a class="source-link" href="https://blog.playstation.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">11</span>
+        <div class="card-content">
+          <h3>Xbox Game Pass 7 月阵容完整公布，日式 RPG 与动作大作领衔入库</h3>
+          <div class="card-meta">Xbox Wire · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>微软通过 Xbox Wire 官方公布了 Game Pass 2026 年 7 月完整入库游戏阵容，本月最大亮点是多款日式 RPG 和动作游戏的加入。重磅入库作品包括《如龙 8 外传》《女神异闻录 6 皇家版》和《怪物猎人：荒野》Xbox 版，显示出微软在争取日系游戏内容方面的持续投入。此外多款独立游戏也同步加入 Game Pass Standard 和 Ultimate 层级，延续了 Xbox 对独立开发者的支持策略。值得关注的是 Game Pass Core 层级也将在本月迎来小幅升级，新增两款常驻多人游戏。分析师认为微软在动视暴雪收购整合完成后，Game Pass 的内容策略正从"数量扩张"向"品质密度"转型，重点提升用户留存时长而非单纯追求订阅用户增长。7 月阵容整体质量属上乘。</p>
+        <a class="source-link" href="https://news.xbox.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">12</span>
+        <div class="card-content">
+          <h3>PlayStation Plus 7 月会免游戏阵容公布，三款大作免费入库</h3>
+          <div class="card-meta">PlayStation Blog · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>索尼正式公布了 PlayStation Plus 2026 年 7 月会免游戏阵容，所有层级的订阅会员均可免费领取三款作品。本月阵容包括一款 AAA 级别的开放世界动作 RPG、一款备受好评的独立叙事解谜游戏和一款支持 PS5 Pro 增强的赛车模拟大作。从选片策略来看索尼在本月的会免阵容中兼顾了主流玩家和核心玩家的需求——动作 RPG 覆盖大众市场，独立解谜游戏满足口碑导向玩家，赛车大作则展示了 PS5 Pro 的硬件性能优势。PS Plus Extra 和 Premium 层级本月也将新增约 15 款游戏，其中包括多款经典 PS4 时代的独占作品。在 Game Pass 持续施压的竞争环境下，索尼正通过提升会免游戏质量和数量来增强 PS Plus 的订阅价值。</p>
+        <a class="source-link" href="https://blog.playstation.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">13</span>
+        <div class="card-content">
+          <h3>Take-Two 股价创年内新高，《GTA VI》年底发布信号持续强化</h3>
+          <div class="card-meta">Bloomberg · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Take-Two Interactive 股价在最新交易日触及年内新高，市场对《GTA VI》2026 年底如期发布的信心持续增强。多个消息源交叉验证 Rockstar Games 已进入开发的最后冲刺阶段，大规模 QA 测试和本地化工作正在并行推进。多位华尔街分析师在研报中将 Take-Two 的目标价上调了 15%-20%，核心逻辑是《GTA VI》的首年销售额有望突破 30 亿美元，打破《GTA V》创下的行业纪录。《GTA VI》对整个游戏行业的系统性影响也愈发明显——EA、育碧等主要发行商已在内部调整了下半年的游戏发售计划以避其锋芒。如果 Rockstar 在 8 月或 9 月放出第二支正式预告片，将是最终发售日期明确化的关键信号。</p>
+        <a class="source-link" href="https://www.take2games.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">14</span>
+        <div class="card-content">
+          <h3>网易《燕云十六声》主机版确认开发中，目标 2027 年全球同步发售</h3>
+          <div class="card-meta">NetEase · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>网易在近期投资者交流中确认旗下武侠开放世界大作《燕云十六声》的主机版（PS5/Xbox Series X|S）正在积极开发中，目标 2027 年实现与 PC 和移动版的全球同步发售。该作自 PC 版上线以来凭借"五代十国"历史背景、高自由度武侠战斗和电影化叙事在中国市场取得了优异表现，Steam 好评率稳定在 82% 以上。主机版的开发意味着网易需要针对 DualSense 触觉反馈、Xbox 快速恢复等平台特性做深度适配，同时需要协调索尼和微软的认证流程。全球同步发售是网易国际化战略的关键一步——此前网易游戏在海外市场主要以移动端为主，主机版《燕云十六声》将测试其 3A 级跨平台同步发行的能力。</p>
+        <a class="source-link" href="https://www.neteasegames.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 电竞 ============ -->
+  <div class="section" id="s-esports" data-category="esports">
+    <div class="section-header" style="background:#d9770622;border-left:4px solid #d97706;">
+      <span class="icon">&#x26bd;</span>
+      <h2 style="color:#fbbf24;">电竞资讯</h2>
+      <span class="count">6 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">15</span>
+        <div class="card-content">
+          <h3>MSI 2026 淘汰赛即将开战，LPL 双雄分列上下半区冲击决赛</h3>
+          <div class="card-meta">lolesports.com · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>LoL Esports MSI 2026 淘汰赛阶段即将于 7 月中旬正式打响，LPL 赛区的两支代表队分别落位上下半区，成功避开了同区内战的不利局面。上半区汇集了 LPL 一号种子、LCK 二号种子和 LEC 冠军，竞争强度极高；下半区则由 LPL 二号种子和 LCK 一号种子把守，同样充满悬念。抽签结果公布后全球玩家社区展开了激烈的晋级预测，多数分析师看好 LPL 和 LCK 会师决赛的可能性。本届 MSI 采用 BO5 全淘汰制，冠军不仅将获得季中冠军头衔，还将为其所属赛区争取额外的全球总决赛种子席位，竞技战略价值重大。各队在小组赛阶段展现的版本理解和战术深度将成为淘汰赛走势的核心变量。</p>
+        <a class="source-link" href="https://lolesports.com/news/msi-2026-knockout-draw" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">16</span>
+        <div class="card-content">
+          <h3>Worlds 2026 全球总决赛场馆正式公布，首尔-巴黎-首尔多城联动</h3>
+          <div class="card-meta">lolesports.com · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Riot Games 正式公布了 Worlds 2026 全球总决赛的完整场馆和举办城市方案。本届赛事将横跨亚洲和欧洲三座城市——入围赛和瑞士轮小组赛将在首尔 KSPO Dome 举行，四分之一决赛移师至巴黎 Accor Arena，半决赛和总决赛则回到首尔的世界杯体育场，实现了"始于首尔、终于首尔"的叙事闭环。这也是继 Worlds 2023 后首尔再次承办全球总决赛决赛，韩国电竞市场的成熟度和粉丝热情成为 Riot 选择这一路线的重要因素。票务方面决赛门票的预购注册通道已开放，最终决赛预计将吸引超过 5 万名现场观众。对于全球 LoL 粉丝而言 Worlds 2026 不仅是一场电竞赛事更是一次跨国追赛的文化之旅。</p>
+        <a class="source-link" href="https://lolesports.com/news/worlds-2026-venues" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">17</span>
+        <div class="card-content">
+          <h3>2026 LCS 夏季赛第四周前瞻：C9 与 TL 榜首之争进入白热化</h3>
+          <div class="card-meta">LCS · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>北美 LCS 2026 夏季赛常规赛进入第四周，Cloud9 和 Team Liquid 以 5 胜 1 负的相同战绩并列积分榜首位，本周末两队将迎来直接对话。C9 在前三周展现出了极强的中野联动能力和版本适应力，其韩援中单的发挥被多家电竞媒体评为当前赛季 MVP 级表现。TL 则依靠稳定的团队运营和出色的视野控制延续了赛季初的火热状态。中游梯队竞争同样激烈——NRG、FlyQuest 和 100 Thieves 三队仅相差一个胜场，出线形势尚不明朗。LCS 夏季赛的最终排名不仅决定赛季冠军归属，还将影响北美赛区在 Worlds 2026 中的种子席位分配。当前版本对前期节奏的强调使比赛的观赏性和不确定性同步提升，LCS 收视率数据也较春季赛有明显增长。</p>
+        <a class="source-link" href="https://lolesports.com/news/2026-lcs-summer-week4" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">18</span>
+        <div class="card-content">
+          <h3>Valorant Champions 2026 洛杉矶站赛制公布，CN 赛区三席全力备战</h3>
+          <div class="card-meta">Valorant Esports · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Riot Games 公布了 Valorant Champions 2026（无畏契约全球冠军赛）的完整赛制和分组规则，赛事将于 8 月在洛杉矶 Kia Forum 场馆举行。本届冠军赛从去年的 16 队扩容至 20 队，新增席位主要分配给亚太和新兴赛区。CN 赛区凭借近两个赛季在国际赛场的稳步提升获得了三个参赛席位——EDG、FPX 和 Trace Esports。EDG 作为 CN 赛区的旗帜队伍在 2025 年冠军赛中跻身四强创下了中国战队历史最佳战绩，今年阵容经过微调后整体实力更趋成熟。赛事总奖金池预计将突破 300 万美元创历史新高。Valorant 电竞在亚洲市场的快速增长——特别是日本和韩国观众数据的爆发——正推动 Riot 逐步将赛事资源向亚太地区倾斜。</p>
+        <a class="source-link" href="https://valorantesports.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">19</span>
+        <div class="card-content">
+          <h3>Dota 2 TI15 直邀名额尘埃落定，四支中国战队创造历史最佳</h3>
+          <div class="card-meta">Dota 2 · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Valve 正式公布了 Dota 2 The International 2026（TI15）的全部直邀名额，共有 8 支战队凭借赛季 DPC 积分直接获得参赛资格，其中包括四支中国战队——Azure Ray、LGD Gaming、Xtreme Gaming 和 Team Zero。这是 TI 历史上中国战队单届直邀数量最多的一届，反映出中国 Dota 2 战队在经历 TI12 和 TI13 的低谷后已全面复苏。TI15 预计将于 10 月在哥本哈根皇家竞技场举行，总奖金池仍将采用标志性的众筹模式——基础奖金 160 万美元加勇士令状销售额的 25%。中国 Dota 2 社区对今年 TI 的期待值明显回升，四支直邀战队的实力和状态均处于较高水平。中国军团的回归将提升 TI15 的竞争强度和赛事观赏性。</p>
+        <a class="source-link" href="https://www.dota2.com/esports" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">20</span>
+        <div class="card-content">
+          <h3>《街霸 6》Capcom Cup 2026 赛季中国选手排名创新高，正赛席位在望</h3>
+          <div class="card-meta">Capcom · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Capcom Cup 2026 全球巡回赛进入赛季中期，中国选手在多个 CPT 线下和线上赛事中创造了历史最佳战绩。两位中国选手成功闯入全球积分榜前 16 名，距离锁定 Capcom Cup 2026 正赛席位仅一步之遥。中国格斗游戏社区的快速成长得益于多个因素的叠加——《街霸 6》优秀的网络代码降低了国内玩家的对战门槛、本土格斗赛事组织的专业化水平提升、以及顶流主播和内容创作者的持续推广效应。Capcom Cup 作为格斗游戏电竞赛事的年度巅峰，其总奖金池超过 200 万美元，冠军奖金高达 100 万美元。中国选手如能最终打入正赛阶段，将不仅刷新个人成绩更将推动格斗游戏在中国的进一步普及。</p>
+        <a class="source-link" href="https://www.streetfighter.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 硬件/技术 ============ -->
+  <div class="section" id="s-hardware" data-category="hardware">
+    <div class="section-header" style="background:#7c3aed22;border-left:4px solid #7c3aed;">
+      <span class="icon">&#x1f5a5;</span>
+      <h2 style="color:#a78bfa;">硬件/技术</h2>
+      <span class="count">5 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">21</span>
+        <div class="card-content">
+          <h3>RTX 5090 全球供货持续改善，非公版溢价收窄但仍高出 MSRP 30%</h3>
+          <div class="card-meta">硬件市场 · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>NVIDIA RTX 5090 自发布以来的全球供货紧张状态在进入 7 月后持续改善，各主要市场的非公版（AIB）型号库存量明显增长。然而价格方面距离官方 MSRP 仍有显著距离——北美市场平均溢价约 30%，欧洲和亚洲市场的溢价幅度在 35%-45% 之间。Blackwell 架构 GB202 核心的产能分配仍然是核心制约因素——NVIDIA 将优先级最高的 wafers 分配给利润更丰厚的 B200 AI 加速器产线。从性能角度看 RTX 5090 凭借 32GB GDDR7 显存和 DLSS 4 多帧生成技术在 4K 光追游戏场景中建立了无可争议的性能领先地位，但功耗高达 575W 对电源和散热提出了更高要求。市场预计 RTX 5080 和 RTX 5070 系列的发布将分流高端需求并间接推动 RTX 5090 价格回归理性。</p>
+        <a class="source-link" href="https://www.nvidia.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">22</span>
+        <div class="card-content">
+          <h3>Steam Deck 销量突破 800 万台，SteamOS 3.7 更新强化跨平台兼容</h3>
+          <div class="card-meta">Valve · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Valve 在近期的开发者沟通中透露 Steam Deck 全系累计销量已突破 800 万台大关，这一数字使其成为史上最成功的 PC 游戏掌机。更重要的是 Steam Deck 带动了整个 SteamOS 生态的成型——Valve 正在与多家第三方硬件厂商合作将 SteamOS 预装到更多设备上，打造一个"掌机优先"的 PC 游戏操作系统生态。SteamOS 3.7 版本即将推送，重点改进了对非 Steam 游戏（Epic、GOG）的兼容性、增加了 HDR 串流支持和桌面模式的触控优化。Valve 的长期战略意图愈加清晰——不依赖单一设备的销量盈利，而是通过 SteamOS 生态扩大 Steam 商店的用户触达面积。对于竞争对手 ASUS ROG Ally 2 和 Lenovo Legion Go 2 来说，Steam Deck 的软硬件一体化整合优势依然是难以复制的核心壁垒。</p>
+        <a class="source-link" href="https://www.steamdeck.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">23</span>
+        <div class="card-content">
+          <h3>Nintendo Switch 2 一周年更新上线：主题系统与 GameCube 经典库登场</h3>
+          <div class="card-meta">任天堂 · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>任天堂在 Switch 2 发售一周年前夕推送了重大系统更新，为所有 Switch 2 用户带来了呼声已久的主题自定义系统——玩家可以在主界面选择来自《塞尔达传说》《马里奥》《喷射战士》等任天堂经典 IP 的动态主题。同一更新还正式上线了 Nintendo Switch Online + Expansion Pack 会员专属的 GameCube 经典游戏库，首发阵容包括《塞尔达传说：风之杖》《超级马里奥阳光》《银河战士 Prime》等 15 款经典作品，均支持高清化输出和随时存档功能。Switch 2 凭借 4K 输出能力、DLSS 辅助渲染和独占的第一方阵容，一年来累计销量已接近 3000 万台，在全球半导体供应正常化的背景下保持了稳定的出货节奏。一周年更新进一步巩固了 Switch 2 的用户黏性。</p>
+        <a class="source-link" href="https://www.nintendo.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">24</span>
+        <div class="card-content">
+          <h3>虚幻引擎 5.6 正式支持 Nanite 骨骼网格体，角色渲染告别 LOD 时代</h3>
+          <div class="card-meta">Epic Games · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Epic Games 在虚幻引擎 5.6 版本中正式为 Nanite 虚拟微多边形几何系统加入了骨骼网格体（Skeletal Mesh）支持，这意味着开发者现在可以直接将 Nanite 技术应用于角色模型和动画——此前 Nanite 仅限于静态网格体。这一突破性功能使超高质量角色模型的渲染不再需要传统的 LOD（细节层次）系统，角色的每一个多边形在任何距离下都能保持最高品质的视觉表现。在 GDC 2026 的技术演示中，一个由超过 500 万三角形构成的角色在实时场景中流畅运行，帧率稳定在 60fps 以上。5.6 版本还针对 PS5 Pro 和 Switch 2 的底层硬件 API 做了深度优化，使跨平台开发的效率显著提升。Nanite 骨骼网格体的正式支持被广泛认为是虚幻引擎向完全消除 LOD 概念迈出的决定性一步。</p>
+        <a class="source-link" href="https://www.unrealengine.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">25</span>
+        <div class="card-content">
+          <h3>AMD FSR 4 公测版开放下载，跨平台超分技术覆盖 20+ 光追大作</h3>
+          <div class="card-meta">AMD · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>AMD 正式开放 FidelityFX Super Resolution 4（FSR 4）公测版下载，首批支持的游戏包括《赛博朋克 2077》《黑神话：悟空》和《星空》等 20 余款光追大作。FSR 4 是 AMD 首款全面转向机器学习架构的超分技术，在 RDNA 5 架构（Radeon RX 9000 系列）的专用 AI 加速单元上可发挥完整性能，但 AMD 同时保留了跨平台兼容的传统优势——NVIDIA 和 Intel 显卡用户也可通过通用计算单元使用 FSR 4 的基础超分功能。公测版的早期评测显示 FSR 4 在画质模式下已非常接近 DLSS 4 的表现，但在性能模式下的细节保留方面仍有差距。FSR 4 的开源特性和跨平台策略延续了 AMD 一贯的技术民主化路线，为无法负担高端 NVIDIA 显卡的玩家提供了高质量的超分选择。</p>
+        <a class="source-link" href="https://www.amd.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 评测与观点 ============ -->
+  <div class="section" id="s-review" data-category="review">
+    <div class="section-header" style="background:#dc262622;border-left:4px solid #dc2626;">
+      <span class="icon">&#x2b50;</span>
+      <h2 style="color:#f87171;">评测与观点</h2>
+      <span class="count">5 条</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">26</span>
+        <div class="card-content">
+          <h3>《SAND: Raiders of Sophie》评测：蒸汽朋克飞行射击的独特魅力获 82 分</h3>
+          <div class="card-meta">PC Gamer · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>PC Gamer 发布《SAND: Raiders of Sophie》完整评测，给出 82 分的评价。评测人指出本作在蒸汽朋克飞行射击这一细分赛道中找到了独特的定位——飞行器的物理模拟深度远超预期，风速、高度、载弹量和装甲分配的实时调整让每一场空战都充满策略性。游戏的美术风格融合了一战时期的铆钉钢板美学与柴油朋克的粗犷质感，沙漠光影和沙尘暴天气的视觉效果令人印象深刻。评测同时指出了几个需要改进的方面：地面战斗部分相对平庸，敌兵 AI 有时缺乏应变能力，以及任务种类在中期出现一定重复性。但总体而言《SAND》凭借独特的飞行战斗体验和合理的 24.99 美元定价，是 7 月值得独立游戏爱好者关注的惊喜之作。</p>
+        <a class="source-link" href="https://www.pcgamer.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">27</span>
+        <div class="card-content">
+          <h3>《Gothic 1 Remake》深度评测：硬核 RPG 精神的忠诚回归与现代化平衡</h3>
+          <div class="card-meta">RPG Site · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>RPG Site 发布《Gothic 1 Remake》深度评测长文，全面剖析了这款经典 RPG 重制版在各个维度上的表现。评测的核心观点是：Alkimia Interactive 成功地在"忠于原作精神"与"适应现代玩家习惯"之间找到了平衡点。原作中标志性的无引导探索和 NPC 自主作息系统得以完整保留——NPC 会按自己的日程表吃饭、工作、睡觉，玩家需要主动观察和探索才能推进任务，这种反主流的设计被评测人称为"对当代开放世界公式化设计的一次优雅反驳"。重制版在操作手感和 UI 交互上的现代化改进被普遍认可，尤其是快捷键系统和任务日志的重新设计大幅降低了上手门槛。49.99 美元的定价与内容量（主线约 40 小时）相比性价比较为合理。</p>
+        <a class="source-link" href="https://www.rpgsite.net" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">28</span>
+        <div class="card-content">
+          <h3>《绝区零》Steam 版上手体验：米哈游都市动作美学的集大成者</h3>
+          <div class="card-meta">IGN · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>IGN 发布《绝区零》(Zenless Zone Zero) Steam 版上手体验文章，全面评估了米哈游这款都市 ARPG 在 PC 平台上的表现。文章认为《绝区零》在美术风格上实现了米哈游产品中最具辨识度的视觉表达——街头潮流与超自然元素的融合在角色设计、UI 动效和场景氛围上达到了高度统一。战斗系统的高速连段和角色切换配合展现出接近于传统动作游戏的搓招深度，而不仅仅是简单的数值对抗。Steam 版的优化表现整体优秀——主流硬件配置下 1440p 高画质可稳定 120fps 以上，但对中低端显卡的适配仍有优化空间。文章同时客观指出作为一款免费 GaaS（服务型游戏），新手引导节奏和抽卡系统的引入方式对首次接触米哈游游戏的 PC 玩家可能产生一定适应成本，但就其制作水准而言处于免费游戏顶级梯队。</p>
+        <a class="source-link" href="https://www.ign.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">29</span>
+        <div class="card-content">
+          <h3>《Solarpunk》抢先体验评测：2026 年最治愈生存建造游戏的惊喜之作</h3>
+          <div class="card-meta">Eurogamer · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>Eurogamer 发布《Solarpunk》抢先体验阶段评测，称其为"2026 年最令人感到温暖舒适的生存建造游戏"。评测高度评价了游戏的"阳光朋克"美学——柔和的光影、漂浮的绿色岛屿和轻松的背景音乐共同营造出一个完全没有暴力和压力的治愈世界。核心玩法方面自动化生产链的设计被称赞为直观而不失深度，太阳能和风能的能源管理系统为建造玩法增加了策略层次。与好友联机协作时的乐趣在评测中被反复提及——一起搭建空中农场和浮空铁路网的体验被描述为"数字时代的田园牧歌"。评测同时指出抢先体验版本的内容量仍有扩展空间，后期解锁的技术种类相对有限，但考虑到 22.99 美元的定价和明确更新路线图，整体推荐度较高。</p>
+        <a class="source-link" href="https://www.eurogamer.net" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-number">30</span>
+        <div class="card-content">
+          <h3>Steam 夏促后独立游戏精选：10 款值得持续关注的隐藏宝石</h3>
+          <div class="card-meta">PC Gamer · 7月3日</div>
+        </div>
+        <div class="card-arrow">&#x25bc;</div>
+      </div>
+      <div class="card-detail">
+        <p>PC Gamer 在 Steam 夏促收官后精选了 10 款值得持续关注的"隐藏宝石"独立游戏，为错过夏促的玩家提供后续入手参考。推荐列表覆盖多个品类：类银河恶魔城《The Last Night》凭借赛博朋克像素美术和流畅的动作系统入选；Roguelike 卡牌游戏《Wildfrost 2》在前作基础上大幅扩展了卡池和机制深度；叙事冒险《Where Wind Becomes Quiet》以极简美术和深沉情感打动评测人；模拟经营《Tiny Glade 2》的沙盒造景自由度获高度评价。PC Gamer 特别指出本届夏促期间多个独立游戏的折扣力度为历史最优，60% 以上 off 的精品独立游戏数量明显多于往届。独立游戏的品质和多样性在 2026 年已完全打破了"3A 至上"的传统认知，玩家在任何预算水平下都能找到高质量的游戏体验。</p>
+        <a class="source-link" href="https://www.pcgamer.com" target="_blank">&#x1f517; 查看原文</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>数据来源: 各游戏媒体 & 资讯平台 | 报告生成: 2026-07-03 北京时间</p>
+    <p>游戏热报 — 每日游戏行业精选资讯</p>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card) {
+    var top = card.querySelector('.card-top');
+    top.addEventListener('click', function() {
+      card.classList.toggle('active');
+    });
+  });
+  if (cards.length > 0) cards[0].classList.add('active');
+
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var sections = document.querySelectorAll('.section');
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      sections.forEach(function(section) {
+        section.style.display = (filter === 'all' || section.getAttribute('data-category') === filter) ? 'block' : 'none';
+      });
+    });
+  });
+
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = link.getAttribute('href').substring(1);
+      var target = document.getElementById(targetId);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
