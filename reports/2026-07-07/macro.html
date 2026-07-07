@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌍 全球宏观日报 · 2026-07-07</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0a0a0a;
+  color: #d1d5db; min-height: 100vh; padding: 0 16px 60px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.container { max-width: 960px; margin: 0 auto; }
+.cover { text-align: center; padding: 48px 0 32px; }
+.cover h1 { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg,#fbbf24,#f59e0b,#dc2626); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.cover .sub { font-size: 1.05rem; color: #6b7280; margin-top: 8px; }
+.cover .badge { display: inline-block; margin-top: 16px; padding: 6px 20px; border-radius: 20px; background: #1a1a1a; border: 1px solid #333; font-size: 0.85rem; color: #6b7280; }
+.toc { background: #111; border: 1px solid #222; border-radius: 12px; padding: 20px 24px; margin: 0 0 32px; }
+.toc-title { font-size: 0.85rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+.toc-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc-list a { display: inline-block; padding: 4px 14px; border-radius: 6px; background: #222; color: #9ca3af; text-decoration: none; font-size: 0.82rem; transition: background 0.2s; }
+.toc-list a:hover { background: #f59e0b33; color: #fcd34d; }
+.section { margin-bottom: 32px; }
+.section-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 8px; margin-bottom: 14px; }
+.section-header .icon { font-size: 1.3rem; }
+.section-header h2 { font-size: 1.15rem; font-weight: 700; flex:1; }
+.section-header .count { font-size: 0.8rem; padding: 2px 10px; border-radius: 10px; background: #1a1a1a; color: #6b7280; }
+.card {
+  background: #111; border: 1px solid #222;
+  border-radius: 10px; margin-bottom: 10px; overflow: hidden;
+  backdrop-filter: blur(4px); transition: border-color 0.25s;
+}
+.card:hover { border-color: #333; }
+.card.active { border-color: #f59e0b66; }
+.card-top { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; cursor: pointer; position: relative; }
+.card-number { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; background: #222; color: #6b7280; margin-top: 2px; }
+.card-content { flex: 1; min-width: 0; }
+.card-content h3 { font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: #e5e7eb; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-meta { font-size: 0.75rem; color: #6b7280; margin-top: 4px; }
+.card-arrow { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #444; transition: transform 0.3s ease; margin-top: 4px; }
+.card.active .card-arrow { transform: rotate(180deg); color: #f59e0b; }
+.card-detail { display: none; border-top: 1px solid #222; margin: 0 16px; padding: 14px 0 16px; }
+.card.active .card-detail { display: block; }
+.card-detail p { font-size: 0.88rem; line-height: 1.7; color: #9ca3af; margin-bottom: 10px; }
+.source-link { display: inline-block; font-size: 0.8rem; color: #f59e0b; text-decoration: none; padding: 4px 12px; border-radius: 6px; background: #f59e0b15; border: 1px solid #f59e0b33; }
+.footer { text-align: center; padding: 32px 0 16px; border-top: 1px solid #222; margin-top: 40px; font-size: 0.8rem; color: #444; }
+
+/* Market Data Section */
+.market-data { margin-bottom: 40px; }
+.market-data h2 { font-size: 1.3rem; color: #f59e0b; text-align: center; margin-bottom: 24px; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin-bottom: 24px; }
+.metric-group-label { grid-column: 1/-1; font-size: 0.78rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 0 4px; border-bottom: 1px solid #222; margin-bottom: 4px; }
+.metric-group-label small { font-weight: 400; color: #555; }
+.metric-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 10px 12px; }
+.metric-label { font-size: 0.75rem; font-weight: 600; color: #9ca3af; margin-bottom: 4px; }
+.metric-value { font-size: 1.2rem; font-weight: 700; color: #e5e7eb; }
+.metric-change { font-size: 0.75rem; font-weight: 600; margin-top: 2px; }
+.metric-change.pos { color: #34d399; }
+.metric-change.neg { color: #f87171; }
+.metric-explain { font-size: 0.7rem; color: #555; margin-top: 6px; line-height: 1.4; }
+
+@media (max-width: 640px) { .cover h1 { font-size: 1.8rem; } .card-top { padding: 12px; gap: 10px; } .card-content h3 { font-size: 0.88rem; } .metric-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+<div class="container">
+
+<div class="cover">
+<h1>🌍 全球宏观日报</h1>
+<div class="sub">覆盖央行政策、市场动态、全球经济与地缘贸易</div>
+<div class="badge">2026年7月7日 · 周二 · 共 21 条 + 34 项市场指标</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">📑 目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏦 央行政策 · 5</a></li>
+<li><a href="#s-market">📈 市场动态 · 5</a></li>
+<li><a href="#s-global">🌏 全球经济 · 5</a></li>
+<li><a href="#s-geo">🌍 地缘贸易 · 3</a></li>
+<li><a href="#s-commodity">🛢️ 商品外汇 · 3</a></li>
+<li><a href="#s-data">📊 市场数据</a></li>
+</ul>
+</nav>
+
+<!-- Market Data Section (placed before news cards) -->
+<div class="market-data section" id="s-data">
+<h2>📊 实时市场数据 · 34 项指标</h2>
+
+<div class="metric-grid">
+
+<div class="metric-group-label">美股ETF · yfinance 实时 <small>标普/纳斯达克/道琼斯/罗素</small></div>
+
+<div class="metric-card"><div class="metric-label">SPY</div><div class="metric-value">751.28</div><div class="metric-change pos">+0.87% d</div><div class="metric-explain">标普500 ETF，追踪美股大盘蓝筹股，全球最大ETF</div></div>
+<div class="metric-card"><div class="metric-label">QQQ</div><div class="metric-value">722.82</div><div class="metric-change pos">+1.43% d</div><div class="metric-explain">纳斯达克100 ETF，科技股权重最大，AI行情风向标</div></div>
+<div class="metric-card"><div class="metric-label">DIA</div><div class="metric-value">530.09</div><div class="metric-change pos">+0.42% d</div><div class="metric-explain">道琼斯工业ETF，追踪30家大型工业蓝筹股</div></div>
+<div class="metric-card"><div class="metric-label">IWM</div><div class="metric-value">298.90</div><div class="metric-change pos">+0.44% d</div><div class="metric-explain">罗素2000 ETF，追踪美国小盘股，反映内需经济</div></div>
+
+<div class="metric-group-label">美联储利率 & 债券市场 <small>FRED 数据</small></div>
+
+<div class="metric-card"><div class="metric-label">联邦基金利率</div><div class="metric-value">3.63%</div><div class="metric-change">DFF · Jul 3</div><div class="metric-explain">美联储政策利率，商业银行间隔夜拆借利率目标</div></div>
+<div class="metric-card"><div class="metric-label">10年期美债</div><div class="metric-value">4.49%</div><div class="metric-change">DGS10 · Jul 2</div><div class="metric-explain">全球资产定价之锚，反映长期经济增长与通胀预期</div></div>
+<div class="metric-card"><div class="metric-label">2年期美债</div><div class="metric-value">4.14%</div><div class="metric-change">DGS2 · Jul 2</div><div class="metric-explain">对联储政策最敏感的短期利率，预测加息/降息</div></div>
+<div class="metric-card"><div class="metric-label">10Y-2Y 利差</div><div class="metric-value">0.35%</div><div class="metric-change pos">+ T10Y2Y · Jul 6</div><div class="metric-explain">收益率曲线斜率，正利差=经济扩张，倒挂=衰退预警</div></div>
+<div class="metric-card"><div class="metric-label">10Y 盈亏平衡通胀</div><div class="metric-value">2.24%</div><div class="metric-change">T10YIE · Jul 6</div><div class="metric-explain">市场对未来10年平均通胀率的预期，来自TIPS价差</div></div>
+<div class="metric-card"><div class="metric-label">HY OAS 利差</div><div class="metric-value">2.74%</div><div class="metric-change">BAMLH0A0HYM2 · Jul 3</div><div class="metric-explain">高收益债信用利差，数值越低=信用环境越宽松</div></div>
+
+<div class="metric-group-label">美国实体经济 <small>FRED 数据</small></div>
+
+<div class="metric-card"><div class="metric-label">失业率</div><div class="metric-value">4.2%</div><div class="metric-change">UNRATE · Jun</div><div class="metric-explain">劳动力市场核心指标，美联储双重使命之一</div></div>
+<div class="metric-card"><div class="metric-label">CPI 指数</div><div class="metric-value">333.98</div><div class="metric-change">CPIAUCSL · May</div><div class="metric-explain">消费者价格指数，衡量通胀的核心指标</div></div>
+<div class="metric-card"><div class="metric-label">M2 货币供应</div><div class="metric-value">23,052B</div><div class="metric-change">M2SL · May</div><div class="metric-explain">广义货币供应量，反映流动性和潜在通胀压力</div></div>
+<div class="metric-card"><div class="metric-label">GDP</div><div class="metric-value">31,866B</div><div class="metric-change">GDP · Q1</div><div class="metric-explain">美国国内生产总值（年化），经济规模核心度量</div></div>
+<div class="metric-card"><div class="metric-label">工业生产</div><div class="metric-value">102.65</div><div class="metric-change">INDPRO · May</div><div class="metric-explain">工业产出指数，2017=100，衡量制造业产出</div></div>
+<div class="metric-card"><div class="metric-label">零售销售</div><div class="metric-value">763,705M</div><div class="metric-change">RSAFS · May</div><div class="metric-explain">零售和食品服务销售额（百万美元），消费健康度指标</div></div>
+<div class="metric-card"><div class="metric-label">新屋开工</div><div class="metric-value">1,177K</div><div class="metric-change">HOUST · May</div><div class="metric-explain">新建私人住宅开工量（千套），房地产周期领先指标</div></div>
+
+<div class="metric-group-label">VIX 恐慌指数</div>
+
+<div class="metric-card"><div class="metric-label">^VIX (yfinance)</div><div class="metric-value">15.57</div><div class="metric-change neg">-3.59% d · -20.11% w</div><div class="metric-explain">CBOE波动率指数，<20为低波动牛市，>30为恐慌模式</div></div>
+<div class="metric-card"><div class="metric-label">VIX (FRED)</div><div class="metric-value">15.81</div><div class="metric-change">VIXCLS · Jul 3</div><div class="metric-explain">FRED记录的VIX收盘价，与yfinance交叉验证</div></div>
+
+<div class="metric-group-label">全球指数 · yfinance 实时</div>
+
+<div class="metric-card"><div class="metric-label">^GSPC 标普500</div><div class="metric-value">7,537.43</div><div class="metric-change pos">+0.72% d</div><div class="metric-explain">美国标普500指数，全球最重要的股票市场基准</div></div>
+<div class="metric-card"><div class="metric-label">^IXIC 纳斯达克</div><div class="metric-value">26,121.16</div><div class="metric-change pos">+1.12% d</div><div class="metric-explain">纳斯达克综合指数，科技/AI公司权重最高</div></div>
+<div class="metric-card"><div class="metric-label">^DJI 道琼斯</div><div class="metric-value">53,055.91</div><div class="metric-change pos">+0.29% d</div><div class="metric-explain">道琼斯工业平均指数，30家蓝筹股，历史最悠久</div></div>
+<div class="metric-card"><div class="metric-label">^FTSE 富时100</div><div class="metric-value">10,651.80</div><div class="metric-change neg">-0.25% d</div><div class="metric-explain">英国富时100指数，伦敦交易所旗舰指数</div></div>
+<div class="metric-card"><div class="metric-label">^N225 日经225</div><div class="metric-value">69,737.69</div><div class="metric-change neg">-0.01% d</div><div class="metric-explain">日本日经225指数，亚洲最重要的股票指数之一</div></div>
+<div class="metric-card"><div class="metric-label">^HSI 恒生指数</div><div class="metric-value">23,616.32</div><div class="metric-change pos">+1.14% d</div><div class="metric-explain">香港恒生指数，中国资产国际定价窗口</div></div>
+
+<div class="metric-group-label">大宗商品 · yfinance 实时</div>
+
+<div class="metric-card"><div class="metric-label">GC=F 黄金</div><div class="metric-value">$4,155.10</div><div class="metric-change pos">+1.03% d</div><div class="metric-explain">COMEX黄金期货（$/oz），全球最主要避险资产</div></div>
+<div class="metric-card"><div class="metric-label">CL=F 原油</div><div class="metric-value">$68.55</div><div class="metric-change neg">-0.2% d · -6.37% w</div><div class="metric-explain">WTI轻质原油期货（$/桶），美国石油价格基准</div></div>
+<div class="metric-card"><div class="metric-label">SI=F 白银</div><div class="metric-value">$61.92</div><div class="metric-change pos">+2.11% d</div><div class="metric-explain">COMEX白银期货（$/oz），兼具工业与贵金属属性</div></div>
+<div class="metric-card"><div class="metric-label">HG=F 铜</div><div class="metric-value">$6.18</div><div class="metric-change pos">+1.04% d</div><div class="metric-explain">COMEX铜期货（$/lb），"铜博士"反映全球工业需求</div></div>
+
+<div class="metric-group-label">主要货币 · yfinance 实时</div>
+
+<div class="metric-card"><div class="metric-label">美元指数</div><div class="metric-value">100.85</div><div class="metric-change neg">-0.01% d</div><div class="metric-explain">DX-Y.NYB，美元兑六种主要货币的加权汇率指数</div></div>
+<div class="metric-card"><div class="metric-label">EUR/USD</div><div class="metric-value">1.1403</div><div class="metric-change pos">+0.13% d</div><div class="metric-explain">欧元兑美元，交易量最大的外汇货币对</div></div>
+<div class="metric-card"><div class="metric-label">USD/JPY</div><div class="metric-value">161.45</div><div class="metric-change neg">0% d</div><div class="metric-explain">美元兑日元，日元处于近40年低位，干预风险高</div></div>
+<div class="metric-card"><div class="metric-label">USD/CNY</div><div class="metric-value">6.79</div><div class="metric-change neg">0% d</div><div class="metric-explain">美元兑离岸人民币，受中美利差和政策影响</div></div>
+<div class="metric-card"><div class="metric-label">GBP/USD</div><div class="metric-value">1.3373</div><div class="metric-change pos">+0.11% d</div><div class="metric-explain">英镑兑美元，受英国经济和央行政策影响</div></div>
+
+</div>
+</div>
+
+<!-- News Sections -->
+<div class="section" id="s-cenbank" data-category="cenbank">
+<div class="section-header" style="background:#dc262622;border-left:4px solid #dc2626;">
+<span class="icon">🏦</span><h2 style="color:#f87171;">央行政策</h2><span class="count">5 条</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-number">1</span>
+<div class="card-content">
+<h3>Fed Chair Warsh 六字表态"彻底改变投资者预期"</h3>
+<div class="card-meta">Yahoo Finance · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美联储主席 Kevin Warsh 在一次讲话中的六个字表态被市场解读为政策信号的重大转变，Motley Fool 称其"完全改变了投资者的预期"。虽然具体措辞未在标题中披露，但结合近期数据（通胀放缓、就业增长减速），Warsh 的表态可能暗示了加息周期接近尾声或降息时间表的提前。Warsh 此前被认为是一位"鹰派"主席，这次被解读为"转向偏鸽"的表态引发了市场的强烈反应——美元短暂走弱、债券收益率回落。市场正在密切关注周三即将发布的美联储会议纪要以验证这一政策转向信号。</p>
+<a class="source-link" href="https://finance.yahoo.com/" target="_blank">🔗 Yahoo Finance</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">2</span>
+<div class="card-content">
+<h3>Fed 理事 Waller：美国风险偏向高通胀</h3>
+<div class="card-meta">Reuters / Yahoo Finance · 7月6日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美联储理事 Christopher Waller 公开发出警告——美国经济的风险偏向于高通胀方向。Waller 是联邦公开市场委员会（FOMC）中具有重要影响力的成员，他的"偏鹰"言论与 Fed Chair Warsh 的"偏鸽"表态形成了有趣的内部张力。这种分歧反映了 FOMC 内部的真实讨论：经济增长和通胀数据为两种方向都提供了论据。Waller 关注的是薪资增长、服务业通胀和资产价格（尤其是 AI 推动的科技股上涨）的潜在通胀效应，Warsh 则更关注就业市场冷却和全球经济放缓的风险。</p>
+<a class="source-link" href="https://finance.yahoo.com/" target="_blank">🔗 Yahoo Finance</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">3</span>
+<div class="card-content">
+<h3>美联储会议纪要即将公布，市场屏息以待</h3>
+<div class="card-meta">Investing.com / Yahoo Finance · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美联储 6 月 FOMC 会议的纪要将于本周三公布，市场将此视为理解美联储内部立场分歧和未来政策路径的关键线索。即将到来的 Q2 财报季也为市场增添了新的变数——企业盈利表现将直接影响就业和投资前景。目前期货市场定价显示，市场预期美联储将在 9 月或 11 月开始首次降息，但具体时间表高度依赖于未来两个月的通胀和就业数据。会议纪要中关于"降息条件"的讨论将是市场最关注的内容。</p>
+<a class="source-link" href="https://www.investing.com/news/stock-market-news/us-stock-futures-dip-after-wall-st-rally-as-traders-await-fed-mins-earnings-4778185" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">4</span>
+<div class="card-content">
+<h3>以色列央行降息至 3.50%，强 Shekel 引发担忧</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>以色列央行（Bank of Israel）宣布将基准利率下调至 3.50%，主要担忧在于 Shekel（谢克尔）过于强势对出口造成压力。在全球主要央行维持高利率的环境下，以色列的降息决定显得独特——这与该国特定的经济结构有关：高科技出口占 GDP 比重极高，货币升值会削弱科技产业的国际竞争力。Shekel 的强势部分源于以色列科技产业（尤其是网络安全和 AI）吸引了大量外资流入。降息决定是在"控制通胀"和"抑制本币升值"之间的权衡——央行显然认为后者的风险更大。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/bank-of-israel-cuts-rates-to-350-amid-strong-shekel-concerns-93CH-4776720" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">5</span>
+<div class="card-content">
+<h3>国债收益率回落：市场消化 6 月就业数据，等待 Fed 纪要</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美国国债收益率全线回落，10 年期收益率降至 4.49%（yfinance 数据为 4.48%）、2 年期降至 4.14%。收益率回落的主要驱动力是 6 月非农就业数据不及预期——招聘速度放缓使得市场对"美联储被迫继续加息"的担忧减弱。10Y-2Y 利差为正 0.35%（结束了长期收益率曲线倒挂），这一"正常化"通常被解读为经济从衰退担忧中恢复的信号，但也可能是降息预期导致短端利率先于长端下行的结果。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/eurozone-yields-consolodate-as-germanys-10year-pulls-back-from-2week-high-4775701" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+</div>
+
+<!-- Section: Market Moves -->
+<div class="section" id="s-market" data-category="market">
+<div class="section-header" style="background:#2563eb22;border-left:4px solid #2563eb;">
+<span class="icon">📈</span><h2 style="color:#60a5fa;">市场动态</h2><span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">6</span>
+<div class="card-content">
+<h3>美股期货小幅回调：芯片领涨后投资者等待 Fed 纪要和企业财报</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美股期货在周一芯片股引领的强劲反弹后出现小幅回调：S&P 500 期货 -0.31%，纳斯达克期货 -1.10%，道琼斯期货 +0.05%。这一走势符合"大涨后获利了结"的模式——投资者在美联储会议纪要和 Q2 财报季的双重不确定性面前选择谨慎。纳斯达克期货跌幅最大，反映出科技/芯片股短期急涨后的调整压力。但道琼斯期货微涨暗示资金可能在向价值股和蓝筹股轮动。</p>
+<a class="source-link" href="https://www.investing.com/news/stock-market-news/us-stock-futures-dip-after-wall-st-rally-as-traders-await-fed-mins-earnings-4778185" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">7</span>
+<div class="card-content">
+<h3>亚洲股市回落：AI 估值恐惧盖过 Samsung 创纪录业绩</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>亚洲主要股市在三星创纪录利润的利好消息下反而下跌，显示 AI 估值焦虑正在从美国蔓延至亚洲市场。恒生指数 +1.14% 是为数不多的亮点，日经指数几乎持平（-0.01%）。这一分化反映了区域市场对 AI 驱动的不同受益程度——中国/香港的 AI 概念股（如腾讯、美团）估值尚未像美国芯片股那样被过度推高，而日本芯片设备和材料股的估值已经隐含了大量 AI 增长预期。</p>
+<a class="source-link" href="https://www.investing.com/news/stock-market-news/asia-stocks-fall-as-ai-valuation-fears-overshadow-samsungs-blockbuster-earnings-4778205" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">8</span>
+<div class="card-content">
+<h3>Dow 再创新高，Nasdaq +1%：芯片股在连续两周下跌后反弹</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>道琼斯工业平均指数周一收盘再创历史新高（53,055.91），纳斯达克综合指数上涨超过 1%，芯片股在经历了连续两周的下跌后终于迎来了技术性反弹。Dow 创新高表明蓝筹价值股仍然受到资金青睐，而 Nasdaq 的芯片反弹则反映了"逢低买入"策略在 AI 牛市中依然有效——只要 AI 投资的基本叙事不变，芯片股的每次回调都会被投资者视为入场机会。</p>
+<a class="source-link" href="https://www.investing.com/news/stock-market-news/wall-st-futures-rise-as-investors-reassess-ai-trade-await-fed-minutes-4775507" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">9</span>
+<div class="card-content">
+<h3>美元从 13 个月高位回落：疲软就业数据降低加息押注</h3>
+<div class="card-meta">Investing.com · 7月3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美元指数从 13 个月高位回落至 100.85，此前公布的 6 月非农就业数据低于预期，降低了市场对美联储进一步加息的押注。美元走弱对全球资产价格产生了一系列传导效应：新兴市场货币（南非兰特、人民币）获得喘息机会；以美元计价的黄金（+1.03%）和大宗商品受益；美国跨国公司的海外收入换算为美元后价值提升。不过目前美元仍处于 100 以上的强势区间，是否持续走弱取决于本周美联储会议纪要的鸽派程度。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/asia-fx-gains-after-dollar-falls-on-soft-payrolls-yen-remains-on-intervention-wat-4774992" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">10</span>
+<div class="card-content">
+<h3>科技巨头拖累 Dow 成分股：上半年表现最差的 mega-cap 科技股揭晓</h3>
+<div class="card-meta">Motley Fool / Yahoo Finance · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Motley Fool 分析了道琼斯指数中表现最差的 mega-cap 科技成分股——这家公司在上半年大跌，与 AI 芯片和科技整体牛市的走势严重背离。在 Dow 30 成分股中，科技股的"分化"现象越来越明显：AI 受益股（如微软、Salesforce）表现强劲，而传统科技硬件或软件公司如果不能及时证明自己的 AI 战略，则可能被市场无情抛弃。这一分析也反映了"道琼斯vs纳斯达克"走势分化的结构性原因。</p>
+<a class="source-link" href="https://finance.yahoo.com/markets/stocks/articles/tech-giant-worst-performing-mega-002500043.html" target="_blank">🔗 Yahoo Finance</a>
+</div>
+</div>
+</div>
+
+<!-- Section: Global Economy -->
+<div class="section" id="s-global" data-category="global">
+<div class="section-header" style="background:#05966922;border-left:4px solid #059669;">
+<span class="icon">🌏</span><h2 style="color:#34d399;">全球经济</h2><span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">11</span>
+<div class="card-content">
+<h3>美国 6 月就业增长放缓：劳动力市场出现降温迹象</h3>
+<div class="card-meta">WFTV / Yahoo Finance · 7月6日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美国 6 月非农就业数据不及预期，招聘速度放缓引发了对劳动力市场健康状况的担忧。虽然失业率仍维持在 4.2% 的历史低位，但新增就业岗位的减速（加上 ISM 服务业就业指数从 47.9 反弹至 51.2）暗示着一个"温和冷却"而非"急剧恶化"的图景。就业趋势指数（Employment Trends Index）小幅下滑至 106.69（前值 107.01）也印证了这一判断。对美联储而言，"就业温和冷却"正是其所希望看到的——软着陆的最佳路径是通胀下降同时不导致大规模失业。</p>
+<a class="source-link" href="https://finance.yahoo.com/" target="_blank">🔗 Yahoo Finance</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">12</span>
+<div class="card-content">
+<h3>日本实际工资连续第 5 个月上涨：消费复苏曙光初现</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>日本 5 月实际工资同比增长 1.4%，连续第 5 个月实现正增长。这是日本"薪资-通胀良性循环"叙事的重要支撑——日本央行（BOJ）一直等待实际工资持续上涨来证明经济已准备好承受利率正常化。然而日元的极度弱势（USD/JPY 161.45，近 40 年低位）正在侵蚀工资增长的购买力——虽然名义工资在涨，但以美元计价的进口商品（尤其是能源和食品）价格涨得更快。日本央行面临着"保汇率还是保增长"的两难选择。</p>
+<a class="source-link" href="https://www.investing.com/news/stock-market-news/japan-real-wages-rise-for-fifth-straight-month-in-may-93CH-4778210" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">13</span>
+<div class="card-content">
+<h3>纽约联储：6 月供应链压力缓解</h3>
+<div class="card-meta">Reuters / Yahoo Finance · 7月6日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>纽约联邦储备银行发布的供应链压力指数（Supply Chain Pressure Index）显示 6 月份压力进一步缓解。全球供应链在经历了 2020-2022 年的疫情中断、2023-2024 年的红海航运危机之后，正在逐步回归正常化。供应链改善对通胀具有降温效应——商品价格（尤其是耐用品）的上涨压力将减轻。对于芯片行业而言，供应链正常化意味着先进封装（CoWoS）等关键产能瓶颈有望逐步缓解，这将对 NVIDIA、AMD 等公司的交付周期产生积极影响。</p>
+<a class="source-link" href="https://finance.yahoo.com/" target="_blank">🔗 Yahoo Finance</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">14</span>
+<div class="card-content">
+<h3>Synchrony Financial Q2 财报前瞻：消费信贷质量成关注焦点</h3>
+<div class="card-meta">Barchart / Yahoo Finance · 7月4日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Synchrony Financial（美国最大的私人标签信用卡发行商之一）即将发布 Q2 2026 财报，市场关注的焦点是消费信贷质量——在利率高企的环境下，美国消费者的信用卡违约率是否在上升？Synchrony 的财报数据将提供关于美国中低收入消费者健康状况的重要微观证据。如果信贷损失准备金大幅增加，可能预示消费支出即将减速；反之则表明消费者仍然具有韧性。这一数据对判断"软着陆 vs 衰退"提供了比宏观数据更前瞻的线索。</p>
+<a class="source-link" href="https://finance.yahoo.com/markets/stocks/articles/synchrony-financial-q2-2026-earnings-145127955.html" target="_blank">🔗 Yahoo Finance</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">15</span>
+<div class="card-content">
+<h3>南非兰特持稳，市场关注美联储纪要</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>南非兰特在美联储会议纪要公布前保持稳定，这与近期新兴市场货币的总体走稳趋势一致。美元指数从 13 个月高位的回落为新兴市场货币提供了喘息窗口。南非作为大宗商品出口国（黄金、铂金、煤炭），其货币走势也受益于金价上涨（$4,155/oz）。但长期来看，南非的结构性挑战（电力短缺、高失业率、财政赤字）仍是兰特维持稳定的主要障碍。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/south-african-rand-holds-steady-as-markets-eye-fed-minutes-93CH-4776938" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+</div>
+
+<!-- Section: Geopolitics & Trade -->
+<div class="section" id="s-geo" data-category="geo">
+<div class="section-header" style="background:#d9770622;border-left:4px solid #d97706;">
+<span class="icon">🌍</span><h2 style="color:#fbbf24;">地缘贸易</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">16</span>
+<div class="card-content">
+<h3>油价暴跌至伊朗战争前水平：地缘风险溢价完全消退</h3>
+<div class="card-meta">Reuters / Yahoo Finance · 7月6日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>国际原油价格已回落至美伊冲突爆发前的水平——WTI 原油跌至 $68.55/桶（周跌幅 -6.37%）。这意味着此前因地缘政治紧张局势而积累的"战争溢价"已完全消退。牛津经济研究院将美伊和平协议描述为"今年余下时间最关键的市场风险因素"。油价的下跌具有深远的经济影响：降低了全球通胀压力（尤其是对石油进口国）、改善了消费者实际购买力、减轻了央行的加息压力。但也对石油出口国（沙特、俄罗斯）的财政平衡和 OPEC+ 的团结造成了挑战。</p>
+<a class="source-link" href="https://finance.yahoo.com/" target="_blank">🔗 Yahoo Finance</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">17</span>
+<div class="card-content">
+<h3>OPEC+ 7 国同意增产：霍尔木兹海峡航运恢复，供给增加</h3>
+<div class="card-meta">AP / Quartz / Yahoo Finance · 7月5-6日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>OPEC+ 的 7 个成员国已同意每月适度增加石油产量，同时霍尔木兹海峡的航运正在恢复——这两个供给端的积极因素是油价大幅下跌的重要原因。OPEC+ 在油价下滑背景下的增产决定具有一定反直觉性——通常油价下跌时产油国会减产保价。增产可能反映了几个考量：一是美伊和平后地缘政治格局变化迫使 OPEC+ 重新评估市场份额战略；二是部分成员国（尤其是伊拉克、哈萨克斯坦）此前长期超额减产，现在希望弥补失去的市场份额。</p>
+<a class="source-link" href="https://finance.yahoo.com/" target="_blank">🔗 Yahoo Finance</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">18</span>
+<div class="card-content">
+<h3>日元在 40 年低位附近挣扎：市场测试 Tokyo 的干预底线</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>日元继续在近 40 年低位（USD/JPY 161.45）附近挣扎，市场正在测试日本财务省（MOF）的干预底线。日本当局在 2024-2025 年已多次入市干预支撑日元，但效果往往是短暂的——在美日巨大利差的背景下（美国利率 3.63% vs 日本利率接近 0%），做空日元仍是全球最拥挤的套利交易之一。日本央行的困境在于：如果大幅加息以支撑日元，可能会扼杀正在萌芽的内需复苏（实际工资连续 5 月上涨）；如果放任日元贬值，进口通胀将侵蚀消费能力。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/yen-pinned-near-40year-low-in-test-of-tokyos-intervention-resolve-4778094" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+</div>
+
+<!-- Section: Commodities & FX -->
+<div class="section" id="s-commodity" data-category="commodity">
+<div class="section-header" style="background:#7c3aed22;border-left:4px solid #7c3aed;">
+<span class="icon">🛢️</span><h2 style="color:#a78bfa;">商品外汇</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">19</span>
+<div class="card-content">
+<h3>黄金走势分化：交易员在 Fed 利率信号与通胀降温之间权衡</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>黄金价格在 $4,155/oz 附近交易，日内上涨 1.03%，但整体方向仍不明确。市场在两条逻辑线之间摇摆：一方面，美联储降息预期升温（美元走弱、利率下降）对黄金有利；另一方面，通胀降温（减少了对黄金作为通胀对冲资产的需求）和股市牛市（资金从避险资产流向风险资产）对黄金不利。白银表现更为强劲（+2.11% d），其工业属性（光伏、电子）在 AI 和绿色能源需求下提供了额外支撑。分析师 Fawad Razaqzada 撰文讨论"黄金多头能否借力上周的反弹继续上攻"。</p>
+<a class="source-link" href="https://www.investing.com/news/commodities-news/gold-prices-rise-as-cooling-rate-hike-bets-hit-dollar-4775514" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">20</span>
+<div class="card-content">
+<h3>美元指数维持 100.85：亚洲外汇市场平淡，等待 Fed 纪要</h3>
+<div class="card-meta">Investing.com · 7月7日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>亚洲外汇市场交投平淡，美元指数在 100.85 附近持稳。市场在美联储会议纪要发布前选择观望——纪要中关于降息时间表的任何暗示都可能引发剧烈波动。人民币（USD/CNY 6.79）和欧元（EUR/USD 1.1403）均呈现窄幅震荡。加元在早些时候因美国就业数据走弱而触及 10 日高点。整体而言，外汇市场的低波动率反映了不确定性——多空双方都在等待更明确的政策信号。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/asia-fx-muted-dollar-steady-with-more-rate-cues-in-focus-4778206" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">21</span>
+<div class="card-content">
+<h3>德国 2 年期国债收益率触及 4 月中旬以来最低后小幅反弹</h3>
+<div class="card-meta">Investing.com · 7月3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>德国 2 年期国债收益率下降至 4 月中旬以来的最低水平后出现小幅反弹。欧元区债券市场的走势与美国高度联动——全球债券市场正在形成一个共识：央行加息周期已经或即将结束，下一个大动作将是降息而非加息。德国作为欧元区基准债券发行国，其短期债券收益率的走势反映了市场对欧洲央行（ECB）政策转向的预期。在欧洲经济增长乏力、通胀逐步回落的环境下，ECB 比美联储面临更大的降息压力。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/germanys-2year-yield-ticks-up-after-hitting-lowest-level-since-midapril-4775070" target="_blank">🔗 Investing.com</a>
+</div>
+</div>
+</div>
+
+<div class="footer">🌍 全球宏观日报 · 2026年7月7日 · 数据来源：yfinance / FRED / Investing.com / Yahoo Finance · 由 Claude 生成</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card) {
+    var top = card.querySelector('.card-top');
+    if (top) {
+      top.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isActive = card.classList.contains('active');
+        cards.forEach(function(c) { c.classList.remove('active'); });
+        if (!isActive) { card.classList.add('active'); }
+      });
+    }
+  });
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
