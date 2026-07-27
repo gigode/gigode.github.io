@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球宏观日报 · 2026-07-27</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#e2e8f0;min-height:100vh;padding:0 16px 60px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.container{max-width:960px;margin:0 auto}
+.cover{text-align:center;padding:60px 20px 40px;background:linear-gradient(135deg, #1a0f0a, #3d2517, #b45309);border-radius:12px;margin-bottom:28px}
+.cover h1{font-size:2.4rem;font-weight:800;color:#f1f5f9;letter-spacing:-0.5px}
+.cover .sub{font-size:1rem;color:#d6d3d1;margin-top:8px}
+.cover .badge{display:inline-block;margin-top:16px;padding:6px 18px;border-radius:20px;background:#b4530933;color:#fbbf24;font-size:0.85rem;border:1px solid #b4530955}
+.toc{background:#1c1917;border:1px solid #292524;border-radius:10px;padding:18px 20px;margin-bottom:28px}
+.toc-title{font-size:0.9rem;font-weight:700;color:#f1f5f9;margin-bottom:10px}
+.toc-list{list-style:none;display:flex;flex-wrap:wrap;gap:6px 14px}
+.toc-list a{color:#fbbf24;text-decoration:none;font-size:0.82rem;transition:color 0.2s}
+.toc-list a:hover{color:#f59e0b}
+
+/* Market Data Section */
+.market-data{margin-bottom:28px}
+.market-data h2{font-size:1.1rem;font-weight:700;color:#f1f5f9;margin-bottom:14px;padding-left:4px}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:20px}
+.metric-group-label{grid-column:1/-1;font-size:0.78rem;color:#78716c;font-weight:600;padding:8px 4px 2px;border-top:1px solid #292524;margin-top:4px}
+.metric-group-label:first-child{border-top:none;margin-top:0}
+.metric-group-label small{font-weight:400;color:#57534e}
+.metric-card{background:#1c1917;border:1px solid #292524;border-radius:8px;padding:10px 12px;transition:border-color 0.2s}
+.metric-card:hover{border-color:#44403c}
+.metric-label{font-size:0.72rem;color:#78716c;font-weight:600;margin-bottom:2px}
+.metric-value{font-size:1.05rem;font-weight:700;color:#f1f5f9}
+.metric-change{font-size:0.75rem;margin-top:1px}
+.metric-change.pos{color:#4ade80}
+.metric-change.neg{color:#f87171}
+.metric-change.neutral{color:#a8a29e}
+.metric-explain{font-size:0.68rem;color:#57534e;margin-top:4px;line-height:1.3}
+
+/* News Sections */
+.section{margin-bottom:28px}
+.section-header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;margin-bottom:14px}
+.section-header .icon{font-size:1.2rem}
+.section-header h2{font-size:1.05rem;font-weight:700;margin-right:auto}
+.section-header .count{font-size:0.78rem;padding:2px 10px;border-radius:10px;background:#292524;color:#a8a29e}
+.card{background:#1c1917;border:1px solid #292524;border-radius:10px;margin-bottom:10px;overflow:hidden;transition:border-color 0.25s}
+.card:hover{border-color:#44403c}
+.card.active{border-color:#b4530966}
+.card-top{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;cursor:pointer;position:relative}
+.card-number{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;background:#292524;color:#a8a29e;margin-top:2px}
+.card.active .card-number{background:#b4530944;color:#fbbf24}
+.card-content{flex:1;min-width:0}
+.card-content h3{font-size:0.95rem;font-weight:600;line-height:1.4;color:#f1f5f9;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-meta{font-size:0.75rem;color:#78716c;margin-top:4px}
+.card-arrow{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#57534e;transition:transform 0.3s ease;margin-top:4px}
+.card.active .card-arrow{transform:rotate(180deg);color:#f59e0b}
+.card-detail{display:none;border-top:1px solid #29252455;margin:0 16px;padding-top:12px}
+.card.active .card-detail{display:block}
+.card-detail p{font-size:0.88rem;line-height:1.7;color:#d6d3d1;margin-bottom:10px}
+.source-link{display:inline-block;font-size:0.8rem;color:#f59e0b;text-decoration:none;padding:4px 12px;border-radius:6px;background:#f59e0b22;border:1px solid #f59e0b44;margin-bottom:8px}
+.tag-verified{display:inline-block;padding:2px 8px;border-radius:4px;background:#16a34a33;color:#4ade80;font-size:0.7rem;margin-left:6px;font-weight:700}
+.tag-unconfirmed{display:inline-block;padding:2px 8px;border-radius:4px;background:#d9770633;color:#fbbf24;font-size:0.7rem;margin-left:6px;font-weight:700}
+.tag-analysis{display:inline-block;padding:2px 8px;border-radius:4px;background:#7c3aed33;color:#c4b5fd;font-size:0.7rem;margin-left:6px;font-weight:700}
+.footer{text-align:center;padding:32px 0 16px;border-top:1px solid #292524;margin-top:40px;font-size:0.8rem;color:#57534e}
+@media(max-width:640px){.cover h1{font-size:1.8rem}.card-top{padding:12px;gap:10px}.card-content h3{font-size:0.88rem}.metric-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#94a3b8;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;position:absolute;top:0;left:0;z-index:10;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌍 全球宏观日报</h1>
+<div class="sub">央行政策 · 市场动态 · 全球经济 · 地缘贸易 · 商品外汇</div>
+<div class="badge">2026-07-27 · 共 34 项指标 + 14 条要闻</div>
+</div>
+
+<!-- ====== MARKET DATA ====== -->
+<div class="market-data">
+<h2>📊 市场数据中心</h2>
+
+<div class="metric-grid">
+<div class="metric-group-label">美股ETF · yfinance 实时 <small>标普/纳斯达克/道琼斯/罗素</small></div>
+<div class="metric-card"><div class="metric-label">SPY</div><div class="metric-value">738.18</div><div class="metric-change neg">-1.23% d</div><div class="metric-explain">标普500 ETF，美股大盘风向标</div></div>
+<div class="metric-card"><div class="metric-label">QQQ</div><div class="metric-value">691.96</div><div class="metric-change neg">-1.90% d</div><div class="metric-explain">纳斯达克100 ETF，科技股集中营</div></div>
+<div class="metric-card"><div class="metric-label">DIA</div><div class="metric-value">516.26</div><div class="metric-change neg">-1.00% d</div><div class="metric-explain">道琼斯工业 ETF，蓝筹股代表</div></div>
+<div class="metric-card"><div class="metric-label">IWM</div><div class="metric-value">292.09</div><div class="metric-change neg">-0.58% d</div><div class="metric-explain">罗素2000 ETF，小盘股风向标</div></div>
+
+<div class="metric-group-label">美联储利率 · FRED <small>联邦基金/国债/利差</small></div>
+<div class="metric-card"><div class="metric-label">联邦基金利率</div><div class="metric-value">3.63%</div><div class="metric-change neutral">持平</div><div class="metric-explain">Fed Funds Rate，美联储基准利率</div></div>
+<div class="metric-card"><div class="metric-label">美国 10Y</div><div class="metric-value">4.71%</div><div class="metric-change neutral">+4bp</div><div class="metric-explain">10年期国债收益率，全球资产定价锚</div></div>
+<div class="metric-card"><div class="metric-label">美国 2Y</div><div class="metric-value">4.37%</div><div class="metric-change neutral">+6bp</div><div class="metric-explain">2年期国债，对政策利率最敏感</div></div>
+<div class="metric-card"><div class="metric-label">10Y-2Y 利差</div><div class="metric-value">0.36</div><div class="metric-change neutral">+2bp</div><div class="metric-explain">收益率曲线利差，衰退预警指标</div></div>
+<div class="metric-card"><div class="metric-label">TIPS 盈亏平衡</div><div class="metric-value">2.26%</div><div class="metric-change neutral">-2bp</div><div class="metric-explain">10年期通胀预期（Breakeven）</div></div>
+<div class="metric-card"><div class="metric-label">HY OAS</div><div class="metric-value">2.77</div><div class="metric-change neutral">+9bp</div><div class="metric-explain">高收益债信用利差，风险偏好指标</div></div>
+
+<div class="metric-group-label">美国实体经济 · FRED <small>就业/通胀/货币/产出</small></div>
+<div class="metric-card"><div class="metric-label">失业率</div><div class="metric-value">4.2%</div><div class="metric-change pos">-0.1%</div><div class="metric-explain">U-3 失业率 (2026-06)</div></div>
+<div class="metric-card"><div class="metric-label">CPI 指数</div><div class="metric-value">332.57</div><div class="metric-change pos">-0.42%</div><div class="metric-explain">消费者价格指数 (2026-06)</div></div>
+<div class="metric-card"><div class="metric-label">M2 货币供应</div><div class="metric-value">23,052B</div><div class="metric-change neutral">+1.1%</div><div class="metric-explain">M2 货币存量 (2026-05)</div></div>
+<div class="metric-card"><div class="metric-label">GDP</div><div class="metric-value">31,866B</div><div class="metric-change pos">+1.4%</div><div class="metric-explain">国内生产总值 (2026-Q1)</div></div>
+<div class="metric-card"><div class="metric-label">工业产出</div><div class="metric-value">102.64</div><div class="metric-change neutral">+0.1%</div><div class="metric-explain">工业生产指数 (2026-06)</div></div>
+<div class="metric-card"><div class="metric-label">零售销售</div><div class="metric-value">768,553M</div><div class="metric-change neutral">+0.2%</div><div class="metric-explain">零售与食品服务销售额 (2026-06)</div></div>
+<div class="metric-card"><div class="metric-label">新屋开工</div><div class="metric-value">1,427K</div><div class="metric-change pos">+19.0%</div><div class="metric-explain">私人新屋开工数 (2026-06)</div></div>
+
+<div class="metric-group-label">VIX 恐慌指数 · yfinance</div>
+<div class="metric-card"><div class="metric-label">VIX</div><div class="metric-value">18.70</div><div class="metric-change neg">+12.38% d</div><div class="metric-explain">CBOE 波动率指数，市场恐慌晴雨表</div></div>
+
+<div class="metric-group-label">全球指数 · yfinance <small>美/英/日/港</small></div>
+<div class="metric-card"><div class="metric-label">S&P 500</div><div class="metric-value">7,408.30</div><div class="metric-change neg">-1.21% d</div><div class="metric-explain">标普500指数</div></div>
+<div class="metric-card"><div class="metric-label">NASDAQ</div><div class="metric-value">25,137.69</div><div class="metric-change neg">-2.15% d</div><div class="metric-explain">纳斯达克综合指数</div></div>
+<div class="metric-card"><div class="metric-label">DJIA</div><div class="metric-value">51,711.65</div><div class="metric-change neg">-0.97% d</div><div class="metric-explain">道琼斯工业平均指数</div></div>
+<div class="metric-card"><div class="metric-label">FTSE 100</div><div class="metric-value">10,639.20</div><div class="metric-change neg">-0.73% d</div><div class="metric-explain">英国富时100指数</div></div>
+<div class="metric-card"><div class="metric-label">日经 225</div><div class="metric-value">66,422.60</div><div class="metric-change pos">+0.46% d</div><div class="metric-explain">日经225指数</div></div>
+<div class="metric-card"><div class="metric-label">恒生指数</div><div class="metric-value">25,210.81</div><div class="metric-change pos">+1.28% d</div><div class="metric-explain">香港恒生指数</div></div>
+
+<div class="metric-group-label">大宗商品 · yfinance <small>黄金/原油/白银/铜</small></div>
+<div class="metric-card"><div class="metric-label">黄金期货</div><div class="metric-value">$4,104.00</div><div class="metric-change pos">+0.89% d</div><div class="metric-explain">COMEX 黄金，避险资产之王</div></div>
+<div class="metric-card"><div class="metric-label">WTI 原油</div><div class="metric-value">$85.31</div><div class="metric-change neg">-4.48% d</div><div class="metric-explain">WTI 轻质原油期货</div></div>
+<div class="metric-card"><div class="metric-label">白银期货</div><div class="metric-value">$59.93</div><div class="metric-change pos">+2.17% d</div><div class="metric-explain">COMEX 白银期货</div></div>
+<div class="metric-card"><div class="metric-label">铜期货</div><div class="metric-value">$6.36</div><div class="metric-change pos">+0.67% d</div><div class="metric-explain">COMEX 铜，工业需求晴雨表</div></div>
+
+<div class="metric-group-label">主要货币 · yfinance <small>美元/欧元/日元/人民币/英镑</small></div>
+<div class="metric-card"><div class="metric-label">美元指数</div><div class="metric-value">101.18</div><div class="metric-change pos">-0.24% d</div><div class="metric-explain">DXY 美元指数，兑一篮子货币</div></div>
+<div class="metric-card"><div class="metric-label">EUR/USD</div><div class="metric-value">1.1377</div><div class="metric-change neg">-0.31% d</div><div class="metric-explain">欧元兑美元</div></div>
+<div class="metric-card"><div class="metric-label">USD/JPY</div><div class="metric-value">163.83</div><div class="metric-change neg">+0.46% d</div><div class="metric-explain">美元兑日元，日元接近40年低位</div></div>
+<div class="metric-card"><div class="metric-label">USD/CNY</div><div class="metric-value">6.7725</div><div class="metric-change neutral">0.00% d</div><div class="metric-explain">美元兑人民币</div></div>
+<div class="metric-card"><div class="metric-label">GBP/USD</div><div class="metric-value">1.3313</div><div class="metric-change neg">-0.47% d</div><div class="metric-explain">英镑兑美元</div></div>
+</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">📋 宏观要闻目录</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛 央行政策 · 4</a></li>
+<li><a href="#s-market">📈 市场动态 · 3</a></li>
+<li><a href="#s-global">🌐 全球经济 · 4</a></li>
+<li><a href="#s-geo">🌍 地缘贸易 · 2</a></li>
+<li><a href="#s-commodity">🛢 商品外汇 · 2</a></li>
+</ul>
+</nav>
+
+<!-- ====== CENTRAL BANK ====== -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#dc262622;border-left:4px solid #dc2626;">
+<span class="icon">🏛</span><h2 style="color:#f87171;">Central Bank 央行政策</h2><span class="count">4 条</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-number">1</span>
+<div class="card-content">
+<h3>美联储本周预计维持利率不变，但通胀压力仍在发酵<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Yahoo Finance / AFP · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美联储本周将举行议息会议，市场普遍预期将维持联邦基金利率在 3.63% 不变。然而，通胀压力正在重新积聚：原油价格一度突破 100 美元/桶、美伊地缘风险、以及 JPMorgan 预警的超级厄尔尼诺现象，都可能推高未来通胀预期。Fed Chair Kevin Warsh 面临上任以来最严峻的考验——债券收益率飙升正在"替他大声说话"。</p>
+<a class="source-link" href="https://finance.yahoo.com/economy/policy/articles/us-federal-expected-hold-rates-012056035.html" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">2</span>
+<div class="card-content">
+<h3>Fed Chair Warsh 面临"残酷夏天"：债券收益率飙升施压政策路径<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Reuters / Yahoo Finance · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>新任美联储主席 Kevin Warsh 正面临其任期内最复杂的政策环境。美国 10 年期国债收益率升至 4.71%，5 年期升至 4.46%，市场正在对"更高更久"的利率环境定价。Reuters 评论称"市场正在替他（Warsh）大声说话"，油价推动的通胀预期使得数据依赖的决策框架面临挑战。</p>
+<a class="source-link" href="https://finance.yahoo.com/economy/policy/articles/fed-chairman-warsh-faces-cruel-110830200.html" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">3</span>
+<div class="card-content">
+<h3>美国经济强于预期，可能使利率在更长时间内维持高位<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Yahoo Finance / 24/7 Wall St. · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>出乎市场意料的是，美国经济展现出比预期更强的韧性，这可能延迟降息的时间表。强劲的就业市场（失业率 4.2%）、服务业 PMI 超预期扩张以及新屋销售好于预期，都为美联储维持紧缩政策提供了依据。市场对于 2026 年下半年降息的预期持续降温。</p>
+<a class="source-link" href="https://finance.yahoo.com/economy/policy/articles/u-economy-stronger-expected-could-155248980.html" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">4</span>
+<div class="card-content">
+<h3>欧洲央行维持利率不变，调查显示未来增长更低、通胀更高<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Investing.com / ECB · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>欧洲央行在最新会议上维持利率不变。同时，ECB 专业预测者调查（SPF）显示，受访专家下调了欧元区经济增长预期，同时上调了通胀预测。欧元区政府债券收益率维持在多年高位附近，油价突破 100 美元/桶强化了 ECB 继续加息的预期。</p>
+<a class="source-link" href="https://www.investing.com/news/economic-indicators/ecb-survey-shows-lower-growth-and-higher-inflation-ahead-4810657" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+</div>
+
+<!-- ====== MARKET MOVES ====== -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#2563eb22;border-left:4px solid #2563eb;">
+<span class="icon">📈</span><h2 style="color:#60a5fa;">Market Moves 市场动态</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">5</span>
+<div class="card-content">
+<h3>美债抛售加剧：能源冲击与贸易摩擦锁定鹰派美联储预期<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Investing.com · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美国国债市场遭遇新一轮抛售，原油价格突破 100 美元/桶叠加新进口关税，巩固了市场对美联储维持鹰派立场的预期。10 年期收益率升至 4.71%（+1.0% d），5 年期收益率升至 4.46%（+1.2% d），10Y-2Y 利差为 0.36 个基点。高收益债信用利差（HY OAS）走阔至 2.77，反映风险偏好下降。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/german-yields-eases-from-multiyear-peaks-100-oil-surge-threatens-euro-growth-4810548" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">6</span>
+<div class="card-content">
+<h3>VIX 飙升 12.4%：通胀"双重打击"加大股市下行风险<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Yahoo Finance / Motley Fool · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>CBOE 波动率指数（VIX）飙升至 18.70（+12.38% d），显示市场恐慌情绪显著升温。Motley Fool 警告称"通胀双重打击"正在等待华尔街——能源价格飙升与贸易摩擦升级同时推高物价压力，使股市崩盘风险加大。美股三大指数全面下跌：标普 -1.21%，纳斯达克 -2.15%，道指 -0.97%。</p>
+<a class="source-link" href="https://finance.yahoo.com/markets/stocks/articles/inflation-double-whammy-awaits-wall-082600850.html" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">7</span>
+<div class="card-content">
+<h3>美元先涨后跌：避险需求减弱，英镑反弹日元微升<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Investing.com · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美元指数（DXY）从一个月高位回落至 101.18（-0.24% d），避险需求因美伊关系出现缓和迹象而减弱。美元/日元仍在 163.83 的历史高位附近（日元接近 40 年最低），英镑/美元回升至 1.3313，欧元/美元报 1.1377。人民币兑美元维持在 6.7725 不变。</p>
+<a class="source-link" href="https://www.investing.com/news/forex-news/asia-fx-yen-slides-past-163-as-oil-risks-pressure-importers-won-holds-resilient-4804625" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+</div>
+
+<!-- ====== GLOBAL ECONOMY ====== -->
+<div class="section" id="s-global">
+<div class="section-header" style="background:#05966922;border-left:4px solid #059669;">
+<span class="icon">🌐</span><h2 style="color:#34d399;">Global Economy 全球经济</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">8</span>
+<div class="card-content">
+<h3>美国初请失业金人数降至 18.7 万，创 1969 年以来新低<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Investing.com · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美国劳工部数据显示，上周首次申请失业救济人数降至 18.7 万，远好于市场预期，创下自 1969 年以来的最低水平。这一数据印证了美国劳动力市场持续强劲，尽管科技行业经历多轮裁员，但整体就业市场仍然紧俏。就业韧性为美联储维持高利率提供了更多空间。</p>
+<a class="source-link" href="https://www.investing.com/news/economic-indicators/us-weekly-jobless-claims-drop-to-187000-4808983" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">9</span>
+<div class="card-content">
+<h3>美国服务业 PMI 超预期扩张，制造业 PMI 53.8 不及预期<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Investing.com · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>最新 PMI 数据呈现服务业与制造业分化格局：服务业 PMI 显著超出预期和前值，显示美国消费服务领域持续强劲；而制造业 PMI 为 53.8，低于市场共识，反映制造业面临挑战。这一分化符合当前美国经济"服务强、制造弱"的结构特征。</p>
+<a class="source-link" href="https://www.investing.com/news/economic-indicators/services-pmi-surges-exceeding-forecasts-and-previous-levels-93CH-4812001" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">10</span>
+<div class="card-content">
+<h3>JPMorgan 预警：超级厄尔尼诺与油价冲击可能推高全球通胀<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Investing.com / JPMorgan · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>摩根大通发布预警：正在快速增强的厄尔尼诺天气模式叠加能源价格上涨，可能持续推高全球通胀水平。极端天气可能影响农作物产量和供应链，而能源成本上升将通过运输和生产渠道传导至消费品价格。这一组合可能使各国央行在抗通胀道路上遇到新的阻力。</p>
+<a class="source-link" href="https://www.investing.com/news/economic-indicators/jpmorgan-warns-super-el-nino-and-oil-shock-could-prop-up-global-inflation-4812197" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">11</span>
+<div class="card-content">
+<h3>日本 6 月 CPI 符合预期，核心通胀仍低于央行目标<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Investing.com · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>日本 6 月消费者价格指数（CPI）如预期上涨，但核心通胀率仍低于日本央行（BOJ）的目标水平。这使 BOJ 在货币政策正常化进程中保持谨慎立场。与此同时，日元持续走弱至 163.83 兑 1 美元，接近 40 年低位，为日本进口成本和通胀前景增添了不确定性。</p>
+<a class="source-link" href="https://www.investing.com/news/economic-indicators/japan-cpi-rises-as-expected-in-june-core-inflation-below-boj-target-4810310" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+</div>
+
+<!-- ====== GEOPOLITICS ====== -->
+<div class="section" id="s-geo">
+<div class="section-header" style="background:#d9770622;border-left:4px solid #d97706;">
+<span class="icon">🌍</span><h2 style="color:#fbbf24;">Geopolitics & Trade 地缘贸易</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">12</span>
+<div class="card-content">
+<h3>美伊关系出现缓和迹象：油价暴跌逾 5%<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Investing.com · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美国与伊朗之间出现外交突破信号，引发市场对中东紧张局势缓和的期待。受此影响，WTI 原油价格单日暴跌超过 5% 至 85.31 美元/桶，部分回吐此前因地缘风险溢价推动的涨幅。但霍尔木兹海峡的通行安全仍是悬在能源市场上方的达摩克利斯之剑——该海峡承载全球约 20% 的石油运输。</p>
+<a class="source-link" href="https://www.investing.com/news/commodities-news/oil-tumbles-over-5-as-usiran-pause-sparks-hopes-for-diplomatic-breakthrough-4812935" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">13</span>
+<div class="card-content">
+<h3>油价突破 100 美元后的隐忧：霍尔木兹海峡成为更大风险点<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Yahoo Finance / InvestorsHub · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>InvestorsHub 分析指出，即使美伊关系出现缓和，霍尔木兹海峡的地缘风险仍未解除。原油价格此前突破 100 美元/桶主要受该海峡紧张局势推动。任何影响该关键能源通道的事件都可能引发油价新一轮飙升。当前黄金价格维持在 4104 美元/盎司高位，部分反映了市场对地缘风险的对冲需求。</p>
+<a class="source-link" href="https://finance.yahoo.com/energy/articles/oil-price-rally-masks-much-110000325.html" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+</div>
+
+<!-- ====== COMMODITIES & FX ====== -->
+<div class="section" id="s-commodity">
+<div class="section-header" style="background:#7c3aed22;border-left:4px solid #7c3aed;">
+<span class="icon">🛢</span><h2 style="color:#a78bfa;">Commodities & FX 商品外汇</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">14</span>
+<div class="card-content">
+<h3>黄金 $4,104 白银 $59.93：贵金属受益于避险需求与通胀对冲<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta">yfinance / COMEX · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>贵金属板块整体走强：COMEX 黄金期货报 4,104.00 美元/盎司（+0.89% d），白银期货报 59.93 美元/盎司（+2.17% d）。黄金维持高位反映了市场对地缘风险、通胀压力和货币政策不确定性的持续担忧。白银涨幅大于黄金，部分反映工业需求预期改善。铜期货报 6.36 美元/磅（+0.67% d），工业金属表现相对稳健。</p>
+<a class="source-link" href="https://finance.yahoo.com/" target="_blank">🔗 数据来源：yfinance</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">15</span>
+<div class="card-content">
+<h3>外汇市场综述：美元回撤、日元承压、人民币横盘<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta">yfinance · 7月27日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美元指数（DXY）报 101.18，连续两日回落，反映避险需求下降。美元/日元维持在 163.83 高位，日元继续承受贬值压力。英镑/美元（1.3313）和欧元/美元（1.1377）均小幅走弱。人民币兑美元在 6.77 附近横盘。10 年期美债收益率 4.70%（+1.0% d）和 5 年期 4.46%（+1.2% d）同步上行，收益率曲线陡峭化趋势持续。</p>
+<a class="source-link" href="https://finance.yahoo.com/" target="_blank">🔗 数据来源：yfinance / FRED</a>
+</div>
+</div>
+</div>
+
+<div class="footer">
+<p>🌍 全球宏观日报 · 市场数据：yfinance（22 指标）+ FRED（14 指标）· 新闻：Investing.com / Yahoo Finance</p>
+<p>⚠️ 宏观新闻基于 AI 网页摘要，具体数据以官方发布为准。市场指标来自结构化数据源（yfinance/FRED），可靠性高</p>
+<p>生成时间：2026-07-27 · Powered by gigode</p>
+</div>
+
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var cards = document.querySelectorAll('.section .card');
+  cards.forEach(function(card) {
+    var top = card.querySelector('.card-top');
+    if (top) {
+      top.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isActive = card.classList.contains('active');
+        cards.forEach(function(c) { c.classList.remove('active') });
+        if (!isActive) { card.classList.add('active') }
+      });
+    }
+  });
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
