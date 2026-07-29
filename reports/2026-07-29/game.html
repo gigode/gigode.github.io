@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏行业报告 · 2026-07-29</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: linear-gradient(145deg, #0f0f23 0%, #1a1a3e 50%, #7c3aed 100%);
+  background-attachment: fixed;
+  color: #e2e8f0; min-height: 100vh; padding: 0 16px 60px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.container { max-width: 900px; margin: 0 auto; }
+.cover {
+  text-align: center; padding: 48px 24px 36px; margin: 24px auto 20px;
+  background: #0f0f2399; border: 1px solid #7c3aed44; border-radius: 16px;
+  backdrop-filter: blur(6px);
+}
+.cover h1 { font-size: 2.2rem; font-weight: 800; color: #f1f5f9; margin-bottom: 10px; }
+.cover .sub { font-size: 1rem; color: #94a3b8; margin-bottom: 16px; }
+.cover .badge {
+  display: inline-block; padding: 6px 18px; border-radius: 999px;
+  background: #7c3aed33; border: 1px solid #7c3aed66; color: #c4b5fd;
+  font-size: 0.85rem; font-weight: 600;
+}
+.toc {
+  background: #1e293bcc; border: 1px solid #334155; border-radius: 12px;
+  padding: 18px 22px; margin-bottom: 28px; backdrop-filter: blur(4px);
+}
+.toc-title { font-size: 0.9rem; font-weight: 700; color: #94a3b8; margin-bottom: 10px; }
+.toc-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc-list a {
+  display: inline-block; padding: 6px 14px; border-radius: 8px;
+  background: #0f172a88; border: 1px solid #334155; color: #cbd5e1;
+  text-decoration: none; font-size: 0.82rem; transition: border-color 0.2s;
+}
+.toc-list a:hover { border-color: #7c3aed; color: #c4b5fd; }
+.section { margin-bottom: 32px; }
+.section-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; border-radius: 10px; margin-bottom: 12px;
+}
+.section-header .icon { font-size: 1.2rem; }
+.section-header h2 { font-size: 1.1rem; font-weight: 700; flex: 1; }
+.section-header .count { font-size: 0.75rem; color: #64748b; font-weight: 600; }
+.card {
+  background: #1e293bcc; border: 1px solid #334155;
+  border-radius: 10px; margin-bottom: 10px; overflow: hidden;
+  backdrop-filter: blur(4px); transition: border-color 0.25s;
+}
+.card:hover { border-color: #475569; }
+.card.active { border-color: #7c3aed66; }
+.card-top {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px; cursor: pointer; position: relative;
+}
+.card-number {
+  flex-shrink: 0; width: 28px; height: 28px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700;
+  background: #334155; color: #94a3b8; margin-top: 2px;
+}
+.card-content { flex: 1; min-width: 0; }
+.card-content h3 {
+  font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: #f1f5f9;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.card-meta { font-size: 0.75rem; color: #64748b; margin-top: 4px; }
+.card-arrow {
+  flex-shrink: 0; width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; color: #475569;
+  transition: transform 0.3s ease; margin-top: 4px;
+}
+.card.active .card-arrow { transform: rotate(180deg); color: #a78bfa; }
+.card-detail { display: none; border-top: 1px solid #33415555; margin: 0 16px; padding-top: 12px; padding-bottom: 14px; }
+.card.active .card-detail { display: block; }
+.card-detail p { font-size: 0.88rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 10px; }
+.source-link {
+  display: inline-block; font-size: 0.8rem; color: #a78bfa; text-decoration: none;
+  padding: 4px 12px; border-radius: 6px;
+  background: #7c3aed22; border: 1px solid #7c3aed44;
+}
+.tag-verified { display:inline-block;padding:2px 8px;border-radius:4px;background:#16a34a33;color:#4ade80;font-size:0.7rem;margin-left:6px;font-weight:700; }
+.tag-unconfirmed { display:inline-block;padding:2px 8px;border-radius:4px;background:#d9770633;color:#fbbf24;font-size:0.7rem;margin-left:6px;font-weight:700; }
+.tag-analysis { display:inline-block;padding:2px 8px;border-radius:4px;background:#7c3aed33;color:#c4b5fd;font-size:0.7rem;margin-left:6px;font-weight:700; }
+.footer {
+  text-align: center; padding: 32px 0 16px;
+  border-top: 1px solid #334155; margin-top: 40px;
+  font-size: 0.8rem; color: #475569; line-height: 1.8;
+}
+.footer .warn { color: #fbbf24; }
+@media (max-width: 640px) {
+  .cover h1 { font-size: 1.8rem; }
+  .card-top { padding: 12px; gap: 10px; }
+  .card-content h3 { font-size: 0.88rem; }
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业报告</h1>
+<div class="sub">新游 · 行业 · 电竞 · 硬件 · 评测</div>
+<div class="badge">2026-07-29 · 共 19 条</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录</div>
+<ul class="toc-list">
+<li><a href="#s-releases">📦 新游发布/更新 · 7</a></li>
+<li><a href="#s-industry">🌐 行业动态 · 7</a></li>
+<li><a href="#s-esports">⚽ 电竞资讯 · 1</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术 · 1</a></li>
+<li><a href="#s-review">⭐ 评测与观点 · 3</a></li>
+</ul>
+</nav>
+
+<div class="section" id="s-releases" data-category="releases">
+<div class="section-header" style="background:#2563eb22;border-left:4px solid #2563eb;">
+<span class="icon">📦</span>
+<h2 style="color:#60a5fa;">新游发布/更新</h2>
+<span class="count">7 条</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-number">1</span>
+<div class="card-content">
+<h3>《最终幻想14》新资料片将与《最终幻想7》联动，玩家社区热议<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 Kotaku 报道，《最终幻想14》的下一部资料片（报道中提及 Evercold）将包含与《最终幻想7 Remake》的跨界联动副本内容。两款 FF 系列最受欢迎作品的交叉引发玩家社区激烈讨论，Kotaku 以"粉丝们当然要吵起来了"形容社区反应。联动具体形式与上线时间以 Square Enix 官方公告为准。</p>
+<a class="source-link" href="https://kotaku.com/final-fantasy-14-evercold-final-fantasy-7-remake-crossover-raid-2000719881" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">2</span>
+<div class="card-content">
+<h3>《王国之心4》已知信息全面汇总<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 发布《王国之心4》汇总报道，梳理了这款 Square Enix 备受期待的续作目前已知的信息，涉及登场角色、迪士尼与星球大战等联动世界以及移动端相关动向。该作自公布以来信息披露一直缓慢，此类汇总报道显示其仍是玩家关注度最高的在研 JRPG 之一。具体发售窗口尚未有官方确认。</p>
+<a class="source-link" href="https://kotaku.com/kingdom-hearts-iv-4-mobile-characters-disney-star-wars-2000719886" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">3</span>
+<div class="card-content">
+<h3>《Pokopia》首个大型 DLC"Bubbly Basin"下周上线<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 Kotaku 报道，《Pokopia》的首个大型 DLC"Bubbly Basin"将于下周推出，报道同时给出了具体发售日期信息。这是该作发售以来的首次重大内容更新，标志着其进入持续运营节奏。DLC 包含的新区域与玩法细节可参考原文。</p>
+<a class="source-link" href="https://kotaku.com/pokopias-first-major-dlc-bubbly-basin-release-date-2000719869" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">4</span>
+<div class="card-content">
+<h3>《星露谷物语》大型 Mod：经营超市 + "胡闹厨房"式玩法<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 报道了一款颇具野心的《星露谷物语》新 Mod：玩家可以在游戏中经营一家超市，并带有类似《胡闹厨房》（Overcooked）式的厨房玩法。该 Mod 将经营模拟与快节奏协作操作结合，是近期星露谷 Mod 社区中创意度较高的作品，再次展现这款发售多年游戏的长尾生命力。</p>
+<a class="source-link" href="https://kotaku.com/an-ambitious-new-stardew-valley-mod-lets-you-run-a-supermarket-with-an-overcooked-style-kitchen-2000719876" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">5</span>
+<div class="card-content">
+<h3>8 月 PS Plus 会免游戏公布：两款合作冒险游戏领衔<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 Kotaku 报道，8 月份 PlayStation Plus 会免游戏阵容已公布，其中包括两款适合与朋友组队的合作冒险游戏。具体名单与领取时间可参考原文及 PlayStation 官方公告。</p>
+<a class="source-link" href="https://kotaku.com/augusts-ps-plus-games-include-two-co-op-adventures-perfect-for-any-group-of-friends-2000719836" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">6</span>
+<div class="card-content">
+<h3>火星生存游戏《Sol One》上线 Steam：种土豆求生，被比作《火星救援》<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>PC Gamer 报道，生存游戏《Sol One》本周登陆 Steam：玩家被困火星，需要像《火星救援》中马特·达蒙的角色一样种植土豆维持生存。火星题材生存模拟在科幻玩家群体中有稳定受众，该作以"种田求生"的接地气设定切入这一品类。</p>
+<a class="source-link" href="https://www.pcgamer.com/games/survival-crafting/speaking-of-matt-damon-theres-a-new-survival-game-out-this-week-on-steam-where-youre-stranded-on-mars-and-have-to-grow-potatoes-to-survive/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">7</span>
+<div class="card-content">
+<h3>GOG 版《神偷》高清化获好评：Nightdive 重制版之前的最佳游玩方式<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>PC Gamer 评价称，GOG 对经典潜入游戏《神偷》（Thief）进行的高清化处理是"在 Nightdive 重制版到来之前体验这款游戏的绝佳方式"。GOG 近年来持续对经典老游戏做兼容性修复与画质提升，这一路线与 Nightdive 的完全重制形成互补。</p>
+<a class="source-link" href="https://www.pcgamer.com/games/action/that-gog-gloss-up-of-thief-is-an-excellent-way-to-play-the-game-until-we-get-the-nightdive-remaster/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<div class="section" id="s-industry" data-category="industry">
+<div class="section-header" style="background:#05966922;border-left:4px solid #059669;">
+<span class="icon">🌐</span>
+<h2 style="color:#34d399;">行业动态</h2>
+<span class="count">7 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">8</span>
+<div class="card-content">
+<h3>Double Fine 裁员 23 人：Schafer 称"只为工作室存续"，Xbox 分拆后三周<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer / Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 PC Gamer 与 Kotaku 报道，《脑航员2》（Psychonauts 2）开发商 Double Fine 裁员 23 人。创始人 Tim Schafer 表示"只有为了工作室的存续，我们才会考虑如此痛苦的行动"。此次裁员发生在 Double Fine 从 Xbox 分拆独立仅三周之后，是微软游戏业务调整波及旗下工作室的又一案例。</p>
+<a class="source-link" href="https://www.pcgamer.com/gaming-industry/only-the-survival-of-our-studio-would-make-us-consider-such-a-painful-action-tim-schafer-announces-double-fine-layoffs-just-3-weeks-after-xbox-cut-it-loose/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">9</span>
+<div class="card-content">
+<h3>Xbox 就长时间宕机致歉，承认锁死玩家游戏库"不可接受"<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>在 Xbox 服务器长时间宕机导致玩家无法访问自己已购游戏之后，微软进入"损害控制"模式。据 Kotaku 报道，Xbox 官方将此次故障定性为"不可接受"（unacceptable）。该事件再次点燃关于全数字化游戏库所有权的讨论——当服务器不可用时，玩家对自己购买的游戏实际上没有任何离线保障。</p>
+<a class="source-link" href="https://kotaku.com/xbox-swings-into-damage-control-mode-and-calls-extended-outage-that-locked-players-out-of-their-games-unacceptable-2000719748" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">10</span>
+<div class="card-content">
+<h3>《GTA Online》游戏内赌博功能在澳大利亚被封禁<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 7月29日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 PC Gamer 报道，《GTA Online》的游戏内赌博功能现已在澳大利亚被屏蔽。澳大利亚对游戏内赌博机制的监管长期严格，此次封禁延续了该国将虚拟赌场玩法纳入博彩监管框架的立场。Rockstar 此前已在多个对赌博机制有监管限制的地区关闭过类似功能。</p>
+<a class="source-link" href="https://www.pcgamer.com/gaming-industry/gta-online-in-game-gambling-is-now-blocked-in-australia/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">11</span>
+<div class="card-content">
+<h3>《Warframe》正经历"大规模增长"，工作室负责人表态——《命运2》落幕之际<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 PC Gamer 报道，在《命运2》走向落幕之际，Digital Extremes 工作室负责人表示《Warframe》正在经历"大规模增长"（massive growth）。免费刷宝射击品类的格局正在改写：老牌霸主《命运2》收缩，运营十余年的《Warframe》反而逆势扩张，成为该品类玩家长期留存的新选择。</p>
+<a class="source-link" href="https://www.pcgamer.com/games/third-person-shooter/as-destiny-2-is-laid-to-rest-warframe-is-experiencing-massive-growth-studio-boss-says/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">12</span>
+<div class="card-content">
+<h3>威世智（Wizards of the Coast）总裁上任仅两年即卸任<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 PC Gamer 报道，《龙与地下城》与《万智牌》母公司威世智（Wizards of the Coast）的总裁在上任仅两年后卸任。威世智是孩之宝旗下最核心的游戏资产，其高层变动发生在桌游与电子游戏联动（如《博德之门》IP 价值重估）的关键窗口期，继任人选与战略走向值得关注。</p>
+<a class="source-link" href="https://www.pcgamer.com/gaming-industry/wizards-of-the-coast-president-is-stepping-down-after-just-2-years-on-the-job/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">13</span>
+<div class="card-content">
+<h3>最大 Mod 网站 Nexus Mods 要让装 Mod 像用 Spotify 一样简单<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 Kotaku 报道，全球最大 Mod 分发平台 Nexus Mods 计划大幅降低 Mod 安装门槛，目标是让安装 Mod"像使用 Spotify 一样简单"。Mod 安装历来需要处理依赖、排序与冲突等技术问题，一键化体验若实现，将把 Mod 生态从硬核玩家圈层推向大众用户。</p>
+<a class="source-link" href="https://kotaku.com/the-biggest-modding-site-around-wants-to-make-installing-mods-as-easy-as-using-spotify-2000719879" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">14</span>
+<div class="card-content">
+<h3>报道称 AI 公司通过中间人匿名购入并销毁大量珍稀书籍<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 PC Gamer 报道，有指控称 AI 公司通过中间人服务匿名购买并销毁数以百万计的书籍（包括珍稀书籍），以避免"AI 公司购书毁书"成为头条新闻。书籍扫描被广泛用于大模型训练语料，而物理销毁原件的做法若属实，将引发关于文化遗产保存的新一轮争议。相关指控的具体细节与证据链可参考原文。</p>
+<a class="source-link" href="https://www.pcgamer.com/software/ai/ai-companies-are-anonymously-buying-and-destroying-millions-of-books-through-middleman-services-to-avoid-headlines-about-ai-companies-buying-and-destroying-millions-of-books/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<div class="section" id="s-esports" data-category="esports">
+<div class="section-header" style="background:#d9770622;border-left:4px solid #d97706;">
+<span class="icon">⚽</span>
+<h2 style="color:#fbbf24;">电竞资讯</h2>
+<span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">15</span>
+<div class="card-content">
+<h3>2026 NACL 夏季赛前瞻发布：北美次级联赛赛程与阵容看点<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">LoL Esports · 7月</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>LoL Esports 官网发布 2026 NACL（北美挑战者联赛）夏季赛前瞻（Primer），介绍本赛季参赛队伍、赛制与赛程安排。NACL 作为 LCS 之下的次级联赛，是北美新秀选手的主要成长通道。与此同时，LCS 夏季赛已于 7 月 25-26 日开赛，墨西哥城 LCS Homegrounds 活动也已官宣。</p>
+<a class="source-link" href="https://lolesports.com/news" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<div class="section" id="s-hardware" data-category="hardware">
+<div class="section-header" style="background:#7c3aed22;border-left:4px solid #7c3aed;">
+<span class="icon">🖥️</span>
+<h2 style="color:#a78bfa;">硬件/技术</h2>
+<span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">16</span>
+<div class="card-content">
+<h3>《上古卷轴3：晨风》现在可以完全在浏览器中运行<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 PC Gamer 报道，有开发者实现了在浏览器中完整运行《上古卷轴3：晨风》——作者坦言动机"只是想看看能不能做到"。这类技术演示依托 WebAssembly 与开源引擎重实现（如 OpenMW 路线）的成熟，让 2002 年的经典 RPG 无需安装即可在现代浏览器中游玩，对游戏保存与传播有积极意义。</p>
+<a class="source-link" href="https://www.pcgamer.com/games/the-elder-scrolls/you-can-now-play-morrowind-entirely-in-your-browser-honestly-just-wanted-to-see-if-it-could-be-done/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<div class="section" id="s-review" data-category="review">
+<div class="section-header" style="background:#dc262622;border-left:4px solid #dc2626;">
+<span class="icon">⭐</span>
+<h2 style="color:#f87171;">评测与观点</h2>
+<span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">17</span>
+<div class="card-content">
+<h3>Kotaku 评测：《光环：战斗进化》重制版（Halo: Campaign Evolved）<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 发布《光环：战斗进化》重制版（Halo: Campaign Evolved）的正式评测。该重制版近期因画面表现（尤其是水体效果）受到关注，并登上了 PS5 Pro 与 Xbox 双平台。评测对战役体验的整体评价可参考原文。</p>
+<a class="source-link" href="https://kotaku.com/halo-campaign-evolved-remake-ce-ps5-pro-xbox-kotaku-review-2000718494" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">18</span>
+<div class="card-content">
+<h3>《Splatoon Raiders》时装选项遭吐槽"令人失望"，与用户评分热度形成反差<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月28日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 批评《Splatoon Raiders》的时装/装扮选项"非常令人失望"——对于一款以潮流文化为卖点的系列衍生作，装扮系统的单薄让不少玩家意外。值得注意的是，该作此前刚跻身 Metacritic 用户评分历史前十，玩法口碑与装扮短板形成鲜明反差。</p>
+<a class="source-link" href="https://kotaku.com/splatoon-raiders-limited-fashion-options-disappointing-2000719813" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">19</span>
+<div class="card-content">
+<h3>Kotaku 专栏：《最终幻想10》仍拥有系列最佳开场<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 7月</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 专栏文章称，《最终幻想10》至今仍是系列开场最佳的一作。文章从叙事节奏、世界观引入与演出设计等角度论证这一观点。FF10 近期因 PS2 时代开发背景报道热度回升，其开场设计在 20 多年后仍被频繁引用为 JRPG 教科书案例。</p>
+<a class="source-link" href="https://kotaku.com/final-fantasy-10-still-has-the-best-game-opening-in-the-series-2000718389" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+数据来源：Kotaku / PC Gamer / LoL Esports（WebFetch 摘要）<br>
+<span class="warn">⚠️ 本报告基于 AI 网页摘要，新闻细节未经独立验证，仅供话题参考</span><br>
+生成时间：2026-07-29 · 已剔除前两日已报道条目
+</div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card) {
+    var top = card.querySelector('.card-top');
+    if (top) {
+      top.addEventListener('click', function() {
+        card.classList.toggle('active');
+      });
+    }
+  });
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
