@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏行业报告 · 2026-08-19</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: linear-gradient(145deg, #0f0f23 0%, #1a1a3e 50%, #7c3aed 100%);
+  background-attachment: fixed;
+  color: #e2e8f0;
+  min-height: 100vh; padding: 0 16px 60px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.container { max-width: 900px; margin: 0 auto; }
+.cover { text-align: center; padding: 48px 16px 32px; }
+.cover h1 { font-size: 2.2rem; font-weight: 800; color: #f1f5f9; letter-spacing: 1px; }
+.cover .sub { font-size: 0.95rem; color: #c4b5fd; margin-top: 8px; }
+.cover .badge {
+  display: inline-block; margin-top: 14px; padding: 6px 18px; border-radius: 20px;
+  background: #7c3aed33; border: 1px solid #7c3aed66; color: #c4b5fd; font-size: 0.8rem;
+}
+.toc {
+  background: #1e293bcc; border: 1px solid #334155; border-radius: 12px;
+  padding: 16px 20px; margin: 24px 0; backdrop-filter: blur(4px);
+}
+.toc-title { font-size: 0.85rem; font-weight: 700; color: #64748b; margin-bottom: 10px; }
+.toc-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc-list a {
+  display: inline-block; padding: 6px 14px; border-radius: 8px; font-size: 0.82rem;
+  background: #0f172a; color: #94a3b8; text-decoration: none; border: 1px solid #334155;
+  transition: all 0.2s;
+}
+.toc-list a:hover { color: #c4b5fd; border-color: #7c3aed; }
+.section { margin-bottom: 28px; }
+.section-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; border-radius: 10px; margin-bottom: 12px;
+}
+.section-header .icon { font-size: 1.2rem; }
+.section-header h2 { font-size: 1.05rem; font-weight: 700; flex: 1; }
+.section-header .count { font-size: 0.75rem; color: #64748b; }
+.card {
+  background: #1e293bcc; border: 1px solid #334155;
+  border-radius: 10px; margin-bottom: 10px; overflow: hidden;
+  backdrop-filter: blur(4px); transition: border-color 0.25s;
+}
+.card:hover { border-color: #475569; }
+.card.active { border-color: #7c3aed66; }
+.card-top {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px; cursor: pointer; position: relative;
+}
+.card-number {
+  flex-shrink: 0; width: 28px; height: 28px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700;
+  background: #334155; color: #94a3b8; margin-top: 2px;
+}
+.card-content { flex: 1; min-width: 0; }
+.card-content h3 {
+  font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: #f1f5f9;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.card-meta { font-size: 0.75rem; color: #64748b; margin-top: 4px; }
+.card-arrow {
+  flex-shrink: 0; width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; color: #475569;
+  transition: transform 0.3s ease; margin-top: 4px;
+}
+.card.active .card-arrow { transform: rotate(180deg); color: #a78bfa; }
+.card-detail { display: none; border-top: 1px solid #33415555; margin: 0 16px; padding: 12px 0 14px; }
+.card.active .card-detail { display: block; }
+.card-detail p { font-size: 0.88rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 10px; }
+.source-link {
+  display: inline-block; font-size: 0.8rem; color: #a78bfa; text-decoration: none;
+  padding: 4px 12px; border-radius: 6px;
+  background: #7c3aed22; border: 1px solid #7c3aed44;
+}
+.tag-verified { display:inline-block;padding:2px 8px;border-radius:4px;background:#16a34a33;color:#4ade80;font-size:0.7rem;margin-left:6px;font-weight:700; }
+.tag-unconfirmed { display:inline-block;padding:2px 8px;border-radius:4px;background:#d9770633;color:#fbbf24;font-size:0.7rem;margin-left:6px;font-weight:700; }
+.tag-analysis { display:inline-block;padding:2px 8px;border-radius:4px;background:#7c3aed33;color:#c4b5fd;font-size:0.7rem;margin-left:6px;font-weight:700; }
+.footer {
+  text-align: center; padding: 32px 0 16px;
+  border-top: 1px solid #334155; margin-top: 40px;
+  font-size: 0.8rem; color: #475569;
+}
+.warn {
+  background: #d9770622; border: 1px solid #d9770644; border-radius: 10px;
+  padding: 12px 16px; font-size: 0.8rem; color: #fbbf24; margin-bottom: 20px;
+}
+@media (max-width: 640px) {
+  .cover h1 { font-size: 1.8rem; }
+  .card-top { padding: 12px; gap: 10px; }
+  .card-content h3 { font-size: 0.88rem; }
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业报告</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-08-19 · 共 20 条</div>
+</div>
+
+<div class="warn">⚠️ 本报告基于 AI 网页摘要，赛事与新闻细节未经独立验证，仅供话题参考</div>
+
+<nav class="toc">
+<div class="toc-title">目录</div>
+<ul class="toc-list">
+<li><a href="#s-releases">📦 新游发布/更新 · 3</a></li>
+<li><a href="#s-industry">🌐 行业动态 · 9</a></li>
+<li><a href="#s-esports">⚽ 电竞资讯 · 1</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术 · 3</a></li>
+<li><a href="#s-review">⭐ 评测与观点 · 4</a></li>
+</ul>
+</nav>
+
+<!-- ================= 新游发布/更新 ================= -->
+<div class="section" id="s-releases" data-category="releases">
+<div class="section-header" style="background:#2563eb22;border-left:4px solid #2563eb;">
+<span class="icon">📦</span>
+<h2 style="color:#60a5fa;">新游发布/更新</h2>
+<span class="count">3 条</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-number">1</span>
+<div class="card-content">
+<h3>GTA 6 泄露视频细节汇总：六星通缉、油量表、改进 combat、打篮球提升属性<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 逐帧整理了疑似 GTA 6 泄露视频中发现的细节：六星通缉等级回归、车辆油量表、改进的近战 combat 系统，以及通过打篮球来提升角色属性的玩法。以上细节均来自泄露片段的解读，Rockstar 官方未予确认，最终游戏内容以官方发布为准。</p>
+<a class="source-link" href="https://kotaku.com/all-the-new-details-we-spotted-in-the-leaked-gta-6-videos-six-star-wanted-level-gas-meter-improved-combat-boosting-stats-with-basketball-2000725524" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">2</span>
+<div class="card-content">
+<h3>《星际公民》灾难性直播：演示任务频出状况，制作人被喊话"收了吧"<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>《星际公民》开发商为展示"Siege of Orison"任务玩法举办直播，结果状况不断，场面失控到有人对主持人说"It's your show, wrap it up"（这是你的节目，收尾吧）。Kotaku 以"灾难性直播"形容此次活动。任务具体故障细节以原文视频为准。</p>
+<a class="source-link" href="https://kotaku.com/star-citizen-live-stream-fail-siege-of-orison-mission-2000725084" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">3</span>
+<div class="card-content">
+<h3>Rusty Lake 新作《Servant of the Lake》：阴森的家庭、命运与烹饪物语<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 8月18日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>PC Gamer 报道锈湖（Rusty Lake）系列新作《Servant of the Lake》：延续系列诡异风格，讲述关于家庭、命运与烹饪的阴森故事——报道副标题提到"我给一个人喂了装满死虫子的粥，他还说好吃"。发售日期与平台信息原文未在摘要中给出。</p>
+<a class="source-link" href="https://www.pcgamer.com/games/adventure/the-new-rusty-lake-game-is-a-grim-sinister-tale-of-family-destiny-and-cooking-i-fed-a-man-porridge-filled-with-dead-bugs-and-he-told-me-it-tasted-good/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 行业动态 ================= -->
+<div class="section" id="s-industry" data-category="industry">
+<div class="section-header" style="background:#05966922;border-left:4px solid #059669;">
+<span class="icon">🌐</span>
+<h2 style="color:#34d399;">行业动态</h2>
+<span class="count">9 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">4</span>
+<div class="card-content">
+<h3>GTA 6 实机画面与完整地图疑似泄露，恰在 Netflix 大揭晓前夕<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 Kotaku，疑似《GTA 6》的新实机画面在网上流出，"看起来非常像真的"，一同泄露的可能还有完整地图——时间点恰在 Netflix 相关大揭晓活动前夕。PC Gamer 同日报道了两段"看似真实"的泄露片段。Rockstar 与 Take-Two 尚未公开回应。</p>
+<a class="source-link" href="https://kotaku.com/gta-6-gameplay-and-a-full-map-have-seemingly-leaked-ahead-of-the-big-netflix-reveal-2000725468" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">5</span>
+<div class="card-content">
+<h3>自称对 GTA 6 泄露负责的组织发声：要求终结数字版预购，否则不停手<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku / PC Gamer · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>一个自称对本次 GTA 6 泄露负责的组织提出要求：终结数字版预购——"如果发行商想在发售前获得收入，他们可以压光盘"。PC Gamer 补充：泄露者表示在 Rockstar 和 Take-Two 为"反消费者行为"道歉并"做出切实改进承诺"之前不会停手，其"宣言"还威胁了其他违反其"三条戒律"的人。</p>
+<a class="source-link" href="https://kotaku.com/gta-6-leak-group-end-digital-pre-orders-2000725477" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">6</span>
+<div class="card-content">
+<h3>Bethesda 员工：Xbox 收购前裁员极少，"突然之间我们年年裁员"<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 采访 Bethesda 员工谈 Xbox 裁员潮：一位开发者表示在微软收购之前，公司裁员非常罕见，"突然之间我们有了年度裁员"。报道与美国通信工人工会（CWA）相关的裁员抗议活动有关。具体裁员规模与部门分布以原文为准。</p>
+<a class="source-link" href="https://kotaku.com/xbox-layoffs-rallies-cwa-bethesda-employee-interview-2000725366" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">7</span>
+<div class="card-content">
+<h3>"无光盘不购买"抗议者刷屏索尼《影之刃零》展示会<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>索尼为《影之刃零》（Phantom Blade Zero）举办的展示会遭到"No Disc No Buy"（无光盘不购买）抗议者刷屏——Kotaku 描述直播聊天区及直播后的评论区"只有一种愤怒的声音"。抗议者诉求是保留实体光盘介质。这与近期 GTA 6 泄露组织"终结数字预购"的诉求遥相呼应，实体介质之争正在升温。</p>
+<a class="source-link" href="https://kotaku.com/phantom-blade-zero-sony-playstation-no-disc-no-buy-protest-2000725318" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">8</span>
+<div class="card-content">
+<h3>Crunchyroll 大幅收缩线上商店，动漫粉丝的担忧成真<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 报道 Crunchyroll 对线上商店进行大幅收缩（guts），"正如动漫粉丝所担心的那样"。报道指出，许多人将此视为索尼"反对实体介质所有权"的又一记重拳。具体裁撤的商品线与保留范围以原文为准。</p>
+<a class="source-link" href="https://kotaku.com/crunchyroll-guts-online-store-just-as-anime-fans-feared-2000725383" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">9</span>
+<div class="card-content">
+<h3>前《战神》编剧谈日本游戏开发者为何更不容易失业：他们的法律好得多<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>前《战神》编剧 Alanah Pearce 回答"为什么日本游戏开发者似乎更能保住工作"——她的简短回答是："他们的法律好得多"。在欧美游戏业裁员潮持续的背景下，这一对比引发了关于劳动保护制度的讨论。</p>
+<a class="source-link" href="https://kotaku.com/alanah-pearce-japanese-game-industry-difference-layoffs-2000725483" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">10</span>
+<div class="card-content">
+<h3>《Neverness to Everness》开发者忘记移除 AI 软件免费试用水印<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 报道开放世界新游《Neverness to Everness》的开发者在公开素材中忘记移除某 AI 软件的免费试用水印，被网友抓包。事件引发了关于游戏开发中 AI 工具使用透明度的新一轮讨论——此前多家厂商已因 AI 披露问题被玩家质疑。</p>
+<a class="source-link" href="https://kotaku.com/neverness-to-everness-devs-forget-to-remove-watermark-for-free-trial-of-ai-software-2000725370" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">11</span>
+<div class="card-content">
+<h3>游戏设计师、B 级片特效大师 Screaming Mad George 去世，享年 69 岁<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 讣告：以身体恐怖（body horror）特效闻名的 Screaming Mad George 去世，享年 69 岁。他同时也是游戏设计师，其诡异的生物设计风格影响了众多恐怖游戏与影视作品。</p>
+<a class="source-link" href="https://kotaku.com/body-horror-bon-vivant-and-game-designer-screaming-mad-george-dies-at-69-2000725022" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">12</span>
+<div class="card-content">
+<h3>任天堂为熊本地震中受损的主机提供免费维修<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 报道：任天堂宣布为在熊本地震中受损的游戏主机提供免费维修服务。适用范围与申请方式以任天堂官方公告为准。</p>
+<a class="source-link" href="https://kotaku.com/nintendo-offers-free-repairs-to-consoles-damaged-in-kumamoto-earthquake-2000722827" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 电竞资讯 ================= -->
+<div class="section" id="s-esports" data-category="esports">
+<div class="section-header" style="background:#d9770622;border-left:4px solid #d97706;">
+<span class="icon">⚽</span>
+<h2 style="color:#fbbf24;">电竞资讯</h2>
+<span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">13</span>
+<div class="card-content">
+<h3>LCS Homegrounds：墨西哥城对决 8 月 29-30 日上演，由 LYON 呈现<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">LoL Esports 官网 · 8月29-30日赛事</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>据 LoL Esports 官网公告，LCS 将于 8 月 29-30 日前往墨西哥城（CDMX），举办由 LYON 呈现的 Homegrounds 线下赛事。这是 LCS 在拉丁美洲市场的重要线下布局，门票与赛程信息已在官网放出。</p>
+<a class="source-link" href="https://lolesports.com/news/lcs-homegrounds-mexico-city-showdown-by-lyon" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 硬件/技术 ================= -->
+<div class="section" id="s-hardware" data-category="hardware">
+<div class="section-header" style="background:#7c3aed22;border-left:4px solid #7c3aed;">
+<span class="icon">🖥️</span>
+<h2 style="color:#a78bfa;">硬件/技术</h2>
+<span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">14</span>
+<div class="card-content">
+<h3>盗版《Marvel Tōkon》在 PC 上运行反而更流畅：反作弊与 DRM 拖累正版<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 报道：被破解的《Marvel Tōkon》盗版副本在 PC 上的运行表现 reportedly 好于正版——原因指向正版捆绑的反作弊与 DRM 机制带来的性能开销。正版玩家再次为防盗版技术"买单"，类似争议在 Denuvo 时代已多次上演。</p>
+<a class="source-link" href="https://kotaku.com/marvel-tokon-cracked-pirated-pc-steam-performance-anti-cheat-drm-2000725430" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">15</span>
+<div class="card-content">
+<h3>Steam 又挂了？别慌，周二大概率只是例行维护<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 提示：如果 Steam 连不上，先看看是不是周二——大概率只是每周例行维护窗口。维护通常在短时间内结束，无需担心账号或库数据问题。</p>
+<a class="source-link" href="https://kotaku.com/steam-down-tuesday-maintenance-2000725528" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">16</span>
+<div class="card-content">
+<h3>《Big Walk》主创拆解这款 GOTY 有力竞争者的开发、谜题与惊艳结局<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 深度访谈：《Big Walk》的创作者们拆解了这款年度游戏（GOTY）有力竞争者的开发历程、谜题设计思路与"惊艳的结局"。文章含剧透，介意者慎入。具体开发轶事与设计理念以原文为准。</p>
+<a class="source-link" href="https://kotaku.com/the-creators-of-big-walk-break-down-the-goty-contenders-development-puzzles-and-stunning-ending-2000725133" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 评测与观点 ================= -->
+<div class="section" id="s-review" data-category="review">
+<div class="section-header" style="background:#dc262622;border-left:4px solid #dc2626;">
+<span class="icon">⭐</span>
+<h2 style="color:#f87171;">评测与观点</h2>
+<span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">17</span>
+<div class="card-content">
+<h3>行业传奇 Warren Spector 宣布退休："我感觉想做的事都做完了"<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 8月18日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>PC Gamer 报道：《网络奇兵》《杀出重围》（Deus Ex）《史诗米奇》背后的传奇制作人 Warren Spector 宣布退出行业："我感觉我已经完成了我打算做的事。"他的沉浸式模拟（immersive sim）设计理念深刻影响了过去三十年的 RPG 与动作游戏。</p>
+<a class="source-link" href="https://www.pcgamer.com/gaming-industry/industry-legend-warren-spector-is-retiring-im-feeling-like-ive-done-what-i-set-out-to-do/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">18</span>
+<div class="card-content">
+<h3>吉田修平曾建议《光与影：33号远征队》别自称"回合制 RPG"，以免被忽视<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">PC Gamer · 8月18日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>PC Gamer 报道：前 PlayStation 掌门吉田修平曾告诉《Clair Obscur》（光与影：33号远征队）开发者不要把它叫作"回合制 RPG"，以免玩家因此"忽略"它。该作销量已超过 800 万份——PC Gamer 评论，这条建议可能真的起到了作用。</p>
+<a class="source-link" href="https://www.pcgamer.com/games/rpg/former-playstation-boss-shuhei-yoshida-told-clair-obscur-devs-to-not-call-it-a-turn-based-rpg-so-people-wouldnt-overlook-it/" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">19</span>
+<div class="card-content">
+<h3>评论：求求了，别给《古墓丽影》重制版加技能树和合成系统<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 评论文章：针对《古墓丽影》重制版传闻中的现代化改造，作者发出恳求——不要加入技能树和合成（crafting）系统。文章认为这类"标配"机制会稀释原作纯粹的探索与解谜体验。该文为编辑观点，不代表重制版实际设计方向。</p>
+<a class="source-link" href="https://kotaku.com/oh-god-no-please-dont-add-skill-trees-and-crafting-to-the-tomb-raider-remake-2000725433" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">20</span>
+<div class="card-content">
+<h3>前 Square Enix 高管：无光驱 PlayStation 反而可能压低游戏价格<span class="tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta">Kotaku · 8月18-19日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Kotaku 报道了一位前 Square Enix 高管的观点：完全无光驱的 PlayStation 实际上可能推动游戏价格下降——省去光盘生产、物流与零售分成后，数字版存在降价空间。这一论点与"No Disc No Buy"抗议者的担忧形成对照：一方看到价格红利，一方担忧所有权流失。</p>
+<a class="source-link" href="https://kotaku.com/former-square-enix-exec-believes-disc-free-playstation-will-drive-game-prices-down-2000724716" target="_blank">🔗 查看原文</a>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+数据来源：Kotaku / PC Gamer / LoL Esports（WebFetch 摘要） · 2026-08-19<br>
+⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考<br>
+游戏行业日报 · 每日自动更新
+</div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card) {
+    var top = card.querySelector('.card-top');
+    if (top) {
+      top.addEventListener('click', function() {
+        card.classList.toggle('active');
+      });
+    }
+  });
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
