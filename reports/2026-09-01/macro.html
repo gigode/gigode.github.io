@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球宏观日报 · 2026-09-01</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0a0a0a;
+  color: #e2e8f0; min-height: 100vh; padding: 0 16px 60px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.container { max-width: 960px; margin: 0 auto; }
+.cover { text-align:center; padding: 48px 20px 32px; background: linear-gradient(135deg, #1a0f0a, #3d2517, #b45309); border-radius: 0 0 20px 20px; margin: 0 -16px 28px; }
+.cover h1 { font-size: 2.2rem; font-weight: 800; color:#fef3c7; letter-spacing: 1px; }
+.cover .sub { margin-top: 8px; color: #fbbf24; font-size: 0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#b4530933; border:1px solid #b4530966; color:#fcd34d; font-size:0.8rem; }
+.toc { background:#171717cc; border:1px solid #334155; border-radius:12px; padding:18px 22px; margin-bottom:28px; }
+.toc-title { font-size:0.85rem; font-weight:700; color:#94a3b8; margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:8px; background:#0a0a0a; border:1px solid #334155; color:#cbd5e1; text-decoration:none; font-size:0.82rem; transition: all 0.2s; }
+.toc-list a:hover { border-color:#b45309; color:#fcd34d; }
+.section { margin-bottom: 32px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:10px; margin-bottom:14px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:#94a3b8; background:#0a0a0a; padding:3px 10px; border-radius:999px; }
+.metric-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap:10px; margin-bottom: 8px; }
+.metric-group-label { grid-column: 1 / -1; font-size:0.8rem; font-weight:700; color:#fbbf24; padding:10px 2px 2px; border-top:1px solid #262626; margin-top:6px; }
+.metric-group-label small { color:#78716c; font-weight:400; margin-left:6px; }
+.metric-card { background:#171717; border:1px solid #292524; border-radius:10px; padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:#a8a29e; font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:#fafaf9; margin-top:4px; font-variant-numeric: tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric: tabular-nums; }
+.metric-change.pos { color:#4ade80; }
+.metric-change.neg { color:#f87171; }
+.metric-change.flat { color:#a8a29e; }
+.metric-explain { font-size:0.68rem; color:#78716c; margin-top:6px; line-height:1.5; }
+.card { background: #171717cc; border: 1px solid #292524; border-radius: 10px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.25s; }
+.card:hover { border-color: #44403c; }
+.card.active { border-color: #b4530966; }
+.card-top { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; cursor: pointer; position: relative; }
+.card-number { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; background: #292524; color: #a8a29e; margin-top: 2px; }
+.card-content { flex: 1; min-width: 0; }
+.card-content h3 { font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: #f1f5f9; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-meta { font-size: 0.75rem; color: #57534e; margin-top: 4px; }
+.card-arrow { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #44403c; transition: transform 0.3s ease; margin-top: 4px; }
+.card.active .card-arrow { transform: rotate(180deg); color: #b45309; }
+.card-detail { display: none; border-top: 1px solid #29252455; margin: 0 16px; padding: 12px 0 14px; }
+.card.active .card-detail { display: block; }
+.card-detail p { font-size: 0.88rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 10px; }
+.source-link { display: inline-block; font-size: 0.8rem; color: #fbbf24; text-decoration: none; padding: 4px 12px; border-radius: 6px; background: #b4530922; border: 1px solid #b4530944; }
+.source-link:hover { background:#b4530933; }
+.tag-verified { display:inline-block;padding:2px 8px;border-radius:4px;background:#16a34a33;color:#4ade80;font-size:0.7rem;margin-left:6px;font-weight:700; vertical-align: middle; }
+.tag-unconfirmed { display:inline-block;padding:2px 8px;border-radius:4px;background:#d9770633;color:#fbbf24;font-size:0.7rem;margin-left:6px;font-weight:700; vertical-align: middle; }
+.tag-analysis { display:inline-block;padding:2px 8px;border-radius:4px;background:#7c3aed33;color:#c4b5fd;font-size:0.7rem;margin-left:6px;font-weight:700; vertical-align: middle; }
+.footer { text-align: center; padding: 32px 0 16px; border-top: 1px solid #292524; margin-top: 40px; font-size: 0.8rem; color: #57534e; }
+.footer .warn { color:#fbbf24; margin-top:6px; }
+@media (max-width: 640px) {
+  .cover h1 { font-size: 1.8rem; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-top { padding: 12px; gap: 10px; }
+  .card-content h3 { font-size: 0.88rem; }
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+
+<div class="container">
+
+<div class="cover">
+<h1>🌍 全球宏观日报</h1>
+<div class="sub">央行政策 · 市场动态 · 全球经济 · 地缘贸易 · 商品外汇</div>
+<div class="badge">2026-09-01 · 19 条资讯 + 20 项市场指标 · 早间更新（北京时间 08:40）</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录</div>
+<ul class="toc-list">
+<li><a href="#s-marketdata">📈 Market Data · 20 指标</a></li>
+<li><a href="#s-cenbank">🏛️ 央行政策 · 3</a></li>
+<li><a href="#s-market">📉 市场动态 · 5</a></li>
+<li><a href="#s-global">🌐 全球经济 · 4</a></li>
+<li><a href="#s-geo">⚔️ 地缘贸易 · 3</a></li>
+<li><a href="#s-commodity">🛢️ 商品外汇 · 4</a></li>
+</ul>
+</nav>
+
+<!-- ================= Market Data ================= -->
+<div class="section" id="s-marketdata">
+<div class="section-header" style="background:#b4530922;border-left:4px solid #b45309;">
+<span class="icon">📈</span>
+<h2 style="color:#fbbf24;">Market Data 市场数据</h2>
+<span class="count">20 指标</span>
+</div>
+
+<div class="metric-grid">
+<div class="metric-group-label">美股指数 · 公开报道 <small>8月31日（周一）收盘，美伊互袭冲击下收跌</small></div>
+<div class="metric-card"><div class="metric-label">标普500</div><div class="metric-value">7,686.14</div><div class="metric-change neg">-0.33% d</div><div class="metric-explain">8月 +1.1%，5月以来首次月度收涨</div></div>
+<div class="metric-card"><div class="metric-label">纳斯达克</div><div class="metric-value">26,370</div><div class="metric-change neg">-0.12% d</div><div class="metric-explain">8月 +1.76%，同样终结三连跌</div></div>
+<div class="metric-card"><div class="metric-label">道琼斯</div><div class="metric-value">53,185</div><div class="metric-change neg">-0.7% d</div><div class="metric-explain">连续第五个月上涨</div></div>
+<div class="metric-card"><div class="metric-label">罗素2000</div><div class="metric-value">293.93*</div><div class="metric-change neg">-2.0% d</div><div class="metric-explain">*OpenBB 口径，小盘股相对走弱</div></div>
+
+<div class="metric-group-label">利率与就业 · FRED / 市场 <small>G20 财长会前，加息预期维持高位</small></div>
+<div class="metric-card"><div class="metric-label">联邦基金利率</div><div class="metric-value">3.63%</div><div class="metric-change flat">持平</div><div class="metric-explain">年底前至少一次加息的市场定价未变</div></div>
+<div class="metric-card"><div class="metric-label">10年期国债</div><div class="metric-value">4.73%</div><div class="metric-change flat">高位</div><div class="metric-explain">G20 关注美债收益率与赤字</div></div>
+<div class="metric-card"><div class="metric-label">10Y-2Y 利差</div><div class="metric-value">0.41%</div><div class="metric-change flat">正斜率</div><div class="metric-explain">曲线维持正常形态</div></div>
+<div class="metric-card"><div class="metric-label">VIX 恐慌指数</div><div class="metric-value">14.43</div><div class="metric-change flat">低波动</div><div class="metric-explain">地缘冲击未引发恐慌定价</div></div>
+<div class="metric-card"><div class="metric-label">失业率</div><div class="metric-value">4.1%</div><div class="metric-change flat">持平</div><div class="metric-explain">劳动力市场韧性延续</div></div>
+
+<div class="metric-group-label">大宗商品 · 8月31日 <small>美伊互袭推动油价飙升，黄金企稳</small></div>
+<div class="metric-card"><div class="metric-label">黄金（现货）</div><div class="metric-value">$4,505.5</div><div class="metric-change pos">+0.6% d</div><div class="metric-explain">上周 Warsh 鹰派冲击后企稳</div></div>
+<div class="metric-card"><div class="metric-label">布伦特原油</div><div class="metric-value">≈$90</div><div class="metric-change pos">+2-3% d</div><div class="metric-explain">盘中 $91.52，8月25日以来最高</div></div>
+<div class="metric-card"><div class="metric-label">WTI 原油</div><div class="metric-value">$86.63</div><div class="metric-change pos">+3.9% d</div><div class="metric-explain">美军打击伊朗拉腊克岛触发</div></div>
+<div class="metric-card"><div class="metric-label">天然气</div><div class="metric-value">$2.94</div><div class="metric-change pos">+1.7% d</div><div class="metric-explain">欧洲库存低位担忧未解</div></div>
+
+<div class="metric-group-label">8月月度赢家 · 科技与生物 <small>AI 叙事主导的月度涨幅榜</small></div>
+<div class="metric-card"><div class="metric-label">英伟达</div><div class="metric-value">+9.57% 月</div><div class="metric-change pos">领涨</div><div class="metric-explain">费半月末回调不改月度强势</div></div>
+<div class="metric-card"><div class="metric-label">Palantir</div><div class="metric-value">+51% 月</div><div class="metric-change pos">大涨</div><div class="metric-explain">企业 AI 落地叙事最强标的</div></div>
+<div class="metric-card"><div class="metric-label">Salesforce</div><div class="metric-value">+50% 月</div><div class="metric-change pos">大涨</div><div class="metric-explain">Agent 商业化预期重估</div></div>
+<div class="metric-card"><div class="metric-label">Moderna</div><div class="metric-value">+156% 月</div><div class="metric-change pos">暴涨</div><div class="metric-explain">黑色素瘤疗法试验数据驱动</div></div>
+<div class="metric-card"><div class="metric-label">美光</div><div class="metric-value">+14.8% 月</div><div class="metric-change pos">大涨</div><div class="metric-explain">内存超级周期延续定价</div></div>
+</div>
+</div>
+
+<!-- ================= 央行政策 ================= -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#dc262622;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span>
+<h2 style="color:#f87171;">Central Bank 央行政策</h2>
+<span class="count">3 条</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-number">1</span>
+<div class="card-content">
+<h3>G20 财长会议阿什维尔开幕：Bessent 与 Warsh 联合定调"增长优先"<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">CNBC / Europa Press / Reuters · 8月31日-9月1日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美国财政部长贝森特与美联储主席沃什在北卡罗来纳州阿什维尔共同主持 G20 财长与央行行长会议——这是美国作为 G20 轮值主席国全年议程的核心场次，也是沃什 5 月上任以来首次出席国际政策会议。会议主题定为让 G20"回归本源"，以经济增长为一切讨论的中心，为 12 月特朗普将在迈阿密主持的 G20 领导人峰会铺垫。</p>
+<p>贝森特的核心主张是"拆除增长障碍"：呼吁成员国取消监管、税收与投资壁垒，称"我们自己制造的政策失败不应再成为表现不佳的原因"。他对全球经济开出"增长换债务"的处方——全球债务已至创纪录的约 353 万亿美元、美国债务突破 40 万亿美元，"世界浸泡在债务中，唯一出路是靠增长摆脱债务"。他同时驳斥"债券市场动荡"的说法，强调美国"仍在增长、仍是表现最好的市场"。首次受邀参会的企业 CEO（摩根大通戴蒙、高盛所罗门等）成为本届会议的制度性创新，标志政策制定与私人部门的对话机制升级。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/08/31/g20-finance-meeting-live-updates.html" target="_blank">🔗 查看原文（CNBC）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">2</span>
+<div class="card-content">
+<h3>Warsh 宣告"世俗停滞时代终结"：全球储蓄过剩已逝，投资浪潮已至<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Edgen / Reuters · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美联储主席沃什在 G20 会议上发表了任内最具叙事性的定调："世俗停滞（secular stagnation）听起来已是遥远的过去，新时期是世俗增长（secular growth）。"他进一步宣告"全球储蓄过剩似乎已成为历史，这是一个全球投资激增的时代"，并将美国经济增长的强化归因于 AI 驱动的投资与强劲的资本品订单。</p>
+<p>但沃什的乐观中埋着双重谨慎：其一，他引用 CBO 对未来十年美国年增速约 1.8% 的预测，反问"AI 资本开支的收益能否持续"；其二，他的表态维持了加息预期的存活——与 Jackson Hole 传递的"通胀不回落则继续加息"一脉相承。这一组合的资产含义是：全球无风险利率中枢的上移被官方叙事确认，"高增长 + 高利率"的新均衡正在取代"低增长 + 低利率"的旧世界。对久期资产（长债、黄金、高估值成长股）而言，这一叙事转换本身就是压力源；对周期性资产与实体经济投资主题，则提供了配置逻辑的官方背书。</p>
+<a class="source-link" href="https://www.edgen.tech/zh/news/post/warsh-declares-investment-surge-as-us-debt-tops-40-trillion" target="_blank">🔗 查看原文（Edgen）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">3</span>
+<div class="card-content">
+<h3>Bessent 对华开炮：$1.2T 贸易顺差"世界无法承受"，与潘功胜会晤称"非常扎实"<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">CNBC / MilanoFinanza / MarketScreener · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>贝森特在 G20 上对中国的表态是本届会议最具火药味的时刻之一："世界无法承受一个拥有 1.2 万亿美元贸易顺差的中国。"他同时敦促成员国支持对伊朗的经济孤立（"经济贱民"行动），并感谢欧盟与 ECB 的配合——尽管市场普遍认为没有中国的合作，对伊制裁的效果将大打折扣。值得注意的是，贝森特确认与中国人民银行行长潘功胜举行了一场"非常扎实"的会晤，但拒绝透露细节。</p>
+<p>"公开批评 + 私下会晤"的组合拳揭示了当前中美经济关系的真实温度：结构性分歧（顺差、关税、产业政策）在明面持续加压，但双方都保留着管理冲突的对话管道。对市场的短期含义是：9 月的中美互动节奏（领导人会谈传闻、贸易谈判信号）将成为汇率与风险偏好的关键变量；而贝森特在 G20 平台上的对华定调，也意味着华盛顿正试图把"再平衡中国顺差"上升为多边议程——这比双边关税更持久、更难谈判。</p>
+<a class="source-link" href="https://www.milanofinanza.it/news/g20-finanze-l-appello-di-bessent-il-mondo-e-sommerso-dai-debiti-202608311808466746" target="_blank">🔗 查看原文（MilanoFinanza）</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 市场动态 ================= -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#2563eb22;border-left:4px solid #2563eb;">
+<span class="icon">📉</span>
+<h2 style="color:#60a5fa;">Market 市场动态</h2>
+<span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">4</span>
+<div class="card-content">
+<h3>8月收官：美股周一收跌但全月上涨，S&P 500 录得 5 月以来首次月度涨幅<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Schaeffer's / EFE / Argaam · 8月31日收盘</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>8 月最后一个交易日，美股在美伊互袭的地缘冲击下收跌：标普 500 跌 0.33% 至 7,686.14，纳指跌 0.12% 至 26,370，道指跌 0.7% 至 53,185。但月度成绩单依然亮眼：标普录得 5 月以来首次月度上涨（EFE 口径 +1.13%），纳指同样终结月度三连跌（+1.76%），道指连续第五个月收涨。当日拖累主要来自地缘溢价——油价升破 86 美元、美债收益率上行，以及市场对加息路径的再度警觉。</p>
+<p>8 月的结构性叙事是"科技独舞"：AI 相关个股贡献了绝大部分涨幅，而能源股在月末的伊朗冲突中逆势走强（埃克森美孚 +2.9%、雪佛龙 +3%）。PayPal（-12.7%）与 Marvell（-10.3%）成为当日最大输家，前者受累于经营预期下修，后者延续"财报超预期、股价下跌"的 AI 半导体魔咒。进入 9 月，市场的两大定价锚清晰：9 月中旬 FOMC 的加息抉择与本周五的 8 月非农数据——任何一端出现意外，都将打破当前的"平静但紧绷"的均衡。</p>
+<a class="source-link" href="https://www.schaeffersresearch.com/content/ezines/2026/08/31/dow-logs-5th-straight-monthly-win-despite-sour-session" target="_blank">🔗 查看原文（Schaeffer's）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">5</span>
+<div class="card-content">
+<h3>8月美股涨幅榜：Palantir +51%、Salesforce +50%、Moderna +156%——AI 与生物科技的月度狂欢<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">EFE / 市场综合 · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>8 月美股涨幅榜呈现清晰的"双主线"结构：AI 线——英伟达 +9.57%、微软 +9.75%、美光 +14.8%、Palantir +51%、Salesforce +50%；生物科技线——Moderna 暴涨约 156%（黑色素瘤疗法试验的积极数据）。Palantir 与 Salesforce 的翻倍级月度涨幅尤其值得关注：它们代表的是"企业 AI 落地"叙事——市场开始为 AI 从基础设施向应用层传导定价，而非仅仅交易算力。</p>
+<p>这种扩散是牛市健康的标志，也是泡沫预警的前奏：当涨幅从"业绩支撑的算力层"扩散到"叙事驱动的应用层"，估值对预期的透支速度会显著加快。Moderna 的暴涨提醒市场：8 月的行情不只是 AI 的故事，生物科技的催化同样在贡献收益——这为组合提供了一定的多元化缓冲。9 月开盘后，这些月度赢家面临的共同问题是获利了结压力：Palantir 与 Salesforce 的估值已进入"完美定价"区间，任何财报或指引的瑕疵都可能引发剧烈回撤。</p>
+<a class="source-link" href="https://efe.com/economia/2026-08-31/wall-street-cierre-rojo-ganancias-agosto-impulso-tecnologico/" target="_blank">🔗 查看原文（EFE）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">6</span>
+<div class="card-content">
+<h3>G20 首次邀请企业 CEO 参会：所罗门称"看不到重大信贷风险"，生产率繁荣"非凡"<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">CNBC / lokmattimes · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>本届 G20 财长会议实现了一项制度性创举：私人部门 CEO 首次进入官方议程，名单包括摩根大通 Jamie Dimon、高盛 David Solomon、3M Bill Brown、礼来 David Ricks、迪尔 John May、美敦力 Geoff Martha 与 Truist 候任 CEO Mike Lyons。高盛所罗门的现场表态最具市场信息量："我目前看不到任何重大的信贷系统风险"，并称当前的生产率繁荣"非同寻常"。</p>
+<p>所罗门的"无信贷风险"判断发生在美债收益率高企、企业再融资成本上升的敏感时点，其分量在于：华尔街最大银行之一的掌门人在全球央行行长面前为信贷体系背书。但历史经验提示，这类"系统性健康"的表态往往出现在周期的顶部区域而非底部。更值得玩味的是 CEO 参会本身的信号：政策制定者对私人部门资本开支（尤其是 AI 投资）的依赖从未如此之高，"公共政策 × 企业资本开支"的协作机制正在被制度化。若 12 月迈阿密峰会延续此模式，"CEO 外交"将成为大国经济治理的新常态。</p>
+<a class="source-link" href="https://www.lokmattimes.com/international/finance-chiefs-descend-on-asheville-for-g20/amp/" target="_blank">🔗 查看原文（Lokmat Times）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">7</span>
+<div class="card-content">
+<h3>个股异动：Workday +5.8%、达美乐 +5.4%、Lululemon +5.1% 领涨；PayPal -12.7% 重挫<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Public / Insight Guru · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>8 月 31 日的个股异动名单呈现出有趣的结构：标普成分股领涨的是 Workday（+5.8%）、达美乐披萨（+5.4%）与 Lululemon（+5.1%），领跌的是 PayPal（-12.7%）与 Marvell（-10.3%）。领涨组合的共同特征是"消费韧性与企业软件双轮"——达美乐与 Lululemon 代表美国消费者的可支配支出依然稳固，Workday 则延续企业 AI 软件的估值修复。</p>
+<p>PayPal 的 -12.7% 是当日最重要的个股信号：作为数字支付巨头，其重挫的诱因（经营预期下修）若被证实，将动摇"美国消费强劲"的市场叙事——支付数据是消费的实时温度计。它与达美乐、Lululemon 的上涨构成耐人寻味的矛盾信号：要么是板块内的份额转移，要么是市场在消费数据上出现了认知分裂。9 月的零售数据与信用卡数据将裁决这一分歧。对宏观交易者而言，PayPal 类个股的异动往往领先于官方消费数据 4-6 周，值得纳入领先指标观察池。</p>
+<a class="source-link" href="https://www.publicnow.com/view/A05E88D4F6735D18B5B017757C135DF9F80395D5" target="_blank">🔗 查看原文（Public）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">8</span>
+<div class="card-content">
+<h3>Wolfe Research 发布"财报地雷"预警名单：高估值 + 高预期的业绩暴雷风险集中<span class="tag-unconfirmed">🔹 单一源</span></h3>
+<div class="card-meta">CNBC 头条 / Wolfe Research · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Wolfe Research 发布报告，点名一批"潜在财报爆炸"（earnings blow-ups）标的——分析师认为这些公司在高估值与高预期的双重压力下，即将到来的财报季存在显著的下行风险。报告被 CNBC 收录为当日头条，反映出财报季前的市场神经正在绷紧。</p>
+<p>这类"预警名单"的时间点值得注意：它出现在 8 月涨幅榜狂欢（Palantir +51%、Salesforce +50%）之后，本质是对"完美定价"的防御性修正——当股价已计入最乐观情景，任何低于预期的细节都会触发不对称下跌。对 9 月而言，财报季的开启（9 月中旬起）将与 FOMC 会议叠加，形成"业绩 + 利率"的双重波动窗口。宏观含义在于：若暴雷名单成真，企业盈利预期的下修将直接冲击"盈利支撑估值"的牛市根基——届时市场的焦点将从"AI 叙事"切回"盈利质量"，这对高估值成长股是最不友好的环境。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/08/31/g20-finance-meeting-live-updates.html" target="_blank">🔗 查看原文（CNBC 头条）</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 全球经济 ================= -->
+<div class="section" id="s-global">
+<div class="section-header" style="background:#0ea5e922;border-left:4px solid #0ea5e9;">
+<span class="icon">🌐</span>
+<h2 style="color:#38bdf8;">Global Economy 全球经济</h2>
+<span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">9</span>
+<div class="card-content">
+<h3>麦肯锡的"反共识"判断：中国 Q2 GDP 仅 4.3%，但"下一个中国仍是中国"<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">CNBC The China Connection · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>麦肯锡大中华区主席倪以理与资深合伙人梁颖恒在 CNBC 通讯中阐述其"反共识"立场：中国不会走向日本式停滞，也不会与美国大幅脱钩。其数据支撑：中国占全球制造业约 30%、全球 GDP 约 18%，短期难以替代；而"失望感"的根源是外企对照的是过去 20 年异常的市场主导地位。他们同时承认严酷现实：中国 Q2 GDP 同比增长仅 4.3%（上半年 4.7%），零售销售仅增 1.3%（6 月 1.0%），消费复苏弱于整体增长。</p>
+<p>数据中的结构性亮点被敏锐捕捉：1-7 月新增外资企业增长 4.4%（37,711 家），实际 FDI 虽降 6.2%，但高技术制造业 FDI 跳增 32.7%——资本正在"换结构"而非"撤离"。星巴克出售中国业务 60% 股权给博裕、微软中国区收缩等案例，被解读为"重定位"而非"退出"。麦肯锡的结论对投资者的含义是：中国配置的命题正从"去不去"转向"在哪些行业、以什么结构"——合资、"在中国为中国"策略与本地 PE 合作是新的标准答案。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/08/31/cnbc-china-connection-newsletter-mckinseys-contrarian-view-economy.html" target="_blank">🔗 查看原文（CNBC）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">10</span>
+<div class="card-content">
+<h3>特朗普称美国增长可达 20%：二战后只发生过一次，市场如何定价"增长幻想"<span class="tag-unconfirmed">🔹 单一源</span></h3>
+<div class="card-meta">CNBC 头条 · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>特朗普公开宣称美国经济增长率可以达到 20%——CNBC 的数据核查指出，这一水平在二战后的美国只出现过一次。这一表态的语境是 G20 财长会议前的增长叙事造势，与贝森特"靠增长走出债务"、沃什"世俗增长时代"形成同一阵营的叙事共振。</p>
+<p>市场对这类声明的定价方式是"折扣后取信号"：20% 的绝对数字不会被任何严肃的定价模型采信，但"华盛顿全力推增长"的政策意图是真实的——减税、放松管制、能源政策与关税工具的指向一致。真正需要警惕的是"增长承诺"与"政策现实"之间的落差：若 AI 资本开支的传导不及预期、关税反噬显现、而财政刺激受制于债务上限，增长叙事将从资产价格的助推器变为反向催化剂。对宏观交易者而言，9 月的非农与 GDPNow 追踪数据是检验"增长故事"的硬指标——叙事可以被夸大，数据不会配合表演。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/08/31/g20-finance-meeting-live-updates.html" target="_blank">🔗 查看原文（CNBC）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">11</span>
+<div class="card-content">
+<h3>戴尔基金会 $250 补助启动发放：$6.25B 最大私人儿童捐赠落地"特朗普账户"<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">CNBC / Fox Business / Moneycontrol · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>戴尔基金会周一开始向符合条件的儿童"特朗普账户"（530A 账户）自动存入 250 美元补助。迈克尔·戴尔与苏珊·戴尔夫妇为此承诺 62.5 亿美元——美国历史上对儿童最大规模的私人捐赠——覆盖最多 2500 万名儿童。资格标准：2016-2024 年出生、家庭所在邮编区收入中位数不超过 15 万美元；2025-2028 年出生的儿童则享受联邦试点项目的 1000 美元财政部一次性存款。截至最新数据，约 700 万儿童已开通账户。</p>
+<p>这笔捐赠的经济学意义远超慈善范畴：它实质上是"全民资产账户"政策实验的民间催化剂——账户资金投资于美国股指基金、18 岁可提取用于教育/首套房/创业，理论上为一代人创造了"资本市场的利害相关"。62.5 亿美元的直接注入对市场影响有限，但其制度遗产可能深远：若 2500 万账户全部激活并持续定投，将形成一条稳定且反周期的新资金来源。对金融行业而言，"儿童账户"正在成为一个真实的零售资管赛道——从基础设施（账户系统）到产品（指数基金、教育储蓄）的整条产业链都会被激活。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/08/31/trump-account-holders-to-start-receiving-250-dell-grant-spokesperson.html" target="_blank">🔗 查看原文（CNBC）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">12</span>
+<div class="card-content">
+<h3>众议院情报委员会警告 AI"黑天鹅"风险：监管叙事转向或压制科技估值<span class="tag-unconfirmed">🔹 单一源</span></h3>
+<div class="card-meta">CNBC 头条 · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>众议院情报委员会发布警告，提示 AI 可能构成的"黑天鹅"级风险。报告被 CNBC 列为当日头条，显示政策层面对 AI 安全的关注正在从"技术圈讨论"升级为"国家安全议程"。</p>
+<p>这一信号的资产含义在于监管预期的边际变化：当前市场对 AI 板块的定价几乎完全忽略了"监管收紧"情景——CLARITY 法案（加密）的立法进程说明国会正以更高频次介入新兴技术领域，AI 若进入类似的立法通道，将对模型层与基础设施层的估值形成压制。更微妙的是时机：这一警告出现在 OpenAI 与 Anthropic 机密申报 IPO 的窗口期，任何监管升级都可能直接影响巨型 IPO 的定价与节奏。对投资者而言，"AI 黑天鹅"提示的最优对冲不是做空科技股，而是在组合中保留对"监管风险"的敏感度——政策日程（听证会、法案投票日）应当成为 AI 持仓的常规风控输入。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/08/31/g20-finance-meeting-live-updates.html" target="_blank">🔗 查看原文（CNBC 头条）</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 地缘贸易 ================= -->
+<div class="section" id="s-geo">
+<div class="section-header" style="background:#7c3aed22;border-left:4px solid #7c3aed;">
+<span class="icon">⚔️</span>
+<h2 style="color:#a78bfa;">Geopolitics 地缘贸易</h2>
+<span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">13</span>
+<div class="card-content">
+<h3>美伊互袭再起：美军打击拉腊克岛火箭发射架，伊朗导弹袭约旦基地，霍尔木兹航运崩溃<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">CNBC TV18 / Fortune / Investing.com · 8月30-31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>8 月 30 日（周日），美军打击了霍尔木兹海峡附近拉腊克岛上两处伊朗火箭发射架——美方称伊朗革命卫队正准备向航道投放火箭布设水雷；伊朗随即向美军在约旦的两处空军基地发射导弹（大部分被拦截，无重大损失），阿联酋宣布拦截了一架伊朗无人机。这是自 7 月底以来美方首次对伊打击，结束了持续数周的对峙间歇。特朗普在社交媒体声称伊朗能源枢纽哈格岛（占伊朗石油出口约 90%）被"炸成碎片"，但无任何证据支持，伊朗否认并称石油作业未受影响。</p>
+<p>市场对该事件的实际定价是"冲突可控、风险溢价上行"：布伦特冲破 90 美元（盘中 91.52），但远未触及 4 月的 126 美元恐慌高点；DBS 等机构预计"有限对抗"格局下油价将在 85-95 美元区间震荡。真正需要持续监测的是霍尔木兹的航运数据：可见商船通行量已跌至每日约 5 艘（冲突前全球约五分之一石油经此转运），周六更有一艘油轮在航道内被击中——"非正式封锁"的物理事实正在形成，市场只是在赌它不会正式化。</p>
+<a class="source-link" href="https://www.cnbctv18.com/market/commodities/oil-prices-rise-strait-of-hormuz-us-strikes-iran-jordan-venezuela-brent-crude-wti-19979969.htm" target="_blank">🔗 查看原文（CNBC TV18）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">14</span>
+<div class="card-content">
+<h3>委内瑞拉石油大交易落地难：专家一致认为短期降不了油价，投资回收需 5-15 年<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Boston Globe / Yahoo Finance / PrimeXBT · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>特朗普上周五宣布的委内瑞拉"石油大交易"（美国取得约 650 亿桶探明储量的多数控制权，期限 25 年——另有说法为 100 年）持续发酵，但能源专家的共识泼了冷水：这笔交易不会在短期内降低美国汽油价格。核心障碍是物理现实——委内瑞拉目前日产仅约 120 万桶（上世纪 90 年代末峰值 350 万桶），奥里诺科重油带的开发需要 5-15 年周期；Rystad Energy 估算恢复峰值产能需约 1800 亿美元投资（至 2040 年），鲁比奥则称交易将吸引近 1000 亿美元私人投资。</p>
+<p>交易结构的合法性阴影同样被指出：未经选举的临时政府签署的长周期协议面临 2029 年美国政府更迭与委内瑞拉政局变化双重风险，埃克森美孚等有被国有化历史阴影的巨头投资意愿存疑。汽油价格方面，全美均价 4.08-4.09 美元/加仑（AAA），较去年同期高近 30%，GasBuddy 预计劳动节将创历史同期纪录——驱动因素是伊朗战争与乌克兰对俄炼厂的打击，而非委内瑞拉供给。市场对这笔交易的正确定价是"中期供给期权"而非"短期价格工具"：它对油价的真实影响将在 2027 年之后才可能显现，且充满政治条件性。</p>
+<a class="source-link" href="https://www.bostonglobe.com/2026/08/31/business/trump-venezuela-oil-reserves/" target="_blank">🔗 查看原文（Boston Globe）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">15</span>
+<div class="card-content">
+<h3>贸易战线全景：美加 50% 关税生效待报复，G20 上华盛顿推动"对华再平衡"多边化<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">CNBC / 金十数据 · 8月31日-9月1日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>贸易战线在 9 月开盘时呈多点并进：美加方向，美国对约 200 亿美元加拿大商品加征的 50% 关税已生效，加拿大的"一元对一元"报复定于 9 月 8 日启动，北美铝、木材、农产品与汽车零部件供应链首当其冲；对华方向，贝森特在 G20 上公开呼吁"世界无法承受中国 1.2 万亿美元顺差"，试图将对华贸易再平衡上升为多边议程；对伊方向，美方宣布计划每周推出新的二级制裁，从银行系统开始。</p>
+<p>这一格局的宏观传导是"行政通胀"：关税直接推升进口品价格，恰逢美联储纠结于 9 月加息——贸易政策制造的输入性通胀与货币政策抗通胀形成方向冲突。9 月 8 日的加拿大报复清单是下一个关键节点：若清单集中于美国政治敏感州的产业（农业、汽车），双方的螺旋升级风险显著上升；若清单克制，则留有谈判空间。对市场而言，贸易战的"三线作战"意味着通胀溢价将持续存在——这既是油价的支撑因素，也是美联储"鹰派粘性"的来源之一。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/08/31/g20-finance-meeting-live-updates.html" target="_blank">🔗 查看原文（CNBC）</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 商品外汇 ================= -->
+<div class="section" id="s-commodity">
+<div class="section-header" style="background:#f59e0b22;border-left:4px solid #f59e0b;">
+<span class="icon">🛢️</span>
+<h2 style="color:#fbbf24;">Commodities & FX 商品外汇</h2>
+<span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">16</span>
+<div class="card-content">
+<h3>布伦特重返 $90 上方：盘中 $91.52 创一周新高，Murban 溢价 +4% 暴露中东供给恐惧<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Gulf News / The National / CNN Chile · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美伊互袭推动油价全线上扬：布伦特涨约 2-3% 重返 90 美元上方，盘中触及 91.52 美元（8 月 25 日以来最高）；WTI 涨 1.4-2.4% 至 84.6-85.4 美元（OpenBB 口径 86.63、+3.9%）；最值得玩味的是阿联酋旗舰品级 Murban 大涨约 4% 至 95.75 美元——中东关联油种相对北海油种的溢价走阔，是市场对"海湾供给风险"最诚实的定价。</p>
+<p>8 月油价走出了罕见的宽幅震荡：布伦特全月波动区间近 17 美元（约 72-102 美元），先在地缘缓和预期下回落、月末又在互袭冲击下反弹，最终仍录得月度下跌。这一"高波动、低方向"的形态，是"冲突可控"与"封锁风险"两种力量持续拉锯的产物。9 月的关键变量排序：霍尔木兹航运恢复进度 > 美伊谈判信号 > OPEC+ 产量会议 > 委内瑞拉交易的执行细节。对通胀路径而言，90 美元上方的布伦特意味着能源项对 CPI 的拖累基本消失——这是美联储 9 月议息前最不欢迎的消息之一。</p>
+<a class="source-link" href="https://www.thenationalnews.com/business/energy/2026/08/31/oil-rises-to-above-90-as-us-and-iran-resume-strikes/" target="_blank">🔗 查看原文（The National）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">17</span>
+<div class="card-content">
+<h3>黄金 $4,505 企稳反弹：Warsh 鹰派暴跌后的技术性修复，8 月仍录得约 11% 涨幅<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">OpenBB / Moneycontrol · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>现货黄金周一收于约 4,505 美元（+0.6%），在上周五 Warsh 鹰派讲话引发的暴跌（-2.9%、盘中低点 4,515）之后出现技术性企稳。尽管经历了 7 月以来最大的单日回调，黄金 8 月全月仍录得约 11% 的涨幅——1 月以来的最佳月度表现。</p>
+<p>当前的黄金叙事处于罕见的"三力拉锯"：实际利率上行（Warsh 加息预期）是压制力，地缘避险（美伊互袭、霍尔木兹风险）与央行购金/主权配置多元化是支撑力。上周五的暴跌证明"实际利率"仍是短期定价的锚，但 8 月的月度涨幅证明结构性的多头力量（去美元化、财政赤字货币化对冲）并未瓦解。技术上 4,527-4,500 美元是关键支撑区，若失守将打开向 4,374（100 日均线）的回撤空间；反之，若地缘升级叠加 9 月 FOMC 的鹰派不及预期，金价重回 4,600-4,700 区间的概率不低。黄金的波动率上升本身，就是宏观不确定性上升的度量。</p>
+<a class="source-link" href="https://www.moneycontrol.com/news/business/personal-finance/gold-sees-biggest-drop-since-july-prices-fall-2-after-fed-chair-kevin-warsh-s-hawkish-inflation-stance-14017847.html" target="_blank">🔗 查看原文（Moneycontrol）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">18</span>
+<div class="card-content">
+<h3>天然气 $2.94 温和上行：欧洲库存低位与冬季预警的远端风险未被定价<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">OpenBB · 8月31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美国天然气期货报 2.94 美元/百万英热单位（+1.7%），温和上行。美国市场的充裕供给与欧洲的结构性紧张形成鲜明对比：欧洲库存处于低位、替代成本高企，此前市场已出现冬季价格突破 100 欧元/兆瓦时的预警声音。</p>
+<p>欧洲能源的"库存-价格"负反馈是四季度最重要的宏观变量之一：若 9-10 月补库窗口进度不及预期，冬季取暖需求将把气价重新推向高位，直接推升欧元区通胀——在 ECB 已转鹰的背景下形成"气价 → 通胀 → 被迫收紧 → 压制增长"的滞胀链条。对资产配置，欧洲气价上行是"通胀交易"（能源股、大宗商品）与"衰退交易"（欧洲股市、欧元）的转换开关。当前美欧气价分化（美国温和 vs 欧洲风险溢价）提示跨市场套利与波动率机会，同时也意味着美国制造业的能源成本优势在 2026 年冬季将继续扩大。</p>
+<a class="source-link" href="https://xnews.jin10.com/details/228726" target="_blank">🔗 查看原文（金十数据）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">19</span>
+<div class="card-content">
+<h3>美元指数 99.7 高位整理：G20 增长叙事与加息预期共振，新兴市场资金流承压<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">FX168 / 市场综合 · 8月28-31日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美元指数在上周五 Warsh 讲话后的 +0.56% 大涨（近两个半月最大单日涨幅）之后，于 99.5-99.7 区间高位整理。G20 上的"美国增长例外论"叙事（贝森特"美国是表现最好的市场"、沃什"世俗增长时代"）与 9 月加息预期形成共振，为美元提供了双重支撑。</p>
+<p>但美元的中期矛盾并未解除：财政赤字高企、美债收益率高位的融资压力、以及全球央行的储备多元化（黄金 8 月仍涨约 11%）都在侵蚀美元的结构性需求。短期"鹰派反弹"与中期"结构性走软"并存，意味着汇率波动率上升。对新兴市场的传导是直接的：美元走强阶段性压制外资流入，韩元、台币与东南亚货币首当其冲——这与亚洲股市对费半回调的敏感形成叠加。9 月的两个汇率节点：非农数据（9 月 4 日）与 FOMC 会议——任何一端的鹰派确认都将推动美元指数测试 100-101 区间，反之则回吐 G20 溢价。</p>
+<a class="source-link" href="https://hk.investing.com/news/forex-news/article-1633752" target="_blank">🔗 查看原文（FX168 via Investing.com）</a>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+数据来源：OpenBB / yfinance / FRED（部分接口返回异常，行情以公开报道为准）+ 公开市场报道（CNBC / Reuters / EFE / Schaeffer's / Boston Globe / Moneycontrol / Gulf News / MilanoFinanza 等）· 2026-09-01
+<div class="warn">⚠️ 美股与大宗行情为 8月31日（周一）收盘口径；新闻内容基于 AI 摘要，标注 🔹 的条目为单一信源、细节未经独立验证</div>
+全球宏观日报 · 每日自动更新
+</div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card) {
+    var top = card.querySelector('.card-top');
+    if (top) {
+      top.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isActive = card.classList.contains('active');
+        cards.forEach(function(c) { c.classList.remove('active') });
+        if (!isActive) { card.classList.add('active') }
+      });
+    }
+  });
+  var tocLinks = document.querySelectorAll('.toc-list a');
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
