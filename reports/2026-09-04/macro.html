@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球宏观日报 · 2026-09-04</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0a0a0a;
+  color: #e2e8f0; min-height: 100vh; padding: 0 16px 60px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.container { max-width: 960px; margin: 0 auto; }
+.cover { text-align:center; padding: 48px 20px 32px; background: linear-gradient(135deg, #1a0f0a, #3d2517, #b45309); border-radius: 0 0 20px 20px; margin: 0 -16px 28px; }
+.cover h1 { font-size: 2.2rem; font-weight: 800; color:#fef3c7; letter-spacing: 1px; }
+.cover .sub { margin-top: 8px; color: #fbbf24; font-size: 0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#b4530933; border:1px solid #b4530966; color:#fcd34d; font-size:0.8rem; }
+.toc { background:#171717cc; border:1px solid #334155; border-radius:12px; padding:18px 22px; margin-bottom:28px; }
+.toc-title { font-size:0.85rem; font-weight:700; color:#94a3b8; margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:8px; background:#0a0a0a; border:1px solid #334155; color:#cbd5e1; text-decoration:none; font-size:0.82rem; transition: all 0.2s; }
+.toc-list a:hover { border-color:#b45309; color:#fcd34d; }
+.section { margin-bottom: 32px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:10px; margin-bottom:14px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:#94a3b8; background:#0a0a0a; padding:3px 10px; border-radius:999px; }
+.metric-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap:10px; margin-bottom: 8px; }
+.metric-group-label { grid-column: 1 / -1; font-size:0.8rem; font-weight:700; color:#fbbf24; padding:10px 2px 2px; border-top:1px solid #262626; margin-top:6px; }
+.metric-group-label small { color:#78716c; font-weight:400; margin-left:6px; }
+.metric-card { background:#171717; border:1px solid #292524; border-radius:10px; padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:#a8a29e; font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:#fafaf9; margin-top:4px; font-variant-numeric: tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric: tabular-nums; }
+.metric-change.pos { color:#4ade80; }
+.metric-change.neg { color:#f87171; }
+.metric-change.flat { color:#a8a29e; }
+.metric-explain { font-size:0.68rem; color:#78716c; margin-top:6px; line-height:1.5; }
+.card { background: #171717cc; border: 1px solid #292524; border-radius: 10px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.25s; }
+.card:hover { border-color: #44403c; }
+.card.active { border-color: #b4530966; }
+.card-top { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; cursor: pointer; position: relative; }
+.card-number { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; background: #292524; color: #a8a29e; margin-top: 2px; }
+.card-content { flex: 1; min-width: 0; }
+.card-content h3 { font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: #f1f5f9; }
+.card-meta { font-size: 0.75rem; color: #57534e; margin-top: 4px; }
+.card-arrow { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #44403c; transition: transform 0.3s ease; margin-top: 4px; }
+.card.active .card-arrow { transform: rotate(180deg); color: #b45309; }
+.card-detail { display: none; border-top: 1px solid #29252455; margin: 0 16px; padding: 12px 0 14px; }
+.card.active .card-detail { display: block; }
+.card-detail p { font-size: 0.88rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 10px; }
+.source-link { display: inline-block; font-size: 0.8rem; color: #fbbf24; text-decoration: none; padding: 4px 12px; border-radius: 6px; background: #b4530922; border: 1px solid #b4530944; }
+.source-link:hover { background:#b4530933; }
+.tag-verified { display:inline-block;padding:2px 8px;border-radius:4px;background:#16a34a33;color:#4ade80;font-size:0.7rem;margin-left:6px;font-weight:700; vertical-align: middle; }
+.tag-unconfirmed { display:inline-block;padding:2px 8px;border-radius:4px;background:#d9770633;color:#fbbf24;font-size:0.7rem;margin-left:6px;font-weight:700; vertical-align: middle; }
+.tag-analysis { display:inline-block;padding:2px 8px;border-radius:4px;background:#7c3aed33;color:#c4b5fd;font-size:0.7rem;margin-left:6px;font-weight:700; vertical-align: middle; }
+.footer { text-align: center; padding: 32px 0 16px; border-top: 1px solid #292524; margin-top: 40px; font-size: 0.8rem; color: #57534e; }
+.footer .warn { color:#fbbf24; margin-top:6px; }
+@media (max-width: 640px) {
+  .cover h1 { font-size: 1.8rem; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-top { padding: 12px; gap: 10px; }
+  .card-content h3 { font-size: 0.88rem; }
+}
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+
+<div class="container">
+
+<div class="cover">
+<h1>🌍 全球宏观日报</h1>
+<div class="sub">央行政策 · 市场动态 · 全球经济 · 地缘贸易 · 商品外汇</div>
+<div class="badge">2026-09-04 · 21 条资讯 + 23 项市场指标 · 北京时间更新</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-mdata">📈 Market Data 市场数据（23 项）</a></li>
+<li><a href="#s-cenbank">🏛️ Central Bank 央行政策（5）</a></li>
+<li><a href="#s-market">📉 Market 市场动态（5）</a></li>
+<li><a href="#s-global">🌐 Global Economy 全球经济（3）</a></li>
+<li><a href="#s-geo">⚔️ Geopolitics 地缘贸易（3）</a></li>
+<li><a href="#s-comm">🛢️ Commodities & FX 商品外汇（4）</a></li>
+</ul>
+</nav>
+
+<!-- ================= 市场数据 ================= -->
+<div class="section" id="s-mdata">
+<div class="section-header" style="background:#b4530922;border-left:4px solid #b45309;">
+<span class="icon">📈</span>
+<h2 style="color:#fbbf24;">Market Data 市场数据</h2>
+<span class="count">23 项</span>
+</div>
+
+<div class="metric-grid">
+<div class="metric-group-label">美股指数 · 公开报道 <small>9月3日（周四）收盘，Waller 鸽派讲话推动反弹</small></div>
+<div class="metric-card"><div class="metric-label">道琼斯</div><div class="metric-value">53,686</div><div class="metric-change pos">+1.18% d</div><div class="metric-explain">一个月最佳单日表现；AI 链领涨</div></div>
+<div class="metric-card"><div class="metric-label">标普500</div><div class="metric-value">7,747</div><div class="metric-change pos">+1.06% d</div><div class="metric-explain">一个月来最佳交易日；Q2 盈利 +32%</div></div>
+<div class="metric-card"><div class="metric-label">纳斯达克</div><div class="metric-value">26,584</div><div class="metric-change pos">+1.40% d</div><div class="metric-explain">Nvidia +2.6~3.8%、Snowflake +17~20%</div></div>
+<div class="metric-card"><div class="metric-label">罗素2000</div><div class="metric-value">≈2,952</div><div class="metric-change pos">+0.4% d</div><div class="metric-explain">小盘股对利率最敏感，反弹温和</div></div>
+
+<div class="metric-group-label">利率与就业 · FRED / 市场 <small>全球长端利率同步创多年新高后暂歇</small></div>
+<div class="metric-card"><div class="metric-label">联邦基金利率</div><div class="metric-value">3.63%</div><div class="metric-change flat">持平（3.50-3.75%）</div><div class="metric-explain">9 月加息概率从 63-70% 降至约 50%</div></div>
+<div class="metric-card"><div class="metric-label">美债10年期</div><div class="metric-value">≈4.75%</div><div class="metric-change neg">高位回落</div><div class="metric-explain">盘中触及 4.818%（2023 年 11 月来最高）</div></div>
+<div class="metric-card"><div class="metric-label">美债2年期</div><div class="metric-value">≈4.33%</div><div class="metric-change flat">高位</div><div class="metric-explain">10Y-2Y 利差约 +0.43%</div></div>
+<div class="metric-card"><div class="metric-label">德国10年期</div><div class="metric-value">3.39%</div><div class="metric-change pos">2011 年来最高</div><div class="metric-explain">欧央行加息定价 >95% 推动</div></div>
+<div class="metric-card"><div class="metric-label">英国10年期</div><div class="metric-value">≈5.2%</div><div class="metric-change pos">2007 年来最高</div><div class="metric-explain">18 年高位，全球债市抛售核心样本</div></div>
+<div class="metric-card"><div class="metric-label">日本10年期</div><div class="metric-value">3.0%+</div><div class="metric-change pos">1996 年来首破</div><div class="metric-explain">BOJ 9 月加息定价约 75%</div></div>
+<div class="metric-card"><div class="metric-label">VIX 恐慌指数</div><div class="metric-value">15.2</div><div class="metric-change flat">中低波动</div><div class="metric-explain">地缘冲击未引发恐慌定价</div></div>
+<div class="metric-card"><div class="metric-label">美国失业率</div><div class="metric-value">4.1%</div><div class="metric-change flat">持平</div><div class="metric-explain">8 月非农周五揭晓，预期 +5.5~5.6 万</div></div>
+
+<div class="metric-group-label">经济数据 · 9月3日 <small>ISM 服务超预期，价格指数创四年新高</small></div>
+<div class="metric-card"><div class="metric-label">ISM 服务业</div><div class="metric-value">55.4</div><div class="metric-change pos">6 个月最强</div><div class="metric-explain">价格支付分项 72.6（四年最高）</div></div>
+<div class="metric-card"><div class="metric-label">初请失业金</div><div class="metric-value">20.6 万</div><div class="metric-change flat">+2,000 符合预期</div><div class="metric-explain">劳动力市场稳定</div></div>
+<div class="metric-card"><div class="metric-label">ADP 私营就业</div><div class="metric-value">3.8 万</div><div class="metric-change neg">1 月以来最慢</div><div class="metric-explain">与非农预期的分裂引关注</div></div>
+<div class="metric-card"><div class="metric-label">PCE 通胀（7月）</div><div class="metric-value">3.7%</div><div class="metric-change flat">5 月 4.1% 回落</div><div class="metric-explain">12 个月口径；6 个月年化 4.1%</div></div>
+
+<div class="metric-group-label">大宗商品与外汇 · 9月3日 <small>美伊冲突主导商品定价</small></div>
+<div class="metric-card"><div class="metric-label">WTI 原油</div><div class="metric-value">$91-92</div><div class="metric-change pos">6 周高点</div><div class="metric-explain">霍尔木兹海峡被实质封锁；EIA 库存 -450 万桶</div></div>
+<div class="metric-card"><div class="metric-label">布伦特原油</div><div class="metric-value">$97+</div><div class="metric-change pos">7 月中来最高</div><div class="metric-explain">盘中一度逼近 $97 上方后随特朗普表态回落</div></div>
+<div class="metric-card"><div class="metric-label">黄金（现货）</div><div class="metric-value">≈$4,475</div><div class="metric-change flat">两周大涨后企稳</div><div class="metric-explain">避险与实际利率两股力量拉锯</div></div>
+<div class="metric-card"><div class="metric-label">比特币</div><div class="metric-value">$81,000+</div><div class="metric-change pos">突破 8 万</div><div class="metric-explain">风险偏好回升的受益者</div></div>
+<div class="metric-card"><div class="metric-label">美元指数</div><div class="metric-value">≈98.91</div><div class="metric-change neg">5 月来最低</div><div class="metric-explain">加息预期降温 + 日元飙升拖累</div></div>
+<div class="metric-card"><div class="metric-label">美元兑日元</div><div class="metric-value">≈155.5</div><div class="metric-change neg">日元 +2%</div><div class="metric-explain">BOJ 加息定价 75% + 干预疑云</div></div>
+<div class="metric-card"><div class="metric-label">欧洲天然气 TTF</div><div class="metric-value">≈€75/MWh</div><div class="metric-change pos">2023 年 1 月来最高</div><div class="metric-explain">冬季前库存低位 + 地缘溢价</div></div>
+</div>
+</div>
+
+<!-- ================= 央行政策 ================= -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#dc262622;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span>
+<h2 style="color:#f87171;">Central Bank 央行政策</h2>
+<span class="count">5 条</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-number">1</span>
+<div class="card-content">
+<h3>美联储理事沃勒放鸽：支持按兵不动，9 月加息概率从 63-70% 骤降至约 50%<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Yahoo Finance / Korea Times / CME FedWatch · 9月3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美联储理事沃勒（Christopher Waller）周四的表态成为本周市场定价的转折点：他明确表示，若即将公布的数据显示通胀"继续朝 2% 目标取得进展"，他将支持 9 月 15-16 日 FOMC 会议上按兵不动；但若通胀数据偏热，他也会"考虑加息"。这番鸽派倾向明显的表态，把市场隐含的 9 月加息概率从本周早些时候的 63-70% 一举打到约 50%（CME FedWatch），并点燃了美股一个月来最强的一天。此前沃什（美联储主席）在 Jackson Hole 的鹰派定调（信贷市场"几乎没有政策克制的迹象"）与本轮沃勒放鸽之间的温差，正是当前 FOMC 内部"加息派 vs 观望派"路线分歧的具象化。</p>
+<p>对资产定价的含义清晰：9 月加息与否的定价空间重新打开为双向博弈，接下来的两个数据闸门——8 月非农（周五）与 8 月 CPI（9 月 11 日）——将直接决定哪一派的判断胜出。沃勒把话术设计成"数据依赖"而非立场宣示，说明 FOMC 内部的中间派掌握了议程主导权；而价格分项的压力（ISM 服务价格指数 72.6 创四年新高、油价飙升的传导）意味着"通胀意外上行"仍是最真实的加息触发器。市场进入"每一份数据都可能是决议变量"的高敏感期，波动率策略的性价比显著上升。</p>
+<a class="source-link" href="https://finance.yahoo.com/markets/stocks/articles/stocks-climb-dovish-waller-comments-141034440.html" target="_blank">🔗 查看原文（Yahoo Finance）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">2</span>
+<div class="card-content">
+<h3>纽约联储主席威廉姆斯安抚市场：收益率飙升反映"强经济而非困境"，对 9 月加息持观望<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">InvestingLive / Investing.com · 9月3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>纽约联储主席威廉姆斯（John Williams）周三的表态与沃勒形成了"鸽派二重奏"：他把美债收益率飙升定性为"强劲经济（AI 与数据中心投资的拉动）的正常反映，而非市场功能障碍或通胀恐慌"，并自述对 9 月加息持"wait and see"（观望）态度，强调通胀预期仍然锚定良好。两位美联储要员的连续降温，让"9 月必然加息"的市场叙事出现松动——美债 10 年期收益率从 4.818% 的多年高点连续第二个交易日回落至 4.73-4.76% 区间。</p>
+<p>威廉姆斯的"强经济解释"值得单独拆解：他把本轮利率上行归因于 AI 投资驱动的实际增长预期，而非财政赤字恶化或通胀失控——这个解释若成立，则利率上行对股市的杀伤力会小于"滞胀式"解读。但市场的矛盾在于：强经济 → 通胀粘性 → 加息必要性，这条逻辑链并不会因为"增长质量高"而断裂。真正的分水岭仍是数据：如果周五非农显示就业降温（ADP 已预警 8 月私营就业仅增 3.8 万），"软着陆 + 按兵不动"的组合将成为基准情形；若就业与通胀双强，沃勒的"考虑加息"选项将重新激活。</p>
+<a class="source-link" href="https://investinglive.com/stock-market-update/fed-s-williams-calms-market-nerves-says-treasury-yield-surge-reflects-strong-economy-not-distress/" target="_blank">🔗 查看原文（InvestingLive）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">3</span>
+<div class="card-content">
+<h3>欧央行 9 月加息概率超 95%：Nagel 称 3% 通胀"离目标很远"，存款利率或上调 25bp<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Yahoo UK / LSEG · 9月3日</div>
+</div>
+<div class="card-detail">
+<p>欧洲央行 9 月 9-10 日会议的加息定价已近"板上钉钉"：LSEG 数据显示市场对 +25bp（存款利率从 2.25% 升至 2.5%）的定价超过 95%，且押注年底前第二次加息的概率达 80%，3 月前存款利率触及 3% 的概率从一周前的 25% 升至 35%。鹰派信号持续加码：德国央行行长 Nagel 明确表示约 3% 的通胀水平"远未达到"2% 目标，"只有加息才能回归目标"；爱尔兰央行行长 Makhlouf 称若通胀走错方向，ECB"绝不能回避进一步加息"。驱动因素直白：欧元区 8 月通胀因能源成本突破 3%，德国调和 CPI 加速至 2.9%。</p>
+<p>欧央行的处境是"被迫行动"的典型：通胀上行源于能源（美伊冲突推升油价 → 欧洲天然气已创 2023 年 1 月来新高），而增长动能本就疲弱——"加息抗通胀"与"紧缩伤增长"的权衡在欧元区比美国更尖锐。市场定价已相当充分，真正的边际变量是拉加德发布会的指引语气：若暗示"一次到位后暂停"，欧股与欧元有望获得喘息；若打开连续加息的想象空间，德债收益率（2011 年来最高）的抛售将雪上加霜。对全球资产配置者而言，欧央行的确定加息与美联储的不确定按兵，构成"跨大西洋货币政策分化"——欧元兑美元的相对利率支撑可能阶段性增强。</p>
+<a class="source-link" href="https://uk.finance.yahoo.com/news/european-stocks-fall-oil-prices-131024470.html" target="_blank">🔗 查看原文（Yahoo UK）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">4</span>
+<div class="card-content">
+<h3>日本央行 9 月加息定价升至约 75%：日元单日飙升 2% 至 155.5，干预与加息的双重预期交织<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Investing.com / 证券之星 · 9月3日</div>
+</div>
+<div class="card-detail">
+<p>日元的异动把日本央行重新推到聚光灯下：9 月 3 日日元兑美元单日飙升约 2% 至 155.5——一个多月来最强单日表现，市场对 BOJ 9 月 17-18 日会议加息的定价升至约 75%。驱动因素是三股力量的叠加：输入型通胀（能源与食品价格）、政治压力（日本政府对 BOJ 加息的公开支持，源于日元疲软与财政担忧）、以及外部推力（美国财长贝森特反复施压"希望植田做正确的事"）。7 月美日联合干预动用了创纪录的 964 亿美元，日元从 164 拉回 155 后再度走弱——干预效果递减，"以加息替代干预"正成为政策层的现实选项。</p>
+<p>对全球市场的尾部风险提示：若 BOJ 加息落地（基准利率从 1.0% 升至 1.25%），日元套息交易（carry trade）的再平仓压力将再次冲击全球风险资产——2024 年 8 月与 2025 年的两次"日元闪击"都是全球股市同步回调的导火索。叠加美联储的不确定与欧央行的确定加息，9 月中旬将出现"三大央行密集决策周"，全球流动性定价进入年内波动率最高的窗口。日债 10 年期收益率 1996 年来首破 3% 的背景（财政担忧 + 加息预期）意味着日本国内的债券市场也在经历历史性重定价。</p>
+<a class="source-link" href="https://m.economictimes.com/markets/us-stocks/news/global-market-today-asian-stocks-rise-as-fed-rate-hike-bets-ease/amp_articleshow/133749050.cms" target="_blank">🔗 查看原文（Economic Times）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">5</span>
+<div class="card-content">
+<h3>其他央行：加拿大央行维持 2.25% 不动、新西兰央行再度升息、韩国通胀反弹破 3%<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Dow Jones 头条 / Stockhouse · 9月2-3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>全球央行决策的密度在本周达到年内高点，且方向分化明显：加拿大央行按兵不动（2.25%），理由是美国贸易紧张局势对加拿大出口的压制——"邻国的政策不确定性"成为其暂停的理由；新西兰央行（RBNZ）则再度升息，延续其"控制输入型通胀"的鹰派路线；韩国 8 月通胀反弹至 3% 以上，为其央行后续动作留出空间。加上欧洲（加息 95% 定价）、日本（75% 定价）与美国（50% 的博弈），全球主要央行的政策图谱呈现"分化中的紧缩共识"——油价冲击让几乎所有央行都在通胀与增长之间重新做选择。</p>
+<p>这种全球性的"紧缩共振"有一个被低估的传导渠道：套息交易的收益结构。日元的低利率是过去十年全球套息交易的融资货币，BOJ 的加息预期 + 欧美的政策不确定，正在抬高整个 carry 交易体系的风险溢价——新兴市场高息货币（墨西哥比索、印度卢比等）的波动率已经出现抬升迹象。对资产配置的实操含义：9 月应当警惕"央行决策周"的跨资产传染风险，组合层面的货币对冲成本（hedging cost）正在快速上升，未对冲的外币资产敞口面临汇率与利率的双重不确定性。</p>
+<a class="source-link" href="https://stockhouse.com/news/market-updates/2026/09/01/market-open-amazon-under-pressure-shein-slides-as-oil-and-bond-yields-rise-sep" target="_blank">🔗 查看原文（Stockhouse）</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 市场动态 ================= -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#2563eb22;border-left:4px solid #2563eb;">
+<span class="icon">📉</span>
+<h2 style="color:#60a5fa;">Market 市场动态</h2>
+<span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">6</span>
+<div class="card-content">
+<h3>美股大涨：标普 500 一个月最佳交易日，道指 +1.18% 至 53,686，纳指 +1.40%<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Korea Times / Sedaily / Asahi · 9月3日收盘</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美股在连续三个交易日的下跌后于 9 月 3 日迎来强劲反弹：道指 +1.18% 至 53,686，标普 500 +1.06% 至 7,747（一个月最佳交易日），纳斯达克 +1.40% 至 26,584。催化剂明确——沃勒的鸽派表态把 9 月加息概率从 63-70% 打到 50%，长端利率连续第二个交易日回落，高估值成长股的估值压力获得喘息。板块结构上，AI 链领涨（Nvidia +2.6~3.8%、Snowflake +17~20%、Dell 延续财报动能），而 Broadcom（Q4 指引不及预期）逆势下跌 3-6%。</p>
+<p>这轮反弹的性质需要冷静定性：它是"利率驱动的估值修复"，而非"基本面驱动的趋势反转"——Q2 财报季的盈利动能（+32%）依然强劲，但 9 月的历史季节性弱势（过去十年 9 月平均回报为负）与三大央行决策周的波动率溢价并未消失。摩根大通的警告依然有效：10 年期美债收益率若再度逼近 5%，美股可能面临 5-8% 的健康回调。周五非农是下一个方向开关："好数据"（就业稳健但不过热）才能延续反弹，"太热"（加息预期回升）或"太冷"（衰退担忧）都会打断修复。</p>
+<a class="source-link" href="https://www.koreatimes.co.kr/world/20260904/wall-street-rallies-as-feds-waller-eases-rate-hike-fears" target="_blank">🔗 查看原文（Korea Times）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">7</span>
+<div class="card-content">
+<h3>全球债市抛售暂歇：美债 10Y 从 4.818% 回落至约 4.75%，英债 5.2%（2007 年来最高）与日债（1996 年来首破 3%）同步创高<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Dow Jones 头条 / Morningstar · 9月2-3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>本周的全球债市经历了"恐慌性抛售 → 政策性喘息"的完整波段：美债 10 年期收益率一度冲至 4.818%（2023 年 11 月以来最高），随后在沃勒鸽派表态后连续第二日回落至 4.73-4.76%，2 年期同步降至 4.32-4.34%。但全球长端利率的"同步创高"格局并未改变：英国国债收益率升至约 5.2%（2007 年以来最高）、日本 10 年期 1996 年以来首破 3%、德国国债收益率创 2011 年以来新高（3.39%）——四大市场的长端利率共振上行，上一次类似景象还要回溯到 2022 年的全球紧缩周期。</p>
+<p>这轮抛售的驱动结构值得拆解：油价（美伊冲突）推升通胀预期是导火索，财政赤字担忧（美日英的债务供给压力）是底层燃料，而三大央行同步转鹰是放大器。Dow Jones 的头条点破了另一层矛盾："借贷不是债券市场唯一担心的——增长也是"——市场开始为"高利率下的增长质量"重新定价。对资产配置的传导是全方位的：无风险利率上行压制股票估值（成长股首当其冲）、挤压信用利差、削弱"股债对冲"的传统有效性——当股债同跌成为常态，黄金、实物资产与短久期策略的配置价值被重新评估。</p>
+<a class="source-link" href="https://kessler-prod.reta52d8.eas.morningstar.com/news/dow-jones/202609028689/dow-jones-top-markets-headlines-at-5-pm-et-borrowing-isnt-the-bond-markets-only-concern-growth-is-too-trump" target="_blank">🔗 查看原文（Dow Jones 头条）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">8</span>
+<div class="card-content">
+<h3>AI 板块密集催化：Dell +15.8%、Nvidia 收购 Hugging Face 涨 3.2%、Anthropic 与 Lambda 签 350 亿美元协议<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Stockhouse / Nasdaq · 9月2-3日</div>
+</div>
+<div class="card-detail">
+<p>9 月前三个交易日的 AI 板块催化剂密度罕见：Dell 因 AI 服务器需求强劲单日飙升 15.8%；Nvidia 官宣 129.3 亿美元收购 Hugging Face 后上涨约 3.2%，市场用真金白银为"硬件巨头吞下开源模型社区"投了赞成票；Anthropic 与 Nvidia 支持的 Lambda 签署 350 亿美元云计算协议——一周内第二笔 AI 算力的巨额合同（此前英伟达与 AWS 追加 200 万张 GPU 合作）；Snowflake 因强劲营收指引暴涨 17-20%。反向案例同样有信息量：Broadcom 因 Q4 指引略低于预期下跌 3-6%，Palo Alto Networks 毛利率下滑后跌 9.3%。</p>
+<p>这组涨跌分化揭示的市场偏好转变值得记录：资金正在从"AI 叙事溢价"转向"AI 兑现验证"——有当期收入与订单能见度的（Dell、Nvidia、Snowflake、Lambda 协议方）获得奖励，指引稍弱的（Broadcom、Palo Alto）被无情惩罚。这与 HSBC 调查中投资者"更有鉴别力"的态度一致。更深层的主线是 AI 基础设施投资的自我强化：Nvidia 买 HF（生态入口）、Anthropic 锁算力（模型训练）、Lambda 扩产能（云供给）——垂直整合的军备竞赛正在把 AI 资本开支从"周期"推向"结构"，这既是 Q2 盈利增长（+32%，AI 基建贡献近六成）的引擎，也是利率上行环境下的最大估值风险源。</p>
+<a class="source-link" href="https://stockhouse.com/news/market-updates/2026/09/02/market-open-dell-surges-on-ai-demand-as-apple-enters-new-leadership-era-sep-2nd" target="_blank">🔗 查看原文（Stockhouse）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">9</span>
+<div class="card-content">
+<h3>Q2 财报季收官：标普 500 盈利增长 +32%（预期 +23%），86% 公司超预期，AI 基建贡献近六成 EPS 增长<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Asahi Shimbun / AP Business · 9月3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>Q2 财报季的成绩单接近最终统计：标普 500 盈利同比增长约 32%，远超季初 +23% 的一致预期，86% 的已披露公司超预期——其中 AI 基础设施股票贡献了近 60% 的 EPS 增长。这组数据的重要性在于它给"AI 泡沫论"提供了一记实质反驳：盈利端的兑现力度（而非叙事热度）是 2026 年 AI 行情的最强支撑，也解释了高盛"长期看好风险资产"立场的底气来源。但结构性的隐忧同样藏在这组数字里：盈利增长的极端集中度意味着市场对单一主题的依赖度处于历史高位。</p>
+<p>对宏观视角的关键含义：企业盈利强劲是"强经济"叙事（Williams 的解释）的微观印证——AI 资本开支正在通过订单、就业与税收渠道向实体经济扩散。但矛盾点在于货币政策的反应函数：如果盈利强劲 → 经济过热 → 通胀粘性 → 加息，那么"好财报"反而成为"坏消息"的铺垫。市场当前的解药是"数据依赖"：只要非农与 CPI 显示温和降温，盈利动能与估值压力可以共存；一旦通胀指标意外上行，32% 的盈利增长也难抵分母端的利率冲击。</p>
+<a class="source-link" href="https://www.asahi.com/ajw/articles/16859565" target="_blank">🔗 查看原文（Asahi Shimbun）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">10</span>
+<div class="card-content">
+<h3>个股与公司动态：Lululemon 暴跌 15%、Adobe 完成 CEO 交接、Shein 上市首秀挣扎、大众批准再裁 5 万人<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">AP Business / Investing.com / CityAM · 9月1-3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>大盘反弹之下的个股层面分化剧烈：Lululemon 因财报与指引双双不及预期暴跌 15%——"消费降级"叙事在高端运动服饰上的最新样本；Adobe 宣布 Anil Chakravarthy 接替 Shantanu Narayen 出任 CEO——软件巨头世代交接的又一例（同期 Apple 亦完成 Tim Cook 向 John Ternus 的交接）；Shein 上市首秀挣扎（亚马逊同期遭 FTC 调查 680 亿美元广告业务，电商监管压力上升）；大众汽车董事会批准再裁 5 万岗位、关闭 4 家德国工厂——欧洲制造业在高能源成本与电动化转型双重压力下的收缩，欧洲天然气价格创 2023 年 1 月来新高（约 €75/MWh）正是其成本端的注脚。</p>
+<p>把这些零散个案拼起来，一条"经济温度计"的读数逐渐清晰：消费端的分化（高端运动疲软、平价零售承压）、科技公司的治理换挡（Adobe/Apple 的 CEO 交接集中在同一窗口）、欧洲工业的收缩压力——它们共同指向"增长不均衡"的宏观底色：AI 基建一枝独秀，而传统消费与制造业仍在消化高利率与高能源成本的滞后冲击。这也是美联储陷入两难的根本原因：总量数据（ISM 55.4、盈利 +32%）支持"强经济"叙事，但结构性裂缝（ADP 3.8 万、消费龙头指引转弱）让"加息"的选择显得愈发冒险。</p>
+<a class="source-link" href="https://www.rutlandherald.com/news/business/ap-business-summarybrief-at-4-49-p-m-edt/article_7bc9a091-db46-5b95-bc48-5fb4ff89d556.html" target="_blank">🔗 查看原文（AP Business）</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 全球经济 ================= -->
+<div class="section" id="s-global">
+<div class="section-header" style="background:#05966922;border-left:4px solid #059669;">
+<span class="icon">🌐</span>
+<h2 style="color:#34d399;">Global Economy 全球经济</h2>
+<span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">11</span>
+<div class="card-content">
+<h3>美国经济数据拼图：ISM 服务业 55.4（价格指数四年新高 72.6）、初请 20.6 万稳定、ADP 骤降至 3.8 万——周五非农成"铰链"<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Investing.com / Dow Jones · 9月3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>9 月 3 日公布的美国经济数据呈现一组互相打架的读数：ISM 服务业指数意外升至 55.4（六个月最强），但其价格支付分项飙至 72.6（四年最高）——服务业的"量价齐升"是通胀粘性的最新证据；初请失业金 20.6 万（+2,000，符合预期），劳动力市场总量层面依然稳定；而 ADP 私营就业仅增 3.8 万（1 月以来最慢），暗示官方非农可能显著弱于预期。周五的 8 月非农预期为 +5.5-5.6 万、失业率持平 4.1%——这份报告被市场称为"真正的铰链"。</p>
+<p>这组数据的深层含义是"总量与结构的背离"：服务业景气（AI 资本开支的服务外包效应）与制造业/私营就业的疲软并存，价格压力的回升与就业动能的衰减同时发生——这是典型的"滞胀前兆"数据组合，也正是美联储最害怕的情形。市场的期待是"坏消息，但别太坏"：非农足够软 → 加息预期继续降温（利好风险资产）；但不能软到衰退程度 → 增长担忧接管定价（利空盈利预期）。当前约 50% 的加息概率意味着非农数据将直接产生方向性定价，而非小幅波动。</p>
+<a class="source-link" href="https://ph.investing.com/analysis/asia-opens-with-yields-easing-oil-cooling-and-payrolls-holding-the-keys-218822" target="_blank">🔗 查看原文（Investing.com）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">12</span>
+<div class="card-content">
+<h3>G20 财长峰会闭幕：关税口水战 + 全球债市抛售阴影，联合声明暗批中国"出口产能过剩"<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Bitget 转 Dow Jones / Morningstar · 9月2日</div>
+</div>
+<div class="card-detail">
+<p>G20 财长与央行行长峰会在不和谐的氛围中闭幕：关税问题上的公开争吵与人身攻击成为媒体焦点，全球债市抛售的阴影笼罩全程（各国财长恰在全球长端利率创多年新高的背景下开会），而联合声明中"暗批中国出口产能过剩"的措辞标志着多边场合对贸易失衡问题的再度聚焦。与之同步的是政策层面的两个动作：美联储主席沃什在 Jackson Hole 的鹰派转向（信贷克制缺失论），以及美国对华芯片出口管制的持续加码（详见芯片日报）——全球化的"贸易-金融"双重裂缝在同一周显性化。</p>
+<p>G20 峰会无果而终的深层背景是"财政主导"的回归：全球主要经济体的赤字扩张（美日英的债务供给压力是债市抛售的底层燃料）让"财政纪律"议题在 G20 层面失去共识基础——批评他国出口产能过剩时，自身的赤字问题同样无解。对市场的传导路径：多边协调的失效意味着"关税-反制"螺旋的概率上升，供应链的避险性重组（友岸外包、区域化）将继续推高全球贸易成本——这是长期通胀中枢上移（莱西·亨特"3.5%-4.5%"判断）的结构性论据之一。</p>
+<a class="source-link" href="https://www.bitget.com.vn/news/detail/12560605773140" target="_blank">🔗 查看原文（Dow Jones 头条）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">13</span>
+<div class="card-content">
+<h3>欧洲经济承压：大众再裁 5 万人 + 关 4 厂，天然气价格 2023 年 1 月来最高，欧洲央行被迫在"通胀"与"增长"间走钢丝<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">CityAM / AP Business · 9月2-3日</div>
+</div>
+<div class="card-detail">
+<p>欧洲的经济图景在 9 月初呈现"双杀"格局：增长端，大众汽车董事会批准再裁 5 万岗位并关闭 4 家德国工厂——继 2025 年裁员 3.5 万人后的又一轮收缩，德国制造业的"去工业化"焦虑从舆论进入资产负债表；成本端，欧洲天然气基准（荷兰 TTF）升至约 €75/MWh（2023 年 1 月以来最高），冬季前的库存低位 + 美伊冲突的地缘溢价，让欧洲家庭与企业直面第二年的能源成本冲击。FTSE 100 在欧洲股市中领跌（油价压力 + 英债 5.2% 的利率环境）。</p>
+<p>这对欧央行（第 3 条）构成了近乎无解的约束：通胀上行（能源驱动，8 月突破 3%）要求加息，而增长疲软（制造业收缩、消费受能源价格挤压）反对加息——"加息抗通胀"与"紧缩伤增长"的权衡在欧元区比任何主要经济体都尖锐。市场的定价（9 月加息 >95%）说明交易者相信欧央行会优先保通胀信誉，但这笔交易的风险在于：若冬季能源价格继续上行，欧央行可能被迫在"滞胀"中连续加息——欧洲资产的股债双杀风险尚未出清。对全球投资者而言，欧洲是当前"滞胀交易"最纯粹的试验场。</p>
+<a class="source-link" href="https://www.cityam.com/ftse-100-live-stocks-to-drop-oil-price-keeps-pressure-on-bond-market/" target="_blank">🔗 查看原文（CityAM）</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 地缘贸易 ================= -->
+<div class="section" id="s-geo">
+<div class="section-header" style="background:#b91c1c22;border-left:4px solid #b91c1c;">
+<span class="icon">⚔️</span>
+<h2 style="color:#f87171;">Geopolitics 地缘贸易</h2>
+<span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">14</span>
+<div class="card-content">
+<h3>美伊冲突升级：美军打击伊朗雷达与布雷能力、伊朗袭击美军基地——霍尔木兹海峡被实质封锁，全球 20% 石油运输受影响<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">Dow Jones / Investing.com · 9月1-3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>美国与伊朗的军事冲突在 9 月初进入新的升级阶段：美军打击伊朗的雷达与布雷能力（意在解除霍尔木兹海峡的封锁威胁），伊朗则以袭击美军基地回应——霍尔木兹海峡（全球约 20% 石油运输的咽喉）被实质封锁，WTI 升至 6 周高点的 $91-92、布伦特突破 $97（7 月中以来最高）。特朗普表态轰炸行动"可能很快结束"一度让油价回落，但沙特 8 月原油出口降至约 300 万桶/日（9 年最低）的供给端收缩，意味着即便地缘溢价消退，供需基本面依然偏紧。</p>
+<p>这轮冲突的宏观传导链清晰：油价 → 通胀预期（美国 PCE 3.7% 的回落趋势面临逆转风险）→ 加息概率（9 月 50% 的定价中已包含油价溢价）→ 长端利率 → 全球资产估值。更长期的战略含义：霍尔木兹的"封锁-反封锁"博弈让"能源供应链安全"重新成为全球产业政策的头号议题——欧洲天然气创新高、各国加速战略石油储备补充、航运保险费率飙升。对市场而言，最危险的场景是"冲突长期化 + 海峡间歇性封锁"：那将把油价的暂时性冲击转化为通胀的持续性压力，彻底改变三大央行的政策路径。</p>
+<a class="source-link" href="https://dhms8q85tpugt.cloudfront.net/news/dow-jones/202609022715/dow-jones-top-markets-headlines-at-7-am-et-oil-hovers-close-to-95-as-middle-east-conflict-further-pressures-bonds-europe" target="_blank">🔗 查看原文（Dow Jones 头条）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">15</span>
+<div class="card-content">
+<h3>"经济放逐"行动扩大：欧盟加入对伊制裁，韩国权衡军事支持；万斯称伊朗不停止袭击商业航运就不谈判<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">OpenBB 头条 / AP Business · 9月2-3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>围绕伊朗的制裁联盟正在扩员：美国主导的"Economic Outcast"（经济放逐）行动获得欧盟加入——对伊制裁的覆盖面从美国单边扩展到跨大西洋协同，韩国则在权衡是否提供军事支持（美韩同盟义务与中东能源利益的平衡）。美国副总统万斯划出谈判红线："除非伊朗停止袭击商业航运，否则不谈判"。同时，美国财政部将香港注册贸易公司列入涉伊制裁清单，财长贝森特预告"每周加码"——金融制裁工具正在与军事行动同步升级。</p>
+<p>对全球经济的传导需要分层看：其一，制裁联盟扩员意味着伊朗石油出口的合规压力骤增（亚洲买家尤其敏感），原油供给的收紧可能从"海峡风险溢价"变为"实际出口量下降"——沙特出口 9 年新低已经给出了前兆；其二，"航运安全"议题的升级让全球海运成本（保险费率、绕行成本）面临新一轮上行，这是输入型通胀的第二条传导线；其三，美国"每周加码"的金融制裁节奏，让涉中东贸易的第三方（尤其亚洲贸易商与金融机构）面临持续上升的合规不确定性——去风险化（de-risking）的连锁反应可能超出制裁设计者的预期。</p>
+<a class="source-link" href="https://www.bitget.com.vn/news/detail/12560605779166" target="_blank">🔗 查看原文（Dow Jones 头条）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">16</span>
+<div class="card-content">
+<h3>中美科技与贸易博弈再升温：美国起草"只查最终使用者"芯片新规 + G20 声明暗批产能过剩，9 月底中美元首会晤成观察窗口<span class="tag-verified">✅ 多方源</span></h3>
+<div class="card-meta">UBS 研报 / 贸促会预警 · 9月3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>中美关系在 9 月初呈现"管制加码"与"会晤预期"并存的微妙格局：硬的一面，美国商务部 8 月 28 日启动起草全新 AI 芯片出口新规（管制逻辑改为"只查最终使用者"——中国企业使用即触发），叠加国会的 SAFE Chips Act 立法攻势（详见芯片日报）；软的一面，瑞银研报提及"9 月底中美元首会晤"的预期窗口——历史上这种"会前加码施压、会上寻求交易"的节奏是中美博弈的经典剧本。G20 声明暗批中国出口产能过剩，则是多边场合的最新施压。</p>
+<p>对市场的含义：其一，科技管制的"法律化"趋势（从行政令到国会立法）意味着政策的可逆性下降——全球半导体供应链的"双轨化"（中国与非中国）正在从权宜之计变为制度现实，相关行业的资本开支与供应链决策都需要按"永久性壁垒"而非"周期性摩擦"来规划；其二，若中美元首会晤带来阶段性缓和（如 H200 级别的许可恢复），科技股的估值压制将出现边际改善；反之若谈判破裂，管制升级与稀土反制（中国上半年出口管制执法 +91%）的螺旋将把"科技冷战"推向新的烈度。9 月的观察窗口价值：会晤前的美方加码动作是谈判筹码而非最终立场。</p>
+<a class="source-link" href="https://www.ccpitjs.org/art/2026/9/3/art_101_81639.html" target="_blank">🔗 查看原文（中国贸促会预警信息）</a>
+</div>
+</div>
+
+</div>
+
+<!-- ================= 商品外汇 ================= -->
+<div class="section" id="s-comm">
+<div class="section-header" style="background:#f59e0b22;border-left:4px solid #f59e0b;">
+<span class="icon">🛢️</span>
+<h2 style="color:#fbbf24;">Commodities & FX 商品外汇</h2>
+<span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">17</span>
+<div class="card-content">
+<h3>原油：WTI 6 周高点 $91-92、布伦特破 $97——地缘溢价 + EIA 库存骤降 450 万桶 + 沙特出口 9 年新低的"三重供给收缩"<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Dow Jones / Asahi · 9月2-3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>9 月初的原油市场同时承受三股供给收缩力量：地缘端，美伊冲突实质封锁霍尔木兹海峡（全球 20% 石油运输咽喉）；库存端，EIA 数据显示美国原油库存骤降 450 万桶（远超预期的 30 万桶降幅）；供给端，沙特 8 月原油出口降至约 300 万桶/日（9 年最低）。三力叠加把 WTI 推至 6 周高点的 $91-92、布伦特突破 $97（7 月中以来最高），特朗普"轰炸行动可能很快结束"的表态曾让油价短暂回落，但供给基本面的紧张未改。</p>
+<p>油价的宏观意义远超商品本身：它是当前"通胀-利率"传导链的第一环。若布伦特维持在 $95+ 的区间，美国 PCE 的回落趋势（5 月 4.1% → 7 月 3.7%）将在 Q4 面临逆转风险，9 月 50% 的加息概率将重新向鹰派倾斜；而欧洲（对进口能源的依赖度更高）的通胀压力将更加刚性，欧央行的加息路径可能被迫延长。对产业链的传导：航空燃油（Ryanair 已削减运力目标对冲）、航运、化工的成本压力正在累积，消费端的能源价格将滞后体现——"能源通胀的第二波"是 Q4 最值得警惕的宏观风险。</p>
+<a class="source-link" href="https://www.asahi.com/ajw/articles/16859565" target="_blank">🔗 查看原文（Asahi Shimbun）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">18</span>
+<div class="card-content">
+<h3>黄金 ≈$4,475 企稳：两周最大涨幅后的"避险与利率"拉锯；比特币突破 $81,000——风险偏好与避险资产罕见同涨<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Investing.com / Dow Jones · 9月3日</div>
+</div>
+<div class="card-detail">
+<p>贵金属与加密资产在 9 月 3 日呈现罕见的"同涨"格局：黄金在录得两周最大涨幅后于约 $4,475 企稳——地缘避险需求（美伊冲突）与实际利率上行压力（美债收益率高位）之间的拉锯暂时平衡；比特币突破 $81,000，跟随美股风险偏好的修复而走强。传统上"避险资产"与"风险资产"的反向关系被打破，背后是流动性格局的特殊性：加息预期降温（利好风险资产）与地缘风险升温（利好避险资产）同时发生。</p>
+<p>黄金定价的结构性变化值得关注：莱西·亨特（连续 40 年看多美债的"债市多头总司令"）本周罕见转空长期美债，理由之一是"黄金比长期美债更能保值"——当财政赤字（美国国债利息支出 2026 年突破 1 万亿美元）、去全球化与通胀中枢上移（3.5%-4.5%）成为长期共识，黄金的"无对手方风险"属性正在被重新定价。而比特币突破 8 万则提示另一种可能：在"美元实际购买力稀释"的长期叙事下，加密资产正在被部分机构资金当作"数字黄金"配置——两类资产的同涨，本质上是同一主题（法币信用稀释对冲）的两个镜像。</p>
+<a class="source-link" href="https://www.metrobank.com.ph/news/global-markets-bond-yields-fall-stocks-rally-as-feds-waller-comments-curb-rate-hike-bets" target="_blank">🔗 查看原文（Metrobank Global Markets）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">19</span>
+<div class="card-content">
+<h3>欧洲天然气 TTF 升至约 €75/MWh（2023 年 1 月来最高）：冬季前库存低位 + 地缘溢价，欧洲滞胀风险升温<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">CityAM / Dow Jones · 9月2日</div>
+</div>
+<div class="card-detail">
+<p>欧洲天然气基准（荷兰 TTF）升至约 €75/MWh，创 2023 年 1 月（能源危机尾声）以来最高——这个价格的背景组合对欧洲格外不利：冬季前的库存处于低位（连续第二年供暖季前补给不足）、美伊冲突推升全球能源的风险溢价、以及亚洲 LNG 需求的竞争性采购。对欧洲家庭与企业而言，这是继 2022-2023 年危机后的又一轮能源成本冲击，且发生在经济动能本已疲弱的时点。</p>
+<p>欧洲天然气的上行对宏观政策构成直接约束：能源是欧元区 8 月通胀突破 3% 的主因，TTF 的持续高位意味着欧央行的"通胀-增长"两难（第 3、13 条）将持续恶化——天然气价格每上行 10%，欧元区 HICP 的通胀贡献约为 0.3-0.4 个百分点。若冬季气温低于常值，欧洲可能面临"能源价格二次危机 + 央行被迫连续加息 + 制造业继续收缩"的三重挤压——这是全球滞胀风险最集中的区域。对能源市场的投资者而言，欧洲天然气的波动率与上行尾部风险正在系统性上升。</p>
+<a class="source-link" href="https://www.cityam.com/ftse-100-live-stocks-to-drop-oil-price-keeps-pressure-on-bond-market/" target="_blank">🔗 查看原文（CityAM）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">20</span>
+<div class="card-content">
+<h3>美元指数跌至 5 月来最低（≈98.91）：加息预期降温 + 日元飙升 2%（BOJ 加息定价 75%）——"美元例外论"松动<span class="tag-verified">✅ 市场数据</span></h3>
+<div class="card-meta">Investing.com / Korea Times · 9月3日</div>
+</div>
+<div class="card-detail">
+<p>美元的弱势与日元的强势构成了 9 月 3 日外汇市场的双主线：美元指数跌至约 98.91（5 月以来最低），直接动因是沃勒鸽派表态压降了美国加息预期——"美元例外论"（美国利率优势）的定价基础出现松动；日元单日飙升约 2% 至 155.5（一个多月最强），BOJ 9 月加息 75% 的定价 + 干预疑云（7 月美日联合干预动用 964 亿美元）共同驱动。美日利差的压缩预期（美国加息概率降 + 日本加息概率升）是这轮日元行情的核心逻辑。</p>
+<p>汇率变动的宏观传导值得拆解：其一，弱美元缓解新兴市场的资本外流压力（美元计价的债务负担下降），对 A 股与港股构成外部流动性利好；其二，日元升值压缩套息交易的收益空间，全球 carry trade 的平仓风险上升——历史上日元快速升值期间（2024 年 8 月、2025 年），全球风险资产都出现同步回调；其三，美元弱势 + 大宗强势的组合（原油、黄金、天然气同涨）指向"名义价格体系的重构"——若这种组合延续，全球通胀的输入性压力将从能源向更广泛的商品蔓延。9 月中旬三大央行决策周的外汇波动率，是当前最重要的跨资产风险源。</p>
+<a class="source-link" href="https://m.economictimes.com/markets/us-stocks/news/global-market-today-asian-stocks-rise-as-fed-rate-hike-bets-ease/amp_articleshow/133749050.cms" target="_blank">🔗 查看原文（Economic Times）</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">21</span>
+<div class="card-content">
+<h3>风险矩阵前瞻：非农（9/4）→ CPI（9/11）→ FOMC（9/15-16）→ BOJ（9/17-18）——未来两周的"央行决策密度"为年内之最<span class="tag-analysis">🟣 深度分析</span></h3>
+<div class="card-meta">Investing.com PH / 金十数据 · 9月3日</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<p>把未来两周的日历摊开，全球市场的"决策密度"达到年内峰值：9 月 4 日美国 8 月非农（"铰链"数据，决定加息概率方向）→ 9 月 8-11 日旧金山 Communacopia 科技大会（AI 资本开支指引窗口）→ 9 月 9-10 日欧央行会议（加息 >95% 定价）→ 9 月 11 日美国 8 月 CPI（沃勒明示的决策依据）→ 9 月 15-16 日 FOMC（50/50 的加息博弈）→ 9 月 17-18 日 BOJ（75% 加息定价）。任何单一事件的定价偏差，都可能通过"利率 → 汇率 → 风险资产"的链条放大为跨资产波动。</p>
+<p>当前的基准情形推演：非农温和（+5 万左右）→ 加息概率降至 40% 以下 → 美股延续修复；CPI 意外上行（油价传导）→ 加息概率重回 60%+ → 债市二次抛售 + 成长股回调；BOJ 加息落地 → 日元升值 → 套息平仓 → 全球风险资产波动率跳升。三种情景的交叉概率构成"波动率走廊"——VIX 15.2 的低位与即将到来的决策密度之间存在明显错配，期权市场的隐含波动率（尤其跨央行会议期的跨式组合）可能系统性低估了尾部风险。策略含义：9 月上半月的组合管理关键词是"对冲成本管理"——在波动率便宜时买入保护，而非在冲击发生后追逐对冲。</p>
+<a class="source-link" href="https://ph.investing.com/analysis/asia-opens-with-yields-easing-oil-cooling-and-payrolls-holding-the-keys-218822" target="_blank">🔗 查看原文（Investing.com 前瞻）</a>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+🌍 全球宏观日报 · 2026-09-04 · 数据来源：OpenBB + FRED + 全球财经媒体<br>
+共 21 条资讯 + 23 项市场指标 · 全部时间已转换为北京时间（UTC+8） · 内容仅供信息参考，不构成投资建议<br>
+<span class="warn">⚠️ 数据说明：今日 OpenBB/FRED 管道返回部分异常值（S&P 500、原油等 nan 或缩放错误），本报告行情数据以公开报道为准</span>
+</div>
+
+</div>
+</body>
+</html>
