@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-09-15</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-09-15 · 30 条资讯 · 5 个板块 · 北京时间更新</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（6）</a></li>
+<li><a href="#s-data">📊 经济数据（6）</a></li>
+<li><a href="#s-market">📈 资本市场（6）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（6）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（6）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">6 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>美联储9月15-16日议息：加息25bp概率超85%，决议北京时间17日凌晨2时公布</h3>
+<div class="card-meta"><span class="src">新华财经</span><span class="t">北京时间 09-17 02:00（会议 09-15/16）</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">美联储本周议息，市场定价加息25bp至3.75%-4.00%的概率达86%-87%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美联储定于9月15日至16日召开联邦公开市场委员会会议，利率决议将于北京时间9月17日凌晨2时公布，主席沃什随后在2时30分举行新闻发布会。当前联邦基金利率目标区间维持在3.50%至3.75%，自2025年12月10日降息25个基点以来已连续多次按兵不动。据新华财经央行圆桌汇报道，市场对本次会议加息25个基点的定价概率在86%至87%之间。若最终落地，将是美联储2026年首次加息，也是自2023年7月以来的首次收紧动作。本次属于季度会议，市场高度关注最新点阵图与经济预测摘要，以及沃什对能源价格传导与通胀持续性的表态。</p><p>加息预期升温源于双重数据冲击。美国8月消费者物价指数同比上涨3.4%，核心指标环比上涨0.3%，高于预期的0.2%，创今年4月以来最大单月涨幅；8月非农新增就业16.2万人，远超市场预期的5.5万人，失业率稳定在4.1%。数据公布后，9月加息概率一度从72%升至91%，随后稳定在87%附近。投行集体调整预期：高盛改为预测9月加息25个基点，摩根大通预计9月和12月各加一次，花旗判断9月加息后将维持至2027年6月。若点阵图显示年内还有第二次加息，短端美债收益率与美元指数可能进一步上行，新兴市场汇率与规模约4万亿美元的日元套息交易将同步承压。</p>
+<p>来源：<a class="source-link" href="https://www.cnfin.com/yw-lb/detail/20260914/4469321_1.html" target="_blank">新华财经</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>欧洲央行9月10日加息25bp至2.65%，年内第二次加息</h3>
+<div class="card-meta"><span class="src">中国金融网</span><span class="t">北京时间 09-10 21:15</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">欧央行因中东冲突推升能源通胀再度加息，存款便利利率升至2.50%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>欧洲央行于9月10日宣布将三大关键利率各上调25个基点，为本轮周期第二次加息。调整后存款便利利率升至2.50%，主要再融资操作利率升至2.65%，边际贷款利率升至2.90%，新利率自9月16日起生效。欧央行在声明中指出，中东冲突推升能源价格是通胀反弹的主要推手，央行需要防止价格压力向更广泛的领域扩散。行长拉加德在记者会上强调政策仍将依赖数据、不预设利率路径，目标是推动通胀在中期内回到2%的目标水平。本次决议未就后续节奏提供明确指引，声明措辞较此前更为谨慎。</p><p>欧元区8月通胀率升至3.3%，为2023年以来最高，其中能源分项贡献最大；核心通胀小幅回落至2.4%，显示第二轮效应尚不明显。由于市场对本次加息已充分定价，决议公布后欧元汇率波动有限。法国巴黎银行预计欧央行12月将再加息至2.75%，荷兰国际集团则预计美联储与欧央行在2027年一季度前各有两次加息。欧央行的紧缩动作对全球债市形成明显外溢：决议后美债各期限收益率全线走高，德国十年期国债收益率一度升至3.378%，为2011年以来最高。后续需重点跟踪欧元区工资增速与能源价格走势。</p>
+<p>来源：<a class="source-link" href="http://www.financeun.com/newsDetail/65812.shtml" target="_blank">中国金融网</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>日本央行9月17-18日会议预计加息至1.25%，日元升至六个月高位</h3>
+<div class="card-meta"><span class="src">ING Think</span><span class="t">北京时间 09-18 11:00（会议 09-17/18）</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">日本央行料将政策利率从1.00%上调至1.25%，为31年来最高水平</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>日本央行将于9月17日至18日召开货币政策会议，市场普遍预期其将把政策利率从1.00%上调至1.25%，加息25个基点。若落地，这将是日本政策利率31年来首次回到1.25%水平，也是自2024年3月启动加息周期以来最快的一次收紧节奏，距6月加息仅三个月。据路透社援引知情人士报道，日本央行倾向于维持25个基点的常规步幅，且不会就终端利率给出明确线索。货币市场对9月加息的定价概率约为97%至98%，而一个月前仅为52%。</p><p>支撑加息的数据较为扎实：日本二季度国内生产总值年化增速上修至1.4%，7月实际工资同比增长2.4%，为连续第七个月上升且是2021年5月以来最强；8月批发通胀率达7.6%，叠加布伦特原油突破每桶100美元。央行审议委员高田创此前表示紧缩可以更激进、连续加息是选项之一。预期升温推动日元升至六个月高位，美元兑日元一度跌至152.87附近，9月累计升值约4%至5%，套息交易平仓加剧。路透调查显示分析师预计利率将在2027年3月底达到1.5%、二季度达到1.75%，多数认为终端利率至少为1.75%。</p>
+<p>来源：<a class="source-link" href="https://think.ing.com/articles/boj-preview-25bp-hike-incoming/" target="_blank">ING Think</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>英国央行9月17日料维持3.75%不变，呈现鹰派暂停</h3>
+<div class="card-meta"><span class="src">RSM UK</span><span class="t">北京时间 09-17 19:00</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">英国央行预计连续第六次按兵不动，投票或为6比3，通胀冬季或见顶4%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>英国央行将于9月17日公布利率决议，市场预期将连续第六次维持基准利率在3.75%不变，投票结果预计为6比3，皮尔、格林与曼恩三位委员可能继续支持加息25个基点至4.00%。多数机构将此次会议定性为鹰派暂停：利率按兵不动，但措辞趋于强硬，通胀预测的上行风险大于7月。英国7月消费者物价指数同比升至2.9%，高于6月的2.6%，为3月以来最高；受油价重回100美元上方与天然气价格跳涨影响，有机构预计通胀将在今年冬季或2027年初见顶于4%甚至更高。英国天然气与电力监管机构上调价格上限，也将在10月推高家庭能源账单。</p><p>值得注意的是，几乎没有迹象显示能源冲击正在向工资和其他价格扩散，这削弱了立刻加息的必要性。英国央行同时预计将把量化紧缩步伐从每年700亿英镑放缓至500亿英镑。荷兰国际集团与瑞银的基准情形均为年内维持利率不变、2027年降息两次，并认为市场定价未来一年约四次加息过于激进。英国十年期国债收益率此前一度升至5.25%，为2008年金融危机以来最高，反映财政与通胀的双重压力。英镑与英国国债对决议的反应，将主要取决于是否有更多委员转向支持加息，以及行长贝利是否会对市场的紧缩定价作出反驳。</p>
+<p>来源：<a class="source-link" href="https://www.rsmuk.com/insights/economic-voice/no-interest-rate-rise-yet-but-the-pressure-is-building" target="_blank">RSM UK</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>中国央行LPR维持3.00%/3.50%，9月21日报价，隔夜逆回购每日不超6000亿元</h3>
+<div class="card-meta"><span class="src">国际在线</span><span class="t">北京时间 09-21 09:15（LPR报价）</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">1年期LPR维持3.00%，央行强调推进货币政策框架转型与适度宽松</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>中国人民银行目前一年期贷款市场报价利率为3.00%，五年期以上为3.50%，自2025年5月下调10个基点后一直保持不变，下一次报价定于9月20日至21日。法国巴黎银行预计中国央行年内将按兵不动，理由是银行净息差承压，二季度净息差仅为1.41%，且进一步降息的边际效果递减。中国人民银行9月14日至17日开展隔夜逆回购操作，采用固定利率、数量招标方式，每日操作量不超过6000亿元，以维护银行体系流动性合理充裕。</p><p>央行同时强调推进货币政策框架转型，完善存款准备金制度，更注重发挥利率型调控工具的作用，继续实施适度宽松的货币政策。汇率方面，央行通过偏强的中间价引导管理人民币，9月初美元兑人民币在6.71至6.72附近交投；官方表态称中国没有必要也无意通过汇率贬值获取贸易竞争优势。行长潘功胜在二十国集团财长会上指出，贸易保护主义、国家安全问题泛化与政策环境不可预期是全球失衡加剧的重要原因，解决失衡需要各国推进结构性改革，逆差国应削减财政赤字、提高储蓄率，顺差国则需推动消费和投资增长。</p>
+<p>来源：<a class="source-link" href="https://big5.cri.cn/gate/big5/gr.cri.cn/20260903/39f65933-7cab-4f2a-b7e5-add1a0a90e0e.html" target="_blank">国际在线</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>沃什杰克逊霍尔首秀鹰派定调：通胀已高于目标65个月，暗示可能加息</h3>
+<div class="card-meta"><span class="src">CNBC</span><span class="t">北京时间 08-28 22:00</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">美联储主席沃什称若通胀未明确回落则还有工作要做，9月加息概率飙升至67%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美联储主席沃什在8月28日杰克逊霍尔全球央行年会上发表其上任后首次主题演讲，基调明显偏鹰。他重申2%的个人消费支出价格指数目标是坚定且固定的，并表示美联储当前的首要关注应当是价格稳定。他指出通胀已连续65个月高于目标，7月个人消费支出价格指数同比为3.7%、六个月年化达4.1%，有54%的分项在过去十二个月涨幅超过3%、49%在过去六个月超过3%。沃什称，必须有信心看到基础通胀明确且足够快地朝目标回落，否则美联储还有工作要做，并直言难以将当前广义金融条件描述为具有限制性，强调短期利率仍是主要政策工具。</p><p>市场反应剧烈：9月加息概率从讲话前的约35%至40%跃升至57%至62%，随后进一步升至约67%；两年期美债收益率一度上行11个基点至4.34%，十年期随后冲高至4.97%，美元指数上涨0.5%，纳斯达克指数下跌0.52%。部分分析人士认为沃什是言辞鹰派而实质保留余地，若9月不加息，10月或12月仍可能行动；也有观点警告这可能构成政策失误，因其淡化了接近2.3%的截尾均值通胀指标。沃什由总统特朗普提名，其鹰派立场与白宫要求降息的诉求形成明显张力，中期选举前的人事与政策博弈值得关注。</p>
+<p>来源：<a class="source-link" href="https://www.cnbc.com/2026/08/28/kevin-warsh-jackson-hole-fed-inflation-rate-hike.html" target="_blank">CNBC</a></p>
+</div>
+</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">6 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>美国8月CPI同比涨3.4%，核心环比0.3%超预期创4月以来最大涨幅</h3>
+<div class="card-meta"><span class="src">Nasdaq</span><span class="t">北京时间 09-11 20:30</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">8月CPI同比3.4%持平前值，核心CPI环比0.3%高于预期，加息预期维持高位</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国8月消费者物价指数于9月11日公布，同比上涨3.4%，与预期及前值持平；核心指数同比上涨2.4%，为2021年3月以来最低水平，但核心环比上涨0.3%，高于市场预期的0.2%，创今年4月以来最大单月涨幅。分项看，住房、通信服务、机票与酒店等核心服务价格走强，能源分项受中东局势与油价上涨推动明显反弹。数据公布前，克利夫兰联储的即时预测模型显示8月整体通胀环比约0.36%、同比约3.38%，核心环比约0.20%，实际读数整体略强于模型预估。</p><p>这份报告是9月议息会议前最后一份重磅通胀数据，直接决定了市场的加息定价。数据公布后，美国股市周五反弹，纳斯达克综合指数上涨约1%至1.2%，标普500指数上涨约0.9%至1.1%至约7657至7671点，道琼斯工业平均指数上涨约1%，短端美债收益率回落、原油价格下挫。但市场对9月加息25个基点的定价仍维持在七成以上。凯投宏观测算，8月核心个人消费支出价格指数同比可能从3.3%升至3.4%，远高于2%目标，加息选项可能获得联邦公开市场委员会较为普遍的支持。</p>
+<p>来源：<a class="source-link" href="https://www.nasdaq.com/articles/stocks-pressured-inflation-fears-boost-bond-yields" target="_blank">Nasdaq</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>美国8月PPI同比涨5.4%创2026年最高，柴油价格大涨24.1%</h3>
+<div class="card-meta"><span class="src">IndexBox</span><span class="t">北京时间 09-10 20:30</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">8月PPI同比5.4%超预期，能源环比涨4.2%，上游价格压力持续积聚</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国8月生产者价格指数于9月10日公布，环比上涨0.4%，符合预期，高于7月上修后的0.1%；同比上涨5.4%，较7月的4.8%明显加速，也高于5.3%的市场预期，创2026年最高年度涨幅。剔除食品和能源的核心生产者价格指数环比上涨0.2%、同比上涨4.6%；进一步剔除贸易服务后环比上涨0.3%、同比上涨4.7%。能源是主要推手，最终需求能源价格环比上涨4.2%，柴油价格大涨24.1%；商品价格环比上涨1.1%，服务价格仅上涨0.1%，运输与仓储分项上涨2.3%。</p><p>上游价格压力同样明显：中间需求加工品环比上涨1.8%、同比上涨11.5%，未加工品环比上涨1.1%、同比上涨12.8%，显示通胀压力仍在供应链更前端积聚。数据公布后，十年期美债收益率升至4.93%至4.97%区间，美股走低，市场对9月15日至16日会议加息25个基点的定价升至约63%至70%。有分析指出，电子元器件生产者价格同比已上涨28.0%，叠加处于历史高位的柴油价格，若能源成本维持高位，生产者价格向消费者价格的传导将在第四季度进一步显现。</p>
+<p>来源：<a class="source-link" href="https://www.indexbox.io/blog/us-wholesale-inflation-hits-54-in-august-highest-annual-rate-of-2026/" target="_blank">IndexBox</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>美国8月非农新增16.2万人远超预期5.5万，失业率持稳4.1%</h3>
+<div class="card-meta"><span class="src">Wedbush</span><span class="t">北京时间 09-04 20:30</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">8月非农大超预期且前两月合计上修5.5万，加息定价从约50%升至60%以上</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国8月非农就业报告于9月4日公布，新增就业16.2万人，远超市场预期的约5.3万至5.5万人；失业率维持在4.1%，符合预期；劳动参与率从61.4%升至61.6%；平均时薪环比上涨0.3%、同比上涨3.1%，月度工资增速较7月的0.2%有所加快。前值修正幅度显著：6月由2.0万上修至3.1万，7月由负2.3万上修至正2.1万，两个月合计上修5.5万人，三个月累计招聘较预期高出约21.7万人。</p><p>分行业看，休闲酒店与医疗保健是招聘主力，信息业与金融及信息技术岗位下降，部分解读将其与人工智能和自动化替代联系起来；私人商品生产部门就业连续第六个月上升，可能受益于数据中心建设需求。数据公布后，市场对9月加息25个基点的定价从约49%至55%升至59%至65%，两年期美债收益率与美元同步走强。同期数据显示，7月职位空缺数为730万，招聘与离职人数均为510万，表明劳动力需求稳定；截至8月28日当周初请失业金人数为20.6万，四周均值20.73万，显示裁员并未加速。</p>
+<p>来源：<a class="source-link" href="https://investor.wedbush.com/wedbush/article/accwirecq-2026-9-10-economic-week-ahead-cpi-and-ppi-to-shape-fed-rate-expectations" target="_blank">Wedbush</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>中国8月CPI同比涨0.8%、PPI涨3.8%超预期，物价双向修复</h3>
+<div class="card-meta"><span class="src">第一财经</span><span class="t">北京时间 09-09 09:30</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">8月CPI同比0.8%环比转涨0.4%，PPI同比3.8%高于预估，通缩压力缓解</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>国家统计局9月9日发布数据，中国8月居民消费价格指数同比上涨0.8%，涨幅较7月的0.5%回升0.3个百分点；环比由上月下降0.1%转为上涨0.4%；扣除食品和能源的核心指数同比上涨1.0%。1至8月平均，居民消费价格比上年同期上涨0.9%。上涨主因是能源价格涨幅由上月的0.6%扩大至4.1%，拉动同比上涨约0.28个百分点；食品价格季节性上涨，但同比仍下降1.4%，终端食品需求依然偏弱。</p><p>工业生产者出厂价格指数表现更强，8月同比上涨3.8%，涨幅较7月的3.5%扩大并超出市场预估的3.6%，环比由下降0.7%转为上涨0.4%；工业生产者购进价格同比上涨5.8%、环比上涨0.3%。生产资料价格上涨5.0%，生活资料价格下降0.5%，上游修复快于下游的特征明显。分析认为，物价环比双双由降转涨并保持正增长，反映消费与工业价格的双向修复、通缩压力有所缓解，但回升的广度与持续性仍待观察，终端需求偏弱使上游涨价向下游的传导相对有限，后续政策仍需聚焦提振微观主体收入与盈利预期。</p>
+<p>来源：<a class="source-link" href="https://www.yicai.com/news/103361905.html" target="_blank">第一财经</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>中国8月出口同比增18.6%，前8个月进出口34.78万亿元增17.6%</h3>
+<div class="card-meta"><span class="src">新华社</span><span class="t">北京时间 09-08 11:00</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">8月出口增18.6%进口增21.7%，进出口连续4个月两位数增长，对美仅增1.3%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>海关总署9月8日公布数据，以人民币计价，中国8月货物贸易进出口总值4.65万亿元，同比增长19.8%；其中出口2.73万亿元，同比增长18.6%，进口1.92万亿元，同比增长21.7%。出口与进口已连续四个月同时保持两位数增长，进口月度同比增速连续六个月超过出口。前8个月累计，进出口总值34.78万亿元，同比增长17.6%，较前7个月加快0.3个百分点；其中出口20.17万亿元增长14.6%，进口14.61万亿元增长22%。</p><p>以美元计价，8月出口4014.4亿美元、同比增长25.0%，进口2823.6亿美元、同比增长28.0%。结构上，前8个月对东盟贸易5.95万亿元增长20.6%，对欧盟4.2万亿元增长8.1%，对美国2.76万亿元仅增长1.3%，对共建一带一路国家17.74万亿元增长15.9%，贸易重心转移趋势明显。民营企业进出口19.79万亿元增长17.6%，外商投资企业10.15万亿元增长18.1%。出口机电产品12.91万亿元增长21.9%，占出口总值约64%，已连续18个月保持增长，汽车、工业机器人、船舶与锂电池表现突出。海关总署新闻发言人吕大良表示，8月货物贸易增势稳定，体现了完整产业体系与创新能力的支撑。</p>
+<p>来源：<a class="source-link" href="http://www.news.cn/fortune/20260908/f8456f773fbb42cc8f8900e19ff64768/c.html" target="_blank">新华社</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>美国8月成屋销售降至398万套，消费者信心跌至47.8、通胀预期4.6%</h3>
+<div class="card-meta"><span class="src">Myfxbook</span><span class="t">时间不详</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">成屋销售环比跌约2%，密歇根消费者信心降至47.8，房贷利率升至6.76%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国8月成屋销售降至约397万至398万套年化水平，环比下降约2.0%至2.2%，7月为406万套；库存升至4.4个月，房价环比仅上涨0.1%、同比上涨1.6%。同期，密歇根大学消费者信心指数在一次市场回顾中降至47.8，一年期通胀预期升至4.6%，显示持续通胀对家庭部门形成明显挤压。三十年期固定房贷平均利率升至6.76%，为2025年6月以来最高，高利率与高房价共同抑制了购房需求。9月消费者信心初值市场预期为51.4，低于8月终值51.7。</p><p>这些数据与就业和通胀形成鲜明对照：一方面劳动力市场仍具韧性、工资增长稳健，另一方面住房与消费者信心等利率敏感部门已明显走弱。美国二季度经济数据整体偏强，但结构分化显著，商品生产与数据中心相关投资支撑增长，而房地产等传统利率敏感行业持续承压。分析人士指出，若按揭利率继续随长端美债收益率上行，房地产市场的修复将进一步推迟，并可能通过财富效应传导至消费支出。这也是市场在评估美联储是否需要通过加息压制需求时的重要参考变量。</p>
+<p>来源：<a class="source-link" href="https://www.myfxbook.com/sk/analysis/us-data-stubborn-inflation-vs-jobs-warning-bell/29660" target="_blank">Myfxbook</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#b45309;">资本市场</h2><span class="count">6 条</span>
+</div>
+<div class="metric-grid">
+<div class="metric-group-label">🇺🇸 美股指数 · 2026-09-14 收盘</div>
+<div class="metric-card"><div class="metric-label">标普 500</div><div class="metric-value">7,656.98</div><div class="metric-change pos">+0.86%</div><div class="metric-explain">终结四连跌，科技板块领涨 +1.32%，医疗与公用事业走弱</div></div>
+<div class="metric-card"><div class="metric-label">纳斯达克综指</div><div class="metric-value">26,333.04</div><div class="metric-change pos">+0.96%</div><div class="metric-explain">收盘转涨，但盘后期货一度跌约 1.7%</div></div>
+<div class="metric-card"><div class="metric-label">道琼斯工业</div><div class="metric-value">52,573.29</div><div class="metric-change pos">+0.98%</div><div class="metric-explain">三大指数齐涨，油价回落缓解即时通胀压力</div></div>
+<div class="metric-card"><div class="metric-label">罗素 2000</div><div class="metric-value">2,903.94</div><div class="metric-change pos">+0.45%</div><div class="metric-explain">小盘股涨幅落后，反映融资成本高企的压制</div></div>
+<div class="metric-group-label">🌏 亚太市场 · 2026-09-14 收盘</div>
+<div class="metric-card"><div class="metric-label">日经 225</div><div class="metric-value">63,492.99</div><div class="metric-change neg">-0.81%</div><div class="metric-explain">AI 三巨头联名呼吁放缓前沿模型开发，科技股承压</div></div>
+<div class="metric-card"><div class="metric-label">东证 TOPIX</div><div class="metric-value">4,058.21</div><div class="metric-change pos">+0.74%</div><div class="metric-explain">与日经背离，资金从科技权重股轮动至其余板块</div></div>
+<div class="metric-card"><div class="metric-label">恒生指数</div><div class="metric-value">24,917.60</div><div class="metric-change pos">+0.45%</div><div class="metric-explain">当日全球主要市场中最强之一，国企指数 +0.46%</div></div>
+<div class="metric-card"><div class="metric-label">上证指数</div><div class="metric-value">3,885.33</div><div class="metric-change flat">-0.07%</div><div class="metric-explain">基建建材支撑下基本收平，深证成指 -0.64%</div></div>
+<div class="metric-card"><div class="metric-label">韩国 KOSPI</div><div class="metric-value">6,684.37</div><div class="metric-change neg">-3.26%</div><div class="metric-explain">科技股重挫，SoftBank 与 Z.ai 相关标的领跌</div></div>
+<div class="metric-group-label">🏦 利率与政策利率</div>
+<div class="metric-card"><div class="metric-label">美国 10 年期国债</div><div class="metric-value">4.95%</div><div class="metric-change pos">-2.4bp</div><div class="metric-explain">盘中一度触及 5.01%，为 2023 年 10 月以来首次破 5%</div></div>
+<div class="metric-card"><div class="metric-label">美国 30 年期国债</div><div class="metric-value">5.32%</div><div class="metric-change pos">-2.9bp</div><div class="metric-explain">盘中最高 5.377%，逼近 2007 年以来高位</div></div>
+<div class="metric-card"><div class="metric-label">联邦基金利率目标区间</div><div class="metric-value">3.50%–3.75%</div><div class="metric-change flat">FOMC 9/15–16</div><div class="metric-explain">现任主席 Kevin Warsh 主持，决议北京时间 9/17 02:00 公布</div></div>
+<div class="metric-card"><div class="metric-label">美联储 9 月加息概率</div><div class="metric-value">约 86–90%</div><div class="metric-change neg">CME FedWatch</div><div class="metric-explain">市场押注加息 25bp；ING 预计加息，中金／东吴／浙商预计按兵不动</div></div>
+<div class="metric-card"><div class="metric-label">欧央行存款利率</div><div class="metric-value">2.50%</div><div class="metric-change neg">+25bp</div><div class="metric-explain">9 月 10 日加息，拉加德称“无需多想”，为年内第二次</div></div>
+<div class="metric-card"><div class="metric-label">日本央行政策利率</div><div class="metric-value">1.00%</div><div class="metric-change neg">本周五料加息</div><div class="metric-explain">OIS 定价加息至 1.25% 概率约 97%，将创约 31 年半最高</div></div>
+<div class="metric-group-label">🛢️ 大宗商品 · 2026-09-14</div>
+<div class="metric-card"><div class="metric-label">布伦特原油</div><div class="metric-value">约 $108</div><div class="metric-change neg">+3~4%</div><div class="metric-explain">沙特管道停运叠加海湾航运威胁，供给恐慌推升油价破 100 后继续上行</div></div>
+<div class="metric-card"><div class="metric-label">WTI 原油</div><div class="metric-value">约 $103</div><div class="metric-change neg">+3% 以上</div><div class="metric-explain">与布伦特同步走高，能源通胀重新成为主要风险</div></div>
+<div class="metric-card"><div class="metric-label">现货黄金</div><div class="metric-value">$4,280</div><div class="metric-change pos">-1.4%</div><div class="metric-explain">美元与收益率双强压制避险资产，盘中失守 4,300 与 4,290 关口</div></div>
+<div class="metric-card"><div class="metric-label">COMEX 黄金</div><div class="metric-value">$4,309</div><div class="metric-change pos">-2.0%</div><div class="metric-explain">纽约期金日内跌幅超 2%，地缘避险未能支撑金价</div></div>
+<div class="metric-group-label">💱 汇率与波动率 · 2026-09-14</div>
+<div class="metric-card"><div class="metric-label">美元指数 DXY</div><div class="metric-value">99.54</div><div class="metric-change neg">+0.5%</div><div class="metric-explain">升至两周高位，美联储与日本央行会议前的仓位调整</div></div>
+<div class="metric-card"><div class="metric-label">欧元/美元</div><div class="metric-value">1.1537</div><div class="metric-change neg">-0.1~0.5%</div><div class="metric-explain">跌至 8 月中旬以来最低，欧央行加息未能托住欧元</div></div>
+<div class="metric-card"><div class="metric-label">美元/日元</div><div class="metric-value">154.7</div><div class="metric-change flat">日元月内 +4%</div><div class="metric-explain">日元逼近七个月高位 152.89，投机盘 2 月来首次转为净多头</div></div>
+<div class="metric-card"><div class="metric-label">VIX 波动率指数</div><div class="metric-value">涨逾 11%</div><div class="metric-change neg">据报</div><div class="metric-explain">股指收涨但波动率同步跳升，盘后纳指期货一度跌约 1.7%，分歧显著</div></div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>美股9月11日CPI后反弹，纳指涨约1%，但三大指数全周收跌</h3>
+<div class="card-meta"><span class="src">Barron's</span><span class="t">北京时间 09-12 04:00</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">标普500反弹至约7657-7671点，但全周仍跌0.8%，道指周跌1.5%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>9月11日公布的8月通胀数据好于市场担忧，美股周五强势反弹：纳斯达克综合指数上涨约1%至1.2%，标普500指数上涨约0.9%至1.1%，报约7657至7671点，道琼斯工业平均指数上涨约1%，报约52573至52642点。全部板块收涨，通讯服务、可选消费与科技板块领涨，戴尔单日大涨11%。不过三大指数全周仍收跌，道指周跌约1.5%至1.57%，标普500跌约0.80%，纳斯达克跌约0.66%。</p><p>周内早些时候市场承压明显：9月9日标普500跌0.48%报7636.36点，道指跌0.77%报52380.66点，纳指跌0.64%报26253.34点，为连续第三日收跌，能源板块逆势上涨1.09%。半导体板块承压明显，美光与英特尔在周四开盘时均下跌约4%。拖累因素包括油价飙升、美债收益率冲高以及人工智能相关投资回报的担忧，英伟达周跌超5%，Meta周涨超5%、苹果涨近4%、特斯拉涨超3%；热门中概股普跌，百度周跌超8%，拼多多跌超5%，理想与京东跌超4%。同期美元指数当周从99.13附近开盘、99.08附近收线，几乎收平，未能对美股形成有效支撑。加拿大皇家银行资本市场分析师指出，考虑到9月季节性、中期选举、美伊冲突与利率焦虑，市场出现5%至10%回调的概率正在上升。标普500指数与债券收益率同时处于高位，是这一时期市场最显著的定价特征。</p>
+<p>来源：<a class="source-link" href="https://www.barrons.com/livecoverage/stock-market-news-today-091126/card/stocks-are-trading-near-highs-so-are-bond-yields--DCyr1QiZZAGRDeA8bWbR" target="_blank">Barron's</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>30年期美债收益率触及5.37%创2007年以来新高，10年期逼近5%</h3>
+<div class="card-meta"><span class="src">同花顺财经</span><span class="t">北京时间 09-11 05:00</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">30年期收益率跳升至5.37%创19年新高，10年期一度触及4.9915%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>9月10日，美国三十年期国债收益率单日跳升约8个基点至5.37%，盘中一度触及5.354%至5.371%，收于5.368%，刷新2007年6月以来最高水平，约十九年新高。同日十年期收益率收于4.943%、盘中触及4.965%，逼近5%关口，为2023年10月以来最高；两年期收益率飙升16个基点至4.58%至4.59%，创2025年4月以来最大单日涨幅。周四的三十年期国债拍卖中，美国财政部锁定了二十五年来最高的借贷成本，十年期收益率随后在9月11日一度触及4.9915%。</p><p>推升因素主要有四：一是布伦特原油结算价单日暴涨6.3%至每桶107.63美元，盘后升至109美元，推高通胀预期；二是8月生产者价格指数同比升至5.4%，高于预期；三是财政部将长债回购上限设为60亿美元，最终仅回购约51.9亿美元，二十年至三十年期品种未满上限属史无前例，被市场解读为需求疲弱信号；四是财政赤字忧虑，特朗普承诺向每名成年人发放5000美元支票，成本估算约1.2万亿至1.3万亿美元，美国国债存量已突破40万亿美元。房贷利率同步上升，三十年期固定房贷平均利率升至6.76%。</p>
+<p>来源：<a class="source-link" href="http://bond.10jqka.com.cn/20260911/c679816268.shtml" target="_blank">同花顺财经</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>全球主权债同步抛售：日本10年期破3%为1996年以来首次，英国金边债达5.25%</h3>
+<div class="card-meta"><span class="src">群益期货</span><span class="t">北京时间 09-03 16:00</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">全球债券收益率齐创多年新高，日本10年期破3%、德国3.378%、英国5.25%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>9月初全球主权债市场同步抛售，主要经济体长端收益率刷新多年高位。日本十年期国债收益率突破3%，报约3.016%，为1996年9月以来首次，创三十年新高；德国十年期国债收益率升至3.378%，为2011年以来最高；英国十年期国债收益率触及5.25%，创2008年金融危机以来新高；法国国债收益率创近十八年新高；澳大利亚十年期收益率创2011年以来新高。彭博全球政府债券指数收益率升至3.72%，为2008年中以来最高。抛售势头在9月4日有所缓和，但分析师强调这只是暂停而非反转。</p><p>背后是全球债务规模创纪录：2026年早些时候全球债务总额接近353万亿美元，美国债务在8月突破40万亿美元，日本2027财年预算申请预计创历史新高。供给端压力显著，政府发行量高企叠加人工智能基础设施带动的约2000亿美元高评级公司债发行，与不断萎缩的价格不敏感买家形成竞争，中国购买量因地缘因素下降，日本与海湾国家面临国内压力，挪威主权财富基金也在削减美债配置。太平洋投资管理公司前首席执行官埃里安9月4日表示，抛售很可能尚未结束，美国、英国、日本和法国最容易受主权债务问题冲击，并称财政部扩大长债回购是越界之举。</p>
+<p>来源：<a class="source-link" href="https://www.capitalfutures.com.tw/zh-tw/financial/globalarticle?contentid=c26090200493&amp;category=index" target="_blank">群益期货</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>布伦特原油9月14日涨至107-108美元，美伊冲突与霍尔木兹受阻推升油价</h3>
+<div class="card-meta"><span class="src">Moneycontrol</span><span class="t">北京时间 09-14 22:00</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">布伦特突破100美元后继续上冲至107-108美元，一周涨约8%，WTI报102-103美元</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>受美伊冲突升级与霍尔木兹海峡通行受阻影响，国际油价9月大幅飙升。9月9日布伦特原油结算价上涨3.36%报每桶101.21美元，西德克萨斯中质原油上涨3.25%报96.05美元，均创5月以来新高；标普全球普氏即期布伦特一度涨至114.26美元。9月14日阿曼斡旋会议被紧急推迟后，布伦特再涨逾2%至107.51至108.23美元区间，西德克萨斯中质原油报102.32至103.20美元。按周计，油价一周上涨约8%，年内涨幅超过60%。</p><p>供应端冲击密集：美国中央司令部在9月5日至9日摧毁五艘伊朗原油运输船，伊朗方面称袭击了霍尔木兹海峡附近十艘船舶并向巴林与科威特附近油轮发出警告；沙特东西向输油管道因无人机袭击关闭，该管道承担绕行霍尔木兹的职能，涉及最高约4%的全球石油供应；9月8日通过霍尔木兹海峡的船舶仅15艘，远低于前一天的24艘。美国能源信息署将2026年布伦特价格预期从每桶87美元上调至91美元，分析师警告若阿曼会谈无实质进展且管道未快速重启，油价可能上探3月初每桶119.48美元的高点。</p>
+<p>来源：<a class="source-link" href="https://www.moneycontrol.com/world/oil-prices-surge-as-middle-east-tensions-push-brent-crude-above-107-article-14029096.html" target="_blank">Moneycontrol</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>国际金价9月13日报4390美元，月内跌2.39%周线三连跌</h3>
+<div class="card-meta"><span class="src">中国金融信息网</span><span class="t">北京时间 09-14 05:00</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">加息预期压制下金价月内跌约2.4%，4300美元成关键支撑，央行购金持续</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>2026年9月国际金价在强加息预期与地缘避险之间拉锯，整体震荡承压。9月9日现货黄金上涨1.06%报4401.77美元，收复4400美元关口；9月10日在4400美元附近震荡，盘中最高触及4434.38美元，但当日纽约商品交易所黄金期货大跌1.99%至4358.5美元。截至9月13日，国际金价报约4390美元，月内累计下跌2.39%，伦敦金跌1.8%至4347美元，周线三连跌；9月14日受阿曼会议推迟影响，纽约商品交易所黄金期货续跌0.79%，白银跌超1%。</p><p>压制金价的核心渠道是美债收益率上行：十年期收益率逼近5%与三十年期突破5.37%，显著提高了无息资产的持有成本；同时美元指数在99附近震荡，限制了黄金的估值空间。支撑因素同样存在：8月全球实物黄金交易所交易基金流入约180亿美元，为历史第二大单月流入，总持仓增至4189吨创历史新高；二季度全球央行净买入约289吨，中国8月末黄金储备7673万盎司，连续22个月增持。技术面上，4300美元是关键支撑，其下依次为4269与4230美元，上方阻力带位于4396.78至4489.87美元。</p>
+<p>来源：<a class="source-link" href="https://www.cnfin.com/yw-lb/detail/20260911/4468433_1.html" target="_blank">中国金融信息网</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>A股上证周跌1.07%成交跌破2万亿，港股恒指周跌3.3%失守25000点</h3>
+<div class="card-meta"><span class="src">21世纪经济报道</span><span class="t">北京时间 09-11 15:00</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">A股防御震荡、多数指数跌破年线，港股受美债利率与内需双重压制周跌3.3%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>A股上周（截至9月11日）震荡走弱，上证指数周跌1.07%，深证成指周跌0.34%，创业板指逆势周涨1.08%。板块上，共封装光学、印制电路板、光纤、电力、存储芯片涨幅居前，白酒、证券、贵金属、游戏、电池跌幅居前。9月9日沪指涨0.28%报3951.51点，成交1.87万亿元；9月10日三大指数集体收跌，沪指跌0.43%报3934.4点，成交额连续第四个交易日跌破2万亿元、仅1.65万亿元。9月11日市场剧烈震荡，成交回升至2万亿元，盘中出现两次明显护盘动作，技术面几乎所有指数已跌破年线与半年线。</p><p>港股表现更弱，恒生指数上周跌3.3%，国企指数跌3.61%，恒生科技指数跌5.45%。9月10日恒指跌1.27%报24954.47点，失守两万五千点关口，恒生科技指数跌2.04%。机构观点偏防御：博时基金建议攻守兼备、防御为主，认为市场拥挤度已消化但新主线尚未出现；国金证券维持震荡偏多判断，建议成长与红利哑铃配置；多家机构提示四千点关口将宽幅震荡、以结构性机会为主。压制因素包括美债收益率飙升、原油高企导致北向资金流出压力加大，以及港股面临的内需与地产偏弱、美元流动性偏紧的双重夹击。</p>
+<p>来源：<a class="source-link" href="https://www.sfccn.com/2026/9-11/xNMDE1MjBfMjIzODkxNA.html" target="_blank">21世纪经济报道</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">6 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>中国商务部：中美正磋商每年各300亿美元规模对等降税框架</h3>
+<div class="card-meta"><span class="src">搜狐财经</span><span class="t">北京时间 09-10 16:00</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">中美就每年各300亿美元对等降税磋商，范围不涉及半导体与人工智能</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>中国商务部9月10日表示，中美经贸团队正就每年各300亿美元规模的对等降税框架安排进行磋商，争取早日落地实施。市场推测的潜在降税范围，中方对美出口可能包括纺织服装、鞋靴箱包、家居家具、玩具、小家电、五金及部分日用轻工品；美方对华出口可能包括大豆、玉米、猪肉、牛肉、乳制品、水果坚果等农产品，液化天然气与原油等能源品，部分化工与医药原料及少量高端机械设备。据报相关安排不涉及高科技、半导体、人工智能与先进算力相关产品。</p><p>评论认为，非关键商品互降关税对双方均有利：中国企业利润提高、进口原材料成本下降，美国消费者受益并有助于遏制通胀。这一进展的背景是美国自身陷入关税与财政的两难。2026年2月，美国最高法院裁定依据国际紧急经济权力法征收的关税违法，政府被责令向进口商退款；截至8月初，已征收的1660亿美元中约1000亿美元已退还。2026年6月美国关税净额自有记录以来首次出现大幅负值，退税比新征关税多出260亿美元，7月关税赤字94亿美元，趋势已经形成。</p>
+<p>来源：<a class="source-link" href="https://www.sohu.com/a/1074405072_122014422" target="_blank">搜狐财经</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>G20财长会19国支持应对贸易失衡中国反对，未发表联合公报</h3>
+<div class="card-meta"><span class="src">Investing.com</span><span class="t">北京时间 09-02 06:00</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">阿什维尔G20会议美方推动削减贸易失衡，中国为唯一异议方，主席声明强调增长优先</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>二十国集团财长与央行行长会议于8月31日至9月1日在美国阿什维尔举行。美国推动成员国削减全球贸易与财政失衡，并考虑对部分中国商品设置更高壁垒。美国财政部长贝森特表示，二十个成员中有十九个支持针对非市场政策与贸易扭曲采取行动，认为这些政策助长了过度依赖出口的模式，中国是唯一对该部分表述持异议的成员。由于分歧，会议未能发表联合公报，美方以东道主身份发布了主席声明。</p><p>主席声明将增长列为首要议题，点名批评监管与行政负担过重、税制不当、公私投资不足、内部市场割裂与劳动力技能缺口等自造的政策失败，要求各国削减繁文缛节、提高劳动参与率、降低市场摩擦，并称债务只能靠增长消化。声明还要求拥有过度且持续外部顺差的国家取消限制国内消费的政策，并将人工智能定位为通用技术，涵盖金融素养、主权债务重组可预期性、稳定币与跨境支付路线图等议题。会议召开之际正值全球债券抛售，日本十年期国债收益率首次触及3%，全球债务规模达创纪录的353万亿美元。</p>
+<p>来源：<a class="source-link" href="https://za.investing.com/news/economy-news/us-pushes-g20-to-cut-trade-imbalances-focus-on-china-4450286" target="_blank">Investing.com</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div>
+<div class="card-main">
+<h3>加拿大9月8日对276亿加元美国商品反制关税，美方启动第338条进口禁令</h3>
+<div class="card-meta"><span class="src">EY Global Tax News</span><span class="t">北京时间 09-09 22:00</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">美加关税对等升级，加方推75亿加元支持计划，美方依第338条禁部分加国产品</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>在美国对约276亿加元加拿大商品加征50%关税（8月22日生效）后，加拿大宣布自9月8日起对同等规模276亿加元的美国进口商品实施反制关税，并推出75亿加元的配套支持计划，用于援助受影响工人与中小企业。9月8日，美国总统依据1930年关税法第338条签署五项公告，禁止进口部分加拿大酒精饮料、乳制品与机动车产品，该措施自9月29日起生效；同时对50%关税的适用范围作出调整，自9月15日起生效。加拿大方面召回了谈判代表并承诺对等报复。</p><p>这是美加贸易摩擦在2026年的最新一轮升级。此前美方已明确表示正在考虑对进口半导体加征新一轮关税，但在美国建厂的企业可获得豁免。8月底，加方还宣布将联邦燃油消费税的免征期从9月8日延长至2027年2月1日，之后适用下调税率至2027年3月31日。此外，美国海关与边境保护局9月2日发布扩大进口披露、记录保存与供应链透明度要求的立法建议预告，意见征询截止日期为12月1日。分析人士指出，关税成本最终将部分转嫁至美国消费者，与美联储压制通胀的目标形成直接冲突。</p>
+<p>来源：<a class="source-link" href="https://globaltaxnews.ey.com/news/2026-1936-americas-tax-roundup-14-september-2026" target="_blank">EY Global Tax News</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">22</div>
+<div class="card-main">
+<h3>美国关税退税困境：已退还约1000亿美元，7月关税赤字94亿美元</h3>
+<div class="card-meta"><span class="src">搜狐财经</span><span class="t">北京时间 09-11 20:00</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">最高法院裁定紧急权力关税违法后美方被迫退款，关税净额连续转负</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国正陷入关税与债务的双重陷阱。2026年2月最高法院裁定依据国际紧急经济权力法征收的关税违法后，政府被责令向进口商退款，截至8月初已征收的1660亿美元中约1000亿美元完成退还，但政府并未承诺向最终消费者退款。2026年6月关税净额自有记录以来首次出现大幅负值，退税比新征关税多出260亿美元，7月关税赤字达94亿美元。关税退款由财政部直接承担，政府被迫以新关税填补缺口，而新关税又面临诉讼与贸易伙伴报复。</p><p>财政层面压力同步加剧：美国国债规模突破40万亿美元，三十年期国债收益率超过5%创2007年以来新高，偿债支出已超过国防预算，年度财政赤字约2万亿美元。9月10日财政部长债回购操作规模为51.87亿美元，未达60亿美元上限，被市场视为需求疲弱信号。特朗普承诺若共和党赢得中期选举，将向每名美国成年人发放5000美元的特朗普红利，媒体测算总成本约1.2万亿至1.3万亿美元，特朗普称无需国会批准，遭到多方质疑。有分析警告，美国可能同时面临通胀冲击与美元贬值风险，全球对美债避险资产地位的评估正在被重新审视。</p>
+<p>来源：<a class="source-link" href="https://www.sohu.com/a/1075263273_114911" target="_blank">搜狐财经</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">23</div>
+<div class="card-main">
+<h3>中国发布《金融强国建设“十五五”规划》，证监会规范减持并拓宽长钱入市</h3>
+<div class="card-meta"><span class="src">新华财经智库</span><span class="t">北京时间 09-11 18:00</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">规划明确2035年建成现代金融体系，中长期资金年内净买入A股超6000亿元</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>中国近期密集出台金融领域政策文件。《金融强国建设十五五规划》正式发布，提出到2030年金融调控政策协同有效、金融风险防控精准高效，到2035年基本建成中国特色现代金融体系。中国证监会同步明确资本市场到2030年的发展目标，包括进一步严格规范控股股东与实际控制人减持行为，抓紧推动证券投资基金法与上市公司监管条例等法律法规的制定修改，完善投资者保护体系，拓宽中长期资金入市渠道，维护资本市场平稳运行。</p><p>监管部门同时加强对金融无序竞争的治理。金融监管总局表示将大力整治价格战、违规返佣、高息高返等行为，规范机构经营行为。国家发展改革委发布重要工业品低价无序竞争成本核算有关通知，国务院办公厅印发加强中小企业回款难问题治理通知，商务部则就成本核算问题约束重点工业品低价无序竞争。证监会披露，今年以来社保、年金、保险等中长期资金净买入A股超过6000亿元。中国人民银行表示将完善存款准备金制度，更注重发挥利率型调控工具作用，持续推进货币政策框架转型，继续实施适度宽松的货币政策。</p>
+<p>来源：<a class="source-link" href="https://thinktank.cnfin.com/yxyyj-lb/detail/20260911/4468452_1.html" target="_blank">新华财经智库</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">24</div>
+<div class="card-main">
+<h3>金砖国家财长会关切单边贸易措施，推动本币结算与支付互联互通</h3>
+<div class="card-meta"><span class="src">Economic Times</span><span class="t">北京时间 09-10 20:00</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">金砖孟买会议对单边关税与非关税壁垒表达严重关切，支持本币融资与份额改革</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>金砖国家财长与央行行长会议9月10日在孟买举行，会后各方对单边贸易与金融措施表达严重关切，指出加征关税与非关税壁垒有违世界贸易组织规则，对新兴与发展中经济体的冲击尤为沉重。会议支持推进跨境支付互联互通与本币结算，支持国际货币基金组织与世界银行份额改革重新对齐，支持新开发银行开展本币融资，并推动金砖多边担保机制与海关互助行政协助协定。相关工作将延续至2026年全年推进，中国将于2027年担任金砖轮值主席国。</p><p>这一表态与二十国集团内部的分歧形成呼应：在阿什维尔会议上，十九个成员支持针对非市场政策与贸易扭曲采取行动，中国持不同意见；中方还批评法国反快时尚法案构成贸易保护主义。与此同时，中国8月出口延续高增长，以人民币计价同比增长18.6%，前8个月对共建一带一路国家贸易17.74万亿元、增长15.9%，对东盟贸易增长20.6%，而对美贸易仅增长1.3%，贸易重心转移趋势明显。分析认为，新兴市场推动本币结算与支付体系多元化，是对美元主导的全球货币格局的长期回应。</p>
+<p>来源：<a class="source-link" href="https://m.economictimes.com/news/economy/policy/brics-fin-mins-central-bank-chiefs-raise-concerns-on-unilateral-trade-and-finance-related-measures/amp_articleshow/134079409.cms" target="_blank">Economic Times</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">6 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">25</div>
+<div class="card-main">
+<h3>大摩邢自强：即便9月加息也非新一轮加息周期，不具备延续性</h3>
+<div class="card-meta"><span class="src">网易财经</span><span class="t">北京时间 09-14 10:00</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">邢自强认为9月加息属防御性风险管控，四季度油价基数效应消退后或重回观望</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>摩根士丹利中国首席经济学家邢自强表示，市场对美联储9月加息的定价已接近90%，但从基本面、实体经济韧性与债务结构来看，美联储并不具备重启持续加息周期的基础。他认为，即便9月加息25个基点，也只是风险管控式、防御性的被动加息，而非新一轮紧缩周期的起点。其判断依据是，进入第四季度后油价基数效应将逐渐消退，通胀粘性随之弱化，美联储大概率重新回到按兵不动的状态。</p><p>他同时提示全球经济面临再陷滞胀与流动性逆转的担忧，认为市场需要区分一次性的防御性加息与趋势性紧缩。中金大类资产团队的基准判断同样是9月不加息，并认为即便加息也是矫枉过正之举，后续会重新转向宽松。东吴证券芦哲维持9月不加息的判断，但提示12月加息概率存在。李徽徽认为9月恢复加息的概率低于15%，维持利率不变并释放鹰派预期的概率在85%以上，即便采取防御性加息，上限至多50个基点。这种分歧本身构成了会议前市场波动的重要来源，也使利率决议与点阵图的组合成为打破平衡的关键。</p>
+<p>来源：<a class="source-link" href="https://www.163.com/dy/article/L6QNO25005568W0A.html" target="_blank">网易财经</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">26</div>
+<div class="card-main">
+<h3>德意志银行警告：市场或再低估美联储鹰派程度，股票与信贷资产恐遭冲击</h3>
+<div class="card-meta"><span class="src">21世纪经济报道</span><span class="t">北京时间 09-08 12:00</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">德银称通胀冲击正表现为负面供给冲击，市场着陆区非常狭窄，股债易遭重定价</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>德意志银行警告，市场可能再次低估美联储的鹰派程度。该行指出，能源与食品价格上涨使通胀冲击日益表现为负面供给冲击，可能同时推高物价并削弱经济增长，而股票和信贷资产在此情形下容易遭受重定价冲击。报告强调，通胀高企限制了货币宽松空间，高收益率与高债务又限制了财政刺激，市场所处的着陆区非常狭窄，最大的风险是持续通胀迫使央行更激进紧缩，同时高收益率开始压制增长。</p><p>德银同时提示通胀与利率预期存在严重错位，若通胀读数继续超出预期，股票与债券两类资产的估值都可能面临压力。这一观点与部分机构的乐观判断形成对照。高盛在美债收益率逼近5%、美股回撤的背景下逆势看多，认为加息更像一次保险式操作而非紧缩周期重启。中泰期货分析师史家亮指出，美联储9月加息已被提前计价，若最终落地，利空影响相对有限；若最终不加息，反而可能形成反向利多。市场的核心分歧由此集中在两个问题上：加息是一次性的还是周期性的，以及长端利率上行究竟是通胀定价还是财政风险定价。</p>
+<p>来源：<a class="source-link" href="https://www.sfccn.com/2026/9-8/4NMDE0MDZfMjIzNDU4Ng.html" target="_blank">21世纪经济报道</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">27</div>
+<div class="card-main">
+<h3>亚德尼将美国衰退概率从20%上调至30%，但仍看标普500年底达8400点</h3>
+<div class="card-meta"><span class="src">FA-Mag</span><span class="t">北京时间 09-12 06:00</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">高油价与债券收益率飙升促使亚德尼上调衰退概率，席林则警告衰退概率达60%-70%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>曾在过去数年为美股多头的亚德尼研究公司总裁埃德·亚德尼，将美国衰退与熊市概率从20%上调至30%，理由是高油价与债券收益率飙升带来的压力。他在报告中表示担忧并不缺乏来源，但同时仍预期企业盈利强劲将推动标普500指数在年底升至8400点。这一调整反映出，即便最坚定的看多者也开始将地缘冲突与利率上行纳入风险评估，而并非转向全面看空。</p><p>其他机构的衰退判断差异更大。美国合众银行给出未来十二个月美国衰退概率25%，预计2026年第四季度同比增速2.1%、失业率均值4.3%。资深经济学家加里·席林警告未来一年美国衰退概率高达60%至70%，并可能出现高通胀与低增长并存的滞胀局面。穆迪分析首席经济学家马克·赞迪认为增长低于潜在水平且根基不稳，通胀接近4%可能迫使美联储冒着衰退风险加息。他设定的关键阈值是汽油价格达到每加仑5美元可能击溃消费支出，原油突破每桶125美元则预示衰退风险上升。</p>
+<p>来源：<a class="source-link" href="https://www.fa-mag.com/news/surging-oil-prices--bond-yields-push-yardeni-to-lift-risk-of-recession-88450.html" target="_blank">FA-Mag</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">28</div>
+<div class="card-main">
+<h3>OECD下调2026年全球增长预测至2.8%，全球通胀升至4.0%</h3>
+<div class="card-meta"><span class="src">News of Bahrain</span><span class="t">时间不详</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">经合组织因中东战争下调增长预测，警告冲突延续至2027年增速或降至2.1%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>经济合作与发展组织下调2026年全球增长预测至2.8%，低于此前的2.9%，主要原因是中东战争的溢出效应。该组织警告，若中东战事延续至2027年，全球增长可能进一步放缓至2.1%，多个国家面临衰退风险。同时，经合组织预计2026年全球通胀将从2025年的3.4%升至4.0%，能源价格是主要推升因素。报告强调，在高债务与高利率环境下各国财政空间受限，增长对人工智能相关投资与生产率提升的依赖度上升。</p><p>这一预测与近期公布的景气数据形成对照：8月全球综合采购经理人指数升至53.5，为三年新高，显示全球经济对伊朗战争与能源冲击的韧性超出预期。其他机构也给出类似的判断：法国巴黎银行预计美国2026年通胀3.4%并将超调至2028年，欧元区通胀3.0%并在年末年初见顶；美国合众银行预计2026年下半年核心个人消费支出价格指数均值3.3%，到2027年底回落至2.1%；瑞银与荷兰国际集团则指出美国联邦基金利率可能在2027年初达到4.25%至4.50%，高于市场当前的定价路径。</p>
+<p>来源：<a class="source-link" href="https://www.newsofbahrain.com/world/134693.html" target="_blank">News of Bahrain</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">29</div>
+<div class="card-main">
+<h3>浙商李超：淡化九月联储、着眼金融稳定，加息与否都可能推高美债收益率</h3>
+<div class="card-meta"><span class="src">搜狐财经</span><span class="t">北京时间 09-15 08:00</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">李超团队认为通胀数据既不证明二次通胀，也不满足沃什的降息门槛条件</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>浙商证券首席经济学家李超团队提出淡化九月联储、着眼金融稳定的观点。团队认为，美联储无论加息或不加息，都可能推高美债收益率：若加息，短端上行并推高长端；若不加息，市场可能解读为对通胀容忍度上升，进而抬升通胀预期与期限溢价。团队指出，现有通胀数据既未证明二次通胀已经形成，也不满足美联储主席沃什提出的通胀明确且足够快回落的条件，因此由美债引发的金融风险并非基准情形，但需要密切跟踪。</p><p>中信证券则指出，强劲的非农数据在一定程度上抵消了美联储理事沃勒的鸽派表态，市场正等待消费者物价指数给出方向。毕马威首席经济学家斯旺克表示，问题已不再是是否加息，而是需要加息多少才能遏制通胀，显示部分机构已将讨论重心从方向转向幅度。多家机构提示，本次会议的关键不仅在于利率决议本身，还在于点阵图对2027年路径的指引以及沃什新闻发布会的措辞。在资产配置层面，机构建议关注加息落地后美债收益率的走势，因为这将决定全球风险资产的估值锚。</p>
+<p>来源：<a class="source-link" href="https://www.sohu.com/a/1075693834_122014422" target="_blank">搜狐财经</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">30</div>
+<div class="card-main">
+<h3>穆迪赞迪警告美国衰退风险：增长低于潜在水平，通胀近4%或逼美联储加息</h3>
+<div class="card-meta"><span class="src">Times of India</span><span class="t">时间不详</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">赞迪称增长低于潜在水平且状态脆弱，AI商业化不及预期则衰退概率超60%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>穆迪分析首席经济学家马克·赞迪再次警告美国衰退风险，称增长低于潜在水平且状态脆弱，除非增长加快，否则失业率将上升，并在某一时点触发衰退。他指出美国通胀接近4%，是美联储目标的两倍，这可能迫使美联储即使冒着衰退风险也要加息。他设定的观察阈值包括汽油价格达到每加仑5美元可能击溃消费者支出，以及原油价格突破每桶125美元预示衰退风险上升，同时通胀预期上行是他最为担心的变量。</p><p>赞迪同时强调，美国经济增长越来越依赖人工智能数据中心等少数项目，若人工智能商业化不及预期，实质性衰退概率将飙升至60%以上；若科技巨头削减资本开支20%至25%，经济可能断崖式失速。他认为本轮通胀本质是供给侧成本重构，2028年前消费者物价指数难以稳定在2%，未来三年中枢约在2.8%至3.2%，政策制定者需要将通胀容忍度提高至2.5%至3.0%。这一判断与市场对2%目标锚定的预期形成明显冲突，也构成对长端美债定价的重要分歧点。</p>
+<p>来源：<a class="source-link" href="https://timesofindia.indiatimes.com/technology/tech-news/moodys-top-economist-mark-zandi-warns-of-us-recession-again-says-unless-growth-picks-up-unemployment-will-rise-and-at-some-point-/affcmtoi_articleshow/131565150.cms" target="_blank">Times of India</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-09-15 · 数据来源：公开来源汇总（WebSearch）<br>
+共 30 条资讯 · 全部时间已转换为北京时间（UTC+8） · 内容仅供信息参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>

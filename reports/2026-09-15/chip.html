@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-09-15</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-09-15 · 29 条资讯 · 4 个板块 · 北京时间更新</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（8）</a></li>
+<li><a href="#s-company">🏢 企业动态（7）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（7）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（7）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">8 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>苹果发布A20 Pro：首款台积电2nm手机芯片，GPU性能提升40%</h3>
+<div class="card-meta"><span class="src">TechTGBUS / 新浪财经</span><span class="t">北京时间 09-10 09:00</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">A20 Pro采用台积电N2制程，首发WMCM晶圆级封装与96位内存总线</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>苹果在9月9日的秋季发布会上正式推出A20 Pro，成为首款采用台积电2nm制程的手机芯片，将搭载于iPhone 18 Pro与Pro Max，以及苹果首款可折叠机型。从已公开的规格看，这颗芯片采用六核中央处理器，其中两颗性能核心较上一代提升约两成；图形部分为七核，性能最高提升四成；双神经网络引擎合计三十二核，低位宽浮点运算速度提升一倍，内存带宽提升一半。封装环节首次引入晶圆级多芯片封装方案，内存总线由六十四位加宽到九十六位，并搭配新一代低功耗内存。制程层面，台积电的二纳米工艺相较上一代三纳米增强版，在相同功耗下速度提升一成到一成半，在相同性能下功耗降低四分之一到三成，这构成了苹果此次性能与续航改善的主要来源。</p><p>A20 Pro的发布意味着二纳米工艺正式从风险试产阶段跨入大规模商用，台积电的二纳米产能也随之成为苹果、联发科与高通三方争夺的稀缺资源。苹果选择用晶圆级多芯片封装替代此前的扇出型封装，并同步加宽内存总线，本质是在制程红利逐渐趋缓之后，依靠封装结构与内存子系统继续换取整机性能，这也解释了为什么在内存持续涨价的周期里，苹果依然愿意承担更高的物料成本。后续最值得观察的变量有两个：一是二纳米良率的爬坡速度能否支撑首发机型的备货规模，二是台积电能否在年底之前把二纳米月产能推进到规划中的水平。对整个手机芯片行业而言，这颗芯片的量产节奏也会直接影响联发科与高通在二纳米节点上的窗口期。</p>
+<p>来源：<a class="source-link" href="https://tech.tgbus.com/news/244648" target="_blank">TechTGBUS</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>联发科天玑9600系列今日发布：Pro版首发台积电2nm，NPU算力约200TOPS</h3>
+<div class="card-meta"><span class="src">IT之家</span><span class="t">北京时间 09-15 14:30</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">天玑9600 Pro采用台积电N2P制程，2+3+3全大核架构，vivo X500或首发</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>联发科已于9月8日官宣，2026天玑旗舰新品发布会定档9月15日14:30，预计推出天玑9600与天玑9600 Pro双芯。标准版基于台积电3nm，定位天玑9500的增强迭代，主打均衡能效与成本控制；Pro版采用台积电第二代二纳米制程，是联发科旗下首款二纳米手机芯片。据发布会前流出的规格，Pro版采用两颗超大核加三颗大核再加三颗中核的全大核三丛集架构，超大核主频接近五吉赫兹，集成新一代图形处理器并支持硬件级光线追踪与游戏插帧，支持新一代低功耗内存与新一代闪存标准，神经网络处理单元算力约两百TOPS，跑分数据上单核约四千一百分、多核约一万三千分。</p><p>对联发科而言，Pro版是其首次在制程代际上与苹果A20系列站到同一起跑线，也是冲击高端旗舰定价权的关键一役。相较上一代三纳米增强版，台积电二纳米工艺在相同功耗下性能提升最高约两成，在相同速度下功耗降低约三成半，能效正是联发科此次主打的核心卖点，官方预热也把能效突破放在首位。竞争格局上，三星已率先出货二纳米的Exynos 2600，高通新一代骁龙旗舰同样瞄准二纳米，二纳米旗舰三强格局初步成形。爆料称vivo X500系列将首发搭载、OPPO Find X10系列有望首批跟进，最终规格与定价仍以发布会官方信息为准，发布会的实际落地情况将决定联发科能否真正站稳高端。</p>
+<p>来源：<a class="source-link" href="https://www.ithome.com/0/999/586.htm" target="_blank">IT之家</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>华为麒麟9050 Pro首发逻辑折叠：垂直堆叠绕开先进制程限制</h3>
+<div class="card-meta"><span class="src">九阳公社 / 金融时报</span><span class="t">北京时间 09-09 10:00</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">把数字、模拟、存储电路垂直堆叠，典型核心走线缩短约20%，关键路径最多缩短70%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>华为9月7日随Mate XT 2发布麒麟9050 Pro，这是首款商用量产的逻辑折叠技术芯片。该方案把数字、模拟与存储电路在垂直方向堆叠，用三维集成补充摩尔定律的时间缩微。据披露，其采用40纳米级键合工艺，实现1.5微米键合间距与每平方毫米约50万个垂直互连，典型核心走线缩短约20%，关键路径最多缩短70%。同源的麒麟2026数据显示晶体管密度提升55%，同性能下NPU功耗降66%、GPU降58%、CPU性能核降41%，NPU算力维持29TOPS，工作电压从0.85V降至0.55V，功耗密度下降73%。</p><p>逻辑折叠真正的意义在于把竞争维度从制程节点转向三维集成与键合工艺。在先进EUV设备受限的前提下，华为用垂直堆叠缩短互连距离、用降压压缩功耗，等同于绕开制程微缩这条被卡住的路。华为同期发布的韬定律V3论文进一步提出导线电容主导功耗的新认知，并指出键合设备正从封装厂前移到晶圆厂前道，利好混合键合、先进封测及配套材料环节。后续看点是该工艺能否扩散到更多产品线，以及良率与成本能否支撑规模出货。</p>
+<p>来源：<a class="source-link" href="https://www.jiuyangongshe.com/a/3fqqjv4s43c" target="_blank">九阳公社</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>台积电3nm下半年超越5nm成为最大营收节点，产值上看4000亿新台币</h3>
+<div class="card-meta"><span class="src">TrendForce</span><span class="t">北京时间 09-07 16:00</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">英伟达Rubin平台放量带动3nm需求，年底月产能目标提升至约18万片</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>TrendForce引述供应链消息称，台积电3nm将在2026年下半年超越5nm，成为其最大营收贡献节点，产值有望突破4000亿新台币。主要驱动力来自人工智能与高性能计算需求，英伟达Rubin的图形处理器与Vera的中央处理器均已排在N3P节点上，叠加AMD与博通的后续订单，共同推动3nm产能持续扩张。产能规划方面，台积电3nm月产能目标为2026年底达到约18万片，较2025年底的12万至13万片明显提升，部分扩产进度可能提前完成。供应链同时指出，先进封装产能的同步扩张是这批订单能否按期交付的关键配套条件。</p><p>3nm取代5nm成为营收支柱，标志着台积电先进制程的收入结构完成一次代际切换，也说明人工智能加速器已经成为拉动最先进节点的绝对主力。值得注意的是，在二纳米量产与A16风险试产同步推进的同时，3nm仍靠N3P承接大额订单，反映的是客户在良率成熟度、产能可得性与成本之间的权衡，先进节点并不总是客户的第一选择。风险侧是此前富邦报告称Rubin或因重新设计而延期、9月底至10月重新流片，英伟达已公开否认并称项目按计划推进，这一争议直接影响3nm产能的爬坡节奏与四季度的营收结构。</p>
+<p>来源：<a class="source-link" href="https://www.trendforce.com/news/2026/09/07/news-tsmcs-3nm-reportedly-to-overtake-5nm-as-top-revenue-node-in-2h26-output-value-could-top-nt400b/" target="_blank">TrendForce</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>英伟达Feynman GPU传跳过2nm直上台积电A16，首发背部供电</h3>
+<div class="card-meta"><span class="src">RCR Tech</span><span class="t">时间不详</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">Feynman或从N3P直接跨到A16，采用纳米片晶体管加Super Power Rail背部供电</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据RCR Tech引述供应链消息，英伟达计划在下一代Feynman图形处理器上直接采用台积电A16制程，跳过基础版二纳米世代，从三纳米增强版一步跨到A16，并在Rosa中央处理器上权衡采用同一节点。A16是台积电首个埃米级、也就是一点六纳米级工艺，结合全环绕栅极纳米片晶体管与背部供电技术。台积电称相较二纳米增强版，A16在相同功耗下速度提升约一成，在相同性能下功耗降低约两成。时间表方面，A16风险试产目标定在2026至2027年，Feynman量产预计在2028年前后，2029至2030年大范围铺开，量产初期产能将优先供应AI加速器。</p><p>若消息属实，这将是英伟达首次在旗舰图形处理器上放弃稳妥的节点节奏，直接押注背部供电这一结构性变革。背部供电把电源网络移到晶圆背面，能显著缓解正面布线密度与供电网络争抢面积的矛盾，对功耗密度极高的AI加速器意义重大，也是延续摩尔定律之外最被看好的工程路径之一。竞争层面，苹果与英伟达被视为A16的首批客户，AMD与博通则需要在二纳米及其增强版之间权衡，节点选择的分化可能重塑高端AI芯片的性能差距与成本结构。需要提醒的是，该消息来自供应链传闻而非官方确认，量产时间表与首发产品仍存在变数。</p>
+<p>来源：<a class="source-link" href="https://rcrtech.com/semiconductor-news/nvidias-feynman-tsmc-2nm/" target="_blank">RCR Tech</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>三星展示150mm玻璃芯封装基板：最高30层堆叠，翘曲改善69%</h3>
+<div class="card-meta"><span class="src">玻璃工业网 / TrendForce</span><span class="t">北京时间 09-11 12:00</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">三星在KPCA Show 2026展出面向AI芯片的玻璃基板与完整TGV制程</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>9月9日至11日在仁川松岛举行的KPCA Show 2026上，三星展示了面向AI芯片封装的玻璃芯封装基板，并公开完整TGV玻璃通孔制程。规格方面，基板尺寸可达约150mm乘150mm，最高支持约30层布线；玻璃芯厚度400至1000微米，TGV孔径约50至150微米，采用全铜填充金属化。制程包含激光改质加湿法蚀刻成孔、铜填孔、化学机械研磨以及激光与蚀刻制作的腔体加工四个环节。相较传统有机基板，同样传输特性下10层有机基板可由6层玻璃基板替代，层数减少约40%，常温翘曲改善约69%，高温改善最高达95个百分点，耗电降低42%，散热速度约2.7倍。</p><p>玻璃基板的核心价值在于解决大尺寸AI加速器芯片的翘曲与供电密度问题，被普遍视为有机基板之后的下一个封装底座。三星电机已在世宗工厂运行试验线，并与住友化学合资生产玻璃芯，有报道称已向台积电提交TGV模块样品做可靠性评估，但验证进度不及最初预期，量产目标在2027至2028年间说法不一。同场LG Innotek也首度公开用于AI加速器的大面积FC-BGA，并计划2028年量产玻璃基板。微裂纹与破损风险、TGV工艺难度仍是量产主要障碍，设备与材料环节或先受益。</p>
+<p>来源：<a class="source-link" href="http://www.chinaglassnet.com/info_main/2026911/52346.html" target="_blank">玻璃工业网</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>芯片新创Kepler亮相：FeRAM加3D堆叠突破AI内存瓶颈，2027年量产</h3>
+<div class="card-meta"><span class="src">IT之家</span><span class="t">北京时间 09-14 18:00</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">方案带宽接近SRAM、容量超过HBM，无需EUV，落在格芯新加坡28纳米产线</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>成立于2018年的芯片新创公司Kepler Computing在9月中旬公开其铁电存储器加三维堆叠的内存方案，号称带宽接近静态随机存储器、容量超过静态随机存储器与高带宽内存，且整个制造流程不依赖极紫外光刻。公司计划在2026年底提供首批样品，2027年进入量产阶段，制造环节落在格芯新加坡的28纳米产线上。该方案瞄准的是人工智能推理场景中静态随机存储器容量不足、高带宽内存成本与功耗偏高的痛点，试图以铁电材料的非易失特性叠加三维堆叠层数，同时换取容量与带宽两项指标，并把先进光刻这一被少数厂商垄断的环节排除在供应链之外。</p><p>这类方案的看点不在单点性能的高低，而在于它代表了一条用成熟制程加新材料换性能的技术路线。在先进制程与高带宽内存产能被少数厂商牢牢锁定的背景下，铁电存储器、磁阻存储器等新型存储若能在成熟节点上做出可用的产品，将给人工智能推理侧提供一条成本明显更低的替代路径，尤其适合对成本敏感的推理集群。挑战同样明显：铁电材料的耐久性与工艺一致性长期是量产难点，28纳米节点的密度天花板也限制了单芯片容量，此外软件生态与接口标准的适配需要时间。2026年底的样品节点，是检验其工程可行性的第一个真实考验。</p>
+<p>来源：<a class="source-link" href="https://m.ithome.com/html/1002036.htm" target="_blank">IT之家</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>英特尔与ASML：High-NA EUV累计加工超100万片晶圆，18A对应层性能达标</h3>
+<div class="card-meta"><span class="src">新浪财经 / Intel Newsroom</span><span class="t">北京时间 09-08 10:00</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">High-NA已在Panther Lake部分层量产，18A对应层性能等同或优于0.33NA平台</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>在蒙特雷举行的SPIE光掩模与极紫外光刻技术会议上，英特尔代工与ASML于9月7日至8日宣布，英特尔位于俄勒冈D1X工厂的High-NA EUV设备累计加工晶圆已超过100万片，覆盖早期设备认证、测试、研发到部分层量产，包括酷睿Ultra第三代Panther Lake处理器。英特尔表示套刻精度、产能与设备可用率均达到预期；采用High-NA曝光的18A节点产品在对应层上的性能等同或优于使用0.33数值孔径NXE平台曝光的同类层。目前客户可通过版图规划或英特尔的掩模拼接与PDK方案，在现有6英寸掩模格式下使用High-NA，双方还联合推进向6乘12英寸大掩模格式过渡。</p><p>100万片晶圆这个数字的意义在于，High-NA从实验室里的下一代机器变成了有量产数据支撑的工艺。此前市场普遍担忧High-NA视场只有一半、必须靠拼接，会拖累良率与产出，英特尔的18A对比数据正是对这些质疑的正面回应。ASML同时与英特尔代工、台积电、三星分别宣布High-NA合作，意在把它推成行业通用标准而非某一家客户的专属武器。大掩模格式的标准化是下一步关键，它决定High-NA能否在经济性上真正替代多重曝光方案。</p>
+<p>来源：<a class="source-link" href="https://finance.sina.com.cn/jjxw/2026-09-08/doc-inirayqu9215748.shtml" target="_blank">新浪财经</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">7 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>中芯国际半年报：Q2营收210亿元同比增31%，产能利用率升至93.7%</h3>
+<div class="card-meta"><span class="src">华创证券 / Reportify</span><span class="t">北京时间 09-03 16:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">Q2归母净利润同比增229%，期末月产能增至109.65万片（约当8英寸）</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>中芯国际发布2026年半年报。上半年营业收入386.35亿元，同比增长19.4%，毛利率23.2%，同比提升1.3个百分点，归母净利润44.67亿元，同比增长94.2%。第二季度单季营业收入210.18亿元，同比增长30.98%，环比增长19.30%；毛利率24.56%，同比提升3.86个百分点，环比提升3.08个百分点；归母净利润31.06亿元，同比大增228.88%，环比增长128.20%。Q2销售晶圆2369万片，环比增长14.4%，产能利用率从一季度的93.1%进一步提升至93.7%，期末月产能增至109.65万片，按约当8英寸计算。</p><p>产能满载叠加价格回升，是中芯国际本季利润弹性远超收入弹性的主因，也说明在地化需求正在真实转化为订单。需求结构上，上半年汽车晶圆收入占比同比提升5.3个百分点至15.4%，消费电子占比提升4.3个百分点至45.1%，高景气品类占比上升有助于平滑传统消费电子的波动。对国内产业链而言，中芯产能紧张意味着成熟制程的价格与稼动率短期内仍将维持高位，设计公司需要更早锁定产能。华创证券维持强推评级，给出162.01元与93.63港元的目标价。</p>
+<p>来源：<a class="source-link" href="https://reportify.cn/reports/1292946421888192512" target="_blank">Reportify</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>华虹宏力拟280亿元投建12英寸产线，大基金三期与国开行合计出资81亿</h3>
+<div class="card-meta"><span class="src">长江商报 / 同花顺</span><span class="t">北京时间 09-03 09:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">无锡华虹三期规划月产能约5.5万片，华虹方出资约143亿元持股51%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>华虹半导体及全资子公司上海华虹9月1日公告，拟参与对无锡华虹宏力三期半导体有限公司的增资，合计规模41.7亿美元、约280亿元人民币，用于建设12英寸特色工艺晶圆产线，规划月产能约5.5万片。其中华虹方合计出资约21.27亿美元、约143亿元人民币，持股51%取得控制权；无锡锡虹国芯二期出资8.34亿美元占20%，华芯鼎新出资6.255亿美元占15%，国开行新政策性金融工具出资5.838亿美元占14%。后两者背后的支持方分别为大基金三期和国开行，合计出资约12.1亿美元、约81亿元人民币。另有报道称项目总投资约69.5亿美元，其中41.7亿美元为股权、27.8亿美元为债务融资。</p><p>这笔交易的关键信号是国家队资金重新加大对成熟制程产能的直接投入。大基金三期与国开行同时进场，既解决资本开支压力，也把特色工艺产能建设纳入产业政策目标。对华虹而言，12英寸特色工艺产线补齐了其相对中芯国际在规模与制程上的差距，无锡基地的集群效应也有助于降低运营成本。需要关注的是，成熟制程扩产节奏若快于下游需求恢复，中期可能加剧价格竞争；同时该类项目从审批到量产通常需要两到三年，对2027年的供需格局影响更大。</p>
+<p>来源：<a class="source-link" href="http://stock.10jqka.com.cn/hks/20260903/c679544490.shtml" target="_blank">同花顺</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>长鑫存储Q2息税前利润率82%，反超三星、SK海力士与美光</h3>
+<div class="card-meta"><span class="src">日经亚洲 / 中国金融信息网</span><span class="t">北京时间 09-11 11:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">长鑫Q2营收约995亿元同比增977%，全球DRAM份额升至10%居第四</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据QUICK FactSet数据与日经亚洲报道，2026年第二季度长鑫存储息税前利润率达到82%，超过同期SK海力士的76%、三星电子半导体业务的70%、美光的80%与铠侠的74%，成为当期全球盈利能力最强的存储芯片厂商。公司Q2单季营收约995.1亿元，同比增长977.4%，环比增长95.9%，营业利润约817.11亿元；上半年营业收入1503.1亿元，同比增长873.64%，归母净利润776.05亿元，主营业务毛利率84.84%。Counterpoint数据显示其全球DRAM营收份额从2025年二季度的4%升至2026年二季度的10%，排名全球第四。</p><p>长鑫的高利润率并非来自技术领先，而是来自产品结构。三星、SK海力士、美光把先进产能优先投向HBM，通用DDR5供应趋紧，而长鑫产品线高度集中于DDR5与LPDDR，直接吃到涨价红利。2026年一季度DDR5合约价环比跳涨90%至95%，二季度再涨58%至63%，价格弹性远高于按年长协锁价的HBM。风险同样清晰：产品线单一导致抗周期能力弱，主工艺约16纳米级落后头部厂商1.5至2代，HBM落后2至3年；摩根士丹利判断行业将在2026年四季度进入周期后段，价格同比增速见顶。</p>
+<p>来源：<a class="source-link" href="https://www.cnfin.com/gs-lb/detail/20260911/4468706_1.html" target="_blank">中国金融信息网</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>机构：三星、SK海力士内存库存不足10天，警告明年或现史上最严重缺货</h3>
+<div class="card-meta"><span class="src">KB证券 / 商业时报中文网</span><span class="t">北京时间 09-09 10:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">两家合计掌握全球约70%内存市场，存储占AI基建投资比重明年或达57%</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>KB证券9月7日报告指出，三星电子与SK海力士在2026年三季度的可售内存芯片库存已降至不足10天供应量，并警告明年可能出现内存行业史上最严重的供应短缺。两家公司合计掌握全球约70%的内存市场。报告预计全球头部云厂商的AI投资明年将达到1.3万亿美元，同比增长60%；存储占AI基础设施投资的比重将从2025年的14%升至2026年的40%、2027年的57%。另有数据显示，HBM4在同等容量下消耗的晶圆面积约为传统DRAM的3倍，进一步挤压通用DRAM产能。</p><p>库存跌破10天是典型的卖方市场信号，意味着原厂已几乎没有缓冲空间，任何需求波动都会直接转化为价格跳涨。更深层的变化是存储从AI基建的受益方变成了制约瓶颈，按KB证券测算，明年AI基建支出中有超过一半要花在存储上，这会重塑整条产业链的利润分配。风险点在于，若三星与SK海力士的韩国超级集群、以及铠侠与闪迪的闪存扩产在需求见顶前投产，周期反转的幅度可能同样剧烈。短期看，三季度传统DRAM合约价预计环比上涨13%至18%。</p>
+<p>来源：<a class="source-link" href="https://businesstimescn.com/amp-articles/625526.html" target="_blank">商业时报中文网</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>七家国产算力芯片半年报出炉：合计收入214.6亿元，仅两家实现主营盈利</h3>
+<div class="card-meta"><span class="src">中国证券网</span><span class="t">北京时间 09-14 08:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">寒武纪营收60亿增108%，壁仞12.36亿增近20倍，行业存百万颗交付缺口</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>七家国产AI芯片公司2026年上半年合计收入约214.6亿元，接近上年同期的两倍。寒武纪营收59.96亿元，同比增长108.13%，归母净利润23.11亿元，同比增长122.61%，经营活动现金流净流入3.11亿元，是七家中唯一经营现金流为正、利润全部来自AI芯片主业的公司；海光信息营收90.99亿元，同比增长66.52%；壁仞科技营收12.36亿元，同比增长近20倍，毛利率升至42.7%，但研发费用率约65%，仍处数亿元亏损；摩尔线程营收17.36亿元增147.42%，沐曦13.24亿元增44.67%，天数智芯9.46亿元增191.6%，燧原11.20亿元增约279%。</p><p>这批财报最值得关注的是分化开始出现。行业共识是年营收达到30亿至50亿元、毛利率50%以上才能自我造血，目前只有海光信息与寒武纪跨过门槛，沐曦、天数账面扭亏但扣非仍亏。供给侧的缺口同样醒目：央视报道称2026年国产AI芯片需求约400万颗，实际交付仅300万颗，百万级缺口下部分智算中心在手订单已排到三年后。短期看，HBM供给与先进制程仍是各家共同的约束条件；中长期看，国产GPU正从稀缺性溢价进入拥挤赛道比较阶段，估值逻辑会从讲故事转向交付与盈利能力。</p>
+<p>来源：<a class="source-link" href="https://www.cnstock.com/commonDetail/784038" target="_blank">中国证券网</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>英特尔10月5日起CPU涨价逾10%，股价单日飙涨9%</h3>
+<div class="card-meta"><span class="src">智通财经 / Investing.com</span><span class="t">北京时间 09-09 09:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">这是英特尔2026年内第三次涨价，服务器CPU短缺赋予其定价权</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据DigiTimes引述供应链消息，英特尔计划自2026年10月5日起将CPU价格上调约10%，部分报道称涨幅超过10%，这是其自2025年底以来的第三次涨价，也是幅度最大的一次，此前分别在2026年一季度约10%和7月2日调价，单个SKU涨幅从数十美元到逾1000美元不等。受此消息影响，英特尔股价9月8日单日大涨约9.05%至接近104美元，在整体市场走弱中逆势领涨，并带动AMD、博通上涨、费城半导体指数涨超2%。投行Northland将英特尔评级上调至跑赢大盘，目标价120美元。</p><p>市场愿意为一次涨价给出近9%的涨幅，核心逻辑是服务器CPU持续短缺，让英特尔多年后重新拿到了定价权。公司CEO陈立武明确把毛利率置于市场份额之上，据报计划停产低毛利的Small Core工控与嵌入式芯片，并考虑5%至10%的人员精简。需要注意的是，涨价建立在供应链消息之上、英特尔并未官方确认，且2027年PC市场预计小幅萎缩至约2.5亿台，涨价可能把份额让给AMD、高通与联发科。美国政府在英特尔的9.9%持股据报账面浮盈约360亿美元，为这轮涨价叙事添了一层政治色彩。</p>
+<p>来源：<a class="source-link" href="https://cn.investing.com/news/stock-market-news/article-3556391" target="_blank">Investing.com</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>三星电机与高通据报合作开发有机桥封装技术，对标英特尔EMIB</h3>
+<div class="card-meta"><span class="src">界面新闻</span><span class="t">北京时间 09-14 15:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">双方研发已验证逾一年，目标线宽线距1.5至2微米，嵌入FC-BGA基板</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据界面新闻9月14日报道，三星电机正与高通合作开发面向AI芯片先进封装的有机桥技术，双方研发与验证已进行一年多。该方案计划把具有5至7层重分布线路的有机桥嵌入FC-BGA基板，目标线宽线距做到1.5至2微米，被业界视为英特尔EMIB硅桥方案在有机基板路线上的潜在替代。目前该项目尚处研发与验证阶段，量产时间表尚未公开。</p><p>有机桥的意义在于用基板工艺替代部分硅中介层功能，从而绕开硅桥的成本与产能约束。随着AI加速器尺寸不断变大、HBM堆叠数量增加，2.5D与3D封装中桥的需求快速上升，谁掌握桥的工艺标准，谁就在先进封装的价值链上占据更靠前的位置。对三星电机而言，绑定高通这样的头部客户有助于把FC-BGA从通用载板升级为AI封装的关键器件，也与三星集团在玻璃基板上的布局形成呼应。风险在于良率与热膨胀匹配，且英特尔EMIB已有多年量产积累，替代路径需要较长的客户验证周期。</p>
+<p>来源：<a class="source-link" href="https://www.jiemian.com/article/15094189.html" target="_blank">界面新闻</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">7 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>黄仁勋高盛科技大会：2030年AI基建年支出3至4万亿美元，明年营收增长70%</h3>
+<div class="card-meta"><span class="src">财联社</span><span class="t">北京时间 09-11 08:00</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">黄仁勋称70%增长是供应上限而非需求上限，中国数据中心收入已归零</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>当地时间9月10日，英伟达CEO黄仁勋出席高盛在旧金山举办的Communacopia加Technology大会，接受高盛半导体分析师Jim Schneider访谈。他重申到2030年全球AI基础设施年支出即潜在市场规模将达到3万亿至4万亿美元，驱动力来自两重变革叠加：从检索式计算转向生成式计算，以及摩尔定律的终结，后者迫使行业转向极端协同设计，如CoWoS多芯片融合与NVLink纵向扩展。他重申对明年营收同比增长70%的信心，并强调这是供应上限而非需求上限，若无供应限制增速会更高。上一财季英伟达营收962亿美元、同比增长106%，数据中心业务890亿美元。</p><p>黄仁勋这次讲话最大的信息量在于把英伟达的增长约束从需求端明确挪到了供给端。他描述的压力点集中在先进封装、DRAM与LPDDR内存、连接器、电压调节器与晶圆，以及下游的土地、电力与数据中心厂房，与之对应的是HBM的极端定价。他同时披露自有系统的单GPU售价随代际大幅攀升：Hopper约1.8万美元、Blackwell约2.5万美元、即将推出的Vera Rubin平台接近4万美元；1吉瓦数据中心售价约600亿美元，年租金收入约500亿美元。中国因素是隐忧，出口限制已使英伟达中国数据中心收入降至零，公司指引假设该状态持续。</p>
+<p>来源：<a class="source-link" href="https://api3.cls.cn/share/article/2481278" target="_blank">财联社</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>黄仁勋：供应链上下游均面临挑战，回应循环融资质疑</h3>
+<div class="card-meta"><span class="src">电子工程专辑</span><span class="t">北京时间 09-11 09:00</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">黄仁勋称投1美元收回100美元不算循环融资，已查看约千亿美元真实合同</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>在同一场高盛科技大会上，黄仁勋回应了市场对其循环融资的质疑，即英伟达投资客户、客户再回头购买其芯片。他调侃称，我们投入1美元，收回100美元，这算循环吗，如果是，那就多来点。他表示投资前会确认被投企业已签订真实创收合同，并称已查看过价值约1000亿美元的此类合同，我不承担任何风险，我需要确定的事情。背景是英伟达8月宣布与Apollo、贝莱德、黑石、Brookfield、高盛及KKR等合作成立运算融资平台，计划募集超5000亿美元第三方资金支持AI基础设施建设。</p><p>这场回应触及当前AI叙事最脆弱的一环：算力需求的最终买单方是谁。若下游云厂商与AI公司的收入无法覆盖资本开支，供应商融资就会演变为系统性风险。黄仁勋的反驳逻辑是需求侧已有真实合同背书，且他同时把英伟达类比为AI产业的台积电，提供产能底座，让初创公司建立在其之上。他透露过去六个月有4000亿美元风险投资流入AI原生公司，并宣布与澳大利亚合作推进2027年落地的2吉瓦数据中心项目，价值约800亿美元。是否有足够的终端需求消化这些产能，仍是2027年前最关键的观察点。</p>
+<p>来源：<a class="source-link" href="https://www.eet-china.com/mp/a524378.html" target="_blank">电子工程专辑</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>Piper Sandler：给予5只AI芯片股增持，算力市场2030年将达2.2万亿美元</h3>
+<div class="card-meta"><span class="src">Nasdaq</span><span class="t">北京时间 09-11 20:00</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">英伟达目标价300美元，H100时租从2美元涨至2.6美元，明年芯片基本售罄</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Piper Sandler分析师David O'Connor与Zackary Altman于9月10日至11日首次覆盖五只AI芯片股，全部给予增持评级，上行空间19%至37%：英伟达目标价300美元约37%、博通460美元约27%、Arm 320美元约26%、AMD 600美元约19%、Marvell 270美元约19%。其核心论据是AI极度缺乏算力：英伟达H100的每小时租赁价格从2025年12月的2.00美元上涨30%至2.60美元，AI芯片明年基本售罄，2028年的订单簿也已排满。该行预计算力市场到2030年将增长五倍至2.2万亿美元，其中约2万亿美元为AI芯片、2000亿美元为CPU。</p><p>这份报告的分量在于它把算力通胀从股价叙事变成了可观测的价格数据。H100租金逆势上涨，说明算力短缺已经传导到租赁市场，是比订单簿更硬的证据。Piper测算博通占推理ASIC市场约75%、需求为供给的两倍，AI收入到2028财年或增长400%至2300亿美元；并预计这些芯片厂商到2030年每股收益年均增长45%，当前14至22倍市盈率是有吸引力的入场点。英特尔与高通被评为中性，反映出该行认为AI红利的分配仍高度集中于算力核心环节。风险在于所有预测都建立在云厂商资本开支持续扩张的前提上。</p>
+<p>来源：<a class="source-link" href="https://www.nasdaq.com/articles/wall-street-analyst-sees-between-19-37-upside-these-5-ai-chip-stocks" target="_blank">Nasdaq</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>摩根士丹利：对欧洲芯片股转向精选，下调ASML目标价至1700欧元</h3>
+<div class="card-meta"><span class="src">Investing.com</span><span class="t">北京时间 09-09 18:00</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">大摩升级新思科技至增持，判断DRAM四季度或进入周期后段拐点</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>摩根士丹利9月9日发布报告，维持对半导体板块的偏乐观判断，理由仍是AI需求强劲与周期复苏面扩大，但明确表示随着DRAM在2026年四季度接近周期后段拐点，选股需要更挑剔。具体调整上，该行将新思科技升级至增持，把英飞凌调至持平，并下调多家目标价：ASML从1930欧元降至1700欧元、英飞凌从81欧元降至65欧元、BE Semiconductor从260欧元降至220欧元。报告列出的年末风险包括数据中心建设不及预期、宏观环境趋紧、市场对大模型的关注从增长转向回报，以及800伏汽车架构延迟。</p><p>大摩这次调整的实质是把行业贝塔换成个股阿尔法。在AI需求整体向好的判断下，它选择减持设备与功率器件中估值偏高、周期敏感度大的标的，转向EDA等与设计活动直接挂钩、受周期波动较小的环节，新思科技被升级正是这个逻辑。ASML目标价下调并不等于看空光刻需求，更多是反映对2027年客户资本开支节奏与High-NA渗透速度的审慎假设。对投资者而言，这份报告释放的信号是：半导体板块内部分化将加大，仅凭AI受益标签已不足以支撑估值，需要看具体环节在周期中的位置。</p>
+<p>来源：<a class="source-link" href="https://au.investing.com/news/stock-market-news/morgan-stanley-turns-more-selective-on-european-chip-stocks-4632794" target="_blank">Investing.com</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>高盛：本土化加AI需求驱动中国半导体，2030年资本开支达820亿美元</h3>
+<div class="card-meta"><span class="src">阿斯达克财经</span><span class="t">北京时间 09-14 10:00</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">中国AI芯片市场2025至2030年复合增速69%，2030年规模达6780亿美元</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>高盛在9月13日至14日发布的报告中判断，本土化替代与AI需求将共同驱动中国半导体行业发展，2026至2030年中国半导体资本开支年增速为10%至15%，到2030年达到约820亿美元。该行预计中国AI芯片市场以69%的复合年增长率扩张，2030年市场规模达6780亿美元。个股层面，高盛给予华虹半导体、壁仞科技、地平线机器人、天数智芯与英诺赛科买入评级。</p><p>高盛这份报告的核心判断是：中国半导体的增长动力已经从此前的国产替代补库存，切换为AI算力本土化，资本开支的持续性因此更强。69%的复合增速假设相当激进，它隐含的前提是国内AI芯片在良率、HBM配套与软件生态上能够持续改善，同时先进制程与存储供给不出现硬性断裂。买入名单覆盖代工、GPU、智驾芯片与功率器件，说明该行看好的是本土化受益面全面铺开而非单一环节。风险在于出口管制进一步收紧，以及国内厂商在HBM与先进制程上的产能约束可能限制出货而非需求。</p>
+<p>来源：<a class="source-link" href="https://www.aastocks.com/sc/stocks/analysis/stock-aafn-con/1347/HK6/NOW.1544292/hk-stock-news" target="_blank">阿斯达克财经</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div>
+<div class="card-main">
+<h3>Bernstein分析师：AI领袖呼吁放慢前沿或压制情绪，但算力远不够用</h3>
+<div class="card-meta"><span class="src">MarketScreener</span><span class="t">北京时间 09-14 21:00</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">Rasgon认为研发放缓不等于支出放缓，首选英伟达、博通与半导体设备商</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>9月14日，全球芯片股因AI领袖集体呼吁放缓前沿研发而大幅下挫：Marvell跌约8%，英特尔、美光、闪迪跌约6%，博通跌3.9%，英伟达跌2.5%；欧洲ASML跌约6%、ASM International跌10%、BE Semiconductor跌8.2%、英飞凌跌8.3%；亚洲软银跌11%、铠侠跌6.4%、SK海力士跌6.4%、三星跌4.1%、台积电跌1.2%，韩国KOSPI跌3.3%。导火索是Anthropic CEO Dario Amodei周末撰文呼吁行业避免逐底竞争，OpenAI的Sam Altman称出于安全考虑今年可能不会上市。</p><p>Bernstein分析师Stacy Rasgon对此的解读是，这类消息可能进一步压制市场情绪，但研发节奏放缓并不意味着资本开支放缓，当前算力连满足现有模型的需求都远远不够，推理与智能体需求还在上升。他的首选标的仍是英伟达、博通与半导体设备商。市场分歧在于，若前沿模型研发真的降速，最先受影响的可能是最先进制程与HBM的长期需求曲线，而非当期订单；也有观点认为降速反而让行业从建设转向变现现有基础设施。短期情绪冲击大于基本面变化，但估值处于高位时，这类叙事足以触发剧烈调整。</p>
+<p>来源：<a class="source-link" href="https://in.marketscreener.com/news/chip-stocks-tumble-after-ai-leaders-call-for-slowdown-in-development-update-ce785bdcdc8bf52d" target="_blank">MarketScreener</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">22</div>
+<div class="card-main">
+<h3>瑞银：芯片繁荣趋势未变，存储短缺将持续至明年</h3>
+<div class="card-meta"><span class="src">东方财富</span><span class="t">北京时间 09-09 16:00</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">瑞银预计三季度DDR价格环比涨22%，2026年全球半导体收入1.63万亿美元</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>瑞银9月9日报告指出，7月全球芯片销售额环比下降9.8%、存储销售额环比下降16.3%，但下滑主因是出货量减少而非价格走弱，DRAM与NAND均价分别上涨8.3%和9.8%。该行预计三季度DDR价格环比上涨22%、NAND合约价上涨20%，DRAM与NAND供应短缺将持续到2027年。瑞银预计2026年全球半导体收入达1.63万亿美元，增长周期至少延续到2028年；虽然收入增速可能在2026年年中见顶，但晶圆厂利用率、组装设备需求与存储盈利能力等领先指标仍支撑长周期判断。标的方面首选美光、英伟达以及三星、SK海力士、台积电。</p><p>瑞银这份报告解决了一个容易被误读的数据点：7月销售额下滑看似需求转弱，实为供给约束下的量减价升，这也解释了为什么同期存储股价仍在上涨。把DRAM与NAND的短缺判断延伸到2027年，等于给存储厂商的盈利可预测性背书，与野村强调长协覆盖50%至70%销量的逻辑一致。分歧点在于周期位置：摩根士丹利认为2026年四季度DRAM将进入周期后段，而瑞银与高盛认为市场系统性低估了AI驱动存储需求的持续时间。对产业链而言，短期更确定的信号是涨价延续，中长期真正决定胜负的是2027年新增产能的投放节奏。</p>
+<p>来源：<a class="source-link" href="https://finance.eastmoney.com/a/202609093868712413.html" target="_blank">东方财富</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">7 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">23</div>
+<div class="card-main">
+<h3>工信部十五五规划：2030年智能算力达9800 EFLOPS，加大国产算力芯片适配</h3>
+<div class="card-meta"><span class="src">香港文汇报 / 央广网</span><span class="t">北京时间 09-08 10:00</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">五年累计投资3.8万亿元，首次以正式条款支持国产算力芯片规模化适配</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>工业和信息化部9月7日印发《信息通信行业发展十五五规划》，明确到2030年智能算力规模达到9800 EFLOPS，较2025年的1590 EFLOPS提升五倍以上。规划提出加快全国一体化算力网建设，构建枢纽、区域、边缘多层次算力设施体系，有序部署万卡、十万卡及以上智算集群，并按场景需求部署推理算力设施。据国际电子商情报道，这是首次在五年规划层面以正式条款明确支持国产算力芯片在大型智算集群中的规模化适配。规划共列出13项主要指标与26项重点任务，信息基础设施五年累计投资3.8万亿元，行业收入达4.1万亿元，首次明确适时启动6G商用，到2030年新建大型算力设施电能利用效率需降至1.2以下。</p><p>加大力度适配国产算力芯片被写进五年规划，是这次文件最具产业含义的一句话。它把国产芯片从备选方案提升为算力基础设施建设的默认路径之一，为寒武纪、海光、昇腾等厂商提供了可预期的需求底座。9800 EFLOPS的目标叠加十万卡级集群部署，将同步拉动HBM等先进存储、800G与1.6T光模块、硅光与CPO、液冷与电力配套等环节。需要冷静看待的是，工信部专家委员会委员盘和林指出国产算力服务器与全球领先产品仍有性能差距，十五五期间可能供不应求，适度超前建设需要分层推进以避免重复投资。2026年8月，中国首个全国产10万卡AI超集群已在国家超算互联网郑州核心节点投运。</p>
+<p>来源：<a class="source-link" href="https://www.wenweipo.com/a/202609/08/AP6a9f22bae4b01d54a2823c96.html" target="_blank">香港文汇报</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">24</div>
+<div class="card-main">
+<h3>美国商务部长Lutnick确认芯片关税计划：本土生产免关税，拟采用关税减免激励</h3>
+<div class="card-meta"><span class="src">KBS</span><span class="t">北京时间 09-03 12:00</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">卢特尼克称在美生产芯片的企业无需缴税，并援引1.2万亿美元投资承诺</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国商务部长卢特尼克9月3日确认了芯片关税计划。他表示，在美国本土生产芯片的企业无需缴纳关税，其他企业则应该准备好付钱。美方计划采用一套关税减免激励模型，借鉴此前针对制药业的做法，把关税减免幅度与实际在美投资规模挂钩。卢特尼克援引了约1.2万亿美元的美国芯片投资承诺，涉及台积电、美光等企业，并表示台湾方面预计还将宣布额外300亿美元投资。一名韩国官员称，美国尚未确定具体的芯片关税税率。</p><p>把关税与本土投资额度挂钩，意味着美国半导体政策正从单纯的补贴工具转向关税加激励的组合拳。对非美厂商而言，出口美国的成本结构将直接取决于其在美建厂进度，这会加速台积电、三星、SK海力士等把产能向美国迁移的步伐。此前依据232条款，美国已于2026年1月15日起对先进计算覆盖芯片征收25%从价关税，并对美国数据中心、研发与初创企业等给予广泛豁免，更广泛的第二阶段关税仍待谈判。对下游而言，关税若落地将进一步推高AI服务器与个人电脑的成本，与内存涨价形成叠加效应。</p>
+<p>来源：<a class="source-link" href="https://rki.kbs.co.kr/service/news_view.htm?lang=v&amp;Seq_Code=71747" target="_blank">KBS</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">25</div>
+<div class="card-main">
+<h3>CHIPS法案方向或调整：美方重新评估存储支持，或以补贴加关税诱导韩企赴美建厂</h3>
+<div class="card-meta"><span class="src">韩国Business Post（引彭博）</span><span class="t">北京时间 09-03 09:00</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">内存被视为AI关键瓶颈，美官员认为CHIPS法案此前偏重先进逻辑代工</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据彭博报道，美国正在重新考虑CHIPS法案的方向。该法案2022年签署，为CHIPS for America计划提供约500亿美元，其中约390亿美元为制造业激励。法案最初的导向是先进逻辑与代工，三星、台积电、英特尔是主要受益方，存储则在2023年行业下行后被相对边缘化。随着AI驱动的DRAM、NAND与HBM短缺成为关键瓶颈，美国官员正重新评估存储是否获得了足够支持，可能通过补贴加关税压力的方式，引导三星与SK海力士在美国建设存储晶圆厂。已落地项目包括美光公布了到2035年2500亿美元的美国投资计划并获62亿美元补贴，SK海力士获得4.58亿美元用于印第安纳州封装厂。</p><p>这一政策转向的逻辑是：如果存储确实是当前AI扩张的最大瓶颈，那么只补贴逻辑代工就无法解决算力供给问题。把存储纳入补贴与关税的组合框架，等于用政策工具重塑全球内存产能的地理分布。难点在于经济性，存储是高度周期性的品类，在美国建厂的成本显著高于韩国，若没有长期稳定的补贴或价格保障，企业投资意愿有限。另一个变量是CHIPS法案审核趋严，有分析指出美方正在重新审查既有奖项的条款，约390亿美元补贴面临新的条件约束，同时新奖项仍在发放，后续看点是韩国企业能否拿到与美光对等的待遇。</p>
+<p>来源：<a class="source-link" href="https://char.businesspost.co.kr/BP?command=mobile_view&amp;num=446279" target="_blank">Business Post</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">26</div>
+<div class="card-main">
+<h3>四家美国高科技公司向韩国投资20亿美元，深化半导体材料与设备合作</h3>
+<div class="card-meta"><span class="src">Invest KOREA</span><span class="t">北京时间 09-03 15:00</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">空气化工、亚舍立、康宁与Pacifico Energy分别布局特气、离子注入与材料</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>9月3日，四家美国高科技公司宣布向韩国合计投资20亿美元、约2.8万亿韩元，覆盖半导体、先进材料与清洁能源领域。其中空气化工将在平泽建设超高纯度与稀有气体基础设施，亚舍立科技将扩大平泽的离子注入机生产，康宁将升级牙山的先进材料设施，Pacifico Energy将开发3.2吉瓦海上风电项目。此举被视为韩美在半导体材料与设备领域合作深化的标志。</p><p>这笔投资的指向性很强：特气、离子注入与先进材料都是存储与先进制程生产的关键输入，而平泽正是三星与SK海力士的核心基地。在美国推动芯片产能回流本土的同时，美国供应商反而加大对韩国的投入，说明韩国的存储与先进制程集群在未来数年仍是全球供给的核心，本地化配套能降低供应链风险。对中国产业链而言，特气与材料环节的竞争将进一步加剧，国内厂商在国产替代窗口期需要加速客户验证。风电项目的加入也反映出AI数据中心带来的电力需求正成为半导体投资选址的重要考量。</p>
+<p>来源：<a class="source-link" href="https://www.investkorea.org/ik-en/bbs/i-5074/detail.do?ntt_sn=491487" target="_blank">Invest KOREA</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">27</div>
+<div class="card-main">
+<h3>三星将在越南芯片工厂新增1612台设备，总投资40.8亿美元</h3>
+<div class="card-meta"><span class="src">财联社</span><span class="t">北京时间 09-03 18:00</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">越南太原省后端封测厂大规模扩产，设备采购以韩国本土供应商为主</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据财联社9月3日报道，三星电子计划为其位于越南太原省的半导体后端工序工厂安装1612台设备，根据其环境许可申报文件，该工厂的登记总投资额为40.8亿美元。新增设备以韩国本土供应商为主，覆盖封装与测试环节。这是三星在越南封测基地的又一次大规模扩产。</p><p>在后端封测环节持续加码越南，反映的是三星在中美博弈下对产能地理分布的重新安排：把劳动密集、对关税敏感的后道工序移出中国与韩国本土，同时保留前道在韩国的核心地位。对产业链而言，封测产能向越南集中的趋势会削弱部分地区现有的封测订单基础，也会带动相关设备与材料供应商跟随设厂。需要注意的是，后端扩产往往对应前道产能的同步扩张，三星此举可视为对2027年存储与HBM需求继续增长的提前布局。当前全球先进封装产能紧张，信驊已与日月光签订2027至2028年两年期产能长约，是疫情后首见的设计公司锁定产能案例。</p>
+<p>来源：<a class="source-link" href="https://www.chinastarmarket.cn/detail/2472973" target="_blank">财联社</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">28</div>
+<div class="card-main">
+<h3>中国推出AI4Chip专项政策：2026至2028年把AI导入芯片设计制造全环节</h3>
+<div class="card-meta"><span class="src">IEK产业情报网</span><span class="t">北京时间 09-10 11:00</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">在最先进设备受限背景下，用AI提升既有设备与制程效率成为突围方向</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据IEK产业情报网9月10日报道，中国推出AI4Chip专项政策，规划在2026年至2028年间把人工智能导入芯片设计、制造、封装、设备与材料等各个环节，目标是培育具有国际影响力的半导体企业与标杆应用。与此同时，美国对华半导体管制持续收紧，范围已从先进GPU、EUV设备延伸到EDA软件与高阶制程技术。2025年5月美国商务部工业与安全局曾要求新思、楷登、西门子三家EDA厂商停止对华供应，同年7月恢复，三家合计占中国EDA市场80%以上份额。</p><p>AI4Chip的政策逻辑很清晰：美国管制限制的是中国获取工具的速度，而AI可能提高既有工具的使用效率。在最先进光刻机买不到的约束下，用AI优化工艺配方、良率预测、设备维护与设计收敛，成为性价比更高的一条路。这也与华为韬定律从功耗结构入手优化设计的思路相呼应，本质都是在制程红利受限时向工程效率要性能。政策成效的关键在于数据，AI模型需要海量产线数据支撑，而国内代工厂与设备商的数据积累与开放程度参差不齐。若2028年前能在成熟制程上做出可量化收益，该模式有望向外推广。</p>
+<p>来源：<a class="source-link" href="https://ieknet.iek.org.tw/ieknews/news_open.aspx?actiontype=ieknews&amp;indu_idno=1&amp;nsl_id=e87a5b97b5aa4211918b5053a70fdefc" target="_blank">IEK产业情报网</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">29</div>
+<div class="card-main">
+<h3>台积电资本开支上调至600至640亿美元，20座厂在建，研发延伸至A12</h3>
+<div class="card-meta"><span class="src">OFweek</span><span class="t">北京时间 09-14 10:00</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">先进制程占资本开支七至八成，同步与ASML推进12英寸大掩模格式</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据OFweek报道，台积电将资本开支指引上调至600亿至640亿美元区间，其中70%至80%投向先进制程，目前全球共有约20座晶圆厂在建。技术研发方面，台积电已启动A14、A13与A12等后续节点的研发，并与ASML合作推进更大尺寸的12英寸掩模，即6乘12英寸大掩模格式，以扩大High-NA EUV的有效曝光面积。3纳米产能持续满载，2纳米按计划量产，A16风险试产推进中。</p><p>资本开支上调与研发前置到A12，说明台积电对AI驱动的先进制程需求给出了长周期判断，而非按传统四年周期规划。推进12英寸大掩模是与英特尔代工路线直接呼应的动作，High-NA EUV的视场只有0.33数值孔径的一半，掩模尺寸放大是解决拼接开销的根本方案，谁先建立标准谁就掌握下一代光刻的经济性话语权。风险层面，600亿美元级别的年度资本开支需要对应足够的高价订单来摊销折旧，一旦AI资本开支增速放缓，先进制程的稼动率与定价都会承压，此外海外建厂的成本结构也会持续稀释毛利率。</p>
+<p>来源：<a class="source-link" href="https://ee.ofweek.com/2026-09/ART-8420-2816-30702833.html" target="_blank">OFweek</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-09-15 · 数据来源：公开来源汇总（WebSearch）<br>
+共 29 条资讯 · 全部时间已转换为北京时间（UTC+8） · 内容仅供信息参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>
