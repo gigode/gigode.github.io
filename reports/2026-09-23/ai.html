@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-09-23</title>
+<style>
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --accent:#60a5fa; --border:#334155; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:linear-gradient(145deg,#0f172a,#172554,#1e3a5f); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; min-height:100vh; padding-bottom:60px; }
+.container { max-width:900px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; backdrop-filter:blur(4px); transition:border-color .25s; }
+.card:hover { border-color:#475569; }
+.card.active { border-color:#60a5fa66; }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-number { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-content { flex:1; min-width:0; }
+.card-content h3 { font-size:0.95rem; font-weight:600; line-height:1.45; color:#f1f5f9; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.active .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.active .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#cbd5e1; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:#93c5fd; text-decoration:none; padding:4px 12px; border-radius:6px; background:#2563eb22; border:1px solid #60a5fa44; }
+.card-detail .source-link:hover { background:#2563eb44; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.tag-verified { display:inline-block; padding:2px 8px; border-radius:4px; background:#dcfce7; color:#166534; font-size:0.7rem; margin-left:6px; font-weight:700; vertical-align:middle; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🤖 AI 行业日报</h1>
+<div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div>
+<div class="badge">2026-09-23 · 18 条资讯 · 5 个板块 · 北京时间更新</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-models">🧠 模型发布/更新（3）</a></li>
+<li><a href="#s-products">🚀 产品发布/更新（6）</a></li>
+<li><a href="#s-industry">🏭 行业动态（3）</a></li>
+<li><a href="#s-paper">📄 论文研究（1）</a></li>
+<li><a href="#s-tip">💡 技巧与观点（5）</a></li>
+</ul>
+</nav>
+
+<!-- 模型发布/更新 -->
+<div class="section" id="s-models">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🧠</span><h2 style="color:#1d4ed8;">模型发布/更新</h2><span class="count">3 条</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<div class="card-number">1</div>
+<div class="card-content">
+<h3>OpenAI 发布 GPT-6 Sol 与 Luna，API 定价下调<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">OpenAI 官方</span><span class="t">北京时间 9月23日 02:00</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">两款模型继承 GPT-6 Astra 的训练方法；官方称 API 价格比 GPT-5.6 促销价低 50%。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 公告给出的每百万 token 定价是：Sol 输入 2 美元、输出 10 美元，Luna 输入 0.10 美元、输出 0.50 美元。公告将更高效的缓存和推理列为降本原因。这里的 50% 比较基准是 GPT-5.6 的促销价。</p>
+<p>来源：<a class="source-link" href="https://openai.com/index/introducing-gpt-6-sol-and-luna" target="_blank">OpenAI 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">2</div>
+<div class="card-content">
+<h3>Anthropic 发布 Claude Opus 5.5<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Anthropic 官方</span><span class="t">北京时间 9月23日 00:53</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Claude 5.5 系列首款模型发布；官方称多数任务达到 Fable 5.1 水平，典型负载成本较 Opus 5 低 40%。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 将 Opus 5.5 定位为 Claude 5.5 系列的首个模型。官方对性能与成本的表述分别是「多数工作达到 Fable 5.1 水平」与「典型负载成本比 Opus 5 低 40%」；后者是典型负载比较，不代表所有调用情形。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/claude-opus-5-5" target="_blank">Anthropic 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">3</div>
+<div class="card-content">
+<h3>小米发布开放权重的 MiMo-V2.6 Pro 与 Flash<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">小米 MiMo 官方账号</span><span class="t">北京时间 9月22日 04:51</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">小米宣布 MiMo-V2.6 系列的 Pro 与 Flash 两款全模态模型，并开放权重。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>本期源条目确认了 MiMo-V2.6 Pro、Flash 两款模型发布及开放权重。具体评测名次与性能差距在不同转述中口径不一，因此本卡只记录官方公告能够直接支持的发布信息。</p>
+<p>来源：<a class="source-link" href="https://x.com/XiaomiMiMo/status/2102138559952290106" target="_blank">小米 MiMo 公告</a></p>
+</div>
+</div>
+</div>
+<!-- 产品发布/更新 -->
+<div class="section" id="s-products">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🚀</span><h2 style="color:#15803d;">产品发布/更新</h2><span class="count">6 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-number">4</div>
+<div class="card-content">
+<h3>OpenAI 为 GPT-6 改进提示词缓存与诊断工具<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">OpenAI 官方</span><span class="t">北京时间 9月23日 05:00</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">官方称，对 30 分钟窗口内复用的合格共享前缀，缓存输入 token 最高可享 90% 折扣。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>这项更新侧重缓存命中率与可观测性。90% 是满足条件的共享前缀在 30 分钟复用窗口内的最高折扣，不应解读为 GPT-6 所有输入 token 的统一价格。</p>
+<p>来源：<a class="source-link" href="https://openai.com/index/better-prompt-caching-for-gpt-6" target="_blank">OpenAI 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">5</div>
+<div class="card-content">
+<h3>Claude Code v2.1.280 将 Opus 5.5 设为默认 Opus 模型<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Claude Code GitHub 发布页</span><span class="t">北京时间 9月23日 00:38</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">新版本支持 Claude Opus 5.5 与 100 万 token 上下文，并调整 Pro 与 Team Standard 的默认模型。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>GitHub 发布记录称，v2.1.280 加入 claude-opus-5-5，作为默认 Opus 模型；同时把 Pro 和 Team Standard 计划的默认模型由 Sonnet 改为 Opus。上下文窗口为 100 万 token。</p>
+<p>来源：<a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.280" target="_blank">GitHub 发布记录</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">6</div>
+<div class="card-content">
+<h3>LlamaIndex 更新 LiteParse，称 PDF 文本提取提速 20–25%<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">LlamaIndex 博客</span><span class="t">北京时间 9月22日 22:38</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">LiteParse 2.14.6 对自维护的 PDFium fork 做内存分配优化。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>LlamaIndex 公布的版本号为 2.14.6。其测试中，文本提取耗时下降约 20–25%，平均为每页 2.76 毫秒；这是官方给出的测试结果，实际文档和硬件环境可能不同。</p>
+<p>来源：<a class="source-link" href="https://www.llamaindex.ai/blog/liteparse-updates-september-2026" target="_blank">LlamaIndex 博客</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">7</div>
+<div class="card-content">
+<h3>Kimi 发布浏览器扩展，可录制重复操作为 skill<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Kimi 官方账号</span><span class="t">北京时间 9月22日 19:00</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">新扩展由 Kimi WebBridge 更名而来，提供侧边栏对话、网页导航和表单填写。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Kimi 的源条目列出了网页导航、填写表单和任务执行等功能；用户可录制一次操作步骤并保存为 skill，供后续重复执行。产品在 Kimi 网站和 Chrome Web Store 上线。</p>
+<p>来源：<a class="source-link" href="https://x.com/Kimi_Moonshot/status/2102352211988865456" target="_blank">Kimi 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">8</div>
+<div class="card-content">
+<h3>OpenRouter 上线 Batch API，批量推理通常享半价<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">OpenRouter 博客</span><span class="t">北京时间 9月22日 08:00</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">异步批量请求在 24 小时窗口内完成，目前支持 70 多个模型。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenRouter 公告称，Batch API 的供应商异步处理窗口为 24 小时，价格通常是正常每 token 定价的 50% 或更低。其支持范围已超过 70 个模型；具体价格和完成时间仍应以模型页面为准。</p>
+<p>来源：<a class="source-link" href="https://openrouter.ai/blog/announcements/batch-api" target="_blank">OpenRouter 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">9</div>
+<div class="card-content">
+<h3>Hugging Face transformers 支持直接加载 GGUF 量化模型<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Hugging Face 博客</span><span class="t">北京时间 9月22日 08:00</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">开发者可用 from_pretrained 的 gguf_file 参数加载 Hub 上的 GGUF checkpoint。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Hugging Face 的更新让 transformers 直接使用 GGUF 量化权重，并复用 ggml 的 Metal 内核。源条目只给出这一能力和加载方式，未给出适用于所有设备或模型的统一性能数字。</p>
+<p>来源：<a class="source-link" href="https://huggingface.co/blog/transformers-llama-cpp-quants" target="_blank">Hugging Face 博客</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏭</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-number">10</div>
+<div class="card-content">
+<h3>Meta Muse 被披露账户 token 泄露漏洞，官方已热修复<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Ars Technica</span><span class="t">北京时间 9月23日 03:29</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">研究者称本地应用或终端命令可能获取 Muse 认证 token；报道说 Meta 在披露后约 12 小时发布补丁。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Ars Technica 报道了 Meta Muse 的 0-day 问题：本地程序若取得认证 token，可能获得智能体控制权限。发现者 Patrick Wardle 展示了概念验证，Meta 随后发布热修复。漏洞影响范围与用户处置方式以 Meta 后续公告为准。</p>
+<p>来源：<a class="source-link" href="https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day" target="_blank">Ars Technica 报道</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">11</div>
+<div class="card-content">
+<h3>Bloomberg：五角大楼审查提到过度依赖 Maven AI 与误击学校<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Bloomberg 调查报道</span><span class="t">北京时间 9月23日 03:03</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">报道援引内部调查，将过时情报和部分人员对 Palantir Maven 系统的过度依赖列为因素。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Bloomberg 援引五角大楼内部调查称，伊朗米纳布一所学校遭误击事件涉及过时的情报、七年未更新的卫星图像，以及美军部分人员对 Maven Smart System 的过度依赖。该结论来自媒体对内部调查的报道，并非本报告独立核实。</p>
+<p>来源：<a class="source-link" href="https://www.bloomberg.com/graphics/2026-iran-school-attack" target="_blank">Bloomberg 报道</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">12</div>
+<div class="card-content">
+<h3>Arena 将 Claude Opus 5.5 加入智能体与对战评测<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Arena 官方账号</span><span class="t">北京时间 9月23日 01:48</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Claude Opus 5.5 进入 Agent Arena 与 Battle Mode，用户可通过任务和投票参与评测。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Arena 宣布开放 Opus 5.5 的 Agent Arena 与 Battle Mode 测试。此条记录的是评测入口上线；最终排名和分数需等待平台公布，不据此推断模型已取得特定名次。</p>
+<p>来源：<a class="source-link" href="https://x.com/arena/status/2102454952576868638" target="_blank">Arena 公告</a></p>
+</div>
+</div>
+</div>
+<!-- 论文研究 -->
+<div class="section" id="s-paper">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">📄</span><h2 style="color:#6d28d9;">论文研究</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-number">13</div>
+<div class="card-content">
+<h3>Epoch AI：同等 AI 能力的获取成本每季度约降 47%<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Epoch AI 研究报告</span><span class="t">北京时间 9月22日 08:00</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">研究估计过去三年该成本平均每季度下降约 47%，并披露基准针对性训练和数据不完整等局限。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Epoch AI 汇总数学、硬科学和技能游戏等五个基准，估算达到同等性能的成本过去三年平均每季度下降约 47%。报告也区分了刚达到前沿性能的成本变化，并提示基准针对性训练、数据不完整会影响估计。该数字是研究估计，不是所有 AI 任务的通用降本率。</p>
+<p>来源：<a class="source-link" href="https://epoch.ai/publications/the-plunging-price-of-thought" target="_blank">Epoch AI 报告</a></p>
+</div>
+</div>
+</div>
+<!-- 技巧与观点 -->
+<div class="section" id="s-tip">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">💡</span><h2 style="color:#0e7490;">技巧与观点</h2><span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-number">14</div>
+<div class="card-content">
+<h3>Artificial Analysis：GPT-6 Sol/Luna 降本明显，评测有升有降<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Artificial Analysis</span><span class="t">北京时间 9月23日 03:41</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">该机构称两款模型价格约为 GPT-5.6 对应型号的一半，但评测结果并非全面提升。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Artificial Analysis 的评测将 Sol 标价列为每百万输入/输出 token 2/10 美元，Luna 为 0.10/0.50 美元。其结论强调成本效率，同时提醒不同评测上的变化方向不一致。性能选择仍需对应实际任务。</p>
+<p>来源：<a class="source-link" href="https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier" target="_blank">Artificial Analysis 评测</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">15</div>
+<div class="card-content">
+<h3>Artificial Analysis：Claude Opus 5.5 智能指数得分 58<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Artificial Analysis</span><span class="t">北京时间 9月23日 01:41</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">该机构称 58 分是其测得的最高智能指数分数。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Artificial Analysis 发布了 Opus 5.5 的评测，Intelligence Index 得分为 58；其摘要同时列出 Terminal-Bench 4.0 的 59.6% 成绩，与 GPT-6 Astra 持平。这些分数属于该机构的评测口径，不能直接代替具体使用场景的测试。</p>
+<p>来源：<a class="source-link" href="https://artificialanalysis.ai/articles/claude-opus-5-5" target="_blank">Artificial Analysis 评测</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">16</div>
+<div class="card-content">
+<h3>OpenRouter 对比 Jev 1.13 与 Opus 5 的客服分类表现<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">OpenRouter 研究博客</span><span class="t">北京时间 9月22日 08:00</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Banking77 样本中，Jev 准确率较低，但延迟和每千次请求成本更低。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenRouter 在 Banking77 的 3,080 条语料上测试：Jev 1.13 准确率 81.0%，Claude Opus 5 为 84.4%；中位延迟分别为 175 与 2,266 毫秒。该结果针对意图分类这一任务，不宜外推为通用模型能力排名。</p>
+<p>来源：<a class="source-link" href="https://openrouter.ai/blog/insights/jev-vs-claude-opus-5-classification" target="_blank">OpenRouter 实测</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">17</div>
+<div class="card-content">
+<h3>OpenRouter 解析 Nemotron 3.5 Lightning 的智能体执行定位<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">OpenRouter 研究博客</span><span class="t">北京时间 9月22日 08:00</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">文章把该模型定位于工具调用、编码等高频、边界清晰的执行步骤。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenRouter 介绍 Nemotron 3.5 Lightning 为 30B 总参数、约 3B 激活参数的开放权重混合专家模型，并将其与负责复杂推理的 Nemotron 3 Ultra 区分。文章讨论的是模型在多模型智能体流程中的任务分工。</p>
+<p>来源：<a class="source-link" href="https://openrouter.ai/blog/insights/nemotron-3-5-lightning" target="_blank">OpenRouter 分析</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-number">18</div>
+<div class="card-content">
+<h3>Artificial Analysis：Grok 4.7 智能指数为 46<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Artificial Analysis 官方账号</span><span class="t">北京时间 9月22日 00:38</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">该机构给 Grok 4.7 的编码智能体指数打出 56 分。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Artificial Analysis 的评测条目列出 Grok 4.7 的 Intelligence Index 为 46、Coding Agent Index 为 56。分数来自其测试体系；本卡只记录两个指标，不加入未见于源摘要的排名或历史比较。</p>
+<p>来源：<a class="source-link" href="https://x.com/ArtificialAnlys/status/2102074898327932987" target="_blank">Artificial Analysis 公告</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🤖 AI 行业日报 · 2026-09-23 · 数据来源：AI HOT 精选条目 API（aihot.virxact.com）；每条附原始来源链接<br>
+共 18 条资讯 · 全部时间已转换为北京时间（UTC+8） · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 本期取自 AI HOT 精选 API，覆盖北京时间 9月21日至23日。相同事件的多次转述只保留一条；每条以原始标题、摘要和链接为事实边界。</span>
+</div>
+
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.card').forEach(function(card) {
+    var top = card.querySelector('.card-top');
+    if (top) top.addEventListener('click', function() {
+      card.classList.toggle('active');
+    });
+  });
+  document.querySelectorAll('.toc-list a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

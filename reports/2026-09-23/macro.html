@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-09-23</title>
+<style>
+:root { --bg:#0a0a0a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --accent:#f59e0b; --border:#334155; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#1a0f0a,#3d2517,#b45309); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; backdrop-filter:blur(4px); transition:border-color .25s; }
+.card.active { border-color:#f59e0b66; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-number { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:#334155; color:#94a3b8; margin-top:2px; }
+.card-content { flex:1; min-width:0; }
+.card-content h3 { font-size:0.95rem; font-weight:600; line-height:1.45; color:#f1f5f9; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.active .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.active .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#cbd5e1; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { display:inline-block; padding:2px 8px; border-radius:4px; background:#16a34a33; color:#4ade80; font-size:0.7rem; margin-left:6px; font-weight:700; }
+.empty-state { color:var(--muted); border:1px solid var(--border); border-radius:10px; padding:14px 16px; font-size:.85rem; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-09-23 · 7 条资讯 · 5 个板块 · 北京时间更新</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（1）</a></li>
+<li><a href="#s-global">📊 Global Economy 全球经济（3）</a></li>
+<li><a href="#s-market">📈 资本市场（3）</a></li>
+<li><a href="#s-geo">⚖️ Geopolitics &amp; Trade 地缘贸易（0）</a></li>
+<li><a href="#s-commodity">🎙️ Commodities &amp; FX 商品外汇（0）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">1 条</span>
+</div>
+
+<div class="card active">
+<div class="card-top">
+<span class="card-number">1</span>
+<div class="card-content">
+<h3>联邦基金有效利率最新观测为 3.88%<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">FRED · DFF</span><span class="t">观测日 2026-09-21</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">FRED DFF 序列显示 9 月 21 日有效利率为 3.88%，近五个可用日均为 3.88%。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>有效联邦基金利率反映隔夜成交的加权平均水平。它与联邦公开市场委员会公布的目标区间不同，不宜把 3.88% 写成目标利率。</p>
+<p>来源：<a class="source-link" href="https://fred.stlouisfed.org/series/DFF" target="_blank">FRED DFF</a></p>
+</div>
+</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-global" data-category="global">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">Global Economy 全球经济</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<span class="card-number">2</span>
+<div class="card-content">
+<h3>美国 8 月失业率为 4.1%<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">FRED · UNRATE</span><span class="t">观测月 2026-08</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">FRED 月度失业率序列显示 8 月为 4.1%，与 7 月相同。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>这是季调失业率的最新可用月度读数。单月持平不能独立证明劳动力市场趋势转向。</p>
+<p>来源：<a class="source-link" href="https://fred.stlouisfed.org/series/UNRATE" target="_blank">FRED UNRATE</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<span class="card-number">3</span>
+<div class="card-content">
+<h3>美国 8 月 CPI-U 指数升至 334.131<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">FRED · CPIAUCSL</span><span class="t">观测月 2026-08</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">FRED 季调 CPIAUCSL 指数 7 月为 332.813，8 月为 334.131。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>该指标是价格水平指数。若要讨论同比通胀，需要与上年同月指数另行计算；本期不将指数水平误写为同比增速。</p>
+<p>来源：<a class="source-link" href="https://fred.stlouisfed.org/series/CPIAUCSL" target="_blank">FRED CPIAUCSL</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<span class="card-number">4</span>
+<div class="card-content">
+<h3>美国 8 月 M2 货币存量为 23,342.8 十亿美元<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">FRED · M2SL</span><span class="t">观测月 2026-08</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">FRED M2SL 序列由 7 月的 23,217.9 十亿美元升至 8 月的 23,342.8 十亿美元。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>这是季调后的名义货币存量。货币数量变化与未来通胀、增长之间不存在可由两个月读数直接确定的因果关系。</p>
+<p>来源：<a class="source-link" href="https://fred.stlouisfed.org/series/M2SL" target="_blank">FRED M2SL</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#b45309;">资本市场</h2><span class="count">3 条</span>
+</div>
+<div class="metric-grid">
+<div class="metric-group-label">美股 ETF · Yahoo Finance 暂缺</div>
+<div class="metric-card"><div class="metric-label">SPY</div><div class="metric-value">数据暂缺</div><div class="metric-explain">标普 500 ETF；数据源限流，未取得本期价格。</div></div>
+<div class="metric-card"><div class="metric-label">QQQ</div><div class="metric-value">数据暂缺</div><div class="metric-explain">纳斯达克 100 ETF；数据源限流。</div></div>
+<div class="metric-card"><div class="metric-label">DIA</div><div class="metric-value">数据暂缺</div><div class="metric-explain">道琼斯 ETF；数据源限流。</div></div>
+<div class="metric-card"><div class="metric-label">IWM</div><div class="metric-value">数据暂缺</div><div class="metric-explain">罗素 2000 ETF；数据源限流。</div></div>
+<div class="metric-group-label">美联储利率与信用 · FRED 最新观测</div>
+<div class="metric-card"><div class="metric-label">DFF 联邦基金有效利率</div><div class="metric-value">3.88%</div><div class="metric-change flat">9 月 21 日</div><div class="metric-explain">FRED 每日有效联邦基金利率；不是政策目标区间。</div></div>
+<div class="metric-card"><div class="metric-label">DGS10 十年期美债</div><div class="metric-value">4.96%</div><div class="metric-change flat">9 月 21 日</div><div class="metric-explain">FRED 十年期国债固定期限收益率。</div></div>
+<div class="metric-card"><div class="metric-label">DGS2 两年期美债</div><div class="metric-value">4.76%</div><div class="metric-change flat">9 月 21 日</div><div class="metric-explain">FRED 两年期国债固定期限收益率。</div></div>
+<div class="metric-card"><div class="metric-label">T10Y2Y 十年减两年利差</div><div class="metric-value">0.25 个百分点</div><div class="metric-change flat">9 月 22 日</div><div class="metric-explain">FRED 发布的收益率利差；观测日比 DGS10、DGS2 晚一天。</div></div>
+<div class="metric-card"><div class="metric-label">T10YIE 十年通胀补偿</div><div class="metric-value">2.33%</div><div class="metric-change flat">9 月 22 日</div><div class="metric-explain">FRED 十年期盈亏平衡通胀率，非未来通胀保证值。</div></div>
+<div class="metric-card"><div class="metric-label">BAMLH0A0HYM2 高收益债利差</div><div class="metric-value">2.66 个百分点</div><div class="metric-change flat">9 月 21 日</div><div class="metric-explain">FRED ICE BofA 美国高收益债期权调整利差。</div></div>
+<div class="metric-group-label">美国实体经济 · FRED 最新观测</div>
+<div class="metric-card"><div class="metric-label">UNRATE 失业率</div><div class="metric-value">4.1%</div><div class="metric-change flat">8 月</div><div class="metric-explain">FRED 季调失业率，月度数据。</div></div>
+<div class="metric-card"><div class="metric-label">CPIAUCSL 消费价格指数</div><div class="metric-value">334.131</div><div class="metric-change flat">8 月</div><div class="metric-explain">FRED 季调 CPI-U 指数水平（1982–84=100），不是同比涨幅。</div></div>
+<div class="metric-card"><div class="metric-label">M2SL M2 货币供应</div><div class="metric-value">23,342.8 十亿美元</div><div class="metric-change flat">8 月</div><div class="metric-explain">FRED 季调 M2 货币存量，月度数据。</div></div>
+<div class="metric-card"><div class="metric-label">GDP 名义 GDP</div><div class="metric-value">32,486.066 十亿美元</div><div class="metric-change flat">2026 年第二季度</div><div class="metric-explain">FRED 季调年率名义 GDP 水平，非增长率。</div></div>
+<div class="metric-card"><div class="metric-label">INDPRO 工业生产指数</div><div class="metric-value">103.0682</div><div class="metric-change flat">8 月</div><div class="metric-explain">FRED 工业生产指数，月度数据。</div></div>
+<div class="metric-card"><div class="metric-label">RSAFS 零售与餐饮销售</div><div class="metric-value">773,947 百万美元</div><div class="metric-change flat">8 月</div><div class="metric-explain">FRED 季调零售与餐饮服务销售额，月度数据。</div></div>
+<div class="metric-card"><div class="metric-label">HOUST 新屋开工</div><div class="metric-value">1,275 千套</div><div class="metric-change flat">8 月</div><div class="metric-explain">FRED 季调年率新屋开工量，月度数据。</div></div>
+<div class="metric-group-label">市场波动 · 两种数据源</div>
+<div class="metric-card"><div class="metric-label">^VIX 即时报价</div><div class="metric-value">数据暂缺</div><div class="metric-explain">Yahoo Finance 本轮限流，无法确认交易所行情。</div></div>
+<div class="metric-card"><div class="metric-label">VIXCLS 收盘波动率</div><div class="metric-value">14.87</div><div class="metric-change flat">9 月 21 日</div><div class="metric-explain">FRED CBOE VIX 日收盘序列，与即时报价口径不同。</div></div>
+<div class="metric-group-label">全球股指 · Yahoo Finance 暂缺</div>
+<div class="metric-card"><div class="metric-label">^GSPC 标普 500</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期指数点位。</div></div>
+<div class="metric-card"><div class="metric-label">^IXIC 纳斯达克综合</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期指数点位。</div></div>
+<div class="metric-card"><div class="metric-label">^DJI 道琼斯工业</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期指数点位。</div></div>
+<div class="metric-card"><div class="metric-label">^FTSE 英国富时 100</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期指数点位。</div></div>
+<div class="metric-card"><div class="metric-label">^N225 日经 225</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期指数点位。</div></div>
+<div class="metric-card"><div class="metric-label">^HSI 恒生指数</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期指数点位。</div></div>
+<div class="metric-group-label">大宗商品 · Yahoo Finance 暂缺</div>
+<div class="metric-card"><div class="metric-label">GC=F 黄金期货</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期结算价。</div></div>
+<div class="metric-card"><div class="metric-label">CL=F WTI 原油期货</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期结算价。</div></div>
+<div class="metric-card"><div class="metric-label">SI=F 白银期货</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期结算价。</div></div>
+<div class="metric-card"><div class="metric-label">HG=F 铜期货</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期结算价。</div></div>
+<div class="metric-group-label">主要货币 · Yahoo Finance 暂缺</div>
+<div class="metric-card"><div class="metric-label">DX-Y.NYB 美元指数</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期报价。</div></div>
+<div class="metric-card"><div class="metric-label">EURUSD=X 欧元/美元</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期报价。</div></div>
+<div class="metric-card"><div class="metric-label">USDJPY=X 美元/日元</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期报价。</div></div>
+<div class="metric-card"><div class="metric-label">USDCNY=X 美元/人民币</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期报价。</div></div>
+<div class="metric-card"><div class="metric-label">GBPUSD=X 英镑/美元</div><div class="metric-value">数据暂缺</div><div class="metric-explain">数据源限流，未取得本期报价。</div></div>
+</div>
+<div class="card">
+<div class="card-top">
+<span class="card-number">5</span>
+<div class="card-content">
+<h3>十年期美债收益率 9 月 21 日回落至 4.96%<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">FRED · DGS10</span><span class="t">观测日 2026-09-21</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">FRED DGS10 序列从 9 月 18 日的 5.01% 降至 9 月 21 日的 4.96%。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>两日变化为下降 0.05 个百分点。该序列为固定期限收益率，并非某只债券的成交收益率。</p>
+<p>来源：<a class="source-link" href="https://fred.stlouisfed.org/series/DGS10" target="_blank">FRED DGS10</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<span class="card-number">6</span>
+<div class="card-content">
+<h3>十年减两年美债利差 9 月 22 日为 0.25 个百分点<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">FRED · T10Y2Y</span><span class="t">观测日 2026-09-22</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">FRED T10Y2Y 序列显示 9 月 21 日为 0.20 个百分点，9 月 22 日为 0.25 个百分点。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>利差是 FRED 发布的独立序列。页面其他债券收益率最新观测日为 9 月 21 日，因此不把不同日期的数据混算。</p>
+<p>来源：<a class="source-link" href="https://fred.stlouisfed.org/series/T10Y2Y" target="_blank">FRED T10Y2Y</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<span class="card-number">7</span>
+<div class="card-content">
+<h3>高收益债信用利差最新为 2.66 个百分点<span class="tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">FRED · BAMLH0A0HYM2</span><span class="t">观测日 2026-09-21</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">FRED 高收益债期权调整利差从 9 月 18 日的 2.68 降至 9 月 21 日的 2.66 个百分点。</div>
+</div>
+<div class="card-arrow">▼</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>这一指数反映美国高收益债相对国债的利差。单日收窄幅度为 0.02 个百分点。</p>
+<p>来源：<a class="source-link" href="https://fred.stlouisfed.org/series/BAMLH0A0HYM2" target="_blank">FRED BAMLH0A0HYM2</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-geo" data-category="geo">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">Geopolitics &amp; Trade 地缘贸易</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-state">本期无可核实的新条目。</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-commodity" data-category="commodity">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">Commodities &amp; FX 商品外汇</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-state">本期无可核实的新条目。</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-09-23 · 数据来源：FRED 单系列原始 CSV（2026-09-23 抓取）；Yahoo Finance 本轮限流，相关行情暂缺<br>
+共 7 条数据快讯 · 指标日期均为数据观测日 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 指标显示各数据源最新可用观测日，频率和发布日期不同；Yahoo Finance 市场指标因 HTTP 429 未取得，不沿用历史行情。FRED CPIAUCSL 为指数而非同比通胀率，GDP 为名义年率水平。</span><br>
+FRED 原始序列：<a href="https://fred.stlouisfed.org/series/DFF">DFF</a> · <a href="https://fred.stlouisfed.org/series/DGS10">DGS10</a> · <a href="https://fred.stlouisfed.org/series/DGS2">DGS2</a> · <a href="https://fred.stlouisfed.org/series/T10Y2Y">T10Y2Y</a> · <a href="https://fred.stlouisfed.org/series/T10YIE">T10YIE</a> · <a href="https://fred.stlouisfed.org/series/BAMLH0A0HYM2">BAMLH0A0HYM2</a> · <a href="https://fred.stlouisfed.org/series/UNRATE">UNRATE</a> · <a href="https://fred.stlouisfed.org/series/CPIAUCSL">CPIAUCSL</a> · <a href="https://fred.stlouisfed.org/series/M2SL">M2SL</a> · <a href="https://fred.stlouisfed.org/series/GDP">GDP</a> · <a href="https://fred.stlouisfed.org/series/INDPRO">INDPRO</a> · <a href="https://fred.stlouisfed.org/series/RSAFS">RSAFS</a> · <a href="https://fred.stlouisfed.org/series/HOUST">HOUST</a> · <a href="https://fred.stlouisfed.org/series/VIXCLS">VIXCLS</a>
+</div>
+
+</div>
+<script>
+document.querySelectorAll('.card').forEach(function(card) {
+  card.querySelector('.card-top').addEventListener('click', function() {
+    var wasActive = card.classList.contains('active');
+    document.querySelectorAll('.card.active').forEach(function(openCard) { openCard.classList.remove('active'); });
+    if (!wasActive) card.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
