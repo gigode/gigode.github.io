@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-09-24</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-09-24 · 7 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（5）</a></li>
+<li><a href="#s-company">🏢 企业动态（2）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（0）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">5 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Synopsys 与台积电扩展 A14 设计流程和先进封装协作<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Synopsys 官方公告</span><span class="t">9月23日</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">9月23日公告覆盖 A14 认证设计流程、CoWoS 供电设计与 N2P 接口 IP。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Synopsys 表示，数字与模拟 EDA 流程已获得台积电 A14 认证；双方还在多芯粒设计、CoWoS 封装中的集成稳压器设计，以及 COUPE 共封装光学设计流程方面继续合作。</p><p>公告列出 N2P 工艺上的 PCIe 7.0、HBM4 等 IP 进展，并展示基于 N3P 测试芯片与 CoWoS-S 中介层的 UCIe-A 32G/40G 互连。认证和测试芯片是设计生态进展，不等于终端芯片已量产。</p>
+<p>来源：<a class="source-link" href="https://news.synopsys.com/2026-09-23-Synopsys-and-TSMC-Partner-to-Accelerate-AI-Systems-Innovation-with-Agentic-AI-and-Advanced-Design" target="_blank">Synopsys 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>高通发布 Snapdragon Sound Elite Gen 2 智能音频平台<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Qualcomm 官方公告</span><span class="t">9月23日</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">新平台整合设备端 AI、微功耗 Wi-Fi 6E 和音频处理。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>高通将该平台定位于耳机、音频眼镜等可穿戴设备，支持设备端 AI、云端服务连接和多种音频功能。公告称相较 S7 Gen 1，峰值 AI 计算能力最高提升两倍。</p><p>高通披露的功耗改善基于设计仿真，最终硅片实测和不同终端的实际表现仍待验证。</p>
+<p>来源：<a class="source-link" href="https://www.qualcomm.com/news/releases/2026/09/snapdragon-sound-elite-gen-2-advances-intelligent-audio-wearable" target="_blank">Qualcomm 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>康耐视推出 In-Sight 1750 晶圆及面板识别设备<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Cognex 官方公告</span><span class="t">9月23日</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">公司称新设备针对难读标记和生产追溯场景。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>康耐视表示，In-Sight 1750 结合图像处理、专用照明和 AI 功能，读取晶圆及面板上的困难标记，以支持生产过程中的身份追踪。</p><p>新系统面向现有 In-Sight 1740 用户提供升级路径；减少停机和提高吞吐量属于公司提出的预期效益，公告未给出独立验证数据。</p>
+<p>来源：<a class="source-link" href="https://www.prnewswire.com/news-releases/cognex-launches-new-wafer-reader-to-help-semiconductor-manufacturers-scale-production-302883465.html" target="_blank">Cognex 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Cadence 新增 ChipStack RTL 生成智能体<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Cadence 官方公告</span><span class="t">9月22日</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">工具面向从规格到 RTL 的生成与早期 PPA 优化。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Cadence 介绍，新增的 RTL Generation Agent 可根据高层规格生成和优化 RTL，并支持按新要求修改已有设计。Honda R&amp;D 正在汽车 SoC 上评估该工具。</p><p>公司预计扩展后的 ChipStack 与 InnoStack 功能在 2026 年第四季度向部分早期客户开放；这不是全面上市时间。</p>
+<p>来源：<a class="source-link" href="https://newsroom.cadence.com/press-releases/press-release-details/2026/Cadence-Expands-ChipStack-AI-Super-Agent-with-a-New-Agent-for-RTL-Generation-and-Early-PPA-Optimization/default.aspx" target="_blank">Cadence 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>上海成威发布半导体研发用集中供气系统<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Shanghai Chengwei Semiconductor Equipment 官方公告</span><span class="t">9月23日</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">新系统面向研发实验室的高纯气体供应与安全监测。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>上海成威半导体设备宣布实验室集中供气、管路和尾气处理系统，包含自动气瓶组切换和泄漏检测等配置。</p><p>公司称系统可支持最高 99.9999% 气体纯度；这属于产品规格声明，公告未提供独立现场测试结果。</p>
+<p>来源：<a class="source-link" href="https://www.prnewswire.com/news-releases/shanghai-chengwei-semiconductor-equipment-launches-high-precision-laboratory-central-gas-supply-system-302887873.html" target="_blank">Shanghai Chengwei Semiconductor Equipment 公告</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>Alchip 与 Synopsys 展示 224G SerDes 芯片互连设计方法<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Alchip 官方公告</span><span class="t">9月23日</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">合作技术论文聚焦 AI ASIC 的芯片边缘布线与封装约束。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Alchip 在台积电北美 OIP 论坛展示与 Synopsys 的技术论文，结合 Synopsys 224G PHY IP 和 Alchip 的先进封装、信号及电源完整性设计。</p><p>论文讨论高速互连下的芯片边缘拥挤、引出布线和封装基板限制。这是设计方法展示，公告未宣布客户芯片量产。</p>
+<p>来源：<a class="source-link" href="https://www.alchip.com/en/Newsroom/Alchip_Synopsys_TSMC_OIP" target="_blank">Alchip 公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>高通拟收购机器人软件公司 PickNik<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Qualcomm 官方公告</span><span class="t">9月23日</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">交易将围绕 MoveIt 与 Dragonwing 机器人平台的整合。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>高通宣布签署收购 PickNik 的协议。PickNik 长期维护机器人操作软件框架 MoveIt；高通计划让其与 Dragonwing 机器人平台及 Arduino 平台更紧密集成。</p><p>公司表示 MoveIt 将保持开源并继续支持第三方硬件。交易尚待惯常交割条件满足；公告没有披露收购价格。</p>
+<p>来源：<a class="source-link" href="https://www.qualcomm.com/news/releases/2026/09/qualcomm-to-acquire-picknik-to-advance-the-future-of-open-roboti" target="_blank">Qualcomm 公告</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-09-24 · 数据来源：公司官方公告与原始新闻稿；逐条链接可核查<br>
+共 7 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 本期只收录能够核对原文的新事件。产品性能、商业计划与交易进度按公告表述，不视为第三方验证。</span>
+</div>
+
+</div>
+</body>
+</html>
