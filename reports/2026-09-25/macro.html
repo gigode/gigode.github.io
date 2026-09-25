@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-09-25</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-09-25 · 3 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（0）</a></li>
+<li><a href="#s-data">📊 经济数据（2）</a></li>
+<li><a href="#s-market">📈 资本市场（1）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（0）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">2 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>美国初请失业金人数降至19.7万，低裁员尚未转为积极招聘<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">数据周：截至9月19日；报道：9月24日</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">初请人数较前周减少1,000人，略低于路透调查预期；四周均值和续请人数显示裁员仍低，但企业招聘意愿尚未同步走强。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国劳工部数据显示，截至9月19日当周，州级初请失业金人数经季调后减少1,000人至197,000人，低于路透调查经济学家预期的201,000人。Reuters称这一水平接近1969年以来低位；但报道同时提醒，劳动节移动假期带来的季调困难，以及年末常见的残余季节性，可能使读数偏低，因此单周数字不宜直接等同于就业全面转强。</p><p>较能平滑周度噪声的四周均值下降1,750人至202,250人；截至9月12日当周，领取至少一周失业援助的续请人数增加2,000人至1.719百万。Reuters据此描述当前市场为低裁员、企业留住现有员工，但招聘扩张仍谨慎。移民执法和退休造成的劳动力供给收缩、伊朗战争及关税不确定性，都是报道列举的招聘约束。</p><p>这组数据缓解了近期对劳动力明显恶化的担忧，却也让政策讨论更集中于通胀：Reuters引述的期货定价在报道时显示，下月再加息概率为64.2%。该概率是当时市场价格推算，并非美联储承诺。若能源成本推高物价而招聘与裁员继续分化，后续要观察工资、通胀和连续数周的申领趋势，单周低位本身无法判定需求是否过热。</p>
+<p>来源：<a class="source-link" href="https://www.marketscreener.com/news/us-weekly-jobless-claims-near-57-year-lows-price-reductions-boost-new-home-sales-ce785aded181f524" target="_blank">Reuters 完整报道（MarketScreener转载）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>美国8月新屋销售升至八个月高点，但降价促销与库存仍显疲态<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">统计期：2026年8月；报道：9月24日</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">销售环比增6.4%至年化68.4万套，超过预期；与此同时同比仍降、房价下行、待售库存较高，买家受到开发商优惠支持。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国人口普查局报告显示，8月新建独栋住宅销售按季调年率升至684,000套，环比增加6.4%，为2025年12月以来最高；路透调查预期为615,000套。7月数据也从此前公布的607,000套修订为643,000套。新屋销售按签约完成统计，更新较及时，但仅覆盖整体住房交易的一小部分，不能单独代表全美住房需求。</p><p>强劲的月度反弹并未消除压力：销售同比仍下降2.0%，中位售价同比下跌5.8%至393,700美元。市场未售新屋库存为483,000套，按8月销售速度需8.5个月消化，虽低于7月的9.0个月，仍处高位；超过一半库存尚在建设中。区域差异也很大，中西部月增84.9%，东北部却下滑36.1%。</p><p>Reuters将回升与开发商降价和优惠联系起来，同时指出抵押贷款成本上行仍压制需求。该报道引用的Freddie Mac口径显示，30年固定房贷上周平均利率为6.95%，为2025年1月以来最高；建筑商调查中未来销售预期走弱，促使更多企业降价促销。因而销售数量回升与价格、库存和融资条件并不一致，未来还要看优惠能否维持、库存消化及开工投资是否继续下行。</p>
+<p>来源：<a class="source-link" href="https://www.marketscreener.com/news/us-new-home-sales-jump-to-eight-month-high-in-august-ce785aded181f621" target="_blank">Reuters 完整报道（MarketScreener转载）</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#b45309;">资本市场</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>美债长端收益率刷新多年高位，油价与拍卖需求加深债市压力<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Investing.com</span><span class="t">事件与报道：9月24日</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">10年与30年期收益率分别升至5.196%和5.4816%；油价扰动、加息预期和国债拍卖需求疲弱共同推高市场波动。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Reuters报道，9月24日美国10年期国债收益率上升8.17个基点至5.196%，为2007年以来最高；30年期上升7.96个基点至5.4816%，为2004年以来最高；较短端的两年期升2.51个基点至4.92%。报道引述策略师称，增长预期、油价、财政担忧、超大规模云计算企业发债及投资者仓位都可能参与了本周利率上行，不能归结为单一触发因素。</p><p>当日原油一度因胡塞武装导弹袭击沙特、供应中断担忧而上涨约3%至一周高位，随后在美伊讨论重开霍尔木兹海峡的报道出现后从盘中高点回落。通胀风险令利率市场继续调整：联邦基金期货隐含的下月加息概率升至71%，周三PMI公布前约为53%；两名美联储官员称仍可能需要进一步加息。该定价反映交易者预期，不是政策决定。</p><p>供给端也受到关注：财政部7年期国债拍卖获得的需求被Reuters形容为一般，此前周三5年期拍卖需求疲弱；财政部另在回购计划中买回约40.78亿美元长债以支持流动性。风险资产表现分化，道指跌0.31%，标普与纳指大致持平，MSCI全球指数跌0.29%；法德10年期利差扩大至2012年以来最阔。收益率上升会抬高融资基准，但报道同时记录分析师认为当时金融条件仍能支撑经济和股市。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/economy-news/bond-market-selloff-rumbles-on-ahead-of-trump-and-xi-talks-4915616" target="_blank">Reuters 完整报道（Investing.com转载）</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-09-25 · 数据来源：Reuters 原文（MarketScreener / Investing.com转载）<br>
+共 3 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 报道发布日与统计事件日已区分；各卡基于完整 Reuters 报道。未取得可验证的最新 FRED/yfinance 数值，故不展示 Market Data 区。</span>
+</div>
+
+</div>
+</body>
+</html>

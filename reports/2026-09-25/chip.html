@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-09-25</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-09-25 · 6 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（3）</a></li>
+<li><a href="#s-company">🏢 企业动态（3）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（0）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">3 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>瑞萨发布可多次编程的微型 GreenPAK 混合信号芯片<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Renesas Electronics 官方公告</span><span class="t">9月24日</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">SLG46801 面向空间紧张的可穿戴设备，WLCSP 封装仅 1.155 毫米见方。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>瑞萨 9 月 24 日宣布 SLG46801 可配置混合信号芯片。9 球 WLCSP 版本尺寸为 1.155×1.155 毫米，另有 12 引脚 STQFN 封装。芯片集成两个高速模拟比较器、查找表、计数器、延时单元、振荡器与 I²C 兼容接口，可承担感测、控制和时序等辅助功能。公司称这是其最小的 WLCSP GreenPAK 器件，面向智能戒指、手表和便携电子产品。</p><p>其多次可编程非易失性存储器可经 I²C 在设备内重新配置。对小型终端设计者而言，这提供了在不替换硬件的情况下调整辅助逻辑的路径，也可能减少分立元件占用的板级空间。工作与编程电压范围为 1.71 至 5.5 伏；两种封装允许客户在最小占地与额外引脚之间选择。</p><p>交付阶段需要区分：STQFN 版本目前送样，WLCSP 版本计划在 2026 年 11 月量产。量产时点仍是公司计划；最终终端采用情况、实际板级成本和功耗改善尚未在公告中量化。</p>
+<p>来源：<a class="source-link" href="https://www.renesas.com/en/about/newsroom/renesas-introduces-smallest-configurable-greenpak-ic-multi-time-programmability-ultra-compact-wlcsp" target="_blank">查看原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Logic Fruit 公布 L-QNTX 后量子安全硬件路线<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Logic Fruit Technologies 公司公告</span><span class="t">9月24日</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">平台覆盖可授权芯片 IP、PCIe 安全卡和网络 HSM；仍处开发阶段。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Logic Fruit 公布 L-QNTX 产品家族，计划将可授权的 FPGA/ASIC 密码 Soft IP、嵌入式硬件信任根、PCIe 安全平台与网络硬件安全模块放在共同架构下。其目标客户包括半导体企业、设备制造商和数据中心运营者。公告明确使用“正在开发”，因此这次是产品路线发布，并非已交付芯片或完成认证。</p><p>规划中的算法同时覆盖现有 RSA、椭圆曲线密码，以及 NIST 已标准化的 ML-KEM、ML-DSA 和 SLH-DSA。把芯片端与集中式 HSM 纳入同一路线，意味着客户可在迁移期考虑传统与后量子算法并存；但实际互操作、性能和合规结果仍取决于后续实现及测试。公司未给出吞吐量或客户采购数据。</p><p>时间表同样属于目标：合格客户的早期评估计划于 2027 年第二季度启动，首批 HSM 和 Soft IP 产品拟于 2027 年 8 月全面推出。采购者应关注这两个节点是否兑现，以及正式产品是否取得所需的安全认证。</p>
+<p>来源：<a class="source-link" href="https://www.prnewswire.com/news-releases/logic-fruit-technologies-unveils-l-qntx-security-platform-for-hsms-silicon-and-embedded-systems-302889113.html" target="_blank">查看原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Leopard Imaging 与 Lumotive 推出可编程固态 3D 感知系统<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Leopard Imaging and Lumotive 公司公告</span><span class="t">9月24日</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">Sirius Max 结合 RGB、iToF 深度传感和可编程光束转向。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>两家公司发布 Sirius Max 机器人感知平台。它把 Leopard Imaging 的嵌入式相机、Lumotive 的 TX10 可编程光束转向模块和 onsemi AF0130 深度传感器结合，使用 GMSL2 通过单根同轴电缆传输同步的 RGB、深度和控制数据。公司将它定位于机器人、工业自动化和智能边缘设备，并称系统没有机械运动部件。</p><p>与固定泛光照明的 ToF 方案相比，平台可按软件设置扫描区域与关注区域。公司披露的指标为 1MP 深度分辨率，以及在室内外超过 20 米的感测距离；这些是发布方描述，公告没有提供可独立复现的测试条件。对开发者而言，可编程扫描有利于把导航、避障和物体操作等感知需求集中到一套传感器平台评估。</p><p>公告未披露售价、样品或批量供货日期，也未给出不同光照和表面材质下的误差数据。因此现阶段能确认的是架构与公司宣称的能力，量产可用性及具体机器人场景效果仍需后续验证。</p>
+<p>来源：<a class="source-link" href="https://www.prnewswire.com/news-releases/leopard-imaging-and-lumotive-introduce-sirius-max--a-long-range-software-defined-3d-perception-platform-for-robotics-and-ai-302889658.html" target="_blank">查看原始公告</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>SEALSQ 扩展 VaultIC408 安全芯片商业推广<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">SEALSQ 官方公告 / NIST</span><span class="t">9月24日</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">NIST 登记确认指定版本获 FIPS 140-3 Level 3 验证，后量子产品仍在认证中。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>SEALSQ 于 9 月 24 日宣布扩大 VaultIC408 安全芯片的商业推广，目标为政府、关键基础设施和工业物联网等重视硬件信任根的场景。NIST 的密码模块验证登记列出证书 5463：VaultIC408 1.2.4 是有效的单芯片硬件密码模块，整体安全级别为 FIPS 140-3 Level 3；初次验证日期为 2026 年 8 月 5 日。这里的新进展是商业推进，证书本身并非 9 月 24 日才签发。</p><p>验证覆盖的是证书指定版本、配置与批准运行模式下的传统密码功能。它可成为设备身份和密钥保护方案的合规构件，但不能自动推导为集成该芯片的整机也已认证。SEALSQ 公告也明确指出，该证书不覆盖其他产品或未列入证书的后量子算法。</p><p>公司同时列出 QS7001 后量子安全芯片的认证路线，后续评估与正式认证仍有时间表及主管机构审查的不确定性。客户需要分别核对 VaultIC408 已验证功能、拟采购产品的实际配置，以及 QS7001 后续认证结果。</p>
+<p>来源：<a class="source-link" href="https://www.sealsq.com/investors/news-releases/sealsq-leverages-nist-fips-140-3-level-3-validation-to-accelerate-government-critical-infrastructure-and-post-quantum-hardware-security-programs" target="_blank">查看原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Riber 上半年扭亏并取得 ROSIE II 产业化融资<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Riber 半年报公告</span><span class="t">9月24日</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">设备商收入增长来自服务与配件，全年展望仍受亚洲出口许可约束。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>半导体外延设备商 Riber 公布 2026 年上半年收入 1270 万欧元，同比增长 19%；其中系统收入 770 万欧元、同比下降 1%，服务与配件收入 510 万欧元、同比增长 71%。毛利为 510 万欧元，毛利率 39.8%；净利润 20 万欧元，相比上年同期亏损 80 万欧元转正。结构上看，本期增长主要由服务与配件推动，而非系统出货增加。</p><p>公司另称已取得 600 万欧元银行融资，用于 ROSIE II 双腔集群设备产业化。ROSIE 技术面向 300 毫米硅片上的功能氧化物生长，潜在用途包括集成光子学和量子架构；第二套 ROSIE 系统已在 7 月发往美国一家量子计算企业。融资与设备发运为可观察进度，但工艺资格验证和更大规模商业部署仍需跟踪。</p><p>Riber 预计 2026 年收入大致持平于 2025 年，但明确以取得亚洲出口许可为条件。公司还提示上半年业绩有季节性，不能直接外推全年；本次简明半年报未经法定审计师审计或有限审阅。</p>
+<p>来源：<a class="source-link" href="https://www.riber.com/fr/financial_documents/riber-reports-improved-results-for-the-first-half-of-2026/" target="_blank">查看原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>Sivers 调整无线与光子业务管理层<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Sivers Semiconductors 公司公告</span><span class="t">9月24日</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">新任负责人将分别接手无线业务和光子工程，原业务负责人转任战略岗位。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Sivers Semiconductors 宣布两条业务线的人事安排：Marc Pegulu 将于 9 月 28 日出任无线业务董事总经理，现任负责人 Harish Krishnaswamy 转任首席战略官，负责公司战略、并购和新业务。Pegulu 曾在 Semtech 与 Qorvo 担任射频、无线及混合信号产品业务管理职务；这次调整涉及商业化管理与企业战略分工。</p><p>光子业务方面，David Clark 将于 10 月 31 日加入并担任工程副总裁。他此前在 Amkor 工作超过 12 年，参与先进封装技术商业化和产能爬坡。现任光子首席技术官 Andrew McKee 将退休，但会支持交接至 2026 年底。公司把这些任命与无线和光子产品扩大商业规模的目标联系起来。</p><p>这份公告没有新增订单、具体收入目标或产品交付量。因而现阶段可确认的是管理岗位和生效日期；新团队能否推动光子器件及无线产品销售，需要以后续客户项目、产能和财务数据检验。</p>
+<p>来源：<a class="source-link" href="https://www.prnewswire.com/news-releases/sivers-semiconductors-makes-changes-to-senior-leadership-team-for-next-phase-of-commercial-growth-302888690.html" target="_blank">查看原始公告</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-09-25 · 数据来源：企业原始公告、Riber 原始半年业绩与 NIST 认证登记；逐条可核查<br>
+共 6 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 公司产品性能与未来交付为公告表述；安全验证只适用于证书指定的模块版本与配置。</span>
+</div>
+
+</div>
+</body>
+</html>

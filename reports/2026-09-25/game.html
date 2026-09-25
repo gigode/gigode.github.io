@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-09-25</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-09-25 · 5 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（2）</a></li>
+<li><a href="#s-industry">🏢 行业动态（2）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（0）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（0）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">2 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《Marathon》公布跨至 2027 年的玩法扩展路线<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Bungie 官网；Kotaku</span><span class="t">原文 9月24日（时区未标）</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">Bungie 公布 10 月、12 月及 2027 年 3 月更新方向：永久 PvE、实验性死亡竞赛和新区域均在计划内。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Bungie 在 9 月 24 日公布《Marathon》接下来的路线：10 月先用 Nightfall Refresh 调整成长、奖励与当前体验；12 月的 Symbiosis 则计划加入首个永久 PvE 玩法、实验性团队死亡竞赛，以及带靶场的社交空间。官方强调，现有高风险撤离玩法仍会保留。</p><p>这份路线同时处理入门和留存。12 月还将重做入门区域 Perimeter，加入新角色外壳 Bishop，并改善新手引导。对不想每次都承担撤离风险的玩家，永久 PvE 是另一种入口；死亡竞赛则提供时长和投入更低的对抗方式。这是根据官方功能安排作出的产品判断，实际体验仍需等更新上线。</p><p>Bungie 进一步计划在 2027 年 3 月连接 PvE、PvP 与 PvEvP，增加新区域、敌人与叙事，并改造 Cradle 成长系统。但官方说 12 月 PvE 的部分设计仍在敲定，死亡竞赛也只是实验。路线说明了方向，却没有证明这些模式能否长期留住玩家；应把它们视为开发计划，而不是现成内容。</p>
+<p>来源：<a class="source-link" href="https://www.bungie.net/7/en/News/Article/futureofmarathon" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《Warzone》将提供旧角色外观过滤开关<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Call of Duty 官网；PC Gamer</span><span class="t">原文 9月24日（时区未标）</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《Warzone》将从《Modern Warfare 4》第一赛季起提供仅改变本机所见角色外观的过滤开关，默认关闭。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>《Call of Duty》官网 9 月 24 日宣布，《Warzone》将在《Modern Warfare 4》第一赛季加入角色外观过滤开关。玩家打开后，其他人装备的旧作角色皮肤会在自己画面中显示为 MW4 角色；大厅、队友和敌人均适用。开关默认关闭，不改变玩家自己的角色，也不改变他人看到的画面。</p><p>这是一种客户端的视觉选择，并非删除已经购买的外观。官方说旧角色、皮肤、蓝图和迷彩继续可以在《Warzone》使用。旧作武器也会保留在 Legacy 菜单，不过旧配装与 Gunsmith 不再支持；基础武器将提供五配件版本。玩家因此能在同一对局里选择较统一的视觉风格，同时保留此前投入的内容。</p><p>该功能的边界同样清楚：它只用于《Warzone》，只过滤旧作角色，不过滤 MW4 本身的未来外观。PC Gamer 因而质疑，若新一季继续出现跨界皮肤，统一观感仍可能被打破。官方目前给出的是“第一赛季”窗口，未在这篇公告中列出具体上线日期；实际效果仍需等客户端推出后检验。</p>
+<p>来源：<a class="source-link" href="https://www.callofduty.com/blog/2026/09/call-of-duty-modern-warfare-4-warzone-season-1-operator-toggle" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>瑞典 King 员工签下集体协议，罢工通知撤回<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Kotaku</span><span class="t">原文 9月24日（时区未标）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">King 瑞典员工与管理层签署集体协议，原定的多工会罢工撤回；协议计划于 2027 年 4 月生效。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据 Kotaku 9 月 24 日报道，《Candy Crush》开发商 King 的瑞典员工与管理层达成集体谈判协议。参与谈判的 Sveriges Ingenjörer 和 Unionen 在一年多协商后签字，原定的跨工会罢工通知随之撤回。King 首席运营官也向媒体确认罢工已取消，协议计划在 2027 年 4 月 1 日生效。</p><p>工会公布的条款重点是参与权：员工可组织起来，并在重组或工作条件变化时提前获得信息，进而更早影响自己的工作处境。报道回顾，管理层在 8 月曾拒签协议，随后共有五个工会支持罢工。这使本次签约的直接意义很明确：劳资双方在行动开始前找到了可执行的谈判框架。</p><p>目前仍不能把协议理解成所有待遇争议已经解决。King 表示会在生效前与工会继续敲定适用于公司运营的细节；报道没有披露工资、裁员保障或覆盖人数等具体条款。真正值得跟踪的是协议如何落地，以及员工在后续组织调整中能否实际用到提前知情和参与机制。</p>
+<p>来源：<a class="source-link" href="https://kotaku.com/candy-crush-developers-win-contract-2000737027" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Summer Eternal 以玩家非营利组织承接工作室权益<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Summer Eternal 官网；PC Gamer</span><span class="t">PC Gamer 9月24日；原公告9月16日</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Summer Eternal 让选集预订者申请加入玩家非营利组织，参与工作室治理，并规划使用未来作品部分利润。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 24 日关注了角色扮演游戏工作室 Summer Eternal 的治理实验；工作室原公告发表于 9 月 16 日。工作室称会把 5% 的权益交由 Players Non-Profit 承接，预订其选集的购买者可申请成为成员。该组织不是向玩家个人发放股票或现金分红的渠道。</p><p>按照工作室说明，成员可以选出代表参加年度会议、发起大会，并参与公司和项目策略投票。它还计划让组织民主决定如何使用未来作品《Red Rooster》利润中的 5%，例如支持独立创作或玩家活动。相较于通常只在购买后收集反馈的做法，这一安排试图让玩家参与资源分配；这属于工作室提出的治理设计，其实际影响仍待观察。</p><p>关键的不确定性在执行。公告称会员验证、线上议事与跨地区成员管理都需要建立规则；利润分配也取决于尚未上市游戏的未来收益。当前可买到的是工作室选集，而非《Red Rooster》。因此不宜把“玩家有一席之地”误读为每位购买者已经拥有直接决策权或确定的经济回报。</p>
+<p>来源：<a class="source-link" href="https://summereternal.com/blog/launching-the-players-non-profit" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>《Control Resonant》发售当天热修战斗数值<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer；Remedy Steam 公告</span><span class="t">原文 9月24日（时区未标）</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">Remedy 在《Control Resonant》发售当天推出 1.3.3 热修，针对敌人血量、击晕门槛及主角前期强度调整。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>《Control Resonant》在 9 月 24 日发售当天迎来 1.3.3 热修。PC Gamer 引述 Remedy 的 Steam 公告称，团队依据早期反馈，调整了敌人血量偏高、触发击晕所需攻击次数过多，以及主角 Dylan 在游戏前段显得偏弱的问题。变动直接触及该站此前评测提出的主要战斗抱怨。</p><p>评测作者原本认为，玩家需要通过构筑把较弱的基础攻击逐步放大，因此不少战斗像在消磨过长的血条；他曾建议使用 Assist Mode 调高输出和击晕积累。热修把其中一部分体验调整放进默认平衡，意味着读者在发售版遇到的战斗节奏可能与评测版不同。游戏仍保留敌人攻击性、能力恢复等辅助选项供玩家细调。</p><p>但这篇报道没有给出作者在 1.3.3 版本完整重玩的结果，因此不能断言所有战斗节奏问题已解决。更稳妥的读法是：Remedy 已针对明确的早期反馈采取措施，原评测对数值的判断需要结合版本来看；补丁是否在后期战斗同样有效，还得等发售后玩家体验与后续更新验证。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/action/control-resonant-embarrasses-me-specifically-with-a-launch-day-hotfix-negating-my-main-review-complaint/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-09-25 · 数据来源：Kotaku、PC Gamer 逐篇原文及所链接的开发商公告；LoL Esports 9月22日之后无新稿<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考</span>
+</div>
+
+</div>
+</body>
+</html>
