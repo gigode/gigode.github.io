@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-09-27</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-09-27 · 4 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（2）</a></li>
+<li><a href="#s-industry">🏢 行业动态（1）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（0）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（0）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">2 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《Minecraft》新维度 The Sift 将先在《Dungeons II》亮相<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Xbox Wire；PC Gamer</span><span class="t">2026-09-26（官方）；09-27（媒体）</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">Mojang 确认 The Sift 将在《Dungeons II》先行登场，再于 2027 年加入《Minecraft》本体；两个版本的具体差异尚未公布。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Xbox Wire 在 9 月 26 日的 Minecraft Live 报道中确认，新维度 The Sift 将先随《Minecraft Dungeons II》于 9 月 29 日登场，再在 2027 年进入《Minecraft》本体。PC Gamer 的后续报道指向 Java 与 Bedrock 两个版本。现阶段展示的是开发中的场景，不等于玩家已经能在本体中进入这个世界。</p><p>官方为《Dungeons II》介绍了具体机制：维度中的潮汐会影响角色，危险方块会改变探索方式，生物既可能成为伙伴，也可能构成威胁；已披露的区域包括 Meadows 和 Carapace。这些内容让新维度拥有环境与规则层面的区别，而不只是换一套颜色。玩家近期能接触到的版本，仍然属于动作角色扮演游戏的关卡和战斗体系。</p><p>需要保留的边界是，Mojang 尚未公开本体进入 The Sift 的办法，也没有交代其与《Dungeons II》版本的机制差异。由此不能推断本体必然继承所有地形、敌人或奖励。对长期生存存档玩家，真正重要的后续信息是入口条件、资源用途与既有世界的衔接；目前确定的是加入计划与年份，而非完整玩法方案。</p>
+<p>来源：<a class="source-link" href="https://news.xbox.com/en-us/2026/09/26/minecraft-new-dimension-sift-dungeons-2/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《Warhammer: Blood Bowl》把单人 AI 与界面重做列为重点<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Wargamer 开发者采访；PC Gamer</span><span class="t">2026-09-24（采访更新）；09-27（报道）</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">开发者称《Blood Bowl 3》大多数对局为单人对 AI，新版将围绕这一使用情况改进电脑对手、引导和赛事入口。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 27 日转述 Wargamer 对 Cyanide 程序员 Mathieu Valero 的采访：团队数据中，《Blood Bowl 3》约 70% 至 80% 的对局是单人对 AI。这个比例描述的是对局，不能直接当作单人玩家占比。即将推出的《Warhammer: Blood Bowl》将使用现有引擎并更新桌游规则，向《Blood Bowl 3》拥有者提供免费升级。</p><p>改进重点因此落在日常体验：主页将换成可定制的方块，玩家能把正在参与的赛事固定为入口，不必反复翻菜单；开发者也承认此前新手引导不足，并把改进 AI 列为重点。从产品角度看，这些调整是在减少找到比赛、理解规则和获得合适对手的阻力，服务的不只是在线竞技圈中最活跃的用户。</p><p>不过，开发者同时指出，AI 更擅长可靠的技能配置，对人类会使用的复杂组合仍有限制。报道没有公布对局统计的采样时间或总量，改进幅度也尚缺独立实测。PC Gamer 给出的窗口是年内；采访提到的部分快速模式仍可能只停留在测试版本，不能把所有设想都列为正式版承诺。</p>
+<p>来源：<a class="source-link" href="https://www.wargamer.com/blood-bowl/mathieu-valero-interview" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>UK Games Expo 禁止以 AI 大量生成的参展产品<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">UK Games Expo 政策；Rascal</span><span class="t">2026-09-24（政策）；09-25（报道）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">UKGE 新政策限制完全或主要由 AI 生成的产品，并为拼写检查、少量编辑及无障碍辅助保留例外。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>UK Games Expo 公布的参展政策要求，展示、陈列和出售的产品应由人类运用自身技能完成，禁止完全或主要由 AI 工具生成的作品。范围不仅是桌游本体，也包括相关配件、工艺品、服装，以及虚构和非虚构书籍中的图像与文字。Rascal 报道称，这份政策于 9 月 24 日发布。</p><p>政策为执行留下了明确手段：主办方可要求展商移除相关产品，拒绝配合者可能被关闭展位，或被禁止参加未来活动。它同时保留拼写检查、少量编辑、生产辅助和无障碍工具的空间，前提是核心创作过程由人完成。对展商而言，关键是产品的创作方式是否符合要求，而不是仅看有没有在工作流程中使用软件辅助。</p><p>尚未说明的是如何认定“主要”由 AI 完成，以及主办方会接受哪些创作证明。Rascal 就识别方法询问主办方，截至报道时未得到即时回应。因此，政策方向已经明确，执行标准仍需补充；小型出版商不能仅凭模糊的工具名称判断合规，参展前更需要核对具体内容与主办方后续说明。</p>
+<p>来源：<a class="source-link" href="https://www.ukgamesexpo.co.uk/exhibit/exhibitor-resources/uk-games-expo-ai-policy/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>CD Projekt 回顾《往日之影》奇美拉战斗的两年迭代<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转述 CD Projekt 官方播客）</span><span class="t">2026-09-26</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">开发者在官方播客中回顾奇美拉首领战的跨专业协调，称其经过约两年、四种版本的反复调整。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 26 日整理了 CD Projekt 官方 AnsweRED 播客对《赛博朋克 2077：往日之影》奇美拉坦克战的回顾。美术总监 Paweł Mielniczuk 回忆，团队用了约两年才让这段战斗达到预期，期间经历四种版本，连装备和武器配置也反复修改。这是制作过程的复盘，并非宣布新的游戏内容。</p><p>游戏总监 Gabe Amatangelo 解释，奇美拉同时承担玩法、叙事、美术与世界构建任务：武器要让玩家感到威胁，演出又要与实际战斗相容。某轮版本偏重玩法，另一轮又可能偏向叙事或美术，最终需要逐个节拍协调。这个案例说明，复杂首领战的成本可能来自专业之间反复调整，而不只是模型本身的制作。</p><p>创意总监对资产成本的形容没有对应公开金额，不能据此给整个项目估价；两年也应理解为迭代跨度，而非全团队连续投入。PC Gamer 作者仍认为战斗耐久度可以更平衡，提醒读者制作投入与游玩评价并不自动一致。本次披露能解释设计取舍，却不能证明同类制作周期会出现在团队未来的每个首领战中。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/rpg/it-took-cd-projekt-two-years-to-design-phantom-libertys-chimera-tank-boss-fight-we-were-iterating-over-and-over/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-09-27 · 数据来源：PC Gamer、Wargamer、Xbox Wire、UKGE政策与Rascal；Kotaku和LoL Esports已检查<br>
+共 4 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考</span>
+</div>
+
+</div>
+</body>
+</html>

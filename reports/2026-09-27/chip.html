@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-09-27</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-09-27 · 4 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（1）</a></li>
+<li><a href="#s-company">🏢 企业动态（0）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（0）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（3）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Wise Integration 与 Navitas 合作开发高性能计算供电方案<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Wise Integration 官方公告</span><span class="t">2026-09-25</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">合作聚焦数字控制与 GaN、SiC 功率器件结合，覆盖 AI 数据中心电源。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Wise Integration 于 9 月 25 日宣布与 Navitas 签署合作协议，拟将自身分布式数字控制技术与 Navitas 的氮化镓（GaN）、碳化硅（SiC）功率技术结合。双方列出的应用包括 AI PC、高端工作站、游戏台式机和工业系统，重点还包含 AI 数据中心电源供应器，并探索更多电能转换拓扑。这是合作范围的披露，尚未对应某款已上市的联合产品。</p><p>公告将合作动因归于高性能计算对能效、功率密度和系统表现提出的新要求。Wise Integration 的 WiseWare 提供数字控制能力，Navitas 提供宽禁带功率器件技术；双方希望让控制与器件协同，从电网至芯片的供电环节研究高压、高功率转换。对设备设计者而言，这类协作的实际价值要体现在完整电源的运行表现，而不能仅由单个器件规格判断。</p><p>两家公司尚未公布联合参考设计、客户订单、效率曲线、额定功率或交付日期。更紧凑、更高效的电源仍是合作目标，不能据此计算数据中心节电收益。后续应观察是否出现可测试的原型或参考方案，以及客户验证结果和商业供货安排。</p>
+<p>来源：<a class="source-link" href="https://wise-integration.com/wise-integration-and-navitas-collaborate-to-advance-performance-computing-applications-for-ai-pcs-high-end-workstations-gaming-desktops-and-industrial-systems/" target="_blank">查看原文</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Overlord Labs 累计融资达到 1000 万美元，推进电池智能芯片验证<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Overlord Labs 公司公告</span><span class="t">2026-09-25</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">本次种子扩展融资为 435 万美元；GENESIS 已完成芯片启动，准备客户送样。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>无晶圆厂芯片企业 Overlord Labs 宣布完成种子轮扩展融资，金额为 435 万美元，由 Band of Angels 领投，Foothill Ventures、Unlock Pacific Ventures 等参与。公司累计融资达到 1000 万美元，其中种子融资合计 725 万美元，其余为不稀释股权的战略开发资金。三个金额对应不同口径，不能把累计资金全部当成本轮新增股权融资。</p><p>资金到位时，公司旗舰 GENESIS 电池智能芯片已完成启动，正从流片转向产品验证，并准备开始客户送样。公司将其技术描述为硅片与算法结合的架构，初期面向可穿戴设备、智能眼镜及边缘 AI 设备，希望改善续航、安全、性能和设计灵活性。公告把这些需求与电池供电设备承载更多计算任务联系起来，但未提供可独立验证的提升幅度。</p><p>对产业化进度而言，已有运行中的硅片比纯设计阶段更进一步，仍与客户认证和量产出货有距离。公告没有披露客户名称、送样日期、芯片售价或量产规模。因此可确认的是融资结构与验证阶段，商业采用情况及终端续航收益还需要后续测试和订单支持。</p>
+<p>来源：<a class="source-link" href="https://www.prnewswire.com/news-releases/overlord-labs-closes-oversubscribed-seed-financing-bringing-total-funding-to-10-million-to-advance-battery-intelligence-for-edge-ai-devices-302890280.html" target="_blank">查看原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>新加坡推出 SG Semiconductor，并扩展封装与硅光研发合作<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">TNGlobal 原文报道</span><span class="t">2026-09-25</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">共同产业品牌与多项研发合作同时发布，重点连接研究平台和制造能力。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据 TNGlobal 对新加坡经济发展局声明的报道，A*STAR 与 EDB 共同推出 SG Semiconductor，作为半导体产业的统一对外身份，首先聚焦公共部门研发。该计划覆盖先进封装、硅光、电力电子、射频氮化镓、压电 MEMS、平面光学和集成电路设计，意在让企业与人才更容易了解并接入当地的研究、基础设施和制造资源。</p><p>同期合作包含 Applied Materials 与 A*STAR 联合实验室进入第四阶段，扩展设施、设备和人员；KLA 与 A*STAR 拟建立过程控制合作框架，STATS ChipPAC 则参与共封装光学合作。报道还称，GlobalFoundries 与 A*STAR 将深化基于 300 毫米晶圆的硅光研发。相比单纯品牌推广，这些项目把研究成果的验证与制造环节具体连接起来。</p><p>仍需注意各项目所处阶段：研究框架、实验室扩容和通向批量生产的合作，不等于已经有新增量产订单。报道没有逐项披露投资金额、产能或交付节点。后续判断应看实验室扩展落地、工艺验证和产业客户采用情况，不能把本次发布直接换算成新增芯片产量。</p>
+<p>来源：<a class="source-link" href="https://technode.global/2026/09/25/singapore-unveils-sg-semiconductor-to-strengthen-its-role-in-the-global-semiconductor-ecosystem/" target="_blank">查看原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>欧盟部长讨论 Chips Act 2.0，强调需求与供应链韧性<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">欧盟理事会轮值主席国 / 欧盟委员会</span><span class="t">2026-09-24</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">会议支持法案方向，但本次进展是政策讨论，尚非最终立法通过。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>欧盟竞争力理事会 9 月 24 日就 Chips Act 2.0 举行政策辩论。轮值主席国公布的结果称，成员国普遍欢迎法案目标，强调增强欧洲半导体产业的韧性与竞争力，并在减少战略依赖的同时保留开放市场及与可信国际伙伴的合作。这次会议没有宣布法案已获最终通过；讨论对象是欧盟委员会于 6 月 3 日提出的方案。</p><p>委员会的方案说明把需求端列为重点：拟建立需求加速机制，将新芯片与使用行业需求连接，并运用创新采购帮助欧洲初创和成长企业技术进入市场。供给端则涵盖全产业链的首创项目支持、战略项目及投资环境；韧性措施包括企业间供应链平台。由此可见，提案讨论范围同时涉及设计、制造、市场采用和供货安全。</p><p>对企业而言，需求衔接和项目支持可能影响研发及建厂决策，但具体资格、资金落地和实施时间仍须以最终规则为准。部长层面的普遍支持不能替代立法程序，也不等于企业已经取得补助。接下来应跟踪条文协商与实施安排，尤其是需求措施如何转化为可持续的商业采购。</p>
+<p>来源：<a class="source-link" href="https://irish-presidency.consilium.europa.eu/en/news/results-of-the-competitiveness-council-internal-market-and-industry-24-september-2026/" target="_blank">查看原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-09-27 · 数据来源：公司原始公告、欧盟官方资料及 TNGlobal 原文；逐条保留来源<br>
+共 4 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 周末版收录最近两日可核对的新事件。合作目标、芯片验证阶段与立法进度按原文区分。</span>
+</div>
+
+</div>
+</body>
+</html>
