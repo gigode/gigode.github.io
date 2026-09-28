@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-09-28</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🤖 AI 行业日报</h1>
+<div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div>
+<div class="badge">2026-09-28 · 1 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-models">🧠 模型发布/更新（0）</a></li>
+<li><a href="#s-products">🚀 产品发布/更新（0）</a></li>
+<li><a href="#s-industry">🏭 行业动态（0）</a></li>
+<li><a href="#s-paper">📄 论文研究（1）</a></li>
+<li><a href="#s-tip">💡 技巧与观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 模型发布/更新 -->
+<div class="section" id="s-models">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🧠</span><h2 style="color:#1d4ed8;">模型发布/更新</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 产品发布/更新 -->
+<div class="section" id="s-products">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🚀</span><h2 style="color:#15803d;">产品发布/更新</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏭</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 论文研究 -->
+<div class="section" id="s-paper">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">📄</span><h2 style="color:#6d28d9;">论文研究</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>小米用 MOPD 修复 MiMo-V2.6 工具调用重复，公布诊断与训练取舍<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">小米 MiMo 官方技术博客</span><span class="t">原文 2026年9月27日 · 模型更新 9月25日06:00 · AI HOT 收录 09月28日 00:53（北京时间）</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">小米公开工具调用故障的指标与回放过程，采用专门教师和 MOPD 修复；成本、效果与局限均按官方口径呈现。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>小米在9月27日技术复盘中区分了正常并行、调用泛滥和无理由重复。其可复现指标只统计同一轮内工具名与规范化 JSON 参数完全相同的调用，因而漏掉跨轮循环、近似参数及代码模式中的调用。指标只是重复下限；合理重试或改码重测不算故障。</p><p>固定问题样本回放显示，Flash 在强化学习第0至20步的调用泛滥样本占比从11.1%升至24.6%。团队认为原有单轮超过32次调用才惩罚的门槛过宽；改成8次能压低泛滥，但全规模重训20步估算需231万美元，某内部测试集的重复率仍只从13.45%降至3.83%。这些数字并非全部用户请求发生率。</p><p>最终方案先用约7000个样本、12步训练专门教师，学习何时结束调用，再通过多教师在线策略蒸馏 MOPD 合入主模型。官方称修复训练约9万美元，是前述 MixRL 方案估算成本的4%，跨框架重复率显著下降且通用评测保持稳定。新模型已于9月25日06:00北京时间进入 API，并开放带 MOPD 后缀的权重。</p><p>💭 分析：这提供了具体诊断路径：先区分行为、固定样本回放，再检验局部修复是否保留整体能力。不过成本和效果均为小米内部测量；教师测试集上零重复不代表生产环境完全消除循环。还需独立检验跨轮、近似调用以及真实任务完成率，才能判断是否真正减少了无效等待。</p>
+<p>来源：<a class="source-link" href="https://mimo.xiaomi.com/blog/mimo-v2-6-tool-call-repetition" target="_blank">MiMo 官方完整复盘</a></p>
+</div>
+</div>
+</div>
+<!-- 技巧与观点 -->
+<div class="section" id="s-tip">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">💡</span><h2 style="color:#0e7490;">技巧与观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🤖 AI 行业日报 · 2026-09-28 · 数据来源：AI HOT 精选 API + 小米 MiMo 官方完整技术原文；自身推论以 💭 分析标注<br>
+共 1 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 本次 AI HOT 精选24h返回3条。对照9月27日、25日，剔除已报道的听证要求与9月21日旧稿；保留1条具备完整技术原文的新内容，不为数量扩写。</span>
+</div>
+
+</div>
+</body>
+</html>

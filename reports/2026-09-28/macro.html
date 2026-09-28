@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-09-28</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-09-28 · 3 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（0）</a></li>
+<li><a href="#s-data">📊 经济数据（0）</a></li>
+<li><a href="#s-market">📈 资本市场（1）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（2）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#b45309;">资本市场</h2><span class="count">1 条</span>
+</div>
+<div class="metric-grid">
+<div class="metric-group-label">美国利率、信用与波动 · FRED 最新可用观测</div>
+<div class="metric-card"><div class="metric-label">联邦基金有效利率 · DFF</div><div class="metric-value">3.88%</div><div class="metric-change flat">观测日：2026-09-24</div><div class="metric-explain">✅ 结构化源 · 每日成交有效利率，不是政策目标区间。</div></div>
+<div class="metric-card"><div class="metric-label">十年期美债收益率 · DGS10</div><div class="metric-value">5.18%</div><div class="metric-change flat">观测日：2026-09-24</div><div class="metric-explain">✅ 结构化源 · 固定期限收益率，非实时行情。</div></div>
+<div class="metric-card"><div class="metric-label">两年期美债收益率 · DGS2</div><div class="metric-value">4.87%</div><div class="metric-change flat">观测日：2026-09-24</div><div class="metric-explain">✅ 结构化源 · 固定期限收益率，非实时行情。</div></div>
+<div class="metric-card"><div class="metric-label">十年减两年美债利差 · T10Y2Y</div><div class="metric-value">0.36 个百分点</div><div class="metric-change flat">观测日：2026-09-25</div><div class="metric-explain">✅ 结构化源 · 采用FRED发布的独立序列；不可用不同日期收益率混算。</div></div>
+<div class="metric-card"><div class="metric-label">十年盈亏平衡通胀率 · T10YIE</div><div class="metric-value">2.34%</div><div class="metric-change flat">观测日：2026-09-25</div><div class="metric-explain">✅ 结构化源 · 市场通胀补偿，包含风险与流动性因素，非未来通胀保证。</div></div>
+<div class="metric-card"><div class="metric-label">美国高收益债OAS · BAMLH0A0HYM2</div><div class="metric-value">2.80 个百分点</div><div class="metric-change flat">观测日：2026-09-24</div><div class="metric-explain">✅ 结构化源 · ICE BofA期权调整利差。</div></div>
+<div class="metric-card"><div class="metric-label">VIX收盘指数 · VIXCLS</div><div class="metric-value">14.21</div><div class="metric-change flat">观测日：2026-09-22</div><div class="metric-explain">✅ 结构化源 · 本轮最新可用日仅至9月22日，不是上周五或周一行情。</div></div>
+<div class="metric-group-label">美国实体经济 · FRED 月度/季度观测</div>
+<div class="metric-card"><div class="metric-label">美国失业率 · UNRATE</div><div class="metric-value">4.1%</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调失业率。</div></div>
+<div class="metric-card"><div class="metric-label">美国CPI-U指数 · CPIAUCSL</div><div class="metric-value">334.131</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 季调价格指数，1982–84=100；不是同比增速。</div></div>
+<div class="metric-card"><div class="metric-label">美国M2货币存量 · M2SL</div><div class="metric-value">23342.8 十亿美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调名义货币存量。</div></div>
+<div class="metric-card"><div class="metric-label">美国名义GDP · GDP</div><div class="metric-value">32486.066 十亿美元</div><div class="metric-change flat">观测期：2026年第二季度</div><div class="metric-explain">✅ 结构化源 · 第二季度季调年率水平；不是实际GDP增长率。</div></div>
+<div class="metric-card"><div class="metric-label">美国工业生产指数 · INDPRO</div><div class="metric-value">103.0682</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调指数，2017=100。</div></div>
+<div class="metric-card"><div class="metric-label">美国零售与餐饮销售 · RSAFS</div><div class="metric-value">773947 百万美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调销售额。</div></div>
+<div class="metric-card"><div class="metric-label">美国新屋开工 · HOUST</div><div class="metric-value">1275 千套</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调年率，非当月实际开工套数。</div></div>
+</div>
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>美国拒绝伊朗方案后油价反弹，海峡复航仍有条件<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">外交进展：9月27日；油价快照：北京时间9月28日06:02</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">特朗普拒绝伊朗的复航与停火提议后，布伦特和WTI在周一早盘反弹；伊朗仍称只能通过谈判解局，方案尚未获双方接受。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Reuters报道，特朗普周六表示拒绝伊朗提出的结束战斗、重新开放霍尔木兹海峡方案；伊朗外长周日回应，复航取决于其条件得到满足，只有谈判才能解决僵局。该方案经卡塔尔斡旋渠道转交美方。新进展是方案遭到拒绝及伊朗的回应，不能沿用此前和平预期写成已经达成停火。</p><p>伊朗此前称，方案若获接受，将启动七天倒计时以重开海峡并暂停地区战斗，随后讨论双方商定的议题。Reuters的周一早盘报道记录：北京时间9月28日06:02，布伦特期货上涨1.74%至每桶106.14美元，WTI上涨1.23%至93.55美元。这是特定时点的报价，不能视为当日收盘或持续的涨幅。</p><p>💭 分析：能源进口商与运输企业需要区分复航倡议、正式协议和实际货物流动，否决提议使近期供给缓和的时间表更难判断，预算不能只依赖谈判消息。早盘反弹也不足以证明全年价格路径。后续应关注是否形成可执行协议、航运安全安排与出口恢复；方案内容、各方最终让步及执行能力仍存在未确认部分。</p>
+<p>来源：<a class="source-link" href="https://in.marketscreener.com/news/oil-rebounds-after-trump-rejects-iran-peace-deal-ce785adcd881f224" target="_blank">Reuters油价原文；外交背景见源清单</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>瑞士否决收紧中立规则，保留逐案决定经济制裁的空间<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">公投结果：9月27日；报道更新：印度时间21:09</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">Reuters引述最终结果称，各州及约70%选民反对把更严格中立规则写入宪法；外长强调瑞士继续中立，也继续保留制裁判断权限。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>瑞士9月27日公投否决了更严格的中立规则。Reuters引述联邦统计局最终结果称，所有州及约70%的选民反对该提案。拟议规则将限制瑞士在未遭攻击时与军事联盟合作，并要求只有联合国批准的制裁才可参与。这里采用最终结果报道，不能把早期民调或计票预测替换为正式票数。</p><p>外长卡西斯表示，否决结果让政府继续按个案决定经济制裁，并在有助于国家安全时与伙伴合作。提案支持者此前认为，瑞士对俄罗斯实施制裁削弱了传统中立；政府和多数政党则反对该倡议。报道同时说明瑞士仍然保持中立，公投没有宣布加入联盟，也没有在当日自动推出新的制裁措施。</p><p>💭 分析：对金融服务、商品贸易与跨境企业而言，结果保留了瑞士调整制裁政策的法律与政治空间，不能据此假设未来相关交易将全面放开或全面收紧。实际合规成本仍取决于具体制裁对象、授权和后续执行决定。企业应继续逐项核对正式规则；票数反映对本次制度提案的判断，不能直接预测汇率、资金流或未来外交选择。</p>
+<p>来源：<a class="source-link" href="https://in.marketscreener.com/news/swiss-vote-on-tightening-neutrality-rules-ending-peacetime-cooperation-with-nato-ce785adcd88af222" target="_blank">Reuters更新版完整报道（最终结果）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>德俄外长恢复直接接触，黑海粮食与能源出口成为会谈议题<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">会谈：9月26日；德方说明及报道：9月27日</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">德国外长把与拉夫罗夫会面的原因归于安全顾虑和粮食出口危机，主张黑海停火；双方仍互相批评，尚无出口恢复协议。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>德国外长瓦德富尔9月27日说明，他与俄罗斯外长拉夫罗夫在纽约联合国大会期间会面，是为了处理安全顾虑及日益严重的粮食出口问题。会谈发生在周六，Reuters称这是俄罗斯2022年入侵乌克兰前以来两国外长首次此类接触。接触恢复是本次新事件，并不意味着双边关系已恢复正常。</p><p>报道指出，船只和港口基础设施遇袭已严重限制俄罗斯及乌克兰的黑海粮食与能源出口，外交努力正试图恢复这些货物流动。瓦德富尔称一些全球南方国家同僚请求他与俄方交谈，他因此主张黑海停火。其粮食安全忧虑是官员对风险的判断，原文没有给出本次会谈带来的新增出口量或恢复时间表。</p><p>💭 分析：若航运安全安排改善，进口国可能获得更可预测的交货条件，但谈判接触本身不能替代港口运行、保险及运输恢复的证据。原文仍记录两国外长互相批评，拉夫罗夫认为德方没有提供新的内容，显示分歧尚大。因此不应把会晤写成粮食价格下降的保证；下一步应核验停火方案、港口安全与实际装船变化。</p>
+<p>来源：<a class="source-link" href="https://uk.marketscreener.com/news/german-foreign-minister-says-lavrov-meeting-driven-by-russia-security-concerns-ce785adcd88ef52d" target="_blank">Reuters完整报道</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-09-28 · 数据来源：Reuters完整原文转载（MarketScreener）；FRED原始CSV · 3条深读、14项已取得指标<br>
+共 3 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 周末新增事件较少，本期只收3条已深读新资讯；已对比9月27日、25日报告。原油为北京时间9月28日06:02快照，非收盘。FRED为本轮新抓取最新可用观测，日期逐项标注；VIX仅至9月22日、月度8月、GDP第二季度，不代表当日行情。Yahoo未取得而省略。💭分析属于条件性解读。</span>
+</div>
+
+</div>
+</body>
+</html>

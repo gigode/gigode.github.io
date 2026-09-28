@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-09-28</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-09-28 · 3 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（2）</a></li>
+<li><a href="#s-industry">🏢 行业动态（1）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（0）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（0）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">2 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《黑暗之魂 2》无缝合作模组进入 Alpha，作者继续修补<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Yui 的 Nexus Mods 页面；PC Gamer</span><span class="t">2026-09-27（报道）；模组09-22上传、09-26更新</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">Yui 发布《原罪学者》无缝合作模组，允许最多六人连续推进；当前仍是 Alpha，独立存档和版本要求需留意。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 27 日介绍了 Yui 为《黑暗之魂 2：原罪学者》制作的无缝合作模组。作者页面显示，模组于 9 月 22 日上传，26 日更新至 0.0.3，面向 PC 版游戏 1.03。它支持玩家与另外五人同行，击败首领不会遣返队友，通常划分多人区域的屏障也被移除，目标是让一段合作流程持续进行。</p><p>具体改变涉及游戏进度：死亡后不会直接终止整个会话，任务事件和 NPC 对话可以同步；队伍成员在篝火休息时，世界状态会共同重置。💭分析：这把合作体验从反复召唤、分段进入区域，转向持续组织同一支队伍，对想一起探索和推进剧情的玩家更直接。不过作者也承认多人会降低难度，并提供敌人缩放等规则调整，原版挑战节奏不会原样保留。</p><p>它仍然是 Alpha。作者明确提示可能遇到错误，其他模组的兼容性未经过测试，并要求队友使用一致的游戏和模组版本。模组还采用与原版不同的存档，不能把修改后的存档随意带回原版；PC Gamer 提到早期 Intel 性能问题已修补，也说明版本还在快速变化。因此现有功能是可尝试的测试方案，不能理解为已经成熟稳定的官方合作模式。</p>
+<p>来源：<a class="source-link" href="https://www.nexusmods.com/darksouls2/mods/1468?tab=description" target="_blank">阅读原始来源</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《Half-Life 2》模组 The Temple 扩展为三载具科幻恐怖冒险<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Klems 的 ModDB 公告；PC Gamer</span><span class="t">2026-09-27（报道）；作者公告09-20</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">The Temple 将原先两张竞赛地图扩展为完整转换模组，以潜艇、飞艇和航天飞机探索废弃星球；发行日尚未确定。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 27 日关注了 Klems 的《Half-Life 2》完整转换模组 The Temple。作者 9 月 20 日在 ModDB 说明，它从 Maplabs 关卡竞赛中的两张地图发展而来：原地图经过改良，新增第三张地图来扩展并结束故事。玩家探索的是一个废弃的水世界，而不是继续沿着《Half-Life 2》的原有剧情推进。</p><p>作品把探索分配给三种载具：潜艇进入海底，飞艇穿行云层和高塔，航天飞机飞向轨道上的区域；作者强调每种载具有不同机制。PC Gamer 根据预告还提到巨大建筑、危险的水中怪物和引路乌鸦。💭分析：载具切换使同一个星球能够呈现不同尺度的探索与压迫感，这是其相较于单一潜艇场景的具体设计区别，但宣传画面本身还不足以证明这些段落都同样成熟。</p><p>作者称内容已完成、长度约两小时，发行前只剩一些调整，并给出“可能下个月”的预期，未宣布确定日期。这个长度是创作者的估计，不是独立通关实测；PC Gamer 的文章也以预告介绍为主。需要继续确认的是正式版发布时间、三种载具操作是否顺畅，以及原竞赛地图扩展后故事能否自然衔接，不能把目前的展示写成已经发售的完成品。</p>
+<p>来源：<a class="source-link" href="https://www.moddb.com/mods/the-temple-standalone" target="_blank">阅读原始来源</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Digital Bros 财报列明停止《Armed Fantasia》开发<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Digital Bros 财务公告；PC Gamer</span><span class="t">2026-09-24（财报）；09-27（报道）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">发行商母公司 Digital Bros 在财务公告中明确列出停止《Armed Fantasia》开发；众筹支持者后续安排尚未在该文件中说明。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Digital Bros 在 9 月 24 日财务公告中明确列出，《Armed Fantasia》与另外两个项目停止开发。公司称，经过多次调整玩法，仍需结合市场环境及完成开发所需的追加投资重新评估潜力。相关停止项目合计核销 1760 万欧元，但文件没有拆分每款游戏的金额，因此不能把这笔总额当作《Armed Fantasia》单独损失。</p><p>PC Gamer 9 月 27 日补充了背景：这款《荒野兵器》精神续作在 2022 年与《Penny Blood》联合众筹，两作共获得 379,328,385 日元，目的包括制作原型并争取后续发行融资。报道引用今年 3 月开发更新，称《Armed Fantasia》已完成包含主线和核心系统的垂直切片，并提交发行商。原型阶段取得进展，显然没有确保项目继续获得支持。</p><p>💭分析：这件事体现了原型融资与完整制作融资之间的落差；可演示的核心系统并不能替代对后续成本和市场回报的判断。对支持者而言，停止开发已经有财报依据，但退款、知识产权去向或寻找新发行商的可能性仍未在该文件中交代。另一部联合众筹作品的命运也不能由此直接推断，仍需分别核对开发团队和发行方后续公告。</p>
+<p>来源：<a class="source-link" href="https://digitalbros-com.b-cdn.net/wp-content/uploads/2026/09/2026.09.24-The-BoD-approves-the-Draft-Financial-Statements-as-of-June-30-2026-2.pdf" target="_blank">阅读原始来源</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-09-28 · 数据来源：PC Gamer、Nexus Mods作者页面、ModDB作者公告、Digital Bros财报；Kotaku和LoL Esports已检查<br>
+共 3 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考</span>
+</div>
+
+</div>
+</body>
+</html>
