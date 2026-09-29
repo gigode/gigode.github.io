@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-09-29</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-09-29 · 3 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（0）</a></li>
+<li><a href="#s-company">🏢 企业动态（1）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（0）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（2）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>上海证券报：9月有88家半导体公司接受机构调研，设备与模拟芯片受关注<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">上海证券报</span><span class="t">2026-09-29</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">记者依据Choice数据梳理机构调研，并采访产业链公司；样本显示设备零部件及部分模拟芯片企业订单、产能成为焦点。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>上海证券报9月29日披露的调研梳理显示，近一个月有88家半导体公司接受机构调研，其中8家接待量超过百人次。等离子体射频电源系统企业恒运昌接待11次，称上半年产能利用率达102.46%；内存接口芯片企业澜起科技接待3次、累计335人次。这些数字反映机构关注的分布与公司自身披露的经营状态，并不代表整个半导体行业的平均产能利用率。</p><p>报道还引述圣邦股份的调研信息：上半年网络与计算业务收入占比达到25%，同比增长近一倍，光模块相关模拟芯片是主要驱动因素。对半导体产业链而言，数据中心扩张不仅增加处理器和存储需求，也传导到电源、信号链、设备部件与材料环节；但不同细分市场的交货周期、议价能力和客户集中度不同，不能把单一企业的增长率外推给所有供应商。</p><p>💭 分析：调研热度是资本市场的注意力指标，不是新增订单或利润兑现。恒运昌的产能利用率与圣邦股份的业务增速提供了可跟踪的经营线索，后续仍须用季报中的收入、毛利率、存货与应收账款交叉验证。报道中受访者预计部分领域高景气可能持续至2028年，这是前瞻判断；若AI资本开支、扩产节奏或国产替代进度变化，实际需求也会偏离该预期。</p>
+<p>来源：<a class="source-link" href="https://paper.cnstock.com/html/2026-09/29/content_2273390.htm" target="_blank">查看上海证券报原文</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>粤芯半导体公布IPO网下初步配售结果，发行价每股12.01元<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">粤芯半导体及联席主承销商公告（上海证券报刊载）</span><span class="t">2026-09-29</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">初始发行5.12646亿股；最终战略配售2.56323亿股，网上、网下回拨及超额配售安排已披露。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>粤芯半导体与联席主承销商9月29日发布网下发行初步配售结果公告。公告确认发行价为每股12.01元，初始公开发行5.12646亿股，全部为新股；最终战略配售2.56323亿股，与初始安排相同，因此战略配售没有向网下回拨。公司同时授予不超过初始发行数量15%的超额配售选择权，若全额行使，发行总数将增至5.89542亿股。该上限是发行机制安排，不宜当作已确定的最终发行股数。</p><p>由于网上初步有效申购倍数超过触发门槛，发行人启动网上、网下回拨。公告所列网下最终发行量为1.53795亿股，网上最终发行量为1.79424亿股，回拨后的网上中签率为0.0423786759%。网下获配投资者须在9月29日16时前缴款，网上中签投资者须在当日日终保证资金充足。配售结果披露推进了上市流程，但缴款、承销及后续上市交易仍有各自的程序节点。</p><p>💭 分析：这次发行是晶圆制造企业的重要融资事项，战略配售比例与回拨后散户申购倍数可以观察资金参与结构，却不能直接证明其未来产能盈利水平。发行价格和认购热度也不是二级市场估值的保证。读者评估后续影响，应关注最终募集资金净额、超额配售选择权实际行使情况、招股书披露的产能爬坡与亏损变化，以及上市后信息披露，而不是仅以中签率推断经营前景。</p>
+<p>来源：<a class="source-link" href="https://paper.cnstock.com/html/2026-09/29/content_2273524.htm" target="_blank">查看发行公告原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>英伟达将股票回购授权提高1500亿美元，剩余额度增至2350亿美元<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">NVIDIA 公司新闻稿</span><span class="t">美国东部时间 2026-09-28 07:00（北京时间 19:00）</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">董事会增加既有回购计划授权，公司预计在2028财年内执行剩余计划；实际回购规模仍取决于后续执行。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>英伟达9月28日美国东部时间7时发布新闻稿，称董事会为现有股票回购计划新增1500亿美元授权，使剩余可回购总额度达到2350亿美元。公司预计在2028财年内执行剩余计划。董事会授权说明公司获得执行空间，不代表已购入同等金额股票；回购速度、成交价格及最终使用额度仍需以后续财报和监管申报为准。新闻稿称这是其所认定的历史最大回购授权增幅。</p><p>黄仁勋在新闻稿中将AI与加速计算需求、现金创造能力和股东回报联系起来，同时表示公司仍将投资推动技术转型的领域。这段表述传递了管理层对长期机会的信心，但属于公司对未来的陈述，不能替代订单、自由现金流或资本开支的实际数据。新闻稿未披露新的芯片产品、出货量或客户采购承诺，因此不应把回购决定写成需求已经再次上修的证据。</p><p>💭 分析：大额回购可能减少流通股数，影响每股指标，也可能改变市场对现金用途的预期；效果取决于执行时点和价格。对半导体供应链更关键的仍是英伟达后续产品交付、代工与先进封装供给、客户资本开支和现金流是否匹配。2350亿美元是授权上限而非确定支出，若市场或经营条件变化，公司可以调整执行节奏。观察后续季度披露的实际回购金额，比依据授权数字推断股价或产能趋势更稳妥。</p>
+<p>来源：<a class="source-link" href="https://www.globenewswire.com/news-release/2026/9/28/3369756/0/en/nvidia-announces-a-150-billion-share-repurchase-authorization-increase.html" target="_blank">查看英伟达原始新闻稿</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-09-29 · 数据来源：截至北京时间 2026-09-29 的公司公告、公司新闻稿与上海证券报原文；逐条注明原始发布日期<br>
+共 3 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 本期仅收录已核实原文的事项。英伟达新闻稿发表于美国时间 9 月 28 日，北京时间为 9 月 28 日晚；授权回购不等于已经完成回购。产业景气展望属于受访者判断，并非确定预测。</span>
+</div>
+
+</div>
+</body>
+</html>

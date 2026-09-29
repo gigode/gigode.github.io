@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-09-29</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-09-29 · 7 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（1）</a></li>
+<li><a href="#s-data">📊 经济数据（2）</a></li>
+<li><a href="#s-market">📈 资本市场（1）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（2）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>美联储理事库克警惕油价与人工智能投资带来持续通胀<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">讲话：9月28日；报道：美东时间13:28更新</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">库克认为能源冲击及人工智能建设需求可能推高短期物价，但没有承诺下一次会议继续加息。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美联储理事丽莎·库克在加州一场人工智能与新兴技术会议上表示，预计未来数月仍会面临通胀压力，来源包括人工智能建设带来的需求、较高油价及中东冲突造成的供应链干扰。她说劳动力市场看来有能力承受利率上升，但未来调整次数和幅度需要观察此前政策的效果，以及接下来的就业和物价数据。此次表态并不是对十月加息的正式承诺。</p><p>据Reuters报道，美联储本月已为抑制通胀实施三年来首次加息，库克参与一致赞成的投票。她指出截至八月的十二个月总体通胀约为百分之三点八，仍高于央行百分之二目标；人工智能可能在中期提升生产率，但短期效应不足以完全抵消物价压力。市场对下一次会议继续加息的押注属于交易者定价，不能与官员决定混为一谈。</p><p>💭 分析：讲话把能源供给和科技资本开支放在同一个通胀框架里，提示投资者不能只凭经济增长强劲就推断利率将稳定。若后续油价回落或就业转弱，政策权衡也可能变化。库克同时指出人工智能对就业结构的影响证据仍有限，因此不宜把潜在失业风险写成已经出现的大规模替代。下一步需看美国个人消费支出物价和就业报告，以及联储其他官员是否给出一致信号。</p>
+<p>来源：<a class="source-link" href="https://www.marketscreener.com/news/fed-s-cook-sees-further-inflationary-pressures-ahead-ce785adcd18ff32d" target="_blank">Reuters完整报道</a></p>
+</div>
+</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>中国前八个月规上工业企业利润增长15.7%，行业分化明显<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">国家统计局</span><span class="t">9月28日09:30（北京时间）</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">国家统计局公布一至八月利润总额52719.8亿元，同比按可比口径增15.7%；制造业增长而电力等行业下降。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>国家统计局九月二十八日发布，一至八月全国规模以上工业企业实现利润总额五万二千七百一十九点八亿元，同比按可比口径增长百分之十五点七。制造业利润增长百分之十七点四，采矿业增长百分之三十五点一，电力、热力、燃气及水生产和供应业下降百分之十二。该数字是累计利润增速，并非八月单月增速，也不能据此推算所有企业盈利表现。</p><p>细分行业差异较大：计算机、通信和其他电子设备制造业利润增长约一点一倍，有色金属冶炼和压延加工业增长百分之八十二点九；汽车制造业下降百分之十六，非金属矿物制品业下降百分之四十六点七。同期营业收入增长百分之六点六，营业成本增长百分之六点一，营业收入利润率为百分之五点六六。统计局说明同期基数经过调整，应使用其公布的可比口径增速。</p><p>💭 分析：利润增长快于收入，说明总体盈利能力改善，但结构性分化意味着不能把累计总量直接外推到每个产业链。上游价格、出口订单、成本传导和产能利用率可能共同影响结果，单靠这一期数据不能确定各因素权重。对宏观判断更有用的是观察后续月份增速、应收账款回收期及下游需求是否同步改善；若利润集中在少数行业，总量改善对就业和民间投资的带动仍需核实。</p>
+<p>来源：<a class="source-link" href="https://www.stats.gov.cn/sj/zxfbhjd/202609/t20260928_1965425.html" target="_blank">国家统计局原始发布</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>英国居民一年期通胀预期升至4.5%，长期预期亦抬头<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener（Citi/YouGov调查）</span><span class="t">9月28日，美东时间10:35报道</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">Citi/YouGov调查显示英国居民一年期通胀预期由3.9%升至4.5%，长期预期由4.1%升至4.3%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Citi与YouGov九月调查显示，英国居民对未来十二个月价格涨幅的预期由八月的百分之三点九升至百分之四点五，长期预期由百分之四点一升至百分之四点三。Reuters称，若剔除今年三月这一较高读数，长期预期处于二零二五年六月以来最高水平。该调查访问两千多户家庭，记录的是受访者预期，并非已经实现的消费者物价涨幅。</p><p>英国央行正在关注中东冲突引发的能源价格上升是否会扩散为持续通胀。Citi指出，这项家庭调查与英国央行企业决策者调查存在明显差距：截至八月，二者对未来一年物价的预期差距为八十六个基点，高于历史平均十六个基点。家庭更易受食品与燃料短期价格影响，企业则更接近定价决策，因此两类样本不能简单替代。</p><p>💭 分析：如果家庭预期持续抬升，工资谈判可能把一次能源冲击延长为更广泛的价格压力；但调查上行并不能证明薪资已经加速，也不能单独决定英格兰银行的利率路径。决策者还需比对实际通胀、薪酬、企业定价和需求表现。对市场而言，关键在于随后公布的企业预期是否也跟随上升；若差距继续扩大，政策解读将更依赖调查方法和央行赋予各指标的权重。</p>
+<p>来源：<a class="source-link" href="https://www.marketscreener.com/news/uk-long-run-inflation-expectations-near-15-month-high-in-september-citi-yougov-survey-shows-ce785adcde8aff23" target="_blank">Reuters完整报道</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#b45309;">资本市场</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>美股下跌、美债收益率上行，油价收盘涨幅收窄<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">9月28日美国市场收盘；报道美东时间16:16</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">标普500跌约0.8%、纳指跌约0.9%；十年期美债收益率升至约5.25%，布伦特原油结算价105.28美元。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Reuters九月二十八日收盘综述显示，标普五百指数收于七千六百八十三点六九点，跌约百分之零点八；纳斯达克综合指数收于二万六千八百二十点三八点，跌约百分之零点九；道琼斯工业平均指数跌约百分之零点七。美国十年期国债收益率较上周五升约七个基点至百分之五点二五一，两年期收益率升至百分之四点九三七。以上均为报道时点或当日收盘数据。</p><p>早些时候油价因美伊谈判僵局每桶一度上涨逾四美元，随后卡塔尔斡旋新一轮会谈的消息令涨幅收窄。布伦特原油最终结算价为每桶一百零五点二八美元，较前一日上涨九十六美分；美国原油结算价九十二点六零美元。全球股指、黄金也承压。报道记录的十年期及三十年期美债收益率均曾触及多年高位，反映融资成本变化对资产估值的冲击。</p><p>💭 分析：同日出现股票下跌、收益率上行和油价先冲高后回落，说明投资者同时在消化通胀风险与外交进展，不能用单一消息解释全部价格变动。更高贴现率可能压缩高估值企业的估值空间，但企业盈利和经济数据仍会影响最终走势。本周美国通胀及就业数据尚未公布，市场对十月加息的概率只是实时预期。此前一天报告所列早盘油价已过时，判断当日结果应以本次结算价为准。</p>
+<p>来源：<a class="source-link" href="https://ca.marketscreener.com/news/stocks-fall-oil-prices-off-highs-amid-renewed-hopes-for-middle-east-negotiations-ce785adcd08af22d" target="_blank">Reuters收盘综述</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>中国国务院部署加大逆周期调节，要求加快债券发行使用<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">国务院会议：9月28日；Reuters美东时间07:38更新</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">国务院要求提高现有政策落实效率、加快政府债券发行使用，并研究住房、就业和收入支持措施。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Reuters据中国官方会议通报报道，国务院九月二十八日要求加强逆周期宏观政策调节，推动经济持续改善并努力实现全年发展目标。会议强调提高现有政策落实效率，加快政府债券发行及资金使用，也要求与五年规划相关的重大基础设施项目尽快开工。报道所述是政策部署与方向，并不代表具体新增财政额度已经全部批准或资金已经到达项目。</p><p>会议还提出更有效使用财政资金、利用未使用的地方政府债务空间，并灵活运用货币政策工具。支持范围包括投资、消费、科技创新、产业升级、农业和小企业，住房市场、就业与收入增长的进一步措施仍处研究阶段。Reuters把这一部署置于经济增长放缓背景下，但不同政策从宣布到形成实物工作量需要预算、审批和执行环节。</p><p>💭 分析：债券发行与使用提速可能较快影响基础设施投资，针对住房和居民收入的政策则更取决于方案细节与地方落实。读者应区分会议要求、后续正式文件以及实际资金拨付，不能把政策意向直接换算为新增增长百分点。对经济数据的验证可看固定资产投资、消费、民间投资及地方债发行节奏；若项目建设提速而终端需求仍弱，政策对企业利润和就业的传导也可能不均衡。</p>
+<p>来源：<a class="source-link" href="https://www.marketscreener.com/news/china-s-cabinet-pledges-stronger-policy-support-to-meet-growth-target-ce785adcdc8cf723" target="_blank">Reuters完整报道</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>中美农产品关税清单涵盖多品类，大豆仍被排除<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">9月28日，美东时间03:58更新</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">新公布的清单拟调降玉米、小麦、肉类等商品关税，但美国大豆未列入，生效日期尚不明确。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Reuters九月二十八日报道，中美公布的农产品关税调整清单覆盖玉米、小麦、高粱、植物油及粕类、肉类和乳制品等，但美国大豆未列入本轮降税范围。报道引述商务部门说法，清单中超过九成商品将免除双方额外加征关税，适用最惠国税率；不过清单没有给出降税何时生效。因此目前应将其称为已公布的调整安排，不能认定相关商品当日已经完成税率切换。</p><p>美国大豆仍面临额外百分之十关税。Reuters称，中国国有粮食企业已经采购超过一千二百万吨美国大豆，但白宫所说未来年度采购目标尚未得到中方确认。报道还指出，若不计关税，美巴大豆到岸成本接近，而私人压榨企业仍关注利润空间。采购记录、政策清单和未获双方确认的目标分别属于不同证据层级，不能相互替代。</p><p>💭 分析：税率下降有助于被覆盖品类的贸易成本下降，但进口量仍取决于生效时间、供需、汇率和企业合同。大豆被排除使农业谈判中最受关注的品类保留不确定性，市场不宜把整体关税安排外推至所有商品。后续应核实正式税则及海关执行日期，再观察进口订单、价格和企业采购变化；短时的期货价格反应只能说明市场预期，不能证明关税调整已产生实际贸易量。</p>
+<p>来源：<a class="source-link" href="https://www.marketscreener.com/news/china-to-cut-tariffs-on-us-farm-goods-but-list-excludes-soybeans-ce785adcdb8dfe21" target="_blank">Reuters完整报道</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>空头基金经理警示私人信贷风险，但系统性后果仍属判断<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">9月28日采访；报道美东时间13:42更新</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">Ganapathi筹备偏空头基金，认为私人信贷账簿可能隐藏企业压力；其看法是投资观点，并非监管结论。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Reuters采访筹备偏空头基金Minerva的Laks Ganapathi。她认为市场过于关注人工智能股票估值，私人信贷借款人的财务状况可能存在更隐蔽的风险；基金计划关注医疗、零售、餐饮和小型银行等领域。Michael Burry被聘为高级顾问，但报道中的具体风险判断由Ganapathi提出，不能误写为Burry本人新的预测。基金尚未披露具体做空目标或规模。</p><p>报道援引惠誉数据称，美国私人信贷八月年化违约率达到百分之六点三的历史高点。该数字支持关注信用质量，但并不能单独证明整个金融体系将出现同等程度损失。Ganapathi将私人信贷视作市场领先信号，并作出非常悲观的后果判断；这些均是其观点。Reuters同时指出，做空策略面临市场反向波动、监管和仓位拥挤等风险，历史案例不能直接推断本轮结果。</p><p>💭 分析：私人信贷信息披露不足，会使外部投资者更难及时识别底层借款人的压力，信用利差、展期安排和实际违约回收率因此比个别观点更值得跟踪。若违约上升集中于特定行业，冲击范围可能与广泛信贷收缩不同。评估系统性风险仍需核实银行与基金敞口、杠杆及损失分担机制。把空头基金的投资逻辑作为风险提示是合理的，把它写成已经发生的危机则缺乏证据。</p>
+<p>来源：<a class="source-link" href="https://www.marketscreener.com/news/with-burry-as-adviser-a-new-short-focused-fund-takes-aim-at-private-credit-risks-ce785adcde8ff723" target="_blank">Reuters完整采访报道</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-09-29 · 数据来源：国家统计局原始发布；Reuters完整报道（MarketScreener转载）<br>
+共 7 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 北京时间9月29日早间编制，收录9月28日新增或收盘后可核实信息。9月29日澳洲联储决议、美国职位空缺等尚未公布，不预判结果。市场报价均注明原报道时点；观点与预测不等同已发生事实。</span>
+</div>
+
+</div>
+</body>
+</html>
