@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-09-30</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-09-30 · 7 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（3）</a></li>
+<li><a href="#s-industry">🏢 行业动态（2）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（1）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（0）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">3 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《Deadlock》大更新重塑地图，六名英雄将分批加入<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（引用 Valve 更新页）</span><span class="t">2026-09-29</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">Valve 为《Deadlock》调整地图风格和界面，并公布六名将按玩家投票顺序分批上线的新英雄。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 29 日介绍 Valve 的《Deadlock》“City Never Sleeps”更新：战斗城市被重塑为风格不同的市中心、闹鬼大学和交易所等区域，建筑与街道小兵也随区块调整。局部地图加入可争夺的灵魂资源点，变化不仅停留在灯光和装饰。</p><p>六名新英雄已经公布，但报道明确说他们会依据玩家投票决定顺序，每周加入两名，不能写成六人同日全部可玩。更新还改善血条、队友方位、击杀信息和商店筛选，增加练习机器人与无障碍设置。💭分析：地图辨识度与信息可读性同时调整，可能降低新玩家在复杂团战中定位队友、目标和装备的门槛。</p><p>《Deadlock》目前仍采用邀请制，媒体所见是持续开发中的版本；新英雄分批推出后的平衡效果尚待实战。玩家投票能决定先后，但不等于决定英雄最终强度。观察重点是新地图目标是否改变对线和转场节奏，以及界面改进能否在真实比赛中减少信息负担。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/moba/deadlocks-gigantic-new-update-gives-its-city-a-spooky-new-coat-of-paint-and-debuts-6-new-heroes-including-the-one-and-only-rat-king/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《Satisfactory》公布首个付费扩展 Core Values<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（引述 Coffee Stain 公告）</span><span class="t">2026-09-29</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">Coffee Stain 公布《Satisfactory》首个付费 DLC Core Values，预告地下建造及新资源、植物和生物；日期未定。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Coffee Stain Studios 经 PC Gamer 9 月 29 日报道公布《Satisfactory》的首个付费扩展 Core Values。预告把玩家原本主要在地表展开的工厂建造带入地下，并提到新资源、植物与生物；扩展已有 Steam 页面。报道没有给出具体售价或发售日期，只称会在稍后推出。</p><p>地下空间意味着现有生产链可能获得新的探索与布置场景，但预告尚未说明资源怎样接入运输、供电和自动化体系。💭分析：对重视生产线设计的玩家，关键不只是多一片地图，而是新空间是否引入足以改变路线规划的限制与收益。PC Gamer 作者写了大量自己长期游玩的感受，那属于个人体验，不能据此推断 DLC 的实际内容量。</p><p>目前可确认的是“首个付费 DLC”“大型扩展”以及地下主题；具体机制、价格、存档兼容和上线时间仍待开发商说明。准备回归旧存档的玩家尤其需要等官方解释地下内容如何连接已有基地，避免把预告中的场景当成已验证的完整玩法清单。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/survival-crafting/one-of-my-all-time-favorite-games-just-announced-an-expansion-yet-all-i-feel-is-fear/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>《暗黑破坏神 5》总监称构筑准备将重于纯反应操作<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（引述游戏总监 Joe Shely）</span><span class="t">2026-09-29</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《暗黑破坏神 5》总监表示新作仍保留即时操作，但整体战斗会更强调事前规划与合适构筑。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 29 日引用《暗黑破坏神 5》总监 Joe Shely 的公开说明：游戏仍会要求部分即时操作，但总体设计更重视规划和长期投入。他提出的核心目标是让玩家能通过合适构筑克服挑战。这是开发方向的表达，尚不是可供检验的技能、敌人和数值方案。</p><p>报道把这一说法与系列不同作品的战斗重心作了比较：作者认为《暗黑破坏神 4》较依赖临场闪避，而《暗黑破坏神 2》更强调准备。这一比较属于媒体解读，不能当作暴雪承诺复制旧作节奏。💭分析：如果“合适构筑”真的决定挑战的解法，装备、技能选择和改造成本就会比单纯提高反应速度更影响玩家体验。</p><p>目前没有实机测试能显示构筑在各难度下究竟有多大权重，也未公布让错误构筑重新调整的成本。9 月 23 日已报道怪物等级缩放，本次是总监对战斗哲学的新增表述；两者如何合并为完整成长系统，仍要等更具体的展示。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/rpg/diablo-5-director-promises-diablo-2-style-combat-where-the-right-build-matters-more-than-diablo-4s-action-heavy-approach/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Steam 计划让折扣与活动展示更多依赖个性化推荐<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（引述 Valve Steamworks 公告）</span><span class="t">2026-09-29</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Valve 试验把部分固定促销位改为个性化展示，称测试让更多游戏被看到；计划 2027 年初开始推出。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 29 日转述 Valve 的 Steamworks 公告：Steam 正测试把“折扣与活动”板块部分固定展示位改为动态、个性化推荐。Valve 称，在测试中该板块一天能向顾客展示的游戏数量达到过去的十倍，同时商店页访问、愿望单和购物车加入均有增长；公告没有给出这些转化指标的具体增幅。</p><p>调整改变的是哪些促销被看见，而不是游戏如何定价。更多折扣游戏和活动有机会出现在首页及其他位置，不再完全受少量人工排期席位限制。💭分析：对中小开发者，这可能增加进入用户视野的机会；但如果推荐主要依赖既有兴趣，也可能让玩家较少遇到偏离惯常偏好的作品。两种效果都需要上线后的展示分布才能判断。</p><p>Valve 预计在 2027 年初启动，但尚未确定正式日期，也没有公开完整排序规则。因此不能把测试阶段的“展示十倍”理解成所有开发者流量或销量都会增长十倍。平台后续应说明推荐如何兼顾新品、冷门品类与大型活动，玩家也需要观察发现页是否真的更容易找到有价值的折扣。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/the-algorithm-comes-for-steams-discounts-and-events/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Xbox 光盘转数字许可功能开始向所有用户开放<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Kotaku（实测并引用 Xbox 官方说明）</span><span class="t">2026-09-29</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Xbox 将光盘转数字许可从测试扩大至全部用户；符合条件的 Series X、Xbox One 光盘可申领，仍须保留原盘。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Kotaku 9 月 29 日报道，Xbox 将此前面向 Insider 的光盘转数字许可功能推广至所有用户，主要覆盖符合条件的 Xbox Series X 与 Xbox One 实体盘。记者用《Injustice 2》光盘完成申领，之后可不插盘启动；报道也说运行支持的游戏可能自动触发申领。具体是否可用仍取决于游戏和发行商。</p><p>这项功能降低了反复换盘的操作负担，却不能简单理解为把每张旧光盘兑换成可自由转让的永久数字版。Kotaku 指出 Xbox 360 和初代 Xbox 游戏目前不在范围内，部分发行商也尚未加入。💭分析：对仍收藏大量实体游戏的玩家，支持名单和许可持续条件，比“免插盘”本身更影响长期使用价值。</p><p>报道特别提醒保留原光盘：若卖掉或遗失，数字许可可能受到影响。官方支持页可查询操作，但长期授权与二手转移的全部边界并未在这篇报道中展开。玩家应在处理实体盘前核对单个游戏是否支持，并关注 Xbox 对许可验证方式的后续说明。</p>
+<p>来源：<a class="source-link" href="https://kotaku.com/xboxs-disc-to-digital-is-rolling-out-now-to-all-users-2000738475" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>《英雄联盟》2026 全球总决赛主题曲将由 True Damage 演出<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">LoL Esports 官方公告</span><span class="t">2026-09-29</span><span class="tag tg-esports">电竞资讯</span></div>
+<div class="card-brief">Riot 公布 Worlds 2026 主题曲《Know My Name》，True Damage 将演出；音乐视频聚焦 Faker 与 T1。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>LoL Esports 9 月 29 日宣布，2026 全球总决赛主题曲《Know My Name》由虚拟组合 True Damage 演出，这是 Riot 虚拟艺人首次承担该赛事主题曲。官方将于太平洋时间 10 月 8 日 18 时发布歌曲和音乐视频，视频主线聚焦 Faker 与 T1 的三连冠历程；截至公告时，完整作品尚未公开。</p><p>公告列出与角色合作的艺人，包括 Senna 对应的 Coco Jones、Qiyana 对应的 Sofía Reyes、Akali 对应的 SOYEON，以及 Ekko 对应的 Vic Mensa。💭分析：把主题曲、虚拟组合和冠军故事绑定，旨在比赛前连接音乐与电竞受众；但这只是传播设计的推断，无法据此预判歌曲口碑或实际观看量。</p><p>赛事安排方面，入围赛计划 10 月 15 日在洛杉矶开打，11 月 14 日于纽约布鲁克林 Barclays Center 举行决赛开幕式，True Damage 将在现场演出。视频呈现、舞台效果和观众反应，仍待正式发布与演出后观察。</p>
+<p>来源：<a class="source-link" href="https://lolesports.com/en-US/news/worlds-anthem-presented-by-true-damage" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>《Wardogs》负责人承认后期平衡问题，拟调整迫击炮<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转述 Bulkhead 负责人回应）</span><span class="t">2026-09-29</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">Bulkhead 负责人承认《Wardogs》后期体验和平衡仍需调整，迫击炮弹药成本是已指出的问题之一。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 9 月 29 日整理《Wardogs》开发商 Bulkhead 负责人 Joe Brammer 的回应。他承认游戏出现迫击炮弹药成本偏低、让玩家倾向大量使用的情况，团队准备研究削弱；他也直言当前后期体验不理想。第一赛季被刻意设置得较短，因为团队预期大规模游玩后会暴露平衡问题。</p><p>报道同时提到经验值成长较慢、较早解锁高等级护甲与车辆的玩家占优势，这些是记者观察和社区讨论，不是官方发布的胜率数据。Brammer 认为作品首先是沙盒射击游戏，某些武器一季内偏强并非绝对不可接受。💭分析：这使团队必须在变化感与公平性之间取舍；如果高等级装备过早压制新人，短赛季也未必能解决进入后期的挫折。</p><p>团队计划增加通过重复操作提升、跨赛季保留的技能，并引入解锁枪械部件的 intel 资源，但这些仍属于未来功能。当前没有确定的迫击炮削弱幅度，也未展示新成长体系如何与现有经验值和经济系统衔接。观察重点应是下一轮平衡更新是否同时改善低等级玩家的生存空间与长期投入回报。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/fps/wardogs-boss-talks-balance-xp-and-why-the-endgame-is-sh-t-right-now/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-09-30 · 数据来源：PC Gamer、Kotaku、LoL Esports及其所引官方公告；已对前两期按事件去重<br>
+共 7 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考</span>
+</div>
+
+</div>
+</body>
+</html>

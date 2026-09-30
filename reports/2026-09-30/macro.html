@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-09-30</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-09-30 · 7 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（2）</a></li>
+<li><a href="#s-data">📊 经济数据（3）</a></li>
+<li><a href="#s-market">📈 资本市场（1）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（1）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">2 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>澳洲联储加息25基点至4.60%，警惕能源与科技成本传导<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">澳大利亚储备银行官方声明</span><span class="t">决议：9月29日14:30澳东时间</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">澳洲联储一致决定将现金利率目标上调至4.60%，声明称能源价格、科技商品价格与国内产能压力共同推高通胀风险。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>澳大利亚储备银行9月29日宣布，将现金利率目标提高25个基点至4.60%，董事会一致通过。声明说中东冲突扩大、全球能源价格高于8月预测假设，人工智能需求也推高科技相关商品价格；企业联络显示成本压力正被部分转嫁到商品和服务价格。</p><p>央行同时观察到居民消费增速放缓、住房价格在多数首府城市回落、住房贷款减少，劳动力市场也如预期缓和；但二季度产出略强于先前判断，企业投资和债务增长仍强。决议把持续偏高的通胀与增长放缓并列，未声称经济各部门都在加速。</p><p>💭 分析：加息会继续抬高澳洲浮动利率融资和再融资成本，住房与高杠杆企业尤其需要检验现金流。央行表示若有必要还可继续加息，但这只是条件性政策选择。后续关键是燃料成本是否进一步传入价格、消费与住房疲弱是否加深，不能把本次一致投票写成已确定的连续加息路径。</p>
+<p>来源：<a class="source-link" href="https://www.rba.gov.au/media-releases/2026/mr-26-27.html" target="_blank">澳大利亚储备银行官方声明</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>纽约联储威廉姆斯称再加息无需急行，年底一次仍属条件预测<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">讲话与报道：9月29日</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">威廉姆斯主张先观察新数据；若经济符合其预测，年底前一次上调可能合适，市场随即下调十月加息押注。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>纽约联储主席威廉姆斯9月29日在布法罗的讲话中表示，9月已加息后，再行动没有紧迫性，等待新数据可更清楚判断经济。Reuters引述其条件判断：如果经济大体符合预测，年底前再上调一次目标区间可能适合。此为个人预测，并非委员会对时间或次数的正式承诺。</p><p>他指出经济仍较强、就业保持韧性，因此通胀可成为政策重点；同时担心外部冲击造成的价格压力固化及二次传导。其讲话与前一日偏鹰的市场交易预期形成差异；Reuters记录，十月加息概率从当日较早近七成降至大约五五开，属于期货定价快照。</p><p>💭 分析：前端利率对官员措辞更敏感，融资计划不应把单日概率变化当作确定的政策转向。接下来的PCE与就业数据若与他的预测偏离，判断也可能改变。威廉姆斯强调的是决策顺序和证据门槛，既没有排除再加息，也没有为十月会议提前作出结论。</p>
+<p>来源：<a class="source-link" href="https://in.marketscreener.com/news/fed-s-williams-sees-no-urgency-for-next-fed-rate-hike-ce785addd08ff525" target="_blank">Reuters / MarketScreener</a></p>
+</div>
+</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>美国8月职位空缺降至707.9万，但裁员仍低<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">美国劳工统计局官方JOLTS</span><span class="t">数据月：8月；发布：9月29日10:00美国东部</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">BLS称8月职位空缺约710万，招聘约520万、离职约510万，裁员约160万；Reuters给出的未四舍五入值为707.9万。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国劳工统计局9月29日发布8月JOLTS：职位空缺约710万个、空缺率4.3%，招聘约520万，离职约510万；其中主动辞职约310万、裁员及解雇约160万。官方把这些总体变化描述为基本持平。Reuters引用更精确的职位空缺数707.9万，较修订后的7月数据减少25.6万。</p><p>这组数据反映招聘需求有所回落，但企业尚未出现明显的大规模裁员。职位空缺统计的是参考月最后一个工作日仍在招人的岗位，招聘与离职则覆盖全月，口径不同；不能把空缺下降直接等同于同期就业人数下降。7月数字已修订，也提醒读者避免仅看初值。</p><p>💭 分析：需求放缓而裁员仍低，为劳动市场提供缓冲，但它既不能证明就业将强劲增长，也不能单独确认衰退。企业应结合工资、实际招聘和即将公布的非农就业数据判断用工压力。若低空缺持续而招聘再减速，后续就业风险才更值得上调；单月调查读数不宜作长期趋势定论。</p>
+<p>来源：<a class="source-link" href="https://www.bls.gov/news.release/archives/jolts_09292026.htm" target="_blank">美国劳工统计局官方JOLTS</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>美国9月消费者信心跌至81.9，家庭对就业前景转谨慎<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener（引述谘商会调查）</span><span class="t">调查月：9月；报道：9月29日</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">谘商会信心指数较前月跌6.7点至81.9，低于Reuters调查预期89.2；受访者预计未来半年商业和就业状况转弱。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Reuters报道，美国谘商会9月消费者信心指数下降6.7点至81.9，为2014年以来最低，低于受访经济学家预测的89.2。调查显示，家庭对未来六个月商业环境和就业市场的判断都转弱。现况商业条件评价首次自2024年9月以来转负，就业市场现况看法也恶化。</p><p>这项结果与前一张JOLTS反映的低裁员并不矛盾：前者是家庭主观调查，后者记录企业岗位、招聘与离职。消费者对未来的担忧可能先于消费调整，也可能受油价、利率及新闻影响；原文没有证明9月零售支出已实际下滑。</p><p>💭 分析：面向家庭需求的企业应关注价格敏感度和订单取消率，但不能仅凭信心指数就下调全部销售预期。若担忧在后续收入和支出数据中得到印证，需求风险才会更明确。市场也可能同时看到就业仍稳与信心偏弱，货币政策反应取决于通胀和实际活动数据的组合。</p>
+<p>来源：<a class="source-link" href="https://uk.marketscreener.com/news/us-consumer-confidence-dives-to-more-than-12-year-low-in-september-ce785addde8aff25" target="_blank">Reuters / MarketScreener（引述谘商会调查）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>中国上半年经常账户顺差26079亿元，货物与服务走势分化<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">国家外汇管理局官方平衡表</span><span class="t">统计期：2026年上半年及二季度；发布：9月29日</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">外汇局公布上半年经常账户顺差26079亿元，二季度货物顺差19061亿元、服务逆差3789亿元；需按国际收支口径解读。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>国家外汇管理局9月29日公布正式国际收支平衡表：上半年经常账户顺差26079亿元、资本和金融账户逆差23852亿元。单看二季度，经常账户顺差13243亿元，其中货物贸易顺差19061亿元、服务贸易逆差3789亿元。两项方向不同，不能只用货物顺差概括全部跨境收支。</p><p>平衡表另列二季度初次收入逆差2456亿元、二次收入顺差428亿元；资本和金融账户包含储备资产，不能简单等同于私人资本外逃。官方说明人民币季度值由美元数据按当季平均汇率折算，并采用修订机制，这也限制了跨口径和跨期直接比较。</p><p>💭 分析：经常账户顺差说明货物和收入交易总体形成外汇净收入，但汇率方向还受金融交易、政策及市场预期影响。进口服务行业与外贸企业面对的现金流条件并不相同。后续可观察服务逆差、投资流入和储备项目的变化；不能从一份半年平衡表直接推出人民币必然升贬。</p>
+<p>来源：<a class="source-link" href="https://www.safe.gov.cn/safe/2026/0929/27942.html" target="_blank">国家外汇管理局官方平衡表</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#b45309;">资本市场</h2><span class="count">1 条</span>
+</div>
+<div class="metric-grid">
+<div class="metric-group-label">美国利率、信用与波动 · FRED最新可用观测</div>
+<div class="metric-card"><div class="metric-label">联邦基金有效利率 · DFF</div><div class="metric-value">3.88%</div><div class="metric-change flat">观测日：2026-09-28</div><div class="metric-explain">✅ 结构化源 · 每日实际成交有效利率，非政策目标区间。</div></div>
+<div class="metric-card"><div class="metric-label">十年期美债收益率 · DGS10</div><div class="metric-value">5.24%</div><div class="metric-change flat">观测日：2026-09-28</div><div class="metric-explain">✅ 结构化源 · 固定期限收益率，非实时行情。</div></div>
+<div class="metric-card"><div class="metric-label">两年期美债收益率 · DGS2</div><div class="metric-value">4.92%</div><div class="metric-change flat">观测日：2026-09-28</div><div class="metric-explain">✅ 结构化源 · 固定期限收益率，非实时行情。</div></div>
+<div class="metric-card"><div class="metric-label">十年减两年美债利差 · T10Y2Y</div><div class="metric-value">0.37 个百分点</div><div class="metric-change flat">观测日：2026-09-29</div><div class="metric-explain">✅ 结构化源 · FRED独立利差序列，不用不同观测日收益率混算。</div></div>
+<div class="metric-card"><div class="metric-label">十年盈亏平衡通胀率 · T10YIE</div><div class="metric-value">2.35%</div><div class="metric-change flat">观测日：2026-09-29</div><div class="metric-explain">✅ 结构化源 · 市场通胀补偿，非未来通胀保证。</div></div>
+<div class="metric-card"><div class="metric-label">美国高收益债OAS · BAMLH0A0HYM2</div><div class="metric-value">3.02 个百分点</div><div class="metric-change flat">观测日：2026-09-28</div><div class="metric-explain">✅ 结构化源 · ICE BofA期权调整信用利差。</div></div>
+<div class="metric-card"><div class="metric-label">VIX收盘指数 · VIXCLS</div><div class="metric-value">16.07</div><div class="metric-change flat">观测日：2026-09-28</div><div class="metric-explain">✅ 结构化源 · FRED收盘序列，与实时波动率报价不同。</div></div>
+<div class="metric-group-label">美国实体经济 · FRED月度/季度观测</div>
+<div class="metric-card"><div class="metric-label">美国失业率 · UNRATE</div><div class="metric-value">4.1%</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调失业率。</div></div>
+<div class="metric-card"><div class="metric-label">美国CPI-U指数 · CPIAUCSL</div><div class="metric-value">334.131</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 季调价格指数1982–84=100，不是同比增速。</div></div>
+<div class="metric-card"><div class="metric-label">美国M2货币存量 · M2SL</div><div class="metric-value">23342.8 十亿美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调名义货币存量。</div></div>
+<div class="metric-card"><div class="metric-label">美国名义GDP · GDP</div><div class="metric-value">32486.066 十亿美元</div><div class="metric-change flat">观测期：2026年第二季度</div><div class="metric-explain">✅ 结构化源 · 第二季度季调年率水平，非实际增速。</div></div>
+<div class="metric-card"><div class="metric-label">美国工业生产指数 · INDPRO</div><div class="metric-value">103.0682</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调指数2017=100。</div></div>
+<div class="metric-card"><div class="metric-label">美国零售与餐饮销售 · RSAFS</div><div class="metric-value">737763 百万美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调销售额；本轮FRED读数与此前报告不同，按新抓取值列示，不解释为新月份变化。</div></div>
+<div class="metric-card"><div class="metric-label">美国新屋开工 · HOUST</div><div class="metric-value">1275 千套</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · 月度季调年率，非当月实际开工套数。</div></div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>沙特红海港恢复装船，中东原油出口回升压低油价<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">出口统计：9月；市场快照：9月29日美国东部13:03</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">Reuters称沙特Yanbu港在东西管线恢复运行后重新装船；Kpler估算关键中东产油国9月日出口量达1632.8万桶。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Reuters在9月29日报道，沙特东西输油管线重启后，红海延布港恢复油轮装船；贸易来源与航运数据支持这一进展。Kpler的初步数据称，关键中东产油国9月原油出口回升至日均1632.8万桶，为相关战争开始以来最高。该估算与已完成结算的官方月报不同。</p><p>供应改善消息出现时，Reuters美国东部13:03快照显示布伦特期货跌1.3%至每桶103.88美元，WTI跌2.16%至90.58美元。文章同时指出，地区冲突与航运中断风险仍未解除；美国与伊朗谈判也没有明确突破。盘中报价不可写成当天最终结算价。</p><p>💭 分析：对航运和燃料采购者，实际装船增加比单纯谈判消息更接近可执行供给，但未来流量仍受管线、港口和安全状况制约。若出口恢复持续，可能减轻部分原油风险溢价；柴油等成品油紧张未必同步解决。后续应比较装船数据、目的地交付和炼厂产出，不宜用一个月初步估算推断长期供需已平衡。</p>
+<p>来源：<a class="source-link" href="https://uk.marketscreener.com/news/oil-prices-rise-for-second-session-on-continued-middle-east-supply-concern-ce785addd98cf12c" target="_blank">Reuters / MarketScreener</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>美国能源部征集最多4000万桶战略储备原油交换报价<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">美国能源部官方公告</span><span class="t">公告：9月29日；交货计划：11—12月</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">能源部发布原油交换征求报价，计划从Big Hill和Bryan Mound设施供油；企业须归还借用原油及额外桶数。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国能源部9月29日发布征求报价，拟通过战略石油储备交换最多4000万桶原油，供油来自Big Hill和Bryan Mound。公告称这是此前宣布的1.72亿桶美国释放计划的后续环节，与国际能源署成员总体4亿桶承诺相关。此刻是征集报价，并非所有原油已经交付。</p><p>能源部说，获授交换的交货安排在2026年11月和12月，企业日后须归还借用桶数及额外溢价桶数；报价截止时间为10月6日美国中部时间上午11时。公告还列出先前五次征集，但本次具体中标量、企业参与程度仍须看之后的授标结果。</p><p>💭 分析：若交换如期执行，能增加短期可用原油并在归还时补回储备，不过它不能直接修复霍尔木兹海峡的航运风险。炼厂与能源进口商应分清征求报价、授标、交付三个阶段，不宜把4000万桶视为立即上市的实际流量。对价格的最终影响还需结合出口恢复和柴油供应。</p>
+<p>来源：<a class="source-link" href="https://www.energy.gov/articles/united-states-energy-department-continues-execution-strategic-reserve-release-commitments" target="_blank">美国能源部官方公告</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-09-30 · 数据来源：澳洲联储、美国BLS/DOE、中国外汇局官方发布；Reuters完整报道；FRED原始CSV<br>
+共 7 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 北京时间9月30日早间版。新闻多为9月29日发布；尚未公布的9月30日数据不预填。FRED指标逐项注明最新观测日（月度为8月、GDP为第二季度）；RSAFS与较早期报告数值不同，按本次原始CSV修订值展示，不视为月度变化。Yahoo行情未取得而省略。💭分析为条件性推断。</span>
+</div>
+
+</div>
+</body>
+</html>
