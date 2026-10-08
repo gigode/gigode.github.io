@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-10-08</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#7c3aed; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-10-08 · 6 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（3）</a></li>
+<li><a href="#s-industry">🏢 行业动态（1）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（1）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（1）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">3 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《Blood Bowl 3》迁移新版：货币和已购内容可继承<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（采访 Slitherine）</span><span class="t">2026-10-07</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 7 日向发行商 Slitherine 核实，《Blood Bowl 3》后续将被升级版《Warhammer Blood Bowl》替代，旧版持有人可免费升级。玩家沿用原账户，已购买的队伍、外观和未花费的 Warpstone 都会转移，因而无需仅为避免余额作废而仓促消费。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 7 日向发行商 Slitherine 核实，《Blood Bowl 3》后续将被升级版《Warhammer Blood Bowl》替代，旧版持有人可免费升级。玩家沿用原账户，已购买的队伍、外观和未花费的 Warpstone 都会转移，因而无需仅为避免余额作废而仓促消费。</p><p>报道指出，新版仍让玩家用 Warpstone 购买外观，但新增队伍如何解锁仍在讨论。测试版还加入比赛中途保存退出和七人制 Rumble 模式。💭 分析：账户迁移保住既有投入，而购买规则的变化更直接影响长期玩家以后取得新队伍的成本；这两个问题需要分别判断。</p><p>目前可确认的是发行商答复和测试版功能，正式替换日期及新队伍定价尚未明确。免费升级并不等于所有未来内容免费，现有余额可继承也不保证它能继续用于购买队伍。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/strategy/blood-bowl-3-is-being-replaced-by-warhammer-blood-bowl-what-will-happen-to-everyones-unspent-currency/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《WoW: Forever》将调整 Skyborne 模型，高清与低清版本分批更新<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转述暴雪公告）</span><span class="t">2026-10-07</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 7 日报道，暴雪针对《World of Warcraft: Forever》新精灵种族 Skyborne 的视觉反馈，公布更贴近旧版美术的调整示例。问题在于新模型较平滑，与经典角色模型并置时缺乏一致性；暴雪承认此前呈现尚未达到团队期望的协调程度。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 7 日报道，暴雪针对《World of Warcraft: Forever》新精灵种族 Skyborne 的视觉反馈，公布更贴近旧版美术的调整示例。问题在于新模型较平滑，与经典角色模型并置时缺乏一致性；暴雪承认此前呈现尚未达到团队期望的协调程度。</p><p>高清模型调整计划赶在十一月上线前完成，低清模型则安排到明年初，后者将采用更明显的低多边形轮廓。德鲁伊形态也有示例，但仍属制作中素材。💭 分析：这种选择把画面一致性放在单个模型精细度之前，说明复古产品的改进目标也包括保持整体风格。</p><p>两档模型并非同步落地，最终效果仍需正式版本验证。报道没有提供统一的玩家满意度调查，不能把部分反馈当成全部玩家的意见；后续公告还须补充低清德鲁伊形态与完成时间。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/world-of-warcraft/blizzard-promises-to-make-the-blue-elves-in-world-of-warcraft-forever-look-worse-positive/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>《GTA 6》首发 PC 云游说法被 Xbox 高层否认<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-07</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 7 日更正围绕《GTA 6》的云游戏期待。此前报道把 Xbox 获得独占流媒体权利与 PC 用户首发可玩联系起来；Xbox 首席战略官 Matthew Ball 随后表示，游戏不会独占串流，也不会串流到 PC。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 7 日更正围绕《GTA 6》的云游戏期待。此前报道把 Xbox 获得独占流媒体权利与 PC 用户首发可玩联系起来；Xbox 首席战略官 Matthew Ball 随后表示，游戏不会独占串流，也不会串流到 PC。</p><p>这一回应否定的是具体云游戏说法。报道仍没有原生 PC 版正式发布时间，不能把云游戏平台通常支持电脑，推导为某一款游戏一定向 PC 开放。💭 分析：玩家决定购买平台时，应区分本机版本、串流授权和单款游戏可用范围。</p><p>回应未解释后续串流服务的全部设备规则，也没有公布 PC 移植计划。由此只能确认先前首发 PC 云游推断不成立，不能推断 PC 版永久缺席或给它填入新的发布日期。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/grand-theft-auto/for-a-moment-it-looked-like-grand-theft-auto-6-might-be-playable-on-pc-on-launch-day-then-xboxs-chief-strategy-officer-crashed-the-party/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Unity 与 Google 公布 Spark，浏览器内协作制作游戏<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Unity 官方</span><span class="t">2026-10-07</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Unity 首席执行官 Matt Bromberg 在 10 月 7 日官方文章中宣布，与 Google 合作推出 Unity Spark，让用户在浏览器内协作制作和分享游戏。产品连接 Unity Asset Store，使用社区艺术家制作的素材，面向熟悉玩法但不懂编程的玩家、平面艺术家和模组作者。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Unity 首席执行官 Matt Bromberg 在 10 月 7 日官方文章中宣布，与 Google 合作推出 Unity Spark，让用户在浏览器内协作制作和分享游戏。产品连接 Unity Asset Store，使用社区艺术家制作的素材，面向熟悉玩法但不懂编程的玩家、平面艺术家和模组作者。</p><p>官方强调创作仍需要反复加工，而非一次提示就得到完成品，并承认游戏制作涉及叙事、设计、美术、声音、界面和程序等多种技能。💭 分析：素材库与协作入口能降低原型起步成本，是否真正帮助用户完成可玩的独特作品，还取决于迭代工具及后续发布流程。</p><p>当前页面提供候补名单入口，未说明正式开放日期、价格或商业发行条款。公司提出的创作愿景是产品定位，不能写成已验证的质量提升或职业开发者使用成果。</p>
+<p>来源：<a class="source-link" href="https://unity.com/blog/why-we-built-unity-spark" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Worlds 2026 官方指南公布赛制、抽签节点和观赛时区<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">LoL Esports 官方</span><span class="t">2026-10-05</span><span class="tag tg-esports">电竞资讯</span></div>
+<div class="card-brief">LoL Esports 的 2026 全球总决赛指南细化三阶段安排：入围赛在洛杉矶举行，瑞士轮在得克萨斯州 Allen 展开，淘汰赛最后移至纽约布鲁克林。入围赛计划于当地 10 月 15 至 18 日进行，瑞士轮为 10 月 23 至 31 日，淘汰赛跨 11 月 3 至 14 日。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>LoL Esports 的 2026 全球总决赛指南细化三阶段安排：入围赛在洛杉矶举行，瑞士轮在得克萨斯州 Allen 展开，淘汰赛最后移至纽约布鲁克林。入围赛计划于当地 10 月 15 至 18 日进行，瑞士轮为 10 月 23 至 31 日，淘汰赛跨 11 月 3 至 14 日。</p><p>入围赛采用四队五局三胜双败制；瑞士轮五轮中，三胜晋级、三负出局。首轮避免同赛区相遇，后续允许同赛区对阵，但不重复匹配已经交手的对手。💭 分析：抽签限制与赛程共同影响准备时间，不能仅凭队伍名单提前断言晋级路径。</p><p>入围赛抽签安排在 10 月 10 日 CBLOL 决赛后，瑞士轮初始抽签为 10 月 18 日。官方列有多时区开赛时间，中国观众须注意跨日；这是赛前规则与日程更新，不代表任何比赛已完成。</p>
+<p>来源：<a class="source-link" href="https://lolesports.com/en-US/news/worlds-2026-primer" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>ReSkate 为《skate.》加入离线和自定义服务器，EA 尚未公开回应<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-07</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">PC Gamer 10 月 7 日介绍粉丝制作的 ReSkate：它让《skate.》特定 Steam 版本支持离线游玩、私人服务器、自定义地图及其他模组。报道记录其截至周二下载量超过三十五万次，但这一数字属于下载次数，不能等同于独立活跃玩家。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 7 日介绍粉丝制作的 ReSkate：它让《skate.》特定 Steam 版本支持离线游玩、私人服务器、自定义地图及其他模组。报道记录其截至周二下载量超过三十五万次，但这一数字属于下载次数，不能等同于独立活跃玩家。</p><p>开发者表示项目无意替代官方在线游戏，官方社区也禁止解锁付费外观的模组。工具不连接 EA 正式服务器。💭 分析：它体现部分玩家对自行修改内容和脱离持续联网的需求；这能否改善作品长期生态，仍不能从短期下载热度推出。</p><p>截至报道，EA 尚无公开回应；作者称若收到停止侵权要求会配合。文章还提到杀毒软件告警与第三方分支风险，因此开源并不代表所有衍生版本经过验证。后续可持续维护及官方态度仍是未知。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/sports/reskate-modding-platform-released/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-10-08 · 数据来源：官方公告及已读取新闻原文；对2026-10-01与2026-09-30按事件去重，10月5日材料注明补充窗口<br>
+共 6 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考；本期收录10月5日至8日近期报道，逐条标原始日期，不将旧消息写成今日事件。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

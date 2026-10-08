@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-10-08</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#2563eb; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🤖 AI 行业日报</h1>
+<div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div>
+<div class="badge">2026-10-08 · 21 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-models">🧠 模型发布/更新（4）</a></li>
+<li><a href="#s-products">🚀 产品发布/更新（7）</a></li>
+<li><a href="#s-industry">🏭 行业动态（1）</a></li>
+<li><a href="#s-paper">📄 论文研究（4）</a></li>
+<li><a href="#s-tip">💡 技巧与观点（5）</a></li>
+</ul>
+</nav>
+
+<!-- 模型发布/更新 -->
+<div class="section" id="s-models">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🧠</span><h2 style="color:#1d4ed8;">模型发布/更新</h2><span class="count">4 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Anthropic 发布 Claude Haiku 5.5，运行成本平均降低约 75%<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Anthropic：Newsroom（网页）</span><span class="t">2026-10-07（官方页面日期；API 原始时间为10月6日） · 收录 10-08 02:21</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Anthropic 发布 Claude Haiku 5.5，定位为迄今最便宜、最快的小模型，适合摘要、压缩、数据库查询、分类等高吞吐任务，并可搭配 Opus 5.5 和 Sonnet 5.5 担任编码子智能体。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 官方页面标注10月7日发布 Claude Haiku 5.5，定位高吞吐、成本敏感任务，包括摘要、压缩、数据库查询和分类，也可作为编码子智能体。公司称平均运行成本较 Haiku 4.5 降低约75%；这是其披露口径，不能视作每个工作负载的固定节省比例。</p><p>官方价格表按提示长度分档：不超过10万 token 时，每百万输入为0.10美元、输出0.50美元；超过该长度时分别为0.50美元和2.50美元。本代首次为 Haiku 提供可调 effort，同时降低 Sonnet 5.5 缓存读取价格，并引入 Max 与 Team 月度 API 额度。</p><p>💭 分析：短输入、高频调用最值得重新测算成本，但长输入分档、缓存比例和推理 effort 都会影响账单。官方基准展示了能力变化；具体业务的准确率和延迟仍需用自己的任务验证，不能只按价格替换模型。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/claude-haiku-5-5" target="_blank">Anthropic：Newsroom（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Liquid AI 发布开源决策模型 d1-3B 和 d1-omni-600M<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Liquid AI 模型与工程博客（网页）</span><span class="t">2026-10-07 08:00 北京时间 · 收录 10-08 01:05</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Liquid AI 发布开源权重决策模型 d1-3B 和 d1-omni-600M，已在 Hugging Face 上提供。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Liquid AI 于10月7日公开 d1-3B 与 d1-omni-600M 权重。决策模型以一次前向计算产生答案，不逐 token 生成文本。d1-3B 接收文本和图像，d1-omni-600M 则可处理文本配图像或文本配音频；后者被明确描述为实验性检查点。</p><p>公司给出公开 Decision Index 上的测试及不同设备的端到端延迟：d1-3B 在 RTX 4090 单问题测试为8毫秒，在 Jetson Orin Nano 为50毫秒。原文还分别测试长状态和图像输入，延迟显著不同，因此短问题结果不代表所有请求。</p><p>💭 分析：直接输出决策适合选项明确的任务，开放权重便于本地评估。多模态能力的证据仍有边界：此次未报告私有视觉分项，专用音频决策基准也仍待建立；部署前应补测真实输入长度和误判成本。</p>
+<p>来源：<a class="source-link" href="https://www.liquid.ai/blog/d1-open" target="_blank">Liquid AI 模型与工程博客（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Perplexity 开源 pplx-embed-v2-late 多模态 late-interaction 嵌入模型（9B 与 0.6B）<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)</span><span class="t">2026-10-08 00:33 北京时间 · 收录 10-08 00:39</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Perplexity 开源 pplx-embed-v2-late，两个针对文本和图像的 late-interaction 多向量嵌入模型，大小为 9B 和 0.6B，共享同一嵌入空间，权重已在 Hugging Face 提供。9B 可用于索引多模态数据，0.6B 可在设备端查询，无需 OCR 即可检索 PDF 页面；模型在 MADQA 得分 92.4%，BrowseComp+ 得分 64%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Perplexity 开源 pplx-embed-v2-late，两个针对文本和图像的 late-interaction 多向量嵌入模型，大小为 9B 和 0.6B，共享同一嵌入空间，权重已在 Hugging Face 提供。9B 可用于索引多模态数据，0.6B 可在设备端查询，无需 OCR 即可检索 PDF 页面；模型在 MADQA 得分 92.4%，BrowseComp+ 得分 64%。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://x.com/AravSrinivas/status/2107871834205196784" target="_blank">X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Mistral Large 4 进入 Code Arena: WebDev 排名第45，得分1534<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Arena (@arena)</span><span class="t">2026-10-07 14:18 北京时间 · 收录 10-07 14:42</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Arena 宣布 Mistral Large 4 登陆 Code Arena: WebDev，以 1534 分排名第 45，比 Mistral Large 3（第130名）高 304 分，比 Mistral Medium 3.5 高 271 分。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Arena 宣布 Mistral Large 4 登陆 Code Arena: WebDev，以 1534 分排名第 45，比 Mistral Large 3（第130名）高 304 分，比 Mistral Medium 3.5 高 271 分。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://x.com/arena/status/2107717155374727602" target="_blank">X：Arena (@arena)</a></p>
+</div>
+</div>
+</div>
+<!-- 产品发布/更新 -->
+<div class="section" id="s-products">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🚀</span><h2 style="color:#15803d;">产品发布/更新</h2><span class="count">7 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>GPT-6 Luna Decisions 上架 OpenRouter<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：OpenRouter (@OpenRouter)</span><span class="t">2026-10-08 04:21 北京时间 · 收录 10-08 04:34</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">OpenRouter 宣布 GPT-6 Luna Decisions 上线。OpenAI 的 Decisions API 可让应用选择合适的模型、工具或动作，支持发送文本、JSON 或图片并返回带概率的类型化答案。定价为输入 $0.10/M、输出免费，上下文 1M；引用 OpenAI 开发者账号称其决策速度比通过 Responses API 的 GPT-6 Luna 最快 10 倍。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>OpenRouter 宣布 GPT-6 Luna Decisions 上线。OpenAI 的 Decisions API 可让应用选择合适的模型、工具或动作，支持发送文本、JSON 或图片并返回带概率的类型化答案。定价为输入 $0.10/M、输出免费，上下文 1M；引用 OpenAI 开发者账号称其决策速度比通过 Responses API 的 GPT-6 Luna 最快 10 倍。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://x.com/OpenRouter/status/2107929204142874759" target="_blank">X：OpenRouter (@OpenRouter)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>Google 发布 Developer Knowledge API 生态，为 AI 智能体提供官方文档检索<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Google Developers Blog（RSS）</span><span class="t">2026-10-07 08:00 北京时间 · 收录 10-08 03:44</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Google 推出 Developer Knowledge API 生态，作为 Google Cloud、Firebase、Android 等开发者文档的官方程序化来源，用结构化 API 和 Markdown 格式文档取代网页抓取，支持语义与关键词搜索、文档分块和有依据的问答。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Google 于10月7日介绍 Developer Knowledge API 生态，为 Google Cloud、Firebase、Android 等官方开发文档提供程序化访问。接口输出 Markdown，支持语义与关键词搜索、分块检索及基于文档的问答；官方称索引频繁更新，但没有在文中承诺固定实时延迟。</p><p>配套入口包括 gcloud CLI、官方 agent skill、API Explorer 和多语言客户端库。技能采用先检查相关文档片段、再取完整页面的流程，可使用 MCP 或退回 REST API；客户端还支持批量获取文档。</p><p>💭 分析：统一官方入口有助于减少网页结构变化与旧训练知识的影响，但检索命中不等于任务完成。团队仍应保留引用、核对版本，并检查认证配置；公告描述的工具覆盖范围也不应外推到其他厂商文档。</p>
+<p>来源：<a class="source-link" href="https://developers.googleblog.com/supercharge-your-development-with-the-google-developer-knowledge-api-ecosystem/" target="_blank">Google Developers Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>LangChain 重构 Deep Agents 的 Skills 支持，新增工具绑定、固定技能与线程内重载<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">LangChain：Blog（RSS）</span><span class="t">2026-10-08 02:49 北京时间 · 收录 10-08 03:22</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">LangChain 重构 Deep Agents 的 Skills 支持，针对企业技能库增至数千个技能的场景推出三项更新：工具可绑定到技能、仅在该技能被读取时加载，用户可通过 /meeting-prep 之类的显式请求固定技能以在首次模型调用前加载，长线程可通过将 skills_metadata 设为 None 重载新增或变更的技能。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>LangChain 于10月7日介绍 Deep Agents 的三项技能更新：把工具绑定到技能、运行时固定技能，以及在线程中重载技能。企业技能库增长是文章讨论的背景；普通机制仍先暴露名称与描述，再按需读取完整指令与资源。</p><p>绑定工具后，模型读取技能才获得对应工具。对支持对话中追加工具的新模型，工具信息可加入后续消息并保留此前提示缓存；其他模型仍追加到请求工具列表。固定技能可在首次调用前加载用户指定的指令，重载则让长线程获取技能变更。</p><p>💭 分析：这些功能减少技能与工具分散发现的步骤，但缓存保留依赖具体模型的支持。运行时权限筛选工具可作为访问控制的一部分；是否减少成本和漏加载仍需在实际技能库与调用轨迹中验证。</p>
+<p>来源：<a class="source-link" href="https://www.langchain.com/blog/revamping-skills-in-deep-agents" target="_blank">LangChain：Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>NVIDIA 与 Microsoft 推出 RTX Spark 平台并宣布 MXC 让 AI Agent 落地 Windows PC<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">NVIDIA Blog（RSS）</span><span class="t">2026-10-08 02:45 北京时间 · 收录 10-08 03:19</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">NVIDIA 与 Microsoft 在旧金山活动上宣布为 Windows PC 共同打造 AI Agent 软硬件。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>NVIDIA 与 Microsoft 在旧金山活动上宣布为 Windows PC 共同打造 AI Agent 软硬件。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event/" target="_blank">NVIDIA Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>OpenAI 向全部 ChatGPT 用户推出 GPT-6 与 Intelligent UI<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">OpenAI：官网动态（RSS · 排除企业/客户案例）</span><span class="t">2026-10-08 02:00 北京时间 · 收录 10-08 02:28</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">OpenAI 发布面向更广泛用户的 GPT-6，并随 GPT-6 在 ChatGPT 中引入 Intelligent UI，可生成图形、按钮、表单、图表和可交互组件来回答问题。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 于10月7日宣布扩大 GPT-6 的覆盖范围，并在 ChatGPT 中引入 Intelligent UI。回答可组合文本、图形、按钮、表单和交互体验。官方说明先向 Plus、Pro、Business 和 Enterprise 推送，次日扩展至 Free 和 Go；企业可用性受管理员设置影响。因此“面向所有用户”是分阶段上线安排。</p><p>新界面采用原生可流式传输的组件库与编译器，组件能够随模型生成逐步出现。付费档的 Chat 使用 GPT-6 Sol，Free 和 Go 使用 GPT-6 Luna；公告明确此次更新涉及 Chat，Work 与 Codex 的模型不随这次发布变化。</p><p>💭 分析：可交互回答让比较和参数探索更直接，但界面形式本身不能证明答案正确。官方也承认设计判断仍需改善；后续应分别观察实际开放进度、组件可用性与信息准确度。</p>
+<p>来源：<a class="source-link" href="https://openai.com/index/gpt-6-for-everyone/" target="_blank">OpenAI：官网动态（RSS · 排除企业/客户案例）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>Claude Code v2.1.293 发布：新增 Claude Haiku 5.5 并修复大量问题<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Claude Code：GitHub Releases（RSS）</span><span class="t">2026-10-08 02:10 北京时间 · 收录 10-08 02:19</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Claude Code 发布 v2.1.293，新增 Claude Haiku 5.5（claude-haiku-5-5）作为 Anthropic API 默认 Haiku 模型，支持 1M 上下文，价格为 $0.10/$0.50 每百万 token（超 100K 提示为 $0.50/$2.50）。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Claude Code 发布 v2.1.293，新增 Claude Haiku 5.5（claude-haiku-5-5）作为 Anthropic API 默认 Haiku 模型，支持 1M 上下文，价格为 $0.10/$0.50 每百万 token（超 100K 提示为 $0.50/$2.50）。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.293" target="_blank">Claude Code：GitHub Releases（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>LlamaIndex 发布 OpenDocRouter：一个 API 统一调用多种文档解析模型<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">LlamaIndex：产品、工程与评测</span><span class="t">2026-10-07 00:00 北京时间 · 收录 10-07 23:13</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">LlamaIndex 推出 OpenDocRouter 平台，通过统一 API 将文档（PDF、PNG、JPEG 或 URL）解析为 markdown，接入 Claude Opus 5.5、Gemini 3 Flash、GPT-6 Luna 等 5 个前沿模型和 MinerU2.5-Pro、PaddleOCR-VL-1.6 等 5 个开源模型。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>LlamaIndex 推出 OpenDocRouter 平台，通过统一 API 将文档（PDF、PNG、JPEG 或 URL）解析为 markdown，接入 Claude Opus 5.5、Gemini 3 Flash、GPT-6 Luna 等 5 个前沿模型和 MinerU2.5-Pro、PaddleOCR-VL-1.6 等 5 个开源模型。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://www.llamaindex.ai/blog/introducing-opendocrouter" target="_blank">LlamaIndex：产品、工程与评测</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏭</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>亚利桑那州法院裁定 AI 生成受害者视频带有不当情感分量 将重新量刑<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">404 Media（RSS）</span><span class="t">2026-10-07 22:46 北京时间 · 收录 10-07 23:17</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">亚利桑那州上诉法院裁定，Gabriel Horcasitas 2021 年路怒枪杀 Christopher Pelkey 一案维持过失杀人定罪，但因量刑听证中播放的 AI 生成受害者视频带有不当情感分量，法官须重新考虑刑期。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>亚利桑那州上诉法院裁定，Gabriel Horcasitas 2021 年路怒枪杀 Christopher Pelkey 一案维持过失杀人定罪，但因量刑听证中播放的 AI 生成受害者视频带有不当情感分量，法官须重新考虑刑期。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://www.404media.co/undue-emotional-weight/" target="_blank">404 Media（RSS）</a></p>
+</div>
+</div>
+</div>
+<!-- 论文研究 -->
+<div class="section" id="s-paper">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">📄</span><h2 style="color:#6d28d9;">论文研究</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>Google Research 三个月专利起草实验发现AI辅助未必能培养初级律师的专业判断<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Google Research：Blog（网页）</span><span class="t">2026-10-07 08:00 北京时间 · 收录 10-08 06:04</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Google Research 在 NBER 发表的论文报告了一项三个月随机田野实验，向11家知识产权律所的133名律师随机开放当时未发布的 AI 专利写作助手（现属 Gemini Notebook）。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Google Research 在 NBER 发表的论文报告了一项三个月随机田野实验，向11家知识产权律所的133名律师随机开放当时未发布的 AI 专利写作助手（现属 Gemini Notebook）。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://research.google/blog/does-better-work-always-mean-better-workers/" target="_blank">Google Research：Blog（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>Stanford HAI 研究：想让员工拥抱 AI，别把它包装成效率工具<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Stanford HAI News（网页）</span><span class="t">2026-10-07 00:00 北京时间 · 收录 10-08 01:20</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Stanford HAI 报道 Karunakaran 等人对律所、广告公司和 IT 服务公司的 AI 部署研究，发现把 AI 介绍为生产力工具时员工不愿使用，介绍为工作丰富化手段时使用意愿明显提升。在一家律所的对照观察中，以丰富工作为目标引入 AI 工具 LawBot 的部门，使用量比强调提效的部门高 58%，尝试新用法多 70%。研究还强调配套培训、探索时间和调整考核指标的重要性。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Stanford HAI 报道 Karunakaran 等人对律所、广告公司和 IT 服务公司的 AI 部署研究，发现把 AI 介绍为生产力工具时员工不愿使用，介绍为工作丰富化手段时使用意愿明显提升。在一家律所的对照观察中，以丰富工作为目标引入 AI 工具 LawBot 的部门，使用量比强调提效的部门高 58%，尝试新用法多 70%。研究还强调配套培训、探索时间和调整考核指标的重要性。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://hai.stanford.edu/news/want-employees-to-embrace-ai-stop-selling-it-as-a-productivity-tool" target="_blank">Stanford HAI News（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>Microsoft Research Asia 开源 Agent Lightning v1.0：3,500 行代码的真实 harness 智能体 RL 训练框架<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Microsoft Research 博客（RSS）</span><span class="t">2026-10-08 00:00 北京时间 · 收录 10-08 00:26</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Microsoft Research Asia 提出 Harnessed Agentic RL 训练范式并开源重建的 Agent Lightning v1.0，让部署时使用的同一 agent harness 直接参与强化学习，无需在训练框架内重写 agent。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Microsoft Research Asia 提出 Harnessed Agentic RL 训练范式并开源重建的 Agent Lightning v1.0，让部署时使用的同一 agent harness 直接参与强化学习，无需在训练框架内重写 agent。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses/" target="_blank">Microsoft Research 博客（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>Nemotron 系列微调后达到 IOI 2026 与 IMO 2026 金牌水平<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Hugging Face 社区博客（混合发现）</span><span class="t">2026-10-07 20:45 北京时间 · 收录 10-07 21:23</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">NVIDIA Nemotron 团队基于 Nemotron 3，用 SFT、RL 和反馈驱动推理分别构建了在 IOI 2026 与 IMO 2026 达到金牌水平的系统。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>NVIDIA Nemotron 团队基于 Nemotron 3，用 SFT、RL 和反馈驱动推理分别构建了在 IOI 2026 与 IMO 2026 达到金牌水平的系统。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026" target="_blank">Hugging Face 社区博客（混合发现）</a></p>
+</div>
+</div>
+</div>
+<!-- 技巧与观点 -->
+<div class="section" id="s-tip">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">💡</span><h2 style="color:#0e7490;">技巧与观点</h2><span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>vLLM 详解 DeepSeek-V4.1-Flash 优化：Agent 场景吞吐提升 5 倍<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">vLLM 官方博客（RSS）</span><span class="t">2026-10-07 08:00 北京时间 · 收录 10-08 04:01</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Inferact 与 vLLM 社区在 DeepSeek-V4.1-Flash 发布三周内完成优化，低并发速度提升 1.9 倍，150 TPS 约束下吞吐提升 5.3 倍。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Inferact 与 vLLM 社区在 DeepSeek-V4.1-Flash 发布三周内完成优化，低并发速度提升 1.9 倍，150 TPS 约束下吞吐提升 5.3 倍。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://vllm.ai/blog/2026-10-07-deepseek-v41-flash" target="_blank">vLLM 官方博客（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>Unsloth 开源教程：本地训练 Qwen3.5 0.8B 决策模型，准确率从 20.7% 提升至 74.3%<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Unsloth (@UnslothAI)</span><span class="t">2026-10-08 00:21 北京时间 · 收录 10-08 00:47</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Unsloth 发布教程与开源仓库，可将 Qwen3.8、Gemma 4 等 LLM 微调为输出选项概率的决策模型，Qwen3.5 0.8B 在 3 个决策基准上的合计准确率从 20.7% 提到 74.3%，仅需 4GB 显存。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Unsloth 发布教程与开源仓库，可将 Qwen3.8、Gemma 4 等 LLM 微调为输出选项概率的决策模型，Qwen3.5 0.8B 在 3 个决策基准上的合计准确率从 20.7% 提到 74.3%，仅需 4GB 显存。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://x.com/UnslothAI/status/2107868866361930236" target="_blank">X：Unsloth (@UnslothAI)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>a16z 解析德州为何让数据中心排队等电<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">a16z：News（RSS）</span><span class="t">2026-10-07 22:01 北京时间 · 收录 10-07 22:27</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">a16z 的 Ryan McEntush 分析德州电网暂停审批数据中心的原因：并网队列从 2024 年底的 63 GW 激增到今年 6 月的 474 GW，约 90% 是数据中心，开发商大量投机性申请且社区沟通不足。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>a16z 的 Ryan McEntush 分析德州电网暂停审批数据中心的原因：并网队列从 2024 年底的 63 GW 激增到今年 6 月的 474 GW，约 90% 是数据中心，开发商大量投机性申请且社区沟通不足。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://www.a16z.news/p/why-texas-is-making-data-centers" target="_blank">a16z：News（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>Google 开放 SynthID Detector 门户，可检测图片、视频和音频是否由 AI 生成<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Google (@Google)</span><span class="t">2026-10-07 22:12 北京时间 · 收录 10-07 22:38</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Google 介绍检测媒体是否由 AI 生成的方法：访问 https://synthid.com 上传图片、视频或音频文件，门户会扫描文件是否包含来自 Google 或其合作伙伴的 SynthID 水印。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Google 介绍检测媒体是否由 AI 生成的方法：访问 https://synthid.com 上传图片、视频或音频文件，门户会扫描文件是否包含来自 Google 或其合作伙伴的 SynthID 水印。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://x.com/Google/status/2107836410254291345" target="_blank">X：Google (@Google)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div>
+<div class="card-main">
+<h3>PromptArmor 解析 WebMCP 的机制与主要安全风险<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">PromptArmor：Threat Intelligence</span><span class="t">2026-10-06 08:00 北京时间 · 收录 10-07 13:20</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">PromptArmor 发布 WebMCP 威胁情报解读，介绍 WebMCP 如何让网站向浏览中的智能体提供工具，并指出治理、提示词注入、Web 安全、误配置和操作漂移等新增风险。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>PromptArmor 发布 WebMCP 威胁情报解读，介绍 WebMCP 如何让网站向浏览中的智能体提供工具，并指出治理、提示词注入、Web 安全、误配置和操作漂移等新增风险。</p><p>速览：依据 AIHOT 摘要整理，未进一步取得完整原文；未展开其他事实。</p>
+<p>来源：<a class="source-link" href="https://www.promptarmor.com/resources/what-is-webmcp" target="_blank">PromptArmor：Threat Intelligence</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🤖 AI 行业日报 · 2026-10-08 · 数据来源：AIHOT 精选 API；五条重点已读取企业官方原文<br>
+共 21 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 截至北京时间2026-10-08上午的24小时精选；原文日期与收录时间分开。企业性能、成本与评测结论均为来源披露，分析另行标记。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

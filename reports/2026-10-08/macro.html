@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-10-08</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#d97706; }
+
+body { background:#0a0a0a; } .cover { background:linear-gradient(135deg,#1a0f0a,#3d2517,#b45309); }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-10-08 · 6 条资讯 · 36 项指标 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（1）</a></li>
+<li><a href="#s-data">📊 经济数据（1）</a></li>
+<li><a href="#s-market">📈 资本市场（1）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（2）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>美联储九月纪要：多数与会者预计年底前再加息，但保留数据条件<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">美联储官方原文</span><span class="t">发布：10月7日；会议：9月15—16日</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">10月7日公布9月15—16日会议纪要；会上全体支持加息25基点至3.75%—4.00%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美联储10月7日公布九月会议纪要，新增信息是政策讨论和风险判断，而非当天再次加息。会上全体支持把目标区间上调25基点至3.75%—4.00%；多数与会者预计年底前再上调可能合适，同时明确后续决策取决于新数据。</p><p>纪要把持续偏高通胀、稳健活动和就业风险减弱并列。部分与会者认为能源与AI需求造成的行业价格上涨可能扩散；对于AI提升生产率的幅度和时间，委员会仍强调不确定性。</p><p>💭 分析：这增加了融资计划应对更高利率的必要性，但不是十月会议的承诺。纪要只反映九月会议当时的信息；九月就业报告等后来公布的数据可能改变风险权重，不能把历史讨论当作今日实时经济判断。</p>
+<p>来源：<a class="source-link" href="https://www.federalreserve.gov/monetarypolicy/fomcminutes20260916.htm" target="_blank">美联储官方原文</a></p>
+</div>
+</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>美国九月非农新增2.9万，就业扩张幅度有限<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">美国劳工统计局官方原文</span><span class="t">发布：10月2日；统计期：9月</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">九月非农就业增加29000，过去12个月平均月增45000；官方描述总量变化很小。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国劳工统计局十月二日公布九月非农就业增加2.9万人，低于此前十二个月平均月增4.5万人；官方将总量和各主要行业变化描述为基本持平。医疗继续增加1.7万人，但慢于此前平均水平，建筑与制造业也小幅增加。</p><p>这份数据在九月FOMC会议之后发布，是阅读新公布纪要时需要另行考虑的信息。非农人数来自企业调查，不能用它直接替代家庭调查中的失业率，也不能把弱新增等同于同等规模裁员。</p><p>💭 分析：企业新增用工较少提示扩张力度有限，但单月初值仍有抽样误差和修订风险。政策判断还需工资、参与率和通胀配合；既不能仅凭新增低就确认衰退，也不能将九月会议中的就业看法当作已吸收该报告的结论。</p>
+<p>来源：<a class="source-link" href="https://www.bls.gov/news.release/archives/empsit_10022026.htm" target="_blank">美国劳工统计局官方原文</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#fbbf24;">资本市场</h2><span class="count">1 条</span>
+</div>
+<div class="metric-grid">
+<div class="metric-group-label">美股ETF · yfinance</div>
+<div class="metric-card"><div class="metric-label">标普500 ETF · SPY</div><div class="metric-value">777.22</div><div class="metric-change neg">-0.24% 对前一日线</div><div class="metric-explain">跟踪标普500的大盘ETF，数值单位美元。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-card"><div class="metric-label">纳斯达克100 ETF · QQQ</div><div class="metric-value">757.73</div><div class="metric-change neg">-0.25% 对前一日线</div><div class="metric-explain">跟踪纳斯达克100的ETF，数值单位美元。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-card"><div class="metric-label">道琼斯 ETF · DIA</div><div class="metric-value">511.02</div><div class="metric-change neg">-0.69% 对前一日线</div><div class="metric-explain">跟踪道琼斯工业平均指数的ETF，数值单位美元。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-card"><div class="metric-label">罗素2000 ETF · IWM</div><div class="metric-value">277.70</div><div class="metric-change neg">-1.29% 对前一日线</div><div class="metric-explain">跟踪罗素2000小盘股的ETF，数值单位美元。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-group-label">全球股票指数 · yfinance</div>
+<div class="metric-card"><div class="metric-label">标普500指数 · ^GSPC</div><div class="metric-value">7801.77</div><div class="metric-change neg">-0.22% 对前一日线</div><div class="metric-explain">美国大盘股票指数，数值单位点。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-card"><div class="metric-label">纳斯达克综合指数 · ^IXIC</div><div class="metric-value">27538.69</div><div class="metric-change neg">-0.22% 对前一日线</div><div class="metric-explain">纳斯达克综合股票指数，数值单位点。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-card"><div class="metric-label">道琼斯指数 · ^DJI</div><div class="metric-value">51179.87</div><div class="metric-change neg">-0.66% 对前一日线</div><div class="metric-explain">道琼斯工业平均指数，数值单位点。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-card"><div class="metric-label">富时100指数 · ^FTSE</div><div class="metric-value">10458.50</div><div class="metric-change neg">-0.79% 对前一日线</div><div class="metric-explain">英国富时100股票指数，数值单位点。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-card"><div class="metric-label">日经225指数 · ^N225</div><div class="metric-value">69386.43</div><div class="metric-change neg">-0.93% 对前一日线</div><div class="metric-explain">日本日经225股票指数，数值单位点。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-08；10月8日日线快照，交易日可能未结束。</div></div>
+<div class="metric-card"><div class="metric-label">恒生指数 · ^HSI</div><div class="metric-value">24130.50</div><div class="metric-change neg">-0.62% 对前一日线</div><div class="metric-explain">香港恒生股票指数，数值单位点。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-group-label">大宗商品期货 · yfinance</div>
+<div class="metric-card"><div class="metric-label">黄金期货 · 美元/盎司 · GC=F</div><div class="metric-value">4152.40</div><div class="metric-change neg">-0.83% 对前一日线</div><div class="metric-explain">黄金连续期货报价，反映该合约的价格。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。自动调整日线；期货为Yahoo连续合约。</div></div>
+<div class="metric-card"><div class="metric-label">WTI期货 · 美元/桶 · CL=F</div><div class="metric-value">89.27</div><div class="metric-change neg">-0.19% 对前一日线</div><div class="metric-explain">WTI原油连续期货报价，反映该合约的价格。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。自动调整日线；期货为Yahoo连续合约。</div></div>
+<div class="metric-card"><div class="metric-label">白银期货 · 美元/盎司 · SI=F</div><div class="metric-value">60.53</div><div class="metric-change neg">-1.03% 对前一日线</div><div class="metric-explain">白银连续期货报价，反映该合约的价格。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。自动调整日线；期货为Yahoo连续合约。</div></div>
+<div class="metric-card"><div class="metric-label">铜期货 · 美元/磅 · HG=F</div><div class="metric-value">6.7330</div><div class="metric-change pos">+2.10% 对前一日线</div><div class="metric-explain">铜连续期货报价，反映该合约的价格。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。自动调整日线；期货为Yahoo连续合约。</div></div>
+<div class="metric-group-label">主要汇率与美元指数 · yfinance</div>
+<div class="metric-card"><div class="metric-label">欧元/美元 · EURUSD=X</div><div class="metric-value">1.1206</div><div class="metric-change neg">-0.42% 对前一日线</div><div class="metric-explain">每欧元可兑换的美元数量。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-08；10月8日日线快照，交易日可能未结束。</div></div>
+<div class="metric-card"><div class="metric-label">美元/日元 · USDJPY=X</div><div class="metric-value">157.8630</div><div class="metric-change neg">-0.27% 对前一日线</div><div class="metric-explain">每美元可兑换的日元数量。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-08；10月8日日线快照，交易日可能未结束。</div></div>
+<div class="metric-card"><div class="metric-label">美元/人民币 · USDCNY=X</div><div class="metric-value">6.7013</div><div class="metric-change neg">-0.05% 对前一日线</div><div class="metric-explain">每美元可兑换的人民币数量。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-08；10月8日日线快照，交易日可能未结束。</div></div>
+<div class="metric-card"><div class="metric-label">英镑/美元 · GBPUSD=X</div><div class="metric-value">1.3214</div><div class="metric-change neg">-0.40% 对前一日线</div><div class="metric-explain">每英镑可兑换的美元数量。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-08；10月8日日线快照，交易日可能未结束。</div></div>
+<div class="metric-card"><div class="metric-label">美元指数 · DX-Y.NYB</div><div class="metric-value">102.25</div><div class="metric-change pos">+0.42% 对前一日线</div><div class="metric-explain">美元相对一篮子货币的指数，数值单位点。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-group-label">美债收益率与波动 · yfinance</div>
+<div class="metric-card"><div class="metric-label">美国十年期收益率 · % · ^TNX</div><div class="metric-value">5.28</div><div class="metric-change pos">+0.15% 对前一日线</div><div class="metric-explain">美国十年期国债年化收益率，数值为百分比。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。收益率变化为相对百分比，非基点。</div></div>
+<div class="metric-card"><div class="metric-label">美国五年期收益率 · % · ^FVX</div><div class="metric-value">5.02</div><div class="metric-change neg">-0.14% 对前一日线</div><div class="metric-explain">美国五年期国债年化收益率，数值为百分比。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。收益率变化为相对百分比，非基点。</div></div>
+<div class="metric-card"><div class="metric-label">VIX指数 · ^VIX</div><div class="metric-value">15.08</div><div class="metric-change pos">+0.47% 对前一日线</div><div class="metric-explain">标普500期权隐含波动率指数，数值单位点。✅ 结构化源 · Yahoo Finance / yfinance；观测日 2026-10-07；最新可用日线；非今日实时价。</div></div>
+<div class="metric-group-label">美国利率、信用与波动 · FRED最新可用观测</div>
+<div class="metric-card"><div class="metric-label">联邦基金有效利率 · DFF</div><div class="metric-value">3.88 %</div><div class="metric-change flat">观测日：2026-10-06</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-06。每日银行间实际成交利率，非政策目标区间。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国十年期国债收益率 · DGS10</div><div class="metric-value">5.27 %</div><div class="metric-change flat">观测日：2026-10-06</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-06。固定期限美债收益率，非实时报价。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国两年期国债收益率 · DGS2</div><div class="metric-value">4.79 %</div><div class="metric-change flat">观测日：2026-10-06</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-06。固定期限美债收益率，非实时报价。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">十年减两年美债利差 · T10Y2Y</div><div class="metric-value">0.51 个百分点</div><div class="metric-change flat">观测日：2026-10-07</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-07。FRED独立利差序列，未混用不同日期的收益率。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">十年盈亏平衡通胀率 · T10YIE</div><div class="metric-value">2.36 %</div><div class="metric-change flat">观测日：2026-10-07</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-07。市场通胀补偿指标，非未来通胀保证。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">高收益债期权调整利差 · BAMLH0A0HYM2</div><div class="metric-value">3.03 个百分点</div><div class="metric-change flat">观测日：2026-10-06</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-06。ICE BofA高收益企业债信用风险补偿。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">VIX收盘指数 · VIXCLS</div><div class="metric-value">15.01</div><div class="metric-change flat">观测日：2026-10-06</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-06。FRED收盘序列，与Yahoo最新行情观测日可能不同。非今日实时值。</div></div>
+<div class="metric-group-label">美国实体经济 · FRED月度/季度观测</div>
+<div class="metric-card"><div class="metric-label">美国失业率 · UNRATE</div><div class="metric-value">4.2 %</div><div class="metric-change flat">观测月：2026-09</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-09。月度季调失业率。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国CPI-U指数 · CPIAUCSL</div><div class="metric-value">334.131</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。季调价格指数，1982—84=100；非同比涨幅。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国M2货币存量 · M2SL</div><div class="metric-value">23342.8 十亿美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调名义货币存量。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国名义GDP · GDP</div><div class="metric-value">32563.03 十亿美元</div><div class="metric-change flat">观测期：2026年第二季度</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测期：2026年第二季度。季度季调年率名义总量，非实际经济增速。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国工业生产指数 · INDPRO</div><div class="metric-value">103.0682</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调指数，2017=100。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国零售与餐饮销售 · RSAFS</div><div class="metric-value">737763.0 百万美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调销售额；修订值不等于新月份变化。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国新屋开工 · HOUST</div><div class="metric-value">1275 千套</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调年率，非当月实际套数。非今日实时值。</div></div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>欧洲央行融资调查：整体条款略松，部分融资利差却上升<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">欧洲央行官方原文</span><span class="t">发布：10月7日；观察期：6—8月</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">9月SESFOD覆盖6—8月，26家大银行反馈；整体信用条款连续第四季略有放松。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>欧洲央行10月7日发布九月SESFOD，26家大型银行报告六月至八月整体信用条款略有放松，延续前三轮走势。不过最优客户在各类抵押品上的融资利率或利差上升，股票抵押融资需求增多。</p><p>融资条件不能只看一个总指标：部分债券和资产支持证券的抵押品折扣下降，部分可用融资额度和期限增加；场外衍生品初始保证金略降，但信用、外汇等合约估值争议增加。</p><p>💭 分析：机构可以同时面对较宽松额度和较高融资价格，应分别检验利差、折扣及争议处理成本。调查是银行对前期变化的定性反馈，不能据此断言十月全市场融资成本下降；受访者预期后续略松也不是保证。</p>
+<p>来源：<a class="source-link" href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr261007~6447350434.en.html" target="_blank">欧洲央行官方原文</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>数字欧元与代币化结算并进，发行仍待立法及正式决定<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">欧洲央行官方原文</span><span class="t">讲话：10月6日</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">Cipollone将数字欧元、Pontes和Appia列为统一数字货币战略。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>欧洲央行执委Cipollone十月六日说明，零售数字欧元与批发代币化结算属于同一战略：Pontes支持使用央行货币结算代币交易，Appia探索更广泛金融生态。数字欧元面向日常支付，由银行及受监管支付机构维护客户关系。</p><p>设计拟通过不付息、持有上限及关联银行账户机制限制存款迁移风险。讲话强调共同受理网络与技术标准有助欧洲支付机构扩大覆盖；这属于建设目标，并不是已经实现的市场效果。</p><p>💭 分析：支付机构可以评估共用受理设施带来的产品空间，但预算应区分准备与发行。央行只会在立法通过后决定是否发行；2029年潜在首发准备目标还以2026年底完成立法为条件。持有上限与补偿安排也不能写成已最终定案。</p>
+<p>来源：<a class="source-link" href="https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261006~0da978f159.en.html" target="_blank">欧洲央行官方原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>美联储启动监管职能五区域重组，强调决策问责<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">美联储官方原文</span><span class="t">讲话：10月6日</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">Bowman宣布启动监管职能重组，初步划为五个区域，各设负责人。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美联储监管副主席Bowman十月六日宣布，监管职能开始重组，初步采取五区域结构，由区域负责人对监督活动承担责任。她将这一安排与现有决策权限和问责脱节的问题联系起来，主张减少委员会造成的延迟。</p><p>讲话说明，新区域将按州边界协调，利用原有储备银行布局；检查员保留现有工作地点及其监督的银行。同时，固定金额资产阈值与大型银行分层规则的进一步改革仍在规划或审议阶段。</p><p>💭 分析：银行应关注沟通、升级处理和监管联系人变化，不能从组织简化直接推导资本要求全部降低。改革强调重大财务风险，但执行一致性仍需后续观察；讲话所列拟议阈值调整也不等于所有规则已经生效。</p>
+<p>来源：<a class="source-link" href="https://www.federalreserve.gov/newsevents/speech/bowman20261006a.htm" target="_blank">美联储官方原文</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>欧洲央行研究：AI密集行业更依赖股权与市场融资，利率传导或不同<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">欧洲央行官方原文</span><span class="t">发布：10月6日；底层数据含2025年及2026年4月</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">ECB博客区分AI采用者与开发者；开发需要更高风险研发及算力投入。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>欧洲央行十月六日博客研究区分采用AI工具与开发AI技术的融资需求，指出无形资产不易作贷款抵押。行业资产负债表显示，AI密集部门通常杠杆较低，债务融资更偏向市场渠道，尤其在高采用度部门。</p><p>作者认为，较长期债券融资使这些企业更受长端收益率影响，而较低债务比例可能减弱加息通过现金流影响投资的渠道。这是研究解释，博客注明观点未必代表央行或欧元体系。</p><p>💭 分析：判断AI投资周期不能只看银行贷款增长，还应看股权、债券与内部资金。研究的部分最新观测落在2025年及2026年四月，不能当成十月融资突变；行业相关性也不能证明每家AI公司对加息都不敏感。</p>
+<p>来源：<a class="source-link" href="https://www.ecb.europa.eu/press/blog/date/2026/html/ecb.blog20261006~35bf3c24cb.en.html" target="_blank">欧洲央行官方原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-10-08 · 数据来源：美联储、欧洲央行、美国劳工统计局官方原文；Yahoo Finance / yfinance实际拉取22项；FRED官方API14项。<br>
+共 6 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 新闻窗口10月2—7日；纪要披露的判断属于9月会议时点。Yahoo行情逐项标明观测日，10月8日值为未必收盘的日线快照。FRED官方API重试成功取得14项，日度、月度、季度观测均标明时间；GDP为2026年第二季度，部分月度数据仍为8月。分析均为条件性推断。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

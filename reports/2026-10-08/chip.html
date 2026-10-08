@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-10-08</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#10b981; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-10-08 · 5 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（1）</a></li>
+<li><a href="#s-company">🏢 企业动态（2）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（0）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（2）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Vishay 将展示电池与电动车用功率器件及参考设计<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Vishay 官方 / GlobeNewswire</span><span class="t">2026-10-07</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">面向10月12—15日底特律展会的产品组合预告，尚非现场成果。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Vishay 10月7日宣布，将在10月12—15日底特律 The Battery Show 展示用于电池管理、保护和高压电能转换的器件及参考设计。半导体部分包括第五代 TrenchFET MOSFET、第三代 MaxSiC 碳化硅沟槽 MOSFET，以及碳化硅肖特基二极管；无源部分包括温度监测和过流保护器件。</p><p>公告同时列出400V与800V直流母线电容的主动放电参考电路，以及电池分流传感器参考设计。组合强调系统设计中的温度、隔离、保护与功率转换配套，但没有发布客户订单、量产出货规模或统一性能测试结果。展会日期尚未到来，不能写成现场展示已经完成。</p><p>💭 分析：对采用高压电池架构的工程团队，参考电路的意义在于减少不同器件之间的匹配工作。实际选型仍需核查具体器件规格、汽车认证和系统可靠性；产品目录覆盖较广并不直接证明整套方案已通过客户整车验证。</p>
+<p>来源：<a class="source-link" href="https://www.globenewswire.com/news-release/2026/10/07/3376646/0/en/vishay-intertechnology-to-showcase-solutions-for-next-generation-battery-and-ev-systems-at-the-battery-show-2026.html" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>三星公布第三季度初步指引：营业利润约107.4万亿韩元<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Samsung Global Newsroom</span><span class="t">2026-10-08</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">公司披露合并口径初步估计，尚未提供半导体分部拆解。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>三星电子10月8日发布2026年第三季度初步业绩指引：合并销售额约195万亿韩元，合并营业利润约107.4万亿韩元。公告明确数字依据韩国国际财务报告准则，是公司估计区间的中位数；销售额区间为194—196万亿韩元，营业利润区间为107.3—107.5万亿韩元。</p><p>这是合并集团数据，不能把107.4万亿韩元全部归属于存储或晶圆代工业务。当前页面只给出初步指引与比较表，没有完整财务报表、分部利润或存储产品出货数据，因此也不足以计算单个半导体业务的盈利贡献。</p><p>💭 分析：芯片行业可把这一公告作为观察大型综合制造商经营规模的入口，但判断存储景气与代工利用率仍需后续分部披露。应等正式业绩说明提供产品、成本和资本开支信息，再解释本季变化的具体来源，避免用集团利润直接推断某一种芯片的供需。</p>
+<p>来源：<a class="source-link" href="https://news.samsung.com/global/samsung-electronics-announces-earnings-guidance-for-third-quarter-2026" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Netlist 与美光达成专利和解，五年许可约定支付6亿美元<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Netlist 官方 / PR Newswire</span><span class="t">2026-10-06</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">相较9月30日报的HBM诉讼申请，本次新增双方和解与许可协议。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Netlist 10月6日公告与美光签订专利许可及和解协议，双方同意解决并相互解除两家公司之间所有待决法律程序。美光获得 Netlist 专利组合的五年期许可，覆盖服务器 DIMM 与高带宽内存技术。这是9月30日报记录新HBM专利申请之后的实质进展，不再把旧诉讼重复写成新消息。</p><p>支付安排为2026年第四季度至2031年第三季度每季度3000万美元，协议期合计6亿美元。该数字是分期合同总额，不能称为当日已经收款，也不能在本季度全部确认为收入。公告指向同步提交的8-K，但本卡不据此补写尚未读取的额外条款。</p><p>💭 分析：许可安排将相关双方争议的一部分不确定性转为按期履约与收款风险。对产业链而言，未来需要跟踪许可执行和程序终结，而不是继续假设原有争议必然导致产品禁售。公告限定为两家公司之间的法律程序，也不宜扩写成所有其他主体争议均已解决。</p>
+<p>来源：<a class="source-link" href="https://www.prnewswire.com/news-releases/netlist-and-micron-enter-patent-license-and-settlement-agreements-302899647.html" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Wolfspeed 获最高15亿美元附条件贷款承诺，融资尚待落实<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Wolfspeed 投资者关系</span><span class="t">2026-10-07</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">拟支持美国SiC与GaN能力；30年承诺仍需尽调及最终协议。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Wolfspeed 10月7日宣布，美国战争部战略资本办公室向其提供最高15亿美元、30年期附条件贷款承诺。拟议融资是有高级担保的延迟提款定期贷款，用于美国碳化硅材料与宽禁带功率器件，并涉及氮化镓生产、射频外延及抗辐射能力建设。</p><p>承诺函不等于资金已到账。公司明确表示，仍需尽调、最终协议协商、政府批准和第三方同意，无法保证最终签约或提供资金。拟议安排还要求随分批放款按比例发行认股权证，合计可覆盖最高7.5%的完全摊薄股权；这一条款同样取决于最终协议。</p><p>💭 分析：长期资金可能支持制造能力建设，但贷款增加资金与偿债义务，认股权证另有潜在稀释影响。当前可追踪的是条件满足、实际放款与具体项目进度，不能把15亿美元上限写成既有现金余额，也不能直接推断新产能已经上线。</p>
+<p>来源：<a class="source-link" href="https://investor.wolfspeed.com/news/news-details/2026/Wolfspeed-Announces-Conditional-30-Year-1-5-Billion-Loan-Commitment-from-U-S--Department-of-War-to-Advance-Domestic-Wide-Bandgap-Supply-Chain/default.aspx" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Arteris 获新增330万美元资助，扩展第三方芯片IP安全验证<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Arteris 投资者关系</span><span class="t">2026-10-06</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">联合BAE Systems与SiFive，推进关键任务SoC的证据化验证方法。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Arteris 10月6日宣布，其与 BAE Systems、SiFive 合作的第三方芯片IP安全保障项目获得新增330万美元资助。资金来自美国 Trusted and Assured Microelectronics 计划，工作面向航空航天与国防等关键任务系统中商用第三方IP的可信集成。该资助是项目资金，并非公司披露的一轮股权融资。</p><p>三方目标是建立可重复、基于证据的方法，评估第三方IP在复杂系统级芯片中的实现、集成和使用安全。Arteris 还描述了基于通用弱点枚举的微电子证据框架，将硬件弱点与需求和验证证据关联；公告没有披露整套芯片已取得普遍安全认证。</p><p>💭 分析：把验证关注点从单个IP扩展到集成边界，有助于工程团队识别组合后产生的风险。项目最终价值需由方法覆盖范围、可复现结果及实际采用检验；获得政府支持可以推动研发，却不能替代针对具体芯片和使用环境的验证。</p>
+<p>来源：<a class="source-link" href="https://ir.arteris.com/news-releases/news-release-details/arteris-wins-funding-expand-hardware-design-supply-chain" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-10-08 · 数据来源：10月6—8日企业与投资机构原始公告；逐条保留原始日期<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 公司披露与计划按原文归属；融资承诺、分期支付与已完成融资分开表述。💭 分析为独立推论。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>
