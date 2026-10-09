@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-10-09</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#2563eb; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🤖 AI 行业日报</h1>
+<div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div>
+<div class="badge">2026-10-09 · 24 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-models">🧠 模型发布/更新（2）</a></li>
+<li><a href="#s-products">🚀 产品发布/更新（5）</a></li>
+<li><a href="#s-industry">🏭 行业动态（8）</a></li>
+<li><a href="#s-paper">📄 论文研究（2）</a></li>
+<li><a href="#s-tip">💡 技巧与观点（7）</a></li>
+</ul>
+</nav>
+
+<!-- 模型发布/更新 -->
+<div class="section" id="s-models">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🧠</span><h2 style="color:#1d4ed8;">模型发布/更新</h2><span class="count">2 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Arena 公布 Claude Haiku 5.5 (High) 真实评测结果：Code Arena 1587 分首秀第 30 名<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Arena (@arena)</span><span class="t">2026-10-09 04:02 北京时间（API时间标记） · 收录 10-09 04:17</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Arena 公布 Anthropic Claude Haiku 5.5 (High) 的真实评测结果，在 Code Arena: WebDev 以 1587 分首秀排名第 30，略在 Pareto 前沿之外。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Arena 公布 Anthropic Claude Haiku 5.5 (High) 的真实评测结果，在 Code Arena: WebDev 以 1587 分首秀排名第 30，略在 Pareto 前沿之外。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://x.com/arena/status/2108286973119230096" target="_blank">X：Arena (@arena)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Artificial Analysis 评测 Google Nano Banana 2.1，两榜居第 4 且价格为前代一半<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Artificial Analysis (@ArtificialAnlys)</span><span class="t">2026-10-09 00:42 北京时间（API时间标记） · 收录 10-09 00:54</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Artificial Analysis 评测 Google 于 10 月 6 日发布的图像模型 Nano Banana 2.1，在 AA-Image-T2I v2.0 和 AA-Image-Editing v2.0 两个榜单均排名第 4。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Artificial Analysis 评测 Google 于 10 月 6 日发布的图像模型 Nano Banana 2.1，在 AA-Image-T2I v2.0 和 AA-Image-Editing v2.0 两个榜单均排名第 4。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://x.com/ArtificialAnlys/status/2108236656700768310" target="_blank">X：Artificial Analysis (@ArtificialAnlys)</a></p>
+</div>
+</div>
+</div>
+<!-- 产品发布/更新 -->
+<div class="section" id="s-products">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🚀</span><h2 style="color:#15803d;">产品发布/更新</h2><span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Anthropic 推出开源漏洞扫描服务 OSS Scanner，免费面向开源项目<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Anthropic：Research（发表成果 · 网页）</span><span class="t">2026-10-08（原文日期，未标精确时刻） · 收录 10-09 03:42</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Anthropic 发布 OSS Scanner，一个可选加入的开源漏洞扫描服务，用其最强模型（包括 Claude Mythos）定期免费扫描开源项目，输出为全模型生成、无人工复核的报告。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 于10月8日推出自愿加入的 OSS Scanner，向符合条件的开源项目免费提供定期安全扫描。报告由模型生成，不经过逐条人工复核；公司仍保留人工验证的协调披露流程。这两类报告不能混为同一保证水平。</p><p>扫描报告包含可复现材料、漏洞解释及可用时的候选补丁。官方对早期版本抽查了48个项目的97项高危或严重发现，其中85项达到其协调披露标准，其余主要为重复问题；这是一组特定样本，不能外推为所有项目的准确率。</p><p>💭 分析：更快收到候选发现能缩短等待，但也把验证、去重和严重度核对工作交给维护者。项目应按自身资源选择是否加入，逐条复现后处理；官方亦承认威胁模型理解和严重度判断仍可能不准确。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source" target="_blank">Anthropic：Research（发表成果 · 网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Claude 推出 Dashboards 实时仪表盘与 Motion 动画讲解功能<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Claude：Blog（网页）</span><span class="t">2026-10-08（原文日期，未标精确时刻） · 收录 10-09 03:26</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Anthropic 发布 Claude Dashboards 和 Claude Motion 两项 beta 功能。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 于10月8日介绍 Claude Dashboards 和 Motion 两项测试功能。Dashboards 面向付费计划，可连接 BigQuery、Databricks、Snowflake 等数据平台及 Salesforce 等连接器；Motion 面向 Team 和 Enterprise。企业管理员需要主动开启这两项功能，不能把发布公告等同于所有企业用户已经可用。</p><p>Dashboards 可按数据变化更新图表，并展示背后的查询和刷新时间。Motion 以代码组织文字、图表、形状与图片的动画，可编辑并导出 MP4，不使用视频生成模型。Docs、Slides 和 Design 同时结束测试，面向包括免费档的所有计划。</p><p>💭 分析：可见查询与刷新时间便于核对数据口径，但不会自动消除错误查询和数据权限问题。动画可修改代码有助于复用演示，实际效果仍取决于内容准确度与编辑过程；管理员开放范围也需单独确认。</p>
+<p>来源：<a class="source-link" href="https://claude.com/blog/dashboards-and-motion" target="_blank">Claude：Blog（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Google 开源 ML Drift 端侧 GPU 推理引擎，接替 TFLite GPU delegate<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Google Developers Blog（RSS）</span><span class="t">2026-10-08（原文日期，未标精确时刻） · 收录 10-09 03:05</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Google AI Edge 团队以 Apache 2.0 许可开源 ML Drift，一个跨平台端侧 GPU 推理计算引擎，作为 LiteRT 的核心 GPU 加速层。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Google AI Edge 团队于10月8日按 Apache 2.0 许可开源 ML Drift，定位跨平台端侧 GPU 推理引擎。它是 LiteRT 的核心 GPU 加速层，也可作为独立库使用，覆盖 OpenGL ES、OpenCL、Metal 与 WebGPU。桌面支持仍包含预览性质，不能把全部平台均视作同等成熟。</p><p>架构变化包括张量虚拟化、可扩展自定义算子及五维张量支持，并根据大语言模型预填充与逐步解码阶段切换优化。Google 表示旧 TFLite GPU delegate 将不再接收新功能，建议迁移；Android 的 Google Play Services 集成则仍属后续安排。</p><p>💭 分析：统一底层接口能减少维护不同 GPU 后端的工作，但兼容承诺和示例性能不能替代真实设备测试。迁移前应核对算子覆盖、驱动差异及内存占用，按具体输入与设备评估收益。</p>
+<p>来源：<a class="source-link" href="https://developers.googleblog.com/ml-drift-next-gen-gpu-aiml-inference-at-the-edge/" target="_blank">Google Developers Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>Google 开源 AQuA 环境质量智能体，自动诊断生产环境中的 Agent 故障<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Google Developers Blog（RSS）</span><span class="t">2026-10-08（原文日期，未标精确时刻） · 收录 10-09 02:05</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Google 发布并开源 AQuA（Ambient Quality Agent），在 Google Cloud 项目中定时从 Cloud Trace、Cloud Logging 或 BigQuery 抽取生产会话，经抽样、评审、聚类、验证、跟踪五阶段流水线诊断 Agent 失败。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Google 于10月8日介绍并开放 AQuA 组件，用于诊断生产智能体的质量问题。它在用户自己的 Google Cloud 项目中，定期读取 Cloud Trace、Cloud Logging 或 BigQuery 会话，在请求路径之外运行，不直接改动受监测的智能体。HTTP 成功与任务正确在这里是分别检查的对象。</p><p>流程分为抽样、评审、聚类、验证与跟踪。候选问题由另一模型对完整会话复核，根因分析可对照部署时的代码快照并引用具体位置；工具可提出修改建议，但不会自行应用或创建拉取请求。原文强调模型评审也可能出错。</p><p>💭 分析：关联会话和实际部署版本，比只看整体评分更有助于定位失败层次。但抽样与少量会话验证不覆盖所有流量，未再出现的问题也不能据此证明已经永久解决；修复后仍需独立回归评估。</p>
+<p>来源：<a class="source-link" href="https://developers.googleblog.com/the-outer-loop-insights-first-an-ambient-quality-agent-that-diagnoses-your-production-agent/" target="_blank">Google Developers Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>ts-rust 发布：由 LLM 将 TypeScript 编译器、检查器和 LSP 移植到 Rust<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Hacker News：AI 热帖</span><span class="t">2026-10-08 08:46 北京时间（API时间标记） · 收录 10-08 16:41</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">ts-rust（tsc-rs）将 microsoft/TypeScript（Go 实现）的编译器、类型检查器和语言服务器移植为 Rust，作者称全部代码由 LLM 编写，本人未读过代码。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>ts-rust（tsc-rs）将 microsoft/TypeScript（Go 实现）的编译器、类型检查器和语言服务器移植为 Rust，作者称全部代码由 LLM 编写，本人未读过代码。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://github.com/pingdotgg/ts-rust" target="_blank">Hacker News：AI 热帖</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏭</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">8 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元并发布 Alignment Index<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Arena (@arena)</span><span class="t">2026-10-09 05:36 北京时间（API时间标记） · 收录 10-09 05:49</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元，由 Lightspeed 和 Khosla Ventures 联合领投，a16z、Felicis、Salesforce Ventures、The House Fund 等参投。自 A 轮以来，Arena 年化收入超 1 亿美元，平台累计 3.5 亿场次会话，约 5 个月内产生 700 万次 Agent Arena 会话，覆盖文本、视觉、代码、搜索、图像和视频的投票达 6200 万，用户遍布 150 多个国家。融资同时，Arena 发布基于真实智能体轨迹构建的 Alignment Index，对 20 多个前沿模型从 Unauthorized Action、False Attribution 和 Deceptive Completion 三个信号进行评估。Arena 于 2023 年作为 UC Berkeley 研究项目启动，2025 年成为公司。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Arena 完成 2 亿美元 B 轮融资，估值 31 亿美元，由 Lightspeed 和 Khosla Ventures 联合领投，a16z、Felicis、Salesforce Ventures、The House Fund 等参投。自 A 轮以来，Arena 年化收入超 1 亿美元，平台累计 3.5 亿场次会话，约 5 个月内产生 700 万次 Agent Arena 会话，覆盖文本、视觉、代码、搜索、图像和视频的投票达 6200 万，用户遍布 150 多个国家。融资同时，Arena 发布基于真实智能体轨迹构建的 Alignment Index，对 20 多个前沿模型从 Unauthorized Action、False Attribution 和 Deceptive Completion 三个信号进行评估。Arena 于 2023 年作为 UC Berkeley 研究项目启动，2025 年成为公司。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://x.com/arena/status/2108310714423423254" target="_blank">X：Arena (@arena)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>部分数学家呼吁抵制 OpenAI，AI 生成的数学证明涌入数学领域<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">The Decoder：AI News（RSS）</span><span class="t">2026-10-09 02:17 北京时间（API时间标记） · 收录 10-09 02:31</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">AHM 组织在 Terence Tao 主持下发表声明，呼吁抵制 OpenAI，称其一次性发布 700 多个 AI 生成证明文件是展示力量而非学术行为。此前 OpenAI 宣称内部模型一个月内解决逾 100 个开放数学问题，约 8000 个测试问题成功率约 5%，平均每个耗时 3 小时 GPT-Pro 级算力。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>AHM 组织在 Terence Tao 主持下发表声明，呼吁抵制 OpenAI，称其一次性发布 700 多个 AI 生成证明文件是展示力量而非学术行为。此前 OpenAI 宣称内部模型一个月内解决逾 100 个开放数学问题，约 8000 个测试问题成功率约 5%，平均每个耗时 3 小时 GPT-Pro 级算力。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field/" target="_blank">The Decoder：AI News（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>媒体报道 OpenAI 年化营收及收入统计口径差异<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">IT之家·人工智能</span><span class="t">2026-10-09 07:02 北京时间（API时间标记） · 收录 10-09 07:20</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">据金融时报报道，OpenAI 向投资者披露截至 9 月底年化营收逼近 500 亿美元，大幅低于此前外界估算的 700 亿美元，缺口约 200 亿美元。差异源于统计口径不同，Anthropic 计入 AWS 和谷歌云等合作方销售收入，而 OpenAI 剔除该部分。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>据金融时报报道，OpenAI 向投资者披露截至 9 月底年化营收逼近 500 亿美元，大幅低于此前外界估算的 700 亿美元，缺口约 200 亿美元。差异源于统计口径不同，Anthropic 计入 AWS 和谷歌云等合作方销售收入，而 OpenAI 剔除该部分。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://www.ithome.com/1/010/751.htm" target="_blank">IT之家·人工智能</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>Anthropic 发布 2026 年使用政策更新，11 月 12 日生效<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Anthropic：Newsroom（网页）</span><span class="t">2026-10-08 00:00 北京时间（API时间标记） · 收录 10-09 01:44</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Anthropic 发布新版使用政策，将于 11 月 12 日生效，多数变化是对既有规则的澄清。更新包括新设禁止欺骗性活动章节、收窄选举条款、明确武器软件与无人机武装禁令、更精确的监控与执法限制、补充高风险用例及自主物理操作的 human in the loop 要求，并新增禁止对模型的持续无端虐待行为。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Anthropic 发布新版使用政策，将于 11 月 12 日生效，多数变化是对既有规则的澄清。更新包括新设禁止欺骗性活动章节、收窄选举条款、明确武器软件与无人机武装禁令、更精确的监控与执法限制、补充高风险用例及自主物理操作的 human in the loop 要求，并新增禁止对模型的持续无端虐待行为。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/news/2026-usage-policy-update" target="_blank">Anthropic：Newsroom（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>OpenAI 封禁俄罗斯与伊朗两个利用 ChatGPT 开展虚假前臆影响行动的账号集群<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">OpenAI：官网动态（RSS · 排除企业/客户案例）</span><span class="t">2026-10-08 08:00 北京时间（API时间标记） · 收录 10-09 00:24</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">OpenAI 封禁了两个隐蔽影响行动，俄罗斯来源的 Dark Clark 通过假 persona Mia Clark 控制拉美智库 Social Research Center，评分达 Category 5，是报告以来首个 Category 5；伊朗来源的 Bogus Bylines 用 7 个假记者身份在全球十几家中小媒体投放近 100 篇长文，评分 Category 4。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>OpenAI 封禁了两个隐蔽影响行动，俄罗斯来源的 Dark Clark 通过假 persona Mia Clark 控制拉美智库 Social Research Center，评分达 Category 5，是报告以来首个 Category 5；伊朗来源的 Bogus Bylines 用 7 个假记者身份在全球十几家中小媒体投放近 100 篇长文，评分 Category 4。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://openai.com/index/disrupting-ai-enabled-false-front-operations" target="_blank">OpenAI：官网动态（RSS · 排除企业/客户案例）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>Waymo 完成 50 亿美元债务融资，加速业务扩张<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Waymo：Blog（网页）</span><span class="t">2026-10-08 15:00 北京时间（API时间标记） · 收录 10-08 21:22</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Waymo 宣布完成 50 亿美元定期贷款，这是其首次债务融资。PIMCO、Blackstone 和 Sixth Street 担任牵头银团贷方，Goldman Sachs 担任独家主账簿管理人；资金将用于加速其全自动驾驶打车服务在美国及国际市场的扩张。此前今年早些时候 Waymo 完成了 160 亿美元股权融资，上个月刚在第十五个美国城市启动服务。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Waymo 宣布完成 50 亿美元定期贷款，这是其首次债务融资。PIMCO、Blackstone 和 Sixth Street 担任牵头银团贷方，Goldman Sachs 担任独家主账簿管理人；资金将用于加速其全自动驾驶打车服务在美国及国际市场的扩张。此前今年早些时候 Waymo 完成了 160 亿美元股权融资，上个月刚在第十五个美国城市启动服务。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://waymo.com/blog/2026/10/waymo-closes-5-billion-debt-financing" target="_blank">Waymo：Blog（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>Crowdstrike 报告疑似单人使用 AI 渗透工具攻击多家韩国银行<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">The Decoder：AI News（RSS）</span><span class="t">2026-10-08 17:24 北京时间（API时间标记） · 收录 10-08 18:24</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Crowdstrike 报告称，一名疑似中文使用者于2026年9月底至10月初利用 AI 驱动的开源渗透测试工具 ARTEX 攻击多家韩国金融机构，窃取大量数据，其中 Shinhan Bank 超过 25,000 条包含姓名、联系方式、收入和信用额度的记录泄露。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Crowdstrike 报告称，一名疑似中文使用者于2026年9月底至10月初利用 AI 驱动的开源渗透测试工具 ARTEX 攻击多家韩国金融机构，窃取大量数据，其中 Shinhan Bank 超过 25,000 条包含姓名、联系方式、收入和信用额度的记录泄露。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://the-decoder.com/ai-powered-hacking-tools-enabled-a-likely-single-attacker-to-breach-multiple-south-korean-banks/" target="_blank">The Decoder：AI News（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>Codex 与 ChatGPT Work 活跃用户达 4000 万新高，付费账户重置已全部到账<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Tibo (@thsottiaux)</span><span class="t">2026-10-08 11:44 北京时间（API时间标记） · 收录 10-08 12:06</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">作者确认 banked reset 已到账所有账户，并转引 Day 3 动态称 Codex 与 ChatGPT Work 合计活跃用户达到 4000 万新高，其中提到 GPT-6 已在 Chat 中上线。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>作者确认 banked reset 已到账所有账户，并转引 Day 3 动态称 Codex 与 ChatGPT Work 合计活跃用户达到 4000 万新高，其中提到 GPT-6 已在 Chat 中上线。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://x.com/thsottiaux/status/2108040921044639779" target="_blank">X：Tibo (@thsottiaux)</a></p>
+</div>
+</div>
+</div>
+<!-- 论文研究 -->
+<div class="section" id="s-paper">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">📄</span><h2 style="color:#6d28d9;">论文研究</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>Goodfire 为 Kimi K3 和 GLM 5.3 训练并部署生产级网络安全监控器<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Goodfire Research（网页）</span><span class="t">2026-10-08 00:00 北京时间（API时间标记） · 收录 10-09 00:25</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Goodfire Research 为 Kimi K3 和 GLM 5.3 构建基于激活探针加 LLM judge 的监控级联，并部署到生产推理栈。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Goodfire Research 为 Kimi K3 和 GLM 5.3 构建基于激活探针加 LLM judge 的监控级联，并部署到生产推理栈。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://www.goodfire.com/research/production-cyber-monitors-on-kimi-k3" target="_blank">Goodfire Research（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>Zenity 研究人员发现一条提示词即可劫持 AWS 账户内全部 AgentCore 智能体<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">The Decoder：AI News（RSS）</span><span class="t">2026-10-08 21:01 北京时间（API时间标记） · 收录 10-08 21:27</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Zenity Labs 研究人员披露名为 AgentCorruption 的漏洞链，只需对一个公开的 Amazon Bedrock AgentCore 智能体发送一条提示词，即可通过元数据服务 169.254.169.254 窃取其 AWS 凭据，进而控制同账户同区域内的所有 AgentCore 智能体，读取私人对话、源代码和存储的凭据，还能篡改长期记忆。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Zenity Labs 研究人员披露名为 AgentCorruption 的漏洞链，只需对一个公开的 Amazon Bedrock AgentCore 智能体发送一条提示词，即可通过元数据服务 169.254.169.254 窃取其 AWS 凭据，进而控制同账户同区域内的所有 AgentCore 智能体，读取私人对话、源代码和存储的凭据，还能篡改长期记忆。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found/" target="_blank">The Decoder：AI News（RSS）</a></p>
+</div>
+</div>
+</div>
+<!-- 技巧与观点 -->
+<div class="section" id="s-tip">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">💡</span><h2 style="color:#0e7490;">技巧与观点</h2><span class="count">7 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>Block 如何用 Claude Fable 编排数千个 pull request 的代码迁移<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Claude：Blog（网页）</span><span class="t">2026-10-08 08:00 北京时间（API时间标记） · 收录 10-09 07:30</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Anthropic 发表对 Block AI capabilities 负责人 Bradley Axen 的访谈，介绍 Block 用 Claude Fable 5 编排大规模代码迁移：Fable 做数据模型、API 规格等高层设计，再调度数十个更小的 Opus 或 Sonnet 模型执行文件修改和测试，一次迁移可能合并上千个 pull request。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Anthropic 发表对 Block AI capabilities 负责人 Bradley Axen 的访谈，介绍 Block 用 Claude Fable 5 编排大规模代码迁移：Fable 做数据模型、API 规格等高层设计，再调度数十个更小的 Opus 或 Sonnet 模型执行文件修改和测试，一次迁移可能合并上千个 pull request。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://claude.com/blog/how-block-orchestrates-claude-fable-across-thousands-of-pull-requests" target="_blank">Claude：Blog（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>Hugging Face 工程师用 ML Intern 以约 103 美元自制 7 个小模型<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Hugging Face 官方团队博客</span><span class="t">2026-10-08（原文日期，未标精确时刻） · 收录 10-09 06:28</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Hugging Face 工程师 yuvraj sharma 用 HuggingChat 的 ML Intern 模式在几天内做出 7 个模型，包括可在 CPU 运行、99.7% 有效输出的 0.8B 提示词重写器，以及将柑橘病害识别准确率从 14.9% 提升到 52.8% 的 Qwen3.5-2B 微调模型等，全部计算成本约 103 美元。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Hugging Face 团队博客于10月8日记录作者使用 ML Intern 制作七个模型的实践，CPU 与 GPU 作业费用合计约103美元。该费用口径是计算任务费用，不包含作者准备需求的时间，也不能代表所有训练项目的预算。作者公开了提示词、模型和评估材料。</p><p>案例包括能在 CPU 运行的0.8B提示词重写模型，以及在335张测试图片上从14.9%提升至52.8%正确识别率的柑橘模型。作者强调先测基线、先做短训练冒烟测试，再支付完整训练费用；其他案例还出现失败作业与训练过度影响无关输入的问题。</p><p>💭 分析：这些记录展示小范围任务可以通过明确数据、检查点和预算约束推进，但输出有效不等于内容准确，单一测试集提升也不能证明真实环境表现。公开材料有利于复查，使用前仍需补测未见场景。</p>
+<p>来源：<a class="source-link" href="https://huggingface.co/blog/building-with-ml-intern" target="_blank">Hugging Face 官方团队博客</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>如何在单张 RTX 5090 上用 MiniMax H3 生成实时视频<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Comfy Blog</span><span class="t">2026-10-09 03:01 北京时间（API时间标记） · 收录 10-09 03:25</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">ComfyUI 博客作者用智能体搜集各类优化，把 MiniMax H3 实时视频生成压缩到单张 RTX 5090（32 GB 显存）上运行，生成 30 秒视频耗时 23.51 秒，达 1.28 倍实时吞吐。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>ComfyUI 博客作者用智能体搜集各类优化，把 MiniMax H3 实时视频生成压缩到单张 RTX 5090（32 GB 显存）上运行，生成 30 秒视频耗时 23.51 秒，达 1.28 倍实时吞吐。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://blog.comfy.org/p/how-i-generated-live-video-with-minimax" target="_blank">Comfy Blog</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div>
+<div class="card-main">
+<h3>NVIDIA KGMON 团队分享 KDD Cup 2026 数据分析智能体的构建经验<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">NVIDIA Technical Blog：Agentic AI / Generative AI</span><span class="t">2026-10-08 00:00 北京时间（API时间标记） · 收录 10-09 02:38</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">NVIDIA KGMON 团队在 KDD Cup 2026 Data Agents 竞赛获得第二名，并发布构建可靠数据分析智能体的方法复盘。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>NVIDIA KGMON 团队在 KDD Cup 2026 Data Agents 竞赛获得第二名，并发布构建可靠数据分析智能体的方法复盘。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://developer.nvidia.com/blog/building-reliable-data-analytics-agents-lessons-from-the-kdd-cup/" target="_blank">NVIDIA Technical Blog：Agentic AI / Generative AI</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">22</div>
+<div class="card-main">
+<h3>LangChain 用 Stripe Link 和 Managed Deep Agents 构建可支付的智能体 Restock<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">LangChain：Blog（RSS）</span><span class="t">2026-10-09 00:21 北京时间（API时间标记） · 收录 10-09 00:42</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">LangChain 发布示例项目 Restock，一个在 Slack 上通过 Managed Deep Agents 运行的办公用品购买智能体，演示智能体如何安全完成支付。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>LangChain 发布示例项目 Restock，一个在 Slack 上通过 Managed Deep Agents 运行的办公用品购买智能体，演示智能体如何安全完成支付。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://www.langchain.com/blog/agents-that-can-pay-with-stripe-link" target="_blank">LangChain：Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">23</div>
+<div class="card-main">
+<h3>Anthropic 用 Claude Managed Agents 构建定时智能体自动化的实践指南<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Anthropic：Claude.dev 开发者博客（RSS）</span><span class="t">2026-10-08（原文日期，未标精确时刻） · 收录 10-09 00:15</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Anthropic 发布基于 Claude Managed Agents（beta）的每日简报参考实现，按计划读取 Slack 和 GitHub 来源并向 Slack 发布简报。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 于10月8日发布 Managed Agents 测试版的定时简报参考实现。示例按计划读取 Slack 和 GitHub，再向指定 Slack 频道发简报，包含来源、目的地、智能体、时间表、记忆与边界六个组件。它是可定制示例，不是部署后无需维护的保证。</p><p>文章建议按来源保存读取书签，避免固定24小时窗口造成遗漏或重复。读取失败时保留原书签并说明不可读；发布确认成功后才更新已报道台账与书签，状态不明确则不前移。用户偏好放在独立的只读记忆中，每次运行重新读取。</p><p>💭 分析：这套状态纪律把失败读取、未确认发布与确实无新内容分开，有助于持续自动化的可审计性。实际部署仍需配置访问凭证、联网范围和预算，参考流程无法代替对来源权限与发布结果的检验。</p>
+<p>来源：<a class="source-link" href="https://claude.dev/blog/building-effective-agent-automations/" target="_blank">Anthropic：Claude.dev 开发者博客（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">24</div>
+<div class="card-main">
+<h3>Tessl 工程博客：AI 不是笨，是瞎——企业级 Agent 记忆的三个关键设计决策<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Tessl：产品与工程博客</span><span class="t">2026-10-08 00:00 北京时间（API时间标记） · 收录 10-08 23:29</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">作者基于为跨公司工作的 Agent 构建记忆系统一年的经验指出，AI 失败的常见原因不是模型推理差，而是它看不到关键决策上下文，多数 agent memory 只是给瞎子更大的档案柜。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>作者基于为跨公司工作的 Agent 构建记忆系统一年的经验指出，AI 失败的常见原因不是模型推理差，而是它看不到关键决策上下文，多数 agent memory 只是给瞎子更大的档案柜。</p><p>速览：依据 AIHOT 摘要整理，未取得足够原文作进一步解读；媒体及作者说法保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://tessl.io/blog/your-ai-isnt-stupid-its-blind" target="_blank">Tessl：产品与工程博客</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🤖 AI 行业日报 · 2026-10-09 · 数据来源：AIHOT精选API；六条重点深读官方/作者原文<br>
+共 24 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 截至北京时间10月9日上午的24小时精选；原文时间与收录时间区分。合并Arena融资重复条目、Cyber Mission与OSS Scanner同一发布。性能与样本结果保留来源归属，分析另标。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

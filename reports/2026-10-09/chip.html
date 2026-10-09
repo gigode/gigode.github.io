@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-10-09</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#10b981; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-10-09 · 5 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（2）</a></li>
+<li><a href="#s-company">🏢 企业动态（3）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（0）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">2 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Microchip 发布并行感测触摸控制器，面向无显示屏界面<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Microchip 官方公告</span><span class="t">2026-10-08</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">MTCH3380P与MTCH3240P同步采集多个传感器，适用家电与工业触控。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Microchip 10月8日推出 MTCH3380P 与 MTCH3240P 电容触摸控制器，用于按钮、滑条和旋轮。这两款器件采用12个片上模数转换器并行采集，支持最高105℃工作环境。公司将其定位于无显示屏人机界面，面向家电、户外和工业应用，强调多触点下的响应及抗噪表现。</p><p>MTCH3380P 在自电容、互电容模式分别支持最多38和64个传感器，MTCH3240P 则分别为24和32个。公司提供 mTouch Studio、评估硬件及 Linux、Zephyr 主机驱动，并说明可支持客户开展 IEC 60730 Class B 功能安全认证；这一表述不等于客户整机已经取得认证。</p><p>💭 分析：并行采集可以成为多触点界面设计的一项选择，但厚盖板、手套、湿气与电磁噪声下的实际体验仍须在具体产品中验证。公告披露的是芯片与工具能力，未给出客户出货规模，不宜直接推断已经实现整机降本。</p>
+<p>来源：<a class="source-link" href="https://www.microchip.com/en-us/about/news-releases/products/microchip-introduces-its-first-turnkey-touch-controllers-for-buttons-sliders-wheels-with-parallel-sensing" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Marvell 预告OCP展示，覆盖交换、CXL内存与高速互联<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Marvell 投资者关系</span><span class="t">2026-10-08</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">10月12—15日展示计划包含Teralynx、Structera及PCIe 6.0 SSD控制器。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Marvell 10月8日宣布，将在10月12—15日圣何塞 OCP Global Summit 展示开放AI基础设施产品组合。计划包括 Teralynx T100 102.4T 数据中心交换芯片、Structera CXL 内存扩展与加速，以及 Bravera PCIe 6.0 SSD 控制器。展会尚未举行，本卡记录的是官方展示预告。</p><p>其他展示项目覆盖1.6T光学DSP、铜连接、有源线缆和集成硬件安全模块；产品组合同时面向交换、互联、内存与存储。公告说明公司将安排14场技术与高管讲座，但未披露该次展示形成的客户订单，也没有提供不同产品在同一系统中的实测对比。</p><p>💭 分析：在AI系统扩展中，多种距离和链路类型需要同时匹配，开放架构展示可帮助客户理解组合方案。商业采用仍取决于互操作验证、实际功耗和部署成本；规格数字与展览计划不能直接证明客户已经规模部署或采购。</p>
+<p>来源：<a class="source-link" href="https://investor.marvell.com/news-events/press-releases/detail/1036/marvell-to-showcase-open-ai-infrastructure-solutions-at-ocp-global-summit-2026" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>格芯与台积电签制造协议，拟在美国供应CoWoS硅中介层<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">GlobalFoundries 投资者关系</span><span class="t">2026-10-08</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">纽约Malta扩产计划预计2028年上半年开始量产爬坡，初始协议期五年。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>格芯10月8日宣布与台积电签订制造协议，为后者 CoWoS 先进封装生态建立美国硅中介层供应。格芯将提供制造服务，并计划在纽约 Malta 工厂增加产能，以支持高性能计算和AI系统需求。公告所述是硅中介层制造安排，不是格芯承接台积电全部先进封装流程。</p><p>公司预计量产将于2028年上半年开始爬坡，协议初始期限为五年，并为后续扩产提供框架。新增能力拟覆盖包括嵌入式深沟槽电容在内的先进封装组件；实际新增产能数值、客户采购金额和当前出货量未在公告中披露。签约、扩产与量产是不同阶段。</p><p>💭 分析：该合作为美国先进封装供应链增加了一条本地制造路径，但短期不能把规划产能视为已经缓解供应瓶颈。后续应跟踪设备建设、工艺与客户验证、爬坡进度，以及台积电封装生态其他环节是否同步匹配。</p>
+<p>来源：<a class="source-link" href="https://gf.gcs-web.com/news-releases/news-release-details/globalfoundries-reaches-agreement-establish-us-based-supply" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>台积电9月营收5118.57亿新台币，同比增54.6%<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">台积电官方月度营收公告</span><span class="t">2026-10-08</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">10月8日公布9月合并营收，环比下降0.6%；数字属于观测月而非今日收入。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>台积电10月8日公布2026年9月合并营收约5118.57亿新台币，较8月减少0.6%，较2025年9月增加54.6%。2026年1—9月累计合并营收约3.89873万亿新台币，同比增长41.1%。这里的发布日期是10月8日，数据观测期分别为9月及前九个月，不能写成10月实时营收。</p><p>公告提供公司合并口径的收入数据，没有分拆各客户、制程节点、AI业务贡献或盈利能力。同比增长与环比回落同时存在，两个比较基准不同，也不能用月度收入直接替代季度利润或毛利率。</p><p>💭 分析：这一结果支持公司收入规模较上年扩大，但单月轻微回落本身不足以确认需求转弱。解释变化还需要客户组合、节点结构和季节因素等后续披露。行业观察可以结合后续季度业绩，但不应由这一月度总额推算某个客户的采购量或整个半导体行业的利润。</p>
+<p>来源：<a class="source-link" href="https://pr.tsmc.com/chinese/news/3343" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>UCLA 加入应用材料EPIC中心，合作推进3D芯片与新材料研究<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Applied Materials 投资者关系</span><span class="t">2026-10-08</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">新的大学研究伙伴公告；重点为研究成果验证与产业化路径。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>应用材料10月8日宣布，UCLA Samueli 工程学院将作为研究伙伴加入硅谷 EPIC 中心。双方计划合作解决半导体材料与集成难题，研究方向包括3D芯片缩放、先进封装，以及提高AI计算能效的新材料。这是本次新增的大学合作，并非重复此前铠侠加入中心的事件。</p><p>公告称 UCLA 研究人员将获得先进芯片制造工具的使用机会，在商业晶圆厂环境中测试和验证新想法，以缩短从概念到生产的路径。合作还将补充 UCLA Semiconductor Hub 的研究工作。上述内容属于研发安排和目标，未给出具体产品量产时间、实测性能提升或新增合同金额。</p><p>💭 分析：把学术研究接入产业设备和集成环境，可能帮助及早发现制造约束；但材料突破能否形成稳定工艺仍需验证。后续应看公开的研究结果、可重复测试与工艺导入进度，不能把中心合作签约当作先进封装产能已经增加。</p>
+<p>来源：<a class="source-link" href="https://appliedmaterials.gcs-web.com/news-releases/news-release-details/applied-materials-and-ucla-engineering-accelerate-semiconductor" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-10-09 · 数据来源：10月8日原始公告及已读取媒体报道；逐条保留原始发布时间<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 北京时间10月9日版。量产、展示与研发计划保持未来时态；营收注明观测月；分析单独标记。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

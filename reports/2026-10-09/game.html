@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-10-09</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#7c3aed; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-10-09 · 5 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（3）</a></li>
+<li><a href="#s-industry">🏢 行业动态（1）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（0）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（1）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">3 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《机械迷城 2》公布：双角色协作解谜，原作作曲家回归<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-08</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 8 日报道，Amanita Design 公布《机械迷城 2》。故事接续原作，Josef 与 Berta 离开城市后坠入隐秘山谷，遇到 Elektrona 与 Oilton 两个面临能源枯竭的机器人群体。续作继续采用点击式解谜，两位主角均可操作，并可随时切换、共同解决谜题。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 8 日报道，Amanita Design 公布《机械迷城 2》。故事接续原作，Josef 与 Berta 离开城市后坠入隐秘山谷，遇到 Elektrona 与 Oilton 两个面临能源枯竭的机器人群体。续作继续采用点击式解谜，两位主角均可操作，并可随时切换、共同解决谜题。</p><p>原作作曲家 Tomáš Dvořák，也就是 Floex，将再次参与。他在采访中说，希望新音乐更具旋律感，并通过简化表达形成区别。💭 分析：双角色协作给谜题组织增加空间，保留视觉和音乐创作者则有助于延续作品辨识度；是否能兼顾熟悉感与新意仍须实机体验。</p><p>工作室负责人把重返机器人世界描述为逐步形成的创作冲动，没有提供商业回报预测。本次读取的公告和采访未给出完整发售时间、价格或平台清单，不能把预告当成成品内容与交付日期的保证。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/adventure/a-great-indie-studio-is-making-a-sequel-to-one-of-my-favorite-adventures-17-years-later-for-one-simple-reason-were-not-getting-any-younger-and-the-world-seems-to-be-ending/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《潜水员戴夫》将联动《Subnautica 2》，大型 DLC 后仍可能小规模更新<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（采访 Mintrocket）</span><span class="t">2026-10-08</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 8 日报道，《潜水员戴夫》与《Subnautica 2》的内容包在 Triple-I Initiative 展示中公布，计划于 2027 年初推出。戴夫将进入外星水域，采集资源并捕捉新生物，包括 Nibbler Mango；这发生在戴夫的联动内容里，并非《Subnautica 2》本体修改战斗规则。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 8 日报道，《潜水员戴夫》与《Subnautica 2》的内容包在 Triple-I Initiative 展示中公布，计划于 2027 年初推出。戴夫将进入外星水域，采集资源并捕捉新生物，包括 Nibbler Mango；这发生在戴夫的联动内容里，并非《Subnautica 2》本体修改战斗规则。</p><p>Mintrocket 在给媒体的邮件中表示，联动仍会保留玩家熟悉的戴夫玩法。团队把它称为最后一个大型 DLC，但未排除根据反馈和内部计划推出较小更新或其他合作。💭 分析：大型扩展结束与停止维护并不等同，玩家应分别判断后续内容规模及支持周期。</p><p>团队也表示不会立即转入续作开发。报道没有给出内容包售价和精确上线日，较小更新仍是可能性而非已排期项目；不能据此承诺无限期维护，也不能写成游戏已经终止更新。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/adventure/subnautica-2-fans-can-finally-hunt-and-kill-those-pesky-nibbler-mangos-in-dave-the-divers-crossover-dlc/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>《WoW: Forever》将小幅提高地下城经验，但坚持任务与开放世界平衡<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转述暴雪设计师说明）</span><span class="t">2026-10-08</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 8 日介绍暴雪对《World of Warcraft: Forever》地下城升级争议的回应。设计师 Josh Greenfield 表示，地下城经验将有所改善，但不会回到经典版本的水平；把反复刷副本变成最优升级方法，不符合团队的核心设计原则。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 8 日介绍暴雪对《World of Warcraft: Forever》地下城升级争议的回应。设计师 Josh Greenfield 表示，地下城经验将有所改善，但不会回到经典版本的水平；把反复刷副本变成最优升级方法，不符合团队的核心设计原则。</p><p>报道说，地下城击杀怪物的经验将小幅提高，开发者希望开放世界仍是成长的主要场景。这与昨日报道的角色模型更新是两个不同事件。💭 分析：经验效率会影响玩家选择坦克、治疗或野外任务的动力，调整需要让组队成为可用选项，同时避免所有成长路线被一种方法覆盖。</p><p>已读取内容没有公布具体提升幅度和补丁日期。媒体作者还提出限时活动等设想，但这些并非暴雪承诺；正式调整后是否改善体验、是否改变组队供需，仍须实际版本及玩家行为验证。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/world-of-warcraft/blizzard-refuses-to-let-world-of-warcraft-forevers-dungeons-become-the-fastest-way-to-grind-xp-we-need-to-hold-firm-on-these-balance-adjustments/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Xbox 成立 XP 部门，统筹影视、商品、合作与线下体验<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Xbox Wire 官方</span><span class="t">2026-10-08</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Xbox 10 月 8 日官方宣布成立 XP 部门，由新任总裁 Kayleen Walters 领导，统筹影视、消费品、战略合作和现场体验。公告称，相关能力此前分散在多个团队，新部门将它们集中到共同目标下，让游戏系列以更多形式接触玩家及新受众。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Xbox 10 月 8 日官方宣布成立 XP 部门，由新任总裁 Kayleen Walters 领导，统筹影视、消费品、战略合作和现场体验。公告称，相关能力此前分散在多个团队，新部门将它们集中到共同目标下，让游戏系列以更多形式接触玩家及新受众。</p><p>四个方向分别为 Pictures 的影视叙事、Products 的授权商品、Places 的活动和沉浸式场所，以及 Partnerships 的创作者和品牌合作。💭 分析：统一管理可使跨媒体项目围绕同一系列协调，但不同业务的制作周期与合作方式并不相同，组织调整本身不能证明项目已成功。</p><p>官方仍将游戏作品放在系列的中心，表示 XP 会与工作室和外部伙伴合作。本次公告没有披露具体预算、项目上线日期或收入目标，因此不能据此推导影视投入取代游戏开发，或将公司的增长愿景写成已实现成果。</p>
+<p>来源：<a class="source-link" href="https://news.xbox.com/en-us/2026/10/08/introducing-xp/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Pimax 公布 Crystal Pro 无线头显和无环控制器，上市时间未定<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-08</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">PC Gamer 10 月 8 日报道 Pimax 的新一轮硬件发布。Crystal Pro 无线头显附带 Wi-Fi 6E 适配器，还可选购使用 60GHz 连接的 AirLink 套件，配合眼动追踪，将注视区域以更高画质串流，外围区域降低细节以节省传输资源。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 8 日报道 Pimax 的新一轮硬件发布。Crystal Pro 无线头显附带 Wi-Fi 6E 适配器，还可选购使用 60GHz 连接的 AirLink 套件，配合眼动追踪，将注视区域以更高画质串流，外围区域降低细节以节省传输资源。</p><p>报道还介绍无环控制器、更新的 SLAM 追踪及模块化配件；左右控制器可借助中间模块组合使用，公司同时预告 Spation 游戏电脑。💭 分析：无线连接和控制输入共同影响 PC VR 的便利性，不过视觉质量、遮挡稳定性和舒适度需要在真实房间条件下衡量。</p><p>文章中的低延迟与画质说法来自厂商展示，不是独立测量。作者明确指出尚无上市日期，因此不能把发布会亮相写成产品已可购买，也不能用理论带宽直接推定所有家庭网络中的实际体验。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/vr-hardware/pimax-says-ill-have-what-valves-having-as-it-announces-new-wireless-vr-headset-foveated-streaming-updated-controllers-and-long-steam-machine/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-10-09 · 数据来源：实际读取原文与官方公告；按事件去重2026-10-08和2026-10-01，原始发布时间逐条标明<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>
