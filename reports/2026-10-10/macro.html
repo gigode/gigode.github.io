@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-10-10</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#d97706; }
+
+body { background:#0a0a0a; } .cover { background:linear-gradient(135deg,#1a0f0a,#3d2517,#b45309); }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-10-10 · 5 条资讯 · 14 项指标 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（0）</a></li>
+<li><a href="#s-data">📊 经济数据（1）</a></li>
+<li><a href="#s-market">📈 资本市场（1）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（2）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>美国家庭财务新调查：财富增加与高偿债压力并存<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">美联储官方公告</span><span class="t">发布：10月9日；调查年：2025，对比2022</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">美联储10月9日公布2025SCF；2022至2025实际家庭收入中位数升7%至82200美元，均值降6%至145200美元。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美联储十月九日公布2025年消费者财务调查。与2022年相比，实际家庭收入中位数增7%至8.22万美元，但均值降6%；实际净财富中位数升2%至21.59万美元，均值升7%。不同统计量方向并不一致，不能用一个平均数概括全部家庭。</p><p>财富增长同时伴随部分家庭偿债压力上升：偿债支出超过收入40%的家庭比例由6.5%升至8.6%，持有债务的家庭比例约77%且总体稳定。调查覆盖收入、资产、债务和金融脆弱性，观察期属于2025年，不能写成十月即时消费变化。</p><p>💭 分析：家庭资产增加未必转化为同等消费余力，应结合偿债负担及收入分布看需求。这份三年一次的调查为结构分析提供证据，但不替代月度支出或就业指标，也不能独自预测今年消费增速。</p>
+<p>来源：<a class="source-link" href="https://www.federalreserve.gov/newsevents/pressreleases/other20261009a.htm" target="_blank">美联储官方公告原文</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#fbbf24;">资本市场</h2><span class="count">1 条</span>
+</div>
+<div class="metric-grid">
+<div class="metric-group-label">美国利率、信用与波动 · FRED最新可用观测</div>
+<div class="metric-card"><div class="metric-label">联邦基金有效利率 · DFF</div><div class="metric-value">3.88 %</div><div class="metric-change flat">观测日：2026-10-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-08。每日银行间实际成交利率，非政策目标区间。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国十年期国债收益率 · DGS10</div><div class="metric-value">5.22 %</div><div class="metric-change flat">观测日：2026-10-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-08。固定期限美债收益率，非实时报价。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国两年期国债收益率 · DGS2</div><div class="metric-value">4.75 %</div><div class="metric-change flat">观测日：2026-10-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-08。固定期限美债收益率，非实时报价。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">十年减两年美债利差 · T10Y2Y</div><div class="metric-value">0.44 个百分点</div><div class="metric-change flat">观测日：2026-10-09</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-09。FRED独立利差序列，未混用不同日期的收益率。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">十年盈亏平衡通胀率 · T10YIE</div><div class="metric-value">2.33 %</div><div class="metric-change flat">观测日：2026-10-09</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-09。市场通胀补偿指标，非未来通胀保证。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">高收益债期权调整利差 · BAMLH0A0HYM2</div><div class="metric-value">3.15 个百分点</div><div class="metric-change flat">观测日：2026-10-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-08。ICE BofA高收益企业债信用风险补偿。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">VIX收盘指数 · VIXCLS</div><div class="metric-value">15.41</div><div class="metric-change flat">观测日：2026-10-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-08。FRED收盘序列，与Yahoo最新行情观测日可能不同。非今日实时值。</div></div>
+<div class="metric-group-label">美国实体经济 · FRED月度/季度观测</div>
+<div class="metric-card"><div class="metric-label">美国失业率 · UNRATE</div><div class="metric-value">4.2 %</div><div class="metric-change flat">观测月：2026-09</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-09。月度季调失业率。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国CPI-U指数 · CPIAUCSL</div><div class="metric-value">334.131</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。季调价格指数，1982—84=100；非同比涨幅。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国M2货币存量 · M2SL</div><div class="metric-value">23342.8 十亿美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调名义货币存量。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国名义GDP · GDP</div><div class="metric-value">32563.03 十亿美元</div><div class="metric-change flat">观测期：2026年第2季度</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测期：2026年第2季度。季度季调年率名义总量，非实际经济增速。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国工业生产指数 · INDPRO</div><div class="metric-value">103.0682</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调指数，2017=100。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国零售与餐饮销售 · RSAFS</div><div class="metric-value">737763.0 百万美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调销售额；修订值不等于新月份变化。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国新屋开工 · HOUST</div><div class="metric-value">1275 千套</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调年率，非当月实际套数。非今日实时值。</div></div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>欧盟就资本市场改革关键立场达成政治协议，法案仍待协商<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">欧盟理事会官方公告</span><span class="t">发布：10月9日11:40</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">理事会就MISP谈判立场关键要素达成政治协议，文本须最终确定并正式通过，议会有立场后才能谈判。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>欧盟理事会十月九日就市场整合与监督方案MISP的谈判立场关键要素达成政治协议。拟将最重要的跨境交易平台、中央证券存管及中央对手方监管转至ESMA，并以自愿的泛欧洲市场运营商框架支持多平台单一许可。</p><p>方案希望减少跨境监管分裂和合规复杂度；资产管理领域拟引入可选的跨境托管护照，加密资产监管则聚焦最重要跨境服务商。公告说明的是理事会立场，尚须完善文本、正式通过，并等待欧洲议会形成其立场后开启谈判。</p><p>💭 分析：若规则最终落地，跨境金融企业可能扩大经营范围，但许可、治理和迁移成本仍需逐项评估。不能把政治协议当作已经生效的统一牌照，也不能将改善融资效率的目标写成资金已流入企业的结果。</p>
+<p>来源：<a class="source-link" href="https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/savings-and-investments-union-council-agrees-key-elements-of-crucial-measures-to-deepen-eu-capital-markets/" target="_blank">欧盟理事会官方公告原文</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>欧盟将巴拿马与越南移出税务不合作名单，复审仍待完成<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">欧盟理事会官方公告</span><span class="t">发布：10月9日10:45</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">理事会10月9日移除巴拿马、越南，Annex I现含8个辖区。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>欧盟理事会十月九日将巴拿马与越南移出税务不合作名单，主要名单现有八个辖区。巴拿马改革了有害的境外来源收入豁免安排；两国均获得税务信息交换合规的新复审，因此暂转入记录合作与改革承诺的附件二。</p><p>这不是所有问题均已终结：原文明确两国仍等待OECD全球论坛复审。伯利兹因获得积极评级并履行承诺而从附件二移除，是不同阶段的处理；名单下一次修订计划在2027年二月进行。</p><p>💭 分析：跨境企业可更新名单核查，但具体税务和合规处理仍取决于适用规则。移出主要名单不等于自动取得全面税收优惠，更不能推导金融交易风险已消失；应持续关注复审和后续附件变化。</p>
+<p>来源：<a class="source-link" href="https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/taxation-council-updates-the-eu-list-of-non-cooperative-jurisdictions-for-tax-purposes/" target="_blank">欧盟理事会官方公告原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>欧盟通过捷克中期财政计划建议，扩展希腊能源安全支出例外<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">欧盟理事会会议结果</span><span class="t">会议：10月9日</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">ECOFIN10月9日通过稳定与增长公约下两项建议。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>欧盟财政部长十月九日通过两项财政治理建议：认可捷克2027—2030年修订中期财政结构计划，并将希腊国防融资国家豁免条款的适用范围扩展至额外能源安全措施。</p><p>两项分别涉及成员国中期计划和特定支出例外，不能混为欧盟全面放松财政规则。会议结果页未列出希腊新增预算金额，也未量化短期增长效果。</p><p>💭 分析：后续应观察具体预算与执行文件，判断财政空间怎样转化为项目。认可计划或扩展例外本身，不意味着资金已全部支出。</p>
+<p>来源：<a class="source-link" href="https://www.consilium.europa.eu/en/meetings/ecofin/2026/10/09/" target="_blank">欧盟理事会会议结果原文</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>IMF圭亚那磋商：石油推动高增长，仍需积累财政缓冲<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">圭亚那政府发布的IMF磋商公告</span><span class="t">发布：10月8日；2025实际及2026展望</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">政府10月8日发布IMF2026Article IV公告：2025实际GDP增长逾19%，石油/非油增长约21%/14%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>圭亚那政府十月八日发布IMF年度磋商公告：2025年实际GDP增逾19%，石油与非油活动均强。平均通胀当年3.3%，随后因全球能源和食品价格在2026年有所加速；这些数字属于历史观察与展望，不是十月即时读数。</p><p>石油收入帮助2025年财政赤字收窄至GDP的5.5%，年底自然资源基金约33亿美元。IMF建议在高油价持续时多储蓄额外收入，优先生产率项目、加强支出监督，并将广泛价格补贴逐步转向针对性支持。</p><p>💭 分析：资源收入提供建设机会，也增加油价周期暴露。原文认为尚无明确过热证据，同时提醒工资、竞争力、气候和油价波动风险；不能仅凭高速增长认定可永久增加支出，中期非油增速判断仍是预测。</p>
+<p>来源：<a class="source-link" href="https://dpi.gov.gy/press-release-imf-executive-board-concludes-2026-article-iv-consultation-with-guyana/" target="_blank">圭亚那政府发布的IMF磋商公告原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-10-10 · 数据来源：美联储、欧盟理事会和圭亚那政府发布的IMF磋商官方正文；指标由主流程合并。；本次实取FRED官方API14项。<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 北京时间10月10日版；新闻保留原始发布日期。14项FRED指标均来自本次官方API请求，逐项标明单位及观测日期；月度、季度指标显示最新已公布观测期，不视作今日实时数据。行情源限流，本期省略未取得有效值的证券、汇率与商品报价。💭 分析为独立推论。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

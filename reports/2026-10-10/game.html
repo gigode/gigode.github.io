@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-10-10</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#7c3aed; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-10-10 · 5 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（2）</a></li>
+<li><a href="#s-industry">🏢 行业动态（1）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（1）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（1）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">2 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《Stage Fright》强调沟通式双人解谜，在线模式也采用分屏<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（开发者采访）</span><span class="t">2026-10-09；采访于9月进行</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 9 日刊出对 Ghost Town Games 的采访，介绍《Stage Fright》双人解谜冒险。作品由 Hello Games 发行，计划于 2027 年初推出。开发者把重点放在玩家间沟通，而不是高精度操作，希望形成更积极的合作体验；采访本身于九月进行。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 9 日刊出对 Ghost Town Games 的采访，介绍《Stage Fright》双人解谜冒险。作品由 Hello Games 发行，计划于 2027 年初推出。开发者把重点放在玩家间沟通，而不是高精度操作，希望形成更积极的合作体验；采访本身于九月进行。</p><p>本地与在线模式都采用分屏，让伙伴看见彼此正在观察的环境，便于口头交流线索。游戏没有传统物品栏管理，角色直接搬运场景里的物品。💭 分析：共享视野能减少信息隔阂，但谜题是否仍给双方足够参与空间，要看完整关卡的实际设计。</p><p>开发者对促进合作的期待不是经过实验验证的社交效果。报道没有给出精确上线日与售价，也不支持把作品称为已经完成的关系改善工具；目前可判断的是公开的合作机制和设计方向。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/adventure/overcooked-broke-you-apart-and-stage-fright-is-there-to-put-you-back-together/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《Wardogs》第二赛季拟给蓝队现金与经验奖励，并调整出生点<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转述 Bulkhead 开发日志）</span><span class="t">2026-10-09</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 9 日报道，Bulkhead 准备在《Wardogs》第二赛季为蓝队 Lonestar 提供游戏内现金与经验奖励，同时调整 Bakurani 的出生点。开发日志把目标描述为改善某一队伍的胜率，奖励明确属于第二赛季安排，而非永久补偿。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 9 日报道，Bulkhead 准备在《Wardogs》第二赛季为蓝队 Lonestar 提供游戏内现金与经验奖励，同时调整 Bakurani 的出生点。开发日志把目标描述为改善某一队伍的胜率，奖励明确属于第二赛季安排，而非永久补偿。</p><p>文章记录玩家在选择画面等待其他阵营空位的现象，并讨论伪装和出生点等平衡问题。💭 分析：奖励改变选择阵营的收益，而出生点改变对局条件，两者作用不同；选择偏见与玩家熟练度也可能相互影响，不能只把结果归因于颜色本身。</p><p>报道没有给出奖励幅度或可核验的分阵营胜率。作者认为蓝队可能迅速变得热门，这是预测而非测试结果。后续应看奖励是否缓解排队偏好，以及地图修改能否持续改善对抗体验，不预先宣称平衡已经修复。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/fps/wardogs-will-bribe-players-with-cash-and-xp-to-pick-blue-team-in-season-2/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>两款《Leisure Suit Larry: Wet Dreams》计划10月23日停售，原因未披露<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转述发行商公告）</span><span class="t">2026-10-09</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">PC Gamer 10 月 9 日转述 Assemble Entertainment 公告，《Leisure Suit Larry: Wet Dreams Don’t Dry》和《Wet Dreams Dry Twice》计划于 10 月 23 日从商店停售。报道提到停售前有折扣，但本报告不把媒体地区价格当成所有用户实际结算价格。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 9 日转述 Assemble Entertainment 公告，《Leisure Suit Larry: Wet Dreams Don’t Dry》和《Wet Dreams Dry Twice》计划于 10 月 23 日从商店停售。报道提到停售前有折扣，但本报告不把媒体地区价格当成所有用户实际结算价格。</p><p>文章说，发行商没有说明这一轮下架的原因，也未评论以后是否可能重新上架。作者猜测授权到期，但没有拿到合同证据。💭 分析：停售首先改变新用户取得正版的入口；是否涉及已有购买者下载、更新或其他商店，需要分别核对。</p><p>本次打开公告链接没有取得正文，因此沿用媒体网页标签。不能将许可到期写成确定原因，也不能从停售推断已购游戏会被撤销或删除。关心保存与重装的玩家还需等待发行商对既有用户权益的明确说明。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/adventure/leisure-suit-larry-is-about-to-take-his-final-bow/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Worlds 2026主题曲七英寸黑胶进入官方商店，预计十二月发货<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Riot Games 官方音乐商店</span><span class="t">LoL Esports资讯入口2026-10-09；商店未列公告日期</span><span class="tag tg-esports">电竞资讯</span></div>
+<div class="card-brief">LoL Esports 10 月 9 日资讯入口链接到《Know My Name》七英寸黑胶。Riot 官方音乐商店列明正反面分别为主题曲和器乐版，产品发行日期为 11 月 6 日，预计十二月发货。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>LoL Esports 10 月 9 日资讯入口链接到《Know My Name》七英寸黑胶。Riot 官方音乐商店列明正反面分别为主题曲和器乐版，产品发行日期为 11 月 6 日，预计十二月发货。</p><p>本次新增的是实体商品，非重复主题曲公布。发货月份属于预计，页面图片为参考样图，最终外观可能变化；不能写成商品已经交付。</p>
+<p>来源：<a class="source-link" href="https://riotgames.diggers.store/vinyl/336668/true-damage-know-my-name-7-vinyl" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Steam Deck开发者可查看玩家帧率统计；10月9日报道补充使用边界<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-09报道；功能自10月1日起提供</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">PC Gamer 10 月 9 日介绍 Steam Deck 的实际运行统计：Valve 自 10 月 1 日起让开发者查看玩家自愿分享的帧率分布，以不同帧率对应的游玩会话比例观察游戏表现。这是对已经推出功能的补充报道，不是今天才上线的新工具。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 9 日介绍 Steam Deck 的实际运行统计：Valve 自 10 月 1 日起让开发者查看玩家自愿分享的帧率分布，以不同帧率对应的游玩会话比例观察游戏表现。这是对已经推出功能的补充报道，不是今天才上线的新工具。</p><p>样本受到设备和设置影响：LCD 与 OLED 机型的刷新率上限不同，玩家也可能为了续航主动锁帧。💭 分析：开发者可以用大量实际会话寻找图形预设需要优化的位置，但帧率分布不能直接当成统一测试条件下的硬件性能成绩。</p><p>参与者来自主动选择分享数据的玩家，并非全体用户随机样本。Valve 将其描述为持续迭代的起点，其他设备是否加入仍属未来可能。本次官方链接未取得正文，保留媒体网页标签，也不宣称该统计能自动保证 Verified 游戏流畅。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/handheld-gaming-pcs/valve-is-telling-devs-how-well-their-games-actually-run-on-steam-deck-with-real-world-data/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-10-10 · 数据来源：逐条读取原文；去重2026-10-09与2026-10-08；主要10月9日报道，补充材料保留原始日期<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>
