@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-10-12</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#7c3aed; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-10-12 · 5 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（4）</a></li>
+<li><a href="#s-industry">🏢 行业动态（1）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（0）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（0）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">4 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《ARC Raiders》2.0周末观察：技能树重做、前哨站与便利功能同步更新<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Embark / ARC Raiders 官方</span><span class="t">官方2026-10-08上线；PC Gamer2026-10-11周末报道</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《ARC Raiders》的 Frozen Trail 2.0 于 10 月 8 日上线，PC Gamer 在 10 月 11 日继续介绍其周末体验。本次补读官方补丁说明：更新加入 Pendola Pass 地图、抓钩、新敌人与武器，并把技能树中段改为二选一节点，末端可在三项技能中选取两项。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>《ARC Raiders》的 Frozen Trail 2.0 于 10 月 8 日上线，PC Gamer 在 10 月 11 日继续介绍其周末体验。本次补读官方补丁说明：更新加入 Pendola Pass 地图、抓钩、新敌人与武器，并把技能树中段改为二选一节点，末端可在三项技能中选取两项。</p><p>前哨站通过项目解锁，扩建模块与研究台连接家具制作；新的奖励通行证体系用 Reward Points 替代 Cred。💭 分析：探索、角色构筑和个人据点同时变化，会给回归玩家增加多条投入路径，但也需要更清晰的引导帮助理解各系统的联系。</p><p>官方表示技能树后续仍可能调整，现阶段不能宣称平衡已经定型。此条属于周末对已上线版本的完整阅读，非今天新发补丁；媒体提到人数变化，也不足以证明是某个功能直接带动增长。</p>
+<p>来源：<a class="source-link" href="https://arcraiders.com/news/frozen-trail-2-0-update" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《Wing Commander 3》重制计划在展会亮相，原始影像修复是重点<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-11</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 11 日报道，EA 制作人 Jim Vessella 在 Portland Retro Gaming Expo 展示《Wing Commander 3》重制计划。项目与公司视频档案数字化工作相连，报道说发现了六百盘原始素材带，重制将使用原始与升级处理的真人影像。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 11 日报道，EA 制作人 Jim Vessella 在 Portland Retro Gaming Expo 展示《Wing Commander 3》重制计划。项目与公司视频档案数字化工作相连，报道说发现了六百盘原始素材带，重制将使用原始与升级处理的真人影像。</p><p>媒体依据展会投影片及游戏历史基金会成员 Steve Lin 的记录介绍控制器支持和商店发行方向。💭 分析：从源素材修复影像，能保存较单纯放大旧成品更充分的信息；对这类真人过场与太空战斗结合的作品，档案保存直接影响重制质量。</p><p>投影片提到 Kilrathi Saga 整合，但报道对具体包装内容存在推测，本报告不把它扩写成确定捆绑清单。发售日期、价格和最终功能范围仍待正式公告，也不能仅凭展会展示宣称重制已完成。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/sim/it-looks-like-wing-commander-3-is-getting-a-remaster-after-ea-producer-discovers-the-original-fmv-source-tapes-in-the-companys-archives/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>《Squadron 42》出现Steam页面与新预告，标注2027年第二季度<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-10</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 10 日报道，《Star Citizen》的单人作品《Squadron 42》已有 Steam 页面，并发布新的愿望单预告。报道读取的商店页将发行时间标为 2027 年第二季度，同时列出系统需求。该信息比此前仅谈延期更具体，但游戏尚未发售。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 10 日报道，《Star Citizen》的单人作品《Squadron 42》已有 Steam 页面，并发布新的愿望单预告。报道读取的商店页将发行时间标为 2027 年第二季度，同时列出系统需求。该信息比此前仅谈延期更具体，但游戏尚未发售。</p><p>新预告继续展示电影化叙事与演员阵容；文章回顾，导演 Chris Roberts 在八月已说作品会离开 2026 年档期。💭 分析：商店页面让玩家能在正式发行渠道持续跟踪消息，公开配置也帮助准备，但这些步骤无法代替完成度和实际性能验证。</p><p>季度窗口属于当前页面计划，不是对交付日期的保证。本次未拿到完整试玩或独立评测，不能把宣传片视为最终表现，也不依据商店上线推断制作已彻底结束。后续应看明确发布日期与可检验的实际版本。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/fps/squadron-42-has-a-steam-page/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>《Deadlock》加入棋术英雄Solomon，媒体记录Steam同时在线新高<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转引 SteamDB）</span><span class="t">2026-10-10</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 10 日报道，《Deadlock》在前一天加入新英雄 Solomon 时，Steam 同时在线峰值达到 262,145，数字由文章引用 SteamDB 得来。作品仍属于邀请测试，峰值人数不能理解为它已经正式开放，或全部参与者都在试玩同一英雄。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 10 日报道，《Deadlock》在前一天加入新英雄 Solomon 时，Steam 同时在线峰值达到 262,145，数字由文章引用 SteamDB 得来。作品仍属于邀请测试，峰值人数不能理解为它已经正式开放，或全部参与者都在试玩同一英雄。</p><p>媒体将这一数字与其他 Valve 游戏比较，但也承认统计口径和不同时期环境不能直接对应。💭 分析：持续加入英雄可能给玩家回归测试的理由，不过时间上的同时出现无法证明某位英雄单独造成流量增长，也不足以说明长期留存。</p><p>棋盘武器的换弹画面被玩家解读为历史棋局，作者没有独立核实，本报告不把这一细节写成已确认功能。当前可观察的是新英雄加入与一次媒体记录的在线峰值，付费模式、公开发行时间和持续热度仍未由这篇文章确定。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/moba/deadlock-surpasses-team-fortress-2s-all-time-concurrent-player-count-peak-as-it-adds-a-chess-wizard/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>2026金摇杆奖公布公众投票提名，终极年度游戏另期开票<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-12</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">PC Gamer 10 月 12 日介绍第 44 届金摇杆奖公众投票提名，PC 年度游戏名单包含《Big Walk》《Mewgenics》和《Valheim》等作品。普通类别投票截止日期为 10 月 23 日；终极年度游戏提名则要到 10 月 26 日公布并开启投票。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 12 日介绍第 44 届金摇杆奖公众投票提名，PC 年度游戏名单包含《Big Walk》《Mewgenics》和《Valheim》等作品。普通类别投票截止日期为 10 月 23 日；终极年度游戏提名则要到 10 月 26 日公布并开启投票。</p><p>文章列明一般参评发行窗口，并允许评委在截止前取得预发行版本的例外。💭 分析：这意味着读者不能仅凭游戏是否已经公开发售，推断其提名资格；公众投票结果也反映参与者选择，不等于整个市场的统一评价。</p><p>颁奖活动计划于 11 月 11 日举行，本次新闻只是提名和投票安排，并非获奖结果。不同类别时间不一致，不能写成所有年度游戏奖都已开票，更不能把提名名单改写为最终胜出作品。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/gaming-industry/events-conferences/the-shortlist-for-2026s-golden-joystick-awards-is-out-including-pc-game-of-the-year-and-you-can-vote-now/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-10-12 · 数据来源：原文与官方公告逐条阅读；事件去重2026-10-10和2026-10-09，原始发布时间保留<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

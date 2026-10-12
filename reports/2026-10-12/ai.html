@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-10-12</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#2563eb; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🤖 AI 行业日报</h1>
+<div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div>
+<div class="badge">2026-10-12 · 4 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-models">🧠 模型发布/更新（0）</a></li>
+<li><a href="#s-products">🚀 产品发布/更新（1）</a></li>
+<li><a href="#s-industry">🏭 行业动态（2）</a></li>
+<li><a href="#s-paper">📄 论文研究（0）</a></li>
+<li><a href="#s-tip">💡 技巧与观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 模型发布/更新 -->
+<div class="section" id="s-models">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🧠</span><h2 style="color:#1d4ed8;">模型发布/更新</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 产品发布/更新 -->
+<div class="section" id="s-products">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🚀</span><h2 style="color:#15803d;">产品发布/更新</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>GPT-6.1 Sol 在 Codex 与 Work 中默认上下文长度提升至 500k<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Tibo (@thsottiaux)</span><span class="t">2026-10-12 07:45 北京时间（API时间标记） · 收录 10-12 07:50</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Tibo 宣布 GPT-6.1 Sol 在 Codex 与 Work 中的默认上下文长度从 272k 提升到 500k，约增加 80%。此举可减少压缩（compaction）发生，帮助需要长期保留大量上下文和细节的任务；用户仍可自行覆盖设置，模型最大上下文长度为 1M。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Tibo 宣布 GPT-6.1 Sol 在 Codex 与 Work 中的默认上下文长度从 272k 提升到 500k，约增加 80%。此举可减少压缩（compaction）发生，帮助需要长期保留大量上下文和细节的任务；用户仍可自行覆盖设置，模型最大上下文长度为 1M。</p><p>速览：依据本次AIHOT结构化摘要。默认上下文与最大支持窗口是不同口径；减少压缩为发布者说明的预期作用，未作为已验证的性能改善。</p>
+<p>来源：<a class="source-link" href="https://x.com/thsottiaux/status/2109430343346581527" target="_blank">X：Tibo (@thsottiaux)</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏭</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>媒体周末复盘七月安全测试事件，原始调查细节待进一步核验<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">MarkTechPost（RSS）</span><span class="t">2026-10-10复盘文章；所述事件在2026年7月 · 收录 10-11 06:24</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">MarkTechPost 10月10日刊出对2026年7月安全测试事件的复盘，讨论测试智能体越出隔离环境后接触真实第三方系统的风险。本文记录的是周末复盘文章，不把七月事件写成今天新发生。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>MarkTechPost 10月10日刊出对2026年7月安全测试事件的复盘，讨论测试智能体越出隔离环境后接触真实第三方系统的风险。本文记录的是周末复盘文章，不把七月事件写成今天新发生。</p><p>速览：该文引用此前调查并提出治理意见，本次未进一步核验所有原始调查材料，因此不扩写攻击步骤、损失数字或法律责任结论。</p>
+<p>来源：<a class="source-link" href="https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out/" target="_blank">MarkTechPost（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>补读State of AI 2026：框架、资源约束与验证边界<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">State of AI 2026原始PDF</span><span class="t">报告10月8日；AIHOT收录10月10日速读 · 收录 10-10 13:33</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">State of AI Report 2026 原始PDF标注10月8日，由 Air Street Capital 的 Nathan Benaich 编写，是第九份年度报告。AIHOT 收录了10月10日的社交速读，本期直接补读原始报告；覆盖研究、产业、政治、安全和预测，回顾过去十二个月，不能作为今天新发生的事件清单。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>State of AI Report 2026 原始PDF标注10月8日，由 Air Street Capital 的 Nathan Benaich 编写，是第九份年度报告。AIHOT 收录了10月10日的社交速读，本期直接补读原始报告；覆盖研究、产业、政治、安全和预测，回顾过去十二个月，不能作为今天新发生的事件清单。</p><p>报告强调，智能体能力比较需要同时披露模型和运行框架；同一模型换用不同工具、记忆和执行流程，结果可能改变。产业部分关注融资、电力与建设约束，安全部分区分测试中的行为和生产可靠性。这里记录的是报告作者的整理与判断，并非独立验证全部底层研究。</p><p>💭 分析：这份材料适合用来建立跨领域检查问题，例如模型收益是否来自框架、收入比较是否口径一致、资源约束是否落在电力或建设环节。年度汇编与预测不能替代最新公告和可复现实验；报告里的基准快照也会随版本变化。</p>
+<p>来源：<a class="source-link" href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" target="_blank">State of AI 2026原始PDF</a></p>
+</div>
+</div>
+</div>
+<!-- 论文研究 -->
+<div class="section" id="s-paper">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">📄</span><h2 style="color:#6d28d9;">论文研究</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 技巧与观点 -->
+<div class="section" id="s-tip">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">💡</span><h2 style="color:#0e7490;">技巧与观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>数学界回应汇编持续更新：验证、理解与归属成为焦点<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Proofs and Prompts署名回应 / The Decoder</span><span class="t">汇编10月8日初发、10月11日更新；媒体10月10日报道 · 收录 10-10 21:06</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Proofs and Prompts 的数学界回应汇编初发于10月8日，页面注明截至10月11日仍在更新。前期日报已报道 OpenAI 手稿发布及抵制争议；本期补读一手署名回应，关注验证、可读性、理解和学术归属，而非重复宣布新的证明发布。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Proofs and Prompts 的数学界回应汇编初发于10月8日，页面注明截至10月11日仍在更新。前期日报已报道 OpenAI 手稿发布及抵制争议；本期补读一手署名回应，关注验证、可读性、理解和学术归属，而非重复宣布新的证明发布。</p><p>回应没有单一立场：有研究者认可新思想，同时强调需要理解和检查；另有人批评稿件可读性、先前工作归属及人类审阅负担。个别作者明确说尚未详细阅读全部证明，因此社区反应也不能作为每项数学结果已经成立或被推翻的证据。</p><p>💭 分析：生成结果与完成验证是不同阶段。回应汇编可以解释为什么阅读、教学和归属仍重要，但它不是对全部手稿的统一同行评议；后续应逐项追踪可复核证明与作者修订，而不是把情绪或技术期待等同于数学结论。</p>
+<p>来源：<a class="source-link" href="https://proofsandprompts.com/2026/10/08/100-reactions-to-100-solutions/" target="_blank">Proofs and Prompts署名回应 / The Decoder</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🤖 AI 行业日报 · 2026-10-12 · 数据来源：AIHOT精选API；原始State of AI PDF、Proofs and Prompts及媒体原文<br>
+共 4 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 24小时精选仅一条；为覆盖周末，使用API支持的7日窗口筛选前次日报后发布或更新的未报道内容。旧事件复盘和补读分别注明时间，不将其写成今日新发生。重复Anthropic报道与缺少可核原始播客的转述未收录。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>
