@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-10-13</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#10b981; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-10-13 · 5 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（5）</a></li>
+<li><a href="#s-company">🏢 企业动态（0）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（0）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">5 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>微软公布Maia 300，计划2027年扩展至多吉瓦部署<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Microsoft 官方博客</span><span class="t">2026-10-12</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">Maia 200已服务生产负载；下一代系统及规模扩展仍是未来计划。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>微软10月12日宣布，将从2027年开始把 Azure Maia 扩展到多吉瓦部署，并公布 Maia 300 系统方向。公司区分了已服务 Copilot 等生产负载的 Maia 200 与2027年到来的 Maia 300，后者面向长上下文推理、低延迟对话和持续多步骤代理任务，不能把新一代计划写成当前已全面部署。</p><p>公告披露 Maia 300 的完整机架配置为96个加速器、167千瓦功率包络，提供27.6TB高带宽内存容量及1.7PB/s汇总带宽。这些是公司系统规格。微软关于每兆瓦token效率和机架吞吐改善的表述有特定比较条件，本卡不将其扩写为所有模型通用的独立性能结论。</p><p>💭 分析：把芯片、内存与机架共同设计，能为内部服务提供系统优化路径，但未来规模兑现仍需要制造、供电和部署配合。后续应关注实际机架交付、软件适配及可复现负载表现，不能从多吉瓦计划直接推算本期节省金额。</p>
+<p>来源：<a class="source-link" href="https://blogs.microsoft.com/blog/2026/10/12/microsoft-to-expand-azure-maia-system-to-multi-gigawatt-deployments/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Cisco 扩展Silicon One，并与NVIDIA规划400G每通道光学规范<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Cisco 官方公告</span><span class="t">2026-10-12</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">G300系统开始发货，G302面向机架顶部交换；开放光学规范仍待共研。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Cisco 10月12日在 OCP 公布AI网络芯片、系统与光学更新。公司称基于 G300 的首批系统正在向客户发货，同时扩展 Silicon One 组合，推出51.2T的 G302，面向机架顶部部署并采用200G SerDes。公司还披露 P200 系统已在大型云客户的生产环境部署，但没有公布具体客户与出货规模。</p><p>Cisco 与 NVIDIA 计划共同开发下一代每通道400G可插拔光学设计的开放行业规范，以提高带宽密度并保留可维护性和选择空间。规范属于共研计划，不是已经完成的通用标准；新芯片、首批系统交付和未来光学协作也是不同阶段。</p><p>💭 分析：网络扩展既依赖交换芯片，也需要光模块与系统互操作。开放规范方向可降低客户组合方案的门槛，但价值仍应由实际标准文本、兼容测试和部署结果检验。首批发货不等于普遍采用，也不能直接折算为当季收入。</p>
+<p>来源：<a class="source-link" href="https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m10/cisco-advances-scalability-and-openness-at-ocp-2026.html" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Microchip 更新PCIe 6.0交换、NVMe存储与安全能力<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Microchip 官方公告</span><span class="t">2026-10-12</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">新增低通道数交换器，Flashtec 5016加强CNSA 2.0支持。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Microchip 10月12日扩展数据中心产品组合，包括 Switchtec PCIe 6.0 低通道数交换器和更新的 Flashtec NVMe 5016 控制器。交换器支持最多64条PCIe Gen 6通道、32个端口，以及多种端口拆分方式；集成DMA旨在支持设备间数据传输并减少主CPU参与。</p><p>PCIe交换器提供多播、分区、硬件信任根和安全启动。更新的PCIe Gen 5 NVMe 5016加入 CNSA 2.0 支持，面向客户准备后量子安全要求。公告同时提及存储管理与开发工具，但明确价格和供应时间因器件而异，不能用一个统一日期代表整组产品量产。</p><p>💭 分析：互联、存储与安全配套的组合为系统设计提供选项，实际收益仍取决于主机、设备和软件协同。客户需要核查具体器件与系统验证，不能由规格表直接推断所有工作负载提速，也不应把安全算法支持等同于整机获得认证。</p>
+<p>来源：<a class="source-link" href="https://www.microchip.com/en-us/about/news-releases/products/microchip-expands-data-center-portfolio-to-meet-evolving-ai-infrastructure-demands" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>高通发布AI宽带平台与SAM框架，涵盖Wi-Fi 8和固定无线<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Qualcomm 官方公告</span><span class="t">2026-10-12</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">边缘推理、连接与管理组合亮相；运营商普遍部署尚无证据。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>高通10月12日发布 Network X 宽带产品更新，涵盖 Dragonwing Wi-Fi 8 平台、固定无线接入及网络管理。其与 gFiber 展示的网关基于 NPro A8 Elite，结合四频段Wi-Fi 8、专用Hexagon NPU与五核CPU，目标是在网关本地运行AI推理。展示与产品定位不等于运营商已经广泛安装。</p><p>公司同时推出开放的软件框架 Dragonwing Security and Management，结合设备、服务、安全和云端信息，服务网络可见性与用户体验管理。FWA Gen 6 Elite 平台基于 X105 5G Modem-RF，组合5G Advanced、非地面网络能力及三频段Wi-Fi 8。公告未给出通用售价、客户采购规模或统一上市日期。</p><p>💭 分析：把AI处理与网络管理放到边缘，可能为运营商提供新的服务入口，但需要软件、设备和网络能力一起落地。后续应观察真实部署与稳定运行，而不是从技术组合直接推算用户增长、增值服务收入或云端成本下降。</p>
+<p>来源：<a class="source-link" href="https://www.qualcomm.com/news/releases/2026/10/qualcomm-unveils-ai-native-broadband-innovations-across-fiber--w" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Vuzix 开放Causeway光互联评估平台，后续带宽仍待系统验证<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Vuzix 投资者关系</span><span class="t">2026-10-12</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">公司称平台展示19200条光路；当前面向合格伙伴的评估与集成。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Vuzix 10月12日宣布在 OCP 及之后的 PECC Summit 展示 Causeway 波导光互联评估平台，并向合格行业伙伴提供评估单元。公司称当前平台在约30毫米光程上演示了19200条并行光路，面向共封装光学、近封装光学和AI计算等集成探索；这并不是已交付的数据中心量产订单。</p><p>伙伴可以评估光损耗、串扰、通道密度及耦合对准。公告将多太比特汇总带宽写作未来通信实现的预期，并明确取决于光源、探测器和系统集成表现。因此光路数量不能直接换算为已实现通信吞吐，也不能忽略其他器件与封装配合。</p><p>💭 分析：评估平台让客户检验高密度光路是否适合自身架构，但从样品到定制制造仍有验证工作。后续更应关注完整链路的损耗、误码与可靠性，以及实际客户采用；展会交流及潜在制造机会不能被写成已签采购合同。</p>
+<p>来源：<a class="source-link" href="https://ir.vuzix.com/news-events/press-releases/detail/2185/vuzix-to-showcase-vuzix-causeway-optical-interconnect" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-10-13 · 数据来源：10月12日公司与机构公告及已读取媒体原文，逐条保留原始日期<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 交付、评估和未来部署分开；基金与独立账户分开计数；💭 分析单列，未披露指标不补写。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

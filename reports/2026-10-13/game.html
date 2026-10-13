@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-10-13</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#7c3aed; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-10-13 · 5 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（1）</a></li>
+<li><a href="#s-industry">🏢 行业动态（1）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（0）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（2）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《WoW: Forever》把多角色培养纳入Legacy成长，账号银行尚在考虑<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（暴雪开发者采访）</span><span class="t">2026-10-12</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">PC Gamer 10 月 12 日采访暴雪团队，介绍《World of Warcraft: Forever》为何鼓励建立多个角色。Legacy 系统通过重要成就授予点数，可投入类似天赋树的便利选项；开发者认为，多角色能提供不同成长路径，也方便与刚加入的朋友从低等级一起游玩。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 12 日采访暴雪团队，介绍《World of Warcraft: Forever》为何鼓励建立多个角色。Legacy 系统通过重要成就授予点数，可投入类似天赋树的便利选项；开发者认为，多角色能提供不同成长路径，也方便与刚加入的朋友从低等级一起游玩。</p><p>团队计划持续添加不同等级区间的区域、地下城和专业内容，而非把所有新东西都集中在满级之后。💭 分析：这让重复练级成为长期成长的一部分，但是否有足够差异避免重复劳动，还需要实际内容安排和点数成本来验证。</p><p>开发者同时考虑借鉴账号通用银行，以减少主号与小号之间邮寄物品的操作。这仍是考虑中的改进，没有确定上线日期，不能写成首发功能。本次新增的是多角色与长期成长设计，非重复此前地下城经验调整。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/world-of-warcraft/why-alts-are-part-of-world-of-warcraft-forevers-core-progression-plans/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Epic CEO谈AI生产转向；未公布射击项目延期仍属媒体报道<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转述 Bloomberg 与 Tim Sweeney）</span><span class="t">2026-10-12</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">PC Gamer 10 月 12 日转述 Bloomberg，称 Epic 一款尚未公开的《星球大战》与漫威联动射击项目被调整为 AI 优先生产，并离开原先内部计划的 2027 年三月档期。项目细节和延期属于媒体报道，本次没有读取到 Epic 的正式产品公告。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 12 日转述 Bloomberg，称 Epic 一款尚未公开的《星球大战》与漫威联动射击项目被调整为 AI 优先生产，并离开原先内部计划的 2027 年三月档期。项目细节和延期属于媒体报道，本次没有读取到 Epic 的正式产品公告。</p><p>Tim Sweeney 随后公开谈到公司正在调整团队和工具，希望让开发者制作更多、更好的内容，并把工具收益扩展到 Unreal 用户。他给出的效率改善说法来自公司判断。💭 分析：生产方式变化会影响工作分工和审查流程，但不能仅凭工具转向推定内容质量或开发周期必然改善。</p><p>正式产品名称、发行安排及完整生产规则仍未由本文确认。CEO 所说的愿景不是独立效果评估，也不能据此保证岗位数量变化；后续应区分具体项目公告与公司对 AI 的一般战略表态。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/gaming-industry/game-development/our-humble-goal-is-to-survive-the-ai-revolution-says-epic-games-ceo-as-its-star-wars-and-marvel-crossover-pivots-to-ai-first-development/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>MIT柔性传感片重建表面形变，VR服装仍处研究阶段<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">MIT News 官方</span><span class="t">官方2026-10-08；PC Gamer2026-10-12补充报道</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">PC Gamer 10 月 12 日关注 MIT 的柔性表面传感研究，本报告进一步读取 10 月 8 日官方说明。研究者把柔软光纤以曲折线路嵌入可伸缩薄片，利用弯曲引起的光信号变化，通过算法重建薄片正在发生的弯折与扭转。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 12 日关注 MIT 的柔性表面传感研究，本报告进一步读取 10 月 8 日官方说明。研究者把柔软光纤以曲折线路嵌入可伸缩薄片，利用弯曲引起的光信号变化，通过算法重建薄片正在发生的弯折与扭转。</p><p>团队还展示部分光纤损坏时仍可重建整体形状，并提出将材料做成服装，用于虚拟角色控制、遥操作或动作记录的可能。💭 分析：追踪连续表面而非少量固定点，有机会提供不同的动作信息，但穿戴舒适度和长期耐用性仍需专门验证。</p><p>这是研究设计，并非已上市的全身 VR 控制器。公告没有给出消费产品价格和发布计划，也不支持宣称它已经在所有身体动作中胜过现有设备。日期明确保留：十月十二日是媒体再介绍，研究公告本身发布于十月八日。</p>
+<p>来源：<a class="source-link" href="https://news.mit.edu/2026/shape-sensing-sheet-digitally-tracks-movement-bends-twists-1008" target="_blank">阅读原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Valve开放Steam Frame CAD与扩展口资料，第三方配件仍待实际验证<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">2026-10-12</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">PC Gamer 10 月 12 日报道，Valve 已开放 Steam Frame 的 CAD 文件，涵盖遮光部件、头带、电池外壳、面部接口、核心模块与控制器。资料还介绍辅助扩展口如何连接供电配件，为模组作者和配件开发者提供结构参考。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 12 日报道，Valve 已开放 Steam Frame 的 CAD 文件，涵盖遮光部件、头带、电池外壳、面部接口、核心模块与控制器。资料还介绍辅助扩展口如何连接供电配件，为模组作者和配件开发者提供结构参考。</p><p>文章称 Valve 正准备支持可更换电池及离耳扬声器的升级头带，但仅使用“即将推出”的表述。💭 分析：公开机械结构能减少第三方测量和适配成本，然而结构资料不等于每款自制配件都通过重量、安全性或使用舒适度验证。</p><p>本次官方 GitLab 链接触发反爬页面，未取得文件正文，因此保留媒体网页标签，不冒称已经审查完整技术文档。上市时间和第三方配件成果尚未确定，不能把开放资料写成一批改装产品已经推出。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/vr-hardware/here-come-the-weird-and-wonderful-mods-for-the-steam-frame-as-valve-drops-the-full-cad-files-for-free/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Pearl Abyss回应《Crimson Desert》评测差异：版本与时间条件会影响判断<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer（转述 The Game Business 采访）</span><span class="t">2026-10-12</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">PC Gamer 10 月 12 日转述 Pearl Abyss 欧洲负责人 Lybee Park 的采访。她表示理解媒体与玩家的不同看法，认为评测版本并非最终发行版本，加上时间有限，评论者可能无法充分探索《Crimson Desert》世界里的细节。这是公司对评测条件的解释。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer 10 月 12 日转述 Pearl Abyss 欧洲负责人 Lybee Park 的采访。她表示理解媒体与玩家的不同看法，认为评测版本并非最终发行版本，加上时间有限，评论者可能无法充分探索《Crimson Desert》世界里的细节。这是公司对评测条件的解释。</p><p>媒体作者举例说，先前评测指出的储物问题在发行后较快得到修改，同时也承认系统和活动过于密集的体验问题仍存在。💭 分析：持续更新会让早期评测需要注明版本，但新增功能并不自动抵消叙事、引导或复杂度方面的批评。</p><p>本篇没有统一控制版本与游玩时长的比较实验，不能证明所有较低评价都来自时间不足。公司对评论者“没有公平机会”的判断应保留观点身份；读者更适合把评测日期、更新记录和自己的玩法需求一起对照。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/rpg/pearl-abyss-goes-easy-on-us-critics-for-our-crimson-desert-reviews-they-had-to-play-the-build-that-is-not-the-exact-same-version-of-the-launched-game/" target="_blank">阅读原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-10-13 · 数据来源：逐条读取原文；去重2026-10-12与2026-10-10；原始日期与官方/媒体身份分别标明<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

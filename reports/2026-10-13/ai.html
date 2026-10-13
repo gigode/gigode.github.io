@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-10-13</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#2563eb; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🤖 AI 行业日报</h1>
+<div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div>
+<div class="badge">2026-10-13 · 14 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-models">🧠 模型发布/更新（1）</a></li>
+<li><a href="#s-products">🚀 产品发布/更新（2）</a></li>
+<li><a href="#s-industry">🏭 行业动态（3）</a></li>
+<li><a href="#s-paper">📄 论文研究（4）</a></li>
+<li><a href="#s-tip">💡 技巧与观点（4）</a></li>
+</ul>
+</nav>
+
+<!-- 模型发布/更新 -->
+<div class="section" id="s-models">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🧠</span><h2 style="color:#1d4ed8;">模型发布/更新</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Meta 发布 Muse Wonder 和 Muse Wonder Full，Artificial Analysis 实测智能水平较前代显著提升<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Artificial Analysis 完整文章（网页）</span><span class="t">2026-10-12（原文日期，未标精确时刻） · 收录 10-13 03:53</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Meta 发布 Muse Wonder 和 Muse Wonder Full 两款模型，在 Artificial Analysis Intelligence Index v4.3 上分别得 52 和 56 分（max reasoning effort）。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Artificial Analysis 10月12日公布 Muse Wonder 与 Muse Wonder Full 评测，在最大推理 effort 下，Intelligence Index v4.3分别为52和56分。Wonder 可通过 Meta 自有 API 使用，Full 当前面向 Muse Code 用户；两个版本的访问范围应分别理解。</p><p>评测记录表明，两者相对前代在智能体任务上有提升，输出 token 使用也较少。但 Wonder 的高输入用量与 API 单价，使该评测每任务成本达到4.52美元；Full 没有可对应的按token任务成本。Arena同时开放模型测试，尚未公布自己的评分，不能混用两个榜单。</p><p>💭 分析：指数、任务成本和开放范围一起看，才能判断具体用途。这里是评测方在固定组合下的测量，不代表所有用户任务都花4.52美元，也不等于通用准确率；不同 effort 和工具配置仍可能改变结果。</p>
+<p>来源：<a class="source-link" href="https://artificialanalysis.ai/articles/muse-wonder" target="_blank">Artificial Analysis 完整文章（网页）</a></p>
+</div>
+</div>
+</div>
+<!-- 产品发布/更新 -->
+<div class="section" id="s-products">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🚀</span><h2 style="color:#15803d;">产品发布/更新</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>xAI 推出 The X Subscription 整合 Grok、Grok Bot、Cursor 与 X Premium<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">xAI：News（网页）</span><span class="t">2026-10-12（原文日期，未标精确时刻） · 收录 10-13 07:44</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">xAI 推出 The X Subscription 订阅，将 Grok、Grok Bot、Cursor 和 X Premium 合入一个计划，未来几天内向全球用户开放。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>x.ai 于10月12日推出 The X Subscription，将 Grok、Grok Bot、Cursor 和 X Premium 放进同一计划。新用户当日起可加入，全球开放与旧用户切换会在数日内逐步展开；用户可以保留现有计划，不能把公告理解为旧订阅已经全部强制变更。</p><p>官方给出 Plus 每月8美元、Premium 30美元、Super 100美元、Ultra 200美元等档位。Grok 与 Cursor 共享 Grok 模型用量池；Cursor 中第三方模型在 Premium 及以上仍可使用，但通过充值按 API 价格另行计费，并非所有模型都包含在共享额度中。</p><p>💭 分析：合并账单可能减少多份订阅的管理成本，但比较实际支出仍需考虑使用模型、共享额度与额外充值。价格表和全球滚动开放不是每个账户即时可用的证明，切换条件以账户里显示的资格与条款为准。</p>
+<p>来源：<a class="source-link" href="https://x.ai/news/x-subscription" target="_blank">xAI：News（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>微软发布自研芯片 Maia 300 并将大规模扩展 Maia 推理部署<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Satya Nadella (@satyanadella)</span><span class="t">2026-10-12 21:03 北京时间（API时间标记） · 收录 10-12 21:11</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">微软宣布明年起将 Maia 芯片家族扩展到多吉瓦级部署，作为自家产品和服务的首选推理系统，并发布 Maia 300，每瓦 token 产出比主流 GPU 系统高 40%。Maia 200 已在美国、欧洲和澳大利亚部署，在 Teams 和 Copilot 场景中每瓦 token 产出提升最高 1.7x。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>微软宣布明年起将 Maia 芯片家族扩展到多吉瓦级部署，作为自家产品和服务的首选推理系统，并发布 Maia 300，每瓦 token 产出比主流 GPU 系统高 40%。Maia 200 已在美国、欧洲和澳大利亚部署，在 Teams 和 Copilot 场景中每瓦 token 产出提升最高 1.7x。</p><p>速览：依据本次AIHOT摘要，保留发布者、作者或媒体归属；未扩写未取得的完整原文细节。</p>
+<p>来源：<a class="source-link" href="https://x.com/satyanadella/status/2109631106404487523" target="_blank">X：Satya Nadella (@satyanadella)</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏭</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>媒体报道Epic转向AI优先制作，项目调整仍待正式产品公告<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Ars Technica：AI（RSS）</span><span class="t">2026-10-13 04:59 北京时间（API时间标记） · 收录 10-13 05:57</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Ars Technica 转述 Bloomberg，称 Epic 与迪士尼合作项目正调整为AI优先制作，由人类管理生成内容。本次记录媒体报道的项目方向，不把它改写为公司确认所有代码、美术都已由AI完成。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Ars Technica 转述 Bloomberg，称 Epic 与迪士尼合作项目正调整为AI优先制作，由人类管理生成内容。本次记录媒体报道的项目方向，不把它改写为公司确认所有代码、美术都已由AI完成。</p><p>速览：公司战略表态与具体产品发布日期是不同信息，未采用未经正式公告确认的最终发行安排。</p>
+<p>来源：<a class="source-link" href="https://arstechnica.com/gaming/2026/10/report-epic-games-goes-all-in-on-ai-for-disney-collaboration/" target="_blank">Ars Technica：AI（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>用户报告Codex CLI后台守护进程行为，尚非官方统一结论<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">GitHub用户问题报告（非发布说明）</span><span class="t">2026-10-13 03:25 北京时间（API时间标记） · 收录 10-13 03:36</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">一位 Linux (WSL2) 用户报告，Codex CLI 0.157.0 起打开交互式会话即默认启动持久后台守护进程 codex app-server --managed-daemon，窗口关闭后仍驻留。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>一位 Linux (WSL2) 用户报告，Codex CLI 0.157.0 起打开交互式会话即默认启动持久后台守护进程 codex app-server --managed-daemon，窗口关闭后仍驻留。</p><p>速览：这是特定Linux/WSL2用户的问题报告，并非已复现于所有平台的发布说明；未据此推定当前所有版本的默认行为。</p>
+<p>来源：<a class="source-link" href="https://github.com/openai/codex/issues/48195" target="_blank">GitHub用户问题报告（非发布说明）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>QGIS的AI贡献政策再受关注，提案原始合并日为10月7日<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Hacker News：AI 热帖</span><span class="t">2026-10-12 19:22 北京时间（API时间标记） · 收录 10-12 20:06</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">QGIS 通过 QEP428 提案，将 AI 政策改为严格的 NOT ALLOWED，由 nyalldawson 提交并于 2026 年 10 月 7 日合并进 QGIS-Enhancement-Proposals 仓库。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>QGIS 通过 QEP428 提案，将 AI 政策改为严格的 NOT ALLOWED，由 nyalldawson 提交并于 2026 年 10 月 7 日合并进 QGIS-Enhancement-Proposals 仓库。</p><p>速览：10月12日是社区关注与收录时间，不是政策首次合并时间；具体适用规则应读提案原文，未将争论扩写为新规则。</p>
+<p>来源：<a class="source-link" href="https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387" target="_blank">Hacker News：AI 热帖</a></p>
+</div>
+</div>
+</div>
+<!-- 论文研究 -->
+<div class="section" id="s-paper">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">📄</span><h2 style="color:#6d28d9;">论文研究</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>Anthropic 强化针对蒸馏攻击的防御， reasoning token 提取量下降 10 到 100 倍<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Anthropic：Research（发表成果 · 网页）</span><span class="t">2026-10-12（原文日期，未标精确时刻） · 收录 10-13 08:09</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Anthropic 发布博客，介绍其针对 Claude 蒸馏攻击的新防御方法，早期证据显示这些方法使蒸馏者获取的数据减少约 90% 到 99%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 10月12日介绍针对未经授权蒸馏的新防御，称自己平台上被提取的推理 token 数量在部署后下降10至100倍。这个数字是企业对平台流量的早期估计，不代表全行业或所有第三方入口上的蒸馏行为都被消除。</p><p>措施包括限制受保护推理在不同上下文和账户间流转、采用两阶段分类器识别提取请求，以及对持续尝试的账户限制或封禁。公司也说明部分集成需要修改，良性请求仍可能误判，某些被拦截请求会收费；防御效果伴随使用体验与成本权衡。</p><p>💭 分析：平台数据下降提供了防御有效性的线索，但观察窗口、攻击者行为和其他平台流量会影响解释。公司尚不确定收益能维持多久，也未遇到最高强度的持续绕过尝试；不能把当前估计改写成永久保证。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/research/distillation-defenses" target="_blank">Anthropic：Research（发表成果 · 网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>Anthropic测试小模型端侧推理与复制链路，尚非真实失控传播<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Anthropic：Research（发表成果 · 网页）</span><span class="t">2026-10-12（原文日期，未标精确时刻） · 收录 10-13 04:05</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Anthropic 发文评估小型模型在无数据中心条件下自主复制（ARA）的可行性，作者实验显示 9B 模型可在测试的 9 类硬件中 8 类上跑通推理，30B 及以下模型已能完成复制的多数单步。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 10月12日研究小型模型在普通物联网设备上建立推理与复制链路的能力。9B模型在测试的9类硬件中有8类跑通推理；团队也在15台廉价电视盒上演示分布式运行较大模型。可以运行模型与能够自主持续复制，是不同的检查目标。</p><p>端到端评估使用受控隔离环境并简化访问环节，模型需完成部署推理等步骤。更强模型能在这个设置下连接整条流程，小模型仍会在组合步骤时出错。原文明确当前尚无完整失控复制体；年底可能达到能力门槛属于趋势外推。</p><p>💭 分析：研究增加了端侧风险的证据，但简化环境的成功率不能直接外推到真实网络。设备之间的通信负载、运行速度及防御条件都会改变结果，单步能力提升也不证明现实传播已经发生；应继续验证完整流程与可用防御。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/research/self-replicating-ai" target="_blank">Anthropic：Research（发表成果 · 网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>AWS priming复用Transformer权重，降低混合架构转换成本<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Amazon Science（RSS）</span><span class="t">2026-10-12（原文日期，未标精确时刻） · 收录 10-13 01:48</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">AWS 团队发布论文《Priming: Hybrid state space models from pre-trained Transformers》，提出 priming 方法，复用预训练 Transformer 权重构建混合架构，将预训练成本降低逾 99%，全流程消耗不足源模型 0.5% 的 token 预算。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>AWS 团队10月12日介绍 priming，复用已经训练好的 Transformer 权重，选择部分注意力层改成状态空间层，再做对齐和整体适配。研究称这一转换流程使用不足源模型预训练 token 预算的0.5%；这不意味着原始模型从零训练的全部成本也被免除。</p><p>32B混合模型在所测推理基准接近源模型，在128k上下文下解码吞吐最高达到约两倍。团队比较不同状态空间层，并公开8B和32B模型、代码与内核。效果依赖层选择、上下文和任务，不能视为所有架构均有同样收益。</p><p>💭 分析：从共同权重出发能降低架构比较的新增成本，也有助于分析速度与精度取舍。但长期检索能力、软件兼容和实际负载仍需验证；公布的实验比较并不自动成为每个线上应用的性能承诺。</p>
+<p>来源：<a class="source-link" href="https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch" target="_blank">Amazon Science（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>AlphaProof Nexus 攻克 9 个未解 Erdős 问题并经同行评审<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">The Decoder：AI News（RSS）</span><span class="t">2026-10-12 17:35 北京时间（API时间标记） · 收录 10-12 17:44</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Science 新研究显示，Google DeepMind 的 AlphaProof Nexus 独立解决了 353 个开放 Erdős 问题中的 9 个，其中 2 个悬置 56 年。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Science 新研究显示，Google DeepMind 的 AlphaProof Nexus 独立解决了 353 个开放 Erdős 问题中的 9 个，其中 2 个悬置 56 年。</p><p>速览：依据本次AIHOT摘要，保留发布者、作者或媒体归属；未扩写未取得的完整原文细节。</p>
+<p>来源：<a class="source-link" href="https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed/" target="_blank">The Decoder：AI News（RSS）</a></p>
+</div>
+</div>
+</div>
+<!-- 技巧与观点 -->
+<div class="section" id="s-tip">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">💡</span><h2 style="color:#0e7490;">技巧与观点</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>Vapi分享代码审查机器人实践及合并周期变化<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Vapi 产品与 Agent 方法</span><span class="t">2026-10-12（原文日期，未标精确时刻） · 收录 10-13 05:53</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Vapi 工程师 Lat Ware 自研 Pedantic Review Bot，使 PR 从开到合并的平均时间从 130 多小时降到 65 小时。机器人会运行测试和小复现来验证发现，分析和发评论分属两个 job，只能评论不能批准或推送；2026 年 9 月 2 日至 10 月 2 日审查了 1,694 个 PR，在 276 个中提出 363 个 blocker 发现。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Vapi 10月12日介绍内部 Pedantic Review Bot，作者称 PR 从创建到合并的平均时间由超过130小时降到65小时。机器人可运行测试或小复现验证发现；分析任务和发评论任务分开，分析侧不持有发帖凭证，机器人不能批准或推送，最终决定仍由工程师作出。</p><p>9月2日至10月2日的记录包含1694个PR，363条 blocker 分布于276个PR。作者还比较多个提示词和运行配置，并发现评分若不惩罚误报，会错误偏好更激进的输出。问题是否由当前改动引入，与是否值得修复需要分别说明。</p><p>💭 分析：这些记录说明代码执行证据和权限分离的重要性，但实验多基于单一PR、部分发现由AI判断，需扩展样本。平均合并时间是公司观察结果，不能独立证明所有改善均由机器人造成，误报和实际采纳情况仍需跟踪。</p>
+<p>来源：<a class="source-link" href="https://vapi.ai/blog/ai-code-review-bot" target="_blank">Vapi 产品与 Agent 方法</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>如何只用自己拥有的文件约束编码智能体<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Tessl：产品与工程博客</span><span class="t">2026-10-12 00:00 北京时间（API时间标记） · 收录 10-12 19:45</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Tessl 博客文章介绍用四个可拥有的文件杠杆约束编码智能体：CLAUDE.md 指令、.claude/rules/ 路径级规则、.claude/ 下的能力配置和 .claude/hooks/ 钩子。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Tessl 博客文章介绍用四个可拥有的文件杠杆约束编码智能体：CLAUDE.md 指令、.claude/rules/ 路径级规则、.claude/ 下的能力配置和 .claude/hooks/ 钩子。</p><p>速览：依据本次AIHOT摘要，保留发布者、作者或媒体归属；未扩写未取得的完整原文细节。</p>
+<p>来源：<a class="source-link" href="https://tessl.io/blog/how-to-constrain-a-coding-agent-using-only-files-you-own" target="_blank">Tessl：产品与工程博客</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>用 Claude Opus 5.5、Blender、Unreal Engine 和 Meshy 构建游戏的七步教程<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Meshy (@MeshyAI)</span><span class="t">2026-10-12 15:44 北京时间（API时间标记） · 收录 10-12 16:14</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">一篇教程介绍用 Claude Opus 5.5 配合 Claude Code、Blender、Unreal Engine 5 和 Meshy 构建游戏的方法。核心思路是给每个工具分配单一职责：通过 MCP 连接 Blender 和 Meshy，由 Meshy 生成道具和角色、Blender 清理和放置、Unreal 负责光照物理和游戏本身、Opus 在一个对话里调度三者。流程为先让 Opus 头脑风暴 5 个游戏点子再展开，告知 GPU 以便压满画面性能，首个完整构建约花 4 小时和约 19% 的每周 Max plan 用量，之后因素材复用会快很多。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>一篇教程介绍用 Claude Opus 5.5 配合 Claude Code、Blender、Unreal Engine 5 和 Meshy 构建游戏的方法。核心思路是给每个工具分配单一职责：通过 MCP 连接 Blender 和 Meshy，由 Meshy 生成道具和角色、Blender 清理和放置、Unreal 负责光照物理和游戏本身、Opus 在一个对话里调度三者。流程为先让 Opus 头脑风暴 5 个游戏点子再展开，告知 GPU 以便压满画面性能，首个完整构建约花 4 小时和约 19% 的每周 Max plan 用量，之后因素材复用会快很多。</p><p>速览：依据本次AIHOT摘要，保留发布者、作者或媒体归属；未扩写未取得的完整原文细节。</p>
+<p>来源：<a class="source-link" href="https://x.com/MeshyAI/status/2109550836934471864" target="_blank">X：Meshy (@MeshyAI)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>作者讨论AI辅助重写商业软件替代品的趋势<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：卡兹克 (@Khazix0918)</span><span class="t">2026-10-12 12:29 北京时间（API时间标记） · 收录 10-12 12:35</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">作者以Brandon Thomas使用Claude和Rust制作若干Adobe软件开源替代项目的故事，讨论AI降低实现成本的可能影响。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>作者以Brandon Thomas使用Claude和Rust制作若干Adobe软件开源替代项目的故事，讨论AI降低实现成本的可能影响。</p><p>速览：未进一步核验仓库的实时Star数、功能等价性和维护状态；作者关于所有软件将被迫开源的判断不是已证实结果。</p>
+<p>来源：<a class="source-link" href="https://x.com/Khazix0918/status/2109501787736813663" target="_blank">X：卡兹克 (@Khazix0918)</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🤖 AI 行业日报 · 2026-10-13 · 数据来源：AIHOT精选API；六条重点深读官方/评测方原文<br>
+共 14 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 截至北京时间10月13日上午的24小时精选。Meta模型上架与评测合并，重复Adobe替代项目文章合并。研究模拟结果、公司估计与媒体报道均保留范围和归属；旧提案注明原始日期，分析另标。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>
