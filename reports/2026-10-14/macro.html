@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-10-14</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#d97706; }
+
+body { background:#0a0a0a; } .cover { background:linear-gradient(135deg,#1a0f0a,#3d2517,#b45309); }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-10-14 · 5 条资讯 · 14 项指标 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（1）</a></li>
+<li><a href="#s-data">📊 经济数据（1）</a></li>
+<li><a href="#s-market">📈 资本市场（1）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（1）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（1）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">1 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>澳洲联储新纪要披露长期回购框架，计划2027年运行<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">澳大利亚储备银行官方纪要</span><span class="t">发布：10月13日；会议：9月28—29日</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">10月13日发布九月纪要；董事会认可Term Repo Operations，定期拍卖提供更长期流动性，预计2027运行。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>澳洲联储十月十三日发布九月会议纪要，新增披露董事会认可长期回购操作框架，通过定期拍卖提供更长期流动性以补充现有设施，预计2027年运行。它是操作框架建设，不能写成当天已向市场投放资金。</p><p>纪要还解释，全球债息上升可能同时反映中性利率与期限溢价变化，两者对金融条件的影响不同且难准确分解。董事会认为本国借款人与金融机构仍具韧性，但海外债券和共同技术服务商风险增加。</p><p>💭 分析：银行可关注未来期限流动性安排与参与设计，但公告阶段、运行时间和真实使用量需分开。新框架也不自动意味着政策利率转向；纪要是九月讨论记录，对未来风险和中性利率的判断都带有不确定性。</p>
+<p>来源：<a class="source-link" href="https://www.rba.gov.au/monetary-policy/rba-board-minutes/2026/2026-09-29.html" target="_blank">澳大利亚储备银行官方纪要原文</a></p>
+</div>
+</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>IMF正式十月展望：2026全球增长3.1%，2027回升有前提<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Gulf Times</span><span class="t">发布：10月13日；预测期：2026—2027</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">十月WEO预测2026全球增长3.1%，较七月3.0%上调；2027预测3.4%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>IMF十月十三日发布正式世界经济展望，Reuters报道全球2026年增长预测为3.1%，比七月上调0.1个百分点，2027年为3.4%。这是新报告的预测，与前一期总裁讲话对AI支持增长的概述不同，不能混为已实现经济增速。</p><p>基准展望包含霍尔木兹海峡重新开放和航运恢复的假设。报告还评估更持久战争与更高油价的下行情景；因此明年反弹依赖供应条件改善，不是无条件结论。</p><p>💭 分析：企业预算可同时保留基准与供应中断情景，尤其能源进口者。AI投资提供支撑并不消除债务和战争风险；预测修订只是当前假设下的评估，后续交通、能源和投资数据仍可能改变路径。</p>
+<p>来源：<a class="source-link" href="https://www.gulf-times.com/article/735717/business/imf-flags-risks-to-global-economy-from-ai-market-correction-war-and-debt" target="_blank">Reuters / Gulf Times原文</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#fbbf24;">资本市场</h2><span class="count">1 条</span>
+</div>
+<div class="metric-grid">
+<div class="metric-group-label">美国利率、信用与波动 · FRED最新可用观测</div>
+<div class="metric-card"><div class="metric-label">联邦基金有效利率 · DFF</div><div class="metric-value">3.88 %</div><div class="metric-change flat">观测日：2026-10-12</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-12。每日银行间实际成交利率，非政策目标区间。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国十年期国债收益率 · DGS10</div><div class="metric-value">5.24 %</div><div class="metric-change flat">观测日：2026-10-09</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-09。固定期限美债收益率，非实时报价。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国两年期国债收益率 · DGS2</div><div class="metric-value">4.8 %</div><div class="metric-change flat">观测日：2026-10-09</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-09。固定期限美债收益率，非实时报价。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">十年减两年美债利差 · T10Y2Y</div><div class="metric-value">0.42 个百分点</div><div class="metric-change flat">观测日：2026-10-13</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-13。FRED独立利差序列，未混用不同日期的收益率。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">十年盈亏平衡通胀率 · T10YIE</div><div class="metric-value">2.33 %</div><div class="metric-change flat">观测日：2026-10-13</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-13。市场通胀补偿指标，非未来通胀保证。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">高收益债期权调整利差 · BAMLH0A0HYM2</div><div class="metric-value">3.11 个百分点</div><div class="metric-change flat">观测日：2026-10-12</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-12。ICE BofA高收益企业债信用风险补偿。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">VIX收盘指数 · VIXCLS</div><div class="metric-value">15.21</div><div class="metric-change flat">观测日：2026-10-12</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-12。FRED收盘序列，与Yahoo最新行情观测日可能不同。非今日实时值。</div></div>
+<div class="metric-group-label">美国实体经济 · FRED月度/季度观测</div>
+<div class="metric-card"><div class="metric-label">美国失业率 · UNRATE</div><div class="metric-value">4.2 %</div><div class="metric-change flat">观测月：2026-09</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-09。月度季调失业率。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国CPI-U指数 · CPIAUCSL</div><div class="metric-value">334.131</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。季调价格指数，1982—84=100；非同比涨幅。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国M2货币存量 · M2SL</div><div class="metric-value">23342.8 十亿美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调名义货币存量。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国名义GDP · GDP</div><div class="metric-value">32563.03 十亿美元</div><div class="metric-change flat">观测期：2026年第2季度</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测期：2026年第2季度。季度季调年率名义总量，非实际经济增速。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国工业生产指数 · INDPRO</div><div class="metric-value">103.0682</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调指数，2017=100。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国零售与餐饮销售 · RSAFS</div><div class="metric-value">737763.0 百万美元</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调销售额；修订值不等于新月份变化。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">美国新屋开工 · HOUST</div><div class="metric-value">1275 千套</div><div class="metric-change flat">观测月：2026-08</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测月：2026-08。月度季调年率，非当月实际套数。非今日实时值。</div></div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>IMF金融稳定报告警告AI回调、债息突升与网络冲击<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / AOL</span><span class="t">发布：10月13日；正式GFSR报道</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">GFSR警告AI投资回调、主权收益率飙升和重大网络攻击可触发系统性脆弱性。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>IMF十月十三日全球金融稳定报告把AI相关资产调整、政府债券收益率急升和重大网络攻击列为需关注的近期风险。Reuters引述报告说，市场表现仍有韧性，但这不等于安全；多个冲击可通过已有脆弱性产生更广影响。</p><p>AI投资扩张伴随杠杆累积，一旦增长动力减弱，融资和被迫出售可能放大波动。报告也关注主权债务与能源成本，以及金融体系依赖少数关键服务商的风险；这些属于风险诊断，并非声称危机已经发生。</p><p>💭 分析：机构应联合测试价格、融资和运营中断情景，而不是分别假设每类风险都可孤立应对。报告建议约束过度杠杆、修复财政路径和增强技术供应商监督；冲击规模与发生时间仍不确定。</p>
+<p>来源：<a class="source-link" href="https://www.aol.com/articles/imf-cites-ai-slowdown-spiking-031928000.html" target="_blank">Reuters / AOL原文</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>世界银行启动慈善合作Hub，签署亚洲网络合作备忘录<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">世界银行官方公告</span><span class="t">发布：10月12日；未见于前两期</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">世行10月12日曼谷启动Philanthropy Hub作为慈善资金、知识和合作单一入口。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>世界银行十月十二日在曼谷正式启动Philanthropy Hub，为慈善机构及伙伴提供合作单一入口，组织资金、知识和方案围绕发展任务协作。这是具体平台启动，区别于此前与各国讨论危机援助的采访。</p><p>公告列出AVPN与Temasek Trust签署合作备忘录；AVPN另宣布支持Health Works技术援助的专项基金。平台希望让试点扩展为更大项目，但未列新募资总额，不能把合作意向折算成已到账资金。</p><p>💭 分析：慈善资本可提供技术援助和试点空间，但能否扩大服务仍取决于具体项目、共同融资和执行安排。备忘录与平台建立提供合作渠道，尚不能证明发展融资缺口已缩小；后续关注资金承诺与可衡量成果。</p>
+<p>来源：<a class="source-link" href="https://www.worldbank.org/en/news/press-release/2026/10/12/world-bank-group-launches-philanthropy-hub-to-unlock-capital-knowledge-and-network" target="_blank">世界银行官方公告原文</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">1 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="var c=this.parentElement;var was=c.classList.contains('open');document.querySelectorAll('.card').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>世行新区域综述：AI可获得性提升，基础设施与管理仍是瓶颈<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">世界银行官方博客</span><span class="t">发布：10月13日；区域报告预测</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">10月13日世行综述认为AI实际使用需电力、连接、数据、技能、管理与制度。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>世界银行十月十三日发布区域经济与AI准备度综述，指出工具可获得性提高不等于生产率改善。可靠电力、连接、可用数据、数字技能、企业管理和制度能力，决定各国能否把技术转化为就业和公共服务。</p><p>报告举例非洲人口占比与数据中心容量不匹配，欧中亚企业采用率仍低；东亚太平洋虽然供应芯片和电子设备，却也面对成本、知识与隐私障碍。各区域瓶颈不同，不能用硬件出口强直接推定全民AI使用成熟。</p><p>💭 分析：发展投资宜围绕实际约束配置，先稳定供电或提升管理可能比复制前沿大模型更有效。本文是新发布的区域证据综述，不是前一期IMF总裁讲话复述；技术潜力与真实扩散速度仍需持续衡量。</p>
+<p>来源：<a class="source-link" href="https://blogs.worldbank.org/en/developmenttalk/the-ai-wave-is-global--readiness-is-not--here-s-what-the-latest-" target="_blank">世界银行官方博客原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-10-14 · 数据来源：澳洲联储和世行官方原文；WEO/GFSR依据实际读取Reuters报道。IMF网站仍返回预告页，未误标报道为结构化报告。；本次实取FRED官方API14项。<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 北京时间10月14日版。14项FRED指标来自本次官方API请求，逐项注明单位与观测期，不作为今日实时值。Yahoo行情限流，缺失报价省略。正式展望与风险情景保留预测条件，媒体取得的报告内容不误标为已读官方PDF。💭 分析单列。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>
