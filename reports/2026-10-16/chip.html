@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-10-16</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#10b981; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-10-16 · 5 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（3）</a></li>
+<li><a href="#s-company">🏢 企业动态（2）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（0）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（0）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">3 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>IBM 与Siemens共研Nanostack，重点为设计和制造准备<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">IBM 官方新闻室</span><span class="t">2026-10-14</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">垂直纳米片架构仍需推进规模制造，不是量产芯片发布。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>IBM 与 Siemens 10月14日宣布合作研究 Nanostack 晶体管架构，将器件创新与电子设计自动化、工艺模拟、光刻优化及制造软件结合。IBM 将其描述为垂直堆叠并错列晶体管的三维纳米片设计。公告回顾今年较早的可行性演示，但本次新增的是合作研究安排。</p><p>双方计划建立先进虚拟模型，提前模拟性能、优化设计并处理制造挑战，推进当前及后续架构。IBM 明确表示，在技术准备进入规模制造前仍需要额外进展。因此研究合作不能写成工艺已经进入代工量产，也不能把实验架构指标当作商业芯片实测结果。</p><p>💭 分析：器件、设计工具和制造过程的协同，有助于把早期结构想法转成可检验模型。商业价值仍需要工艺验证、良率和可制造性支持；后续应看公开结果与实际导入，而非仅凭架构名称推断某家芯片产品的性能或上市时间。</p>
+<p>来源：<a class="source-link" href="https://newsroom.ibm.com/2026-10-14-ibm-and-siemens-collaborate-on-research-to-advance-nanostack-architecture" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Elektrobit 与Microchip提供预集成AUTOSAR软件基础<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Microchip 官方公告</span><span class="t">2026-10-15</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">MCAL与EB tresos结合，目标是减少汽车平台基础集成工作。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Elektrobit 与 Microchip 10月15日宣布汽车软件合作，把 Microchip 汽车硬件平台与 Elektrobit 的 AUTOSAR 软件、工具及自动化能力结合。客户可获得基于 EB tresos 的预集成微控制器抽象层软件，以减少基础软件整合工作，面向整车厂与一级供应商的平台开发。</p><p>公司介绍以代码描述集成为基础的方法，把可重复的 Classic AUTOSAR 工作转成可复用、可执行逻辑，并为未来AI辅助配置奠定基础。公告关于更快进入生产的表述是目标，没有给出客户整车量产节点、实测开发周期改善或统一功能安全认证结果。</p><p>💭 分析：预集成可以减少团队重复搭建底层环境的工作，但应用适配与最终验证仍需按具体车型进行。后续更应观察项目交付、维护及软件版本配合，不能把合作签约直接等同于所有平台已经量产，也不能将未来AI辅助能力写成当前已自动完成开发。</p>
+<p>来源：<a class="source-link" href="https://www.microchip.com/en-us/about/news-releases/products/elektrobit-and-microchip-collaborate-on-pre-integrated-autosar-solutions" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Microchip 推出20A耐辐射GaN负载点电源转换器<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Microchip 官方公告</span><span class="t">2026-10-14</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">POL-05-20S-T面向航天数字负载，辐射指标属于器件表征范围。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Microchip 10月14日推出 POL-05-20S-T 耐辐射负载点转换器，采用GaN功率器件，提供最高20A输出电流。器件面向航天FPGA、微控制器、ASIC等数字处理负载，采用25克表贴封装。公告将其定位于高电流、快速瞬态响应的电源需求，不是已经搭载具体航天任务的证明。</p><p>输入范围4.75—13.2V，输出可调0.7—5V。公司说明器件在最高50krad总电离剂量辐照前后规定电气参数，并进行单粒子效应表征。耐辐射参数对应特定器件及测试条件，不能直接推广为完整卫星系统获得任务认证或保证任意轨道寿命。</p><p>💭 分析：更紧凑的供电可为星载处理设计提供选项，但整机仍需核对热管理、冗余与具体环境要求。后续价值应通过客户验证及任务采用观察，不宜由20A规格推断系统功耗节省，也不能将产品发布等同于已形成批量订单。</p>
+<p>来源：<a class="source-link" href="https://www.microchip.com/en-us/about/news-releases/products/microchip-expands-space-power-portfolio-with-new-radiation-tolerant-gan-pol-converter" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>台积电第三季营收1.494万亿新台币，2纳米占晶圆营收8%<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">TSMC 官方季度公告</span><span class="t">2026-10-15</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">第三季业绩已披露，第四季523—543亿美元收入仍是管理层指引。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>台积电10月15日公布截至9月30日的第三季度业绩：合并营收1.49424万亿新台币、净利润7630.6亿新台币，稀释每股收益29.43新台币。营收同比增加50.9%，毛利率66.4%。这是季度实际披露，较此前月度营收报告新增盈利与工艺组合信息。</p><p>2纳米、3纳米和5纳米分别占晶圆营收8%、33%和28%；7纳米及更先进工艺合计79%。这些比例的分母是晶圆营收，不能写成晶圆出货数量占比。公司预计第四季收入523亿至543亿美元，指引与已经公布的第三季结果须分开。</p><p>💭 分析：先进节点贡献与盈利信息，为判断制造商经营结构提供了更完整的证据，但无法据此识别单个客户采购。后续应关注第四季实际表现、节点爬坡与成本，不宜把管理层收入区间视为已签订单，也不能由集团毛利率推算某个节点的独立利润。</p>
+<p>来源：<a class="source-link" href="https://pr.tsmc.com/japanese/news/3346" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>ASML 第三季净销售116.62亿欧元，全年指引440—450亿欧元<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">ASML 官方公告 / SEC附件</span><span class="t">2026-10-14</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">14日未收录的完整季度披露；供需缺口属于公司预期。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>ASML 10月14日公布第三季度净销售116.62亿欧元、净利润49.6亿欧元，毛利率57.5%。公告还列出售出113台新光刻系统、8台二手系统；装机基础管理销售32.89亿欧元。表中精确值与标题四舍五入的117亿、50亿欧元应保持同一口径，不能混作不同数据。</p><p>公司预计第四季净销售142亿至152亿欧元，全年440亿至450亿欧元。管理层认为按现有规划，2027和2028年供应仍不能完全满足客户需求，并正研究进一步增加2028年产能。该表述是对未来需求与扩产的判断，不代表全部扩产已经完成或远期需求均变成确定订单。</p><p>💭 分析：设备销售与装机升级共同贡献收入，但未来交付仍受产能与客户计划影响。后续可跟踪实际销售、交付和扩产执行，不应以供应不足预期直接推算持续提价或利润，也不能把全年指引当作全年已实现结果。</p>
+<p>来源：<a class="source-link" href="https://www.sec.gov/Archives/edgar/data/937966/000162828026065813/pressreleasefinancialresul.htm" target="_blank">阅读原始公告</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-10-16 · 数据来源：10月14—15日企业原始公告，含未发布15日报期间的重要进展；逐条保留原始日期<br>
+共 5 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 财报季度实际值与未来指引分开；研发、量产准备和客户采购不混用；💭 分析单列。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>

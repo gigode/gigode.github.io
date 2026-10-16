@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-10-16</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+
+:root { --bg:#0f172a; --card-bg:#1e293bcc; --text:#e2e8f0; --muted:#94a3b8; --border:#334155; }
+body { background:linear-gradient(145deg,#0f172a,#111827); }
+.card-detail p { color:#cbd5e1; }
+.section-header { background:#1e293b !important; }
+.section-header h2 { color:#e2e8f0 !important; }
+.tag-verified { color:#4ade80; } .tag-unconfirmed { color:#fbbf24; } .tag-analysis { color:#c4b5fd; }
+.card-detail .source-link { color:#93c5fd; background:#2563eb22; border-color:#2563eb55; }
+.metric-change.pos { color:#4ade80; } .metric-change.neg { color:#f87171; }
+.card-top:focus-visible { outline:2px solid #93c5fd; outline-offset:-3px; }
+
+:root { --accent:#2563eb; }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🤖 AI 行业日报</h1>
+<div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div>
+<div class="badge">2026-10-16 · 26 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-models">🧠 模型发布/更新（7）</a></li>
+<li><a href="#s-products">🚀 产品发布/更新（10）</a></li>
+<li><a href="#s-industry">🏭 行业动态（5）</a></li>
+<li><a href="#s-paper">📄 论文研究（0）</a></li>
+<li><a href="#s-tip">💡 技巧与观点（4）</a></li>
+</ul>
+</nav>
+
+<!-- 模型发布/更新 -->
+<div class="section" id="s-models">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🧠</span><h2 style="color:#1d4ed8;">模型发布/更新</h2><span class="count">7 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Muse Spark Open开放权重，推理与托管生态合并速读<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">PyTorch：Blog（RSS）</span><span class="t">2026-10-15（原文日期，未标精确时刻） · 收录 10-16 02:49</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Meta 发布开源权重模型 Muse Spark Open，已在 Hugging Face 以 Muse Model License 提供。模型总参数 816B、激活 42B，上下文窗口 1M token，面向编码与智能体工作流，原生多模态（图像、音频、文档），并相比 8 月发布的 Muse Spark 增加了安全后训练。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Meta 团队10月15日宣布开放Muse Spark Open权重，总参数816B、每token激活42B、上下文窗口1M。模型面向编码与智能体工作，支持多模态，按Muse Model License提供。激活参数不等于全部权重的内存需求，长上下文上限也不是所有任务效果的保证。</p><p>发布配套包括SGLang、vLLM推理和TorchTitan后训练，Helion内核面向多类硬件。原文把内核级提升与整套系统吞吐分开描述；例如AMD测试的端到端改善为3%，不能将某个内核最高倍数直接替代整体收益。托管商上架与Arena待公布评分均合并为生态进展。</p><p>💭 分析：权重和工具开放提供定制入口，但可部署性还取决于硬件、精度与许可证。模型新增安全后训练不意味着独立部署无需系统防护；榜单待公布也不能先写成已获某一名次，后续仍需按实际工作流测试。</p>
+<p>来源：<a class="source-link" href="https://pytorch.org/blog/muse-spark-open/" target="_blank">PyTorch：Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>ARC Prize公布Gemini 4 Argon成绩，两种harness结果差异明显<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：ARC Prize (@arcprize)</span><span class="t">2026-10-16 00:22 北京时间（API时间标记） · 收录 10-16 00:45</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">ARC Prize 公布 Gemini 4 Argon 在 ARC-AGI (Verified) 的评测成绩。ARC-AGI-3 上，provider adapter harness 得分 97.5%、成本 $4.8K，标准 harness 得分 49.8%、成本 $5.8K；ARC-AGI-2 得分 91.3%、$0.32/task；ARC-AGI-1 得分 98.5%、$0.16/task。Google DeepMind 是第二家在 ARC-AGI-3 上得分超过 95% 的前沿 AI 实验室。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>ARC Prize 公布 Gemini 4 Argon 在 ARC-AGI (Verified) 的评测成绩。ARC-AGI-3 上，provider adapter harness 得分 97.5%、成本 $4.8K，标准 harness 得分 49.8%、成本 $5.8K；ARC-AGI-2 得分 91.3%、$0.32/task；ARC-AGI-1 得分 98.5%、$0.16/task。Google DeepMind 是第二家在 ARC-AGI-3 上得分超过 95% 的前沿 AI 实验室。</p><p>速览：依据本次AIHOT摘要，保留发布者、媒体或作者归属，未扩写未取得的原文细节。</p>
+<p>来源：<a class="source-link" href="https://x.com/arcprize/status/2110768288523251762" target="_blank">X：ARC Prize (@arcprize)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Microsoft AI披露MAI-Base-2预训练结果，效率口径为FLOPs<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Microsoft AI：官方博客（网页）</span><span class="t">2026-10-16 00:09 北京时间（API时间标记） · 收录 10-16 00:23</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Microsoft AI 宣布完成 MAI-Base-2 预训练，这是一个 800 亿激活、2.8T 总参数的 MoE 基础模型，在 held-out 评测中 BPB 低于所测全部开源权重模型，预训练 FLOPs 效率比 DeepSeek-V4-Pro-Base 高 4.2 至 12.3 倍。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Microsoft AI 宣布完成 MAI-Base-2 预训练，这是一个 800 亿激活、2.8T 总参数的 MoE 基础模型，在 held-out 评测中 BPB 低于所测全部开源权重模型，预训练 FLOPs 效率比 DeepSeek-V4-Pro-Base 高 4.2 至 12.3 倍。</p><p>速览：这是公司报告的预训练与held-out测量，不等于用户推理速度、美元成本或成品应用效果；完成预训练也不自动说明权重已开放。</p>
+<p>来源：<a class="source-link" href="https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/" target="_blank">Microsoft AI：官方博客（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Black Forest Labs 发布开源文生图模型 FLUX 3 Image Klein（5.6B）<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Black Forest Labs：Blog（网页）</span><span class="t">2026-10-15（原文日期，未标精确时刻） · 收录 10-15 23:47</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Black Forest Labs 发布 5.6B 参数开源权重模型 FLUX 3 Image Klein，支持文生图、图像编辑和最多 10 张参考图的多参考生成，采用 FLUX Kommunity License。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Black Forest Labs 10月15日发布FLUX 3 Image Klein，图像生成器为5.6B参数，文本编码器不计入这个数字。模型支持文生图、编辑、最多十张参考图，以及边界框控制；基础版与步数蒸馏版面向不同训练和低延迟需求。</p><p>发布权重含多种精度，许可允许年收入低于500万美元的个人和公司免费商用，较大机构须看其他许可或API安排。官方报告在特定GPU、精度和步数下的生成时间，API端到端时间还包含排队与网络，不能把GPU内测量直接当作用户实际等待时间。</p><p>💭 分析：更小生成器和首日框架支持降低尝试门槛，但完整系统内存仍含编码器等组件。开放权重不等于没有使用条件，局部编辑与多图一致性也需在真实素材上检验，内部偏好评测不能替代所有用户的质量判断。</p>
+<p>来源：<a class="source-link" href="https://bfl.ai/blog/flux-3-image-klein" target="_blank">Black Forest Labs：Blog（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>NVIDIA 发布开源 Nemotron 3.5 Super VL 及 Bolt 两款端侧模型<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">NVIDIA Blog（RSS）</span><span class="t">2026-10-15 23:00 北京时间（API时间标记） · 收录 10-15 23:56</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">NVIDIA 发布开源 1200 亿参数的 Nemotron 3.5 Super VL 多模态模型，称在其类别中任务完成最快、比同类次优快 5x，并推出两款端侧模型 Bolt 74B-A9B 24GB 与 Bolt E4B 4GB，后者 10 月 23 日上线。模型采用 2-bit 原生量化可在 RTX/DGX Spark 上本地运行，权重、数据集和训练配方开放，已有数十家机构基于自有数据后训练。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>NVIDIA 发布开源 1200 亿参数的 Nemotron 3.5 Super VL 多模态模型，称在其类别中任务完成最快、比同类次优快 5x，并推出两款端侧模型 Bolt 74B-A9B 24GB 与 Bolt E4B 4GB，后者 10 月 23 日上线。模型采用 2-bit 原生量化可在 RTX/DGX Spark 上本地运行，权重、数据集和训练配方开放，已有数十家机构基于自有数据后训练。</p><p>速览：依据本次AIHOT摘要，保留发布者、媒体或作者归属，未扩写未取得的原文细节。</p>
+<p>来源：<a class="source-link" href="https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/" target="_blank">NVIDIA Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>Step 5 Preview开放权重，服务商与硬件部署信息同步更新<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：阶跃星辰 StepFun (@StepFun_ai)</span><span class="t">2026-10-15 21:00 北京时间（API时间标记） · 收录 10-15 21:18</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">阶跃星辰（StepFun）宣布 Step 5 Preview 开放权重，BF16 和 FP8 权重已上线 Hugging Face 和 ModelScope，并附技术博客。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>阶跃星辰（StepFun）宣布 Step 5 Preview 开放权重，BF16 和 FP8 权重已上线 Hugging Face 和 ModelScope，并附技术博客。</p><p>同日官方转发FeatherlessAI的FP8服务及NVIDIA的GB300部署资料，合并为同一模型生态进展。硬件吞吐、评测每任务成本和真实任务完成速度采用不同条件，不能直接互换。</p>
+<p>来源：<a class="source-link" href="https://x.com/StepFun_ai/status/2110717330657616092" target="_blank">X：阶跃星辰 StepFun (@StepFun_ai)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>昆仑万维称发布Matrix-Game 4.0并开放项目<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">公众号：昆仑万维（天工）</span><span class="t">2026-10-15 08:00 北京时间（API时间标记） · 收录 10-15 08:42</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">昆仑万维于2026年10月15日发布 Matrix-Game 4.0，称其为第一款运行在单张消费级显卡上的视频大模型游戏，并同步开源。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>昆仑万维于2026年10月15日发布 Matrix-Game 4.0，称其为第一款运行在单张消费级显卡上的视频大模型游戏，并同步开源。</p><p>速览：世界首款、实时运行及消费级显卡能力属于发布方表述，本条未独立测量完整延迟或验证所有游戏场景。</p>
+<p>来源：<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzI1MzE1NDc3Mg%3D%3D&amp;mid=2247510565&amp;idx=1&amp;sn=5c72103cec714f282c9260152a552294" target="_blank">公众号：昆仑万维（天工）</a></p>
+</div>
+</div>
+</div>
+<!-- 产品发布/更新 -->
+<div class="section" id="s-products">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🚀</span><h2 style="color:#15803d;">产品发布/更新</h2><span class="count">10 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>Krea 3 图像模型通过 ComfyUI Partner Nodes 上线<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Comfy Blog</span><span class="t">2026-10-16 05:15 北京时间（API时间标记） · 收录 10-16 05:45</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Krea 3 图像模型现已在 ComfyUI 通过 Partner Nodes 提供，主打基于参考图的生成与编辑。模型强调更快的迭代速度和更低的单张成本，支持按上传顺序引用多张参考图、保持产品标签形状材质不变的前提下修改环境光影构图，并可将生成结果作为新输入继续编辑。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Krea 3 图像模型现已在 ComfyUI 通过 Partner Nodes 提供，主打基于参考图的生成与编辑。模型强调更快的迭代速度和更低的单张成本，支持按上传顺序引用多张参考图、保持产品标签形状材质不变的前提下修改环境光影构图，并可将生成结果作为新输入继续编辑。</p><p>速览：依据本次AIHOT摘要，保留发布者、媒体或作者归属，未扩写未取得的原文细节。</p>
+<p>来源：<a class="source-link" href="https://blog.comfy.org/p/krea-3-is-now-available-via-partner" target="_blank">Comfy Blog</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>Anthropic Code Review 正式可用，面向 Team 和 Enterprise 组织<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Claude：Blog（网页）</span><span class="t">2026-10-15（原文日期，未标精确时刻） · 收录 10-16 04:51</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Anthropic 宣布 Claude 的 Code Review 结束研究预览，正式向 Claude Team 和 Enterprise 组织开放。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 10月15日宣布Code Review结束研究预览，向Claude Team与Enterprise组织正式开放。管理员需开启功能、安装GitHub应用并选择仓库，之后新PR可自动触发审查。正式可用是产品阶段变化，不代表所有组织已经配置或接入。</p><p>官方称大多数审查由预览期约20分钟缩至6—10分钟，并允许按仓库选择Quick、Standard或Deep深度。符合资格的企业组织还可申领审查额度，但有申领截止和领取后有效期；额度不是无限长期免费审查的承诺。</p><p>💭 分析：仓库级深度设置有助于在等待时间和检查范围间选择，但速度改善来自企业自身观察。发现问题的准确性、遗漏和误报仍需团队验证；自动评论不能替代对代码行为、测试和最终合并决定的审查。</p>
+<p>来源：<a class="source-link" href="https://claude.com/blog/code-review-is-now-generally-available" target="_blank">Claude：Blog（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>Claude Opus 5.5 fast mode 结束研究预览并移除等待名单<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Claude Devs (@ClaudeDevs)</span><span class="t">2026-10-16 04:09 北京时间（API时间标记） · 收录 10-16 04:19</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Anthropic 宣布 Claude 平台上的 Opus 5.5 fast mode 不再处于研究预览阶段，并已移除等待名单。该模式速度最高提升 2.5 倍，定价为 $8 / $40 per million tokens；现已登陆 Microsoft Foundry（Azure 托管），Google Cloud 即将支持。Claude Code 中的 fast mode 保持不变，消耗额外 usage credits。文档见 https://platform.claude.com/docs/en/build-with-claude/fast-mode</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Anthropic 宣布 Claude 平台上的 Opus 5.5 fast mode 不再处于研究预览阶段，并已移除等待名单。该模式速度最高提升 2.5 倍，定价为 $8 / $40 per million tokens；现已登陆 Microsoft Foundry（Azure 托管），Google Cloud 即将支持。Claude Code 中的 fast mode 保持不变，消耗额外 usage credits。文档见 https://platform.claude.com/docs/en/build-with-claude/fast-mode</p><p>速览：最高提速为发布者给出的范围，真实速度取决于任务。平台fast mode、Claude Code额外额度与尚待支持的云服务分别记录，不假定计费和可用性完全一致。</p>
+<p>来源：<a class="source-link" href="https://x.com/ClaudeDevs/status/2110825294655562048" target="_blank">X：Claude Devs (@ClaudeDevs)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>ChatGPT 为 Chrome 用户新增标签页读取与控制能力<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：ChatGPT (@ChatGPT)</span><span class="t">2026-10-16 04:02 北京时间（API时间标记） · 收录 10-16 04:19</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">ChatGPT 官宣面向 Chrome 用户带来升级，把 computer use 能力引入 Chrome。在聊天中，ChatGPT 可以查看用户打开的标签页并汇总信息；在工作模式下，它能控制 Chrome 标签页执行操作，如发送消息、填写表单、下载文件，还可帮助整理和分组打开的标签页。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>ChatGPT 官宣面向 Chrome 用户带来升级，把 computer use 能力引入 Chrome。在聊天中，ChatGPT 可以查看用户打开的标签页并汇总信息；在工作模式下，它能控制 Chrome 标签页执行操作，如发送消息、填写表单、下载文件，还可帮助整理和分组打开的标签页。</p><p>速览：官方区分聊天中读取和工作模式操作，具体账户开放及权限应按产品说明核对；本条不把公告当作已在所有用户环境验证。</p>
+<p>来源：<a class="source-link" href="https://x.com/ChatGPT/status/2110823738531037651" target="_blank">X：ChatGPT (@ChatGPT)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>OpenRouter更新FLUX视频功能：放大早期访问与4K生成<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：OpenRouter (@OpenRouter)</span><span class="t">2026-10-16 02:41 北京时间（API时间标记） · 收录 10-16 03:11</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">OpenRouter称FLUX Video Upscale开启早期访问，标价从0.59美元/秒降至0.28美元/秒；FLUX 3 Video新增从提示词生成4K视频。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>OpenRouter称FLUX Video Upscale开启早期访问，标价从0.59美元/秒降至0.28美元/秒；FLUX 3 Video新增从提示词生成4K视频。</p><p>速览：本条只记录视频功能；Image Klein图像模型发布已另行合并，二者不是同一套规格。早期访问范围和实际计价条件以平台为准。</p>
+<p>来源：<a class="source-link" href="https://x.com/OpenRouter/status/2110803343878873473" target="_blank">X：OpenRouter (@OpenRouter)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>Perplexity 开源驱动 Perplexity Computer 的沙箱平台 SPACE<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)</span><span class="t">2026-10-16 01:32 北京时间（API时间标记） · 收录 10-16 01:46</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Perplexity CEO Aravind Srinivas 宣布开源沙箱平台 SPACE，该平台为 Perplexity Computer 的全部沙箱能力提供支撑，仓库地址为 https://github.com/perplexityai/space。他表示沙箱虽是 commodity，但在生产级流量下服务数百万沙箱、为企业和消费者扩展 Agent 需要大量细节，开源旨在支持生态。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Perplexity CEO Aravind Srinivas 宣布开源沙箱平台 SPACE，该平台为 Perplexity Computer 的全部沙箱能力提供支撑，仓库地址为 https://github.com/perplexityai/space。他表示沙箱虽是 commodity，但在生产级流量下服务数百万沙箱、为企业和消费者扩展 Agent 需要大量细节，开源旨在支持生态。</p><p>速览：依据本次AIHOT摘要，保留发布者、媒体或作者归属，未扩写未取得的原文细节。</p>
+<p>来源：<a class="source-link" href="https://x.com/AravSrinivas/status/2110785848958759165" target="_blank">X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>Google 介绍 google/adk-recipes 仓库的三层结构与 Agent Platform 集成<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Google Developers Blog（RSS）</span><span class="t">2026-10-15 08:00 北京时间（API时间标记） · 收录 10-16 00:29</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Google Developers Blog 介绍 google/adk-recipes 仓库，它是 google/adk-samples 的重构后继版本，以 core/、plugins/、contrib/ 三层作为 Agent Platform 各入口的单一内容来源。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Google Developers Blog 介绍 google/adk-recipes 仓库，它是 google/adk-samples 的重构后继版本，以 core/、plugins/、contrib/ 三层作为 Agent Platform 各入口的单一内容来源。</p><p>速览：依据本次AIHOT摘要，保留发布者、媒体或作者归属，未扩写未取得的原文细节。</p>
+<p>来源：<a class="source-link" href="https://developers.googleblog.com/three-layers-one-repo-a-tour-of-googleadk-recipes/" target="_blank">Google Developers Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>可灵 Kling 4.0 正式全量开放，新增 MCP 和 CLI 接入<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：可灵 Kling AI (@Kling_ai)</span><span class="t">2026-10-15 23:00 北京时间（API时间标记） · 收录 10-15 23:27</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">可灵（Kling AI）宣布 Kling 4.0 正式全量开放，用户可通过 kling.ai 全新创作界面使用，并新增 MCP 和 CLI 接入以融入视频创作工作流。即将推出 4K 和 1080p 的 10-bit HDR 视频输出，以及面向企业客户和开发者的 API 访问。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>可灵（Kling AI）宣布 Kling 4.0 正式全量开放，用户可通过 kling.ai 全新创作界面使用，并新增 MCP 和 CLI 接入以融入视频创作工作流。即将推出 4K 和 1080p 的 10-bit HDR 视频输出，以及面向企业客户和开发者的 API 访问。</p><p>速览：依据本次AIHOT摘要，保留发布者、媒体或作者归属，未扩写未取得的原文细节。</p>
+<p>来源：<a class="source-link" href="https://x.com/Kling_ai/status/2110747537187709424" target="_blank">X：可灵 Kling AI (@Kling_ai)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>Tessl Verifiers 正式发布，用仓库内纯文本规则检查每次 Agent 代码变更<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Tessl：产品与工程博客</span><span class="t">2026-10-15（原文日期，未标精确时刻） · 收录 10-15 20:44</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Tessl 发布 Verifiers，规则以 JSON 文件形式存放在仓库中，每次代码变更时由 LLM judge 逐条给出 pass 或 fail，可像 lint 或测试一样在本地、pre-commit 或 CI 中使用。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Tessl 10月15日正式发布Verifiers，以仓库内JSON文件保存文字规则、适用条件和检查清单，由LLM裁判给出pass或fail。工具面向普通lint难以表达的规则，例如错误消息是否告诉用户下一步；规则明确、可从文件找到证据时更适合使用。</p><p>默认检查当前改动触及的文件，配置可设置info、warn或error。警告不阻断构建，错误可令CI失败；修改规则或配置时会重查其覆盖范围。固定执行同一套清单与每次模型判断都完全正确、稳定，是不同的命题。</p><p>💭 分析：模型判断能补充测试和静态规则，但不应把pass当成形式证明。主观标准需要先缩成可检查问题，误报、遗漏和执行范围仍要观察；能由确定性工具完成的检查，原文也建议继续交给lint或测试。</p>
+<p>来源：<a class="source-link" href="https://tessl.io/blog/verifiers-enforce-your-repos-rules-on-every-agent-change" target="_blank">Tessl：产品与工程博客</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>Payload 集成 Figma Make，支持在 Figma 内构建、托管和管理数据驱动网站<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Figma AI / Agent / Make</span><span class="t">2026-10-15（原文日期，未标精确时刻） · 收录 10-15 13:40</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Figma 宣布开源内容框架 Payload 集成到 Figma Make，用提示词创建应用时自动配套数据库、文件存储、用户登录和管理面板。Payload 加入 Figma 一年内下载量增长 6x，成为 NPM 上增长最快的开源 CMS；面向所有计划开放，托管基础设施目前处于 beta 且免费，定价将在生效前公布。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Figma 10月15日宣布Payload接入Figma Make，为提示词创建的网站或应用配套数据库、文件存储、登录与管理面板。设计、内容管理和代码开发可在同一体系协作，细粒度权限仍决定各角色能改变哪些内容，并非所有协作者自动获得全部权限。</p><p>管理面板可维护文章、媒体、分类与版本，也能管理访客提交的数据。官方还说明API密钥可放在Make设置中。功能面向所有计划逐步开放，但账户可能需要等待；Payload项目的托管基础设施目前处于beta且免费，正式定价会另行宣布。</p><p>💭 分析：把内容与后端管理放在同一工作区，可以减少连接不同系统的步骤，但权限、数据结构和维护仍需设计。当前免费不代表永久免费，公开发布与长期运营也不是同一阶段，实际效果需按真实内容更新和数据流程检验。</p>
+<p>来源：<a class="source-link" href="https://www.figma.com/blog/websites-with-payload-in-figma/" target="_blank">Figma AI / Agent / Make</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏭</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>Musk 称 xAI 2027 年底算力目标可能超过 10GW<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">X：Elon Musk (@elonmusk, xAI)</span><span class="t">2026-10-16 07:36 北京时间（API时间标记） · 收录 10-16 08:08</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Musk 转发黄仁勋在 BG2Pod 访谈中的表态并评论算力目标可能超过 10GW；访谈称 Nvidia 已把 SpaceX 归入云服务商客户，两家工程师正合作设计可用于太空的新型服务器架构。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Musk 转发黄仁勋在 BG2Pod 访谈中的表态并评论算力目标可能超过 10GW；访谈称 Nvidia 已把 SpaceX 归入云服务商客户，两家工程师正合作设计可用于太空的新型服务器架构。</p><p>速览：超过10GW是对未来目标的评论，不是已建成算力、已供电容量或签署的确定订单；访谈中的合作信息保留原始归属。</p>
+<p>来源：<a class="source-link" href="https://x.com/elonmusk/status/2110877572011844019" target="_blank">X：Elon Musk (@elonmusk, xAI)</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>Anthropic 公布独立评估机制细节，METR 团队获类员工访问权限<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Anthropic：Newsroom（网页）</span><span class="t">2026-10-15（原文日期，未标精确时刻） · 收录 10-16 02:02</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Anthropic 宣布已向评估前沿 AI 模型的非营利机构 METR 的六名员工提供类员工访问权限，包括公司硬件、办公空间和与内部风险评估团队相当的内部系统访问，METR 将公开发布风险评估结果，Anthropic 不得否决发布但可要求删减少数预定义类别的信息。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 10月15日披露，六名METR员工已经获得类内部员工的硬件、办公空间和风险评估系统访问。安排希望缩小外部评估者与公司掌握信息的差距，但客户数据、特权法律信息及部分架构信息等仍有明确边界。</p><p>METR可公开风险、事件和实践评估，公司不能否决发布，但可要求删减少数预定义类别的信息。METR可以公开说明删减及其合理性。合作仅限受协议约束的小团队，其他合作评估者目前的访问和发布权限并不完全相同。</p><p>💭 分析：深度访问与发布权增加独立检验的可能，但宣布机制不等于已经完成所有模型评估。应继续看实际报告、访问受限范围和删减说明；也不能把其他初期合作方都称作已获得同等嵌入权限。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/news/an-update-on-independent-evaluators" target="_blank">Anthropic：Newsroom（网页）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>媒体披露Eiliko机器人数据暴露风险<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">The Verge：AI（RSS）</span><span class="t">2026-10-15 19:00 北京时间（API时间标记） · 收录 10-15 19:52</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">The Verge 记者与黑客 Sammy Azdoufal 实测发现，Energize Lab 的 Eiliko 机器人玩具将用户对话、用户画像、儿童照片和音频存放在无防护的服务器上，可访问约 68000 台设备、1300 万条对话，其中超 31000 份儿童档案来自美国。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>The Verge 记者与黑客 Sammy Azdoufal 实测发现，Energize Lab 的 Eiliko 机器人玩具将用户对话、用户画像、儿童照片和音频存放在无防护的服务器上，可访问约 68000 台设备、1300 万条对话，其中超 31000 份儿童档案来自美国。</p><p>速览：上述规模来自媒体调查口径，摘要未确认后续修复进展，不能把它泛化为所有同类产品的当前状态。</p>
+<p>来源：<a class="source-link" href="https://www.theverge.com/tech/1010727/eiliko-robot-hack-energize-lab" target="_blank">The Verge：AI（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div>
+<div class="card-main">
+<h3>媒体披露Anthropic季度收入与IPO估值讨论<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">The Decoder：AI News（RSS）</span><span class="t">2026-10-15 17:50 北京时间（API时间标记） · 收录 10-15 18:44</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Anthropic在面向潜在投资者的会议上公布Q3营收168亿美元，环比增长约45%，但明显低于Q2超140%的增速。据The Information和Financial Times报道，公司年内调整后营业利润率为11%，且现金流为正，每1美元算力支出产生1.70美元收入。部分投资者对其营收数字失望，预计IPO估值可能降至1.5万亿美元以下，低于此前讨论的2万亿美元。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Anthropic在面向潜在投资者的会议上公布Q3营收168亿美元，环比增长约45%，但明显低于Q2超140%的增速。据The Information和Financial Times报道，公司年内调整后营业利润率为11%，且现金流为正，每1美元算力支出产生1.70美元收入。部分投资者对其营收数字失望，预计IPO估值可能降至1.5万亿美元以下，低于此前讨论的2万亿美元。</p><p>速览：数字来自媒体对投资者会议的转述。调整后营业利润率不等同于净利润，部分投资者估值预期也不是已确定发行价或IPO已经完成。</p>
+<p>来源：<a class="source-link" href="https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo/" target="_blank">The Decoder：AI News（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">22</div>
+<div class="card-main">
+<h3>媒体报道多州起诉OpenAI，诉讼请求不等同法院裁决<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Platformer（热点 RSS）</span><span class="t">2026-10-15 08:52 北京时间（API时间标记） · 收录 10-15 09:34</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">八个州的总检察长周三分别在州法院起诉 OpenAI，指控 ChatGPT 强化用户妄想、提供危险医疗建议并协助策划暴力行为。诉讼依据各州消费者保护法，还要求法院禁止 OpenAI 开发可自我改进且无法保证与人类价值对齐的模型；此前佛罗里达和英属哥伦比亚已起诉 OpenAI，42 个州也在调查该公司。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>八个州的总检察长周三分别在州法院起诉 OpenAI，指控 ChatGPT 强化用户妄想、提供危险医疗建议并协助策划暴力行为。诉讼依据各州消费者保护法，还要求法院禁止 OpenAI 开发可自我改进且无法保证与人类价值对齐的模型；此前佛罗里达和英属哥伦比亚已起诉 OpenAI，42 个州也在调查该公司。</p><p>速览：指控和救济请求保留为起诉方主张，不当作已认定的事实或已生效禁令；摘要未提供本文可独立核对的全部法院文件。</p>
+<p>来源：<a class="source-link" href="https://www.platformer.news/openai-states-lawsuit-liability/" target="_blank">Platformer（热点 RSS）</a></p>
+</div>
+</div>
+</div>
+<!-- 论文研究 -->
+<div class="section" id="s-paper">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">📄</span><h2 style="color:#6d28d9;">论文研究</h2><span class="count">0 条</span>
+</div>
+
+<div class="empty-section">该板块在本次抓取时间窗内暂无可用条目。</div>
+</div>
+<!-- 技巧与观点 -->
+<div class="section" id="s-tip">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">💡</span><h2 style="color:#0e7490;">技巧与观点</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">23</div>
+<div class="card-main">
+<h3>Meta 如何用 AI 原生工程方式开发 Forum 应用<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Meta Engineering Blog（RSS）</span><span class="t">2026-10-15（原文日期，未标精确时刻） · 收录 10-16 03:32</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Meta 工程团队详解如何把 AI 智能体作为开发流程参与者来构建独立 Groups 应用 Forum，采用 human-on-the-loop 模式并以验证通过的生产级产出衡量成功。Forum 在八周内达到与 Facebook Groups 的核心功能对齐，自主压测循环在开发期发现并修复了内存问题，内存占用和缺页约减半，上线后智能体还协助根因分析用户反馈。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Meta 10月15日复盘Forum应用，称八周达到Facebook Groups核心功能对齐。团队以可构建、通过测试并经评审的生产结果衡量工作，而非生成代码数量。工程师仍设定目标、判断架构并批准上线；human-on-the-loop是推进方向，部分环节仍需逐步人工参与。</p><p>做法包括可执行上下文、自动测试和界面验证、模拟用户导航，以及上线后的问题调查。独立构建类型让原型代码不进入生产产物。压力测试曾定位并修复内存问题，公司称重复测试中的内存与缺页约减半，这个范围不等于所有设备持续省一半内存。</p><p>💭 分析：案例强调验证工具、清晰架构和最终责任，而不是单靠更长提示词。公司经验未提供适用于所有团队的因果对照，功能对齐也不等于完整替代原产品；迁移这些方法仍需可靠测试、可观测状态与人类判断。</p>
+<p>来源：<a class="source-link" href="https://engineering.fb.com/2026/10/15/ml-applications/how-meta-built-forum-ai-native-engineering/" target="_blank">Meta Engineering Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">24</div>
+<div class="card-main">
+<h3>Apple 演示用 MLX 与 RDMA 在 Mac Studio 集群本地运行 816B 大模型<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Apple Machine Learning Research（RSS）</span><span class="t">2026-10-15（原文日期，未标精确时刻） · 收录 10-16 01:00</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Apple 机器学习研究团队演示如何在 Mac Studio 上本地运行近万亿参数的 Muse Spark Open 等前沿模型，使用今天发布的新版 MLX（v0.30.1 起）与 macOS 26.2 的 RDMA over Thunderbolt 驱动。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Apple 10月15日展示通过MLX和雷雳RDMA在Mac Studio集群运行大型模型。在四台M5 Ultra、8192 token上下文的测试中，NVFP4精度Muse Spark Open解码约36.73 token每秒；这不是单台Mac或任意上下文长度的保证。</p><p>该模型原生BF16权重本身需超过1.6TB，量化后加上中间计算仍需多机。文中比较流水线和张量并行，后者更依赖低延迟通信；所用RDMA驱动来自macOS 26.2，MLX需相应版本。测试分别报告首token时间、解码吞吐与功耗。</p><p>💭 分析：本地集群提供不同于云API的部署选择，但硬件成本、通信布线和维护需要一起评估。模型参数规模与活跃参数不能混作内存需求，短上下文解码速度也不能直接推算长任务完成时间或回答正确率。</p>
+<p>来源：<a class="source-link" href="https://machinelearning.apple.com/research/mlx-distributed-inference" target="_blank">Apple Machine Learning Research（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">25</div>
+<div class="card-main">
+<h3>Google 工程师讲解如何系统评测 AI 智能体，告别 vibe check<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">Google Developers Blog（RSS）</span><span class="t">2026-10-15 08:00 北京时间（API时间标记） · 收录 10-15 22:27</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Google Developers Blog 发布智能体评测实践指南，指出仅靠终端跑几个提示词的 vibe check 无法发现智能体重试循环、工具参数幻觉等隐性失败。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>Google Developers Blog 发布智能体评测实践指南，指出仅靠终端跑几个提示词的 vibe check 无法发现智能体重试循环、工具参数幻觉等隐性失败。</p><p>速览：依据本次AIHOT摘要，保留发布者、媒体或作者归属，未扩写未取得的原文细节。</p>
+<p>来源：<a class="source-link" href="https://developers.googleblog.com/evaluating-ai-agents-moving-past-the-vibe-check/" target="_blank">Google Developers Blog（RSS）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">26</div>
+<div class="card-main">
+<h3>作者演示Anatomy科普动画与讲解视频工作流<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">公众号：数字生命卡兹克</span><span class="t">2026-10-15 08:26 北京时间（API时间标记） · 收录 10-15 10:13</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">作者数字生命卡兹克分享开源 Skill Anatomy，其理念是&quot;物体本身，就是解释&quot;，可将抽象原理做成可交互的机械模型动画，还能在其上生成带讲解配音的科普视频。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>内容速览</h4>
+<p>作者数字生命卡兹克分享开源 Skill Anatomy，其理念是&quot;物体本身，就是解释&quot;，可将抽象原理做成可交互的机械模型动画，还能在其上生成带讲解配音的科普视频。</p><p>速览：这是作者演示，不证明所有原理都能一次生成正确模型；科学内容、配音与动画仍需分别核对。</p>
+<p>来源：<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647687109&amp;idx=1&amp;sn=032fd9f6aab5ee20ea5d14f97bf48a86" target="_blank">公众号：数字生命卡兹克</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🤖 AI 行业日报 · 2026-10-16 · 数据来源：AIHOT精选API；八条重点深读官方原文<br>
+共 26 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#fbbf24;">⚠️ 截至北京时间10月16日上午的24小时精选。Muse、Step、Klein与Anatomy重复信息合并；FLUX视频更新与图像模型分开记录。开放权重、许可证、硬件测量、未来目标及媒体指控均保留来源和条件。分析另标。</span>
+</div>
+
+</div>
+<script>document.querySelectorAll('.card-top').forEach(function(t){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'));new MutationObserver(function(){t.setAttribute('aria-expanded',t.parentElement.classList.contains('open'))}).observe(t.parentElement,{attributes:true,attributeFilter:['class']})});</script>
+</body>
+</html>
