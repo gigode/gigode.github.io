@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-10-24</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-10-24 · 20 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（4）</a></li>
+<li><a href="#s-industry">🏢 行业动态（7）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（2）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（4）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（3）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">4 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《死锁》新英雄投票结束，护士哈罗加入可用角色阵容<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《死锁》的新英雄投票活动已经结束，护士哈罗成为该轮最后加入的角色，报道同时披露了不同角色支持者的投票表现。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>《死锁》围绕城市永不眠更新举行的新英雄投票已经结束，护士哈罗成为这一轮最后加入的角色。PC Gamer十月二十一日的报道列出了此前依次登场的鼠王、巴巴、所罗门、死人丹尼和薇奥莱特，并将护士哈罗描述为采用非常规手段的辅助角色。文章依据维尔福披露的信息回顾活动，而非宣布一款独立新作或完整商业发行。</p><p>投票不仅决定角色开放顺序，也让不同角色的支持群体留下可比较的记录。报道提到，护士哈罗的支持者在玩家胜率比较中表现突出，而巴巴与所罗门争夺第二位登场资格的竞争最为接近。对参与者而言，这轮活动的直接结果是候选角色依次完成开放，角色偏好与社区参与被放进同一个持续推进的更新过程。</p><p>文章没有给出下一轮角色投票的开始日期，也没有提供这名辅助角色的完整技能参数或后续平衡调整方案。因此，本条只确认投票结束与角色加入，不把社区活动的热度解释为留存增长，更不据此推算游戏商业表现。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/moba/110-million-votes-later-nurse-harrow-has-finally-made-it-into-deadlock-with-special-thanks-to-a-particularly-dedicated-player-who-cast-exactly-1-000-votes-for-her/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《出埃及记》公布主角全新外观，并说明个性化选项<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《出埃及记》开发商公布主角君的新外观，预告说明可选择男女形象，并提供发型、发色、胡须与纹身等个性化选项。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Archetype Entertainment通过新预告展示了科幻角色扮演游戏《出埃及记》主角君的调整后外观。PC Gamer十月二十三日的报道将新旧形象作了对照，指出此前的脸部设计曾受到部分玩家讨论。视频由工作室负责人作简短介绍，并出现参与本作配音的马修麦康纳。这次披露的核心是角色视觉更新，不能当作游戏已经发售。</p><p>预告说明明确列出，玩家可以选择男性或女性的君，并用发型、发色、胡须和纹身加入个人风格。对准备创建角色的玩家而言，这些是目前实际公开的定制项目。报道作者据说明推测脸部基础形象的选择可能有限，但这种判断仍属于媒体对预告措辞的解读，尚不足以确认最终角色编辑器的全部能力。</p><p>这一变化使主角的展示形象与可调整部分更清楚，但文章没有提供完整编辑器演示，也未在这次外观披露中验证战斗系统、任务内容或最终性能。新旧脸型哪一种更好看是审美意见，不能写成全体玩家达成共识；正式版本能否进一步修改面部，仍应等待开发商说明。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/rpg/upcoming-mass-effect-like-exodus-himbo-fies-protagonist-after-fans-complain-about-his-face/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>任天堂订阅库将新增三款掌机旧作，十月二十七日开放<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026-10-23（报道日期）</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">任天堂确认三款Game Boy旧作将在十月二十七日加入订阅库，涵盖解谜、附身平台动作与弹珠台，标准会员即可使用相关游戏库。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>VGC十月二十三日报道，任天堂确认《Mole Mania》《Avenging Spirit》和《Revenge of the Gator》将在十月二十七日加入Switch Online的经典游戏库。其中《Mole Mania》由宫本茂担任制作人，玩家控制鼹鼠营救家人，在七座迷宫的网格关卡内切换地面与地下层。此次公布的是订阅服务增加经典作品，并非三款新开发游戏同时上市。</p><p>另外两款提供了不同玩法。《Avenging Spirit》是Jaleco于一九九二年推出的横向平台游戏，主角以幽灵身份附身敌人并利用其能力营救女友；HAL开发的《Revenge of the Gator》则是一款弹珠游戏，报道把它列为后来卡比弹珠作品的灵感来源。三款加入后，服务中的Game Boy与Game Boy Color作品合计达到四十九款，日本版应用另有四款地区专属内容。</p><p>对订阅者而言，这批游戏属于标准会员能够访问的经典库范围，文章把它与需要扩展包的其他平台游戏库区分开来。新增日期仍是未来安排，不能写成已经开放；地区专属数量也说明不同区域的游戏目录并非完全一致。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/three-more-game-boy-games-are-coming-to-switch-online-including-one-produced-by-shigeru-miyamoto/" target="_blank">VGC</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>维尔福音频设计师台上提及代号，新半衰期猜测升温<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026年10月23日</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">维尔福音乐设计师在音频技术讨论中提到项目代号，媒体将其与新半衰期传闻联系，但正式名称与发售安排仍未公布。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日的报道记录了维尔福音乐设计师迈克莫拉斯基在加州伯班克游戏声音大会上的发言。他参与讨论公司怎样在游戏中实现音频效果，在谈到高动态范围方案时，将《死锁》和代号为HLX的项目并列，表示不同项目各有自己的版本。该代号此前已出现于消息人士说法和游戏文件，因此这次公开发言引发对新《半衰期》的猜测。</p><p>对关注系列后续的玩家而言，本次新增证据是公司员工在真实技术交流中使用了这个代号，而非仅有外部人士转述。文章同时回顾，系列上一款作品是二〇二〇年发行的虚拟现实游戏《半衰期：爱莉克斯》。报道引用另一名长期跟踪维尔福的爆料者此前说法，称新项目不是虚拟现实作品，而且已能从头到尾游玩；这些仍属于爆料者判断。</p><p>技术演讲没有正式宣布《半衰期三》，也没有提供上市时间、平台、玩法演示或商品页面。文章还提及系列二十五周年时对初代进行更新并发布开发纪录片，但这些已发生的纪念活动不能证明新作上市临近，项目代号与具体商业产品之间仍需要官方确认。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/half-life-3-speculation-grows-as-valve-developer-mentions-hlx-during-stage-panel/" target="_blank">VGC 原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">7 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>微软延长里昂工作室磋商期，寻找合作伙伴仍未定案<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">微软向媒体确认将里昂工作室的磋商期延长一个月，继续探索寻找合作伙伴等方案，并强调关闭相关文件不代表最终决定。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer十月二十三日报道，微软将Arkane里昂工作室的磋商期再延长一个月。文章援引《世界报》介绍寻找买家的过程，并取得微软代表回应：公司仍在探索选项，包括寻找能够支持工作室完成后续开发的合作伙伴。相关背景涉及法国当地的员工磋商及买家寻找程序，不能据此把工作室写成已经关闭。</p><p>延期为潜在合作与工作室后续安排保留了额外讨论时间。报道将微软回应中的开发工作与《漫威刀锋战士》联系起来，同时说明员工代表机构会继续收到过程信息。对项目而言，眼下能够确认的是磋商与选项评估仍在进行；延期本身没有落实买家，也没有证明开发预算、项目日程或现有人员安排已经得到长期保障。</p><p>文章提到此前文件包含停止经营与经济性解雇的方案表述，但微软强调这些文件属于必要磋商流程，不代表最终决定。因而，关闭是报道中的风险情景，合作方接手也是探索中的路径。双方均未在本文给出成交公告，本条不把任何一种可能结果写成既成事实。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/gaming-industry/time-could-be-running-out-for-arkane/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>幕府将军重制版下架后，系列负责人回应外包与质量争议<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">《全面战争：幕府将军二》重制版下架后，系列负责人回应外部开发监督不足，并表示正在调查生成式人工智能素材争议。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer十月二十三日报道，世嘉此前已将《全面战争：幕府将军二》重制版撤下销售，系列负责人Roger Collum随后发布说明。他表示该版本由外部开发团队制作，没有经过与内部项目相同的审查及质量保证流程，工作室在关注其他大型项目时疏于监督，同时承认系列名称属于自己，必须承担修复责任。</p><p>说明还回应了玩家对生成式人工智能素材的质疑。Collum表示工作室会将人工智能工具用于分析、调试和快速原型，但不用于制作游戏内素材，并要求外部合作方遵守同样标准；当前争议仍在调查。这使后续处理同时涉及作品质量、外部开发监督以及素材来源核查，而不是仅靠说明外包关系就结束责任讨论。</p><p>报道指出，一支由资深开发人员组成的小团队正在与世嘉及外部工作室讨论后续方案。文章没有确认重新上架日期或完整修复计划，也不能据调查启动便断言争议素材已被证实。部分玩家对品牌方监督责任的批评仍然存在，补救效果需要等待实际版本与处理结果。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/strategy/creative-assembly-exec-pins-the-blame-for-the-shogun-2-remaster-mess-on-someone-else-this-was-not-a-creative-assembly-developed-game/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>宫本茂谈人工智能与创作，强调个人意图仍是作品核心<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026-10-23（报道日期）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">宫本茂在获授日本文化勋章的记者会上讨论生成式人工智能，认为工具变化会让创作者的个人判断更重要，任天堂尚未公开确认游戏开发采用情况。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>VGC十月二十三日报道，宫本茂在获授日本文化勋章的记者会上，被问及人工智能用于游戏创作的问题。他以打字机、文字处理器与电脑设计工具的变化作比较，认为技术不断接手制作劳动后，创作者自身的布局能力与整体构想会更加突出。他把确立作品结构和意图，与填补细节、反复完善的劳动过程区分开来，并没有把两者视为完全相同的工作。</p><p>这番观点对开发流程的具体含义，是评价作品时仍应关注个人设计意图，而不能只看完成制作的满足感。宫本茂提醒，制作劳动本身可以令人愉快，门槛下降也可能让人把完成一件东西误认为做出高质量作品。他认为工具代劳有机会促使开发者重新思考创作中真正重要的部分，并指出缺少个人意图的复制拼贴难以经受时间考验。</p><p>报道同时说明，任天堂尚未公开确认是否在游戏开发中采用这类技术。古川俊太郎此前承认其创作潜力，也提醒知识产权风险；因此，这次个人观点不等于公司宣布具体工具、项目或人员调整。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/shigeru-miyamoto-explains-why-ai-wont-make-human-creativity-obsolete/" target="_blank">VGC</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>赛博朋克续作负责人称任务团队约半数来自模组创作者<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026-10-23（报道日期）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">续作副总监在直播中表示，任务团队约半数成员曾制作模组，并把游戏内模组入口视为新开发者积累经验与展示作品的机会。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>VGC十月二十三日报道，《赛博朋克》续作副总监Paweł Sasko在介绍《赛博朋克二〇七七》二点五更新的直播中，谈到模组支持与开发人员招聘。他估计目前任务团队约有一半成员曾是模组作者，其中有人为《巫师二》《巫师三》制作过内容，随后被公司聘用。这是负责人对团队来源的概括，报道没有公布完整人员名单或精确统计表。</p><p>直播讨论的背景，是让电脑与主机玩家直接从游戏内浏览和安装一批用户制作内容的跨平台功能。Sasko表示，可开关的游戏内菜单能降低使用门槛，玩家可以挑选玩法、叙事、外观等不同模组，让熟悉的游戏获得新体验。他更重视这种入口可能带来的职业路径：玩家先接触和调整游戏，再学习内容如何搭建，最后把自己的模组当作求职作品。</p><p>对行业而言，这个案例提供了从社区创作进入专业任务开发的具体实例。不过，文中比例只涉及所述任务团队，不能外推到整个工作室，也不意味着安装模组就能获得职位；报道没有发布新的招聘配额或录用承诺。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/cyberpunk-2-associate-director-says-half-the-quest-team-were-hired-for-their-modding-work-on-other-cdpr-games/" target="_blank">VGC</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>微软据报寻求八亿美元影视授权，奈飞独家大单谈判告吹<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026年10月23日</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">报道援引知情人士称，微软与奈飞曾商谈七年独家影视授权，双方报价存在差距，目前微软转而寻求较小的合作。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日，游戏媒体援引娱乐行业刊物及三名知情人士的报道，称奈飞曾寻求取得微软旗下游戏角色的独家影视改编合作，期限为七年。报道所述奈飞出价为五亿美元，微软还价八亿美元，双方最终未达成这笔协议。这里涉及的是报道中的一揽子授权谈判，不能当作已经签署的合同，也没有证据表明上述金额已经支付。</p><p>微软向原报道回应称，旗下知识产权获得高度关注，奈飞仍是重要合作伙伴，并提及双方即将推出的《我的世界》和《暗黑破坏神》动画系列。因此，大范围独家协议谈不拢，并不等于现有改编项目全部终止。文章称微软目前转向同更多伙伴达成规模较小的交易，意味着报道中的合作方向从集中授权转向分别协商。</p><p>文章还回顾微软此前与派拉蒙制作真人版《光环》剧集，该剧二〇二二年首播、二〇二四年推出第二季后被取消。奈飞没有评论本次谈判，具体涵盖哪些角色、各项目预算与未来成交条件仍未披露，应继续保留知情人士报道与正式公告之间的区别。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/xbox-wanted-800-million-from-netflix-for-7-years-of-its-biggest-characters-its-claimed/" target="_blank">VGC 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>超越善恶续作据报仍处前期制作，多次改变玩法方向<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026年10月22日</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">法国媒体消息称，《超越善恶二》仍处前期制作，方案已从多人社交转向以单人叙事为主；育碧尚未宣布取消项目。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日，游戏媒体转述法国媒体的新调查，称《超越善恶二》宣布十八年后仍未进入全面开发。该作二〇〇八年首次公布，二〇一七年重新亮相，创作者米歇尔安塞尔于二〇二〇年离开育碧。报道援引消息人士称，仍有数百人主要在蒙彼利埃工作室参与项目，但团队继续调整究竟要做怎样的游戏。</p><p>按照报道梳理，二〇一九年至二〇二二年间的方案倾向包含多个星球的多人在线体验，希望成为玩家下班后与朋友相聚的空间。此后设想先后缩减为四人、双人合作，现在则被描述为以单人冒险和较强故事为核心，同时允许合作游玩。项目基调也被消息人士从太空版《塞尔达》改称更接近失眠组的《蜘蛛侠》，显示核心方向仍在变化。</p><p>这种变化使进度和资源投入更难判断，但报道明确说尚无取消迹象。育碧今年重组开发团队、划分自治创意部门时仍纳入本作，其创意总监也曾表示团队继续专注于交付作品。员工对未来可能被叫停的担忧属于消息人士说法，不能改写为公司已经终止开发，正式档期仍没有确认。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/beyond-good-evil-2-is-still-in-pre-production-after-18-years-as-its-vision-keeps-changing-report-claims/" target="_blank">VGC 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>侠盗猎车手六推广走入迈阿密，虚构餐厅与城市广告落地<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026年10月22日</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">迈阿密场馆与街头出现游戏内餐厅、品牌广告和主题车辆，推广还将延伸至热火队的主题比赛活动。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日，报道汇总《侠盗猎车手六》在迈阿密的线下推广：热火队主场场馆出现游戏中的汉堡店和炸鸡品牌，部分员工穿上游戏主题制服。开发商此前已宣布与当地合作，热火队计划十一月十八日举行罪恶都市主题比赛，采用特别球场、重设制服，并在场馆销售相关商品。这是游戏虚构城市与现实原型城市之间的宣传联动。</p><p>推广并不限于篮球场。文章记录飞艇、壁画、公交车和出租车上的主题标识，以及数字屏幕上的虚构电视台、广播站、科技企业和饮料品牌广告；海滩也出现粉蓝配色的遮阳伞与躺椅。带罪恶都市车牌的改装跑车、主题警车涂装等，把游戏世界的视觉符号带入城市公共空间，形成多处可以被路人拍摄传播的接触点。</p><p>报道还提到当地酿酒企业提交了几种游戏虚构啤酒的标签申请，但申请只能提示后续商品化方向，不能认定已在酒吧正式销售。文章所列发售安排为十一月十九日登陆索尼及微软当代主机；线下推广本身也不证明游戏质量、预售数量或宣传投入规模，相关商业结果没有在正文披露。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/rockstar-is-quietly-transforming-the-real-miami-into-gta-6s-vice-city/" target="_blank">VGC 原文</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>世界赛瑞士轮首日四支中国战队落败，后续对阵仍待抽签<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Movistar eSports</span><span class="t">时间不详</span><span class="tag tg-esports">电竞资讯</span></div>
+<div class="card-brief">世界赛瑞士轮已出现相较赛前预告的实质进展，媒体赛果表列明四支中国战队首轮均告负，四队随后将进入零胜组。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Movistar eSports的十月二十三日赛后报道列明，世界赛瑞士轮首日四支中国战队均告负：IG负于Gen.G，TES负于韩华生命，BLG负于Movistar KOI，AL负于Karmine Corp。这是相较前两日报告中赛事即将开打的新增结果，而非再次发布赛程指南。报道的赛果表明确给出了四场单局比赛的胜负。</p><p>首轮结果意味着这四支队伍进入零胜一负的后续分组，晋级路径需要从接下来的比赛继续争取。原文指出，同赛区队伍在后续抽签中存在相遇的可能，但没有给出已经确定的中国队内部对阵。因此，能够确认的影响是四队都未取得首轮胜场；具体谁会遇到谁，仍须等待实际抽签，不能把潜在配对写成赛程。</p><p>文章对表现使用了较强的评价性语言，本条仅采用可核对的比赛结果，不沿用所谓历史最差开局的断言，也不扩写击杀、比赛分钟或战术细节。单局赛果不能直接证明整个赛区最终名次，首轮落败同样不等于已经淘汰，后续轮次仍将决定去留。</p>
+<p>来源：<a class="source-link" href="https://movistaresports.com/desastre-de-la-lpl-en-worlds-2026-cero-cuatro/" target="_blank">Movistar eSports</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>世界赛瑞士轮首轮赛果表确认，DK单局击败G2<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Movistar eSports</span><span class="t">2026-10-24（北京时间；赛区当地10月23日）</span><span class="tag tg-esports">电竞资讯</span></div>
+<div class="card-brief">首轮赛果表确认DK单局击败G2；独立赛程报道补充同战绩抽签与三胜晋级规则，两队最终去留仍待后续比赛。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日，Movistar eSports发布全球总决赛瑞士轮首轮报道，正文附带的比赛结果表显示，Dplus KIA以一比零击败G2。这张表将该场列入周五进行的单局比赛，确认的是首轮胜负，并未提供独立对局复盘。独立媒体The Click的赛程报道也列出两队的首轮对阵，并说明第一轮配对来自十月十八日完成的抽签，与本次赛果表所列对手相符。</p><p>依据The Click对瑞士轮规则的介绍，后续对手将从相同战绩的队伍中抽签产生，取得三胜才能晋级，累计三负则淘汰，决定晋级或淘汰的比赛采用三局两胜。因此，这场结果让DK取得开局胜场，G2则需要从首轮失利后继续争取晋级；两队都没有因为这一场单局比赛直接确定最终去留，后续对阵也不能由首轮名单直接推定。</p><p>目前可读证据的边界仍然清楚：赛程报道提供抽签与赛制背景，赛后表格提供胜负，两者都不能解释具体获胜过程。本条不补写阵容选择、选手表现、击杀数据或比赛时长，也不把开局胜负概括成整个赛区的实力定论。</p>
+<p>来源：<a class="source-link" href="https://movistaresports.com/desastre-de-la-lpl-en-worlds-2026-cero-cuatro/" target="_blank">Movistar eSports</a></p>
+</div>
+</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>超威解释经典处理器复产缘由，称计划早于内存市场变化<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">超威负责人表示经典处理器复产旨在给老平台用户保留升级机会，相关计划早于内存市场变化，并非为解决新内存短缺而设。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer十月二十三日援引日本Tech+采访，介绍AMD重新推出锐龙七5800X3D的决策背景。AMD负责人Travis Kirsch称，恢复这款处理器的想法较早便已提出，苏姿丰也是倡议者之一；目标是给长期使用AM4平台的用户提供一次继续升级的机会。复产涉及重新启动生产线，因此需要准备时间。</p><p>这款产品支持采用DDR4内存的旧平台，用户能够在既有系统基础上考虑处理器升级。报道将这一选择与当前内存市场环境联系起来，但Kirsch明确区分了计划起因与后来市场变化：复产不是专为解决DDR5短缺而制定的措施。因而，旧平台升级选项增加是实际产品含义，将其描述成针对本轮短缺临时推出的应急策略则不准确。</p><p>采访还涉及新旧平台出货结构，负责人没有披露精确比例，只表示AM4仍表现强劲，AM5中配备三维缓存的型号近期也有增长。这些定性说法不足以计算市场份额或需求增速；本文没有新的供货规模及销售数字，也未验证不同地区购买这款处理器的价格与可得性。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/processors/amd-says-the-re-release-of-the-ryzen-7-5800x3d-was-like-a-final-gift-to-our-loyal-am4-users-and-it-was-ceo-dr-lisa-su-who-first-came-up-with-the-idea/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>超威承诺改进帧生成显示节奏，尚未公布上线时间与设备范围<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">相较此前兼容范围报道，本次新增信息是超威承诺改进帧生成的显示节奏，但媒体未取得明确上线时间或适用硬件清单。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer十月二十三日报道，AMD除提到FSR兼容范围扩展之外，也承诺处理帧生成的帧时间分配问题。本条相较此前日报关于旧显卡支持范围的内容，新增关注点是显示节奏改进。报道将问题解释为画面帧数虽然较多，每一帧显示持续时间却可能不一致，因而玩家仍会感觉卡顿，不能仅用平均帧率判断实际顺滑程度。</p><p>原文指出，这类问题可能同时影响传统渲染帧与生成帧，并回顾了游戏开发商提示微卡顿及第三方测试发现节奏不稳定的情况。对使用相关技术的玩家而言，优化承诺针对的是画面连贯性，而不是单纯增加生成帧数量。报道没有给出修复后的对比测试，因此尚不能确认具体游戏的卡顿已消除，也不能据此宣布性能提升幅度。</p><p>媒体特别强调，公告缺少明确实施时间和可以享受改进的硬件名单，同时没有在此次表态中公布多帧生成功能的落地安排。当前应将它理解为厂商承认问题并承诺继续工作，正式驱动、支持范围和独立实测仍是后续需要核对的证据；改进计划不能写成已完成更新。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/graphics-cards/amd-says-its-working-on-fsrs-frame-pacing-issues-but-theres-still-conspicuously-no-mention-of-multi-frame-generation/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>雅达利计划关闭VCS商店，以本地系统迁移延续设备使用<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026-10-22（报道日期）</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">雅达利宣布明年二月关闭VCS商店，并计划以系统迁移解除服务器依赖，再提供自制应用入口，让玩家继续添加社区游戏。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>VGC十月二十二日报道，雅达利宣布逐步结束对二〇二一年正式推出的VCS主机的支持，商店将在二〇二七年二月一日关闭，购买游戏的窗口持续至一月三十一日。这款设备此前先交付众筹支持者，兼具自有商店与电脑模式，后者可以运行其他桌面系统。报道指出产品销售一直较为有限，此次公告明确了商业服务的退出日程。</p><p>公司社区经理在官方Discord说明，商店关闭后计划提供操作系统更新，把相关功能迁移到本地，解除身份验证和软件对雅达利基础设施的依赖，完成过渡后才终止平台支持。公司还打算向玩家推送自制应用工具，使用户能够绕过商店自行添加游戏，开发者也可以继续制作应用并向社区分享。这些安排直接关系到现有设备在服务器关闭后的可用性。</p><p>不过，本地迁移与自制工具目前仍属于计划，公告称明年初会发布操作说明。玩家能够确认的是商店退出时间及厂商承诺的过渡方向，尚不能把迁移功能写成已经交付，也不能仅凭承诺认定所有旧内容的兼容问题均已解决。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/atari-is-ending-support-for-its-2021-vcs-console-will-release-a-homebrew-app-to-let-players-keep-making-and-adding-games/" target="_blank">VGC</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>金刚狼登顶美国九月销售榜，索尼主机销售额同比增长<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026年10月22日</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">美国九月销售统计显示《漫威金刚狼》居游戏收入榜首，索尼主机销售额和销量增长，但整体硬件销量仍同比下降。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日，报道援引美国市场研究机构的九月数据，称《漫威金刚狼》成为当月美国最畅销游戏。榜单采用实体版与完整数字版销售金额口径，因此排名反映收入而非单纯售出份数。报道还称，这部索尼发行作品的首月美元销售额达到二〇二四年二月《绝地潜兵二》以来索尼游戏的最高水平，当月前十名中有八部新作。</p><p>硬件方面，索尼当代主机九月销售额同比增加百分之四十三，销量同比增加百分之二十二；微软同代主机销售额下降百分之二，销量下降百分之二十七；任天堂第二代混合主机销售额下降百分之十二，销量下降百分之十四。同期美国游戏硬件总销量减少百分之三，因此索尼增长与行业整体承压同时存在，不能把一家表现推广为全市场回暖。</p><p>文章另外转引另一机构此前的全球估算，称《金刚狼》九月销量约二百一十六万份，在该主机全球游戏销量中落后于足球新作。这与美国月榜在地域和统计口径上不同，只能分别理解。原文没有给出所有硬件的绝对销售额，也没有提供能量化独占游戏与购机之间因果关系的数据。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/news/wolverine-was-uss-best-selling-game-in-september-with-ps5-sales-up-43/" target="_blank">VGC 原文</a></p>
+</div>
+</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>鬼武者制作组回应难度争议，媒体仍批评支线与头目重复<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">卡普空称玩家进度数据接近团队设定的难度目标，媒体作者认可战斗手感，同时保留对重复头目和支线内容的批评。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>PC Gamer十月二十三日采访《鬼武者：剑之道》导演，回应游戏是否过于简单的讨论。报道回顾，试玩和发售初期的普通敌人视频曾引发争议，更高难度又需要通关后解锁。导演表示团队查看玩家遇到困难的位置与推进情况，认为整体趋势接近预定目标：玩家会遭遇失败，但能够克服障碍继续故事，而非追求极端困难。</p><p>对正在判断是否适合自己的玩家而言，这一回应澄清了设计取向。报道作者认为普通敌人与头目之间的威胁差别明显，同时认可剑术战斗的手感；制作组希望在大致线性的结构中提供一定探索空间。这些内容说明它将叙事推进与适度挑战放在一起考虑，不能因为部分普通敌人容易击倒，就概括成所有遭遇战都没有压力。</p><p>作者更主要的不满涉及重复街道、支线任务及多次出现的头目。导演确认收到这方面反馈，也解释团队希望头目战具有反复挑战的乐趣。双方观点并未完全一致；采访没有公布因此新增敌人或重做支线的更新计划，所以应保留设计解释与批评并存的状态。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/action/based-on-player-data-capcoms-pretty-happy-with-the-difficulty-level-of-onimusha-way-of-the-sword-we-think-its-hit-the-right-spot/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>动物园之星续作评测称动物表现出色，繁琐管理拖累体验<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">PC Gamer对动物园模拟续作的十月评测肯定动物、美术与动画，但认为复杂菜单、栖息地操作和重复管理削弱了游玩乐趣。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>本条为十月十三日刊出的评测补充，不冒充当日新作新闻。PC Gamer的Rick Lane评论《动物园之星二》，肯定动物建模、动画与声音设计，但认为繁琐的操作消耗了体验。续作新增鱼类、鸟类和自然保护区，后者在生涯模式中让玩家修复生态环境，并把繁育或康复后的动物放归野外，是文章重点讨论的新系统。</p><p>评论认为，保护区理念值得肯定，实际游玩却经常变成地形编辑与菜单切换。玩家需要在动物园之间寻找合适动物，再处理放归与生态要求；栖息地本身还涉及温度、地形、植物、水体过滤和动物组合等条件。作者指出，细致变量与容易发生摆放问题的工具叠加后，让建设更像反复处理琐事，而不是顺畅的创造过程。</p><p>文章也保留了正面证据：鸟类和水生动物扩充观赏多样性，部分预制设施与快捷按钮能够减轻设置负担。然而作者认为这些便利尚未解决交互层面的根本问题，财务经营又相对简单。本条只呈现这篇媒体评论的判断，不能把单篇评测推导为玩家一致评价或游戏销量结果。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/sim/planet-zoo-2-review/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>如龙工作室新作试玩评价分化，夜生活经营优于多人混战<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VGC</span><span class="t">2026年10月21日</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">媒体试玩肯定跨时代日本城镇与音乐经营，但指出多人围攻削弱格挡闪避的意义；结论仍只针对当前体验版本。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十一日，媒体刊出《Stranger Than Heaven》的长时间试玩感受。这部如龙工作室新作追随主角大东真从逃避警察的青年走向为东城会奠定基础的经历，以二十世纪早期不同年代与城市组织故事。作者喜欢在街区漫游、体验小游戏和认识角色，并认为默认让角色说母语、辅以字幕的安排，与主角因部分美国血统而在日本遭遇隔阂的设定相呼应。</p><p>试玩最受肯定的是夜生活经营：玩家可以从环境和战斗中寻找歌曲灵感，交给作曲者编排，再把作品用于场馆演出，并负责售票、城市宣传、灯光与其他舞台效果。作者认为这些系统提供了丰富活动。战斗则将左右肢体动作映射到不同按键，单挑时讲究格挡闪避的节奏，成功反击能带来满足感，显示系统存在值得掌握的技巧。</p><p>问题集中于同时面对多个敌人：试玩中围攻容易造成连续受击，令精确防守的价值下降，作者因此更愿意继续探索和经营，而非反复参加群战。报道属于体验版本预览，不能写成正式版已经修复或确认无法修复；它呈现的是同一系统在单挑与混战中的明显落差，也没有提供最终评分或商业表现。</p>
+<p>来源：<a class="source-link" href="https://www.videogameschronicle.com/features/there-are-a-lot-of-things-to-like-about-stranger-than-heaven-but-its-multi-person-combat-isnt-one/" target="_blank">VGC 原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-10-24 · 数据来源：公开网页原文汇总；⚠️ 本报告基于 AI 网页摘要，赛事细节未经独立验证，仅供话题参考<br>
+共 20 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 共 20 条，新增条目报道日期为 10月21日至23日，另沿用 10月13日评测补充。DK 对 G2 条目结合赛果表与独立赛制报道补充，未取得该场独立对局复盘。两条赛事报道共用同一赛果页。</span>
+</div>
+
+</div>
+</body>
+</html>
