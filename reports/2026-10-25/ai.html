@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-10-25</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🤖 AI 行业日报</h1>
+<div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div>
+<div class="badge">2026-10-25 · 28 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-models">🧠 模型发布/更新（4）</a></li>
+<li><a href="#s-products">🚀 产品发布/更新（7）</a></li>
+<li><a href="#s-industry">🏭 行业动态（12）</a></li>
+<li><a href="#s-paper">📄 论文研究（2）</a></li>
+<li><a href="#s-tip">💡 技巧与观点（3）</a></li>
+</ul>
+</nav>
+
+<!-- 模型发布/更新 -->
+<div class="section" id="s-models">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🧠</span><h2 style="color:#1d4ed8;">模型发布/更新</h2><span class="count">4 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Block展示全双工语音模型，先向安全研究者开放预览<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">CoinDesk</span><span class="t">10月24日 23:21</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">补入此前遗漏的 Dessa 研究预览：模型可同时说话与倾听，厂商展示本地运行能力，目前尚未公布参数、基准和公众开放日期。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Block 展示语音模型 Dessa，称其仅以人类语音训练，可同时接收和输出语音，并在配备指定芯片的苹果笔记本上本地运行。报道介绍，公司演示中的声音带有情绪、停顿和自然节奏，引来对拟人化程度的关注。模型来自直接向多西汇报的人工智能研究实验室，团队包括公司此前收购的多伦多同名初创企业成员。目前它仍是研究预览，不能把演示发布理解为普通用户已经能够下载或调用。</p><p>报道同时呈现了支持与担忧两方面反应：有人期待自然语音交互用于儿童教育，也有人担心过于像真人的声音会降低接听者警惕，使诈骗电话更难辨认。这些是受访者和社交平台用户对潜在用途的判断，尚不是已经发生的应用成效或滥用统计。公司表示，语音系统可能识别文字转录容易遗漏的痛苦与压力等情绪线索，但实际能力仍需要测试。</p><p>公司尚未披露模型规模、基准成绩及公开发布日期，现有音频属于厂商演示，缺少独立评测支撑。早期访问先交给少量安全研究人员，目标是寻找团队尚未预料的风险。因此，本条记录的是未被此前日报覆盖的模型展示与受限测试安排，不将其描述为权重开放或全面商用。</p>
+<p>来源：<a class="source-link" href="https://www.coindesk.com/tech/2026/10/24/block-s-new-voice-ai-sounds-eerily-human-sparking-awe-and-scam-fears" target="_blank">CoinDesk 报道正文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>讯飞发布星火端云模型，扩展百万上下文与端侧推理模式<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">IT之家；讯飞星辰MaaS</span><span class="t">10月22日 14:40</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">补入十月二十二日遗漏发布：星火 X2.6 同步更新云端与四十亿参数端侧模型，新增端云协同架构及三档端侧推理模式。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>科大讯飞在全球开发者节活动中发布星火新版本，同时推出云端与端侧模型。报道给出的云端规格是总参数二千九百三十亿、激活参数三百亿的混合专家架构，上下文扩展到一百万词元，模型在国产算力上完成训练。系列已在官网开放试用，并引入端云一体协同架构。官方模型广场也列出对应云端和四十亿参数端侧条目，应用方向包括代码、智能体、长文本及多语言任务。</p><p>发布会重点讨论国产芯片显存带宽限制对长程任务的影响。厂商称，通过适配国产平台的动态并行训练技术改善混合训练效率，并采用异构算力分布式推理和中间结果复用技术。端侧版本新增三档推理模式，报道转述其自研推理框架效率相对现有框架有所提高。这些均应视为厂商披露，不能直接推出任意设备、任务长度和并发条件下的性能结论。</p><p>报道列出的限时调用价格为每百万输入词元零点九元、缓存命中零点零八元、输出三点六元，端侧模型调用限时免费。云端还支持按任务自定义安全策略。折扣与免费均带时间条件，不能写成永久价格；端侧开源的报道表述也不等于已在所有终端完成部署，具体接入仍须查看官方渠道。</p>
+<p>来源：<a class="source-link" href="https://www.ithome.com/1/016/403.htm" target="_blank">IT之家发布会报道</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>蚂蚁数科上线专用决策模型，支持原生多选与依赖编排<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">蚂蚁数科 DTMaaS</span><span class="t">10月22日</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">补入此前遗漏的 LingDT 决策模型发布，官方数据页确认原生多选、置信度输出与多问题依赖编排，适合有明确选项的业务判断。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>蚂蚁数科的专用决策模型已在官方平台标为发布状态。公开数据说明展示四十亿参数版本，定位于软件研发及业务流程中的决策任务，支持单选、判断、打分和原生多选，并称对输出置信度进行了校准。它强调解决通用语言模型与高频判断任务之间的效率、可靠性和成本适配问题。媒体在十月二十二日报道发布，而官方数据中的条目日期更早，不能把该字段直接当作当日新版本上线时间。</p><p>接口示例以重复扣款且退款超期的客诉为例，先判断处理部门和严重程度，再将上游结果传入紧急程度判断，最后选择处理队列。请求明确写出问题间的依赖，返回既包含汇总答案，也记录每层注入的信息、请求、延迟和调用次数。这种编排使开发者能逐步核对判断依据；示例给出的是分类与分流结果，实际退款或人工介入仍需外部业务系统执行。</p><p>官方中文说明列出免费期间的上下文限制、单次最多三十二个问题、三层依赖深度和最多二百五十五个选项，输入与输出报价当前显示为零。协议兼容表仅将专用决策协议标为兼容，常见聊天及响应协议标为不兼容，不能照搬页面通用模板直接接入。免费状态与请求限制应以调用时官方说明为准。</p>
+<p>来源：<a class="source-link" href="https://maas.antdigital.com/api/v1/model-service/public/get/modelservice-1792325631780001741" target="_blank">DTMaaS 官方公开模型数据</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>上海人工智能实验室开放科研模型，加入并行编排与链内自审<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">上海人工智能实验室 Hugging Face 模型卡</span><span class="t">10月22日 16:57</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">补入此前遗漏的 Sage-A1.5 开放模型：以科学长程任务为目标，模型卡说明并行子智能体、执行中自审和工具集成机制。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>上海人工智能实验室的科研智能体模型已公开权重与配置，官方模型卡采用开放许可，并列出多种推理框架的兼容与部署方式。它是三百五十亿参数规模的混合专家模型，在既有先导模型基础上加强长程科学问题求解。此次能力重点包括智能体编排、过程验证与开放科学发现，目标从回答单个预设问题延伸到组织研究工作、检查证据，并形成可供外部审阅的研究产物。</p><p>编排机制允许把独立问题交给不同子智能体并行调查，各自持有隔离上下文，以减少相互干扰，再综合结论。自审模式是可选功能，模型会在自身推理过程中暂停，盘点已确立的结果与失败尝试，然后在同一轮中修正方向，不依赖另一个外部评审模型。模型卡同时介绍函数调用以及与代码解释器、搜索引擎和其他外部工具协作的能力，实际使用需要应用端提供相应工具。</p><p>模型卡按长程搜索、工程、指令遵循及科学任务列出评测，并与同量级和更大规模系统比较。表格中不同任务的领先者并不相同，不能将某些最高分概括成全面超过所有对手；这些仍是项目方公布的结果。本条补录模型开放与可部署信息，框架接入和自报评测本身不构成对科研发现准确性的独立验证。</p>
+<p>来源：<a class="source-link" href="https://huggingface.co/InternScience/Sage-A1.5" target="_blank">Sage-A1.5 官方模型卡</a></p>
+</div>
+</div>
+</div>
+<!-- 产品发布/更新 -->
+<div class="section" id="s-products">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🚀</span><h2 style="color:#15803d;">产品发布/更新</h2><span class="count">7 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>开源推理框架发布正式版本，强化多租户调度与持续运维<span class="tag tag-verified">✅ 结构化源</span></h3>
+<div class="card-meta"><span class="src">IBM Research</span><span class="t">10月20日 20:00</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">IBM 公告称，llm-d 1.0 在北美 PyTorch 大会上发布，新增多租户服务质量、无停机运维和面向智能体的服务能力。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>IBM 研究博客宣布开源分布式推理框架正式发布一零版本，项目由红帽、谷歌和该公司等共同推进，以原生云端容器编排连接模型服务。公告把本次重点放在部署之后的日常运营，包括稳定接口、多租户资源竞争和不中断服务的升级。前缀缓存感知路由、缓存卸载、批量推理、提示处理与生成分离及专家并行并非此次才提出，新增之处是将这些技术整合为更成熟的运行系统。</p><p>公告解释，人类用户通常期待即时响应，智能体则可能突发提交大量请求，调用工具后再返回同一上下文。框架通过流量控制、公平性和优先级管理，减少突发工作负载挤占低延迟业务的风险，并让多轮请求继续路由到保有相关缓存的实例。缓存还可在加速器、处理器和存储之间转移，减少重复读取同一批代码、文档和指令带来的计算开销。</p><p>对自行部署开放模型的机构，这提供了管理共享资源与持续服务的具体办法。该框架与现有推理引擎协作，承担分布式路由和运维层职责。公告中的成本与性能结果仍对应特定测试场景，不能作为所有硬件、模型和流量组合下的收益保证，实际效果仍需按业务负载验证。</p>
+<p>来源：<a class="source-link" href="https://research.ibm.com/blog/llmd-1-0-is-ready-for-production-inference-serving" target="_blank">IBM Research</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>深度求索宣布开源内部推理框架与生产级编解码组件<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">DeepSeek GitHub；TechTarget</span><span class="t">10月20日 16:54</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">AIHOT 收录的深度求索官方摘要称，公司宣布全面开源内部推理框架 DeepInfer，并同步开放生产级 Token 编解码组件。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>深度求索十月二十日开放内部推理框架。实际读取的代码仓库说明，此次版本提供离线推理，支持其第四代一点一闪速模型，包含优化算子、并行计算、异步调度、结构化输出和确定性采样。独立报道确认发布时间，并指出其支持英伟达及华为的指定硬件。因此，本次开放应理解为生产系统中的核心推理能力，不能直接等同于把完整线上服务原样交付给用户。</p><p>同步核验的编解码组件仓库说明，它以统一的会话格式连接不同接口，提供请求转换、提示渲染、词元编码及输出解析，涵盖流式回复、思考内容和工具调用。调用方仍须自行提供模型推理、工具执行和网络传输。对自行托管模型的开发者，这些组件可以分别承担计算优化和接口适配，减少重复建设相关基础设施的工作。</p><p>需要注意，推理仓库列出的批次不变性和确定性采样带有硬件及配置限制，并非默认适用于所有部署。独立报道讨论了成本优化价值，但没有给出所有业务负载下都成立的节省比例；不能据此承诺固定收益。</p>
+<p>来源：<a class="source-link" href="https://github.com/deepseek-ai/DeepInfer" target="_blank">DeepSeek GitHub；TechTarget</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>谷歌推出政务服务智能体私有预览，连接既有业务记录系统<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Google Cloud</span><span class="t">10月20日</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">谷歌公共部门峰会推出 Gemini 政务服务平台私有预览，通过连接器、合作方智能体和确定性技能处理记录申请及文档校验等任务。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>谷歌在公共部门峰会宣布政务服务平台进入私有预览，面向联邦、州和地方机构的安全、治理与复杂工作流程需求。平台组合预建的合作伙伴智能体、安全连接器和确定性技能，把模型连接到现有案件管理、企业资源规划及协作记录系统，公告强调不必迁移机构的敏感数据。所列任务包括公共记录申请、文件接收校验、费用审计和政策研究，并要求回答依托权威联邦监管来源、附有可核查引用。</p><p>这一部署方式回应了政府机构在数据孤岛和系统整合上的阻力。谷歌与合作研究方对数百位公共部门领导者的调查称，百分之九十六点三的机构已以某种方式部署智能体，但只有百分之九实现全机构采用。平台试图把智能体嵌入已有业务记录及治理环境，使公务人员减少重复处理文件的操作；因此其关键意义在于连接真实政务流程和授权边界。当前状态仍是私有预览，公告没有给出所有机构均可立即购买的承诺，也没有提供对上述任务实际节省工时、错误率变化或公众服务质量改善的独立测量。</p>
+<p>来源：<a class="source-link" href="https://cloud.google.com/blog/topics/public-sector/announcements-and-highlights-from-google-public-sector-summit-2026" target="_blank">Google Cloud</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>谷歌车载助手接入个人信息，先向安卓汽车用户逐步开放<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Google</span><span class="t">10月20日</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">谷歌车载 Gemini 开始引入 Personal Intelligence，经用户开启后可结合邮件、日历、照片和地图等信息回答驾驶途中的个性化问题。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>谷歌宣布车载助手加入个人智能能力，首先在安卓汽车逐步推出，内置谷歌系统的车辆将在未来数月跟进。用户同意后，助手可连接邮件、日历、照片、地图、视频平台及搜索中的信息，将具体资料检索与跨来源推理结合起来。公告给出的例子包括同时查询邮件中的登机口和航班是否延误，按饮食偏好寻找沿途餐厅，根据日历中的预约导航，或从上周照片找到洗车店位置，降低驾驶时手动翻找信息的需要。</p><p>授权安排直接决定该能力如何使用：应用默认不会连接，用户须主动开启，也可随时在助手设置中关闭；对于内置谷歌系统的车辆，只有人在车内且手机连接时才分享个人化回答。未开启这项功能的用户仍可导航、播放音乐、打电话和提问，但回答不使用个人上下文。首轮对象为年满十八岁的合资格个人账号，不包括企业、商业及教育工作空间账号，且欧洲经济区、瑞士、英国和尼日利亚暂被排除。因而全球车载助手可用与个人智能功能覆盖范围应分别理解，不能据公告认定所有车辆和账号已经获得相同能力。</p>
+<p>来源：<a class="source-link" href="https://blog.google/products-and-platforms/platforms/android/android-auto-cars-with-google-built-in-gemini-personal-intelligence/" target="_blank">Google</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>ChatGPT推出协作幻灯片，支持团队共同编辑与多格式导出<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">OpenAI 帮助中心</span><span class="t">10月16日</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">OpenAI更新日志宣布Slides逐步开放，用户可从对话、文件或大纲创建演示文稿，并在Space中共同编辑。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI十月十六日更新日志宣布，在具备Space访问权限的合资格Pro、Business和Enterprise账户中逐步推出Slides。用户可以从对话、文件、大纲或参考模板生成演示文稿，在Space继续修改文字、图片、形状、表格和图表。帮助文档还说明，既可直接编辑选中的元素，也可向ChatGPT提出局部修改或整套文稿的调整要求。用户也可在Space选择创建幻灯片，以空白页面或模板开始，说明演示对象、主题和所用材料。</p><p>这使演示文稿从一次生成的文件转为可持续协作的内容：有编辑权限的同事可同时修改，并通过共享评论讨论，或提及ChatGPT及个人智能体请求调整。网页版可导出为PowerPoint、PDF和Google Slides，安装相应软件时也可用本地应用继续处理。不过，发布时不提供仅评论权限；部分Windows设备缺少必要组件时会使用本地文件流程，需切换云模式或网页版才能共同编辑。官方要求分享和演示前检查数字、正文、版式，以及导出后的内容和格式。</p>
+<p>来源：<a class="source-link" href="https://help.openai.com/en/articles/20001605-creating-and-collaborating-on-slides-in-chatgpt" target="_blank">官方原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>OpenAI开放生命科学学术计划申请，为美国实验室提供席位<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">OpenAI 帮助中心</span><span class="t">10月15日</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Rosalind Academic Plan开始接受美国大学实验室申请，审核通过后最多提供三十个免费Business Standard席位及模型访问。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI十月十五日更新日志宣布，Rosalind Academic Plan开始接受申请。该计划面向美国大学所属研究实验室，由主要研究负责人或实验室主管代表团队提交，通过审核后可获得最多三十个免费ChatGPT Business Standard席位，优惠期十二个月，并在可信访问审批与启用后使用GPT-Rosalind。文档列出的用途包括文献审阅、研究数据处理和分析代码开发。</p><p>计划将团队访问管理交给经核实的负责人；成员加入工作区后，仍需负责人单独开启模型权限。申请需要机构、研究用途、成员身份以及机构指定生物安全联系人的信息，大学邮箱和现有订阅并不保证获批。已有OpenAI Enterprise协议的大学应走机构流程。对实验室而言，免费席位降低了组织试用门槛，但正常使用限制继续适用，标准数据保留和机构数据管理要求也不会因优惠改变；该计划不提供零数据保留，公告同样没有证明模型能够替代实验验证。个人申请不适用于这一优惠。</p>
+<p>来源：<a class="source-link" href="https://help.openai.com/en/articles/20001602-rosalind-academic-plan" target="_blank">官方原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>实体安全平台完成融资，连接摄像头传感器与现场应急响应<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">SiliconANGLE</span><span class="t">2026年10月20日（原文发布日期）</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Firefly 宣布两千万美元 A 轮融资，利用人工智能连接现有安全硬件和应急软件，已在社区学院部署。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十日，实体安全人工智能企业宣布完成两千万美元首轮融资，由一家投资机构领投，另外两家机构参与。其目标是把原本分别工作的摄像头、无线通信设备和传感器连接起来：摄像头负责观察，传感器触发警报，人员依靠通信设备协调，而平台尝试把这些信息汇总，识别事件并组织应对。产品组合包括专用安全硬件和能接入现有设施的应急响应管理软件。</p><p>该平台会从设备与传感器提取信息，建立现场情境，向安全团队提供事件背景。公司另有可佩戴紧急按钮、用于定位按钮及探测枪声的信标，以及保持连接的网络网关。报道说，系统已在科罗拉多州一家社区学院的三个校区部署，公司接下来希望覆盖教育机构、医院和企业园区。实际意义是将警报后的人工理解和协调流程纳入软件支持，而不仅是增加摄像设备。现有报道主要说明产品设计和部署情况，尚未给出独立的误报率、紧急事件响应时间或长期安全效果对照数据。</p>
+<p>来源：<a class="source-link" href="https://siliconangle.com/2026/10/20/ai-startup-firefly-secures-20m-to-make-the-physical-world-a-safer-place/" target="_blank">SiliconANGLE 原文</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏭</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">12 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>转引报道指研究员使用阅后即焚聊天后遭解雇，细节待核<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">WinBuzzer；Think Facility</span><span class="t">10月24日（报道日期）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">AIHOT 收录的转引摘要称，华尔街日报报道 OpenAI 解雇三名安全研究员，涉及他们与外部研究员使用阅后即焚聊天。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十四日的补充报道转述华尔街日报调查，称公司安全人员在解雇三名安全研究员之前检查了他们的手机，发现部分人与外部研究员的聊天启用了消息自动消失功能。公司对外坚持，解雇缘于敏感信息处理违规，原因不限于聊天软件。两名研究员则表示，与外部安全人员交流本就是工作的一部分，三人均否认向外泄露公司秘密。</p><p>另一篇十月二十三日的报道记录了外部研究员格林布拉特的否认。他承认与三人使用过自动消失的聊天，但称没有在这些消息中传递机密，还表示自己读取的是获准分享的可监控性文件，而非包含敏感架构的版本。双方争议因此同时涉及信息分级、获准交流渠道，以及外部审计人员能够获得多大范围的内部信息。</p><p>现有可读材料是对调查报道及当事人发言的转述，尚无完整聊天记录或独立调查结论。不能把启用自动消失消息直接写成泄密证据，也不能认定研究员因提出安全意见而遭报复。对安全治理的实际意义，在于公司保密规则与外部评估工作的边界仍有公开争议。</p>
+<p>来源：<a class="source-link" href="https://winbuzzer.com/2026/10/24/openai-probed-safety-researchers-signal-messaging-before-firings-xcxwbn/" target="_blank">WinBuzzer；Think Facility</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>反诈案例介绍用人工智能陪骗子聊天，成效归因仍待核验<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Forbes Australia；Apate 官网</span><span class="t">10月19日（报道日期）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">AIHOT 收录的文章摘要介绍澳大利亚 Apate.ai 用人工智能与诈骗者对话，并提及国内用户以生成视频反制卖惨账号的案例。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>福布斯澳大利亚十月十九日报道了反诈企业的起源：创始人在一次家庭野餐中与骗子周旋四十四分钟，随后组织拥有人工智能安全和自然语言处理专长的研究人员，尝试自动化这类交谈，并在二零二四年成立公司。报道指出，银行成为早期客户，通过电信合作方把可疑电话转接给机器人；系统也把数字诱饵身份部署到电话、邮件、消息应用和社交平台。</p><p>机器人被设计成具有不同口音和个性的潜在受害者，每次任务可以是延长通话、收集情报或引导对方更换平台。公司官网进一步列出可提取的账户、加密钱包、电话号码和邮件地址，并提供仪表盘及预警。对银行和运营商而言，这种模式把部分防线前移到诈骗者接触真实客户之前，同时把对话转为可供后续阻断和调查使用的线索。</p><p>报道中的规模及效果描述主要来自创始人，公司官网也属于产品自述，不能视作独立效果评估。此次材料足以核验澳大利亚案例的运作方式，却没有证明银行损失变化由机器人单独造成；原摘要提及的国内生成视频反诈案例仍未取得可核验正文。</p>
+<p>来源：<a class="source-link" href="https://www.forbes.com.au/covers/magazine/how-a-sydney-professor-built-an-ai-army-to-scam-the-scammers/" target="_blank">Forbes Australia；Apate 官网</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>美国法院批准继续羁押前人工智能工程师，窃听指控待审<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Ars Technica；美国检方羁押备忘录</span><span class="t">10月20日 04:21</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Ars Technica 报道，美国法院同意继续羁押前 OpenAI 工程师，检方称其涉嫌在会议室安装录音装置并具有逃离风险。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>报道显示，美国法院同意检方请求，让被控在人工智能实验室会议室秘密录音的前工程师继续羁押。本次同时读取检方提交的羁押备忘录，其中列出涉嫌安装装置、搜索会议室用途和离境安排的指控。文件称其曾利用公司生产力智能体了解高管使用哪些会议室，并通过家属的聊天机器人账号查询录音装置改造方法；这些内容属于检方陈述，尚不是经审判认定的事实。</p><p>羁押申请的主要争点是逃离风险。检方援引被告原定乘坐单程航班离境、家庭成员已离美以及境外联系等情况，请求维持审前拘押。报道还称手机中发现涉及沙特政府的文件夹，但没有公开其中内容。由此不能仅凭文件夹名称判断信息已转交，也不能将检方对潜在动机的分析当作外国政府参与行为的既定结论。</p><p>该案把实验室信息保护的关注点延伸到会议室、物理设备和内部查询权限。现有材料没有给出最终定罪结果或确定的机密外流范围，检方文件也明确调查仍在继续。对事件的判断需要区分已发生的羁押决定、具体指控以及尚待证明的动机与后果。</p>
+<p>来源：<a class="source-link" href="https://arstechnica.com/tech-policy/2026/10/accused-openai-spy-had-folder-called-saudi-gov-docs-fbi-says/" target="_blank">Ars Technica；美国检方羁押备忘录</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>迪士尼拟经破产程序取得聊天机器人技术，州监管保留异议<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Ars Technica；俄勒冈司法部</span><span class="t">10月19日 22:45</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Ars Technica 报道，迪士尼拟经破产程序取得 Character.AI 技术许可；俄勒冈司法部公告称各州保留挑战相关方案的权利。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>报道依据破产文件介绍，迪士尼已聘用聊天机器人公司多数员工，拟在后续破产程序中进一步取得技术许可；许可仍涉及竞价和法院批准，不能写成技术收购已经完成。报道指出，拟授权内容涉及代码、文档及技术工具，而用户数据和网站没有列入该许可清单。交易试图把技术与人员安排同原公司的诉讼责任分开，但最终效力仍取决于程序结果。</p><p>本次另读取俄勒冈司法部公告。该机构称已联合其他州提交通知，要求任何业务或资产转移保护儿童、消费者及隐私。公告特别指出，公司保存着涉及心理健康、关系和情绪困境的敏感聊天内容，各州担心这些资料在破产出售中缺少保护；同时认为现有面向未成年人的部分限制仍属自愿措施，可能被绕过或由未来买家撤回。</p><p>这使交易的关键不只在技术能否转移，也在消费者信息和既有责任如何处理。各州已保留挑战拟议出售或破产方案、要求额外保护的权利。公司对报道所述平台安全问题提出异议，不能把调查指控直接视为裁判结论，也不能预先认定买方必然能够免除全部相关责任。</p>
+<p>来源：<a class="source-link" href="https://arstechnica.com/tech-policy/2026/10/disney-found-a-way-to-buy-character-ai-without-buying-its-lawsuits/" target="_blank">Ars Technica；俄勒冈司法部</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>谷歌调查显示人工智能使用扩张，工作流程转型比例仍停滞<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Google Workspace</span><span class="t">10月20日</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">谷歌对六国管理者和知识工作者的调查发现，企业扩大人工智能使用的同时，流程重构、成本规划与智能体治理仍存在缺口。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>谷歌工作空间发布年度调查，访问美国、英国、法国、巴西、印度及日本的二千六百三十八名高管决策者和知识工作者。受访组织中，百分之九十一提出人工智能优先目标，但只有百分之四十二的员工认为这一目标已在日常工作中得到明确定义。自称进入规模化应用阶段的组织比例从上年的百分之十八升至百分之二十七，而认为工作方式已完成转型的比例仍为百分之十，与上年相同，显示工具扩张与组织改变并未同步。</p><p>成本和授权边界是调查呈现的具体阻力：百分之七十二表示人工智能目标已超过预算规划，百分之六十八担忧使用成本失控；虽然百分之九十七正在使用或计划使用智能体，但只有百分之三十五的员工认为组织清楚规定了智能体可以独立处理什么。报告将较成熟组织的做法概括为重构业务流程、把能力嵌入现有应用、规划长期成本及保留人的判断。这些结果适合用于检查企业部署中的管理缺口，但它们来自厂商发布的问卷和受访者自述，不能直接当作全行业客观生产率增幅或因果实验结果。</p>
+<p>来源：<a class="source-link" href="https://workspace.google.com/blog/product-announcements/bridging-the-gap-between-ai-ambition-and-readiness-new-survey-data" target="_blank">Google Workspace</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>Anthropic设立公共利益基金，拟随公司价值增长增加持股<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Anthropic</span><span class="t">10月18日</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Anthropic宣布拟将部分股份投入公共利益基金，初始比例为百分之五，并设计随公司价值增长扩大份额的机制。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月十八日，Anthropic宣布设立全资持有的公共利益基金实体，拟在股东批准后投入公司百分之五的股份。按照公布的设计，公司价值相对既定基线每增长百分之五十，董事会可酌情再增加两个百分点。基金采取有限责任公司形式，公司称这是为了在不同捐赠方式之间保持调整空间，其持有的股份不会用于美国或海外的游说和政治捐赠。</p><p>公司将劳动力市场冲击列为潜在用途之一，并提到此前已承诺两亿美元研究和应对相关问题。基金未来可以考虑向传统非营利组织大额捐赠，或向特定人群直接分配资源。结合创始人和员工已有的股权捐赠承诺，公司称约两成股份将用于公共利益。治理结构、估值里程碑和实际拨付安排仍需后续披露；上述内容属于公司提出的机制，不能等同于资金已经交付。公司还表示，约一半员工参与了由公司配捐的股权承诺项目。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/news/public-benefit-fund" target="_blank">官方原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>Anthropic向独立评估机构开放内部系统，披露发布权边界<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Anthropic</span><span class="t">10月15日</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Anthropic称六名METR员工已获得接近内部风险评估团队的访问权限，并说明第三方评估的分层安排和公开限制。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月十五日，Anthropic宣布开始向非营利评估机构METR提供类似员工的访问权限。六名研究人员获得公司硬件、办公空间和内部工具，其权限大体接近公司自身风险评估团队。公司称，模型能力提高使风险评估更困难，而训练和防护信息又不能全部公开，因此希望借外部评估缩小内部与外界对风险认知的差距。</p><p>METR可以公开对风险、事故和实践的分析，公司没有整体否决发表的权力，但可以要求删去预先定义的保密类别，且最终由公司判断信息是否属于这些类别。客户数据、律师保密材料和模型架构等也存在访问例外。公告同时列出三层评估安排，较低层级的权限和发表自由更有限。其实际意义在于第三方能接触比公开模型接口更深的证据，但独立性仍需结合删改边界判断；这项自愿合作本身并不是对模型安全的最终认证。其他合作仍处早期阶段。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/news/an-update-on-independent-evaluators" target="_blank">官方原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>物理学家加入Anthropic长期利益信托，参与治理监督<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Anthropic</span><span class="t">10月21日</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Anthropic宣布实验物理学家Christopher Stubbs加入长期利益信托，信托拥有任命公司多数董事的权力。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十一日，Anthropic宣布实验物理学家、哈佛大学前科学学院院长Christopher Stubbs加入长期利益信托。他长期从事观测宇宙学和精密测量研究，曾参与发现宇宙加速膨胀，并为美国政府提供国家安全和军控咨询。公司介绍，他近期也讨论了模型对相同问题可能给出不同答案时，人工智能辅助科研如何保持可复现性。</p><p>公告说明，Anthropic作为公共利益公司，需要在商业增长和公共利益目标之间维持平衡；信托具有任命多数董事的权力，并就人工智能风险和社会影响等重要决策向董事会及管理层提供意见。Stubbs是该信托首位物理学家，与现有的国家安全和经济领域成员形成不同背景组合。公司同时提到首次公共利益报告由信托参与制定衡量支柱并给出评估。任命增加了科学研究视角，但公告没有披露他将推动哪些具体治理决定，也不能据此推断公司已解决商业利益与安全之间的所有冲突。</p>
+<p>来源：<a class="source-link" href="https://www.anthropic.com/news/christopher-stubbs-joins-long-term-benefit-trust" target="_blank">官方原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>会议助手获得非股权增长融资，计划扩大企业销售与国际业务<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">SiliconANGLE</span><span class="t">2026年10月20日（原文发布日期）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Otter.ai 宣布取得三点二亿美元增长资金，以销售营销收入回报投资方，继续将会议记录连接到企业工作流程。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十日，会议助手企业宣布获得三点二亿美元融资，全部来自一家投资机构的客户价值基金。该基金为销售和营销提供资金，以其帮助创造的收入分享回报，并不取得被投企业股权。公司称全球已有超过四千万用户，并计划扩大企业业务。产品通过桌面和移动客户端提供会议前信息准备、发言人识别、转录及行动事项摘要，还能把幻灯片和屏幕共享内容纳入记录。</p><p>资金主要服务于商业扩张，而现有产品的实际用途已从保存谈话延伸至整理企业知识。用户可按项目、团队及主题管理文件，用自然语言检索，并同步至多种外部云服务；销售人员可生成跟进邮件，教师可依据课堂记录制作学习指南。企业版本还提供会话趋势仪表盘、访问控制与单点登录。报道转引的下一年企业业务至少翻倍及扩大营销预算，属于经营目标；累计用户规模本身不能证明这些增长目标已经完成。</p>
+<p>来源：<a class="source-link" href="https://siliconangle.com/2026/10/20/otter-ai-raises-320m-in-funding-for-its-ai-meeting-assistant/" target="_blank">SiliconANGLE 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div>
+<div class="card-main">
+<h3>法律智能体企业完成新一轮融资，扩张北美及多步骤工作服务<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">SiliconANGLE</span><span class="t">2026年10月21日（原文发布日期）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Legora 宣布完成五点五亿美元 E 轮融资，估值八十八亿美元，将继续拓展全球市场并投资法律工作智能体。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十一日，斯德哥尔摩法律人工智能企业宣布完成五点五亿美元新融资，投后估值八十八亿美元，由新投资机构领投，多个现有投资人继续参与。公司称目前年度经常性收入超过两亿美元，第三季度新增客户中，企业内部法律团队占四成。其平台于二〇二四年十月推出，服务对象包括律师事务所和企业法务，提供能够执行多步骤工作的法律智能体。</p><p>公司表示资金将用于继续全球扩张，尤其是北美市场，并加深对智能体法律操作系统的投入。报道描述的行业变化包括加速研究与文书处理，让内部团队承担更多工作，同时改变律所人员配置及定价方式。这些工具提高了对法律判断、核验和技术素养的要求。报道引用的调查也显示，虽然多数受访法律领导者认为技术能力愈发重要，许多组织尚未围绕人工智能重新设计岗位；因此融资及收入扩张并不能等同于整个法律行业已完成工作流程改造。</p>
+<p>来源：<a class="source-link" href="https://siliconangle.com/2026/10/21/legal-ai-startup-legora-raises-550m-at-8-8b-to-change-the-face-of-law/" target="_blank">SiliconANGLE 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">22</div>
+<div class="card-main">
+<h3>机器人初创获种子前融资，同时开发跨形态模型与感知执行器<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">SiliconANGLE</span><span class="t">2026年10月22日（原文发布日期）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Enact Intelligence 宣布三千万美元种子前融资，研发可控制不同机器人形态的模型及带感知能力的执行器。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日，瑞士机器人初创企业宣布获得三千万美元种子前融资，出资方包括人工智能研究人员、两家模型公司的创始成员及多家风投。该企业今年成立，负责人此前曾在机器人企业担任工程职位。公司正在开发针对机器人控制优化的模型，目标是支持多种机器人设计，区别于传统上主要为特定机体定制的算法；此外也自行开发执行器等实体组件。</p><p>执行器通常由电机、控制芯片及辅助零件构成，负责产生机械运动。公司称其执行器还能感知力和触觉，这使模型与硬件感知成为同一研发计划的两端。报道还依据招聘信息指出，团队招募具备模型预训练经验的研究者，并计划采用可编程芯片。相关线索反映其可能同时投入底层模型与机器人硬件，但招聘要求不能当作产品能力已经实现的证明。公司并未披露触觉技术的具体实现方式，也没有公布跨形态控制的完整对比测试，资金将用于扩充工程团队和技术开发。</p>
+<p>来源：<a class="source-link" href="https://siliconangle.com/2026/10/22/robotics-startup-enact-intelligence-nabs-30m-funding-round/" target="_blank">SiliconANGLE 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">23</div>
+<div class="card-main">
+<h3>科学人工智能团队成立化学服务企业，以实体实验训练模型<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">SiliconANGLE</span><span class="t">2026年10月22日（原文发布日期）</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Warp Sciences 宣布获得两点一五亿美元融资，在美国建立化学合同研究服务，以实验数据推动模型与实验室自动化。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日，新成立的化学研究服务企业公布两点一五亿美元融资，由一家风投领投，多家机构及个人参与。创始团队包括此前负责科学人工智能项目的高管、药物化学研究人员以及数据和模型技术人员。公司将在美国建立面向生物技术与制药客户的合同研究组织，首项服务是先导化合物优化中的类似物合成，即制作候选分子的多种变体，供客户科学家比较。</p><p>公司的路线将实体实验与模型训练连接：实验产生的数据用于训练人工智能，经验丰富的化学家指导工作，再逐步增加自动化。报道介绍，人类研究者将佩戴摄像设备和传感手套，帮助机器人学习实验室任务。团队认为科学模型需要规模化真实世界数据，并希望本土实验室能够兼顾知识产权与成本顾虑。不过公司明确表示只制作客户指定的分子，并不自行开发药品；因此本次融资代表化学服务与自动化能力建设，不能理解为某种新药已经获批或实验室机器人已全面取代研究人员。</p>
+<p>来源：<a class="source-link" href="https://siliconangle.com/2026/10/22/ex-openai-science-chief-kevin-weil-launches-warp-sciences-with-215m-for-drug-chemistry/" target="_blank">SiliconANGLE 原文</a></p>
+</div>
+</div>
+</div>
+<!-- 论文研究 -->
+<div class="section" id="s-paper">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">📄</span><h2 style="color:#6d28d9;">论文研究</h2><span class="count">2 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">24</div>
+<div class="card-main">
+<h3>谷歌发布全球森林类型地图，以十米分辨率识别自然林与种植园<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Google DeepMind</span><span class="t">10月22日</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">谷歌与合作机构推出森林类型地图及年度变化序列，借助卫星表征区分六类土地，帮助观察自然林被何种用途替代。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>谷歌深度思维与谷歌研究院联合世界资源研究所、国际应用系统分析研究所发布全球森林类型地图，以二〇二〇年为基准，将每块十米见方土地划为原始林、自然再生林、人工林、集约经营种植林、树木作物及农林复合经营、其他土地六类。同时公布二〇一七至二〇二五年的早期年度序列，显示自然林消失后究竟变成种植园、农田还是其他用途。模型使用约一百七十万个标注地点，并将多年卫星观测压缩形成的地球表征作为关键输入。</p><p>这一分类针对传统树木覆盖地图的盲点：天然森林砍伐后重新种树，画面仍然绿色，碳储量与生物多样性却可能已经改变。发布方称，超过九千个随机地点的专家验证中，森林类型分类准确率为百分之九十，森林与非森林区分准确率为百分之九十五。地图和时间序列已在地球引擎以开放许可免费提供，可服务森林保护和供应链风险核查；年度序列仍是早期版本，团队表示将继续改进，并允许用户依据各类别概率设置不同判断阈值。</p>
+<p>来源：<a class="source-link" href="https://deepmind.google/blog/beyond-tree-cover-mapping-the-worlds-forest-types/" target="_blank">Google DeepMind</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">25</div>
+<div class="card-main">
+<h3>谷歌展示智能体检索抗菌肽流程，候选分子仍在湿实验验证<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Google DeepMind</span><span class="t">10月15日</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">谷歌以抗菌肽发现案例介绍 Antigravity 科研工作台，串联蛋白数据库、结构比对与文献分析，明确候选物仍需实验验证。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>谷歌深度思维公布利用智能体开发平台寻找抗菌肽的技术演示，将以往分散在多个数据库中的检索、结构分析与文献整理合并进一次研究会话。研究人员设定从假肺炎链球菌寻找新抗菌肽的目标，由蛋白语言模型从原始氨基酸序列预测功能，再让智能体筛选公共蛋白库，得到一个九十七个氨基酸长的细菌素候选。研究者继续引导其与人工审核蛋白库比对，并调用蛋白结构数据库检验空间结构上的相似性。</p><p>具体工作还包括检查候选基因附近的转运蛋白及调控因子，整理可能作用的病原体，并形成表达、药敏、靶点结合和体外毒性实验方案。这种流程的实际作用是缩短数据库初筛与证据汇总所需的操作链，让研究者把注意力放在科学问题和下一步实验选择上。原文明确表示，该候选及同流程发现的其他候选正在接受湿实验验证，因此当前只是有结构与基因组证据支持的线索；预测活性不能当作已经证实的抗菌疗效，也没有给出临床治疗结论。</p>
+<p>来源：<a class="source-link" href="https://deepmind.google/blog/accelerating-antimicrobial-discovery/" target="_blank">Google DeepMind</a></p>
+</div>
+</div>
+</div>
+<!-- 技巧与观点 -->
+<div class="section" id="s-tip">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">💡</span><h2 style="color:#0e7490;">技巧与观点</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">26</div>
+<div class="card-main">
+<h3>面壁智能介绍前瞻专家调度，称支持大规模模型端侧运行<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">OpenBMB 技术文档；BenchGecko</span><span class="t">10月20日 14:22</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">面壁智能公开文档介绍前瞻专家调度，结合量化与推测采样，报告指定手机约三吉字节内存下每秒十三个以上词元；属于厂商测试数据。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>面壁智能技术文档介绍的前瞻专家调度，解决的是混合专家模型权重无法全部放入设备内存时，反复加载造成的等待问题。方法先预测下一层可能需要的专家并预加载，再优先计算实际路由中已经就绪的专家，同时继续加载其余所需权重。预测只影响预取和调度，最终仍按模型原有路由完成计算，未预测命中的必要专家也会被正常加载执行。</p><p>文档把该方法与逐层细粒度量化、推测采样结合，报告在指定苹果手机上以约三吉字节内存达到每秒十三个以上词元。补充读取的模型跟踪页面复述相同数字，并明确标注这是厂商数据而非该站独立测试。对端侧部署而言，关键价值是利用存储、内存和计算的重叠降低等待，同时避免为了减少加载而预先固定专家子集。</p><p>本次读取的文档数字与旧摘要所称每秒二十词元以上不一致，不能混用为同一测试结果。无损描述主要针对保留原始路由，不意味着量化、所有任务精度和各种设备表现均已得到独立验证。实际手机的存储带宽、量化配置与持续运行条件仍须分别核验。</p>
+<p>来源：<a class="source-link" href="https://github.com/OpenBMB/MiniCPM-V/blob/main/docs/minicpm_v4dot7_en.md" target="_blank">OpenBMB 技术文档；BenchGecko</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">27</div>
+<div class="card-main">
+<h3>微软介绍交互图表语言，让智能体连接图表选择与应用状态<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Microsoft Research</span><span class="t">10月22日</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">微软研究院介绍 Flint-interactive，以语义事件和高层更新操作描述交互图表，支持聊天内探索、跨图联动以及表格和文本连接。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>微软研究院介绍交互可视化语言，帮助人工智能智能体在生成图表时加入点击、筛选、缩放、高亮及跨图联动。它建立在既有图表系统之上，通过编译器将用户选择转换为具有数据含义的语义事件，再由高层操作更新画布，避免让智能体直接编写大量底层渲染和依赖处理代码。官方展示了在两个年份的散点图间联动框选国家、在表格选中一行后突出对应气泡，以及沿季节轨迹拖动数据点同步观察其他城市等例子。</p><p>开发者可以在聊天或画布环境通过模型上下文协议应用生成交互说明与图表规格，也可用编程接口把图表事件接到表格、文本、控件和应用状态。对希望把静态报告变成可继续探索的数据产品的团队，实用价值是复用语义选择及更新操作，把互动逻辑与编译器管理的视觉逻辑分开。原文认为这种做法有助于减少重复推理、调试和布局错误，但没有给出统一量化的成本降低或可靠性基准；采用时仍应验证具体图表中的联动、数据含义和外部状态更新是否正确，而非把高层规格视作免测试保证。</p>
+<p>来源：<a class="source-link" href="https://www.microsoft.com/en-us/research/blog/flint-interactive-a-language-for-creating-interactive-data-visualizations/" target="_blank">Microsoft Research</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">28</div>
+<div class="card-main">
+<h3>ChatGPT上线聊天锁定功能，隐藏记录并明确记忆与分享边界<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">OpenAI 帮助中心</span><span class="t">10月20日</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">OpenAI宣布逐步推出聊天锁定，通过账户密码或受支持设备认证打开，并强调锁定不会改变保留和模型改进设置。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI十月二十日更新日志宣布逐步推出锁定聊天，最初列明面向个人账户的网页、手机和新版桌面应用。用户可把指定对话从普通历史、置顶记录和常规搜索中隐藏，进入锁定区域时使用四位账户密码，受支持设备也可使用生物识别或设备认证。帮助文档说明，这主要用于共享屏幕或共用设备时减少敏感对话直接暴露。</p><p>实际使用时需要区分界面隐藏和数据管理：锁定不会创建端到端加密空间，不改变聊天保留时间、模型改进设置或适用的工作区政策，也不会删除此前已被记住的信息。对话既有的分享链接不会自动失效，已分享的内容仍可访问，需另行删除链接。忘记密码后若选择重置，全部锁定对话及仅由旧密码保护的内容会被永久删除。官方还提示其他已打开设备可能要刷新后才隐藏标题，因此分享屏幕前仍应检查当前显示状态。</p>
+<p>来源：<a class="source-link" href="https://help.openai.com/en/articles/20001411-using-locked-chats-in-chatgpt" target="_blank">官方原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🤖 AI 行业日报 · 2026-10-25 · 数据来源：公开来源原文核验；本轮新增与补写条目经网页正文读取，标记web；日期按各条标注的来源发布日期或原API北京时间。<br>
+共 28 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 补充检索时间窗为2026年10月15日—25日，已排除10月23日及24日报告重复事件；共24条。模型板块无新增且不重复的已核验发布，留空。前瞻专家调度条目采用可读技术文档每秒十三个以上词元的表述，与旧摘要数字不同；测试为厂商报告。</span>
+</div>
+
+</div>
+</body>
+</html>

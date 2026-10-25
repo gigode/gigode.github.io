@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-10-25</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🌐 全球宏观日报</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-10-25 · 20 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-cenbank">🏛️ 中央银行（4）</a></li>
+<li><a href="#s-data">📊 经济数据（4）</a></li>
+<li><a href="#s-market">📈 资本市场（4）</a></li>
+<li><a href="#s-policy">⚖️ 政策与监管（4）</a></li>
+<li><a href="#s-view">🎙️ 大咖观点（4）</a></li>
+</ul>
+</nav>
+
+<!-- 中央银行 -->
+<div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏛️</span><h2 style="color:#1e40af;">中央银行</h2><span class="count">4 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>日本央行十月报告评估金融体系韧性，加入人工智能复合冲击<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">日本银行</span><span class="t">10月23日（具体时间不详）</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">日本央行十月金融系统报告认为体系整体稳定，并在压力测试中纳入人工智能投资预期下降与海外非银行机构调整的叠加影响。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>日本央行十月二十三日发布金融系统报告，判断日本金融体系整体维持稳定。企业贷款需求继续增加，银行放贷态度积极，金融中介功能运行顺畅，当前金融活动未出现重大失衡。报告指出，全球人工智能相关需求扩张曾改善市场情绪，但中东局势、人工智能投资的盈利能力和融资，以及海外非银行金融中介部门的发展，仍存在较大不确定性。私人基金等主体在相关投资融资中的作用日益突出。</p><p>报告改进了宏观压力测试对人工智能盈利预期下降的设定，并假设海外非银行部门通过调整投资组合放大冲击，以检验银行资本充足程度。其评估认为，日本银行具备充足资本和稳定融资基础，能够承受地缘风险、原油涨价、人工智能预期下调与利率显著上升同时发生的复合压力。报告同时要求密切监测房地产和股票等资产价格，考察原材料与能源成本上涨对中小企业的影响，以及加息对企业、家庭、银行利润和吸收损失能力的作用。</p>
+<p>来源：<a class="source-link" href="https://www.boj.or.jp/en/research/brp/fsr/fsr261023.htm" target="_blank">日本银行报告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>哈萨克斯坦央行下调基准利率，强调年内再调整可能性较低<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">哈萨克斯坦国家银行</span><span class="t">10月23日（具体时间不详）</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">哈萨克斯坦央行将基准利率设为百分之十五点七五，认为通胀与预期下降创造降息空间，但价格压力和上行风险依然突出。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>哈萨克斯坦国家银行十月二十三日宣布，将基准利率设为百分之十五点七五，利率走廊上下各一个百分点。央行称，年度通胀已连续十二个月回落，适度偏紧的货币政策和坚戈汇率的有利变化支持了物价降温。食品与非食品通胀放缓，但未经管制的服务价格涨势仍强，核心通胀指标也显示价格压力持续存在。居民一年期通胀预期下降，专业市场参与者亦下调了今明两年的通胀预期。</p><p>央行认为，年度通胀和预期持续下降创造了降息空间，此次决定仍保留适度偏紧的货币条件，以巩固通胀回落。与此同时，财政与准财政刺激、投资活跃以及能源和食品价格居高不下，令风险继续偏向上行。受公共事业收费低基数影响，年底年度通胀可能有所回升。央行表示，按当前风险平衡，年内再次调整利率的可能性较低；进一步降息取决于价格压力持续缓解得到确认，后续决策还将考虑通胀、预期与风险变化，下一次例会决定安排在十二月公布。</p>
+<p>来源：<a class="source-link" href="https://nationalbank.kz/en/news/press-relizy/20503" target="_blank">哈萨克央行公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>新西兰议息前瞻转向继续收紧，银行研究仍警惕经济代价<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">ASB银行、Westpac研究</span><span class="t">10月23日（具体时间不详）</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">ASB发布新西兰央行十月议息前瞻，将政策展望转向进一步收紧，强调纽元偏弱与能源成本持续可能延长通胀压力。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>新西兰银行ASB十月二十三日发布议息前瞻，预计新西兰央行在十月二十八日审议时继续提高官方现金利率，并维持有条件的收紧倾向。报告把通胀起点较高、纽元弱于央行九月预测、燃料成本上涨更为持久列为主要理由。ASB认为，较低汇率不利于控制以纽元计价的成本和进口通胀，能源冲击也可能进一步影响工资与价格制定，因此调整了自身对后续政策路径的判断。</p><p>ASB同时提醒，在较大成本冲击之际继续收紧，可能压低经济活动，并放慢刚开始显现的劳动力市场复苏；它将继续观察通胀压力是否扩散及预期是否上移。此前一天发布前瞻的西太平洋银行也认为，能源和汇率使近期物价前景更令人担忧，但批发利率上升与经济闲置产能构成抵消因素。该行提示，国内消费、住宅投资和企业利润承受压力，较为审慎的收紧节奏更合适。上述内容均为商业银行研究判断，央行的实际决定及后续指引仍待会议发布。</p>
+<p>来源：<a class="source-link" href="https://www.asb.co.nz/content/dam/asb/documents/reports/economic-note/asb-2026-oct-mpr-preview.pdf" target="_blank">ASB议息前瞻</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>人民银行预告七千亿元中期借贷便利操作，组合调节流动性<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">经济参考报／南方财经网</span><span class="t">10月24日 11:27</span><span class="tag tg-cb">中央银行</span></div>
+<div class="card-brief">人民银行公告拟于十月二十六日开展七千亿元一年期中期借贷便利操作，报道结合买断式逆回购说明当月中期资金仍为净投放。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据经济参考报十月二十四日报道，人民银行前一天发布中期借贷便利招标公告，计划于十月二十六日开展七千亿元操作，期限一年，采用固定数量、利率招标和多重价位中标方式，目的为保持银行体系流动性充裕。由于本月有九千亿元到期，这一安排对应中期借贷便利缩量续作两千亿元。报道同时指出，上月中期借贷便利为加量续作两千亿元，这次规模方向有所变化。此次也是央行行长潘功胜宣布将研究择机把公开市场主要操作品种期限切换为隔夜后的首次中期借贷便利安排。</p><p>报道引述东方金诚王青的解释称，十月两个期限品种的买断式逆回购已加量续作四千亿元，因此结合中期借贷便利后，当月中期流动性整体仍为净投放两千亿元。近期政策债券发行较温和、节后资金面偏宽松，也是他列出的背景。招联董希淼在报道中认为，这种组合更体现精准调剂和期限优化：买断式逆回购覆盖阶段性跨月需求，中期借贷便利保留一年期调节灵活性，避免中长期流动性过度叠加。董希淼预计，下一阶段流动性仍将保持合理充裕，同时总量宽松加码存在边界。</p>
+<p>来源：<a class="source-link" href="https://m.sfccn.com/2026/10-24/xOMDE0MDZfMjI4MDkxOQ.html" target="_blank">经济参考报转载</a></p>
+</div>
+</div>
+</div>
+<!-- 经济数据 -->
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>英国十月企业活动加快扩张，新增订单与技术服务需求回升<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Investing.com</span><span class="t">时间不详</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">路透社十月二十三日报道，英国十月企业调查显示活动与订单增长加快，部分企业受益于人工智能投资，但成本压力仍强。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十三日报道，标普全球英国采购经理调查初值显示，十月综合活动指标较九月上升，制造业产出和服务业新增订单均有改善。受访企业提到，人工智能投资支出和技术服务需求增长带动销售；企业也增聘员工。调查同时指出，一些客户在下周预算案公布之前暂缓支出，因此当月需求还受到财政政策不确定性的影响。报道把这些结果列为英国经济在能源价格冲击下仍有韧性的证据。</p><p>活动改善并未消除价格压力。企业投入成本上涨速度加快，制造业尤其突出，不过企业向客户收取的价格涨幅低于九月。调查中的未来一年预期略有回升，但仍低于长期平均，企业继续担心乌克兰和海湾战争以及借贷成本上升。原文讨论了英国央行下一次会议可能加息的市场预期，这属于尚待验证的判断。订单改善、投入成本上升和企业对预算案的观望同时存在，不能仅凭活动指标回升认定通胀压力已经缓解。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/economic-indicators/uk-businesses-report-strongest-month-since-february-pmi-shows-4968405" target="_blank">Reuters / Investing.com</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>德国十月企业扩张放缓，制造业生产与服务订单出现分化<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Investing.com</span><span class="t">时间不详</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">路透社十月二十三日报道，德国综合采购经理指数仍处扩张区间，但服务需求停滞，新业务增长偏弱，复苏表现依然脆弱。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十三日报道，标普全球德国采购经理调查初值显示，十月私人部门活动继续增长，但综合指标低于九月。制造业生产保持较强增势，制造业采购经理指数反而小幅提高；服务业活动则仅温和增加，扩张速度下降。综合调查覆盖制造业与服务业，这两个部门合计占德国经济的重要部分。原文引述调查负责人判断，持续扩张是积极信号，但速度放缓也凸显这轮复苏仍不稳固。</p><p>新增业务只略有增加，是调查反映的主要制约。服务企业报告客户延迟决定、预算收紧，需求因此停滞；制造业订单增长同样放缓，但出口销售仍提供支持。企业商品和服务售价上涨速度下降，却仍高于长期平均水平。信心表现也不一致：服务企业对未来产出的预期改善，制造企业则更担心投入价格上涨。实际生产扩张、新订单偏弱和成本担忧同时出现，说明行业之间的景气差异仍然明显，调查并不支持把所有部门视为同步加速。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/economic-indicators/german-business-activity-growth-softens-in-october-pmi-shows-4968204" target="_blank">Reuters / Investing.com</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>日本十月制造扩张减速，服务改善未能带动综合景气加快<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Investing.com</span><span class="t">时间不详</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">路透社十月二十三日报道，日本制造业产出与新增订单增速回落，服务业活动改善，综合活动增速持平，企业信心有所走弱。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十三日报道，标普全球日本采购经理调查初值显示，十月制造业仍在扩张，但生产和新订单增长速度下降。制造业企业继续增加采购，并积累投入品库存；工厂就业人数温和增加。与制造业表现相反，服务业活动指标较上月上升，业务活动和销售增长都有改善。两部分相互抵消后，私人部门综合活动指标与九月持平，整体增长速度没有进一步加快，也低于年内平均表现。</p><p>需求和用工方面的细节比综合指标更弱。私人部门新业务增速下降，出口业务增幅放缓，就业创造速度也回落，企业对未来一年的信心下降。成本端则受到原材料和劳动力费用上涨影响，投入价格涨幅略有加快；企业仍提高售价，但提价速度减慢。调查因此同时呈现服务活动改善、制造需求降温和成本压力存在的状态。它反映的是企业当月经营反馈，不能据此宣布日本经济整体收缩，也不能把投入品备货直接等同于最终需求已经恢复。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/economic-indicators/japan-manufacturing-growth-slows-to-7month-low-in-october-pmi-shows-4967878" target="_blank">Reuters / Investing.com</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>加拿大八月零售各分项普遍回升，九月先行估计仍待修订<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Statistics Canada</span><span class="t">10月23日 20:30</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">加拿大统计局公布八月零售额与实际销量同步增加，各子行业均有增长；九月先行估计继续上升，但该估计属于可修订数据。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>加拿大统计局十月二十三日发布八月零售报告，销售额增加，九个子行业均录得增长，汽车及零部件经销商贡献突出。剔除汽车以及加油站和燃料商后的核心零售额也有回升，食品饮料、综合商店、健康及个人护理零售均有改善。统计局同时公布的实际销量亦上升，因此当月零售增长并非只有名义金额增加。汽车销售内部仍有区别，新车和零部件较强，二手车及其他车辆销售则下降。</p><p>燃料相关销售尤其需要区分价格与数量：加油站和燃料商的销售额增加，实际销量却下降。地区上，多数省份增长，安大略省的金额增量较大，艾伯塔省则小幅下降。九月先行指标预计零售继续增加，但统计局明确说明这是依据部分企业回复计算的非正式估计，之后将修订。报告通常使用季调后的当期价格，销量数据另作价格调整；部分旅游住宿、票务和金融类网上交易不纳入零售统计。以上口径决定了该报告只反映零售领域，不能直接替代整体家庭消费。</p>
+<p>来源：<a class="source-link" href="https://www150.statcan.gc.ca/n1/daily-quotidien/261023/dq261023a-eng.pdf" target="_blank">Statistics Canada</a></p>
+</div>
+</div>
+</div>
+<!-- 资本市场 -->
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #f59e0b;">
+<span class="icon">📈</span><h2 style="color:#b45309;">资本市场</h2><span class="count">4 条</span>
+</div>
+<div class="metric-grid">
+<div class="metric-group-label">美股ETF · yfinance 最新收盘</div>
+<div class="metric-card"><div class="metric-label">SPY · 标普500 ETF</div><div class="metric-value">759.97</div><div class="metric-change neg">-0.52% d / +3.10% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">QQQ · 纳斯达克100 ETF</div><div class="metric-value">704.40</div><div class="metric-change neg">-0.01% d / +3.06% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">DIA · 道琼斯ETF</div><div class="metric-value">521.37</div><div class="metric-change neg">-1.24% d / +0.84% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">IWM · 罗素2000 ETF</div><div class="metric-value">275.75</div><div class="metric-change neg">-0.33% d / -5.05% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-group-label">美联储利率与美债利差 · FRED</div>
+<div class="metric-card"><div class="metric-label">有效联邦基金利率 · %</div><div class="metric-value">3.88</div><div class="metric-change flat">较前次观测持平</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-22。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">10年期国债收益率 · %</div><div class="metric-value">4.96</div><div class="metric-change neg">较前次观测 -0.17</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-22。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">2年期国债收益率 · %</div><div class="metric-value">4.65</div><div class="metric-change neg">较前次观测 -0.16</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-22。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">10年减2年期限利差 · 百分点</div><div class="metric-value">0.31</div><div class="metric-change flat">较前次观测持平</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-10-23。非今日实时值。</div></div>
+<div class="metric-group-label">美国实体经济 · FRED</div>
+<div class="metric-card"><div class="metric-label">失业率 · %</div><div class="metric-value">4.2</div><div class="metric-change pos">较前次观测 +0.1</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-09-01。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">消费者价格指数 · 1982—84=100</div><div class="metric-value">336.298</div><div class="metric-change pos">较前次观测 +2.167</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-09-01。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">M2货币存量 · 十亿美元</div><div class="metric-value">23342.8</div><div class="metric-change pos">较前次观测 +124.9</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-08-01。非今日实时值。</div></div>
+<div class="metric-card"><div class="metric-label">名义GDP · 十亿美元，季调年率</div><div class="metric-value">32563.03</div><div class="metric-change pos">较前次观测 +656.756</div><div class="metric-explain">✅ 结构化源 · FRED官方API；观测日：2026-04-01。非今日实时值。</div></div>
+<div class="metric-group-label">波动率 · yfinance 最新收盘</div>
+<div class="metric-card"><div class="metric-label">VIX波动率指数</div><div class="metric-value">19.45</div><div class="metric-change pos">+2.21% d / +4.01% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-group-label">全球指数 · yfinance 最新收盘</div>
+<div class="metric-card"><div class="metric-label">标普500指数</div><div class="metric-value">7623.68</div><div class="metric-change neg">-0.52% d / +2.86% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">日经225指数</div><div class="metric-value">62693.16</div><div class="metric-change neg">-0.34% d / -5.61% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">恒生指数</div><div class="metric-value">23093.37</div><div class="metric-change pos">+0.69% d / -8.40% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-group-label">大宗商品 · yfinance 最新收盘</div>
+<div class="metric-card"><div class="metric-label">黄金期货</div><div class="metric-value">4007.90</div><div class="metric-change neg">-1.29% d / -1.55% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">WTI原油期货</div><div class="metric-value">103.27</div><div class="metric-change pos">+3.82% d / +15.63% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">铜期货</div><div class="metric-value">6.4760</div><div class="metric-change pos">+1.78% d / +2.47% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-group-label">主要货币 · yfinance 最新观测</div>
+<div class="metric-card"><div class="metric-label">美元指数</div><div class="metric-value">101.81</div><div class="metric-change pos">+0.20% d / +0.34% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">欧元/美元</div><div class="metric-value">1.1204</div><div class="metric-change neg">-0.27% d / -1.82% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">美元/日元</div><div class="metric-value">156.8140</div><div class="metric-change neg">-0.83% d / -3.84% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-group-label">美债收益率 · yfinance 最新收盘</div>
+<div class="metric-card"><div class="metric-label">美国10年期收益率</div><div class="metric-value">4.9880 %</div><div class="metric-change pos">+0.71% d / +6.06% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+<div class="metric-card"><div class="metric-label">美国5年期收益率</div><div class="metric-value">4.8050 %</div><div class="metric-change pos">+0.78% d / +7.71% w</div><div class="metric-explain">✅ 结构化源 · yfinance；观测日：2026-10-23。收盘价，非实时报价。周变化沿用本次数据文件的w_pct口径。</div></div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>穆迪完成法国评级审查维持原级，负面展望仍取决于预算推进<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Euronext</span><span class="t">时间不详</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">新增进展是穆迪完成定期审查并维持法国评级及负面展望；评级假设包含通过减赤预算、融资成本和社会紧张局势有所缓和。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十三日报道，穆迪完成对法国主权信用的定期审查，维持原有评级，同时保留负面展望。这是相较此前法国融资成本攀升报道的新增结果，评级并未如部分市场参与者预期那样下调。穆迪声明称，当前评级以法国将通过削减赤字的下一年度预算为假设，也预期未来几个月融资成本和社会紧张程度有所缓和。法国财政部据此强调政府预算方案的可信度，但预算能否在议会获批仍有阻力。</p><p>评级维持使这次审查没有新增降级压力，但原文同时指出，法国在议会分裂、抗议活动和总统选举临近的环境下，削减开支依然困难。反对党已经否决部分节支内容，还可能在预算争议中提出不信任动议。法国借贷成本高于部分评级较低的邻国，显示投资者并未仅凭信用等级定价。穆迪此前将政府能否克服议会分裂列为下一次评级调整的关键，因此保留负面展望意味着财政执行风险尚未解除，也不能把本次维持评级写成信用前景已经转为稳定。</p>
+<p>来源：<a class="source-link" href="https://live.euronext.com/en/financial-news/france-spared-moodys-ratings-downgrade-it-struggles-unrest" target="_blank">Reuters / Euronext</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>船舶追踪显示俄柴油货轮驶向纽约，协议执行进入实际运输阶段<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Investing.com</span><span class="t">时间不详</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">路透社根据船舶追踪数据报道，一艘装载俄罗斯柴油的油轮正驶向纽约，买卖双方未获确认，后续运输和合同安排仍在推进。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十三日报道，船舶追踪资料显示，美俄柴油安排下的一艘油轮正驶向纽约。该轮在俄罗斯波罗的海港口普里莫尔斯克装载低硫柴油，运输记录显示装货发生于十月二十二日。报道援引追踪数据说明航程与预期抵达安排，但买方和卖方身份尚不清楚。克里姆林宫发言人确认首艘船已经出发，却未明确其目的地属于美国还是其他市场，因此官方表述与航运数据所能证明的范围仍有差别。</p><p>这次报道把此前的政治协议推进到实货运输层面。原文指出，美国政府希望通过增加供应缓解柴油价格压力，俄罗斯也撤除了自身实施的柴油出口限制。与此同时，航运数据还显示俄柴油恢复运往土耳其、巴西等既有市场，其他货轮则报出不同目的地。俄方称后续美国货运需由双方企业落实合同，围绕付款安排的公开说法也存在分歧。油轮启航并不等于货物已经到港或美国终端燃料价格已经下降，本条只确认运输层面的进展，不推算实际新增供应对零售油价的幅度。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/economic-indicators/exclusivetanker-carrying-40000-t-of-russian-diesel-heads-to-new-york-after-putintrump-deal-data-shows-4968099" target="_blank">Reuters / Investing.com</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>欧洲银行转向少数股权与合作扩张，跨境并购仍受多重障碍制约<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">10月22日 19:44</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">晨星DBRS经路透社报道指出，监管差异、资本和流动性壁垒及政治阻力，使欧洲银行更多通过参股、合资和伙伴关系拓展海外。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十二日报道，晨星DBRS认为，欧洲银行虽然增加了跨境投资，但全面合并仍受到监管不一致、资本与流动性跨国流动限制，以及政治反对等因素影响。银行业联盟项目推进停滞的背景下，少数股权、合资企业和业务合作成为更常见的选择。原文把裕信银行对德国商业银行的收购提议列为相对少见的全面并购路径，并列出法国、意大利、希腊和西班牙银行间的多宗参股或合作案例。</p><p>机构指出，少数股权投资有时接近强制全面收购门槛，也有银行把持股控制在较低水平，以避免额外监管授权和更严格资本处理。除银行之间参股外，银行与保险企业也通过联合业务拓展收入。晨星DBRS认为，这些安排能够以相对较低的风险实现盈利来源多样化，但仍会消耗资本，而且对被投资机构的管理控制有限。跨境投入增加因此不能直接解释为欧洲银行整合已经完成；交易结构的选择本身就反映了市场准入、资本约束和控制权之间仍需权衡。</p>
+<p>来源：<a class="source-link" href="https://www.marketscreener.com/news/european-banks-seek-alternative-cross-border-expansion-strategies-morningstar-dbrs-says-ce785cded888f225" target="_blank">Reuters / MarketScreener</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>法国财政忧虑压制欧元，日元受风险规避资金支持等待央行会议<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Euronext</span><span class="t">时间不详</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">路透社十月二十三日报道，法国财政及社会局势令欧元承压，日元获得避险资金支持，交易者同时等待美欧日央行下周会议。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十三日的外汇报道指出，法国债务市场的担忧延伸到欧元交易，预算问题和抗议活动使欧元承受压力。报道发布时，市场仍在等待穆迪对法国的评级审查；这属于当时的交易背景，审查后维持评级的结果见另条报道。日元则受到人工智能股票抛售后风险规避资金的支持。报道将欧元与日元的表现区别于单纯的美元强弱，强调欧洲本地财政风险和跨资产风险偏好均在影响外汇交易。</p><p>投资者随后转向美联储、欧洲央行和日本央行下周的政策会议，关注政策声明对未来利率路径的提示。原文还讨论了欧元区企业调查显示增长放慢、日本通胀重新超过政策目标等信息，这些是交易者衡量政策前景的背景，并非已经公布的下周决议。该报道中的汇率及周度表现属于不同截点的市场描述，本报告不把其中数字混入指标卡。外汇风险规避、主权信用担忧和央行预期同时存在，因此只能确认报道所记录的交易因素，不能认定某一因素独立造成全部价格变动。</p>
+<p>来源：<a class="source-link" href="https://live.euronext.com/en/financial-news/euro-sinks-french-debt-worries-yen-gains-week-ai-rout" target="_blank">Reuters / Euronext</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与监管 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #475569;">
+<span class="icon">⚖️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>英国审慎监管局拟评估规则对投资影响，并强化网络韧性监督<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / MarketScreener</span><span class="t">10月23日 04:02</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">英国审慎监管局负责人提出评估金融规则对投资与资本供给的作用，同时强调银行保险韧性优先，相关战略和规则仍待后续发布。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十二日报道，英国审慎监管局负责人在伦敦演讲中表示，将审视金融监管对投资、资本供给和金融服务价格的影响，并与行业共同推进竞争力和增长议程。该机构计划在下一年公布首份五年战略，说明增长目标如何进入日常决策，以及如何追踪监管工作的实际效果。演讲同时强调，规则应当保持适当、有效和合乎比例，增强透明度并不是宣布立即取消现有银行审慎要求。</p><p>负责人把银行和保险部门的韧性列为首要任务，特别提到网络攻击风险，并设置直接向其汇报的运营和网络韧性监督部门。审慎监管局与金融行为监管局还公布高级经理及认证制度的进一步简化计划，包括加快部分高管职位审批，涉及任职适格性和行为违规报告等规则。原文明确这些内容仍处咨询推进阶段，最终规则计划后续发布并实施。因此，本条确认的是战略方向、监督安排和咨询计划，不能把未来合规成本节省预测等同于已实现的经营收益。</p>
+<p>来源：<a class="source-link" href="https://uk.marketscreener.com/news/new-uk-banking-watchdog-to-review-impact-of-rules-on-competitiveness-ce785cdedc80f02c" target="_blank">Reuters / MarketScreener</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>天津税务发布非应税交易抵扣问答，明确保险赔付等六类情形<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">国家税务总局天津市税务局</span><span class="t">10月22日 17:00</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">天津税务局十月二十二日问答列明保险赔付、接受捐赠等六类情形，对应进项税额可按规定抵扣，并交代适用日期和文件依据。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>天津市税务局十月二十二日发布增值税政策问答，说明哪些情形不属于实施条例所指不得抵扣的非应税交易。问答列出六类：被保险人取得保险赔偿，接受货币或实物等捐赠，合同未履行且没有发生应税交易而取得违约金，免费提供服务但不含免费转让金融商品，以及转让因自身应税交易形成的相关应收款债权但不含有价证券。上述项目对应的进项税额，可以依照规定从销项税额中扣除。</p><p>另一个列明的项目是依有关政策取得、并且不直接与货物或服务等销售收入及数量挂钩的财政补助。问答依据财政部和税务总局关于非应税交易的公告，并说明公告自九月起施行，年初至八月底已发生而尚未处理的事项也按照其规定执行。这次发布属于对既有规定适用范围的具体答复，并不是新宣布一项普遍减税。企业判断抵扣资格仍需核对交易是否落在列明范围，特别是金融商品、有价证券和与销售直接关联的补贴，不能把这些例外忽略后扩大适用。</p>
+<p>来源：<a class="source-link" href="https://tianjin.chinatax.gov.cn/11200000000/0300/030005/20261022165510514.shtml?fjdm=11200000000" target="_blank">国家税务总局天津市税务局</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>吉林财政监管披露贴息政策执行措施，强化资金拨付与债务协同<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">财政部吉林监管局</span><span class="t">10月22日（时刻不详）</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">新增信息是吉林监管局披露属地执行安排，围绕贴息申请、资金拨付、部门数据共享和债务风险协同开展监管，而非再次发布购房政策。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>财政部吉林监管局十月二十二日刊文介绍财政金融协同扩大内需政策的属地执行工作。文章说明，监管局研究中小微企业贷款和个人消费贷款贴息文件，细化准入条件、实施流程及监管重点，并与省财政厅、人民银行分支机构、金融监管部门及驻地中央金融企业建立信息共享和会商机制。本次新增内容是政策如何在地方组织实施，包括梳理职责与节点、规范专项资金拨付核算、引导经办金融机构优化审批流程等具体做法。</p><p>执行层面，监管局督促金融企业支持设备更新，协助企业办理贴息申请，配合财政部门推进资金拨付；针对中小微企业抵押物不足等问题，引导金融机构在合规前提下改进普惠信贷产品。文章还将金融监管和债务监管结合，关注债务置换、重点区域和项目偿债压力，防止财政与金融风险相互传导。这些材料提供了财政资金如何衔接信贷投放的执行线索，但原文没有给出可据以核算实际新增贷款或消费增量的结果，不能据此宣称乘数效应已经达到特定水平。</p>
+<p>来源：<a class="source-link" href="https://jl.mof.gov.cn/caizhengjiancha/202608/t20260824_3996010.htm" target="_blank">财政部吉林监管局</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>美国东北部取暖成本成选举议题，能源部门已释放取暖油储备<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Reuters / Investing.com</span><span class="t">时间不详</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">路透社十月二十四日报道，美国北部依赖取暖油的家庭面临冬季账单压力；能源部门已释放东北部储备，白宫以此回应成本批评。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十四日对选民、候选人和竞选策略人士的采访显示，取暖油价格成为美国北部州参议院选举中的突出问题。缅因州、新罕布什尔州和阿拉斯加州部分家庭依赖该燃料过冬，报道中的居民表示将使用木炉辅助取暖，以减少燃油开支。原文把柴油和取暖油供应压力联系起来，说明中东战争对燃料市场的扰动也通过运输和生活必需品成本影响家庭预算。报道记录的是这些地区的具体生活和政治反馈。</p><p>政策回应方面，路透社确认美国能源部门已从东北部储备中释放取暖油，白宫在被问及政策与能源账单的关系时，援引了这一措施。民主党候选人把费用上涨与战争相联系，部分共和党竞选人士则承认生活成本会影响执政党选情。原文也引述分析人士质疑本次储备投放能否显著改变价格，因而不能把释放储备直接等同于家庭账单下降。该措施属于已报道的供应端干预，政策最终效果与选举结果均尚未确定，本条不据个别采访推算全国选票变化。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/economic-indicators/as-winter-nears-heating-oil-emerges-as-hurdle-for-republicans-in-us-senate-races-4970790" target="_blank">Reuters / Investing.com</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">4 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>三菱日联认为能源与法国财政风险叠加，欧元仍难缓解压力<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">MUFG Research</span><span class="t">10月23日（具体时间不详）</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">三菱日联十月二十三日周报将欧元弱势归因于能源冲击和法国财政风险，并撤回欧洲央行下周再次加息的预测。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>三菱日联研究部在十月二十三日外汇周报中指出，能源价格上行和法国财政、政治风险共同削弱欧元。报告认为，更大且更持久的能源冲击会增加欧元区经济的下行风险，并进一步影响投资者对增长的信心。与此同时，法国国债承压引起的金融条件收紧，使欧洲央行面临更复杂的取舍：能源推动物价上涨，但融资成本上升又会压低需求。该机构因此撤回对欧洲央行下一次会议继续加息的预测。</p><p>报告仍保留年底前进一步温和收紧政策的判断，说明此次调整针对的是加息时点，而非断言抗通胀工作已经结束。其认为，如果欧洲央行暗示较高债券收益率降低了继续收紧的必要，或提及应对市场压力的措施，欧元可能继续承压。相较之下，避险情绪以及日本央行政策正常化预期对日元形成支持。周报同时指出，政府债券收益率、能源成本和人工智能投资乐观情绪降温，仍可能令下一周金融市场环境艰难。</p>
+<p>来源：<a class="source-link" href="https://mufgresearch.com/fx/fx-weekly-23-october-2026" target="_blank">MUFG周报原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>加拿大皇家银行提醒加息影响分化，利息收入支撑富裕家庭消费<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">RBC Economics</span><span class="t">10月22日（具体时间不详）</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">加拿大皇家银行最新月度分析认为美国经济韧性仍在，但加息对借债家庭和依赖利息收入群体的影响分化，通胀传导风险增加。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>加拿大皇家银行十月二十二日执行简报认为，美国经济的支撑因素尚未瓦解，但维持增长的代价正在上升。报告将通胀压力、融资成本和家庭消费分化放在同一框架下讨论：加息会压制需求驱动的价格上涨，却也可能让高收入家庭及退休人群获得更多利息收入。这些群体对借款利率相对不敏感，而且在服务消费中占有重要位置，因此货币紧缩对不同家庭的作用并不一致。</p><p>该机构指出，新借款家庭首先承受更高利率，随着旧贷款续作和新增借款增加，有效融资成本仍会向上调整；企业和政府的偿债负担则按不同期限逐步上升。与此同时，运输成本、关税和能源涨价正向商品价格传导，单靠加息未必能迅速解决供给驱动的通胀。报告继续看好美国增长韧性，但提醒人工智能以外的资本开支疲弱，能源涨价侵蚀购买力，利率继续上行也可能限制住房供给，从而增加未来住房通胀风险。</p>
+<p>来源：<a class="source-link" href="https://www.rbc.com/en/economics/us-analysis/us-featured-analysis/the-price-of-us-strength-is-getting-steeper/" target="_blank">RBC分析原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>道明经济学家指出住房负担仍重，国债走强难立即传至按揭市场<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">TD Economics</span><span class="t">10月23日（具体时间不详）</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">道明经济学家周报指出，避险推动国债收益率回落，但按揭利差偏宽和住房价格、供给约束，使家庭购房负担难以迅速改善。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>道明经济学家维克拉姆·拉伊在十月二十三日周报中指出，投资者转向国债带来的融资成本缓解，同时伴随科技股承压和信心走弱。住房则继续反映高利率对家庭的挤压：独栋住房开工、许可和待完成交易均承压，按揭成本即使有所回落，仍令许多买家难以负担月供。报告强调，国债收益率下降可能提供帮助，但按揭市场利差异常偏宽，意味着购房贷款利率未必会同步、迅速下行。</p><p>对于改善住房负担的政策，周报提及十月二十二日美国行政命令涉及提前终止符合条件借款人的按揭保险，以及推动成本较低的预制住房。其判断这些措施可以部分减轻购房负担，却无法一并解决价格高、供应少和信贷昂贵的问题。住房疲弱也没有令该机构认定整体经济已经失去动力：它认为增长韧性和顽固通胀仍支持进一步收紧，而暂停行动的理由主要是观察此前加息和金融条件变化如何传导。后续增长与个人消费价格数据仍是重要判断依据。</p>
+<p>来源：<a class="source-link" href="https://economics.td.com/us-weekly-bottom-line" target="_blank">TD经济周报</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>海湾经济展望强调复苏取决于航运恢复，银行经济学家看好改革韧性<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">The National</span><span class="t">10月22日（具体时间不详；23日更新）</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">国际货币基金组织海湾展望将明年复苏与冲突结束及航运恢复挂钩，阿布扎比商业银行经济学家则强调改革和财政缓冲的支撑作用。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>《国民报》报道，国际货币基金组织十月二十二日在迪拜发布区域展望，认为伊朗战争通过能源生产、航运、旅游、贸易和信心渠道冲击海湾经济。受能源生产及运输中断直接影响的出口国承担较重压力，各国表现也明显分化。报告指出，非石油部门同样受到冲击，说明影响已超出油气行业本身。尽管基金组织预计明年明显反弹，但这一判断依赖敌对行动结束，以及霍尔木兹海峡运输逐步恢复。</p><p>在相关讨论中，阿布扎比商业银行首席经济学家莫妮卡·马利克将能源出口能否到达市场视为关键，同时强调海湾国家进入冲击前具备较强基础。她认为，多个行业的发展、经济多元化以及财政方面的改革共同增强了韧性，并对中长期前景保持乐观。报道也列出相反风险：地区局势再度升级仍可能损害经济活动，正常化何时实现以及恢复速度尚有不确定性。基金组织同时提示战争正在削弱财政和外部缓冲，因此复苏预测并不等于风险已经解除。</p>
+<p>来源：<a class="source-link" href="https://www.thenationalnews.com/business/economy/2026/10/22/imf-forecasts-48-gulf-economic-contraction-in-2026-as-iran-war-hits-energy-exports/" target="_blank">The National原文</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🌐 全球宏观日报 · 2026-10-25 · 数据来源：指标仅使用本次提供的yfinance/FRED文件；新闻均为实际读取的网页来源，tier=web。已对2026-10-23、24日报作事件去重。<br>
+共 20 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 周日市场休市，行情卡最新收盘为10月23日；新闻采用10月22日至25日窗口，入选来源日期为22日至24日。无法确认时区或时刻的网页保留来源日期并注明时间不详。指标周变化沿用文件w_pct，不另按自然周重算。</span>
+</div>
+
+</div>
+</body>
+</html>

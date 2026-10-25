@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 游戏行业日报 · 2026-10-25</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🎮 游戏行业日报</h1>
+<div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div>
+<div class="badge">2026-10-25 · 20 条资讯 · 5 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-release">🕹️ 新游发布/更新（4）</a></li>
+<li><a href="#s-industry">🏢 行业动态（5）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（3）</a></li>
+<li><a href="#s-hardware">🖥️ 硬件/技术（5）</a></li>
+<li><a href="#s-review">⭐ 评测与观点（3）</a></li>
+</ul>
+</nav>
+
+<!-- 新游发布/更新 -->
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🕹️</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">4 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>《异星工厂》最终大型更新上线，太空物流与虫群机制调整<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《异星工厂》二点一版本已推出，开发团队将其定位为最终大型更新，重点改善跨星球物流、虫群扩张及多项操作体验。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据十月二十四日的报道，《异星工厂》推出二点一更新。开发商此前已表示，游戏达到适合结束积极开发的状态，这将是最后一次重大补丁。此次没有新增星球、敌人或研究树，而是集中处理二点零版本未能完成的小功能、便利性与打磨工作。太空物流是主要改动方向：火箭现在可以同时运送多种物品，轨道平台之间能够交换货物，也可以从所有可用地点自动进口物资。</p><p>这些变化直接对应太空平台建造与星际运输的操作环节。新增卸货设施可以接到着陆平台，让机械臂把货物送上运输带或列车。基础游戏方面，虫群扩张规模会随进化程度变化，筑巢位置更加自然，扩张也不再取决于玩家是否提早探索地图。补丁还恢复流体混合预防机制，调整品质系统，更新装配机等设施画面，并改进泵连接流体车厢的显示方式。最终大型更新的定位，并不等于报道已确认所有后续维护一并停止。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/survival-crafting/after-14-years-of-development-factorios-final-major-update-is-out-now/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>《星战银河》社区复兴版更新，画面升级并重做卡希克星球<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《星战银河》社区复兴项目推出新版本，客户端加入新图形接口支持，并调整卡希克、职业、坐骑战斗和家具摆放功能。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十四日的报道介绍了《星战银河》社区复兴项目的新版本。这是围绕旧网络游戏开展的社区维护项目，本轮更新由团队成员分别选择喜欢的部分进行改造，并非围绕单一大型功能展开。客户端增加对新图形接口的支持，带来体积雾、云层、大气、新水面着色及更远的地形显示，同时接入多种超分辨率技术。伍基人的故乡卡希克也获得新建和翻修的副本，并对早期扩展包内容重新平衡。</p><p>更新的实际内容还覆盖探索与角色养成：侦察和游侠职业加入新陷阱、强化的生物追踪以及扩展营地功能，营地又增加声望体系。宠物和坐骑获得照顾，近战与远程骑乘战斗被加入，驯服生物的过程变得更具互动性。玩家城市可以提升到更高等级，医生职业也减少被动等待。家具摆放采用拖放界面，不必继续输入坐标。报道明确称该项目免费游玩并提供下载入口，所述更新属于社区项目，不能等同于原运营商重新发行游戏。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/mmo/star-wars-galaxies-just-got-another-massive-update-thanks-to-its-community-restoration-project-including-a-huge-visual-upgrade-and-a-refurb-to-the-wookiees-home-planet/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>《超级食肉男孩三维版》联动鼠侦探，角色附带黑白画面效果<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《超级食肉男孩三维版》与《鼠：私家侦探》展开角色联动，鼠侦探进入平台跳跃关卡，使用时画面转为黑白风格。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十四日，报道介绍《超级食肉男孩三维版》与《鼠：私家侦探》的合作，并附上角色联动预告。来自后者的鼠侦探被处理成立方体造型，进入布满锯片的关卡，使用该角色时屏幕会变为黑白色，呼应原作的视觉呈现。文章将这次合作放在独立游戏角色客串的背景下讨论，指出两部作品都以卡通表现与血腥反差形成特色，而食肉男孩此前也参与过跨作品客串。</p><p>对已有玩家来说，可确认的变化是角色形象和游玩时的画面风格，而不是原作射击玩法整体移植。文章同时回顾了编辑对三维版的早期体验：奔跑、跳跃与失败反馈仍有可取之处，但风格与氛围未完全获得其认可；其网页当时显示的玩家评价则偏正面。《鼠：私家侦探》的媒体评价也被用作合作背景。报道没有确认反向联动内容，不能据此认为食肉男孩已进入鼠侦探的故事，也没有提供足以补写价格或独立购买安排的信息。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/action/the-mouse-p-i-for-hire-from-mouse-p-i-for-hire-joins-the-meat-boy-from-super-meat-boy-3d-in-gamings-latest-indie-crossover/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>《辐射四》新模组加入高架小镇，玩家可参与地方帮派任务<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div>
+<div class="card-brief">《辐射四》模组在贝德福德车站附近加入高架小镇，提供真人配音角色、城镇声望任务，以及解救帮派首领等内容。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日的模组体验报道介绍了位于贝德福德车站附近的新城镇。它建在高架桥上，规模不大，却包含新增任务和十余名由真人配音的角色；文章特别说明没有使用人工智能配音。小镇中的帮派成员穿着相似外套，占据一角活动，玩家可以接触这个团体。作者实际遇到的任务包括帮助被关在附近警长办公室里的帮派首领脱困，文章称解决这件事存在不同方式。</p><p>这份新增内容围绕小型聚落的关系和选择展开。玩家可以通过完成任务提高城镇声望，例如替警长处理赏金事务，或帮助商人追回失物；与帮派打交道则提供另一条互动路线。报道还提到在镇内指定位置涂画帮派标识的任务。对寻找新探索地点的玩家，这些是能够直接辨认的内容增量，而不是单纯更换外观的素材包。文章属于作者实玩后的介绍，并未给出完整任务数量、所有结局或兼容性清单，因此不能据此保证它适用于每一种既有模组组合。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/fallout/a-new-fallout-4-mod-adds-an-entire-town-but-more-importantly-it-lets-you-join-a-gang/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+</div>
+<!-- 行业动态 -->
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Xbox首席运营官任职数月离开，职责暂由其他领导分担<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">微软内部备忘录确认Xbox首席运营官离开，其职责暂时拆分给其他领导，正式继任安排将在计划确定后公布。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十四日的报道称，Xbox首席运营官海伦·蒋在任职约三个月后离开公司，她此前已在微软工作多年。文章转述十月二十三日的内部备忘录，称其近期职责暂由其他Xbox领导分担，首席运营官的后续领导安排将在计划完成后公布。这一职位是本轮品牌调整中新设的管理岗位，因此此次变化既涉及个人离职，也涉及一个刚形成的管理层级如何继续运转。</p><p>按报道回顾的原始职责，该岗位负责内容、硬件、平台和服务各部分的端到端损益，覆盖范围横跨游戏业务多个环节。暂时拆分职责意味着这些工作由现有领导承接，但报道没有确认职位将被取消，也没有公布继任人选。微软对外仅提供不讨论个人事务的简短回应。文章还引用了匿名消息人士对离职原因的说法，这不能视为公司的正式解释；本条不把该说法列为已确认原因，也不据此推断Xbox产品路线已经发生新的变化。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/gaming-industry/top-xbox-exec-promoted-in-brand-reset-leaves-after-3-months-in-role/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>卡普空披露会员服务数据泄露，已采取紧急措施并通知用户<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">卡普空会员服务发生第三方未授权访问，部分邮箱及账户信息泄露，公司已重置遭改动账户的密码，并提醒用户防范钓鱼。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日的报道转述卡普空公开说明，会员服务遭第三方未授权访问。泄露涉及大量邮箱和系统识别信息，包括账户建立时间、上次登录时间及登录网络地址；另有少量账户暴露生日、性别、国家或地区以及昵称。报道区分了不同数据范围，没有把所有会员都描述为泄露全部个人资料。公司称十九日发现后阻断访问，二十日成立专门工作组，二十一日向警方与个人信息保护机构报告。</p><p>报道还指出，一部分账户的登录密码曾被非法更改，公司已重置这些账户的密码；但用户自行设置的密码尚未被确认泄露，信用卡资料也不在本次泄露范围内。公司表示已实施紧急措施，并完成对攻击手法的识别与应对，影响范围仍在调查。受影响用户将收到通知邮件。对玩家最直接的实际风险是冒充卡普空或相关公司的可疑邮件，公司因此要求提高警惕。上述应对声明不等于调查已经全部结束，也不能把未确认的密码泄露扩写为既成事实。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/capcom-confirms-a-data-breach-has-affected-over-11-million-people-with-emails-ip-addresses-and-birthdays-caught-up-in-the-mix/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>Epic撤回创作赛强制使用人工智能要求，参赛者可自行选择<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">Epic更新游戏创作赛规则说明，承认原先要求使用人工智能的表述有误，参赛者可以自行决定使用程度，相关规则将修订。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日的报道新增更正：Epic表示，创作赛常见问题说明原先写成必须使用人工智能，这是公司的错误，参赛者可以少用、多用或自行决定使用程度，规则与说明将同步修改。活动计划在十一月公布主题，再给予个人和团队数日时间制作游戏。部分参与者将在旧金山现场工作，组织方也安排每日直播展示进度。原始宣传明显鼓励使用人工智能，但最新规则不再把它作为强制参加条件。</p><p>这项修改直接改变参赛门槛：采用传统开发流程的团队也可参加，不能继续依据旧版说明把活动描述为仅限人工智能作品。报道同时列出不同获奖类别、奖金和继续开发资助，说明活动仍围绕短时间完成作品展开。文章把它置于Epic近期推动人工智能开发工具的背景中，但对规则的判断应以更正后的文字为准。公司鼓励技术使用，与要求所有作品都必须使用技术，是两项不同事实；目前报道没有提供足以认定最终作品质量、获奖结果或参赛规模的信息。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/software/ai/epic-announces-game-jam-where-you-have-to-use-ai/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>《人渣》开发商宣布缩减团队，母公司收购后仍面临经营调整<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">《人渣》开发商宣布缩减团队以适应市场条件，报道未披露裁员人数；该工作室被收购后，游戏仍持续获得修补和内容更新。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日的行业报道整理了《人渣》开发商缩减团队的消息。工作室此前通过社交平台发布声明，称为适应困难的市场环境并维持长期可持续经营，不得不与部分同事告别，但没有给出具体裁员人数。文章回顾，该公司数月前才被Splash Damage集团收购，交易由投资机构支持；母公司在那次收购前也曾进行裁员。因此本条采用的是媒体在本次时间窗内的追踪报道日期，并不把原声明冒充为当日刚发布。</p><p>报道强调了收购时对稳定工作的表述与随后缩编之间的落差：当时集团称围绕《人渣》整合团队可以提供即时、实质性的工作，并为未来发展建立基础。与此同时，《人渣》在平台上仍持续推出热修复和内容更新，文章没有称游戏已经停运。母公司的其他开发项目也存在取消背景，但不能据此推断本次缩编将导致《人渣》关闭。实际可确认的是人员规模调整与持续维护并存，受影响岗位、人数、更新节奏变化以及后续组织安排都没有在文中获得完整披露。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/gaming-industry/splash-damage-acquired-this-studio-just-3-months-after-laying-off-a-bunch-of-people-now-its-laying-them-off-too/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>日本演员组织提出人工智能授权指引，逝者声音使用须受限制<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">日本演员组织提出生成式人工智能使用指引，要求训练、生成和翻译表演取得同意，并对模仿已故演员声音设置额外条件。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十四日的报道介绍日本演员组织针对生成式人工智能提出的保护措施。其主要方向不是全面禁止技术，而是在各阶段取得表演者同意：企业须披露声音是否会用于训练，并与演员协商报酬。相关原则也覆盖人工智能翻译后的表演。文章把这些要求置于游戏和配音行业对声音复制的讨论中，强调一次表演授权不应被直接理解为可以无限扩展到训练与其他用途。</p><p>对已故演员的模仿，指引提出更严格条件：演员生前必须已经表示同意，使用者还须获得在世家属、遗产管理人或相关管理组织的许可，并支付相应报酬。这样一来，项目即使希望重现熟悉的声音，也不能只考虑技术上能否生成，还需处理具体授权链条。报道讨论了相关游戏案例，但没有显示这些建议已经成为法律，也没有证明全行业都已采纳。其实际意义在于提出可供谈判和合作参照的行业规则，能否广泛执行仍要看后续接受和落实情况。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/software/ai/japan-actors-union-pushes-for-heavy-restrictions-on-ai-copying-dead-actors/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+</div>
+<!-- 电竞资讯 -->
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>世界赛瑞士轮次轮对阵公布，韩国双内战与中国内战同时出现<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">AussyELO</span><span class="t">10月25日 01:00（次轮计划开赛）</span><span class="tag tg-esports">电竞资讯</span></div>
+<div class="card-brief">世界赛瑞士轮次轮赛程已列出，韩国队之间出现两组对阵，中国队TES与AL同组交锋，所有八场比赛采用单局决胜。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>本次新增信息是世界赛瑞士轮第二轮的完整对阵和开赛顺序，区别于前日报过的首轮赛果。赛程页把队伍按一胜零负及零胜一负分池；前一组出现韩华对阵Gen.G、DK对阵T1两场韩国队内部较量，另有CFO对阵MKOI、LYON对阵KC。后一组包括TES对阵AL、G2对阵LOS、IG对阵TSW，以及液体对阵BLG。页面明确称次轮八场均为单局决胜。</p><p>赛程以当地十月二十四日为比赛日，页面文字给出首场为世界协调时十七时，换算北京时间为十月二十五日凌晨一时，其后按小时安排，前序比赛延长可能推动后续时间。与此前首轮失利的背景相比，新抽签意味着至少一支中国队会在直接交锋中取得本轮胜利，而韩国内部交锋也会打破相关队伍的全胜记录。所读页面没有填写次轮赛果；瑞士轮采用三胜晋级、三负淘汰的规则，第二轮单场结果不直接决定出局。本文只整理对阵和计划时间，不据此补写最终胜者、选手数据或第三轮抽签结果。</p>
+<p>来源：<a class="source-link" href="https://www.aussyelo.com/events/worlds-2026" target="_blank">AussyELO</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>✅官宣：MIBR调整无畏契约阵容，现役选手转入非活跃名单<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">ValoInfo</span><span class="t">时间不详</span><span class="tag tg-esports">电竞资讯</span></div>
+<div class="card-brief">MIBR宣布将无畏契约阵容转入非活跃名单，允许选手洽谈转会，但既有合同继续有效，潜在交易须直接与俱乐部协商。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>报道援引MIBR十月二十三日发布的声明，确认其《无畏契约》阵容转入非活跃名单，涉及aspas、zekken、Verno及Mazino。俱乐部表示，这一决定是在与选手代表沟通，并考虑下一赛季竞赛结构变化、赛区转换及相应挑战后作出的，接下来会重新评估阵容。声明将现有选手开放给转会谈判，但不等于已经解除合同，也没有宣布他们加盟其他战队。</p><p>对潜在引援方而言，关键限制是合同义务仍然存在，交易需要直接与MIBR协商，不能把这些选手当作自由选手直接签下。报道特别区分了此前已离队人员与本次转入非活跃名单的成员，避免把不同合同状态混为一谈。官方声明未给出新阵容人选、重建截止时间或教练组去留。文章提到部分合同期限属于报道信息，因此本条不把它扩写成新的官宣条款。目前确认的进展是阵容状态调整和允许谈判，具体转会去向与交易完成情况仍待后续公告。</p>
+<p>来源：<a class="source-link" href="https://valoinfo.com/story/mibr-valorant-roster-benched-transfers" target="_blank">ValoInfo</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>拳头公布新赛季合作模式，伙伴战队仅直接进入揭幕阶段赛事<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">VALORANT Esports</span><span class="t">时间不详</span><span class="tag tg-esports">电竞资讯</span></div>
+<div class="card-brief">拳头公布新赛季合作计划，四个赛区各设八支伙伴战队，合作可续期，但揭幕赛之后仍须依靠竞技表现争取国际赛资格。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日的官方文章介绍下一年度《无畏契约》巡回赛合作伙伴计划，覆盖美洲、欧洲中东非洲、太平洋及中国四个地区。官方称有逾百支队伍表达参与意向，经提案与面谈后选出合作组织。评估内容包括社区发展、粉丝和内容影响、经营可持续性、运营设施，以及竞技表现与人才培养。文章强调，比赛成绩只是评估的一部分，建立长期粉丝联系同样受到重视。</p><p>新合作按两年周期运行并可续期，伙伴组织获得年度财务支持，也可通过游戏内队伍与赛季胶囊等数字商品及贡献激励增加收入。竞技待遇方面，伙伴战队在赛季开始时直接进入揭幕赛，此后须与公开预选晋级队共同竞争杯赛、大师赛和冠军赛资格。对俱乐部，这提供一定经营稳定性；对非伙伴队伍，则保留依靠成绩进入后续赛事的路线。官方未在正文中给出每队具体支持金额，伙伴身份也不能被表述为全年国际赛事的保送名额。</p>
+<p>来源：<a class="source-link" href="https://valorantesports.com/en-US/news/introducing-the-vct-2027-partner-teams" target="_blank">VALORANT Esports</a></p>
+</div>
+</div>
+</div>
+<!-- 硬件/技术 -->
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🖥️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">5 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>飞利浦公布三十六英寸高刷显示器，超宽曲面新品价格待定<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">飞利浦发布三十六英寸超宽曲面游戏显示器，标称高刷新率并配备双高清接口与显示端口，报道时尚未公布售价。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日的报道介绍飞利浦新款三十六英寸游戏显示器，采用超宽比例和曲率为一千五百的液晶面板，分辨率为三千四百四十乘一千四百四十，宣传刷新率达到二百六十赫兹。报道指出，该尺寸位于常见三十四英寸超宽屏与更占桌面空间的大尺寸产品之间。它不是使用有机发光面板的旗舰产品，文章对其关注更多来自尺寸选择和较传统的游戏显示器配置。</p><p>已列出的连接与基础功能包括双高清接口、显示端口、可俯仰支架及高动态范围认证，另有暗部增强、智能准星等游戏功能。对玩家来说，超宽视野与高刷新率是产品明确主打的使用方向，但报道并没有提供实测响应时间、拖影、色准或实际游戏延迟，不能据参数直接认定其竞技表现优于已有产品。作者希望它进入较易负担的价格区间，同时明确表示售价还未公布。因此价格竞争力只是其期待，并非厂商已经兑现的事实，购买价值仍需结合正式定价与后续测试判断。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/gaming-monitors/in-a-rare-instance-of-good-news-philips-has-announced-the-worlds-first-36-inch-260-hz-gaming-monitor-so-thats-nice/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>中国显卡现货批发价据报再涨，渠道报价尚不能等同全球零售<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">媒体援引中国渠道消息称，多款游戏显卡现货批发价上调，并提及厂商调整报价，但这些变化并非所有市场的统一零售价。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日的硬件报道称，中国渠道消息显示多款游戏显卡的现货批发价再度上升，其中高端型号与部分中高端型号均受影响。文章同时提到品牌方调整报价政策，并把这一变化与近期美国市场部分显卡零售价走高放在一起观察。其来源层级需要区分：中国现货批发信息来自渠道报道，而作者在美国能找到的在售价格是另一个市场的零售样本，两者不能直接互换。</p><p>对计划装机或升级的玩家，这条报道提供的是供应链和渠道成本仍承压的信号，实际支付价格还要看具体地区、品牌与库存。文章给出的新显存容量版本及其潜在报价仍属于预期，不能写成已经发售或正式定价。报道把内存供给问题、显卡产量不足与涨价联系起来，但没有提供覆盖全球的完整交易数据。因而它支持关注后续零售传导，不支持断言每张显卡都会按相同幅度涨价；不同容量、型号和地区之间的报价差异，仍是理解这类渠道新闻时必须保留的条件。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/graphics-cards/graphics-card-wholesale-prices-are-on-the-rise-once-again-in-china-so-its-time-to-brace-yourself-for-even-more-gpu-pricing-pain/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>Linux内核漏洞报告意外公开，游戏系统修补状态需逐项核实<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">多份尚未全部修补的Linux内核漏洞报告被误发至公开邮件列表，部分修复仍在测试分支，不同发行版的处理状态各异。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日的报道追踪了一批Linux内核漏洞报告意外公开的问题。文章转述专业网站的发现，称安全报告被发送到公开而非私密邮件列表，涉及网络服务、图形驱动和存储相关代码。内核稳定分支维护者已逐项回应，并要求提交方修正流程。报道强调，当时并非所有问题都已在主线内核得到修补，部分修复仍在测试或后续整合分支，因此公开报告与完成修补之间存在时间差。</p><p>对使用SteamOS或其他Linux发行版的游戏设备，实际影响取决于所用内核、服务与发行版补丁状态。文章讨论了测试分支可能更早带入部分修复的情况，但只使用可能性表述，并没有确认每种系统的测试版已经全部安全。此次新闻的核心是披露流程失误与补丁部署尚有差异，不能扩写为全部掌机已遭攻击，也不能把切换测试分支说成通用且确定有效的修复。报道列出的漏洞类型不同，具体风险和是否适用仍需对应系统版本核实，文中没有提供已发生大规模游戏账户失窃的证据。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/a-public-outing-of-severe-and-unfixed-linux-kernel-vulnerabilities-should-have-you-thinking-of-updating-your-steamos-or-other-distros-to-beta-branches/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>Switch二代长期评测更新，性能提升伴随续航与握持取舍<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">GamesRadar+</span><span class="t">10月23日 22:01</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">媒体更新Switch二代长期评测，肯定性能、屏幕与手柄连接改进，同时指出续航、部分高动态范围显示及长时间握持问题。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日更新的长期评测补充了使用经验和市场背景，媒体维持原有总体评价，认为Switch二代在保持混合主机形态的同时，带来明显的性能、屏幕和操作体验提升。文章称更大屏幕、更高分辨率及刷新率，使掌机体验更符合当前需求；磁吸手柄与快速释放机构也比旧轨道结构更加顺畅。机身外观与触感得到肯定，但表面仍可能出现细小划痕和磕碰痕迹。</p><p>评测的保留意见集中于移动使用的代价。更强性能伴随更快电量消耗，高动态范围显示尚有需要改善之处；较平的背部和增加的重量，也会让长时间手持更容易疲劳。作者提到小手使用者操作部分按键可能更费力，并对连接部位长期耐久性保留观察。文章肯定鼠标感应功能潜力及随拿随玩的便利性，但并未把它等同专业电竞鼠标。该文是既有硬件的长期复测，不是新品发布公告，后续软件能否持续发挥新增能力仍是评价中的重要条件。</p>
+<p>来源：<a class="source-link" href="https://www.gamesradar.com/platforms/nintendo-switch-2/nintendo-switch-2-review/" target="_blank">GamesRadar+</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>鬼武者团队披露动态切割技术，已为自研引擎增加动画支持<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div>
+<div class="card-brief">相较此前难度讨论，鬼武者团队新披露了动态肢解系统如何结合剑路与死亡动画，尚未确认哪些后续游戏会采用该引擎能力。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日的制作访谈讨论《鬼武者：剑之道》的动画与引擎技术，焦点不同于此前关于难度和评测的报道。导演说明，团队除了制作大量动作与动作捕捉素材，还依靠程序员以物理计算衔接动画，使角色从不同方向接招和挥剑时仍显得连贯。项目为公司自研引擎加入动态肢解系统，特定攻击造成的切口会沿剑经过的路径形成，主要用于较弱敌人的终结动作。</p><p>新系统的具体技术要求，是敌人被斩断时仍能继续播放死亡与倒地动画，而不是先冻结再分开。团队因此需要修改引擎，让切割效果与动作连续性共同发挥作用。导演也说明，开发早期就未选择让玩家任意控制所有切割方向的路线，因为那与游戏希望保持的节奏不符；效果应随攻击反应性地出现，突出招式力量。报道作者期待这些能力用于未来作品，但这只是期待，没有给出后续项目采用名单，不能把引擎具备能力直接写成其他系列已确认加入同样系统。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/action/future-capcom-games-will-have-onimusha-to-thank-for-re-engines-gnarly-dismemberments/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+</div>
+<!-- 评测与观点 -->
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">⭐</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>《养鬼吃人：复苏》评测肯定美术解谜，批评战斗与恐怖节奏<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">媒体为《养鬼吃人：复苏》给出偏保留评价，认为怪物美术和解谜有亮点，但预设失败桥段、战斗反馈及惊吓设计削弱体验。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十二日的评测认为，《养鬼吃人：复苏》的身体恐怖美术、血腥表现和怪物造型相当突出，部分解谜也令人满意，但动作与恐怖环节没有达到相同水平。作者以标准难度游玩，批评数场战斗明显受预设脚本控制：玩家消耗弹药和治疗道具后，剧情仍要求失败或进入既定过场，使操作缺乏实际后果。这些问题被描述为限制体验的护栏，而不只是单纯难度过低。</p><p>具体反馈中，配置盒带来的有限念动力能够投掷物体或解决谜题，作者很喜欢这部分，却认为它在整体战斗中占比偏低，枪械承担了大部分行动。惊吓方面，一些场景里的怪物无法真正伤害玩家，追逐威胁也不足，削弱了紧张感；作者同时承认自己对惊吓较耐受。最终评价保留了美术与谜题的优点，却没有把怀旧情绪视为足以抵消战斗问题的理由。这是一位评测者的实玩判断，不能被概括为所有玩家或全部媒体的一致结论。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/horror/clive-barkers-hellraiser-revival-review/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>《现代战争四》媒体评测称战役与撤离模式出色，仍指出辨识问题<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">TechRadar</span><span class="t">10月23日 23:10</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">媒体实玩评价《现代战争四》的战役、撤离模式及核心多人玩法表现突出，同时认为角色缺乏阵营区分会影响战场辨识。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日的电脑版本评测对《现代战争四》整体持积极态度，认为单人战役、多人与撤离模式形成完整组合。文章肯定战役的角色塑造、场面调度和两条叙事线的汇合，同时介绍撤离模式有可探索的三维基地，能够储存物资、制造装备与接触商人。外出行动包含自由探索、动态目标与故事任务，其他玩家可能介入，也可以选择合作，因此撤离过程具有不同于线性战役的变化。</p><p>核心多人部分，作者认为移动速度与交战节奏在快速行动和战术站位之间取得平衡，新的攀挂动作增加路线选择，弹道系统也影响实战射击。枪械的模型、声音、动画和地图视觉表现得到好评。但文章仍指出角色缺乏清楚的阵营划分，玩家有时需要依赖敌方标识辨认目标，这影响可读性。上述结论来自媒体实玩，不等于全体玩家对匹配系统或长期平衡已经达成共识；报道没有用这次评测证明后续赛季内容、在线稳定性或运营表现必然维持同一水平。</p>
+<p>来源：<a class="source-link" href="https://www.techradar.com/gaming/call-of-duty-modern-warfare-4-review" target="_blank">TechRadar</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>每日二手车估价小游戏获媒体推荐，真实车况信息构成推理题面<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-review">评测与观点</span></div>
+<div class="card-brief">媒体试玩每日二手车估价小游戏，玩家依据真实车辆照片、年份、里程与新车售价猜成交价，成绩会影响连续游玩纪录。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日的体验文章介绍一款围绕二手车估价的每日小游戏。玩家扮演车行员工，每日面对五辆真实车辆，题面提供照片、品牌型号、年份、里程和新车时的价格，随后要求猜测它在指定日期的成交价。虚拟老板会根据误差给出等级评价，表现太差或连续多日失误，就会失去工作并重置连续纪录。作者将它与每日文字谜题比较，认为规则容易理解，但准确判断价格并不轻松。</p><p>作者和同事的试玩经历显示，熟悉车辆名称并不保证能猜中二手成交价值，特定年份和里程的组合会带来意外。这种把真实照片与有限资料放在一起的方式，构成文章推荐它的主要乐趣，而不是复杂的驾驶或经营系统。网站还提供判断交易是否划算、比较两辆车价格高低，以及车牌相关的每日游戏。本文属于轻量试玩推荐，没有正式评分，也没有说明题库覆盖范围或成交数据的核验方法，因此不能把游戏表现当作现实购车估值能力或专业行情工具的证明。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/puzzle/its-our-new-daily-game-fixation-and-we-all-stink-at-it-can-you-guess-how-much-used-cars-cost/" target="_blank">PC Gamer</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🎮 游戏行业日报 · 2026-10-25 · 数据来源：公开网页原文汇总；所有条目均为web来源。⚠️ 本报告基于AI网页读取与摘要，赛事细节未经独立验证，仅供话题参考。<br>
+共 20 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 采用10月22日—10月25日报道窗口；部分为期间刊发的追踪、访谈或更新评测。多数原文仅有日期，缺少时区与时刻，无法可靠换算北京时间，time记为时间不详；有明确时间依据的条目已换算。</span>
+</div>
+
+</div>
+</body>
+</html>
