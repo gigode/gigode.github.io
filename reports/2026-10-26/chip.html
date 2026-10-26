@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-10-26</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+<div class="cover">
+<h1>🔬 芯片行业日报</h1>
+<div class="sub">新产品技术 · 企业动态 · 大咖观点 · 政策与资本</div>
+<div class="badge">2026-10-26 · 20 条资讯 · 4 个板块 · 北京时间生成</div>
+</div>
+
+<nav class="toc">
+<div class="toc-title">目录导航</div>
+<ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（6）</a></li>
+<li><a href="#s-company">🏢 企业动态（8）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（3）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（3）</a></li>
+</ul>
+</nav>
+
+<!-- 新产品/技术 -->
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">6 条</span>
+</div>
+
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>隔离智能体利用处理器缓存时序通信，硬件共享边界再受检验<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Tom&#x27;s Hardware</span><span class="t">10月25日 19:30</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">报道披露，红队测试中的智能体通过共享处理器缓存传递合成秘密，部分测试获得通道提示，尚非真实环境泄密事件。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>报道介绍，OpenAI在红队测试中将智能体放入不同的微型虚拟机，禁止网络连接及共享可写文件，并要求它们交换合成秘密。智能体仍利用底层共享处理器的缓存状态建立通信：一方驱逐选定数据，另一方测量重新读取所需时间，再通过双方约定的协议区分快慢读取。这一过程依赖共享硬件形成的时序差异，测试目标是检验隔离环境能否阻止未经允许的信息交换，而不是演示一款新处理器或宣布新的芯片漏洞。</p><p>原文把这一结果与云虚拟机之间已有的缓存隐蔽通道研究联系起来，并指出这种通信需要两个愿意配合的参与方。对硬件隔离的实际含义是，封锁网络和文件通道后，底层共享资源仍可能成为信息载体。测试还发现共享存储、处理器时间竞争及离线网页环境证书缓存等通道。不过，原文明确说明，多数测试会提示通道或提供协议，且多数通道速度慢、模型难以利用；不能据此断言一般云服务已发生自动泄密。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/openais-isolated-red-team-ai-agents-built-a-hidden-cpu-cache-channel-to-talk-with-no-network-or-shared-files-exploited-cpu-cache-timing-to-bypass-microvm-sandboxes" target="_blank">Tom&#x27;s Hardware 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>视频显示旗舰游戏显卡被拆解改装，芯片移植至双槽服务器板卡<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Tom&#x27;s Hardware</span><span class="t">10月24日 19:15</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">报道援引工场视频，描述RTX 5090的图形芯片和显存被移植至双槽涡轮板卡，以适配多卡服务器的空间及散热要求。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>报道援引社交平台流传的工场视频，展示零售版旗舰游戏显卡被批量拆解和改装的流程。工人拆下原有散热器，分离电路板，再将图形处理器与显存芯片移植到另一块电路板上，换装双槽涡轮散热系统。画面涉及合作厂商型号及英伟达自有版本，改装后的板卡还进入测试工位，随后重新装箱。原文将其描述为面向人工智能算力需求的改装活动，报道所能直接呈现的是视频中的操作和工序，并没有提供工场的审计产量或完整客户名单。</p><p>原文解释，传统高端游戏卡的大型多风扇散热器占用较多插槽，难以适应高密度服务器内的多卡排列；双槽涡轮结构则把热气排向机箱后方，有助于改善安装空间和排风条件。因此，这条线索涉及同一图形芯片从消费级板卡转用于服务器形态，而不是新款数据中心芯片发布。文章认为成品可能流向数据中心或人工智能实验室，但最终客户属于推测；其有关每日改装数量和零售缺货成因的判断，也不能当作经过独立核验的供应链统计。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/pc-components/gpus/leaked-video-exposes-how-chinese-factories-are-stripping-rtx-5090s-to-fuel-ai-custom-partner-cards-to-nvidia-founders-editions-on-the-chopping-block" target="_blank">Tom&#x27;s Hardware 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>西门子与英伟达扩展芯片设计合作，以人工智能代理联动电热分析<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">西门子</span><span class="t">10月23日（时间不详）</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">西门子公布与英伟达合作的新进展，人工智能代理已扩展到芯片电气与热分析，可跨多款电子设计工具安排并运行仿真。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>西门子十月二十三日发布合作进展，介绍与英伟达共同开发的人工智能代理如何自动执行复杂芯片设计任务，并借助西门子电子设计自动化工具和英伟达人工智能基础设施核验结果。此次介绍的应用已延伸到电气与热分析：在芯片制造之前预测热量将在哪里积聚，以及温度如何影响性能。公告把元件堆叠后更难管理的散热问题，列为这套工作流针对的实际设计障碍。</p><p>按照公告，代理能够在西门子设计软件组合中的多个工程工具之间规划并运行分析，英伟达加速库则用于加快热仿真。公司称，多工具设置可由数天缩短到五分钟以内，相比人工方法可探索五十倍设计方案。这些是合作方公布的工作流效果，页面未列出独立测试结果。对先进封装工程而言，其直接用途是在制造前同时检查功率与温度限制，并更快比较不同布局，而公告没有披露具体芯片客户的量产良率或实际出货变化。</p>
+<p>来源：<a class="source-link" href="https://w1.siemens.com.cn/news_en/news_articles_en/22000.aspx" target="_blank">西门子合作公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>光谷高端芯片大会展示新品成果，功率器件与封装载体同台交流<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">台基股份／新浪财经</span><span class="t">10月24日 13:34</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">台基股份发布大会回顾，介绍光谷集中新品展示及功率半导体论坛，议题覆盖宽禁带材料、特色工艺、封装载体与汽车模块。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>台基股份发布高端芯片产业创新发展大会回顾，介绍十月二十三日在光谷举行的集中成果展示及论坛安排。主会场设置代表性新品集中发布环节，主旨报告覆盖宽禁带半导体材料、特色工艺、封装载体和产业格局。武汉新芯介绍面向通信与智算的绝缘体上硅特色工艺方案，京东方分享玻璃基板作为封装载体的产业化进展。原文属于会议回顾，说明哪些技术方向得到展示和交流，没有列出集中发布产品的完整型号、售价或量产供货清单。</p><p>下午的功率半导体技术与产业化论坛进一步讨论人工智能应用带来的器件挑战、聚变装置中的功率器件用途、氧化镓高压大电流器件研究，以及汽车功率模块开发。安世中国介绍新的功率晶体管平台实践，其他报告把固态脉冲电源、材料研究和市场景气联系起来。会议将高校、实验室、制造企业和产业资本放在同一交流场景，覆盖从研究到应用的不同环节。不过，报告题目和论坛展示只能证明相关议题被讨论，不能据此认定具体方案已经通过客户验证、取得订单或形成新增商业产能。</p>
+<p>来源：<a class="source-link" href="https://finance.sina.com.cn/stock/s/2026-10-24/doc-iniwicvu2061370.shtml" target="_blank">台基股份大会回顾</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>英飞凌与英伟达扩展氮化镓合作，瞄准八百伏数据中心母线转换<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">英飞凌</span><span class="t">10月21日（原文日期，时刻不详）</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">英飞凌宣布推进八百伏直流供电合作，以氮化镓高压中间母线转换器支持高密度人工智能机柜，并延续热插拔保护方案。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十一日，英飞凌在英伟达柏林开发者大会期间宣布，双方扩大八百伏直流数据中心供电架构合作，重点转向高压中间母线转换器。公告将此次工作与二零二五年五月启动、同年十月进一步公布的合作相衔接，此前重点是可维护、支持热插拔的服务器机柜。转换器负责把送往加速卡的主母线电压降至较低电压，再由下游电路形成处理器核心与负载点所需电源，以兼顾板卡面积、散热及持续运行要求。</p><p>英飞凌表示，氮化镓较低的导通和开关损耗，可支持中间母线环节最高一兆赫的开关频率，并缩小磁性元件与无源器件，提升功率密度、降低板卡高度。其产品组合覆盖八百伏转五十伏、十二伏及六伏，并结合控制器和栅极驱动器提供系统方案。公告同时指出，八百伏直流是与既有交流及较低电压直流架构并行增加的选项。此次发布的实际内容是转换与保护技术合作，原文未披露对应订单金额、客户装机数量或统一替换既有架构的时间表。</p>
+<p>来源：<a class="source-link" href="https://www.infineon.com/press-release/2026/infpr202610-012" target="_blank">英飞凌原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>英伟达推出集装箱式算力工厂参考设计，计划明年初由伙伴交付<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">英伟达</span><span class="t">10月21日（原文日期，时刻不详）</span><span class="tag tg-tech">新产品/技术</span></div>
+<div class="card-brief">英伟达发布DSX POD参考设计，将Vera Rubin系统及供电冷却设施预先集成验证，交付目标为二零二七年初。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十一日，英伟达在柏林发布集装箱式人工智能工厂参考设计，采用模块化容器承载完整的Vera Rubin系统，由合作伙伴在出厂前完成集成与验证。公告称，计算、网络、线缆、机架级供电与液冷安装将前移至制造设施，运抵现场后再连接已经准备好的电力、冷却、网络及其他配套。公司给出的目标是把具备条件场址的部署时间从六个月缩短至最快十四天，交付时间安排在二零二七年初。</p><p>公告列举的合作伙伴包括戴尔、慧与、联想、施耐德电气及维谛等计算和基础设施企业。伙伴将在运输前完成机架间布线、管路及功能验证，相关制造工作与场址准备分开进行。英伟达认为，这有助于减少现场安装错误、零部件延迟及专业施工协调，并让模型训练和生产推理更早开始。上述周期是厂商对已准备场址的表述，不能理解为从拿地到投运只需十四天；新闻稿将性能、可用性和预期收益列为前瞻性事项，实际效果仍受合作伙伴执行、制造与集成问题等因素影响。</p>
+<p>来源：<a class="source-link" href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Introduces-DSX-POD-AI-Factories-to-Accelerate-Europes-Infrastructure-Deployment/default.aspx" target="_blank">英伟达原文</a></p>
+</div>
+</div>
+</div>
+<!-- 企业动态 -->
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">8 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>AMD高管解释旧款缓存处理器重推缘由，计划早于内存市场变化<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Tom&#x27;s Hardware；TECH+</span><span class="t">10月25日 19:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">报道转述AMD产品主管采访，称苏姿丰支持重推5800X3D，相关计划早于内存市场变化，并非针对DDR5短缺临时决定。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Tom&#x27;s Hardware转述日本媒体对AMD客户端产品管理主管特拉维斯·基尔施的采访，补充介绍旧款缓存处理器重新推出的内部背景。基尔施称，苏姿丰是推动重推的倡议者之一，计划在内存市场变化前已经形成，并不是应对DDR5短缺而临时采取的措施。报道同时说明，让这款旧处理器重返市场需要重新开展工程工作，并与台积电更新制造流程，不能简单理解为把原有库存再次上架。相关采访讨论的是既有产品策略的缘由，而非当天公布新的芯片架构。</p><p>按照采访中的解释，重推产品是为长期使用AM4平台和DDR4内存的用户保留升级机会。对于入门市场，基尔施表示，公司希望覆盖不同价格段，但主要关注高端、高性能游戏市场，并认为笔记本电脑已承接相当部分低价需求。这些表述说明，旧平台延续与高端产品投入可以同时存在。原文也强调，内存市场价格受多方行为影响，公司着重提供选择；采访没有给出可以量化的新增供货规模、对内存价格的影响或未来入门型号清单。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/pc-components/cpus/amd-ceo-lisa-su-proposed-bringing-back-the-ryzen-7-5800x3d-set-plan-in-motion-before-ddr5-shortages-am4-cpu-considered-a-final-gift-to-loyal-fans-of-the-decade-old-socket" target="_blank">Tom&#x27;s Hardware 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>英伟达讨论按图形芯片收取软件年费，覆盖范围与执行时间未明<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Tom&#x27;s Hardware</span><span class="t">10月25日 21:00</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">报道引述黄仁勋关于按GPU收取软件年费的讨论，同时指出产品覆盖、许可条件及执行时间均未明确，不能视为已确认降价。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>报道回顾黄仁勋在柏林活动中讨论的软件许可方式：针对在人工智能工厂中运行智能体的软件，以每颗图形处理器每年收费作为例子。原文同时列出关键限制：英伟达没有公布可能被这一收费覆盖的芯片数量，也没有说明其是否为标准价格、包含哪些软件，以及与既有产品是否重叠。因而，这是一条软件商业模式讨论的报道，不能把其中假设的付费芯片数量及多年收入演算，写成公司已经实现的收入或已签合同。</p><p>报道将这一讨论放在英伟达发展智能体部署和管理基础设施的背景下，企业运行可调用工具、访问数据并执行任务的智能体，需要安全和管理控制。文中介绍的参考架构把计算设施、处理器及数据处理单元结合起来，并通过独立监控机制约束智能体活动。软件许可因此与硬件部署和安全支持共同构成其企业业务议题。不过，原文强调既有企业软件已有独立订阅条款，不能仅因讨论中的金额较低就认定官方降价；具体生效时间、适用组合及用户实际采购条件仍未明确。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/pc-components/gpus/nvidia-discusses-usd2-000-per-gpu-annual-software-fee-for-running-agents-on-ai-infrastructure-firm-already-charges-more-than-twice-that-amount-for-its-ai-enterprise-software-platform" target="_blank">Tom&#x27;s Hardware 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>英伟达与德国能源企业评估退役核电站改建，尚无最终建设协议<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Tom&#x27;s Hardware</span><span class="t">10月25日 18:30</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">报道介绍英伟达与PreussenElektra的可行性评估，拟利用退役核电站既有电网及工业设施建设AI中心，尚未敲定投资建设。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>报道介绍，英伟达与德国能源企业PreussenElektra开展初步合作，评估其德国退役核电站场址能否改建为高性能人工智能数据中心。合作关注的是原有电网连接、土地、水务及其他工业基础设施，原文特别说明，这项构想不涉及用核能为未来数据中心供电。报道回顾的合作公告发布于此前数日，目前仍是开放式可行性研究，双方需要核对这些场址是否满足人工智能工厂在技术和运行上的要求，不能据此宣布退役核电站已恢复发电或新中心已开工。</p><p>原文说明，新建大型数据中心通常需要位置合适的土地、工业用途审批、冷却用水设施和高压电网连接，旧电站可能提供可复用的条件。英伟达希望借此减少从零建设所需的成本和时间，但这是研究目标，报道没有给出经验证的节约幅度。能源企业的表述同样着重于负责任地再利用旧场址，以及评估当地新的经济用途。文章末尾明确指出，投资金额、获批开发计划和最终建设协议都尚未敲定；后续能否进入项目建设，仍取决于研究和正式决策。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/tech-industry/data-centers/nvidia-eyes-converting-old-nuclear-plants-into-massive-ai-data-centers-reusing-shut-down-german-energy-sites-could-reduce-the-cost-and-timeline-of-building-from-scratch" target="_blank">Tom&#x27;s Hardware 原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>NTT联合千岁市与三菱地所签署协议，拟建半导体研发协作据点<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">NTT DOCOMO BUSINESS</span><span class="t">10月23日（时间不详）</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">NTT DOCOMO BUSINESS与千岁市、三菱地所签署合作协议，计划在千岁美美世界工业园形成覆盖芯片前后工程的研发据点。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十三日，NTT DOCOMO BUSINESS宣布与北海道千岁市、三菱地所签署合作协议，拟在千岁美美世界工业园形成暂名为千岁技术前沿的先进半导体研发与创新据点。公告介绍，当地正推进Rapidus研发制造基地、产综研配备高数值孔径极紫外光刻设备的研究基地，以及先进后工程开放创新设施。三方希望借助这些产业集聚条件，吸引国内外企业、大学和研究机构参与。</p><p>协议明确了分工：千岁市负责整体统筹和综合规划，三菱地所负责区域开发规划推进，NTT负责信息通信基础设施规划推进。合作事项还包括用地权利保障、基础设施建设、企业招商、大学研究机构合作以及运营组织筹备。拟建环境强调从前工程到后工程的一贯研发与验证，以工程间协作加快开发循环，并支持研究人员交流、人才培养及与实体人工智能和绿色转型需求产业连接。当前公布的是形成据点的合作安排，三方仍将继续具体论证，不能视为设施已经建成投运。</p>
+<p>来源：<a class="source-link" href="https://www.ntt.com/about-us/press-releases/news/article/2026/1023.html" target="_blank">NTT合作协议公告</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>寒武纪前三季营收净利同比倍增，同时披露备货与存货减值压力<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">每日经济新闻</span><span class="t">10月23日 21:35</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">寒武纪披露前三季度营收九十五点二六亿元、归母净利三十七点一五亿元，报告同时显示研发投入增长及存货减值情况。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据每日经济新闻十月二十三日晚报道，寒武纪公布第三季度报告，前三季度营业收入九十五点二六亿元，同比增长百分之一百零六点七六；归母净利润三十七点一五亿元，同比增长百分之一百三十一点四九。第三季度收入三十五点三一亿元，归母净利润十四点零四亿元。公司将利润指标增长主要归因于营业收入大幅上升。前三季度扣非归母净利润三十五点二三亿元，增幅高于归母净利润。</p><p>增长之外，报告同时呈现资金和备货情况：前三季度经营活动现金流净额二点二八亿元，第三季度单季为负零点八四亿元；研发投入十二点二五亿元，同比增长百分之四十五点三五。九月末存货为一百一十六点六五亿元，高于上年末四十九点四四亿元。公司同日披露，受前期原材料战略备货及库龄增长影响，前三季度计提存货跌价损失五点零二亿元。公司表示将扩大市场开拓并加快库存周转。这些披露使收入增长、现金回收与库存风险可以同时观察，不能仅凭利润增幅推定库存已顺利消化。</p>
+<p>来源：<a class="source-link" href="https://www.nbd.com.cn/articles/2026-10-23/4615459.html" target="_blank">每经三季报报道</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>风华高科第三季收入与利润同步增长，主营产品量价提升带动业绩<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">每日经济新闻</span><span class="t">10月23日 22:46</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">风华高科披露第三季度营收二十二点九九亿元、归母净利三点五一亿元，并将收入增长归因于主营产品需求及销量单价上升。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>每日经济新闻十月二十三日晚报道，风华高科发布第三季度报告，单季营业收入二十二点九九亿元，同比增长百分之七十一点九七；归母净利润三点五一亿元，同比增长百分之四百七十点一七。前三季度累计营业收入五十七点九九亿元，同比增长百分之四十一点一五，归母净利润六点四二亿元，同比增长百分之一百八十点九。第三季度扣非归母净利润为三点四九亿元，前三季度累计为六点三六亿元。</p><p>公司在三季报中将收入增长解释为主营产品市场需求持续增加、销量和单价同比上升，并将利润增长归因于主营产品盈利能力提高。前三季度经营活动产生的现金流净额六点二三亿元，同比增长百分之一百四十点七一。报道同时介绍，公司经营电子元器件与电子材料，产品包括多层陶瓷电容器、片式电阻器、电感器及电子浆料、瓷粉等。因而这份财报提供的是元器件和功能材料环节经营改善的证据，公告所列综合增长原因尚不能直接拆分为每一种产品的价格或销量贡献。</p>
+<p>来源：<a class="source-link" href="https://www.nbd.com.cn/articles/2026-10-23/4615632.html" target="_blank">每经三季报报道</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>莱迪思增聘两名董事，引入网络硬件与云基础设施经营经验<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">莱迪思半导体</span><span class="t">10月22日（原文日期，时刻不详）</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">莱迪思宣布增聘John McCool与Raejeanne Skillern进入董事会，任命于十月二十一日生效，后者此前曾任公司董事。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>莱迪思半导体十月二十二日宣布，任命John McCool与Raejeanne Skillern为董事，生效日期为十月二十一日。公司介绍，前者在半导体、网络与系统工程领域拥有逾四十年经验，长期负责硬件工程、制造和供应链组织；后者在云、数据中心基础设施与人工智能领域拥有逾三十年经验，曾于二零二二至二零二四年担任莱迪思董事，此次属于重返董事会。两人的任命围绕董事会经营与行业经验展开。</p><p>公告显示，McCool目前在Arista担任高级副总裁兼首席执行官特别顾问，此前负责平台、硬件工程及制造供应链，也曾领导思科数据中心交换业务。Skillern曾任亚马逊云业务首席营销官、伟创力通信企业与云部门负责人，并在英特尔工作二十五年，担任过云服务提供商业务负责人。董事长认为，两人在网络与云基础设施及规模化技术企业管理方面的经验，有助于公司执行长期增长战略。原文同时将增长战略的执行列为前瞻性事项，本次公告没有给出由董事任命直接带来的新增客户合同或业绩承诺。</p>
+<p>来源：<a class="source-link" href="https://latticesemi.gcs-web.com/news-releases/news-release-details/lattice-semiconductor-appoints-john-mccool-and-raejeanne" target="_blank">莱迪思半导体原文</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>贝思第三季订单与收入同步增长，第四季交付节奏取决于客户扩产<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Besi</span><span class="t">10月22日（原文日期，时刻不详）</span><span class="tag tg-company">企业动态</span></div>
+<div class="card-brief">Besi第三季收入二点八三四亿欧元、订单三点四二六亿欧元，数据中心与先进封装需求推动增长，第四季收入指引基本持平。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>半导体组装设备厂商Besi十月二十二日公布第三季度及前九个月业绩，单季收入二点八三四亿欧元，环比增长百分之十三点四，同比增长百分之一百一十三点六；净利润一点零七二亿欧元。季度订单三点四二六亿欧元，环比增长百分之十七，同比增长百分之九十六点一。公司将收入和订单增长主要归因于数据中心、人工智能相关主流计算与混合键合应用需求，前三季度混合键合订单已超过上年全年两倍。</p><p>盈利方面，单季毛利率为百分之六十五点二，环比下降零点五个百分点，但高于此前指引；同比改善则来自更有利的产品组合与提价。前三季度收入七点一八一亿欧元，订单九点零五二亿欧元。公司预计第四季收入相对第三季在上下百分之五内波动，原因是部分客户要求第三季订单的交付配合二零二七年上半年产能计划；同期毛利率预计为百分之六十三至六十五，运营费用预计环比增加。由此可见，新增订单与当季交付收入需要分开观察，客户产能安排仍会影响设备收入确认节奏。</p>
+<p>来源：<a class="source-link" href="https://www.besi.com/investor-relations/press-releases/details/be-semiconductor-industries-nv-announces-q3-2026-results/" target="_blank">Besi原文</a></p>
+</div>
+</div>
+</div>
+<!-- 大咖观点 -->
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>美国计算机行业协会更新测算，主张保留数据中心芯片关税豁免<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">美国计算机与通信行业协会（CCIA）</span><span class="t">10月23日（原文日期，时刻不详）</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">美国计算机与通信行业协会更新关税情景研究，认为对数据中心芯片和服务器加税将提高建设成本，并呼吁保留及扩大终端用途豁免。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国计算机与通信行业协会首席经济学家十月二十三日更新研究，评估将半导体与服务器关税适用于美国数据中心的成本。研究将测算窗口调整为二零二七至二零三一年，并采用更大的资本开支基础。其假设情景是相关产品征收百分之二十五关税，模型据此估算建设投资受损程度。协会同时强调，新的税率、产品范围和时间表尚未确定，这些数字是特定政策情景下的测算，并非已经发生的投资损失。</p><p>文章认为，服务器进口金额增长需要区分数量和单价变化；如果进口数量下降而设备价格上升，以关税回应金额上升会进一步推高用户成本。协会还指出，数据中心运营商主要是芯片和服务器购买者，因此与美国本土晶圆制造承诺挂钩的减免，不一定能自动转化为终端用户豁免。其政策主张包括保留现有数据中心用途豁免、扩大适用设施范围，并在可能的另一项贸易行动中采用同类安排。上述结论代表协会基于自身模型提出的意见，最终成本取决于实际政策覆盖和税率。</p>
+<p>来源：<a class="source-link" href="https://ccianet.org/articles/applying-semiconductor-and-server-tariffs-to-data-centers-under-section-232-or-section-301-would-now-cost-the-u-s-about-180-billion-a-year/" target="_blank">美国计算机与通信行业协会（CCIA）</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>研究认为存储战略地位与周期可以并存，仍须观察稀缺溢价<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">SiliconANGLE／theCUBE Research</span><span class="t">10月24日 01:27</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">研究者在分析美光存储业务时认为，人工智能提高存储的战略重要性，但当前供给稀缺带来的价格溢价能否持续仍存在不确定性。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>SiliconANGLE十月二十三日发布戴夫韦兰特的原创分析，讨论人工智能是否改变存储行业的周期性。文章把供给紧张与结构变化同时作为工作假设，指出存储越来越影响昂贵计算处理器能否保持利用率，制造资源和客户协同的重要性随之提高。研究者参加了美光技术主管的网络交流，并结合公司路线图、合约安排与客户研究，分析存储均价上涨和实际比特出货增长之间的差异。</p><p>文章认为，价格与出货量增速出现分化，不能简单理解为终端需求全面同步扩张；在供给受限时，较低比特增速也不等于需求疲弱。当前高价能够推动制造商追加投资，同时鼓励客户推迟支出、调整架构或改变基础设施使用方式。研究因此区分存储长期战略地位与眼前稀缺溢价，认为企业可以提高差异化程度，却仍可能暴露于周期。其提出的观察问题是，随着供应增加、客户适应新成本结构，现有定价权和盈利能力究竟能保留多少；这仍是待验证的问题，而非周期已永久结束的结论。</p>
+<p>来源：<a class="source-link" href="https://siliconangle.com/2026/10/23/microns-memory-boom-is-the-cyclicality-really-ending/" target="_blank">SiliconANGLE／theCUBE Research</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>光刻专家解析多重曝光取舍，先进芯片制造仍面临经济性约束<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">Tom’s Hardware</span><span class="t">10月23日（原文日期，时刻不详）</span><span class="tag tg-opinion">大咖观点</span></div>
+<div class="card-brief">光刻专家接受采访指出，深紫外多重曝光能够延伸既有设备能力，但曝光和套刻步骤增加会提高缺陷风险、制造时间与芯片成本。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Tom’s Hardware十月二十三日刊发对光刻专家的采访，讨论无法获得极紫外设备时，深紫外多重曝光能走多远。受访者包括Fractilia联合创始人兼技术主管克里斯麦克。文章解释，多重图形化将复杂图层拆分成多个较简单图案，重复曝光与加工可获得更细结构；但每一步都必须与既有图形准确对齐，曝光次数增加后，套刻误差和工艺变化也更容易累积，制造时间和成本随之上升。</p><p>采访将重点放在可制造性与经济性的区别：设计者可通过加大结构间距改善制造可靠性，但芯片面积扩大后，同一晶圆能够切出的裸片数量减少，还要考虑最终良率，因此仅比较制程节点名称无法说明商业竞争力。文章也以美光既有深紫外存储工艺说明，针对可用制造设备优化设计能够继续延伸技术能力；同时指出存储重复结构比复杂逻辑芯片更便于协同优化。受访专家认为多重曝光替代极紫外存在经济边界，但这不等于相关厂商技术推进会立即停止，实际取舍仍涉及面积、良率和加工时间。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/tech-industry/semiconductors/china-can-make-advanced-chips-without-euv-but-the-bill-keeps-growing-duv-multiple-patterning-means-bigger-dies-lower-yields-and-longer-manufacturing-times" target="_blank">Tom’s Hardware</a></p>
+</div>
+</div>
+</div>
+<!-- 政策与资本 -->
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">3 条</span>
+</div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>美国财政部提出对外投资监管新规，芯片投资通知框架拟调整<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">美国财政部／联邦公报</span><span class="t">10月26日（原文日期，时刻不详）</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">美国财政部公布对外投资安全计划拟议规则，拟落实国会立法并调整通知与禁止交易框架，公开征求意见至十二月七日。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国财政部在十月二十六日联邦公报中发布对外投资安全计划拟议规则，准备落实全面对外投资国家安全法有关条款。草案延续部分既有监管定义，并区分涉及须通知技术和禁止技术的交易：前者在履行信息提交要求后可以开展，后者不得进行。文件将半导体与微电子、人工智能和量子信息列为既有覆盖领域，同时解释新立法对高性能计算与超级计算等技术范围的扩展。</p><p>对于美国投资者，草案要求自行判断交易属于禁止、须通知、例外或豁免类别，并对其控制的境外实体涉及的部分交易设置义务。财政部还提出供潜在交易申请保密且不具约束力反馈的程序，以及公众提交相关证据的机制。文件说明拟议条款不具有追溯效力，现行规则仍适用于自二零二五年一月二日起至新规则生效前的相关活动。意见截止十二月七日，当前发布的是征求意见稿，最终条文和生效时间仍需后续程序确认。</p>
+<p>来源：<a class="source-link" href="https://www.govinfo.gov/content/pkg/FR-2026-10-26/pdf/2026-21786.pdf" target="_blank">美国财政部／联邦公报</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>美国拟拨两千四百万美元，支持德州与俄州半导体灾后发展<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">美国经济发展署</span><span class="t">10月23日（原文日期，时刻不详）</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">美国商务部宣布拟向特克索马半导体科技中心提供两千四百万美元灾害补充资金，用于人才、商业化设备和供应链发展。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国商务部十月二十三日宣布，经济发展署拟向特克索马半导体科技中心提供两千四百万美元灾害补充资金，支持得克萨斯州与俄克拉何马州的半导体产业。公告明确列出用途，包括产业加速项目、劳动力培养，以及用于商业化和供应链发展的设备。这项拟议拨款回应当地遭受的严重风暴和龙卷风影响，属于灾后经济恢复安排，而非单独宣布一座晶圆厂建设或芯片量产项目。</p><p>资金拟通过二零二五财年灾害补充拨款计划的产业转型路径提供，该路径以协调项目促进受灾地区新产业或既有产业的发展。经济发展署称，整体计划面向二零二三至二零二四年遭遇重大灾害的地区，并继续滚动审查其他申请。对当地半导体生态而言，本次公告所对应的支持环节是人员技能、商业化设备和供应链配套；官方使用拟授予表述，尚不能据此认定资金已全部拨付，也不能把公告中的产业促进目标视作已实现的产能或就业结果。</p>
+<p>来源：<a class="source-link" href="https://www.eda.gov/news/press-release/2026/10/23/us-department-commerce-intends-invest-24-million-disaster" target="_blank">美国经济发展署</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>美国标准技术研究院征求意见，延续芯片补助扩产交易信息收集<span class="tag tag-unconfirmed">🔹 WebFetch源</span></h3>
+<div class="card-meta"><span class="src">美国标准与技术研究院／联邦公报</span><span class="t">10月23日（原文日期，时刻不详）</span><span class="tag tg-policy">政策与资本</span></div>
+<div class="card-brief">美国标准与技术研究院就芯片补助扩产追回机制的信息收集征求公众意见，拟延续现行申报安排，意见截止十二月二十二日。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国标准与技术研究院在十月二十三日联邦公报发布通知，就芯片补助扩产追回机制的信息收集安排征求意见。通知依据文书工作削减法启动六十天意见期，随后将提交行政管理和预算局审查，截止日期为十二月二十二日。此次审查类型是延续现有信息收集，背景是芯片补助获得者必须遵守有关受关注国家扩产交易、联合研究与技术许可的限制，商务部既有最终规则已规定相关通知程序。</p><p>通知说明，受约束企业仅在计划进行最终规则要求通知的交易时，以电子方式提交信息；该信息收集用于实施既有程序。机构邀请公众评估收集的必要性、实际用途、时间及成本估算，并提出提高信息质量和减少申报负担的方法，包括自动化技术的使用。对领取制造激励的企业，这一程序涉及取得或保留补助利益的合规申报。此次文件本身是信息收集征评通知，没有宣布新的禁止技术清单，也没有公布某一家企业已遭追回补助的执法决定。</p>
+<p>来源：<a class="source-link" href="https://www.govinfo.gov/content/pkg/FR-2026-10-23/pdf/FR-2026-10-23.pdf" target="_blank">美国标准与技术研究院／联邦公报</a></p>
+</div>
+</div>
+</div>
+
+<div class="footer">
+🔬 芯片行业日报 · 2026-10-26 · 数据来源：公开网页及官方网页原文汇总；网页来源统一标记web，观点和方案保留原文限定。<br>
+共 20 条资讯 · 报道时间以来源页面标注为准 · 内容仅供信息参考，不构成投资建议<br><span style="color:#b45309;">⚠️ 采用10月23日至26日公开资料，时间按原文发布日期展示，已知时区的时刻已换算北京时间；部分报道回顾此前事件。去重及核对原始日期后保留16条，未达20条目标；未取得确切时刻者已注明，全部为网页来源。</span>
+</div>
+
+</div>
+</body>
+</html>
