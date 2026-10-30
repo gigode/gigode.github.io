@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 全球宏观日报 · 2026-10-30</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2c5d8a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c1e2e,#1a2f45,#3b6b8f); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#b8d1e4; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbe6f0; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eef4f9; border:1px solid #c9dbe9; }
+.card-detail .source-link:hover { background:#dbe6f0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-cb { background:#eff6ff; color:#1e40af; }
+.tg-data { background:#f0fdf4; color:#15803d; }
+.tg-market { background:#fffbeb; color:#b45309; }
+.tg-policy { background:#f1f5f9; color:#334155; }
+.tg-view { background:#f5f3ff; color:#6d28d9; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+<div class="container">
+<div class="cover">
+<h1>🌐 全球宏观日报 · 2026-10-30</h1>
+<div class="sub">中央银行 · 经济数据 · 资本市场 · 政策与监管 · 大咖观点</div>
+<div class="badge">2026-10-30 · 21 条资讯 · 5 个板块 · 北京时间 08:30</div>
+<div class="sub">美股采用10月29日（星期四）收盘；欧洲及亚洲基准窗口为29日收盘，未取得的数据另标旧值或“—”。<br>日本10月30日盘中及外汇快照时间不详，非最终收盘；日本央行今日约10:30预计议息，尚未公布。<br>GDP增长3.4%、PCE同比3.6%、初请19.4万均已公布；Alphabet收盘跌12.64%，亚马逊财报已于隔夜发布。</div>
+</div><nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list"><li><a href="#s-metrics">📈 市场数据</a></li><li><a href="#s-cenbank">🏛️ 央行政策（4）</a></li><li><a href="#s-data">📊 经济数据（5）</a></li><li><a href="#s-market">📉 资本市场（5）</a></li><li><a href="#s-policy">⚔️ 政策与监管（4）</a></li><li><a href="#s-view">🎓 大咖观点（3）</a></li></ul></nav><div class="section" id="s-metrics"><div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;"><span class="icon">📈</span><h2 style="color:#1e40af;">市场数据</h2><span class="count">逐项标注观测日</span></div><div class="metric-grid"><div class="metric-group-label">美股三大指数 · 美国10月29日（周四）收盘</div><div class="metric-card"><div class="metric-label">标普500</div><div class="metric-value">7,720.39</div><div class="metric-change neg">-0.30% 日 / +0.74% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/^GSPC/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">纳斯达克综合</div><div class="metric-value">26,184.72</div><div class="metric-change neg">-1.38% 日 / +0.68% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/^IXIC/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">道琼斯工业</div><div class="metric-value">52,342.56</div><div class="metric-change neg">-0.25% 日 / -0.99% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/^DJI/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">罗素2000</div><div class="metric-value">2,859.22</div><div class="metric-change pos">+1.01% 日 / 5日 —</div><div class="metric-explain">观测日：2026-10-29<br>AP；五交易日涨幅未核验；<a href="https://apnews.com/article/2c26b0b1bbc3bfab9f3f4b902172f458" target="_blank">来源</a></div></div><div class="metric-group-label">欧洲股市 · 29日收盘未取得，保留明确标日旧值</div><div class="metric-card"><div class="metric-label">英国富时100</div><div class="metric-value">10,694.50</div><div class="metric-change pos">+0.07% 日 / -0.54% 5日</div><div class="metric-explain">观测日：2026-10-28<br>yfinance；真实5交易日变化，非自然周或三个月；旧值，非29日收盘；<a href="https://finance.yahoo.com/quote/^FTSE/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">欧洲股市29日收盘</div><div class="metric-value">—</div><div class="metric-change flat">未核验</div><div class="metric-explain">观测日：—（未核验）<br>未取得统一可核对的29日收盘数据，不以28日旧值替代</div></div><div class="metric-group-label">亚太股市 · 日本30日盘中；恒生为28日旧值</div><div class="metric-card"><div class="metric-label">日经225</div><div class="metric-value">64,483.78</div><div class="metric-change pos">+0.83% 日 / +2.51% 5日</div><div class="metric-explain">观测日：2026-10-30<br>yfinance；真实5交易日变化，非自然周或三个月；时间不详，盘中快照非最终收盘；<a href="https://finance.yahoo.com/quote/^N225/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">恒生指数</div><div class="metric-value">23,094.83</div><div class="metric-change pos">+0.23% 日 / -2.36% 5日</div><div class="metric-explain">观测日：2026-10-28<br>yfinance；真实5交易日变化，非自然周或三个月；旧值，非29日收盘；<a href="https://finance.yahoo.com/quote/^HSI/history/" target="_blank">来源</a></div></div><div class="metric-group-label">美债收益率</div><div class="metric-card"><div class="metric-label">美国10年国债收益率</div><div class="metric-value">4.989%</div><div class="metric-change neg">-1.11% 日 / +0.73% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；涨跌为收益率相对百分比，非基点；<a href="https://finance.yahoo.com/quote/^TNX/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">美国5年国债收益率</div><div class="metric-value">4.801%</div><div class="metric-change neg">-1.44% 日 / +0.69% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；涨跌为收益率相对百分比，非基点；<a href="https://finance.yahoo.com/quote/^FVX/history/" target="_blank">来源</a></div></div><div class="metric-group-label">美元指数／人民币及主要汇率</div><div class="metric-card"><div class="metric-label">美元指数</div><div class="metric-value">101.90</div><div class="metric-change neg">-0.29% 日 / +0.28% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/DX-Y.NYB/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">美元／人民币</div><div class="metric-value">6.6513</div><div class="metric-change neg">-0.22% 日 / -0.40% 5日</div><div class="metric-explain">观测日：2026-10-30<br>yfinance；真实5交易日变化，非自然周或三个月；时间不详，盘中快照非最终收盘；<a href="https://finance.yahoo.com/quote/USDCNY=X/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">美元／日元</div><div class="metric-value">157.72</div><div class="metric-change neg">-0.07% 日 / +0.78% 5日</div><div class="metric-explain">观测日：2026-10-30<br>yfinance；真实5交易日变化，非自然周或三个月；时间不详，盘中快照非最终收盘；<a href="https://finance.yahoo.com/quote/USDJPY=X/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">欧元／美元</div><div class="metric-value">1.1187</div><div class="metric-change pos">+0.28% 日 / -0.31% 5日</div><div class="metric-explain">观测日：2026-10-30<br>yfinance；真实5交易日变化，非自然周或三个月；时间不详，盘中快照非最终收盘；<a href="https://finance.yahoo.com/quote/EURUSD=X/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">英镑／美元</div><div class="metric-value">1.3381</div><div class="metric-change pos">+0.40% 日 / -0.17% 5日</div><div class="metric-explain">观测日：2026-10-30<br>yfinance；真实5交易日变化，非自然周或三个月；时间不详，盘中快照非最终收盘；<a href="https://finance.yahoo.com/quote/GBPUSD=X/history/" target="_blank">来源</a></div></div><div class="metric-group-label">黄金／原油及其他商品 · 期货口径</div><div class="metric-card"><div class="metric-label">黄金期货</div><div class="metric-value">4,015.70 美元/盎司</div><div class="metric-change neg">-0.89% 日 / -1.10% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/GC=F/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">WTI原油期货</div><div class="metric-value">102.91 美元/桶</div><div class="metric-change pos">+0.13% 日 / +3.46% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/CL=F/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">白银期货</div><div class="metric-value">51.94 美元/盎司</div><div class="metric-change neg">-2.85% 日 / -5.17% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/SI=F/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">铜期货</div><div class="metric-value">6.565 美元/磅</div><div class="metric-change neg">-1.15% 日 / +3.18% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/HG=F/history/" target="_blank">来源</a></div></div><div class="metric-group-label">比特币</div><div class="metric-card"><div class="metric-label">比特币</div><div class="metric-value">—</div><div class="metric-change flat">统一时点未核验</div><div class="metric-explain">观测日：—（未核验）<br>指定文件无此序列，其他快照未独立核验，保留缺值</div></div><div class="metric-group-label">风险与ETF参考 · ETF观测日为28日</div><div class="metric-card"><div class="metric-label">VIX波动率</div><div class="metric-value">17.20</div><div class="metric-change pos">+1.71% 日 / -9.62% 5日</div><div class="metric-explain">观测日：2026-10-29<br>yfinance；真实5交易日变化，非自然周或三个月；<a href="https://finance.yahoo.com/quote/^VIX/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">标普500 ETF SPY</div><div class="metric-value">772.31</div><div class="metric-change pos">+0.34% 日 / -0.10% 5日</div><div class="metric-explain">观测日：2026-10-28<br>yfinance；真实5交易日变化，非自然周或三个月；旧值，非29日收盘；<a href="https://finance.yahoo.com/quote/SPY/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">纳指100 ETF QQQ</div><div class="metric-value">725.61</div><div class="metric-change pos">+0.60% 日 / +0.06% 5日</div><div class="metric-explain">观测日：2026-10-28<br>yfinance；真实5交易日变化，非自然周或三个月；旧值，非29日收盘；<a href="https://finance.yahoo.com/quote/QQQ/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">道指ETF DIA</div><div class="metric-value">524.68</div><div class="metric-change pos">+0.27% 日 / -0.57% 5日</div><div class="metric-explain">观测日：2026-10-28<br>yfinance；真实5交易日变化，非自然周或三个月；旧值，非29日收盘；<a href="https://finance.yahoo.com/quote/DIA/history/" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">罗素2000 ETF IWM</div><div class="metric-value">281.29</div><div class="metric-change pos">+0.40% 日 / +1.74% 5日</div><div class="metric-explain">观测日：2026-10-28<br>yfinance；真实5交易日变化，非自然周或三个月；旧值，非29日收盘；<a href="https://finance.yahoo.com/quote/IWM/history/" target="_blank">来源</a></div></div><div class="metric-group-label">FRED宏观背景 · 观测期不等于发布日期</div><div class="metric-card"><div class="metric-label">有效联邦基金利率</div><div class="metric-value">3.8800%</div><div class="metric-change flat">前值 3.8800%</div><div class="metric-explain">观测日：2026-10-28<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/DFF" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">10年美债 FRED</div><div class="metric-value">5.0500%</div><div class="metric-change flat">前值 4.9900%</div><div class="metric-explain">观测日：2026-10-28<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/DGS10" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">2年美债 FRED</div><div class="metric-value">4.6700%</div><div class="metric-change flat">前值 4.7000%</div><div class="metric-explain">观测日：2026-10-28<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/DGS2" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">10年减2年期限利差</div><div class="metric-value">0.3700个百分点</div><div class="metric-change flat">前值 0.3800个百分点</div><div class="metric-explain">观测日：2026-10-29<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/T10Y2Y" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">美国失业率</div><div class="metric-value">4.2000%</div><div class="metric-change flat">前值 4.1000%</div><div class="metric-explain">观测日：2026-09-01<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/UNRATE" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">美国CPI指数</div><div class="metric-value">336.2980</div><div class="metric-change flat">前值 334.1310</div><div class="metric-explain">观测日：2026-09-01<br>FRED；原始观测期，非今日新增数据；指数水平，非同比通胀率；<a href="https://fred.stlouisfed.org/series/CPIAUCSL" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">VIX FRED</div><div class="metric-value">16.9100</div><div class="metric-change flat">前值 17.5200</div><div class="metric-explain">观测日：2026-10-28<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/VIXCLS" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">10年通胀补偿</div><div class="metric-value">2.3500%</div><div class="metric-change flat">前值 2.3800%</div><div class="metric-explain">观测日：2026-10-29<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/T10YIE" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">M2货币量</div><div class="metric-value">23,413.9000 十亿美元</div><div class="metric-change flat">前值 23,300.9000 十亿美元</div><div class="metric-explain">观测日：2026-09-01<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/M2SL" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">高收益债OAS</div><div class="metric-value">3.1400%</div><div class="metric-change flat">前值 3.1800%</div><div class="metric-explain">观测日：2026-10-28<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/BAMLH0A0HYM2" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">美国名义GDP</div><div class="metric-value">33,010.0360 十亿美元</div><div class="metric-change flat">前值 32,563.0300 十亿美元</div><div class="metric-explain">观测日：2026-07-01<br>FRED；原始观测期，非今日新增数据；名义GDP年率水平，非实际增速；<a href="https://fred.stlouisfed.org/series/GDP" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">工业生产指数</div><div class="metric-value">103.9506</div><div class="metric-change flat">前值 103.2664</div><div class="metric-explain">观测日：2026-09-01<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/INDPRO" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">零售销售</div><div class="metric-value">745,021.0000 百万美元</div><div class="metric-change flat">前值 739,322.0000 百万美元</div><div class="metric-explain">观测日：2026-09-01<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/RSAFS" target="_blank">来源</a></div></div><div class="metric-card"><div class="metric-label">新屋开工年率</div><div class="metric-value">1,221.0000 千套</div><div class="metric-change flat">前值 1,288.0000 千套</div><div class="metric-explain">观测日：2026-09-01<br>FRED；原始观测期，非今日新增数据；<a href="https://fred.stlouisfed.org/series/HOUST" target="_blank">来源</a></div></div></div><div class="empty-section">行情采用2026年10月30日08:15提供的yfinance/FRED文件；五日均为真实五交易日变化。不同序列观测日、合约与采样口径分别保留；FRED月度和季度指标为背景。日经及外汇30日采样时间不详，不视为最终收盘。缺值保留“—”，不跨日补齐。</div></div><div class="section" id="s-cenbank">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;"><span class="icon">🏛️</span><h2 style="color:#1e40af;">央行政策</h2><span class="count">4 条</span></div>
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>日本央行今日议息：预计维持1.25%，通胀判断成为关键<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">Reuters／Investing.com</span><span class="t">10月30日 约10:30（预计；尚未公布）（北京时间）</span><span class="tag tg-cb">央行政策</span></div>
+<div class="card-brief">市场预计维持利率，关注基础通胀是否达标。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>截至北京时间十月三十日早间，日本央行本次会议决议尚未公布。检索到的会前报道显示，市场普遍预计政策利率维持在百分之一点二五，重点在于央行是否明确判断基础通胀已大体达到百分之二目标，并小幅上调下一财年物价预测。这属于对今日会议的预期，不能写成已经宣布加息或已经确认通胀达标。利率保持不动与未来继续收紧并不矛盾，投资者应同时查看季度展望、委员投票及行长随后对物价持续性的解释，避免仅凭利率标题判断政策方向。</p>
+<p>分析上，基础通胀评价若发生变化，可能改变市场对下一次加息时间的判断，并通过日元、国债和跨境资金流动传导。更强的收紧信号通常会提高日元融资成本，压缩依赖低息资金的套利空间，银行与出口企业的盈利影响也可能分化。反过来，若央行强调需求脆弱或外部风险，即使维持利率符合预期，日元也未必因此获得支持。当前应把上述路径作为条件分析，而非已发生的市场反应；实际结论必须等待正式声明，不能以媒体调查取代政策决定。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/economy-news/bank-of-japan-to-hold-rates-signal-further-hikes-4985276" target="_blank">Reuters／Investing.com</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>美联储暂停后，市场仍给予十二月加息约85%概率<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">Axios／CME FedWatch</span><span class="t">10月29日 03:18；会后定价背景（北京时间）</span><span class="tag tg-cb">央行政策</span></div>
+<div class="card-brief">暂停未消除加息风险，后续数据决定路径。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美联储十月二十八日维持联邦基金利率区间在百分之三点七五至四，以十比二通过；库克与哈马克反对，均主张加息二十五个基点。沃什现任主席。会后报道援引芝商所工具显示，交易员仍给予十二月加息约百分之八十五的概率。这里的概率来自会后市场定价，不能直接说成十月二十九日数据公布后再度升至这一水平，也不能把市场押注写成央行承诺。在今日宏观组合中，已经发布的增长和物价数据应作为检验该预期的新信息，而十月决议本身只是既定政策背景，时间顺序需要清楚区分。</p>
+<p>分析上，暂停加息可能是等待证据，并不意味着紧缩周期结束。若后续需求和基础物价继续偏强，企业与家庭面对的融资成本可能维持较高水平，股票估值也会更依赖真实现金流而非远期增长想象。与此同时，期货概率会随就业、通胀和金融条件迅速变化，不能据此推导唯一结果。对持有长期债券、浮息债务或高估值资产的投资者而言，更有用的是检验不同利率情景下的承受能力，并同时关注信用利差，判断紧缩是否正从政策利率传导到实际融资环境。</p>
+<p>来源：<a class="source-link" href="https://www.axios.com/2026/10/28/fed-warsh-interest-rates-cook" target="_blank">Axios／CME FedWatch</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>欧洲央行十月二十九日按兵不动，能源冲击加剧两难<span class="tag tag-verified">✅ 官方／交叉核验</span></h3>
+<div class="card-meta"><span class="src">欧洲央行官方声明</span><span class="t">10月29日；具体时刻未核实（北京时间）</span><span class="tag tg-cb">央行政策</span></div>
+<div class="card-brief">存款利率维持2.50%，能源同时威胁物价与增长。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>欧洲央行十月二十九日官方政策声明确认，存款便利、主要再融资和边际贷款利率分别维持百分之二点五零、二点六五与二点九零。声明指出，能源价格持续上涨，带来通胀上行与增长下行风险，而基础通胀目前大致稳定，工资尚未出现明显回应。央行同时提到融资条件已经收紧，坚持逐次会议依据数据作决定，不预先承诺利率路径。此为已公布的欧洲隔夜政策事件，与今日尚待公布的日本央行决议应明确区别，不能统一列为待议息事项。</p>
+<p>分析上，能源冲击使欧洲央行同时面对生活成本上升和需求受损，单看一次维持利率无法推导下一步必然宽松。若企业把能源成本持续转嫁给终端、工资随后跟进，政策可能需要更长时间保持限制性；若融资收紧首先压低投资和消费，则增长压力会扩大。欧洲企业债、银行和能源密集制造业因此具有不同敏感度。欧元走势还取决于与美国政策路径的相对变化，不能仅凭利率持平判断升跌。后续应观察服务价格、工资传导与信贷需求，识别供给冲击是否正在扩散。</p>
+<p>来源：<a class="source-link" href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.mt.html" target="_blank">欧洲央行官方声明</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>中国央行补充跨月资金：七天与隔夜逆回购并行<span class="tag tag-verified">✅ 官方／交叉核验</span></h3>
+<div class="card-meta"><span class="src">每日经济新闻／财联社交叉核实</span><span class="t">10月29日 09:25（北京时间）</span><span class="tag tg-cb">央行政策</span></div>
+<div class="card-brief">七天逆回购1150亿元，另开展万亿元隔夜操作。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>十月二十九日，中国人民银行开展一千一百五十亿元七天期逆回购，操作利率为百分之一点四，同时开展一万亿元隔夜逆回购。每日经济新闻与财联社检索结果一致。以上是当日操作规模，并非扣除到期量后的净投放，也不是永久增加同等规模的基础货币。由于尚未核实全部到期项目，本日报不计算净投放数字。临近月末，隔夜与七天工具同时使用，反映央行能够针对不同期限的资金需求进行调节，但不能据此认定已经宣布新的全面降息或降准措施。</p>
+<p>分析上，短端资金供给稳定有助于银行和非银机构安排结算、回购融资及债券持仓，降低跨月时点出现被动去杠杆的可能性。不过，短期流动性改善与实体部门扩大贷款需求属于不同环节，货币市场充裕并不自动等于居民加杠杆或企业投资回升。下一步应结合实际回购利率、存单发行成本和信贷投向来判断传导效果，并核对到期量，防止把大额滚动续作误读为同等规模新增刺激。对债券价格的支持程度也取决于供给节奏及市场已有预期，不能从操作总额直接推导行情。</p>
+<p>来源：<a class="source-link" href="https://www.nbd.com.cn/articles/2026-10-29/4626213.html" target="_blank">每日经济新闻／财联社交叉核实</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-data">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;"><span class="icon">📊</span><h2 style="color:#15803d;">经济数据</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>东京十月核心通胀回落至2.6%，仍高于日本央行目标<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">Investing.com日本站</span><span class="t">10月30日 07:58（北京时间）</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">核心CPI符合预期，放缓尚未消除加息讨论。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>北京时间十月三十日早间发布的报道显示，东京十月剔除生鲜食品的核心消费者价格同比上涨百分之二点六，低于九月的百分之二点七，并与市场预期一致。该指标仍包含能源，因此不能直接当作剔除能源后的价格趋势，也不能与全国消费者价格指数混用。数据在日本央行今日政策决定前公布，为观察通胀持续性补充了证据。由于本次取得的是媒体已发布报道，尚未直接核对官方完整分项表，应保留对构成变化的审慎判断，不能单凭一个总量数字推算服务价格表现。</p>
+<p>分析上，核心通胀小幅回落可以降低短期继续加速的担忧，但仍高于目标，政策含义取决于工资、服务价格和进口成本之间的关系。能源或补贴因素导致的放缓，与国内需求真正降温，对后续加息路径的影响并不相同。对日元和日本国债而言，更关键的是这份数据是否改变央行对基础通胀的判断，而非机械比较本月和上月。当前尚未核实数据发布后的独立市场涨跌，因此不把任何汇率变化归因于这次公布；日本央行的正式措辞仍可能放大或抵消数据本身的影响。</p>
+<p>来源：<a class="source-link" href="https://jp.investing.com/news/economic-indicators/article-1733763" target="_blank">Investing.com日本站</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>中国信贷投向显分化：科技贷款快增，住房贷款收缩<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">中国新闻网转引中国人民银行</span><span class="t">10月28日 18:19；本周数据跟踪（北京时间）</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">科技融资扩张与住房贷款收缩并存，观察内需传导。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>中国人民银行三季度贷款投向统计经中国新闻网报道显示，季末科技型中小企业贷款余额四点二七万亿元，同比增长百分之二十点一；获得贷款支持的企业三十点七三万家，获贷率百分之五十一点一。同时，个人住房贷款余额同比下降百分之四点一，房地产贷款总体同比下降百分之五点二。该报告发布于十月二十八日，属于本周已公布数据跟踪，不是今日新增数据。不同领域的贷款表现显示融资结构正在调整，不能用科技贷款的高增速代替对全部居民和企业需求的评价。</p>
+<p>分析上，科技信贷扩张可能帮助企业研发、设备更新及资本周转，但贷款余额增长并不等于同期收入、利润或生产率已经提高。住房贷款收缩则提示居民资产负债表仍需观察，房地产相关需求对内需的支撑可能与科技部门形成分化。判断政策传导，应继续核对中长期贷款、居民消费贷款及企业实际订单，而非只看总量信贷。银行也需要在支持新产业与识别信用风险之间保持平衡。上述结构变化可能影响设备制造、科技服务和地产链的相对景气，但本次数据不直接证明相关股票已经出现对应涨跌。</p>
+<p>来源：<a class="source-link" href="https://www.chinanews.com/cj/2026/10-28/10722329.shtml" target="_blank">中国新闻网转引中国人民银行</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>美国三季度GDP增长3.4%，投资与政府支出推动加速<span class="tag tag-verified">✅ 官方／交叉核验</span></h3>
+<div class="card-meta"><span class="src">BEA／Reuters</span><span class="t">10月29日 20:30（北京时间）</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">增速高于路透调查预期3.2%，前季为2.2%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国经济分析局十月二十九日公布三季度国内生产总值初值，实际增速按季环比折年计算为3.4%，高于路透调查的3.2%，并较二季度2.2%加快，为去年三季度以来最快。官方解释，加速主要反映投资增长提速和政府支出恢复增长，出口转为下降则抵消部分贡献；进口增加也在核算中形成扣减。私人国内最终购买增长4.9%，显示内需仍有支撑。这是十一月三日中期选举前已经发布的经济成绩单，不能再沿用会前预测。折年率也不等于季度实际增长了同样幅度，更不等于同比增速。</p>
+<p>本日报分析，强劲总量使美联储更难仅凭增长担忧迅速放松，但投资驱动的扩张是否能够持续，仍需看项目回报、现金流和订单能否接续。政府支出回升能支持当期需求，却不能据此推导私人部门盈利普遍改善；出口走弱则提示外需与汇率传导仍可能形成拖累。对市场而言，应把经济扩张与科技企业现金流压力同时观察，避免将增长超预期直接解释成所有股票利好。下一轮修订、投资结构及居民实际收入将检验增长质量，初值本身尚不能回答未来通胀是否自然回落。</p>
+<p>来源：<a class="source-link" href="https://bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026" target="_blank">BEA／Reuters</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>九月PCE通胀升至3.6%，核心同比回升至3.1%<span class="tag tag-verified">✅ 官方／交叉核验</span></h3>
+<div class="card-meta"><span class="src">美国经济分析局 BEA</span><span class="t">10月29日 20:30（北京时间）</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">整体月涨0.5%、核心月涨0.3%，距目标更远。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国经济分析局发布九月个人收入与支出报告，整体个人消费支出价格指数环比上涨0.5%、同比上涨3.6%，核心指数环比上涨0.3%、同比上涨3.1%。整体与核心同比均较八月上升，物价进一步偏离美联储百分之二的目标。名义消费支出增加0.5%，但实际消费增幅不足0.1%；个人收入增加0.2%，实际可支配收入下降0.3%，储蓄率为3.8%。这些口径共同说明，支出金额增长的一部分来自价格，而不是商品与服务购买数量的同步扩张，不能把名义消费直接当作真实需求。</p>
+<p>本日报分析，通胀回升与购买力受压同时出现，使政策面对更复杂的取舍。若央行强化紧缩预期，按揭、汽车及企业浮动利率贷款可能继续承压；若仅看季度经济增长而忽略实际收入，则容易高估居民持续消费的能力。核心物价同样抬升，意味着分析不能只归结于能源，但单月数据仍不足以证明全面再加速。应继续比较服务、商品与收入变化，检验企业能否将成本顺利传递给消费者。对资产估值而言，月度数据符合预期也不等于通胀已回归目标，政策利率路径仍受后续就业和物价共同约束。</p>
+<p>来源：<a class="source-link" href="https://www.bea.gov/news/2026/personal-income-and-outlays-september-2026" target="_blank">美国经济分析局 BEA</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>美国初请降至19.4万，低招聘低裁员格局延续<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">Reuters／美国劳工部</span><span class="t">10月29日 20:30（北京时间）</span><span class="tag tg-data">经济数据</span></div>
+<div class="card-brief">初请低于19.9万预期，续请降至170.1万。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国劳工部十月二十九日公布，截至十月二十四日一周初次申请失业救济人数为19.4万，低于19.9万的调查预期，也低于修订后的前周19.5万。续请人数在截至十月十七日一周降至170.1万，低于172万预期。路透报道将当前劳动力市场概括为招聘与裁员都偏低，企业需求和利润保持韧性有助于限制解雇，而美以与伊朗冲突增加雇主扩张人手的顾虑。初请和续请覆盖不同周次，前者主要刻画裁员流量，不能直接替代就业岗位新增或失业率统计。</p>
+<p>本日报分析，低裁员有利于稳定现有劳动者的收入与消费，但未必意味着求职者更容易找到新岗位。如果招聘不足持续，转岗、首次就业和失业后重新就业的人群可能承受更明显压力，总量韧性与个体体感因而可以同时存在。对货币政策，初请低于预期减少了立即救助就业的紧迫性，却不能单独决定下一次利率投票。还应结合工资、劳动参与率和续请持续时间判断市场松紧；企业则需要区分需求真实增长与暂缓补员形成的效率改善，防止在订单转弱时误把短期稳定当成长期扩张承诺。</p>
+<p>来源：<a class="source-link" href="https://finance.yahoo.com/news/us-weekly-jobless-claims-hover-125628707.html" target="_blank">路透社／美国劳工部</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-market">
+<div class="section-header" style="background:#fffbeb;border-left:4px solid #d97706;"><span class="icon">📉</span><h2 style="color:#b45309;">资本市场</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>Alphabet收盘重挫12.64%，AI现金消耗触发估值重审<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">Investing.com／Alphabet财报／Finviz</span><span class="t">10月30日 04:00（美股收盘）（北京时间）</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">约5000亿美元市值蒸发，现金流与搜索增速成焦点。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Alphabet十月二十九日收盘重挫12.64%，创上市以来最差单日表现，约五千亿美元市值蒸发。三季度营收1276亿美元、增长25%，每股收益2.12美元低于3.02美元预期；搜索收入633.5亿美元、增长12%，较二季度17%放缓。云收入增长103%至307亿美元，但资本开支514亿美元使自由现金流为负90.7亿美元。全年资本开支指引为1950亿至2050亿美元，明年预计显著增加；长期债务由465亿升至1251亿美元。增长与融资压力同时扩大，不能仅用云业务增速解释整体估值。</p>
+<p>本日报分析，这一轮下跌把宏观层面的投资繁荣与股东层面的现金回报差异具体化。建设数据中心能够计入当期投资和供应商收入，但买方需要承担折旧、电力、融资及未来产能利用率的不确定性，股价因而未必随资本开支同步上涨。对于指数投资者，巨头权重可能放大单一公司的冲击；对于债券投资者，则需观察新增融资与偿债资金来源。后续关键是云业务与搜索能否带来足够回款，以及库存占用能否转化为交付收入。仅凭一日跌幅既不能确认整个行业需求崩塌，也不能忽略投资回报约束正在加强。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/stock-market-news/us-stocks-lower-at-close-of-trade-dow-jones-industrial-average-down-025-4985114" target="_blank">Investing.com／Alphabet财报／Finviz</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>亚马逊隔夜公布财报：AWS增长39%，现金流转负压股价<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">Amazon投资者关系／AP</span><span class="t">10月30日清晨（美国29日盘后）（北京时间）</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">营收2019亿美元，过去十二月自由现金流负424亿美元。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>亚马逊已在美国十月二十九日收盘后、北京时间三十日清晨公布三季度业绩。销售额为2019亿美元，同比增长12%，每股收益1.89美元，低于1.96美元预期；云服务收入约459.8亿美元，同比增长39%，广告收入196.4亿美元低于预期，经营利润率达到创纪录的13.9%。然而，过去十二个月经营现金流虽增长29%至1683亿美元，自由现金流却由上年同期流入148亿美元转为流出424亿美元，主要伴随设备和物业购置同比增加948亿美元。美联社报道盘后股价约跌7%，因此应标为盘后反应，不能混入二十九日常规交易时段的指数收盘。</p>
+<p>本日报分析，云业务需求强劲并不自动解决建设所需的现金缺口，投资者正在同时衡量收入增长、利润率与实际资金回收。经营利润可以随业务规模改善，自由现金流却可能因基础设施先行投入走弱，这种时间差会增加融资安排的重要性。对宏观经济，设备采购继续支持投资与相关供应链订单，但其持续性取决于未来容量消化和客户付费能力。对零售与广告业务，应分别核对增长质量，避免用云业务亮点覆盖其他部门压力。后续需要观察设备支出节奏及现金转换能否改善，单次高利润率仍不足以保证资本开支很快产生同等回报。</p>
+<p>来源：<a class="source-link" href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/default.aspx" target="_blank">Amazon投资者关系／AP</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>纳指跌1.38%而小盘股涨1.01%，指数下行掩盖内部轮动<span class="tag tag-verified">✅ 官方／交叉核验</span></h3>
+<div class="card-meta"><span class="src">新华社／AP／yfinance</span><span class="t">10月30日 04:00（美股收盘）（北京时间）</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">标普跌0.30%，道指跌0.25%，小盘股逆势上涨。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国十月二十九日周四收盘，标普五百报7720.39点，下跌0.30%；纳斯达克综合报26184.72点，下跌1.38%；道琼斯工业报52342.56点，下跌0.25%。罗素二千则上涨1.01%至2859.22点。标普十一大板块八涨三跌，医疗涨2.50%、房地产涨2.25%，通信服务跌6.60%、科技跌0.88%，与大型科技拖累指数形成差异。指定行情文件中的真实五交易日变化分别为标普上涨0.74%、纳指上涨0.68%、道指下跌0.99%，这一滚动窗口与媒体所称本周迄今并非同一统计区间，不能相互替代。</p>
+<p>本日报分析，市场表现更接近不同资产之间重新分配风险，而非所有行业同时撤退。市值加权指数对巨头盈利和资本开支高度敏感，少数权重股大跌可能覆盖其他公司的上涨；小盘股相对走强，则提示投资者仍在寻找国内增长与融资条件改善的受益者。但一天的相对收益不能证明风格切换已经持久成立，小企业同样会受到高借贷成本和需求波动约束。评估组合时应同时检查行业集中度、盈利来源及利率敏感程度，并继续观察市场广度能否延续，避免把指数跌幅直接当作所有企业经营状况的共同结论。</p>
+<p>来源：<a class="source-link" href="https://www.xinhuanet.com/fortune/20261030/98e2106518e647d5a5a9c95d1384068c/c.html" target="_blank">新华社／AP／yfinance</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>十年美债收益率降至4.989%，增长走强未阻债券反弹<span class="tag tag-verified">✅ 官方／交叉核验</span></h3>
+<div class="card-meta"><span class="src">yfinance／Portfolio Terminal／Interactive Brokers</span><span class="t">10月30日清晨（观测日10月29日）（北京时间）</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">十年收益率较前值降5.6基点，五年报4.801%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>指定行情文件显示，美国十年期国债收益率十月二十九日为4.989%，前次收盘5.045%，下降约5.6个基点；五年期为4.801%，较前值下降约7个基点。十年收益率日相对变化为负1.11%，与基点降幅是不同表达，不能混写。同期公布的经济增长强于预期，而债券仍出现价格反弹，说明单一经济数据并不足以解释全部资产走势。文件中的联储经济数据库十年利率是二十八日5.05%，属于另一观测时点，也不能覆盖或冒充二十九日行情。</p>
+<p>本日报分析，国债可以同时反映政策利率预期、期限补偿及避险资金需求。科技股承压时，组合再平衡可能推高债券需求；通胀回升又会限制长期利率持续下降的空间，因此不能把当日回落直接视为央行即将降息。对于房贷和企业贷款，基准收益率改善能否传导，还取决于信用利差、银行资本约束和借款人资质。应跟踪收益率曲线与信用市场是否同步变化，并对未来融资保留弹性。若增长韧性继续而物价降温不足，当前债券反弹仍可能面临反复，日内和单日表现都不能替代完整政策路径判断。</p>
+<p>来源：<a class="source-link" href="https://portfolio-terminal.com/markets/10-year-treasury-yield/october-2026" target="_blank">yfinance／Portfolio Terminal／Interactive Brokers</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>黄金跌0.89%、WTI微升0.13%，商品对风险的反应分化<span class="tag tag-verified">✅ 官方／交叉核验</span></h3>
+<div class="card-meta"><span class="src">指定yfinance数据／澎湃新闻</span><span class="t">10月30日清晨（观测日10月29日）（北京时间）</span><span class="tag tg-market">资本市场</span></div>
+<div class="card-brief">金价4015.70美元，WTI报102.91美元，口径分列。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>指定行情文件显示，十月二十九日黄金期货报每盎司4015.70美元，日跌0.89%、真实五交易日跌1.10%；西得克萨斯轻质原油期货报每桶102.91美元，日涨0.13%、五日涨3.46%。白银日跌2.85%，铜日跌1.15%，商品并未出现统一方向。中文收盘报道另列十二月交货原油每桶102美元、下跌0.76%，与文件代码及采样口径不同。本栏坚持采用指定文件，避免把某一合约的价格与另一口径的涨跌幅拼接，贵金属报价亦为期货而非零售实物金价。</p>
+<p>本日报分析，能源供应不确定性与贵金属资金需求具有不同传导路径。原油高位首先影响运输、化工及家庭燃料支出，黄金则同时受到实际利率、美元和资产配置影响，因此地缘冲突延续并不保证金价每天上涨。企业应分别评估能源采购敞口和融资成本，不能用单一避险叙事覆盖全部商品。后续需观察停火接触能否转化为航运与供应改善，以及通胀预期是否随能源价格缓解。当前截面只显示价格表现，尚不能据此确认实物供需已经逆转，也不能把相关性直接写成某条新闻导致当日涨跌的确凿因果。</p>
+<p>来源：<a class="source-link" href="https://www.thepaper.cn/newsDetail_forward_34365768" target="_blank">指定yfinance数据／澎湃新闻</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#f1f5f9;border-left:4px solid #64748b;"><span class="icon">⚔️</span><h2 style="color:#334155;">政策与监管</h2><span class="count">4 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>美军中东司令向白宫简报，卡塔尔斡旋与军事压力并行<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">Axios</span><span class="t">10月30日 06:47（北京时间）</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">最新军事简报增加谈判不确定性，尚无新开战决定。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Axios于美国时间十月二十九日报道，美军中东最高指挥官向特朗普汇报伊朗海上封锁情况；以卡塔尔为首的地区调停者同时试图推动美伊恢复谈判，避免美国中期选举后重新爆发大规模战事。这是军事沟通方面的新进展，不能据此认定总统已经批准新的作战行动，也不能将卡塔尔提出的斡旋安排写成双方接受的停战协议。报道的关键是外交窗口尚存，而军事施压同步推进；各方真实底线、执行时点和核问题处理顺序仍有明显不确定性。</p>
+<p>分析：对宏观市场而言，决定油价风险溢价的将是航运通道与实际能源供应是否改善，而非谈判消息的数量。若出现可核实的通航、保险费下降和出口恢复，能源输入成本才可能持续缓和；若军事准备升级，企业会提高库存与运输预算，家庭实际购买力也可能继续承压。能源冲击还能通过物流和服务价格延后传导，使央行面对增长尚稳、通胀难降的组合。应把后续官方声明与实际运输变化联合观察，避免把单一匿名消息直接兑换成确定的资产价格方向。</p>
+<p>来源：<a class="source-link" href="https://www.axios.com/2026/10/29/brad-cooper-briefs-trump-iran-naval-blockade" target="_blank">Axios</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>以色列计票后利库德提出无证据指控，组阁不确定性延长<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">AP</span><span class="t">10月29日 14:16（北京时间）</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">执政阵营失去多数，选举争议增加政治摩擦。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美联社十月二十九日报道，在选举结果显示内塔尼亚胡阵营失去议会多数后，利库德扩大宣称选举被阿拉伯政党窃取，并暗示外国介入；报道明确指出这些指控缺乏证据。与昨日仅有出口民调与组阁僵局的信息相比，新增变化是计票结果后的政治争议升级。现有信息仍不足以宣布新总理产生，也不能把任何一方提出的指控写作确认事实。组阁磋商、结果认证与政治领导权是不同程序，必须继续分别跟踪其实际推进情况。</p>
+<p>分析：不确定性延长可能推迟预算取舍、重建项目和企业重大投资，也使地区外交承诺的持续性更难判断。对金融资产而言，政治争议需要通过财政路径、外部融资与企业经营预期传导，不能仅凭一条选举新闻推断当地股市或汇率的实际反应。若组阁形成稳定多数，政策执行的可预测性有望改善；若磋商反复或出现再次选举风险，防务与民生支出的排序会更复杂。全球投资者更应观察其对地区冲突和能源运输的影响，同时避免把席位变动等同于战争政策必然转向。</p>
+<p>来源：<a class="source-link" href="https://apnews.com/article/9a0620a1314fdc127245ba1a7f0aa762" target="_blank">AP</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>特朗普称加拿大近期态度改善，美加贸易仍待正式文本<span class="tag tag-unconfirmed">🔹 单一源／网页报道</span></h3>
+<div class="card-meta"><span class="src">Reuters／AOL</span><span class="t">10月30日 02:46（北京时间）</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">最新竞选发言释放缓和信号，未宣布全面贸易协议。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>路透社十月二十九日报道，特朗普在南卡罗来纳州洛克希尔的竞选集会上表示，加拿大近期对美国的态度非常好，并将关系改善归因于其关税政策。最新表态发生在美国十一月三日中期选举前夕，具有明显的政治沟通背景。报道未给出新的双边贸易协议文本、撤税清单或正式生效日期，因此应将其理解为领导人层面的缓和信号，而不是美加贸易摩擦已经结束。对于需要安排跨境采购的企业，政治措辞与海关实际适用规则仍是两个层面。</p>
+<p>分析：若谈判确有进展，跨境制造商最直接的收益来自订单、交货与成本的不确定性下降，但这需要正式文件兑现。企业在现阶段可能继续缩短报价有效期、保留替代供应商，并推迟部分不可逆投资；这些成本不会随着一次竞选讲话立即消失。中期选举也可能改变国会对贸易和财政议程的约束，不能预先假定选举结果或全面撤税方向。观察重点应放在行政公告、海关执行口径及双方共同声明；在缺乏这些证据时，对加拿大资产或通胀的影响只能作条件分析，不能虚构即时市场反应。</p>
+<p>来源：<a class="source-link" href="https://www.aol.com/articles/trump-says-canada-treating-us-184630000.html" target="_blank">Reuters／AOL</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>美国更新伊朗通用许可证FF-1，涉及特定银行交易收尾<span class="tag tag-unconfirmed">🔹 数据有限</span></h3>
+<div class="card-meta"><span class="src">美国财政部 OFAC</span><span class="t">10月29日 时间不详（北京时间）</span><span class="tag tg-policy">政策与监管</span></div>
+<div class="card-brief">官方目录列明特定银行交易收尾授权，非全面解禁。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国财政部海外资产控制办公室官方通用许可证目录显示，十月二十九日发布伊朗相关许可证FF-1，标题列明授权涉及International Development Bank for Investment and Finance的交易收尾活动。可以确认的是特定交易安排获得更新，而非所有伊朗金融活动均获放开。同一官方目录还保留其他伊朗许可证及部分暂停状态，说明授权边界需要逐项区分。本次尚未取得许可证正文的全部有效期、支付要求与排除条件，因此不推断哪些新增付款已经能够执行，也不将文件更新写成石油出口或海上封锁全面解除。</p>
+<p>本日报分析，交易收尾安排与允许开展新的常态业务具有不同经济含义。前者可能帮助相关机构处理既有合同和资产敞口，是否会带来更广泛融资改善，仍取决于许可证正文和其他适用限制。对跨境银行、贸易及航运企业，应关注交易对手与结算链是否处于授权范围，不能用一份目录标题替代具体文件。宏观层面，若只是有限收尾，实际贸易流量的变化可能远小于市场对全面缓和的想象。当前只能确认监管动作存在，其对能源供应和地区增长的净影响尚不明确，后续应核对正文与官方问答，避免放大为确定的外交突破。</p>
+<p>来源：<a class="source-link" href="https://ofac.treasury.gov/selected-general-licenses-issued-ofac" target="_blank">美国财政部 OFAC</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-view">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;"><span class="icon">🎓</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">3 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>Peter Earle：增长有内生动能，AI社会收益与投资回报应分开<span class="tag tag-analysis">💭 深度观点</span></h3>
+<div class="card-meta"><span class="src">The Center Square／AOL</span><span class="t">10月30日 03:00（北京时间）</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">新GDP评论关注私人需求，也警惕AI投资回报错配。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美国经济研究所研究主管Peter Earle在十月二十九日数据发布后的评论中指出，增长加快而通胀持续，将使美联储的决策更加复杂。他关注的不只是国内生产总值总量，还包括剔除政府、贸易和库存扰动后反映私人需求的指标，以判断增长是否具有内生动能。同时，他提醒人工智能对经济效率的贡献，不必然等于最早投入资本的投资者能够获得相同程度的财务回报。该评论属于经济学家的判断，并不构成联储政策承诺，也不能作为企业盈利必然增长的证据。</p>
+<p>分析：这一划分有助于理解强劲宏观数据与科技股承压为何可以同时发生。数据中心、设备和软件投资能在建设阶段增加经济活动，但股东最终需要看到持续收入、折旧后的利润与现金回报。若融资成本上升而现金回收期延长，项目仍可能促进生产率，却压低部分公司的估值。对于央行，投资需求和能源价格同时抬升，会使通胀控制更复杂；对资产配置，判断重点应从统一押注科技扩张转向逐项核验订单、负债与现金流。本条为观点分析，不为评论虚构独立市场涨跌。</p>
+<p>来源：<a class="source-link" href="https://www.aol.com/articles/economist-strong-gdp-growth-inflation-174800000.html" target="_blank">The Center Square／AOL</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>汇丰与摩根士丹利经济学家警惕能源通胀向核心价格传导<span class="tag tag-analysis">💭 深度观点</span></h3>
+<div class="card-meta"><span class="src">财联社／36氪</span><span class="t">10月29日 10:56（北京时间）</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">全球调查同时上修增长和通胀，央行宽松空间受限。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>财联社十月二十九日援引路透十月经济学家调查称，覆盖的五十个经济体中，三十一个被上调次年通胀预期，二十三个被上调增长预测。汇丰全球首席经济学家Janet Henry担忧中东冲突延长和升级会扩大价格压力；摩根士丹利全球首席经济学家Seth Carpenter则指出，能源成本向核心通胀传导已出现迹象。调查描绘的是增长韧性与通胀黏性并存，而非所有地区同步衰退或即将全面降息；预测属于受访者判断，后续仍可能修订。</p>
+<p>分析：能源冲击最初直接推高燃油和电力价格，持续时间足够长时，还可能进入运输、餐饮、制造业报价和工资谈判。核心指标剔除能源本身，并不等于隔离能源对其他成本的间接影响。如果人工智能投资继续支持需求，企业转嫁成本的能力可能更强，央行便更难仅靠等待供给恢复完成通胀回落。不同国家的能源进口依赖和财政补贴能力不同，政策反应也不会一致。投资者宜检验通胀扩散范围、预期与工资的变化，把经济韧性带来的盈利支持和较高贴现率的估值压力同时纳入判断。</p>
+<p>来源：<a class="source-link" href="https://www.36kr.com/p/4046360828007554" target="_blank">财联社／36氪</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div>
+<div class="card-main">
+<h3>Jim Bianco质疑暂停加息，Winograd强调私人需求与进口漏损<span class="tag tag-analysis">💭 深度观点</span></h3>
+<div class="card-meta"><span class="src">财联社／东方财富</span><span class="t">10月30日 05:31（北京时间）</span><span class="tag tg-view">大咖观点</span></div>
+<div class="card-brief">同组数据引出不同侧重点：通胀约束与增长构成。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>财联社北京时间十月三十日清晨报道，Bianco Research总裁Jim Bianco认为，相比增长数据，更值得关注的是持续偏高的通胀，并质疑美联储为何没有继续加息。联博固定收益高级经济学家Eric Winograd则强调，本季增长主要由国内需求推动，但贸易构成形成拖累；人工智能投资需要的大量产品依赖进口。两人的侧重点分别落在政策约束和增长结构，不能合并为一致的利率预测，也不能将外部研究人士的批评写成联储已决定十二月加息。</p>
+<p>分析：同一份增长报告可以支持不同资产判断。私人需求较强有利于企业订单和信用质量，但通胀未回到目标，会限制估值通过低利率持续扩张的空间；进口设备增加则意味着企业资本开支并不会逐美元转化为本国增加值。评估人工智能热潮时，既要看建设支出对当期经济的支撑，也要看贸易漏损、融资期限和未来生产率兑现。若投资保持强劲而通胀扩散，政策可能更偏紧；若现金流约束导致项目放缓，增长结构也可能迅速变化。两种情景都需要后续数据验证，不能把评论当作确定结局。</p>
+<p>来源：<a class="source-link" href="https://finance.eastmoney.com/a/202610293914959089.html" target="_blank">财联社／东方财富</a></p>
+</div>
+</div>
+</div>
+<div class="footer">
+🌐 全球宏观日报 · 2026-10-30 · 新闻来自实际中英文搜索，逐卡附来源；行情使用已提供yfinance/FRED文件。<br>
+共 21 条资讯 · 5 个板块 · 北京时间10月30日08:30窗口 · 内容仅供信息参考，不构成投资建议<br>⚠️ 网页报道及单一来源按标签提示；观点与条件分析不代表确定预测。美国数据与欧洲央行隔夜决定已公布；日本央行决议尚未公布。许可修订细节有限；旧值与盘中快照均另标日期，缺值不填造。
+</div>
+</div>
+</body>
+</html>
