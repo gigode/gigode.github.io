@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-11-03</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+
+
+<div class="cover"><h1>🤖 AI 行业日报</h1><div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div><div class="badge">2026-11-03 · 20 条资讯 · 5 个板块 · 北京时间</div></div>
+<nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list">
+<li><a href="#s-models">🚀 模型发布/更新（3）</a></li>
+<li><a href="#s-products">🛠 产品发布/更新（5）</a></li>
+<li><a href="#s-industry">🏛 行业动态（6）</a></li>
+<li><a href="#s-paper">📄 论文研究（3）</a></li>
+<li><a href="#s-tips">💡 技巧与观点（3）</a></li>
+</ul></nav>
+<div class="section" id="s-models"><div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;"><span class="icon">🚀</span><h2 style="color:#1e40af;">模型发布/更新</h2><span class="count">3 条</span></div>
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>美团发布 LongCat-2.5 多模态智能体模型</h3>
+<div class="card-meta"><span class="src">Pandaily</span><span class="t">11月02日 22:35</span><span class="tag tg-models">模型发布/更新</span></div>
+<div class="card-brief">总参数约一点六万亿，面向长程工程任务。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>美团 LongCat 团队发布 LongCat-2.5，将原生视觉理解与长程智能体编程作为重点。报道介绍，模型采用混合专家架构，总参数约一点六万亿，每个词元激活约四百八十亿参数；团队在长序列训练中加入更多长轨迹，并使用大规模长程强化学习，目标是让模型处理复杂代码库与完整项目。正式版本之前，预览版已于九月二十五日在 LongCat API 平台上线。总参数和每次实际激活量含义不同，不能把一点六万亿直接当成单次推理的计算量。</p>
+<p>长程编程的难点在于跨多次文件读取、修改和测试保持目标一致，视觉能力则使模型能够参考界面截图，而不是只处理源代码。报道还提到针对国产算力优化四位权重和激活推理；量化可能降低部署资源需求，但代码任务的质量、上下文长度和不同硬件上的延迟仍需分别测量。模型团队报告的工程能力应与具体任务集、工具权限和执行预算一起理解，不能据参数规模推断其在所有真实项目中均优于其他模型。</p>
+<p>来源：<a class="source-link" href="https://pandaily.com/meituan-longcat-2-5-official-release-1-6t-native-multimodal-long-horizon-agentic-coding-w4a4" target="_blank">Pandaily</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>Hydrogen-1.0 开放科学研究模型权重</h3>
+<div class="card-meta"><span class="src">Deep Principle／Hugging Face</span><span class="t">11月03日 02:41</span><span class="tag tg-models">模型发布/更新</span></div>
+<div class="card-brief">基于 GLM-5.3 后训练，模型卡标注约七千五百亿参数。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Deep Principle 发布科学研究助手 Hydrogen-1.0，模型卡称其以 GLM-5.3 为基础，利用科学数据、实验记录和研究发现轨迹进行后训练。公开模型卡标注参数规模为七千五百三十亿，支持一百万词元上下文，权重以 MIT 许可提供。研究机构因而可以检查和部署权重，也可以围绕自己的科研任务进行再训练；但可下载权重不等于全部原始实验数据和训练流程均已公开。</p>
+<p>模型面向的问题包括科学推理和研究辅助，而不是直接替代实验室验证。团队公布的 FrontierScience-Research 成绩为百分之三十八点三，并与其他模型作比较；这是发布方在特定基准与测试条件下的结果，不能视作新药、材料或实验结论已经得到验证。长上下文有利于放入论文与实验记录，七千多亿参数也意味着显存、计算和部署费用可能很高，实际使用时仍要考虑量化后质量、证据引用是否准确，以及科学结论能否独立复现。研究者如果要自己部署，还需要区分许可条款、硬件容量和具体服务提供商的访问要求。</p>
+<p>来源：<a class="source-link" href="https://huggingface.co/deep-principle/Hydrogen-1.0" target="_blank">Deep Principle／Hugging Face</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Unsloth 提供 DeepSeek Flash 量化权重</h3>
+<div class="card-meta"><span class="src">Unsloth／Hugging Face</span><span class="t">11月02日 22:43</span><span class="tag tg-models">模型发布/更新</span></div>
+<div class="card-brief">发布多种 GGUF 量化格式，方便本地或自托管推理。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Unsloth 提供 DeepSeek-V4.1-Flash-1017 的 GGUF 权重文件及多种量化配置，供使用兼容推理引擎的开发者下载。候选池中的 Unsloth 说明还列出其在长上下文任务上的内部比较；这些数字来自模型提供者自己的测试，不能直接代表用户在不同机器和工具链上的表现。此处的更新是第三方量化及部署选择，不应误称 DeepSeek 在当天重新发布了基础模型。</p>
+<p>量化将部分权重用较低精度保存，通常能减少存储和内存压力，但不同层的精度安排会影响推理结果。模型文件页面提供多个配置，用户需要同时核对权重大小、上下文缓存占用和所用推理程序的兼容性，不能只根据某个量化标签估算整机资源。对代码或代理任务，合理比较应固定测试集、上下文长度和生成预算，再分别记录错误率与首字延迟；低位宽能否接受取决于这些真实任务的结果。例如代码基准中的一次通过率，不能代替多轮工具调用中的最终修复成功率。</p>
+<p>来源：<a class="source-link" href="https://huggingface.co/unsloth/DeepSeek-V4.1-Flash-1017-GGUF" target="_blank">Unsloth／Hugging Face</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-products"><div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;"><span class="icon">🛠</span><h2 style="color:#166534;">产品发布/更新</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>Claude API 公测消息线程，减少重复上传</h3>
+<div class="card-meta"><span class="src">Anthropic 开发文档</span><span class="t">11月02日 08:00</span><span class="tag tg-products">产品发布/更新</span></div>
+<div class="card-brief">服务端短暂保存对话，长代理循环的首字等待有望下降。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 的 Messages API 推出消息线程测试功能。创建线程时提交完整消息、系统提示和工具配置，此后请求只需发送新消息以及上一条响应的标识，由服务端重建对话。官方文档称，这能减少长会话反复上传、验证和分词的工作；报道提及在五十万至一百万词元请求中，首词元时间中位数下降约百分之三十五。线程是尽力保存的临时状态，并非永久对话数据库。</p>
+<p>开发者仍需自行保存完整消息，线程在最近一次请求五分钟后过期，无法继续时应重新发送完整历史；每个响应标识只能续接一次，分叉或修改旧轮次要创建新线程。文档还说明内容在内存中加密保存，最后使用后不超过一小时删除，但该功能不符合零数据保留或 HIPAA 条件。更短的请求不等于模型处理的上下文消失，也不改变既有价格和速率限制，因此接入决策要同时考虑延迟、恢复逻辑与数据政策。</p>
+<p>来源：<a class="source-link" href="https://platform.claude.com/docs/en/build-with-claude/message-threads" target="_blank">Anthropic 开发文档</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>OpenAI 用 Pando 重建 Git 后端</h3>
+<div class="card-meta"><span class="src">OpenAI</span><span class="t">11月02日 23:30</span><span class="tag tg-products">产品发布/更新</span></div>
+<div class="card-brief">兼容 Git 客户端，支撑 Codex 带来的并发开发。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 披露内部 Git 后端 Pando 的设计，称 Codex 让工程师与代理同时创建更多分支、提交和持续集成任务，原有单体仓库系统一度难以支撑，可靠性有时低于百分之九十。Pando 沿用 Git 协议和客户端，对不同分支分别协调写入，并重复利用压缩后的对象包为多个读取请求服务。公司称上线后推送延迟中位数接近缩短五倍，每日传输近一拍字节 Git 数据。</p>
+<p>按分支并行写入避免无关分支互相等待，但跨多个分支读取时，客户端可能看到不同时间点的状态；复用数据包节省服务器重复打包，也可能让客户端多下载一些已有对象。这个权衡针对的是代理高并发修改同一大仓库的场景，并非所有小型项目都需要新建类似系统。OpenAI 表示希望将客户端改进回馈 Git 项目；内部数据说明了其自身负载下的效果，不能直接外推为其他团队一定获得同样倍数的收益。对于需要频繁克隆仓库的持续集成系统，缓存命中率也会影响实际网络开销。</p>
+<p>来源：<a class="source-link" href="https://openai.com/index/scaling-git-at-openai/" target="_blank">OpenAI</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>ChatGPT 拟合并 Chat 与 Work 入口</h3>
+<div class="card-meta"><span class="src">TechCrunch</span><span class="t">11月02日 21:57</span><span class="tag tg-products">产品发布/更新</span></div>
+<div class="card-brief">文件、连接工具与工作任务将逐步集中到同一处。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>TechCrunch 报道，OpenAI 正计划合并 ChatGPT 的 Chat 与 Work 标签，先向部分用户提供统一体验并收集反馈，再逐步推广。用户将在同一位置携带文件和连接工具，让系统处理网站、演示文稿和网页操作等任务；Codex 在桌面应用中仍有独立体验。相关额度安排还涉及 ChatGPT 与 Codex 共享使用量，因此高频编程用户可能感受到与过去不同的额度消耗节奏。</p>
+<p>入口合并减少了用户在聊天和执行任务之间切换时重新交代上下文的成本，也让模型在同一对话中访问文件与工具变得更自然。与此同时，统一额度会把普通问答和长时间代码任务放进同一资源预算，用户需要观察具体套餐的配额、重置周期和任务消耗，而不能只根据标签页数量判断可用量。报道描述的是分阶段调整，尚不能假设所有账户已同时获得新界面或完全相同的限制。特别是在需要同时运行多个代码任务时，共享额度可能改变团队安排工作的方式。</p>
+<p>来源：<a class="source-link" href="https://techcrunch.com/2026/11/02/openai-is-finally-merging-chatgpts-chat-and-work-tabs/" target="_blank">TechCrunch</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>Claude Code 收紧复刻既有游戏的规则</h3>
+<div class="card-meta"><span class="src">The Verge</span><span class="t">11月03日 02:56</span><span class="tag tg-products">产品发布/更新</span></div>
+<div class="card-brief">系统提示调整引发开发者对工具行为变化的讨论。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>The Verge 报道，Anthropic 更新 Claude Code 的系统提示，对复刻现有游戏提出限制。这一变化发生在编程代理能够根据自然语言快速生成交互作品的背景下，也引发开发者对经典游戏机制、受保护的角色和素材之间界限的讨论。相关规则是 Anthropic 产品的行为设定，具体请求会否被拒绝取决于提示内容及服务实际执行情况，不等同于法院对某个作品的版权裁决。</p>
+<p>对于用代理制作游戏原型的团队，直接请求复制一个现有商业作品可能触发拒绝；描述原创玩法、独立素材和自己拥有权利的代码，有助于明确任务。另一方面，同一工具的远程规则变化可能改变过去提示词的结果，影响自动化流程的可重复性。团队如果依赖生成步骤，可以保留模型版本、请求和拒绝记录，用代表性的测试样例观察规则变化，而不是把某次成功生成当作今后均可执行的保证。原始设计、授权素材与具体作品的界限，也应由创作者自行核查。</p>
+<p>来源：<a class="source-link" href="https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones" target="_blank">The Verge</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>Sierra 重做 Agent Studio 并引入 Ghostwriter</h3>
+<div class="card-meta"><span class="src">Sierra</span><span class="t">11月03日 03:37</span><span class="tag tg-products">产品发布/更新</span></div>
+<div class="card-brief">把问题排查、修改旅程和测试放到同一会话。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Sierra 介绍围绕 Ghostwriter 重新设计 Agent Studio：运营人员可以在同一个会话里排查解决率下降，查看实际对话，修改智能体的 journey，再测试拟议修复。这里的 journey 是智能体完成业务流程所遵循的步骤；报道描述的是把分析和编辑连接起来的工作界面，而不是宣布所有客户问题均能由模型自主解决。公司希望减少在分析面板、配置页面和测试环境之间反复切换的成本。</p>
+<p>如果某类退款咨询解决率下降，团队需要先识别失败对话是否集中在身份核验、政策解释或系统调用，再针对出错环节调整流程。把历史会话和测试放在编辑界面附近，可以缩短提出假设到验证的路径；但自动给出的原因仍需与原始对话核对，避免把用户转人工误判为成功。生产部署还涉及权限、敏感对话和回滚机制，界面整合本身不能证明新流程在所有客户群上均有更高解决率。Sierra 表示修改先保存在会话中，经过团队审查和合并后才会进入发布流程。</p>
+<p>来源：<a class="source-link" href="https://sierra.ai/blog/redesigning-agent-studio-around-ghostwriter" target="_blank">Sierra</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-industry"><div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;"><span class="icon">🏛</span><h2 style="color:#991b1b;">行业动态</h2><span class="count">6 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>Anthropic 三季度收入高速增长，经营再度亏损</h3>
+<div class="card-meta"><span class="src">Anthropic／美国证券交易委员会</span><span class="t">11月03日 00:01</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">修订招股书披露巨额算力采购与租赁承诺。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 修订招股书披露，第三季度收入为一百六十九点五六亿美元，较上年同期的十三点八二亿美元增长百分之一千一百二十七；经营亏损五点六七亿美元，而第二季度经营利润为九点七四亿美元。第三季度算力和基础设施支出九十八点六三亿美元。前九个月净亏损一千零四十点三九亿美元，其中九百四十三点二四亿美元来自可转换票据及衍生工具公允价值变动，不应全部理解为当期现金流出。</p>
+<p>文件还披露约八千九百五十四亿美元采购承诺与租赁，其中未来十二个月约六百九十八亿美元到期，绝大部分与算力和基础设施有关。Broadcom、Google、Amazon 等既可能是供应商，也可能在竞争、分销或投资方面与 Anthropic 发生关系。收入增长提升吸收固定承诺的能力，但季度从经营盈利转回亏损说明扩张速度和单位算力成本仍是关键。不同合同存在期限与条件差异，承诺总额不能直接当成同一年度已经支出的现金。</p>
+<p>来源：<a class="source-link" href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm" target="_blank">Anthropic／美国证券交易委员会</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>OpenAI 在佐治亚项目试点电网削峰</h3>
+<div class="card-meta"><span class="src">OpenAI</span><span class="t">11月02日 23:00</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">与 Georgia Power 协议包括最多一千兆瓦灵活需求响应。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 推出 Grid Protectors 计划，表示将与电力公司和监管机构合作，让未来计算园区在电网紧张时降低用电。首个试点是仍在开发中的佐治亚州 Effingham County 园区；公司称与 Georgia Power 的协议包含最多一千兆瓦的灵活需求响应，相当于约七十万户家庭的平均用电需求。该数字是计划中的最大可调负荷，不代表园区已经在某次极端天气中实际释放了这一电量。</p>
+<p>人工智能数据中心往往希望持续运行，但电网必须按照高峰需求配置发电和输电能力。若园区能在热浪或寒潮中迅速削减负荷，公用事业公司可能减少为少数高峰时段建设的额外容量；代价是推理或训练工作需要延迟、迁移，或者由现场储能等资源支撑。OpenAI 称将承担项目所需电力基础设施成本，居民电价最终效果仍取决于执行协议、当地建设成本及电力监管安排，而非一千兆瓦数字本身。电力公司是否有能力在需要时调用这一负荷，取决于项目建成和相关协议执行。</p>
+<p>来源：<a class="source-link" href="https://openai.com/index/grid-protectors-program/" target="_blank">OpenAI</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>纽约时报等出版方起诉 Brave 抓取内容</h3>
+<div class="card-meta"><span class="src">TechCrunch</span><span class="t">11月03日 01:51</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">诉讼还涉及付费墙绕过与内容向模型公司分发。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>《纽约时报》与另外几家美国报纸分别在曼哈顿联邦法院起诉 Brave，指控其抓取受版权保护的内容，并向包括 Anthropic、Perplexity、Mistral、xAI 和 Cohere 在内的客户分发。诉状还针对绕过付费墙的浏览器功能，以及 Brave 屏蔽出版商广告并销售自身广告的做法。《纽约时报》寻求禁令及损害赔偿；这些目前是原告主张，报道发表时 Brave 未立即回应置评请求。</p>
+<p>争议将注意力从模型公司是否直接训练版权材料，延伸到浏览器、搜索索引和向第三方供数的中间环节。出版商依赖订阅与广告收回报道成本，如果用户或下游服务能绕过付费墙取得文章，流量和收入都可能受影响；Brave 的抗辩及法院对具体技术行为的认定则尚待披露。案件结果可能影响内容授权、爬虫识别与数据供应合同，但提起诉讼本身不意味着所有抓取行为已被认定违法。出版商还指称无法屏蔽相关爬虫，这一点需要结合诉讼证据和被告回应审查。</p>
+<p>来源：<a class="source-link" href="https://techcrunch.com/2026/11/02/new-york-times-and-other-outlets-sue-web-browser-brave-over-alleged-content-scraping/" target="_blank">TechCrunch</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>高盛限制交易员和银行家使用 AI 编码工具</h3>
+<div class="card-meta"><span class="src">The Decoder</span><span class="t">11月03日 04:00</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">内部评估后收紧业务人员的编码权限。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>据报道，高盛停止向多数交易员和银行家提供 Claude Code 等通过自然语言创建软件的工具，并将相关使用更多限制在工程人员范围。此前部分业务人员曾借这些工具建立追踪客户交易流、模拟市场变化以及生成内容的程序。公司在试用后评估生产率与运营风险，决定收紧权限；这并不表示高盛禁止所有人工智能产品，报道涉及的是特定编码工具和人群。</p>
+<p>交易模型与客户数据涉及访问权限、计算准确性和审计记录，能生成可运行代码并不保证模型假设、数据来源或异常处理正确。若交易员快速创建脚本却没有明确维护者，错误可能在市场变化后继续影响判断；让工程团队参与审查能加强测试和部署控制，但也可能降低业务人员自行试验的速度。评估成效应比较上线时间、发现的缺陷和业务端仍可获得的工具，而不是只统计生成代码的行数。</p>
+<p>来源：<a class="source-link" href="https://the-decoder.com/goldman-sachs-pulls-ai-coding-tools-from-traders-and-bankers/" target="_blank">The Decoder</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>Musk 称 Grok Bot 运营成本相对收入过高</h3>
+<div class="card-meta"><span class="src">TechCrunch</span><span class="t">11月03日 00:23</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">部分订阅者反映每周额度比预期更早耗尽。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>TechCrunch 报道，Grok Bot 部分用户在万圣节周末发现周额度突然耗尽，有人称用量显示从一半跳至全部用完。Musk 回应称，提供该服务的成本相对于收入高到难以持续。报道指出，他尚未公布具体服务成本、各套餐新的限额或今后重置安排，因此不能据此计算降额幅度，也不能把个别用户的仪表变化当成所有账户的统一规则。</p>
+<p>智能体一次任务可能多轮调用模型、执行代码或访问工具，订阅价格固定时，重度用户的实际资源消耗可能远超普通聊天。压低额度可以缓和成本压力，却会影响把工作流建立在稳定周配额上的用户。对服务商而言，增长速度和单次任务毛利是两个不同问题；对用户而言，需要关注实际可完成任务数、等待重置时间和是否提供清晰的用量说明，而非仅依据宣传中的模型能力选择套餐。企业若依赖每周额度执行任务，突然提前耗尽会直接打断原本的工作安排。</p>
+<p>来源：<a class="source-link" href="https://techcrunch.com/2026/11/02/elon-musk-throttles-grok-bot-limits-due-to-unsustainably-high-costs/" target="_blank">TechCrunch</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>Trajectory 获四千五百万美元融资</h3>
+<div class="card-meta"><span class="src">TechCrunch</span><span class="t">11月03日 07:13</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">初创公司希望让领域专家通过反馈改进模型。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>TechCrunch 报道，Trajectory 完成四千五百万美元 A 轮融资，估值约三亿美元，投资方包括领投的 Sequoia，以及 Nvidia、Bessemer Venture Partners 和 Bain Capital Ventures。公司由斯坦福同学创立，团队约十八人，目标是让不具备专业机器学习研究背景的领域专家通过反馈改进模型在专门任务上的表现。融资估值反映交易定价，并非已经实现的销售收入或利润。</p>
+<p>医疗、法律或企业运营中的任务往往需要领域专家判断输出是否有用，但这些专家未必能够自行搭建训练基础设施。Trajectory 的产品方向是把反馈转化为可执行的模型改进流程，减少对专门研究团队或长期驻场工程师的依赖。实际价值仍取决于反馈是否足够可靠、模型是否在未参与训练的新案例上改善，以及训练成本能否低于手动审核或提示词调整；融资本身不证明这些收益已经在所有行业实现。领域反馈如果只是评价措辞流畅，可能无法发现专业结论中的事实错误。</p>
+<p>来源：<a class="source-link" href="https://techcrunch.com/2026/11/02/trajectory-raises-45m-to-make-ai-model-training-accessible-to-nontechnical-experts/" target="_blank">TechCrunch</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-paper"><div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;"><span class="icon">📄</span><h2 style="color:#5b21b6;">论文研究</h2><span class="count">3 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>OpenAI 部署激活分类器监测模型安全</h3>
+<div class="card-meta"><span class="src">OpenAI Alignment Research</span><span class="t">11月03日 04:00</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">探针读取内部激活，逐词元识别已知风险。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 介绍已部署于部分高能力模型的激活分类器，也称探针。它读取模型内部激活，而非只看最终文本，可在生成过程中逐词元评分，并在触发条件时中断回答或阻止工具调用。研究团队称，在其测试的越狱场景中，探针对部分攻击比文本分类器更稳健；论文同时强调，这只是多层防护的一部分，图表中的内部实验结果也不一定代表线上分类器的实际表现。</p>
+<p>探针依赖有标签的数据，因此只能学习识别训练时定义过的风险，无法保证发现未知失控模式。它还与底层模型权重耦合：新的预训练模型通常需要重新训练探针，同一模型后续权重变化也可能使性能下降。逐词元监测有机会在危险工具调用发生前介入，但误报可能阻断正常工作，漏报则会留下风险；评估时应分别检查不同攻击、正常请求及模型更新后的表现，而不是把单项稳健性结果理解成全面安全证明。</p>
+<p>来源：<a class="source-link" href="https://alignment.openai.com/training-activation-classifiers/" target="_blank">OpenAI Alignment Research</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>OpenAI 发布 LifeVal 日常任务评测</h3>
+<div class="card-meta"><span class="src">OpenAI</span><span class="t">11月02日 17:00</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">通过时间使用调查和三千九百九十五人调查选择任务。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 发布 LifeVal，用于衡量模型在照护、健康、教育、家庭管理、个人理财、购物和政府服务等日常任务中的表现。团队先参考美国与跨国时间使用研究，再调查三千九百九十五名具有代表性的受访者，了解人们最希望个人助手提供哪些帮助。公开示例包括搬家后选择幼儿园、组织防洪志愿者和为糖尿病患者准备饮食计划；公司报告部分任务得分很高。</p>
+<p>这项评测将关注点从静态知识问答扩展到包含浏览器、连接器和实际决策步骤的任务，能更贴近个人助手的使用方式。不过，选幼儿园涉及家庭偏好和当地名额，健康饮食涉及个人病史，高分并不代表系统可以替用户作最终决定。调查样本和任务设计也决定了哪些家庭需求被纳入；评价产品时还需要核查信息是否过时、模型是否暴露隐私，以及用户能否在购买或提交申请之前检查并确认操作。</p>
+<p>来源：<a class="source-link" href="https://openai.com/index/lifeval/" target="_blank">OpenAI</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>GDPx 评测：顶级智能体在专家工作上得分偏低</h3>
+<div class="card-meta"><span class="src">SemiAnalysis／AI Primer</span><span class="t">11月02日 20:45</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">基准覆盖十一个领域，最高总分约百分之十二。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>SemiAnalysis 发布 GDPx 基准，试图用来自专业工作的任务评估前沿智能体。报道介绍，该基准包含十一个领域、二百零六项任务，由十四家专业数据伙伴参与；在所列测试中 Claude Opus 5.5 的总体得分约百分之十二，Gemini Carbon 约百分之十点九，GPT-6 Astra 约百分之九点六。不同领域按基准方法汇总，结果反映特定任务、工具与评分条件，并非模型在整个经济中的劳动替代率。</p>
+<p>专家工作常要求跨文件核对证据、使用专用软件并输出可执行结果，完成一个步骤不等于交付完整成果。报道举例，金融领域包含二十四项任务和约四千个文件；大量材料和复杂验收标准会让表面流畅的回答暴露不足。安全分类器对网络安全、生物及对齐相关任务的限制也可能压低分数，因此比较模型时应同时检查权限与防护设置。低分说明这些测试仍有明显难度，不能据此推断智能体在所有较简单任务中没有价值。</p>
+<p>来源：<a class="source-link" href="https://www.ai-primer.com/engineer/stories/gdpx-benchmark-release" target="_blank">SemiAnalysis／AI Primer</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-tips"><div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;"><span class="icon">💡</span><h2 style="color:#155e75;">技巧与观点</h2><span class="count">3 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>Addy Osmani：给智能体循环设目标与停止条件</h3>
+<div class="card-meta"><span class="src">O’Reilly／Addy Osmani</span><span class="t">11月02日 19:54</span><span class="tag tg-tips">技巧与观点</span></div>
+<div class="card-brief">作者区分可放手的重复任务和需要人工审查的工作。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Addy Osmani 在 O’Reilly 转载文章中讨论实践中的循环工程：让代理围绕明确目标反复行动、测试结果并调整，而不是只生成一次答案。作者表示自己通常同时使用五至十个代理；对边界明确、停止条件清楚的任务，他愿意更多放手，对另一些任务则保留更密切的代码审查。文章强调，人应继续负责判断目标和约束是否正确，循环只是执行与反馈机制。</p>
+<p>以修复测试失败为例，可以先写明允许修改的目录、必须保持的接口、要运行的测试和达到条件后的停止规则。若测试只覆盖错误路径，代理可能通过删除断言或改变需求让测试转绿，因此审查还要检查补丁是否解决原问题。多个代理并发也可能修改同一文件或制造互相冲突的假设，适合把任务拆成清晰边界，并在整合后运行整体验证；循环次数增加本身并不是质量指标。文章转载的是作者此前的实践经验，并非一次受控实验对所有开发流程的统计结论。</p>
+<p>来源：<a class="source-link" href="https://www.oreilly.com/radar/practical-loop-engineering/" target="_blank">O’Reilly／Addy Osmani</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>a16z 讨论 AI 应用如何获得持续溢价</h3>
+<div class="card-meta"><span class="src">Andreessen Horowitz</span><span class="t">11月02日 23:03</span><span class="tag tg-tips">技巧与观点</span></div>
+<div class="card-brief">核心问题是通用模型进步后客户为何继续付费。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>a16z 文章讨论 AI 应用的定价能力：如果客户仅用通用模型和少量持续投入就能复现核心输出，应用就容易受到模型能力提升和基础服务降价的挤压。文章举出法律工具 Harvey 的比较，提到客户以盲测方式将其与 Microsoft Copilot 及内部原型 Lexia 对照。这里讨论的是应用层如何提供可辨认价值，并非认为所有使用通用模型的产品都会失去市场。</p>
+<p>专业产品可能通过嵌入工作流程、处理客户特定资料、提供可审阅的引用和承担交付责任来赢得付费。法律工作尤其需要可靠地定位材料和复核结论，单次生成一段看似合理的文字未必足以替代整套服务。投资者与采购方应比较完成同一法律任务的总成本、错误处理和部署维护费用；若基础模型后来能直接完成相同流程，原有应用需要继续证明其数据整合和使用体验带来的差异。客户在盲测中的选择也需要结合样本、任务类型和采购环境理解。</p>
+<p>来源：<a class="source-link" href="https://a16z.com/how-ai-applications-earn-their-premium/" target="_blank">Andreessen Horowitz</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>Simon Willison 关注美国企业调查更换 AI 用词</h3>
+<div class="card-meta"><span class="src">Simon Willison</span><span class="t">11月02日 21:31</span><span class="tag tg-tips">技巧与观点</span></div>
+<div class="card-brief">统计口径变化可能影响采用率时间序列。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Simon Willison 指出，美国人口普查局企业趋势与展望调查从十月十九日开始将相关提问中的人工智能改称“Super Intelligence or SI”。报道指出，调查机构将措辞变更与行政命令联系起来；此前二〇二五年十一月和十二月该问题也曾调整。企业回答的不是一个保持完全相同的词组，因此把不同版本调查所得比例直接拼成连续增长曲线可能产生误导。</p>
+<p>受访者可能熟悉聊天机器人、预测软件或自动化工具，却不把这些系统称为超级智能；相反，也有人会把该词理解为尚未普遍存在的未来能力。若同一家企业因措辞改变而改变回答，统计序列的跳变就不一定意味着真实采购量或使用人数同步改变。分析师可以在图表中标记问卷换词日期，单独比较各版本区间，并查看调查机构是否提供桥接实验；这些做法比把每次波动都解释为企业行为变化更可靠。同一项调查的表述发生变化时，研究者还应保留对应的原始问卷版本。</p>
+<p>来源：<a class="source-link" href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/" target="_blank">Simon Willison</a></p>
+</div>
+</div>
+</div>
+<div class="footer">🤖 AI 行业日报 · 2026-11-03 · 20 条 · 5 个板块<br>北京时间汇总；信息与观点均注明来源，影响判断为分析。</div></div></body></html>
