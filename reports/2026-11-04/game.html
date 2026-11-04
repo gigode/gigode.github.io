@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>🎮 游戏行业日报 · 2026-11-04</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#7c3aed; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f0f23,#1a1a3e,#7c3aed); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#c4b5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#ede9fe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-release { background:#f5f3ff; color:#6d28d9; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-esports { background:#eff6ff; color:#1d4ed8; }
+.tg-hardware { background:#f0fdf4; color:#15803d; }
+.tg-review { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head><body><a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a><div class="container"><div class="cover"><h1>🎮 游戏行业日报</h1><div class="sub">新游发布 · 行业动态 · 电竞资讯 · 硬件技术 · 评测观点</div><div class="badge">2026-11-04 · 21 条资讯 · 5 个板块 · 北京时间汇编</div></div><nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list">
+<li><a href="#s-release">🎮 新游发布/更新（5）</a></li>
+<li><a href="#s-industry">🏢 行业动态（4）</a></li>
+<li><a href="#s-esports">🏆 电竞资讯（4）</a></li>
+<li><a href="#s-hardware">🎛️ 硬件/技术（4）</a></li>
+<li><a href="#s-review">📝 评测与观点（4）</a></li>
+</ul></nav>
+<div class="section" id="s-release">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎮</span><h2 style="color:#6d28d9;">新游发布/更新</h2><span class="count">5 条</span>
+</div>
+<div class="card open"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">1</div><div class="card-main"><h3>《魔兽世界：无限》全球同步开服临近</h3><div class="card-meta"><span class="src">暴雪中国</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div><div class="card-brief">暴雪中国页面显示，《魔兽世界：无限》计划在北京时间十一月五日全球同步上线，对应美国太平洋时间十一月四日下午三点。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>暴雪中国页面显示，《魔兽世界：无限》计划在北京时间十一月五日全球同步上线，对应美国太平洋时间十一月四日下午三点。官方介绍新作将带来全新与扩展区域、玩法优化及画面升级，预约可获得六格背包，购买指定礼包可以解锁新种族与角色名称预留资格。该项目是对经典艾泽拉斯世界的重新扩展，而非把现有正式服资料片直接改名。</p>
+<p>时间换算关系尤其重要：北京时间十一月四日上午阅读日报时，全球服务器仍未到预定开放时刻，不能把宣传资料写成玩家已经验证的上线体验。新地图、地下城和升级内容有望吸引老玩家重新探索熟悉的世界，同时让新角色拥有较完整的成长路线；但实际排队、服务器稳定性与早期任务体验还要等开服后观察。礼包提供名称预留等权益，玩家也需要区分游戏进入条件和可选礼包内容，避免把预约奖励理解为所有付费内容。</p>
+<p>来源：<a class="source-link" href="https://wow.blizzard.cn/" target="_blank" rel="noopener noreferrer">暴雪中国</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">2</div><div class="card-main"><h3>《ArcheAge Chronicles》Steam 抢先体验开启</h3><div class="card-meta"><span class="src">ArcheAge Chronicles Wiki</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div><div class="card-brief">由 XL Games 开发的《ArcheAge Chronicles》定于美国太平洋时间十一月三日下午三点进入 Steam 抢先体验，即北京时间十一月四日早上七点。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>由 XL Games 开发的《ArcheAge Chronicles》定于美国太平洋时间十一月三日下午三点进入 Steam 抢先体验，即北京时间十一月四日早上七点。该版本面向 Windows 玩家，美国定价二十九点九九美元，采用买断方式，不要求订阅；团队预计抢先体验持续约九至十二个月，并以大小更新逐步调整，正式版目前没有公布日期。</p>
+<p>游戏在十月十九日至二十六日参加 Steam 新品节并提供试玩，展示窗口结束后很快公布了抢先体验档期。试玩热度可以证明玩家对新作有兴趣，却不能直接换算为付费人数或长期留存；从试玩转向付费开放，服务器承载、多人协作与成长进度能否支撑数月更新将成为更实际的考验。主机版本曾有公布，但此次开放仅涉及电脑平台，不能把抢先体验时间理解成所有平台同步发行。抢先体验是仍在开发中的版本：购买者在首日进入的是持续变化的服务，而不是功能和内容已经固定的最终成品。若团队按九至十二个月窗口推进，后续补丁会直接影响玩家对战斗手感和长期游玩价值的判断。</p>
+<p>来源：<a class="source-link" href="https://archeagechronicles.vi.ki/release-date-and-early-access" target="_blank" rel="noopener noreferrer">ArcheAge Chronicles Wiki</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">3</div><div class="card-main"><h3>动作游戏《CRYMELIGHT》定于十一月四日发售</h3><div class="card-meta"><span class="src">Nintendo</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div><div class="card-brief">任天堂商店列出 FURYU 的单人动作游戏《CRYMELIGHT》于十一月四日登陆 Switch 2。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>任天堂商店列出 FURYU 的单人动作游戏《CRYMELIGHT》于十一月四日登陆 Switch 2。游戏将仙境设定为亡者灵魂的牢狱，失忆的少女被白兔命名为爱丽丝，她与玛丽合作参与游戏，目标是击败女王并争取自由。官方将作品描述为围绕罪与赎罪展开的随机要素动作游戏，角色通过面对罪孽变得更强。</p>
+<p>商店页面列出的 Switch 2 版本支持电视、桌面和掌机模式，预计下载大小约为五点九 GB，语言列有日语和美式英语，并未列出中文。对准备购买的玩家，语言选择直接影响理解角色过去与故事线索；掌机模式则适合按局游玩的动作设计。商店日期不等于全球每个时区的解锁时刻，页面也提示预购资料可能调整，因此具体地区商店的解锁时间仍需单独查看。页面将作品标为单人游戏，故事也围绕爱丽丝与同行少女的个人经历展开。预购奖励截止时间采用日本标准时间，与各地区商店展示的时钟并不完全相同，准备预购的用户需要看本地页面。</p>
+<p>来源：<a class="source-link" href="https://www.nintendo.com/en-ca/store/products/crymelight-switch-2/" target="_blank" rel="noopener noreferrer">Nintendo</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">4</div><div class="card-main"><h3>侦探解谜游戏《Hillthorn》计划十一月十日发售</h3><div class="card-meta"><span class="src">Steam 社区</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div><div class="card-brief">独立游戏《Hillthorn》开发者在 Steam 社区公布，作品计划十一月十日登陆 Steam、Nintendo Switch、苹果移动设备和安卓，十月新品节期间提供了更新后的试玩。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>独立游戏《Hillthorn》开发者在 Steam 社区公布，作品计划十一月十日登陆 Steam、Nintendo Switch、苹果移动设备和安卓，十月新品节期间提供了更新后的试玩。游戏以一名失踪儿童的案件为线索，玩家在带有恐怖气氛的调查中检查和组合互动卡片，通过逐步发现的线索还原事件。</p>
+<p>以卡片承载现场和证据，意味着玩家不是在传统三维场景里寻找每个角落，而要判断眼前线索之间能否建立联系。这种呈现也便于跨电脑、主机及移动设备使用不同输入方式，但推理清晰度仍取决于卡片反馈是否足够明确。试玩在正式发行前提供了体验调查节奏的机会；喜欢解谜的玩家可以用它判断自己是否接受偏克苏鲁式的氛围和无文字叙事，再决定是否购买完整案件。开发者在新品节公告中明确表示试玩版本已经更新，因而试玩所展示的线索操作比旧宣传片更接近近期设计。由于完整游戏尚未上市，试玩中的案件片段也不能代表全部解谜长度。</p>
+<p>来源：<a class="source-link" href="https://steamcommunity.com/app/3504050" target="_blank" rel="noopener noreferrer">Steam 社区</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">5</div><div class="card-main"><h3>《怪物史莱克2》重制版排定十一月十日</h3><div class="card-meta"><span class="src">GamesRadar+</span><span class="t">时间不详</span><span class="tag tg-release">新游发布/更新</span></div><div class="card-brief">游戏资讯网站 GamesRadar+ 将《Shrek 2 Remastered》列入十一月十日的电脑游戏发售日历，开发方为 Aspyr Media。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>游戏资讯网站 GamesRadar+ 将《Shrek 2 Remastered》列入十一月十日的电脑游戏发售日历，开发方为 Aspyr Media。作品重制二〇〇四年的电影改编动作冒险游戏，玩家可以操控电影角色，在遥远王国与史莱克的沼泽等地点探索，并面对敌人、谜题和首领战。页面列出的多人方式包括本地和线上四人合作，也支持单人游玩。</p>
+<p>这次重制的主要吸引力来自熟悉的角色与合作流程，而线上联机为不在同一地点的朋友提供了原有沙发合作之外的选择。四人模式能否吸引回流用户，将取决于联机稳定性、谜题是否适合多人配合以及画面和操作改动的实际完成度。十一月十日也是其他多款游戏集中上市的日期，电影品牌辨识度有助于触达家庭玩家，但重制内容的质量仍需要正式版本接受检验。游戏既能单人完成，也允许最多四人一同游玩；有些玩家可能更重视家庭成员能否在同一屏幕参与，另一些人则更关注远程联机。游戏发售前的介绍还不能证明这两种模式的实际表现。</p>
+<p>来源：<a class="source-link" href="https://www.gamesradar.com/new-pc-games/" target="_blank" rel="noopener noreferrer">GamesRadar+</a></p></div></div>
+</div>
+<div class="section" id="s-industry">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏢</span><h2 style="color:#b91c1c;">行业动态</h2><span class="count">4 条</span>
+</div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">6</div><div class="card-main"><h3>Schell Games 年内第二轮裁员约四成</h3><div class="card-meta"><span class="src">Road to VR</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div><div class="card-brief">匹兹堡虚拟现实游戏工作室 Schell Games 确认再次裁员，首席执行官 Jesse Schell 称受影响员工约占团队四成。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>匹兹堡虚拟现实游戏工作室 Schell Games 确认再次裁员，首席执行官 Jesse Schell 称受影响员工约占团队四成。该公司八月刚经历成立二十余年来首次裁员，当时缩减约一成，并称裁后仍有约一百二十五名员工。按这一基数粗略推算，本轮约五十人受影响、约七十五人留任，但公司没有公布本轮准确人数。工程、美术、音频、设计、制作、市场和测试等岗位均受到波及。</p>
+<p>工作室曾制作《我希望你死》和《Among Us 3D》，还计划在二〇二七年春季推出混合现实园艺游戏《Dragon Grove》。团队人数骤降意味着新项目需要用更少资源完成内容、测试与设备适配；同时，具有不同技能的员工离开，可能影响工作室同时承接多个项目的能力。即使该作品仍在计划之中，四成比例也不等于可以推断某一款游戏已取消。八月与这次削减分别按不同基数计算，不能直接相加为原团队的一半。《Among Us 3D》还兼容平面屏幕，显示其产品覆盖并不局限于头显。</p>
+<p>来源：<a class="source-link" href="https://roadtovr.com/schell-games-vr-layoffs-50-staff-2026/" target="_blank" rel="noopener noreferrer">Road to VR</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">7</div><div class="card-main"><h3>Astragon 将关闭德国 Hamm 开发工作室</h3><div class="card-meta"><span class="src">Press Continue</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div><div class="card-brief">发行商 Astragon Entertainment 确认，将在十一月底前有序关闭位于德国哈姆的 Astragon Development。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>发行商 Astragon Entertainment 确认，将在十一月底前有序关闭位于德国哈姆的 Astragon Development。该团队此前名为 Independent Arts，长期从事游戏开发，最近推出的是船舶模拟作品《Seafarer: The Ship Sim》。公司称现有合同和债务会得到履行，并将关闭解释为战略调整：回到以发行为核心的业务。德国媒体报道约三十个岗位受影响，公司表示会与员工代表协商安排。</p>
+<p>这一决定发生在《Seafarer》正式推出仅数周后，说明产品完成与开发团队长期存续是两件不同的事。发行商可以继续负责销售、合同和现有义务，但原工作室退出后，船舶模拟游戏的维护与后续内容需要另行安排。对于哈姆当地，这也是一个有多年历史的开发团队解散；对于母公司 Everplay，退出内部开发可以减少持续的人力开支，却也意味着失去自有团队积累的模拟游戏制作经验。现有合同得到履行的承诺，并不自动说明游戏将持续获得新内容。母公司强调合同和财务责任都会履行，关闭步骤预计延续至十一月底。</p>
+<p>来源：<a class="source-link" href="https://www.press-continue.com/news/astragon-development-closing/" target="_blank" rel="noopener noreferrer">Press Continue</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">8</div><div class="card-main"><h3>《爆矢枪》开发商 Auroch Digital 启动裁员协商</h3><div class="card-meta"><span class="src">Gematsu</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div><div class="card-brief">英国开发商 Auroch Digital 十月二十六日表示，已启动裁员协商，涉及工作室约四分之一的岗位。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>英国开发商 Auroch Digital 十月二十六日表示，已启动裁员协商，涉及工作室约四分之一的岗位。团队将决定归因于困难的市场环境，同时提到近期交付的《战锤四万：爆矢枪2》和《星河战队》游戏获得玩家欢迎。公告讨论的是受影响岗位比例，而非最终离职人数；当地协商程序结束之前，不能把四分之一直接当成已经完成的裁员。</p>
+<p>这家工作室的案例显示，作品获得玩家好评并不必然覆盖研发成本或保障下一项目的资金。若四分之一岗位最终消失，团队在程序、美术、制作和质量保障之间如何重新分配职责，将直接影响未来交付节奏。已推出作品的支持工作也需要与新项目争夺剩余人力。公告没有披露各款游戏的销售额、各岗位名单或受影响员工总数，因此无法由好评推算利润，更不能断言裁员由某一部作品的销量单独造成。公司同时表示，《战锤幸存者》和《爆矢枪2》的开发及发售后支持将继续。</p>
+<p>来源：<a class="source-link" href="https://www.gematsu.com/2026/10/auroch-digital-to-lay-off-25-percent-of-staff" target="_blank" rel="noopener noreferrer">Gematsu</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">9</div><div class="card-main"><h3>育碧德国三地约百个岗位面临削减风险</h3><div class="card-meta"><span class="src">PC Games Hardware</span><span class="t">时间不详</span><span class="tag tg-industry">行业动态</span></div><div class="card-brief">育碧此前确认，正与员工代表就德国工作室的人员调整进行讨论，杜塞尔多夫、美因茨及柏林约一百个岗位面临风险。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>育碧此前确认，正与员工代表就德国工作室的人员调整进行讨论，杜塞尔多夫、美因茨及柏林约一百个岗位面临风险。报道指出，较大部分可能集中在杜塞尔多夫，美因茨团队则与《纪元》系列密切相关。当前数字描述的是受威胁岗位，而不是已经离职的人数；最终涉及哪些员工，需要看协商及自愿离职方案如何落实。</p>
+<p>三个地点的专业分工并不相同，因此相同的岗位总数未必意味着每个团队受到同等冲击。对于《纪元》玩家而言，最直接的问题是后续补丁、扩展内容和社区支持如何安排，而不是单凭岗位总数判断系列命运。对于员工而言，自愿离职计划的实际参与人数、补偿条件与转岗机会决定影响范围。育碧没有在这份报道中公布完整岗位清单，也没有据此宣布《纪元》系列停产；把讨论中的数字说成已经完成的裁员会夸大确定性。报道日期为十月十五日，属于此次德国裁员讨论的背景进展。</p>
+<p>来源：<a class="source-link" href="https://www.pcgameshardware.de/Anno-117-Pax-Romana-Spiel-74719/News/Ubisoft-Mainz-von-Stellenstreichungen-betroffen-1556830/" target="_blank" rel="noopener noreferrer">PC Games Hardware</a></p></div></div>
+</div>
+<div class="section" id="s-esports">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏆</span><h2 style="color:#1d4ed8;">电竞资讯</h2><span class="count">4 条</span>
+</div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">10</div><div class="card-main"><h3>全球总决赛八强赛开打，TES 与 IG 上演同赛区对决</h3><div class="card-meta"><span class="src">CNMO / 搜狐</span><span class="t">时间不详</span><span class="tag tg-esports">电竞资讯</span></div><div class="card-brief">英雄联盟全球总决赛四分之一决赛首场安排在北京时间十一月四日早上六点，由中国赛区的滔搏对阵英雄联盟分部的英维克特斯游戏，采用五局三胜。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>英雄联盟全球总决赛四分之一决赛首场安排在北京时间十一月四日早上六点，由中国赛区的滔搏对阵英雄联盟分部的英维克特斯游戏，采用五局三胜。两队此前都以三胜一负通过瑞士轮：滔搏首战负于韩华生命，随后击败安永传奇和欧洲战队，最后以二比一淘汰哔哩哔哩战队；对手首轮不敌韩国战队后连胜，最后二比一击败拉美雄狮。截稿时不预设最终比分。</p>
+<p>这场内战意味着中国赛区确定有一支队伍进入四强，同时也必然失去一个八强席位。瑞士轮最后一场都是三局系列赛，而淘汰赛改为五局三胜，双方不仅要准备首发阵容，还需应对连续多局的英雄禁选和对手调整。余下八强赛依次安排韩国战队对拉美雄狮、韩国战队对哔哩哔哩，以及卫冕冠军对欧洲战队，每天一场；赛事场地位于得克萨斯州艾伦市，决赛则转赴纽约布鲁克林。</p>
+<p>来源：<a class="source-link" href="https://m.sohu.com/a/1096611718_115831/" target="_blank" rel="noopener noreferrer">CNMO / 搜狐</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">11</div><div class="card-main"><h3>IEM 北京站小组赛进行中，十六队争夺六个淘汰赛席位</h3><div class="card-meta"><span class="src">ESL Pro Tour</span><span class="t">时间不详</span><span class="tag tg-esports">电竞资讯</span></div><div class="card-brief">反恐精英职业赛事英特尔极限大师赛北京站于十一月二日至八日在北京举行，主办方公布十六支参赛队伍和一百二十五万美元总奖金。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>反恐精英职业赛事英特尔极限大师赛北京站于十一月二日至八日在北京举行，主办方公布十六支参赛队伍和一百二十五万美元总奖金。小组赛从二日开始，十六队分为两个八队双败组，比赛均为三局两胜，每组前三进入淘汰赛。十一月四日主舞台日程包括液体战队对阵天禄，以及猎鹰对阵英雄战队；对阵时间按主办方赛程分别为北京时间十点和十二点半。</p>
+<p>六个出线名额使小组排名直接影响后续路径，十一月六日至八日的淘汰赛为单败赛制，四分之一决赛和半决赛均为三局两胜，决赛扩展至五局三胜。主办方同时说明，小组赛现场每个时段仅播放一场主舞台比赛，副直播流的比赛不会在场馆内转播；购票观众若希望追随某一队伍，应先核对具体转播场次。赛程表列出的对阵可能随比赛进展调整。主办方还列明每组前三晋级，所有对阵以赛事更新为准。</p>
+<p>来源：<a class="source-link" href="https://pro.eslgaming.com/tour/cs/beijing/" target="_blank" rel="noopener noreferrer">ESL Pro Tour</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">12</div><div class="card-main"><h3>南京六朝杯城市电竞总决赛落幕，GSG 获冠军</h3><div class="card-meta"><span class="src">扬子晚报 / 新浪财经</span><span class="t">时间不详</span><span class="tag tg-esports">电竞资讯</span></div><div class="card-brief">扬子晚报十一月三日报道，第九届南京六朝杯电子竞技城市联赛总决赛近日在栖霞古镇粮仓剧社举行。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>扬子晚报十一月三日报道，第九届南京六朝杯电子竞技城市联赛总决赛近日在栖霞古镇粮仓剧社举行。八支战队从线上选拔进入线下总决赛，冠军由GSG战队获得，金陵科技战队获得亚军，月爱找泽宇战队获得季军。冠军队伍还与电竞苏超南京金麟队王者荣耀代表队进行交流切磋，活动同时包括江苏城市电竞超级联赛南京赛区表演赛。</p>
+<p>赛制将八进四和四进二安排为单局淘汰，季军赛及冠军赛则改为三局两胜。前者压缩线下赛程，也放大单局发挥带来的偶然性；后者给冠亚季军争夺增加调整空间。赛事由南京市电子竞技协会主办，场地选在古镇剧社而非专用电竞馆，并配套动漫走秀和文旅市集，尝试把本地观赛与景区消费结合。报道没有公布现场人数及门票收入，无法据此计算文旅带动效果。线下赛事也为八支通过线上选拔的队伍提供了现场交手机会。</p>
+<p>来源：<a class="source-link" href="https://finance.sina.com.cn/jjxw/2026-11-03/doc-inixncms9880429.shtml" target="_blank" rel="noopener noreferrer">扬子晚报 / 新浪财经</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">13</div><div class="card-main"><h3>LCK 常规赛第三至第四轮回顾：Gen.G 与 HLE 同为十九胜</h3><div class="card-meta"><span class="src">Glasck 电竞数据</span><span class="t">时间不详</span><span class="tag tg-esports">电竞资讯</span></div><div class="card-brief">韩国英雄联盟职业联赛二〇二六赛季第三至第四轮最终积分表显示，Gen.G和韩华生命均以十九胜七负结束常规阶段，胜率约七成三；T1和Dplus Kia均为十七胜九负。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>韩国英雄联盟职业联赛二〇二六赛季第三至第四轮最终积分表显示，Gen.G和韩华生命均以十九胜七负结束常规阶段，胜率约七成三；T1和Dplus Kia均为十七胜九负。该表记录的是已经结束的常规赛阶段，不是十一月正在进行的比赛实时积分。两支领先队伍都在二十六场系列赛中赢得十九场，反映它们在长期赛程中维持了相近的大场胜率。</p>
+<p>常规赛大场战绩对季后赛种子和进入下一阶段的路径有意义，但不能直接等同于全球总决赛的即时胜率。五局三胜的淘汰赛更考验连续禁选调整，而韩国联赛的常规阶段采用三局两胜；同为十九胜并不代表两个队伍每一局的胜负情况也相同。观察本届世界赛韩国队伍时，应把这张联赛积分表当作赛季表现背景，而不是把旧积分误作当前全球赛晋级结果。战队跨入国际赛后仍要适应不同赛区对手。两者的赛制并不相同。</p>
+<p>来源：<a class="source-link" href="https://glasck.gg/en/lol/teams/T1/2026/Rounds%203%20-%204/LCK%20Rounds%203%20-%204" target="_blank" rel="noopener noreferrer">Glasck 电竞数据</a></p></div></div>
+</div>
+<div class="section" id="s-hardware">
+<div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;">
+<span class="icon">🎛️</span><h2 style="color:#15803d;">硬件/技术</h2><span class="count">4 条</span>
+</div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">14</div><div class="card-main"><h3>Steam十月调查：16GB内存与RTX 3060重回首位</h3><div class="card-meta"><span class="src">199IT</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div><div class="card-brief">Valve十月软硬件调查显示，16GB内存占参与调查设备的41.42%，较九月提高3.60个百分点；32GB占比下降5.16个百分点至37.06%。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>Valve十月软硬件调查显示，16GB内存占参与调查设备的41.42%，较九月提高3.60个百分点；32GB占比下降5.16个百分点至37.06%。RTX 3060以约3.78%重新位居单一显卡型号首位，RTX 5070紧随其后。显示分辨率方面，1080P占50.23%，1440P占21.82%；Windows 11占72.51%。九月调查中32GB曾短暂超过16GB，单月排名出现反转。</p>
+<p>对游戏开发者而言，这组数据提醒团队在设计默认画质和内存预算时，不能只围绕高端展示机：半数样本仍为1080P，16GB仍是最大内存档。调查采用自愿参与方式，样本地区构成改变可能带来大幅波动，十月中文用户占比回落和九月异常变化使环比更难解释。份额升高也不等同于该型号当月新增销量，更不能据此认定玩家集体降级；具体项目仍需结合自身用户的帧率、崩溃和内存遥测判断。处理器方面，英特尔占比为53.48%，AMD为46.51%；八核心与六核心分别占28.68%和27.29%。这些比例可以帮助测试团队安排覆盖范围，但无法代替对目标受众设备的直接测量。实际配置也会随着新游戏需求和设备更替而变化。</p>
+<p>来源：<a class="source-link" href="https://www.199it.com/archives/1861069.html" target="_blank" rel="noopener noreferrer">199IT</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">15</div><div class="card-main"><h3>九月全球主机估算：PS5月销111万台领先Switch 2</h3><div class="card-meta"><span class="src">VGChartz</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div><div class="card-brief">VGChartz估算，九月全球PS5销量约111.13万台，Switch 2约80.26万台，初代Switch约17.2万台，Xbox系列约12.1万台。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>VGChartz估算，九月全球PS5销量约111.13万台，Switch 2约80.26万台，初代Switch约17.2万台，Xbox系列约12.1万台。机构估计PS5累计销量达到9610万台，Switch 2约2417万台；Switch 2当月同比减少约22.3%，PS5同比增加约3.8万台。该报告发表于十月二十三日，数字是机构估算而非索尼、任天堂或微软公布的官方出货量。</p>
+<p>九月两款主机月销量相差约31万台，说明年初至今的累计领先与单月领先可以分别出现：VGChartz估算Switch 2今年前九个月售出约859万台，PS5约659万台。对发行商来说，选择跨平台档期时需要同时考虑全球现有装机规模和新增用户，而不是只看当月名次。估算还会受渠道库存和地区覆盖影响，不能把终端销量直接当作厂商当季确认收入，也不能仅凭一个月推断节日季走势。同一份估算还把初代Switch累计销量列为约1.5563亿台，Xbox系列约3545万台。老主机仍有当月新增用户，因而旧平台移植与维护仍有受众，但不同设备的游戏购买率不能从硬件销量直接算出。</p>
+<p>来源：<a class="source-link" href="https://www.vgchartz.com/article/469440/ps5-outsells-switch-2-worldwide-hardware-estimates-for-september-2026/" target="_blank" rel="noopener noreferrer">VGChartz</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">16</div><div class="card-main"><h3>英伟达商店移除RTX 5080列表，美国现货报价升至两倍以上</h3><div class="card-meta"><span class="src">Tom&#x27;s Hardware</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div><div class="card-brief">Tom&#x27;s Hardware十月三十日报道，英伟达商店在RTX 5090之后也移除了RTX 5080的商品列表和筛选选项，而RTX 5070及5070 Ti仍显示在页面上，状态为缺货。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>Tom&#x27;s Hardware十月三十日报道，英伟达商店在RTX 5090之后也移除了RTX 5080的商品列表和筛选选项，而RTX 5070及5070 Ti仍显示在页面上，状态为缺货。报道检查到的一款有货RTX 5080标价2199.99美元，约为该型号最初999美元建议零售价的2.2倍。媒体已向英伟达询问该型号状态；页面消失本身并不能证明产品已经停产。</p>
+<p>对准备升级游戏电脑的用户，单个零售商的现货价格反映的是当时可买到的报价，而不是所有型号的统一成交价；比较整机、其他显卡和现有配置的表现，比把建议价当成现实预算更有意义。报道提到可能出现24GB版本的说法，但这仍属传闻，显存容量提升也不能自动弥补不同芯片规模造成的性能差距。高端卡价格偏离首发价，会提高面向高分辨率和光追游戏的硬件投入门槛。英伟达页面上另外两款显卡虽标为缺货却仍保留条目，因此被移除的列表与暂时售罄的展示方式不同。对于渠道而言，实际补货与标价变化将比页面状态更能说明年末供货情况。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/pc-components/gpus/nvidia-store-quietly-pulls-the-rtx-5080-following-rtx-5090-removal-street-prices-climb-to-2-2x-over-msrp" target="_blank" rel="noopener noreferrer">Tom&#x27;s Hardware</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">17</div><div class="card-main"><h3>AMD提前向RX 6000系列提供FSR 4.1支持</h3><div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-hardware">硬件/技术</span></div><div class="card-brief">PC Gamer十月二十一日报道，AMD已将FSR 4.1支持扩展到Radeon RX 6000系列显卡，比原先预计的二〇二七年提前；此前RX 7000系列已获得支持。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>PC Gamer十月二十一日报道，AMD已将FSR 4.1支持扩展到Radeon RX 6000系列显卡，比原先预计的二〇二七年提前；此前RX 7000系列已获得支持。公司还计划让该技术覆盖部分锐龙笔记本、Z2 Extreme和Z2A掌机芯片，并宣布未来支持Xbox与Vulkan。报道指出，AMD称FSR Redstone已进入超过四百款支持Radeon 9000系列的游戏。</p>
+<p>超分辨率通过较低的内部渲染分辨率重建画面，有机会在老显卡或功耗受限的掌机上改善帧率，但画质、延迟和性能收益仍取决于游戏接入和具体设置。RX 6000提前获得支持可延长部分现有设备的使用周期；Vulkan的后续支持则与使用该图形接口的Linux游戏生态有关。Xbox、掌机及Vulkan支持的具体落地时间和各游戏的实现并未在这篇报道中统一确定，不能视为所有作品立即可用。AMD称未来还会扩展光线重建相关技术，并面向更多产品部署。对于游戏工作室，加入超分辨率仍需要测试不同输出分辨率下的细节、运动伪影和用户界面表现，不能简单把支持标志等同于统一的画面质量。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/graphics-cards/amd-has-shipped-fsr-4-1-early-for-rx-6000-graphics-cards-and-its-coming-to-ryzen-apus-vulkan-and-xbox-too/" target="_blank" rel="noopener noreferrer">PC Gamer</a></p></div></div>
+</div>
+<div class="section" id="s-review">
+<div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;">
+<span class="icon">📝</span><h2 style="color:#0e7490;">评测与观点</h2><span class="count">4 条</span>
+</div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">18</div><div class="card-main"><h3>《影之刃零》评测：武侠战斗获赞，PC表现拖后腿</h3><div class="card-meta"><span class="src">Steam Gamer</span><span class="t">时间不详</span><span class="tag tg-review">评测与观点</span></div><div class="card-brief">Steam Gamer为灵游坊的《影之刃零》打出八点五分，认为招架取消、武器组合和首领战把武侠动作的节奏交到了玩家手中。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>Steam Gamer为灵游坊的《影之刃零》打出八点五分，认为招架取消、武器组合和首领战把武侠动作的节奏交到了玩家手中。评测提到清理过的区域不会反复刷新敌人，减少了重走路线的时间；主角只剩六十六天生命的设定则为碎片化叙事提供悬念。评论同时认为关卡结构较线性，环境美术的表现力超过路线设计。</p>
+<p>技术层面是评测指出的明显短板：首次启动需编译着色器，部分玩家遭遇进入新场景或激战时卡顿，帧生成和光线追踪也可能影响画质或性能。评测记录了部分硬件上的画面异常与崩溃，这些属于评测及玩家报告，不能推断所有电脑都会复现。对准备购买的动作游戏爱好者，战斗设计的吸引力与自身硬件能否稳定运行同样重要；补丁是否改善卡顿，将直接影响首周口碑能否转化为长期推荐。评测也指出线性路线与美术呈现之间的落差，重视探索结构的玩家可能会与偏好连续首领战的玩家得出不同评价。</p>
+<p>来源：<a class="source-link" href="https://steamgamer.net/phantom-blade-zero-review-sublime-wuxia-combat-spattered-with-pc-growing-pains/" target="_blank" rel="noopener noreferrer">Steam Gamer</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">19</div><div class="card-main"><h3>《Wheel Make It》延期争议：愿望单未转化为首发人气</h3><div class="card-meta"><span class="src">GamesRadar+</span><span class="t">时间不详</span><span class="tag tg-review">评测与观点</span></div><div class="card-brief">独立发行商二左手拇指称，合作游戏《Wheel Make It》原计划十月十二日上线，直到十月二十五日才通过审核，最终十一月一日发售。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>独立发行商二左手拇指称，合作游戏《Wheel Make It》原计划十月十二日上线，直到十月二十五日才通过审核，最终十一月一日发售。尽管此前积累超过一万一千份愿望单，报道引用的二十四小时在线峰值只有十五人。发行商认为错过预定时间破坏了宣传势头，并怀疑人工智能游戏涌入加重审核积压；报道明确指出后一个因果关系尚不清楚。</p>
+<p>案例中还有具体审核问题：开发者称菜单分辨率选项无法用手柄操作，游戏因此至少一次未通过审核。延后发售可能使直播、媒体报道和愿望单通知无法按原计划集中，但十五人的峰值不能单独证明算法惩罚了作品，游戏内容、售价和受众偏好也会影响购买。对小团队而言，审核窗口和可重新设定的日期同样关系到营销资金效率；平台若能更清楚说明排队进度，将有助于发行商安排宣发与修复。开发者还称无法重新设定公开日期，原定宣传节奏因此难以恢复。</p>
+<p>来源：<a class="source-link" href="https://www.gamesradar.com/games/publisher-shakes-fist-at-valve-for-delaying-their-game-as-it-reaches-just-15-players-on-steam-despite-11-000-wishlists-tim-sweeney-liking-this-is-very-unexpected-and-genuinely-hilarious/" target="_blank" rel="noopener noreferrer">GamesRadar+</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">20</div><div class="card-main"><h3>Valve回应试玩节克隆与低质量内容争议</h3><div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-review">评测与观点</span></div><div class="card-brief">在韩国釜山的独立游戏活动上，Valve代表承认平台面对游戏克隆和低质量作品涌入的问题，同时表示不希望以开发者使用何种工具作为一概禁止的标准。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>在韩国釜山的独立游戏活动上，Valve代表承认平台面对游戏克隆和低质量作品涌入的问题，同时表示不希望以开发者使用何种工具作为一概禁止的标准。报道提到有开发者收到以人工智能复制游戏为由的勒索威胁；另一家工作室因担心作品被克隆而取消计划中的试玩。平台代表建议开发者经营社群，并不断增加有个人特色的内容。</p>
+<p>试玩节的推荐机制也存在两难：前两天向用户较随机地展示作品，之后再依照偏好个性化推荐。随机曝光能让没有知名度的新团队获得机会，也可能让玩家接触大量质量参差不齐的试玩。报道援引统计称截至十月底，年内已有近二万三千款游戏在平台发行；即使不能把这些作品都归因于人工智能，供给增长仍让玩家筛选和开发者获得关注更困难。如何降低抄袭风险又不封死新团队入口，是平台面临的具体取舍。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/software/ai/valve-admits-steam-has-an-ai-slop-and-cloning-problem-but-says-we-dont-want-to-be-gatekeepers-telling-developers-which-tools-they-should-or-shouldnt-use/" target="_blank" rel="noopener noreferrer">PC Gamer</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">21</div><div class="card-main"><h3>十一月温馨游戏观察：修复模拟与生活网游同场竞争</h3><div class="card-meta"><span class="src">PC Gamer</span><span class="t">时间不详</span><span class="tag tg-review">评测与观点</span></div><div class="card-brief">PC Gamer梳理了十一月二十八款值得关注的电脑温馨游戏，覆盖生活模拟网游、修复、经营、桌面放置和整理等类型。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>PC Gamer梳理了十一月二十八款值得关注的电脑温馨游戏，覆盖生活模拟网游、修复、经营、桌面放置和整理等类型。其名单将《Loftia》和《Spirit Crossing》列为两款生活模拟网游；《Cozy Game Restoration》围绕清洁旧游戏卡带展开，计划十一月四日推出，月初在当月上线作品的愿望单排行中位居第四。列表同时列出部分作品有试玩版。</p>
+<p>这份观察显示，温馨游戏并不等于同一套农场玩法：修复卡带依靠细节与怀旧感，生活网游则需要持续活动和社区互动。试玩能让玩家在付费前判断操作是否令人放松，也给小团队一次收集反馈的机会，但试玩节曝光不等于正式销量。十一月还安排了马匹管理题材和餐厅经营作品，同类密集发行意味着各团队必须用明确的玩法差异争取有限注意力，而不是只依靠舒适画风。其中《Farm &amp; Feast》把种植和餐厅服务结合，评论者特别提到客人耐心与定制订单会改变经营节奏。以玩法为单位观察，比只看十一月总发行数量更能理解这一细分市场。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/games/new-cozy-games-november-2026/" target="_blank" rel="noopener noreferrer">PC Gamer</a></p></div></div>
+</div>
+<div class="footer">游戏行业日报 · 2026-11-04<br>公开资料汇编，时间均为北京时间</div></div></body></html>

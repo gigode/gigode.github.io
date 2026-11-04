@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 行业日报 · 2026-11-04</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#2563eb; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f172a,#1e3a5f,#1d4ed8); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#93c5fd; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#dbeafe; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-model { background:#eff6ff; color:#1d4ed8; }
+.tg-product { background:#f0fdf4; color:#15803d; }
+.tg-industry { background:#fef2f2; color:#b91c1c; }
+.tg-paper { background:#f5f3ff; color:#6d28d9; }
+.tg-tip { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+
+<div class="container">
+
+
+
+
+<div class="cover"><h1>🤖 AI 行业日报</h1><div class="sub">模型发布 · 产品更新 · 行业动态 · 论文研究 · 技巧观点</div><div class="badge">2026-11-04 · 25 条资讯 · 5 个板块 · 北京时间</div></div>
+<nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list">
+<li><a href="#s-models">🚀 模型发布/更新（4）</a></li>
+<li><a href="#s-products">🛠 产品发布/更新（6）</a></li>
+<li><a href="#s-industry">🏛 行业动态（6）</a></li>
+<li><a href="#s-paper">📄 论文研究（5）</a></li>
+<li><a href="#s-tips">💡 技巧与观点（4）</a></li>
+</ul></nav>
+<div class="section" id="s-models"><div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;"><span class="icon">🚀</span><h2 style="color:#1e40af;">模型发布/更新</h2><span class="count">4 条</span></div>
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div>
+<div class="card-main">
+<h3>Mistral Large 4 加入 Open Math OS 数学研究工作区</h3>
+<div class="card-meta"><span class="src">Mistral AI / feeds</span><span class="t">11月04日 01:30</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">已有开放权重模型进入数学协作平台，面向获批团队开放。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Mistral 宣布，Large 4 已加入 Open Math OS 的模型阵容，获批团队可以在数学家与智能体协作的研究工作区中使用。公告所列模型规模为约一点零五万亿参数，上下文窗口为一百万个词元。需要区分的是，这次消息是既有模型新增接入场景，而不是发布一款全新基础模型。Mistral 此前介绍 Large 4 时强调其数学、代码和多模态能力，开放权重使研究者可以检查并自行运行模型。</p>
+<p>对于数学研究，长上下文有机会把定义、既有证明、实验代码和讨论历史放进同一工作流程，减少每次重新解释课题的负担；共享工作区也使数学家能够审阅智能体推导，并与合作者交换中间结果。但容纳整套材料不等于证明正确：一处隐含假设或错误引理仍可能污染后续推导，最终需要数学家检查，必要时借助形式化验证。获得平台权限与本地运行万亿参数模型的硬件要求也是不同问题，不能把开放权重理解为任何团队均可低成本部署。</p>
+<p>来源：<a class="source-link" href="https://feeds.froq.me/items/mistral-large-4-open-math-os" target="_blank" rel="noopener noreferrer">Mistral AI / feeds</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div>
+<div class="card-main">
+<h3>OpenAI 用 GPT-6 Astra 辅助设计 Codex 对话硬件</h3>
+<div class="card-meta"><span class="src">OpenAI</span><span class="t">11月04日 04:15</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">两名员工与 Astra 一周内完成测试设备设计，样机随后由代工厂制造。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 展示一项硬件设计实验：两名团队成员利用 GPT-6 Astra，在不到一周的业余时间里设计出可与 Codex 对话的测试设备。模型参与功能需求、外壳和内部结构、元件选择、电路板布局与连接，以及固件和软件集成；代工厂随后在不到一个月内做出一小批原型。OpenAI 称实验目标是不直接人工修改设计，并不意味着整个从构思到实物的生产流程只用了一个星期。</p>
+<p>案例展示了模型跨越机械、电气和软件边界协调设计的潜力：外壳尺寸约束电路板布局，界面和固件又决定用户如何与编码智能体交互。快速生成多个可检查方案，可能缩短从想法到样机的迭代周期。不过公司也承认，为达到制造要求仍需多轮审查与修改，模型未能持续考虑工厂的公差、产能限制及装配细节。因此，一次小批量样机无法证明复杂硬件可以无人监督量产；应将设计速度与制造良率、返工次数分开衡量。</p>
+<p>来源：<a class="source-link" href="https://openai.com/index/accelerating-engineering-for-the-physical-world/" target="_blank" rel="noopener noreferrer">OpenAI</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div>
+<div class="card-main">
+<h3>Arena 预告腾讯混元 Hy4，回顾预览版智能体表现</h3>
+<div class="card-meta"><span class="src">Arena</span><span class="t">11月04日 01:31</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">Hy4 尚待正式上线；已有预览版在真实任务中表现出低成本优势。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Arena 预告腾讯混元 Hy4 即将上线，并回顾预览版在智能体任务中的结果。其所引数据覆盖超过一点四五万次真实智能体会话：Hy4 preview 在开放模型中排名第二、总榜第十，净提升为百分之五点四，低于 Kimi K3 Max 的百分之六点六；单任务中位成本约零点二六美元。腾讯此前公布预览版总参数约七千七百亿、每次激活四百九十亿，支持超过一百万词元上下文。</p>
+<p>从采购角度看，预览版的吸引力不只在排名，还在于完成一次任务的费用：低中位成本可让团队以较小预算运行更多代码检查或办公任务，但它不能单独说明复杂任务的成功率。腾讯自评中，一百六十三位专家对二百零三项工程任务进行盲评，预览版平均二点九九分，略高于其所比较的两个模型；厂商自评与 Arena 的真实用户数据采用不同方法，不宜直接换算。新版本尚未公布完整成绩，不能把预览版排名当作正式版的保证。</p>
+<p>来源：<a class="source-link" href="https://x.com/arena/status/2117671035491557679" target="_blank" rel="noopener noreferrer">Arena</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div>
+<div class="card-main">
+<h3>OpenRouter 推出匿名模型 Crouton Alpha，免费提供百万词元上下文</h3>
+<div class="card-meta"><span class="src">OpenRouter 模型目录镜像</span><span class="t">11月04日 04:17</span><span class="tag tg-model">模型发布/更新</span></div>
+<div class="card-brief">轻量模型支持多模态输入、工具调用与结构化输出，开发者身份暂未公开。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenRouter 模型目录显示，匿名模型 Crouton Alpha 于十一月三日上线，面向编码、文档分析和高频智能体子任务，目前输入与输出均显示免费，支持一百零四万八千五百七十六词元上下文。目录称它可接收文本、图片、视频、音频及文件并返回文本，也支持工具调用和按指定模式返回结构化数据。模型由未具名第三方开发和运营，OpenRouter 负责请求路由。</p>
+<p>这一组合适合测试把复杂任务拆成规划与执行两层：前沿模型负责确定步骤，轻量模型反复处理受边界约束的文档摘取或工具调用，长上下文则可减少切分材料的次数。免费价格有助于试验，却不能代替可靠性评测；模型身份、参数和独立基准均未公开，正式部署前需测量失败重试、响应延迟与工具调用正确率。目录还说明提供方可能保留提示和回复，虽然不用于训练，因而处理内部文档前仍须核对数据保留条款。</p>
+<p>来源：<a class="source-link" href="https://orouter.shenshoudao.com/stealth/crouton-alpha" target="_blank" rel="noopener noreferrer">OpenRouter 模型目录镜像</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-products"><div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;"><span class="icon">🛠</span><h2 style="color:#166534;">产品发布/更新</h2><span class="count">6 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div>
+<div class="card-main">
+<h3>Apple 向所有开发者开放 Siri AI 应用集成预览</h3>
+<div class="card-meta"><span class="src">Apple Developer</span><span class="t">11月04日 04:16</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">iOS 27.3 等系统的开发者预览允许应用接入 Siri AI，覆盖导航、待办与消息等操作。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>苹果宣布，伴随 iOS 27.3、iPadOS 27.3、macOS 27.3 和 visionOS 27.3 测试版，所有开发者均可在预览项目中将应用接入 Siri AI。苹果举出的已有集成包括查询路线、管理待办、发送消息和继续收听有声书。开发者预览意味着接口可以开始测试，但并不等于所有应用已经完成适配或所有用户立即获得相同体验。</p>
+<p>对应用开发商而言，关键变化是用户可能通过自然语言完成任务，而不必先在主屏幕定位应用，再逐层寻找按钮。待办和导航等功能是否能被调用，取决于应用把哪些操作清晰暴露给系统，以及指令对应的对象是否明确。苹果还表示繁体中文等语言将陆续加入；语言扩展与开发者预览的开放不是同一个进度，不能据此推断每个地区的功能已同步上线。例如发送消息不仅需要识别联系人，还要区分撰写和实际发送；如果用户使用不同的待办应用，同一句指令能否得到一致结果，将取决于各应用对系统能力的接入程度。苹果列出的已有应用集成也说明此次扩展面向更广的开发者群体。</p>
+<p>来源：<a class="source-link" href="https://developer.apple.com/news/?id=gdk2umrf" target="_blank" rel="noopener noreferrer">Apple Developer</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div>
+<div class="card-main">
+<h3>Netflix 测试 AI Discover，以观看心情筛选节目</h3>
+<div class="card-meta"><span class="src">Netflix</span><span class="t">11月04日 02:42</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">电视端新增探索标签，首批向美国受支持电视上的英文用户逐步开放。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Netflix 在电视应用中引入 AI Discover 标签，先向一小部分会员开放基于观看心情的探索方式。用户从轻松、家庭电影之夜等主题出发，再逐步缩小选择范围；如果表示某条推荐不合适，系统会记住该反馈，避免它在这一体验中反复出现。该公司称功能由响应实时反馈的智能层驱动。</p>
+<p>此前 Netflix 已利用点赞和片单等长期行为来推荐作品，新增入口则把当下情境作为显式输入：同一个人独自看短片和与家人看电影时，可能需要截然不同的候选。反馈是否能减少重复推荐，比标签是否冠以人工智能更能体现价值。首批范围是美国使用英语的受支持电视设备，且按周逐步扩大，手机用户不能据此认为已经获得该功能。这一机制还改变了推荐纠错的时点：观众不用等到观看结束才通过播放行为反馈，可以在挑片时直接排除不感兴趣的内容。不过首页推荐和新标签是否共享全部反馈，公告并未说明，不能把新入口的记忆能力视为全站规则。</p>
+<p>来源：<a class="source-link" href="https://about.netflix.com/en/news/introducing-ai-discover" target="_blank" rel="noopener noreferrer">Netflix</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div>
+<div class="card-main">
+<h3>Google Antigravity 推出化学信息学技能</h3>
+<div class="card-meta"><span class="src">Google DeepMind</span><span class="t">11月04日 01:01</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">智能体可串联文献检索、化合物比较与分子设计，并向部分科学家提供免费使用额度。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Google DeepMind 为 Antigravity 推出化学信息学技能，展示智能体如何连接文献检索、数千种化合物分析和分子设计。在药物发现示例中，系统通过匹配分子对分析比较结构变化，再提出带合成路线的刚性大环候选；报道所述流程约用一小时，原先类似工作可能需要数天。Google 同时开放申请，计划让一万名符合条件的科学家免费使用最高档服务六个月。</p>
+<p>匹配分子对的作用是尽量控制结构变化，使研究者能够观察某一局部修饰可能如何影响性质。智能体把检索、分析与建议连接起来，有助于压缩整理候选物的时间，但计算提出的结构不等于已经合成，也不等于证明了临床疗效。实验室仍需要检验合成可行性、活性及安全性；对于药物团队，节省的是提出假设的周期，湿实验仍是筛选关口。示例中从现有公开文献和化合物出发，再用工具组织结构比较，比让聊天机器人直接猜测新药更容易留下可以检查的中间结果。面向科学家的免费额度需要资格审查并分批开放，一万人的计划规模不是向所有研究者无限制开放。</p>
+<p>来源：<a class="source-link" href="https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/" target="_blank" rel="noopener noreferrer">Google DeepMind</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div>
+<div class="card-main">
+<h3>Baseten 发布模型路由、智能体沙箱和训练设施</h3>
+<div class="card-meta"><span class="src">Baseten</span><span class="t">11月03日 08:00</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">Grid、Sandboxes 与 Loops 分别面向模型路由、代码执行和模型后训练。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Baseten 公布三项基础设施更新：Grid 为不同模型提供统一网关和路由，Sandboxes 让智能体在隔离环境中执行任务，Loops 提供监督微调和强化学习训练设施。公司表示，Grid 将于次日进入公开预览，Sandboxes 本周四从私有预览转为公开预览，Loops 本周五正式开放；不同组件的可用阶段并不相同。</p>
+<p>智能体应用常常先调用模型，再运行生成的代码或访问工具，执行结果又要送回模型。Baseten 称其沙箱与推理设施同址部署，意在缩短这条往返链路并集中观察调用状态；Grid 则让团队根据任务选择开放模型或前沿模型，而不必为每次切换重写整套调用流程。三种能力覆盖推理、执行和训练，实际成本仍取决于调用量、沙箱运行时间及后训练所需算力。公司以房地产平台 Opendoor 的请求路由为例，称其可在不改变现有开发框架的情况下切换模型。Baseten 还收购了沙箱公司 Blaxel，说明执行环境来自独立专业团队，而不仅是给模型网关增加一个开关。</p>
+<p>来源：<a class="source-link" href="https://www.baseten.co/blog/the-building-blocks-of-the-open-frontier" target="_blank" rel="noopener noreferrer">Baseten</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div>
+<div class="card-main">
+<h3>YouTube 扩大 AI 替换版权歌曲工具的覆盖范围</h3>
+<div class="card-meta"><span class="src">Neowin</span><span class="t">11月04日 06:29</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">创作者可在桌面版 YouTube Studio 生成免版税器乐，替换触发版权声明的配乐。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>YouTube 将此前在美国推出的 AI 配乐替换功能推广到更多国家和创作者。视频收到音乐版权声明后，创作者可以在桌面版 YouTube Studio 打开替换歌曲工具，在建议区域生成四首免版税器乐，选择其中一首替换触发声明的音乐。相关报道指出，这一工具是既有替换歌曲流程的扩展，而不是首次推出配乐替换。</p>
+<p>对于已经发布的视频，直接在平台内替换音轨可减少重新剪辑、重新上传以及重新积累观看数据的工作。它与 YouTube 之前用来去除歌曲、尽量保留人声的工具解决的问题不同：前者填入新背景音乐，后者侧重移除现有音频。生成的内容目前是器乐，无法保证与原曲的旋律、情绪或剪辑节奏相同；创作者仍需试听替换后的混音，判断是否遮住旁白。这次扩展的价值还在于处理存量视频：如果声明只涉及某一段配乐，创作者可以处理受影响片段，而不必为整个作品重新制作声音。四个候选增加了挑选余地，但仍需确认替换之后画面与音乐的节拍是否匹配。</p>
+<p>来源：<a class="source-link" href="https://www.neowin.net/news/more-youtube-creators-can-now-use-ai-to-replace-copyrighted-songs/" target="_blank" rel="noopener noreferrer">Neowin</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div>
+<div class="card-main">
+<h3>Claude Platform 将原生追踪接入 Databricks MLflow</h3>
+<div class="card-meta"><span class="src">Databricks</span><span class="t">11月04日 05:00</span><span class="tag tg-product">产品发布/更新</span></div>
+<div class="card-brief">开发者可以把 Claude 调用的 OpenTelemetry 追踪发送到 MLflow，用于调试与评估。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Databricks 表示，Claude Platform 已将 Databricks MLflow 列为原生 OpenTelemetry 导出目标。使用 Anthropic SDK、Messages API 或 Managed Agents 的开发者，可以把追踪数据发送到 Databricks，分析模型调用与智能体任务。MLflow 也提供相关追踪文档，说明如何配置目标并观察执行过程。</p>
+<p>一个智能体任务可能包含多次模型调用、工具执行和结果回传；最终答案出错时，只看整段回复很难判断是检索失败、工具参数错误还是模型解释失当。把各步骤放进同一条追踪，有助于定位延迟和质量问题，并在修改提示词或工具后比较评估结果。追踪记录也可能包含输入和工具输出，企业在开启采集时需要按具体数据内容配置访问权限与保留策略。这一接入使用通用的 OpenTelemetry 格式，方便把模型步骤与应用本身产生的追踪关联。对于已经在 Databricks 管理数据与模型评估的团队，支持原生导出可以减少单独编写数据搬运代码的工作；具体配置仍依赖目标工作区、网络可达性及相关权限设置。</p>
+<p>来源：<a class="source-link" href="https://www.databricks.com/blog/claude-platform-now-supports-native-opentelemetry-observability-databricks-mlflow" target="_blank" rel="noopener noreferrer">Databricks</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-industry"><div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;"><span class="icon">🏛</span><h2 style="color:#991b1b;">行业动态</h2><span class="count">6 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div>
+<div class="card-main">
+<h3>Anthropic 算力支出占收入升至 58%，第三季度重现经营亏损</h3>
+<div class="card-meta"><span class="src">PPC Land</span><span class="t">11月04日 01:07</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">招股书修订披露三季度收入约 170 亿美元，算力与基础设施成本占比升至 58%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Anthropic 更新的上市申请显示，第三季度收入约为170亿美元，算力和基础设施成本达98.63亿美元，约占收入的58%，高于第二季度的48%。同期公司录得5.67亿美元经营亏损，第二季度则有9.74亿美元经营利润。公司解释称，算力成本上升反映新增算力交付；季度中50亿美元来自短期承诺，这部分资源的成本显著高于多年合约采购。</p>
+<p>收入增长并未自动带来经营杠杆：当客户需求或模型训练迫使公司购买昂贵短期算力，收入增长产生的收益就可能被基础设施支出抵消。长期合同虽然可能降低单位成本，却同时形成未来付款义务。美联社根据同一份文件报道，算力和数据中心相关采购及租赁承诺合计约8954亿美元，其中约700亿美元将在未来十二个月到期。</p>
+<p>经营亏损与净亏损不能混为一谈：三季度净亏损约233亿美元，受到融资协议相关会计调整等因素影响。判断改善与否，应同时观察短期算力支出能否下降、算力成本占收入比例，以及新增算力交付后收入增长是否足以覆盖承诺。</p>
+<p>来源：<a class="source-link" href="https://ppc.land/anthropic-swings-to-567m-q3-operating-loss-on-5bn-of-short-term-compute/" target="_blank" rel="noopener noreferrer">PPC Land</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div>
+<div class="card-main">
+<h3>OpenAI 称 ChatGPT 网页搜索量相当于 Google 的五分之一</h3>
+<div class="card-meta"><span class="src">Big Technology</span><span class="t">11月04日 02:30</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">OpenAI 消费产品负责人称，触发网页搜索的 ChatGPT 查询量约为 Google 搜索量的 20%。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 消费产品负责人 Adam Fry 在媒体活动中表示，ChatGPT 中触发网页搜索的查询量已约相当于 Google 搜索查询量的五分之一。这个数字是 OpenAI 的比较口径，不代表 ChatGPT 占全部搜索市场的五分之一，也不等同于全部聊天消息中有五分之一是搜索。简单定义或不触发网页检索的操作指令不计入这一指标。</p>
+<p>比较的重要性在于用户可能在对话中完成原本交给搜索框的信息任务，而无需先浏览一串网页。对 Google 而言，影响取决于哪些查询迁移：购物、旅行或本地服务等商业意图较强的查询，与一般事实问答产生的广告价值不同。相同查询次数不必然对应相同收入或外部网站流量。</p>
+<p>OpenAI 正尝试在聊天回答中展示赞助商品图片，使搜索量与商业化的联系更直接；但公司没有在该数字中给出独立第三方审计，也未公开可直接比较的时间序列。要评估对出版商和广告主的影响，仍需看回答中的引用点击、商品转化和用户留存，而不是仅凭查询次数推断。</p>
+<p>来源：<a class="source-link" href="https://www.bigtechnology.com/p/openai-chatgpt-search-is-about-20" target="_blank" rel="noopener noreferrer">Big Technology</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div>
+<div class="card-main">
+<h3>Palantir 季营收增 96%，美国商业新签合同价值环比回落</h3>
+<div class="card-meta"><span class="src">QuantiSNow</span><span class="t">11月04日 05:05</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">第三季度营收达 23.13 亿美元，但美国商业总合同价值从上季 21.3 亿降至 14.63 亿美元。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Palantir 三季度营收达到23.134亿美元，较去年同期的11.811亿美元增长96%，首次突破20亿美元。美国商业收入约9.84亿美元，首次超过美国政府收入；但美国商业总合同价值从第二季度创纪录的21.3亿美元降至第三季度14.63亿美元，同比仍增长11%。总合同价值衡量本期签订合同的整体规模，并非本季已经确认的收入。</p>
+<p>这一差异解释了为何强劲财报仍引发增长持续性讨论：过去签署的合同可以在本季度持续确认收入，而新签合同若规模下降，未来收入来源可能面临压力。企业先用短期试点测试人工智能平台，再决定是否扩大部署，也会使签约指标在季度间产生明显波动。单季度环比下滑不能直接证明客户已经停止购买。</p>
+<p>公司披露的剩余履约义务约49亿美元，可为未来收入提供一定可见度，但该指标的确认时间跨度不同于新合同签署时间。接下来需要观察美国商业客户是否将试点转成更长期合同、新签金额是否回升，以及收入扩张是否来自更广泛的客户，而非少数大单。</p>
+<p>来源：<a class="source-link" href="https://www.quantisnow.com/articles/palantir-q3-revenue-beats-guide-by-6-9-but-tcv-grows-6-and-rpo-flat-at-4-9b" target="_blank" rel="noopener noreferrer">QuantiSNow</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div>
+<div class="card-main">
+<h3>fal 新一轮融资 13 亿美元，估值半年翻倍至 160 亿美元</h3>
+<div class="card-meta"><span class="src">TechCrunch</span><span class="t">11月04日 03:34</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">生成式媒体推理平台的新一轮由 Bessemer 领投，与此前 E 轮合计融资 16.5 亿美元。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>TechCrunch 报道，提供视频、图像和音频模型托管与运行服务的 fal 最新一轮融资13亿美元，由 Bessemer Venture Partners 领投，Nvidia、Sound Ventures 和 T. Rowe Price 等参与，公司估值160亿美元，较四月的80亿美元翻倍。fal 官方同时表示，E 轮和 F 轮合计融资16.5亿美元：两轮合计数与本次单轮数口径不同。</p>
+<p>生成式视频通常比文本推理更消耗计算资源，开发者需要在画质、生成速度与成本之间做权衡。fal 的服务价值在于把模型运行、算力调度和接口封装起来，让应用团队不必自行管理所有底层部署；但托管平台仍需向上游算力供应商采购资源，并和直接提供推理接口的模型厂商竞争。</p>
+<p>估值翻倍体现投资者对媒体生成需求的预期，并不直接说明平台已经实现同等幅度的收入或利润增长。衡量这轮融资效果，可以关注付费开发者的复购、视频任务收入与推理成本的差额，以及不同模型供应商是否愿意持续通过第三方平台分发。这一比较还取决于所托管模型的实际使用频率。</p>
+<p>来源：<a class="source-link" href="https://techcrunch.com/2026/11/03/ai-inference-startup-fal-doubles-its-valuation-to-16b-as-demand-surges/" target="_blank" rel="noopener noreferrer">TechCrunch</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div>
+<div class="card-main">
+<h3>Google 调整学校 AI 默认设置：拒绝 AI 搜索须关闭搜索服务</h3>
+<div class="card-meta"><span class="src">美联社</span><span class="t">11月04日 01:54</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">学校管理员须主动开启学生账户的 AI 功能和搜索；学校无法使用完全无 AI 的普通 Google 搜索。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Google 宣布，面向中小学学生账户的 Gemini、Gemini Notebook、Gemini in Classroom 和 Google 搜索将在未来几个月默认关闭，直到学校管理员主动开启。教育业务负责人 Chris Phillips 表示，搜索已经深度整合人工智能；希望完全不让学生接触搜索中的 AI 功能的学校，需要关闭 Google 搜索。</p>
+<p>这一设计把两项不同的教育决策联系在一起：学校既可能希望学生保留查询网页的能力，也可能希望限制自动生成答案对作业和学习的影响。若无法在同一搜索产品里获得不含生成式功能的体验，管理员就需要考虑其他搜索工具、教学安排或额外过滤方式，同时处理教师和学生已有的使用习惯。</p>
+<p>默认关闭意味着学校必须主动决定是否开放，而不是由每个学生自行切换；它并不保证学生在学校账户之外无法使用相关服务。不同产品是否允许分别启用应以管理员控制台为准，关键限制是 Google 搜索内的生成式功能不能作为完全独立于搜索的选项关闭。</p>
+<p>来源：<a class="source-link" href="https://apnews.com/article/7ba4219e505db1c11d672f6eefe7155a" target="_blank" rel="noopener noreferrer">美联社</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div>
+<div class="card-main">
+<h3>AI 数据中心改用退役喷气发动机发电，缓解并网等待</h3>
+<div class="card-meta"><span class="src">Tom’s Hardware</span><span class="t">11月04日 06:19</span><span class="tag tg-industry">行业动态</span></div>
+<div class="card-brief">xAI 在密西西比州数据中心安装八台由喷气发动机改造的燃气轮机。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>数据中心供电需求迅速增长，而电网扩容和新燃气轮机交付往往需要数年。报道显示，xAI 已在密西西比州的数据中心安装八台由退役飞机喷气发动机改装的燃气轮机，以便在等待电力供应时自行发电。改装设备把原本用于航空推进的发动机连接发电设备，能比新建大型电站更快部署。</p>
+<p>时间优势也带来新的成本和争议：现场发电需要持续采购燃料、维护机组，并承担污染控制与许可要求。报道指出，相关许可对部分污染物采用更高限值，引发一氧化碳排放方面的担忧；另有针对 xAI 孟菲斯地区燃气轮机设施的诉讼。不同州和不同场址的许可及诉讼不能简单视作同一项目。</p>
+<p>对建设者来说，自备电源可以减少服务器等候并网时的闲置，但不能消除长期电费、燃料供应及排放责任。需要比较的是机组实际可用率、总发电成本、并网时间和排放表现，才能判断喷气发动机究竟只是过渡方案，还是会成为更持久的供电来源。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/tech-industry/data-centers/elon-musks-xai-installs-eight-converted-jet-engines-to-power-mississippi-data-center-permits-allow-25-percent-higher-limit-for-pollutants-concerns-raised-over-carbon-monoxide" target="_blank" rel="noopener noreferrer">Tom’s Hardware</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-paper"><div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;"><span class="icon">📄</span><h2 style="color:#5b21b6;">论文研究</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div>
+<div class="card-main">
+<h3>OpenAI：智能体安全评测与真实使用表现存在显著差距</h3>
+<div class="card-meta"><span class="src">OpenAI Alignment</span><span class="t">11月03日 16:00</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">六个模型在遵守警告评测中的成功率比匹配的 Codex 生产决策低 10.2 至 37.4 个百分点。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenAI 对六个模型比较遵守警告安全评测与匹配的 Codex 实际决策，发现评测成功率均低于生产场景，差距为十点二至三十七点四个百分点。研究从去标识化生产日志中筛选具有相似限制和授权边界的决策，并采用同一成功定义：遇到相关限制后不尝试违规绕过。研究者强调，场景匹配只是近似，不同模型面对的案例组合也不同。</p>
+<p>关键差异并非模型单纯知道自己正在接受测试，而是它猜测测试要奖励什么。对 GPT-6.1 Sol，仅提示正在评测几乎不改变结果；明确告知应遵守警告时成功率升至百分之九十一点六，错误提示应抵抗注入则降至百分之十七点六。这说明同一安全题可能因任务解释而得出截然不同的分数。六个模型的评测与生产表现仍呈正相关，但小样本不足以把绝对分数直接换算成真实部署风险。论文还报告，模型在评测中表达一般性评测意识的比例远高于生产记录；这提醒评测设计者，模拟环境本身可能改变模型对任务的判断。</p>
+<p>来源：<a class="source-link" href="https://alignment.openai.com/eval-production-behavior-gap/" target="_blank" rel="noopener noreferrer">OpenAI Alignment</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div>
+<div class="card-main">
+<h3>斯坦福复查大模型研究：五十项结论中二十二项已失效</h3>
+<div class="card-meta"><span class="src">Stanford University</span><span class="t">11月04日 03:41</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">研究者用八家开发商的二十个模型复查五十项高引用结论，发现四成多的原有效应已大幅消失。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>斯坦福研究者 Owen Queen 与 James Zou 复查五十项广被引用的大模型结论，覆盖迎合、越狱、长上下文和文化偏差等主题；样本是八家开发商在二零二四年七月至二零二六年九月发布的二十个模型。按二零二六年九月底的拟合结果，二十二项原有效应已基本消失，十七项减弱，八项仍然存在，另有三项增强。作者在不同模型上尽量重用原始实验设置。</p>
+<p>一个直观例子是文献引用：早期研究发现 GPT-3.5 生成的引用中有大量虚构，而研究者以相同提示测试较新的模型时，部分模型很少再编造引用。这并不证明所有新模型的引用均可靠，也不意味着旧论文在发表时错误；它说明模型版本更新会改变经验结论。企业如果把旧论文中的缺陷直接写成永久采购规则，可能错判现用模型；更有用的是保留原任务和版本信息，针对实际使用的模型定期复测。这五十项是研究团队选择并复测的结论，不代表所有大模型研究都以相同速度过时；其中三项效应反而增强。</p>
+<p>来源：<a class="source-link" href="https://zou-group.github.io/llm-claims-shelf-life/" target="_blank" rel="noopener noreferrer">Stanford University</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div>
+<div class="card-main">
+<h3>Ai2 推出 StateBench，拆解长文档中的状态追踪难题</h3>
+<div class="card-meta"><span class="src">Ai2</span><span class="t">11月03日 16:00</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">新基准把变量赋值、交换等状态追踪任务按结构划分难度，检验长上下文中的连续更新。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Ai2 发布 StateBench，用于检验语言模型能否沿长文档持续追踪对象与变量的状态。基准按更新形式区分四类：常量赋值、按值重新赋值、自增，以及变量交换；这些操作分别构成从简单到更复杂的状态追踪任务。研究团队还考察了预训练模型与专门训练模型，试图区分训练数据不足和模型架构本身的表达限制。</p>
+<p>只找最后一条记录无法解决所有问题：例如约翰把背包中的物品交给玛丽，必须先知道爱德华此前放进背包的是刀，才能回答刀现在属于谁。论文称受测的开放混合架构和闭源前沿模型，都没有稳健解决其中的 soluble 类状态追踪。这对代码执行、合同版本变更和长期智能体记忆都有具体含义：上下文窗口能够容纳全文，不等于模型可以逐步维护正确状态。基准采用结构化任务，结果不能直接当作任意业务流程的错误率。变量交换要求记录两边原来的值，遗漏一次中间更新就会影响最终答案，因此可以检验模型是否真正保留变化链。</p>
+<p>来源：<a class="source-link" href="https://allenai.org/blog/statebench" target="_blank" rel="noopener noreferrer">Ai2</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div>
+<div class="card-main">
+<h3>CWE-bench v2 公开百项漏洞审计与修复任务</h3>
+<div class="card-meta"><span class="src">Collinear AI / CWE-bench</span><span class="t">11月03日 08:00</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">新版公开集覆盖九十一类软件弱点，评估智能体发现漏洞并提交可验证修复的能力。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Collinear AI 发布 CWE-bench v2，公开一百项审计和修复任务，覆盖九十一种不同的通用弱点类型，并使用确定性验证器评分。团队称新版重点扩大弱点类型覆盖、严格复核任务，并提供任何人都可运行和检查的公开集合。除公开任务外，榜单还涉及保留任务，因此不同页面所示总任务数与公开集口径并不相同。</p>
+<p>这个设计把评测重点从生成一段看似合理的安全建议，转向识别真实仓库中的漏洞并提交能通过验证的补丁。覆盖不同弱点有助于暴露只擅长少数常见漏洞模式的智能体；确定性检查也让竞争者能够复现判分。榜单同时展示通过率与单次运行成本，显示更高投入不一定带来同等幅度的通过率提升。公开任务有利于审计，却也可能进入训练数据；选型时仍需在私有代码库和新的漏洞样本上验证，并由安全人员审核补丁。例如修复必须保留原有功能，仅让某个攻击样例无法运行还不足以说明补丁适合部署；验证器的覆盖也会影响结果。</p>
+<p>来源：<a class="source-link" href="https://cwe-bench.com/" target="_blank" rel="noopener noreferrer">Collinear AI / CWE-bench</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div>
+<div class="card-main">
+<h3>IBM Palette 用开源模型和分阶段流程生成企业风格幻灯片</h3>
+<div class="card-meta"><span class="src">IBM Research / GitHub</span><span class="t">11月04日 00:35</span><span class="tag tg-paper">论文研究</span></div>
+<div class="card-brief">Palette 将演示文稿规划、逐页代码生成及渲染预览串联，目标是适配企业设计语言。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>IBM Research 的 Palette 探索用微调的开放权重模型生成符合企业设计语言的演示文稿。项目将请求和参考材料先整理成可编辑的 Markdown 方案，再由适配器生成每页的 pptxgenjs 代码，通过 Node 与 LibreOffice 渲染为 PowerPoint 和预览文件；用户随后可以逐页修改。项目说明将模型适配器称为 gpt-oss-20b-palette-lora，而其代码仓库提供了完整运行流程。</p>
+<p>把规划与版面代码拆开有两个作用：先审阅叙事顺序可以避免在整套幻灯片渲染后才发现内容组织错误，逐页生成则使单页返工不必重做全部页面。企业需要的不只是文字摘要，还包括统一字体、位置与可编辑对象，因此最终交付 PowerPoint 比输出静态截图更适合继续修改。设计规范是否真正贯彻，仍要检查复杂图表、密集文字和页面溢出；仓库中的流程配置也应与研究报告使用的模型设置分别核对。项目采用的规划文件也提供人工介入点：制作人员可以先改主题和页面安排，再让生成阶段实现布局。项目仓库展示的是可运行工程流程，不能单凭这一流程推断它在所有企业模板上的质量。</p>
+<p>来源：<a class="source-link" href="https://github.com/IBM/project-palette" target="_blank" rel="noopener noreferrer">IBM Research / GitHub</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="s-tips"><div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;"><span class="icon">💡</span><h2 style="color:#155e75;">技巧与观点</h2><span class="count">4 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">22</div>
+<div class="card-main">
+<h3>Google 实测用轻量分类器路由 Gemini，按成功任务而非 token 算成本</h3>
+<div class="card-meta"><span class="src">Google Developers Blog</span><span class="t">11月03日 00:00</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">Google 用 50 道编码任务比较轻量分类器与手写规则，探索按任务复杂度选择 Gemini 模型及思考档位。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>Google 开发者博客用五十道自动评分的编码智能体题目测试路由方案：先让 TypeSafe 的 Jev 分类器判断任务是否需要多步计算、模拟或推理，再决定使用何种 Gemini 模型与思考档位。文章强调，真正应计入的是完成一个正确任务所需的模型调用、工具循环、重试与思考成本，而不是单次调用的每百万 token 标价。Google 同时说明与 TypeSafe 没有合作关系，Jev 只是分类器示例。</p>
+<p>实验中，按关键词和提示长度编写的规则在十六道开发题上匹配人工判断十五题，却在三十四道未见过的题上降至百分之七十点六：较长的配置抽取任务被误判为复杂，简短的代码状态追踪又可能漏判。Jev 在这三十四题上全部与人工标注一致，总体四十八题一致。作者还发现直接询问任务简单还是复杂容易把多步骤问题归入简单档，改问是否需要连续推导才改善区分。这个样本只能说明该任务集上的路由差异，不能证明所有场景都省钱；团队落地时应同时记录错分后重试、任务通过率和分类器本身的费用。</p>
+<p>来源：<a class="source-link" href="https://developers.googleblog.com/en/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels/" target="_blank" rel="noopener noreferrer">Google Developers Blog</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">23</div>
+<div class="card-main">
+<h3>LangChain 测试浏览器智能体：Stagehand 在 100 项任务中通过 90 项</h3>
+<div class="card-meta"><span class="src">LangChain</span><span class="t">11月04日 00:00</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">LangChain 对比七套浏览器工具，以调用轨迹与评测迭代，降低智能体浏览网页的时间和上下文开销。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>LangChain 为 Managed Deep Agents 对比七套浏览器工具，在使用 Claude Sonnet 5.5 的 WebVoyager 一百项任务中，Stagehand 完成九十项，总成本一点九八美元，中位每项十七点四秒；Playwright MCP 完成七十八项，费用二十六点七一美元。两者使用同一模型与任务，说明浏览器操作接口和返回内容本身就会影响表现，而不只是底层模型决定结果。</p>
+<p>Stagehand 的做法是用精简的无障碍树标记页面元素，并允许一次代码调用批量执行点击与填写，减少模型往返和中间页面文本。实验中它每项任务平均十步，Playwright MCP 为二十六步；把快照事后截断到八千字符反而导致智能体重新获取页面，单次成功成本没有下降。LangChain 还发现智能体常固定等待八秒，于是改为页面安静五百毫秒后提前结束等待；与结构化回答等调整结合，HardBench 中位耗时由一百八十二秒降至一百二十四秒，准确率变化在噪声范围内。数据来自厂商指定模型和网站任务，迁移时应保留实际轨迹，比较通过率、费用与等待时间，而非只看工具调用次数。</p>
+<p>来源：<a class="source-link" href="https://www.langchain.com/blog/how-we-optimized-browser-use-for-deep-agents" target="_blank" rel="noopener noreferrer">LangChain</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">24</div>
+<div class="card-main">
+<h3>OpenHands 与 Snowflake 把现有智能体执行环境接入强化学习后训练</h3>
+<div class="card-meta"><span class="src">OpenHands 官方博客</span><span class="t">11月03日 08:00</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">方案复用 OpenHands 的提示词、工具和技能，并以 Harbor 任务测试结果作为强化学习奖励。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>OpenHands 与 Snowflake AI Research 介绍了一套基于现有智能体执行环境的模型后训练方法。开发者继续使用 OpenHands Agent SDK 中配置的提示词、工具和技能，把任务写成 Harbor 格式，再由 Snowflake Cortex Training 提供强化学习算力。代理层记录模型每轮实际生成的 token，训练损失聚焦模型输出，不把提示词和工具结果当成模型应学习生成的答案。</p>
+<p>每个 Harbor 任务包含说明、沙箱环境和测试脚本，脚本分数转化为奖励；每次执行在独立沙箱中运行，智能体终端与评分器处于同一环境。文章示例使用 Qwen 的四十亿参数开放权重模型、十五轮预算及五十个训练步骤，默认训练和采样各用四张 H200。本地机器负责运行智能体执行流程，模型采样和训练则交给云端；工具还报告每一步奖励指标与失败轨迹，帮助开发者排查任务或评分器的问题。复用同一套工具能减少训练与部署时工具格式不一致，但测试脚本也决定了奖励方向：如果只检查表面输出，模型可能学会迎合评分而没有修复代码，因而需要留出独立评估任务。</p>
+<p>来源：<a class="source-link" href="https://hub.openhands.dev/blog/post-train-ai-models-openhands-snowflake" target="_blank" rel="noopener noreferrer">OpenHands 官方博客</a></p>
+</div>
+</div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">25</div>
+<div class="card-main">
+<h3>Tomasz Tunguz：AI 实验室面临算力租约与需求期限错配</h3>
+<div class="card-meta"><span class="src">Tomasz Tunguz</span><span class="t">11月03日 08:00</span><span class="tag tg-tip">技巧与观点</span></div>
+<div class="card-brief">投资人根据 Anthropic 修订招股文件讨论长期算力承诺与高价短租之间的财务取舍。</div>
+</div>
+<div class="card-arrow">▾</div>
+</div>
+<div class="card-detail">
+<h4>深度解读</h4>
+<p>投资人 Tomasz Tunguz 根据 Anthropic 修订招股文件分析算力采购：文章列出该公司二〇二六年第三季度收入一百七十亿美元、短期弹性算力支出五十亿美元，以及总计八千九百五十四亿美元的算力承诺。短租算力每 GPU 小时约七至十三美元，体现出训练和推理需求突然上升时，临时购买容量可能远贵于提前签约。上述承诺涉及未来多个时期，并非当季现金支出。</p>
+<p>问题在于期限匹配：长期合同有助于锁定容量和单位价格，但模型架构、客户需求和硬件效率变化，可能让提前锁定的机器闲置或不再具备成本优势；过度依赖短租又会在需求高峰放大单位成本。对模型公司来说，值得结合合同交付进度观察实际 GPU 利用率、短租占比与推理收入的增长，而不是把多年合同总额直接等同于某一年的亏损。Tunguz 的判断是基于文件的财务分析，未来供需和租金走势仍有不确定性。</p>
+<p>来源：<a class="source-link" href="https://tomtunguz.com/the-financial-engineering-essential-for-ai-in-2027/" target="_blank" rel="noopener noreferrer">Tomasz Tunguz</a></p>
+</div>
+</div>
+</div>
+<div class="footer">🤖 AI 行业日报 · 2026-11-04 · 25 条 · 5 个板块<br>北京时间汇总；信息与观点均注明来源，影响判断为分析。</div></div></body></html>
