@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-11-04</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#10b981; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+<div class="container">
+<div class="cover"><h1>🔬 芯片行业日报 · 2026-11-05</h1><div class="sub">新产品/技术 · 企业动态 · 大咖观点 · 政策与资本<br/>聚焦最新动态，较早发布的行业背景按日期标注</div><div class="badge">2026-11-05 · 20 条资讯 · 4 个板块 · 北京时间 08:40 · 晨报</div></div>
+<nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（5）</a></li>
+<li><a href="#s-company">🏢 企业动态（5）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（5）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（5）</a></li>
+</ul></nav>
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">5 条</span></div>
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div><div class="card-main"><h3>🔹 NVHBM 据报统一采用台积电三纳米底座</h3>
+<div class="card-meta"><span class="src">The Next Web</span><span class="t">10月19日 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">据十月十九日报道，英伟达要求三星、海力士和美光为定制高带宽内存的底座晶片采用台积电三纳米制程，并希望存储晶片采用统一的第六代动态内存工艺。三星经过内部评估后。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>据十月十九日报道，英伟达要求三星、海力士和美光为定制高带宽内存的底座晶片采用台积电三纳米制程，并希望存储晶片采用统一的第六代动态内存工艺。三星经过内部评估后据报接受该安排，放弃为英伟达产品全部自行制造的原方案；这是一则引述业界消息的报道，而非三家厂商共同发布的量产公告。</p><p>底座位于堆叠内存下方，负责逻辑和连接，统一制程有助于英伟达减少不同供应商之间的设计和验证差异。定制方案把部分控制功能移到内存底座，使计算芯片附近的布线及面积配置发生变化，但底座与上方内存晶片仍须共同通过封装、散热和可靠性验证。三纳米产能本身也要与其他先进芯片客户竞争。</p><p>对于三星，这意味着争取英伟达订单的同时让出部分逻辑晶片制造价值；海力士和美光也需要与台积电协调底座及堆叠产能。报道描述的是特定客户定制产品，并不表示三家公司所有高带宽内存都会改由台积电制造；实际采购份额、最终性能与交货时间仍取决于客户认证和封装良率。</p><p>来源：<a class="source-link" href="https://thenextweb.com/news/nvidia-nvhbm-samsung-tsmc-3nm-base-die-sk-hynix-micron" target="_blank">The Next Web</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div><div class="card-main"><h3>🔹 台积电据报计划上调明年代工报价</h3>
+<div class="card-meta"><span class="src">TrendForce</span><span class="t">7月22日 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">集邦咨询七月引述报道指出，台积电正考虑在二〇二七年将部分代工价格上调约百分之五至十，超出既定承诺的高性能计算订单可能另有百分之十至十五的溢价。成熟制程也在讨。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>集邦咨询七月引述报道指出，台积电正考虑在二〇二七年将部分代工价格上调约百分之五至十，超出既定承诺的高性能计算订单可能另有百分之十至十五的溢价。成熟制程也在讨论范围之内，涉及十二、十六及二十八纳米；这些幅度是媒体报道的谈判方向，不是台积电公布的统一价目表。</p><p>先进制程和封装产能需要多年投资，客户若临时增加人工智能芯片订单，代工厂必须在既有排产与新增需求之间分配机器和洁净室空间。超量溢价把稀缺产能的机会成本转给临时加单的客户；成熟制程提价则可能影响电源管理、连接和汽车等不依赖最先进节点的芯片。</p><p>英伟达和苹果均需关注晶圆成本与客户合同的重新议价，联发科和高通也可能面临不同程度的成本压力。报道估计苹果部分高端芯片代工成本可能增加，但单颗代工报价并非整机成本，不能直接推算手机售价；最终幅度仍受客户合约、制程节点和实际投片量影响。</p><p>来源：<a class="source-link" href="https://www.trendforce.com/news/2026/07/22/news-tsmc-reportedly-plans-up-to-10-price-hikes-in-2027-with-extra-hpc-premiums-apple-nvidia-in-focus/" target="_blank">TrendForce</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div><div class="card-main"><h3>Palomino 获首张 Micro LED 光互联商业订单</h3>
+<div class="card-meta"><span class="src">TrendForce</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">集邦咨询11月3日报道，Palomino Laboratories 于10月22日宣布，获得一家超大规模云服务商的首笔氮化镓 Micro LED 光互联。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>集邦咨询11月3日报道，Palomino Laboratories 于10月22日宣布，获得一家超大规模云服务商的首笔氮化镓 Micro LED 光互联芯片商业订单。客户要求面向人工智能数据中心高速链路设计；公司称除光输出功率和光纤耦合效率外，其他技术参数已达客户目标，仍要优化材料与器件。七月交付的第一代光引擎原型已通过该云客户系统级测试，第二代样品测试正在推进。</p>
+<p>显示屏用微型发光二极管不能直接等同于数据链路器件，后者必须同时满足高速调制、光功率和耦合损耗要求。Palomino 利用波分复用在单个结构中组合多种波长，公司宣称方案有望达到传统方案约六分之一功耗和十倍带宽密度，这些是企业目标而非独立实测保证。首单证明客户愿意采购，但能否从样品过渡到大规模供货，还取决于上述两项待优化指标以及制造供应链。</p><p>公司表示产品主要覆盖数据中心内部零至五十米连接，并计划用光链路替代部分铜互联。这个距离范围对应机柜内部和相邻机柜的高密度连接，不应把企业提出的功耗目标理解为所有网络距离均可达到。</p>
+<p>来源：<a class="source-link" href="https://www.trendforce.com/news/2026/11/03/news-u-s-startup-wins-first-commercial-order-for-micro-led-optical-interconnect-chips/" rel="noopener noreferrer" target="_blank">TrendForce</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div><div class="card-main"><h3>ASMPT 第三季度设备订单创新高</h3>
+<div class="card-meta"><span class="src">IN Electronics &amp; Design</span><span class="t">10月29日 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">设备制造商 ASMPT 第三季度新增订单达到八十八点五亿港元，同比增长百分之一百三十七点九，环比增长百分之二十四点七，订单出货比为一点六九。报道指出，半导体。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>设备制造商 ASMPT 第三季度新增订单达到八十八点五亿港元，同比增长百分之一百三十七点九，环比增长百分之二十四点七，订单出货比为一点六九。报道指出，半导体设备订单同比增长百分之一百五十六点三，热压键合和光子制造设备是主要驱动力；表面贴装设备订单同比增长百分之一百二十二点一。</p><p>热压键合设备用于精密连接芯片和封装结构，光子设备则服务高速光互连生产；人工智能服务器同时增加先进封装和网络连接投入，使设备商接到不同环节的扩产订单。订单出货比高于一，表示新接订单多于同期出货，但收入还要等待设备制造、安装和客户验收。</p><p>对 ASMPT 来说，光学器件与封装客户支出扩大有利于丰富订单来源；对芯片设计商而言，设备交付只有在封装厂建线、调试及良率爬坡后才会转化为可用产能。报道也指出部分表面贴装采购从未来期间提前，因此不能把本季订单增幅直接外推到下一季度。</p><p>来源：<a class="source-link" href="https://www.inelectronics.co.uk/asmpt-reports-record-semiconductor-equipment-orders/" target="_blank">IN Electronics &amp; Design</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div><div class="card-main"><h3>🔹 三星高带宽内存份额因 HBM4 出货改善</h3>
+<div class="card-meta"><span class="src">朝鲜商业</span><span class="t">10月29日 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">韩国媒体十月二十九日报道，三星第三季度 HBM4 销售环比增长超过三倍，已约占其高带宽内存销售额的百分之六十。业内估计三星在全球高带宽内存市场的份额可能由第。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>韩国媒体十月二十九日报道，三星第三季度 HBM4 销售环比增长超过三倍，已约占其高带宽内存销售额的百分之六十。业内估计三星在全球高带宽内存市场的份额可能由第二季度约百分之三十升至第四季度接近百分之四十；份额属于行业预测，尚不是经过独立审计的季度结果。</p><p>高带宽内存需要将多个存储晶片堆叠并与加速器封装，产品认证、堆叠良率和客户平台切换速度共同决定实际出货。三星提高新一代产品占比，有助于争取原先由竞争对手占优的人工智能加速器订单；但销售额占比同时受单颗价格、不同容量及产品组合影响。</p><p>报道引述业内人士估计三星可能承担英伟达 HBM4 供货量的百分之三十至五十，区间较宽，不能当成已确认合同。AMD 的 MI455X 同样使用 HBM4，三星能否扩大对英伟达以外客户的供货，将影响其相对于海力士和美光的长期议价能力。</p><p>来源：<a class="source-link" href="https://biz.chosun.com/en/en-it/2026/10/29/RPHAESD7IZBJ5IKBEIM45P6CCQ/" target="_blank">朝鲜商业</a></p></div></div>
+</div>
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">5 条</span></div>
+
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div><div class="card-main"><h3>✅ 英特尔服务器强劲增长，第四季度指引承压</h3>
+<div class="card-meta"><span class="src">英特尔投资者关系</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">英特尔10月29日发布第三季度财报，营收165亿美元、同比增长21%；非美国通用会计准则每股收益0.52美元。数据中心及人工智能部门收入73亿美元、同比。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>英特尔10月29日发布第三季度财报，营收165亿美元、同比增长21%；非美国通用会计准则每股收益0.52美元。数据中心及人工智能部门收入73亿美元、同比增长78%，客户端计算与物理人工智能部门收入81亿美元、同比下降5%。公司预计第四季度收入150亿至160亿美元，非通用会计准则每股收益约0.25美元。</p>
+<p>按指引中值计算，第四季度收入较三季度减少约10亿美元；客户端需求走弱正在抵消服务器增长。管理层称个人电脑市场放缓至少延续至明年上半年，同时希望增加至强处理器供应。第三季度经营活动现金流约51亿美元，而公司还通过公开发行股票筹得约230亿美元，为产能投资提供资金但稀释既有股东。</p><p>财报中的代工部门收入包括内部交易，不能把67亿美元直接当作外部代工客户收入。公司同时披露十月发布十四埃工艺设计套件，服务后续代工客户设计；设计套件发布本身不代表该工艺已形成外部量产收入。公司还计划为云基础设施客户提供下一代至强平台，服务器出货兑现仍受晶圆产能限制。</p>
+<p>来源：<a class="source-link" href="https://www.intc.com/news-events/press-releases/detail/1786/intel-reports-third-quarter-2026-financial-results" rel="noopener noreferrer" target="_blank">英特尔投资者关系</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div><div class="card-main"><h3>AMD 第三季度数据中心收入同比增长九成七</h3>
+<div class="card-meta"><span class="src">AMD 官方新闻中心</span><span class="t">11月4日 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">✅ AMD 十一月三日美股盘后公布第三季度营收一百三十三点八亿美元，同比增长百分之四十五；调整后每股收益二点〇九美元。数据中心收入八十五亿美元，同比增长百分。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>✅ AMD 十一月三日美股盘后公布第三季度营收一百三十三点八亿美元，同比增长百分之四十五；调整后每股收益二点〇九美元。数据中心收入八十五亿美元，同比增长百分之九十七，经营利润二十九亿美元，同比增长百分之一百六十八；客户端与游戏合计收入三十七亿美元，同比下降百分之八。</p><p>数据中心占总收入约百分之六十四，一年前约为百分之四十七，反映服务器处理器和人工智能加速器在公司收入组合中的权重快速增加。公司预计第四季度营收约一百七十亿美元，上下浮动百分之三；但游戏业务当季收入同比下降百分之四十，说明需求强度并未均匀覆盖各业务。</p><p>AMD 管理层还预计二〇二七年公司收入增长超过百分之八十，并称数据中心人工智能业务增长将远超翻倍。库存增至一百一十五亿美元，自由现金流仅五点五四亿美元，意味着交付扩张之外还需要关注存货转化和现金回收；明年目标属于管理层预测，并非已确认收入。</p><p>来源：<a class="source-link" href="https://newsroom.amd.com/news/amd-reports-third-quarter-2026-earnings/" target="_blank">AMD 官方新闻中心</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div><div class="card-main"><h3>✅ SK海力士营收首破百兆韩元，暂停Solidigm上市审议</h3>
+<div class="card-meta"><span class="src">SK海力士中文新闻中心</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">SK海力士10月28日公布三季度营收104.6155万亿韩元，环比增长32%；营业利润83.3338万亿韩元，环比增长38%，营业利润率约80%。HBM。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>SK海力士10月28日公布三季度营收104.6155万亿韩元，环比增长32%；营业利润83.3338万亿韩元，环比增长38%，营业利润率约80%。HBM4出货、服务器DDR5与321层企业级固态硬盘销售共同推动收入，公司预计第四季度HBM4在出货量和营业收入上均将超过HBM3E。</p>
+<p>公司表示，长期供应协议已覆盖2027至2028年超过一半产能，合同采用反映市场行情的结构；锁定产能有助于客户安排服务器建设，也会让未来实际售价取决于具体调价条款。首席执行官郭鲁正称，鉴于金融市场状况，公司中止Solidigm首次公开募股相关审议；原方案旨在为该存储子公司扩产筹资并减轻母公司投资负担。</p><p>当前取消上市审议不等于停止企业级固态硬盘投入，扩产资金来源和股东回报将影响现金配置。管理层认为高端存储市场供不应求可能持续至二〇三〇年，这是公司的长期预测，不是已确定的产能结果。第三季度现金及现金等价物达到一百一十四点五万亿韩元，较上季末增加二十六点五万亿韩元。</p>
+<p>来源：<a class="source-link" href="https://news.skhynix.com/cn/q3-2026-business-results/" rel="noopener noreferrer" target="_blank">SK海力士中文新闻中心</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div><div class="card-main"><h3>✅ Lattice营收增逾一倍，并购并表扩大固件业务</h3>
+<div class="card-meta"><span class="src">Lattice Semiconductor</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">Lattice Semiconductor在11月2日公布第三季度营收2.91亿美元，同比增长118%；非美国通用会计准则每股收益0.72美元。公司称可。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>Lattice Semiconductor在11月2日公布第三季度营收2.91亿美元，同比增长118%；非美国通用会计准则每股收益0.72美元。公司称可编程逻辑器件业务收入增长约90%，主要受计算与通信需求带动。公司预计第四季度营收3.25亿至3.45亿美元，指引中值3.35亿美元，较第三季度约增长15%。</p>
+<p>比较收入增速时必须考虑并购口径：公司7月27日完成对AMI的收购，三季度已包括收购后的AMI业绩，而上年同期不包括该业务，因此118%并非全部来自原有业务自然增长。可编程逻辑器件和平台固件结合，使其有机会增加每台服务器在控制、安全和启动环节采用的产品数量；不过新增收入转为利润仍取决于整合费用和客户导入。</p><p>公司当季非通用会计准则毛利率为70.9%，第四季度指引中值为72%，反映管理层对产品组合的预期。三季度经营活动现金流为九千五百万美元，自由现金流为七千七百六十万美元；现金流与账面净利润采用不同口径。新订单和积压订单支持公司提出的第四季度预期，但订单转化仍要经过实际交付。</p>
+<p>来源：<a class="source-link" href="https://latticesemi.gcs-web.com/news-releases/news-release-details/lattice-semiconductor-reports-record-3q26-revenue-118-yoy" rel="noopener noreferrer" target="_blank">Lattice Semiconductor</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div><div class="card-main"><h3>🔹 英伟达据报要求云客户限制中国业务占比</h3>
+<div class="card-meta"><span class="src">Tom’s Hardware</span><span class="t">11月3日 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">十一月三日的媒体报道引述消息称，英伟达对部分数据中心运营商提出新的客户结构要求，中国客户业务占比据称需低于一半。报道描述的是公司对合作方提出的商业要求，并非。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>十一月三日的媒体报道引述消息称，英伟达对部分数据中心运营商提出新的客户结构要求，中国客户业务占比据称需低于一半。报道描述的是公司对合作方提出的商业要求，并非美国政府新发布的普遍禁令；涉及合同的实际适用对象、计算口径及执行细节仍未完整公开。</p><p>加速器售予境外云服务商之后，最终算力用户可能分布在多个国家，供应商因此需要面对硬件出口地点与远程使用地点之间的差异。若合同要求运营商控制客户结构，服务商就需要核验客户身份、监测收入或使用比例，并在新增订单与合同约束之间进行取舍。</p><p>对英伟达而言，这可能影响云渠道扩张及客户筛选；对依赖中国客户的算力租赁商，调整客户组合可能影响设备利用率和回本周期。报道中的百分比应视为消息来源所述，不能推断所有英伟达客户都受到同样约束，也不能据此认定某家运营商已经违反合同。</p><p>来源：<a class="source-link" href="https://www.tomshardware.com/tech-industry/data-centers/nvidia-tells-data-center-operators-to-limit-business-from-chinese-customers-with-new-global-restrictions-report-claims-allegedly-restricted-to-49-percent-of-the-total-ensuring-51-percent-are-non-chinese-outfits" target="_blank">Tom’s Hardware</a></p></div></div>
+</div>
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div><div class="card-main"><h3>🔹 PIMCO警告AI融资五年或达十万亿美元，黑石看重生产率</h3>
+<div class="card-meta"><span class="src">The Edge Malaysia／彭博</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-opinion">大咖观点</span></div><div class="card-brief">在香港金融领袖投资峰会上，太平洋投资管理公司首席执行官罗曼估算，人工智能产业资本开支未来五年每年可能带来约两万亿美元融资需求，累计约十万亿美元；他将其与。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>在香港金融领袖投资峰会上，太平洋投资管理公司首席执行官罗曼估算，人工智能产业资本开支未来五年每年可能带来约两万亿美元融资需求，累计约十万亿美元；他将其与约十二万亿美元的美国债券市场比较，认为规模最终可能过大。他列举美国利率上升、中东冲突和欧元区危机作为可能触发下行的因素。黑石总裁格雷则认为，对新技术的适度怀疑健康，但低估生产率改善同样是错误。</p>
+<p>这不是对某一家芯片厂商销售额的预测，而是对算力建设资金来源的压力测试。若借款利率上升或信贷风险偏好下降，原本计划采购加速器的云服务商可能推迟机房建设，进而改变英伟达和内存供应商交货节奏。</p><p>格雷强调的生产率增益则构成相反情景：企业若愿意为模型推理持续付费，现金流可支持更多设备采购。两位投资者对需求方向并不完全相反，分歧集中在融资规模能否安全消化，以及收益出现的速度。</p>
+<p>来源：<a class="source-link" href="https://theedgemalaysia.com/node/824321" rel="noopener noreferrer" target="_blank">The Edge Malaysia／彭博</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div><div class="card-main"><h3>🔹 半导体股下挫，费城指数跌至六个月低位</h3>
+<div class="card-meta"><span class="src">Financial Newsletter</span><span class="t">11月5日 时间不详</span><span class="tag tg-opinion">大咖观点</span></div><div class="card-brief">美国时间十一月四日收盘，费城半导体指数下跌百分之三点一，触及六个月低位；英伟达下跌百分之二点一五，收于二百零二点二五美元，美光下跌百分之三点一九。同期美国主。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>美国时间十一月四日收盘，费城半导体指数下跌百分之三点一，触及六个月低位；英伟达下跌百分之二点一五，收于二百零二点二五美元，美光下跌百分之三点一九。同期美国主要股指上涨，表明当日资金对芯片与更广泛股票市场的判断出现分化。</p><p>芯片股此前受人工智能建设预期推动，价格对未来数据中心资本支出、融资成本与交付速度尤其敏感。指数下跌并不自动证明加速器订单已经取消：股价包含此前增长预期，投资者也可能因估值和资金配置变化而出售相关股票，而其他大型科技公司同期上涨。</p><p>英伟达将在十一月十七日公布季度业绩，其数据中心收入和后续指引将提供比单日股价更直接的需求证据；美光则面临高带宽内存供需与价格变化。六个月低位描述的是指数价格区间，不能直接推导各家公司当季利润降幅或下一个交易日走势。</p><p>来源：<a class="source-link" href="https://financialnewsletter.com/wall-street-ends-higher-74/" target="_blank">Financial Newsletter</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div><div class="card-main"><h3>🔹 高盛预计云巨头明年资本开支达一点二万亿美元</h3>
+<div class="card-meta"><span class="src">Goldman Sachs Research</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-opinion">大咖观点</span></div><div class="card-brief">高盛研究预计，超大规模云服务商二〇二七年资本开支达到一点二万亿美元，二〇二八年进一步升至一点四万亿美元。其分析同时指出，市场共识与高盛预测均显示未来几年。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>高盛研究预计，超大规模云服务商二〇二七年资本开支达到一点二万亿美元，二〇二八年进一步升至一点四万亿美元。其分析同时指出，市场共识与高盛预测均显示未来几年支出增速将放慢；存储厂商约百分之八十的毛利率已超过历史均值的两倍，近期半导体盈利增长相当一部分来自利润率扩张。报告属于此前发布的研究观点，并非云厂商统一公布的采购承诺。</p>
+<p>支出总额继续增加，可以支撑加速器、先进封装和服务器内存的采购需求；但增速放慢意味着新增订单的同比贡献可能不如过去，即使绝对支出创高。数据中心设备进入资产负债表后，折旧费用会逐年累积，云服务商必须靠服务收入消化。</p><p>对存储供应商而言，若高毛利吸引竞争对手扩产，未来每颗芯片的利润未必能跟随出货量同步上升，因此高盛把毛利率扩张能否延续视作盈利预测的重要变量。</p>
+<p>来源：<a class="source-link" href="https://www.goldmansachs.com/insights/articles/can-ai-investment-drive-s-and-p-500-earnings-even-higher" rel="noopener noreferrer" target="_blank">Goldman Sachs Research</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div><div class="card-main"><h3>🔹 德明利范云松：HBM晶圆占用传导至通用内存价格</h3>
+<div class="card-meta"><span class="src">证券时报／新浪财经</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-opinion">大咖观点</span></div><div class="card-brief">德明利副总经理兼首席技术官范云松表示，生产每比特高带宽内存所需晶圆产能约为标准动态随机存取内存的三倍，原因包括芯片面积、堆叠工艺和良率损耗。报道引用集邦。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>德明利副总经理兼首席技术官范云松表示，生产每比特高带宽内存所需晶圆产能约为标准动态随机存取内存的三倍，原因包括芯片面积、堆叠工艺和良率损耗。报道引用集邦咨询数据称，三大原厂高带宽内存投片占动态随机存取内存总投片的比例，预计从二〇二五年底约百分之十八升至二〇二七年底百分之三十，而后者同期的位元供给占比约为百分之十三。</p>
+<p>这解释了为何面向人工智能加速器的高端内存涨价，可能影响个人电脑和手机使用的普通内存：三星、海力士及美光把更多晶圆投入堆叠产品后，即使晶圆总量不变，标准内存可供位元也可能减少。</p><p>按上述预测，约三成投片只贡献约一成三的内存位元，显示两类产品占用产能的效率不同。实际价格仍受新厂爬坡和客户削减配置影响，不能把投片比例机械等同于价格涨幅。</p>
+<p>来源：<a class="source-link" href="https://finance.sina.com.cn/stock/t/2026-10-28/doc-iniwuqvu3341351.shtml" rel="noopener noreferrer" target="_blank">证券时报／新浪财经</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div><div class="card-main"><h3>🔹 摩根大通预计HBM缺口延续，明年混合售价升至每Gb二点八美元</h3>
+<div class="card-meta"><span class="src">财联社／摩根大通</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-opinion">大咖观点</span></div><div class="card-brief">财联社此前援引摩根大通报告称，二〇二六至二〇二八年高带宽内存供需缺口分别约为百分之十五、十四和二十二；其模型假设约七成英伟达Rubin及Rubin Ul。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>财联社此前援引摩根大通报告称，二〇二六至二〇二八年高带宽内存供需缺口分别约为百分之十五、十四和二十二；其模型假设约七成英伟达Rubin及Rubin Ultra产品采用缩减后的内存规格，仍不足以消除缺口。该行预计二〇二七年高带宽内存混合平均售价同比上涨百分之四十二，达到每Gb约二点八美元，二〇二八年进一步升至三点四美元。</p>
+<p>这里的价格是不同规格混合后的平均值，不应直接视为某一客户的合同价。若预测成立，内存厂商可通过新品溢价和产品组合改善收入，但加速器厂商也要吸收更高的每比特采购成本，机柜配置可能因此调整。该行估计相同规格二〇二七年涨幅为百分之三十至四十，高带宽内存四代增强版相对四代约有百分之二十溢价；这两种涨价来源应分别观察。</p><p>供需缺口是模型预测，不能当作已成交或已经实现的价格。实际交付还取决于良率与客户验收。</p>
+<p>来源：<a class="source-link" href="https://www.cls.cn/detail/2450419" rel="noopener noreferrer" target="_blank">财联社／摩根大通</a></p>
+</div></div>
+</div>
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div><div class="card-main"><h3>Marvell 拟换股收购 Lumentum，押注光互连整合</h3>
+<div class="card-meta"><span class="src">Lumentum 投资者关系</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">当地时间11月2日，芯片设计商 Marvell 与光器件厂商 Lumentum 宣布合并协议。双方希望把高速电连接芯片与激光器、光模块等光子技术放在同一。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>当地时间11月2日，芯片设计商 Marvell 与光器件厂商 Lumentum 宣布合并协议。双方希望把高速电连接芯片与激光器、光模块等光子技术放在同一产品组合内，面向人工智能数据中心提供从芯片到光链路的协同设计。公司预计合并后的可触及市场达到5500亿美元，并提出每年超过10亿美元的成本协同目标；这些数字均是管理层预测，不是已实现收入或利润。</p>
+<p>两家公司预计交易在2028年上半年完成，前提包括双方股东及监管部门批准。芯片之间距离增加时，电信号的功耗和损耗会成为系统设计约束，整合光电元件可让客户在系统早期同时优化芯片、封装与链路。但这种组合也带来整合风险：大型云客户能否接受更集中供应，以及节省的采购、研发和管理成本是否足以抵消整合支出，决定交易价值能否兑现。</p><p>公司所述协同收益不等于即时现金流，交割之前两家仍是独立企业。</p>
+<p>来源：<a class="source-link" href="https://investor.lumentum.com/financial-news-releases/news-details/2026/Marvell-and-Lumentum-to-Combine-Creating-a-Category-Leader-in-AI-Connectivity/default.aspx" rel="noopener noreferrer" target="_blank">Lumentum 投资者关系</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div><div class="card-main"><h3>安森美收购 Ferric，追加人工智能供电芯片押注</h3>
+<div class="card-meta"><span class="src">安森美</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">安森美11月2日宣布同意收购集成电压调节器技术公司 Ferric，交割时支付6亿美元现金，并视营收里程碑额外支付最高1.75亿美元。交易预计在2026年。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>安森美11月2日宣布同意收购集成电压调节器技术公司 Ferric，交割时支付6亿美元现金，并视营收里程碑额外支付最高1.75亿美元。交易预计在2026年底前完成，仍需满足惯常交割条件。公司同时将2030年人工智能数据中心收入目标提高5亿美元至超过30亿美元，强调这是长期目标而非已签订单。</p>
+<p>高功耗加速器需要在处理器附近稳定降压供电，电流增大时，供电损耗、散热与板上空间都会影响整机效率。Ferric 的磁性器件和电源转换设计，与安森美现有功率半导体和客户渠道结合，有望使其销售范围从单颗功率器件延伸到更靠近处理器的供电环节。</p><p>不过附加对价与收入表现挂钩，说明最终成本和新增销售均需等待商业化；公司称短期财务影响不会显著。采购方还需验证高电流负载下的效率、可靠性与封装适配。例如处理器附近的稳压器若效率不足，增加的热量会抬高机柜散热负担，抵消部分计算密度收益。</p>
+<p>来源：<a class="source-link" href="https://www.onsemi.com/company/newsroom/news-and-insights/onsemi-to-acquire-ferric-establishing-leadership-in-power-delivery-for-next-generation-ai-processors" rel="noopener noreferrer" target="_blank">安森美</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div><div class="card-main"><h3>美国先进计算芯片对华许可转为个案审查</h3>
+<div class="card-meta"><span class="src">美国联邦纪事</span><span class="t">此前发布 · 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">美国商务部工业与安全局在1月15日发布先进计算产品许可审查政策，针对符合条件的英伟达 H200、AMD MI325X 等芯片，改按个案审查，并列出处理性。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>美国商务部工业与安全局在1月15日发布先进计算产品许可审查政策，针对符合条件的英伟达 H200、AMD MI325X 等芯片，改按个案审查，并列出处理性能、存储带宽、终端用户审查及安全条件。该规则属于今年既有政策背景，并非11月4日新颁布措施；获得个案审查资格也不等于获批或可以自由出货。文件给出的门槛包括总处理性能低于二万一千，以及总显存带宽低于每秒六千五百吉字节。</p>
+<p>对芯片设计商和服务器集成商而言，限制会进入订单管理的多个环节：芯片规格先影响是否适用该项政策，许可申请再涉及客户身份、最终用途与安全条件，交付进度因此可能不同于普通商业销售。对买方而言，采购计划既取决于算力需求，也取决于具体申请结果与供应商合规安排。</p><p>将规则适用范围扩大成所有人工智能芯片自动放行，会高估实际可获得的设备数量；评估订单时还要分清许可申请、批准和实际出货三个阶段。</p>
+<p>来源：<a class="source-link" href="https://www.federalregister.gov/documents/2026/01/15/2026-00789/revision-to-license-review-policy-for-advanced-computing-commodities" rel="noopener noreferrer" target="_blank">美国联邦纪事</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div><div class="card-main"><h3>美国芯片供应链宣布投资超过八千亿美元</h3>
+<div class="card-meta"><span class="src">美国半导体产业协会</span><span class="t">9月22日 更新</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">✅ 美国半导体产业协会九月二十二日更新统计，自二〇二〇年以来，半导体生态企业已在三十个州宣布超过一百六十个项目，私人投资计划总额超过八千二百八十亿美元。协会。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>✅ 美国半导体产业协会九月二十二日更新统计，自二〇二〇年以来，半导体生态企业已在三十个州宣布超过一百六十个项目，私人投资计划总额超过八千二百八十亿美元。协会同时统计商务部宣布的补助与贷款，并指出部分初步备忘录或意向书不具有最终约束力。</p><p>这些投资涵盖晶圆制造、材料和相关供应链，能够在项目建成后缩短部分美国客户的供应链，但建设资金并不等于已投产的晶圆数量。工厂从宣布、获得许可、采购设备到通过客户验证需要时间；补贴通常按项目达到建设里程碑的进度发放。</p><p>美光在爱达荷和纽约的计划、台积电亚利桑那项目以及格芯扩产都处在该产业地图中。协会汇总的是企业宣布的私人投资额，并非政府补助总额，也不是已经支付的现金；最终产能和就业人数会随项目融资、施工进度及客户需求变化。</p><p>来源：<a class="source-link" href="https://www.semiconductors.org/chip-supply-chain-investments/" target="_blank">美国半导体产业协会</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div><div class="card-main"><h3>🔹 中国客户算力限制凸显出口管制执行难题</h3>
+<div class="card-meta"><span class="src">Chip Supply Chain</span><span class="t">背景资料 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">半导体供应链研究网站梳理美国对华先进计算出口规则，指出自二〇二六年一月十五日起，符合所列性能和内存带宽门槛的部分芯片许可申请改为逐案审查。审查并不意味着所有。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>半导体供应链研究网站梳理美国对华先进计算出口规则，指出自二〇二六年一月十五日起，符合所列性能和内存带宽门槛的部分芯片许可申请改为逐案审查。审查并不意味着所有申请自动获批，具体交易仍须根据芯片性能、最终用户和用途适用相应许可要求。</p><p>性能阈值影响芯片设计和产品分级：制造商可能调整计算能力或内存带宽，以适应不同市场的销售规则。与此同时，先进芯片即使部署在其他地区，云服务仍可能面向跨境用户提供远程算力，因此硬件出口管制和云端服务限制涉及不同的执行环节。</p><p>英伟达、高端存储供应商与云运营商都需要分别评估产品参数及客户安排；台积电等代工厂也需关注最终客户和订单用途。这里描述的是一月已经实施的许可审查框架，不是十一月新增的全面禁令，实际许可结果不能仅由公开性能数字预测。</p><p>来源：<a class="source-link" href="https://chipsupplychain.org/export-controls/" target="_blank">Chip Supply Chain</a></p></div></div>
+</div>
+<div class="footer">🔬 芯片行业日报 · 2026-11-04 · 数据来源：中英文网页检索、企业公告、研究报告与媒体报道；供应链传闻保留限定。<br/>共 21 条资讯 · 4 个板块 · 北京时间 08:30 晨报<br/><span style="color:#b45309;">美股行情为11月3日收盘；较早发布的技术、财报及政策背景标明日期，未核实具体时刻标记时间不详。企业展望、分析师观点与供应链消息不代表已经实现。</span></div></div></body></html>

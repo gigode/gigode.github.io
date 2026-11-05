@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>⚽ 足球行业日报 · 2026-11-05</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#16a34a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c4a2e,#14532d,#16a34a); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#86efac; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d1fae5; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-match { background:#f0fdf4; color:#15803d; }
+.tg-transfer { background:#fef2f2; color:#b91c1c; }
+.tg-league { background:#eff6ff; color:#1d4ed8; }
+.tg-player { background:#f5f3ff; color:#6d28d9; }
+.tg-analysis { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head><body><a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+<div class="container"><div class="cover"><h1>⚽ 足球行业日报 · 2026-11-05</h1><div class="sub">赛事战报 · 转会动态 · 联赛动态 · 球员焦点 · 深度分析</div><div class="badge">2026-11-05 · 20 条资讯 · 5 个板块 · 北京时间 11月5日 08:40</div></div><nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list">
+<li><a href="#s-match">⚽ 赛事战报（9）</a></li>
+<li><a href="#s-transfer">🔄 转会动态（5）</a></li>
+<li><a href="#s-league">🏆 联赛动态（3）</a></li>
+<li><a href="#s-player">⭐ 球员焦点（2）</a></li>
+<li><a href="#s-analysis">📊 深度分析（1）</a></li>
+</ul></nav>
+<div class="section" id="s-match"><div class="section-header" style="background:#ecfeff;border-left:4px solid #0891b2;"><span class="icon">⚽</span><h2>赛事战报</h2><span class="count">9 条</span></div>
+<div class="card open"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">1</div><div class="card-main"><h3>科莫客场9比1横扫朗斯，杜维卡斯戴帽</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">科莫在欧洲冠军联赛第四轮客场九比一击败朗斯，以八球优势追平赛事历史最大胜差。杜维卡斯上半场两次破门，下半场完成帽子戏法；尼科·帕斯、达库尼亚、肯普夫、利贝拉利、巴图里纳与帕帕乔利也各入一球，。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>科莫在欧洲冠军联赛第四轮客场九比一击败朗斯，以八球优势追平赛事历史最大胜差。杜维卡斯上半场两次破门，下半场完成帽子戏法；尼科·帕斯、达库尼亚、肯普夫、利贝拉利、巴图里纳与帕帕乔利也各入一球，阿吉拉尔为朗斯扳回一城。</p>
+<p>法布雷加斯执教的科莫上半场已经打入三球，易边后又持续扩大比分。杜维卡斯在这场比赛后以六球领跑本赛季欧冠射手榜，球队的进球点却远不止一人，多位球员均能完成最后一击，让朗斯无法通过限制单一射手止损。</p>
+<p>科莫首次参加欧冠便在四轮后升至联赛阶段第四，大胜产生的八个净胜球也可能在同分排名比较中发挥作用。朗斯需要修复一场丢九球暴露的防线问题，但单场极端比分不能证明科莫此后每轮都能保持相同效率；接下来对手的防守策略也会改变。朗斯虽然由阿吉拉尔打入一球，却未能阻止客队之后继续扩大优势；首秀赛季能否把大胜转换为稳定晋级表现，还要看科莫剩余四场的结果。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">2</div><div class="card-main"><h3>皇马客场3比2逆转雅典AEK，巴尔韦德补时绝杀</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">皇家马德里客场三比二击败雅典雅典竞技，欧冠联赛阶段前四战全胜。主队两度领先：科伊塔先破门，贝林厄姆扳平；皮利奥斯再度得分后，姆巴佩把比分追至二比二，巴尔韦德最后以远射完成补时制胜。。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>皇家马德里客场三比二击败雅典雅典竞技，欧冠联赛阶段前四战全胜。主队两度领先：科伊塔先破门，贝林厄姆扳平；皮利奥斯再度得分后，姆巴佩把比分追至二比二，巴尔韦德最后以远射完成补时制胜。</p>
+<p>两次落后都被追平，使皇马在客场始终留在争胜轨道。贝林厄姆接库库雷利亚传球破门，姆巴佩则接邓弗里斯的输送近距离得分，最后依靠巴尔韦德远射完成反超，三种不同的终结方式让主队难以只封锁一个进攻通道。</p>
+<p>皇马四连胜拿到十二分，欧足联赛后列其排名第二；雅典竞技两次领先却未取得积分。对皇马而言，最后阶段仍能创造远射机会值得肯定，但两次先丢球也说明领先于积分榜并不等于防线没有隐患；后续面对更强对手时追回比分未必同样容易。雅典竞技两次取得领先，最终在补时丢掉第三球；皇马积十二分的同时，四轮防守表现仍需结合每场失球情况，而不能只看全胜纪录。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">3</div><div class="card-main"><h3>费内巴切3比2力克利物浦，穆里奇头球制胜</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">费内巴切主场三比二击败利物浦，取得自二零零八年以来的首场欧冠正赛胜利。恩约尼第二十五分钟为利物浦首开纪录，格林伍德任意球折射扳平；伊萨克第六十九分钟再度领先后，阿奇·布朗和穆里奇相继破门逆转。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>费内巴切主场三比二击败利物浦，取得自二零零八年以来的首场欧冠正赛胜利。恩约尼第二十五分钟为利物浦首开纪录，格林伍德任意球折射扳平；伊萨克第六十九分钟再度领先后，阿奇·布朗和穆里奇相继破门逆转。</p>
+<p>利物浦两次领先都没有维持太久：伊萨克头球后四分钟，布朗就扳平比分，穆里奇又在第七十九分钟以头球完成反超。主队在比分落后时仍能把球送到禁区和后点，这让客队此前三轮全胜的连续性在伊斯坦布尔被打断。</p>
+<p>费内巴切的胜利不仅带来三分，也改变了球队此前欧冠正赛多年未赢球的纪录；利物浦则仍保有前三轮积累的九分。对斯洛特的球队来说，领先后防守传中与后点跑动是具体复盘方向，但这场五球比赛不能单独决定其最终排名。费内巴切的格林伍德通过任意球折射追平，随后两个进球来自门前接应。利物浦在不同方式的进攻面前都失守，是这次客负的具体特点。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">4</div><div class="card-main"><h3>曼城客场3比2险胜莱比锡，哈兰德最后阶段破门</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">曼城在欧冠联赛阶段客场三比二战胜莱比锡红牛。卢克巴在奥赖利传中时自摆乌龙，巴库为莱比锡扳平；恩佐·费尔南德斯头球再次帮助曼城领先，努萨再度追平，哈兰德随后接安德森传球打入制胜球。。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>曼城在欧冠联赛阶段客场三比二战胜莱比锡红牛。卢克巴在奥赖利传中时自摆乌龙，巴库为莱比锡扳平；恩佐·费尔南德斯头球再次帮助曼城领先，努萨再度追平，哈兰德随后接安德森传球打入制胜球。</p>
+<p>这场比赛两队两次回到平局，客队无法靠上半场的乌龙球锁定优势。费尔南德斯头球和哈兰德门前抢点都来自不同球员提供的进攻支持，说明曼城需要多条传球线路才能在莱比锡连续回应的情况下制造决定性的机会。</p>
+<p>曼城获得客场三分，哈兰德的终结避免此前两次领先被抵消后只带走一分；莱比锡两次扳平仍未拿分。比赛也提醒马雷斯卡，球队让对手连续两次追回比分，不能只用最后的胜利掩盖防守问题；欧足联赛报没有给出每次失球的完整战术数据。莱比锡的巴库和努萨先后扳平，但球队两次追平后均再次失球。曼城依靠最后的进球取得三分，而不是凭借早早建立的大比分优势取胜。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">5</div><div class="card-main"><h3>阿森纳客胜布拉格斯拉维亚，约克雷斯传射建功</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">阿森纳在布拉格以二比一击败斯拉维亚，取得本届欧冠联赛阶段第三场胜利。马杜埃凯第九分钟接约克雷斯送出的身后球破门，约克雷斯随后与梅里诺配合后再入一球；诺瓦克第九十分钟为主队扳回一城。。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>阿森纳在布拉格以二比一击败斯拉维亚，取得本届欧冠联赛阶段第三场胜利。马杜埃凯第九分钟接约克雷斯送出的身后球破门，约克雷斯随后与梅里诺配合后再入一球；诺瓦克第九十分钟为主队扳回一城。</p>
+<p>约克雷斯既为马杜埃凯创造纵深机会，又自己完成第二球，使阿森纳在上半场建立两球优势。易边后形势并不平坦，加布里埃尔曾在门线上解围，拉亚也完成扑救，斯拉维亚最终通过尤拉塞克的传中缩小差距。</p>
+<p>欧足联赛后将阿森纳列在第三位，客场胜利为英超领头羊争取直接晋级位置增加筹码。阿尔特塔需要同时看到下半场承压和门将、后卫的补救：如果对手更早取得进球，最后阶段的形势可能不同；这不是一场从头到尾轻松控制的胜利。拉亚扑救和加布里埃尔门线解围保住领先，与约克雷斯上半场的传射同样影响结果；诺瓦克末段破门也说明主队持续制造了压力。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">6</div><div class="card-main"><h3>波尔图4比1击败那不勒斯，两名波兰中卫头球破门</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">波尔图主场四比一击败那不勒斯，取得本届欧冠联赛阶段首批积分。贝德纳雷克第十一分钟接加布里埃尔·维加角球头球破门，麦克托米奈半场前扳平；维加第七十一分钟再度帮助主队领先，基维奥尔和萨穆随后扩大。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>波尔图主场四比一击败那不勒斯，取得本届欧冠联赛阶段首批积分。贝德纳雷克第十一分钟接加布里埃尔·维加角球头球破门，麦克托米奈半场前扳平；维加第七十一分钟再度帮助主队领先，基维奥尔和萨穆随后扩大比分。</p>
+<p>贝德纳雷克与基维奥尔都是波兰中后卫，两人均以角球头球取得个人欧冠首球。维加除了助攻首球，还在下半场恢复波尔图领先，让定位球威胁与运动战终结共同改变了比赛；萨穆末段罚入点球则将差距拉大。</p>
+<p>波尔图在前三轮没有积分后拿到三分，避免继续空手；那不勒斯则在一比一后连续失球，客场未能延续扳平后的局面。四比一的比分包含末段扩大优势的点球，不能把每个阶段都描述成同样悬殊，但两个角球失分值得那不勒斯特别复盘。波尔图的两位中卫都在角球中取得进球，维加分别参与首球和第二球。那不勒斯门将梅雷特此役四次失守，客队末段再无回应。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">7</div><div class="card-main"><h3>多特蒙德2比1终结贝蒂斯全胜，卡雷察斯远射制胜</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">多特蒙德主场二比一击败皇家贝蒂斯，四轮欧冠取得第三场胜利，也终结对手此前全胜。法比奥·席尔瓦下半场先拔头筹，鲁伊巴尔为贝蒂斯扳平，卡雷察斯随后远射破门；多特前锋吉拉西上半场因伤离场。。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>多特蒙德主场二比一击败皇家贝蒂斯，四轮欧冠取得第三场胜利，也终结对手此前全胜。法比奥·席尔瓦下半场先拔头筹，鲁伊巴尔为贝蒂斯扳平，卡雷察斯随后远射破门；多特前锋吉拉西上半场因伤离场。</p>
+<p>多特在吉拉西两次射门偏出且受伤下场之后，仍由席尔瓦和卡雷察斯分别完成终结。贝蒂斯扳平后未能保住平局，卡雷察斯从远距离射门并穿过门将防线，为主队拿到三分，也改变了两队第四轮前不同的积分走势。</p>
+<p>多特的胜利说明进球并非完全依赖吉拉西，但他的伤情将影响接下来的锋线选择；赛报仅确认其因伤下场，没有给出诊断或缺席时间。贝蒂斯此前三战全胜积累的九分仍然存在，一场客负不足以抹去前三轮优势。贝蒂斯的鲁伊巴尔曾让双方回到同一起跑线，但卡雷察斯的远射再次改变比分。吉拉西受伤后能否及时恢复，将影响多特未来的进攻安排。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">8</div><div class="card-main"><h3>布鲁日客场2比1胜埃因霍温，福布斯反击制胜</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">布鲁日在欧冠第四轮客场二比一击败埃因霍温，积分升至九分。特雷索尔迪上半场头球先拔头筹，打入个人本届欧冠第五球；佐野航大通过折射射门扳平，福布斯随后利用快速反击为客队重新取得领先。。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>布鲁日在欧冠第四轮客场二比一击败埃因霍温，积分升至九分。特雷索尔迪上半场头球先拔头筹，打入个人本届欧冠第五球；佐野航大通过折射射门扳平，福布斯随后利用快速反击为客队重新取得领先。</p>
+<p>布鲁日先以头球领先，又在被追平后用反击重新取得优势。特雷索尔迪已经打入五球，显示他对球队得分的重要性，而福布斯的制胜球表明，面对希望追胜的埃因霍温，客队仍有能力利用转换阶段的空间。</p>
+<p>布鲁日四轮拿到九分，与此前前三轮积累的成绩一起构成争夺晋级席位的基础；埃因霍温则在主场扳平后没有守住积分。五个欧冠进球是特雷索尔迪的阶段性成绩，不代表射手榜位置已经固定，科莫的杜维卡斯同轮已达到六球。特雷索尔迪本场先声夺人，福布斯则在佐野航大扳平之后打进决定性一球；两次领先发生在不同比赛阶段，布鲁日都保留了得分能力。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">9</div><div class="card-main"><h3>维京4比1逆转萨巴赫，取得队史欧冠首胜</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间 11月5日 上午</span><span class="tag tg-match">赛事战报</span></div><div class="card-brief">维京主场四比一击败同为欧冠新军的萨巴赫，获得队史首场欧冠胜利。姆比纳先为萨巴赫破门，博特海姆扳平；特里皮奇下半场点球被扑后补射得分，法尔赫纳头球和博特海姆第二球扩大比分。。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>维京主场四比一击败同为欧冠新军的萨巴赫，获得队史首场欧冠胜利。姆比纳先为萨巴赫破门，博特海姆扳平；特里皮奇下半场点球被扑后补射得分，法尔赫纳头球和博特海姆第二球扩大比分。</p>
+<p>客队先用快速反击取得领先，维京则在丢球后持续追赶。特里皮奇第一次点球被波卡季洛夫扑出，仍抢到反弹球完成进球；萨巴赫的麦卡锡被罚下后，维京又借角球和博特海姆的折射射门扩大领先。</p>
+<p>对维京而言，首场欧冠胜利和四个进球都是俱乐部参加新赛事的重要里程碑；萨巴赫则经历领先、被反超以及少一人作战。最终三球差距包含红牌后的进球，评估双方实力时应保留这一比赛条件，不能把全场都当作人数相等的对抗。维京的队长特里皮奇主罚点球被扑后没有放弃，补射改变比分；红牌之后萨巴赫防线承受更大压力，主队最终把领先扩大到三球。</p>
+<p>来源：<a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-21fe508a035b-5eed0199e0b2-1000--champions-league-round-up-como-equal-biggest-ever-win-real/" target="_blank">欧足联</a></p></div></div>
+</div>
+<div class="section" id="s-transfer"><div class="section-header" style="background:#f0fdf4;border-left:4px solid #16a34a;"><span class="icon">🔄</span><h2>转会动态</h2><span class="count">5 条</span></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">10</div><div class="card-main"><h3>🔹传闻：切尔西寻求冬窗补强：斯科特领衔中场候选</h3><div class="card-meta"><span class="src">Apex Football</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-transfer">转会动态</span></div><div class="card-brief">据媒体援引转会网站消息，切尔西在为一月窗口物色中场，伯恩茅斯的亚历克斯·斯科特被列为优先目标。报道同时提到阿森纳的刘易斯-斯凯利、富勒姆的约什·金、埃弗顿的哈里森·阿姆斯特朗以及纽卡斯尔的刘。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>据媒体援引转会网站消息，切尔西在为一月窗口物色中场，伯恩茅斯的亚历克斯·斯科特被列为优先目标。报道同时提到阿森纳的刘易斯-斯凯利、富勒姆的约什·金、埃弗顿的哈里森·阿姆斯特朗以及纽卡斯尔的刘易斯·迈利，作为正在观察的年轻球员。切尔西此前在夏窗对斯科特的多次报价未获伯恩茅斯接受，报道提出的约一点二亿欧元只是媒体所述可能价格，并非已完成的报价或协议。</p>
+<p>这份清单显示切尔西考虑的不只是某一名球员，而是在为中场选择建立多条路径。斯科特熟悉英超，但高额费用意味着买方需要权衡冬窗即时补强与资金安排；其他四人的合同、所在俱乐部的放人态度与实际可谈条件也不相同，不能把名单总估值当成切尔西准备支出的转会费。伯恩茅斯此前坚持留人，使冬季是否愿意改变立场成为交易关键。球员被球探关注也不等于双方已展开正式谈判，以上均属媒体传闻。</p>
+<p>斯科特与切尔西的联系涉及的是未来窗口的潜在选择，而非已经完成的注册。中场引援会与现有球员的出场分配直接相连；如果伯恩茅斯不愿在赛季中放人，切尔西也可能需要考虑其他候选，报道没有披露双方达成协议。</p>
+<p>来源：<a class="source-link" href="https://lite.apex-football.com/en-KE/news/s458b183261103en_gh" target="_blank">Apex Football</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">11</div><div class="card-main"><h3>🔹传闻：祖比门迪寻求更多出场，欧洲多队关注其处境</h3><div class="card-meta"><span class="src">Eurofotbal</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-transfer">转会动态</span></div><div class="card-brief">据捷克媒体援引转会记者十一月三日消息，阿森纳中场马丁·祖比门迪对一月离队持开放态度，多家欧洲俱乐部获悉他的处境。报道所列关注方包括皇家马德里、巴塞罗那、马德里竞技、拜仁慕尼黑、多特蒙德与切尔。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>据捷克媒体援引转会记者十一月三日消息，阿森纳中场马丁·祖比门迪对一月离队持开放态度，多家欧洲俱乐部获悉他的处境。报道所列关注方包括皇家马德里、巴塞罗那、马德里竞技、拜仁慕尼黑、多特蒙德与切尔西；利物浦也被告知相关情况。文章指出，西班牙国脚本赛季尚未在英超首发。消息仍是记者转述的市场动态，不能视作阿森纳已经同意出售。</p>
+<p>对球员而言，持续缺少联赛首发是重新评估未来的具体原因；对阿森纳而言，赛季中出售一名中场会减少轮换空间，是否有合适替代者因此与报价同样重要。潜在买家之间也存在不同的阵容需求：回到西班牙、留在英超或转投德国球队，角色和竞争环境都不同。多家俱乐部被告知情况并不意味着七方同时报价，更不代表已经选定下家；报道目前没有提供确定的协议或成交金额。他能否重新进入阿尔特塔的首发计划，也将改变冬窗谈判的背景。</p>
+<p>祖比门迪的处境与阿森纳中场竞争有关：想获得更多时间，与俱乐部愿意出售是两个不同问题。阿森纳同时面对联赛和欧冠比赛，轮换需求可能改变球员的出场机会；目前没有得到两家俱乐部确认的转会价格或签约时间。</p>
+<p>来源：<a class="source-link" href="https://noproxy.eurofotbal.cz/clanky/zubimendi-zvazuje-odchod-z-arsenalu-situaci-sleduji-evropsti-giganti-850969/" target="_blank">Eurofotbal</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">12</div><div class="card-main"><h3>🔹传闻：曼联考虑引进曼城左后卫艾特-努里</h3><div class="card-meta"><span class="src">Yahoo Sports / Stretty News</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-transfer">转会动态</span></div><div class="card-brief">据天空德国记者弗洛里安·普莱滕贝格消息，曼联有意在一月尝试引进曼城左后卫艾特-努里，球员个人条款预计不会是主要障碍。报道指出，曼联因卢克·肖受伤而在左后卫位置吃紧，曾让达洛特和海文填补空缺；。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>据天空德国记者弗洛里安·普莱滕贝格消息，曼联有意在一月尝试引进曼城左后卫艾特-努里，球员个人条款预计不会是主要障碍。报道指出，曼联因卢克·肖受伤而在左后卫位置吃紧，曾让达洛特和海文填补空缺；原本关注的刘易斯·霍尔则已与纽卡斯尔续下长期合同。艾特-努里在曼城的出场机会有限，格瓦迪奥尔与奥赖利也是该位置的竞争者。</p>
+<p>曼联需要的是能够在赛季中尽快适应英超节奏的左路选择，而不是单纯增加一个名单人数。艾特-努里此前效力狼队，对联赛环境较熟悉；但球员愿意讨论个人条件，与曼城愿意向同城竞争者放人是两件事。曼联高管贝拉达及威尔科克斯曾在曼城工作，报道认为这可能有助于沟通，却没有证明两家俱乐部已就转会费达成共识。此消息仍属转会传闻，最终交易形式也未确定。同城对手之间转会稀少，这让两队之间的沟通尤其值得关注。</p>
+<p>艾特-努里的潜在交易牵涉曼彻斯特两家俱乐部，曼联的左路需求与曼城是否愿意放人都将影响进程。报道提出的是考虑引进，并未宣布双方就费用达成一致；在正式报价或球员决定出现前，不能把这一选择写成确定转会。</p>
+<p>来源：<a class="source-link" href="https://sports.yahoo.com/articles/just-sky-journalist-confirms-man-000000628.html" target="_blank">Yahoo Sports / Stretty News</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">13</div><div class="card-main"><h3>🔹传闻：利雅得新月冬窗再追布鲁诺的说法遭记者否认</h3><div class="card-meta"><span class="src">African Football</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-transfer">转会动态</span></div><div class="card-brief">关于利雅得新月将在冬窗重启曼联队长布鲁诺·费尔南德斯交易的传闻，记者本·雅各布斯给出相反说法。媒体转述称，新月目前外援名额已满，一月再度求购的消息并不属实；此前另有未经官方证实的报道称，沙特。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>关于利雅得新月将在冬窗重启曼联队长布鲁诺·费尔南德斯交易的传闻，记者本·雅各布斯给出相反说法。媒体转述称，新月目前外援名额已满，一月再度求购的消息并不属实；此前另有未经官方证实的报道称，沙特俱乐部可能提出最高五千五百万欧元报价。新月曾在二〇二五年夏天追逐这位葡萄牙中场，球员后来确认当时收到过接触。</p>
+<p>这条消息的核心是对一笔传闻的否认，而不是确认另一笔转会。外援名额被占满意味着即便球队未来改变计划，也需要先处理注册安排；媒体所写金额则不足以证明曼联收到正式报价。历史上的接触说明新月曾经对布鲁诺有兴趣，却不能直接推导出本次冬窗会重新行动。对于曼联来说，队长的合同和阵容角色仍是独立议题，不能把过去的报价条件视为新赛季已经重启的谈判。目前不同媒体的说法相互冲突，报价真假仍缺少俱乐部证实。</p>
+<p>这条消息的重点是记者否认了利雅得新月重新追逐布鲁诺的说法，而不是确认新的谈判。曼联队长的作用使其未来容易成为市场关注点，但被否认的消息不能用于推算报价规模或离队日期，曼联也没有宣布相关交易。</p>
+<p>来源：<a class="source-link" href="https://african.football/al-hilals-reported-move-for-manchester-united-captain-bruno-fernandes-dismissed/" target="_blank">African Football</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">14</div><div class="card-main"><h3>🔹传闻：阿森纳关注伯恩茅斯前锋克鲁皮</h3><div class="card-meta"><span class="src">Eurofotbal</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-transfer">转会动态</span></div><div class="card-brief">据媒体援引转会消息，阿森纳可能在一月加快对伯恩茅斯前锋埃利·儒尼奥尔·克鲁皮的关注，巴黎圣日耳曼也被列为潜在竞争者。这位二十岁前锋上赛季在英超打入十三球，此前经历约三个月伤停并已回归。报道同。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>据媒体援引转会消息，阿森纳可能在一月加快对伯恩茅斯前锋埃利·儒尼奥尔·克鲁皮的关注，巴黎圣日耳曼也被列为潜在竞争者。这位二十岁前锋上赛季在英超打入十三球，此前经历约三个月伤停并已回归。报道同时称伯恩茅斯不愿在赛季中出售，阿森纳还在关注布鲁日中锋特雷索尔迪；这些均为媒体消息，没有确认报价。</p>
+<p>克鲁皮此前的英超进球记录使他对寻求中锋的球队具有现实吸引力，但伤愈后的身体状态和连续出场能力仍是评估重点。对伯恩茅斯而言，冬窗放走前锋会直接影响下半赛季阵容深度；同队中场斯科特也被媒体联系其他俱乐部，因此同时失去两名重要球员的代价尤其高。报道提到的高价属于市场预估，而非已经谈妥的费用。巴黎是否正式参与，以及伯恩茅斯是否愿意在一月谈判，都会影响阿森纳下一步选择。</p>
+<p>克鲁皮与伯恩茅斯的合同及其近期表现，决定阿森纳若要在冬季行动可能面对较高要价。报道提到的一亿欧元属于媒体对潜在交易成本的讨论，不是已经成交的价格；伯恩茅斯是否愿意在赛季中出售仍是关键变量。</p>
+<p>来源：<a class="source-link" href="https://www.eurofotbal.cz/clanky/arsenal-se-chce-cinit-uz-v-zime-100-milionu-eur-za-kometu-bournemouthu-nemusi-stacit-851027/" target="_blank">Eurofotbal</a></p></div></div>
+</div>
+<div class="section" id="s-league"><div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;"><span class="icon">🏆</span><h2>联赛动态</h2><span class="count">3 条</span></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">15</div><div class="card-main"><h3>英超九轮积分榜：阿森纳24分领跑，曼联徘徊降级区边缘</h3><div class="card-meta"><span class="src">NBC Sports</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-league">联赛动态</span></div><div class="card-brief">英超第九轮结束后，阿森纳八胜一负积二十四分居首，曼城七胜两负积二十一分，布莱顿十九分排第三，切尔西十六分、利物浦十五分分列第四和第五。榜尾方面，曼联一胜四平四负仅积七分，凭净胜球暂列第十七；。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>英超第九轮结束后，阿森纳八胜一负积二十四分居首，曼城七胜两负积二十一分，布莱顿十九分排第三，切尔西十六分、利物浦十五分分列第四和第五。榜尾方面，曼联一胜四平四负仅积七分，凭净胜球暂列第十七；水晶宫同积七分，诺丁汉森林六分，桑德兰五分垫底。埃弗顿积十三分位列第七，布伦特福德十四分排名第六。</p>
+<p>领跑者的优势只有一场胜利，阿森纳不能把三分差距理解为稳固的冠军缓冲。值得注意的是，布莱顿净胜十七球，高于曼城的十球和阿森纳的九球，体现出其开季进球与失球之间的显著差额，但积分仍落后领头羊五分。曼联与降级区同分，而桑德兰距离安全区也只差两分，赛季尚早，一次直接对话便可能改变底部排序；这份榜单记录的是九轮后的赛场积分，不预断其他纪律程序的结果。积分差距虽小，各队目前净胜球差异却十分明显。</p>
+<p>阿森纳九战八胜意味着积分领先建立在稳定拿下胜场之上，而不是依靠大量平局保住位置。净胜球为正九，说明榜首仍需要通过后续比赛扩大保险；利物浦以十五分排第五，双方在九轮后的差距为九分，但赛季尚未过半。</p>
+<p>来源：<a class="source-link" href="https://www.nbcsports.com/soccer/news/premier-league-table-for-2026-27-season" target="_blank">NBC Sports</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">16</div><div class="card-main"><h3>意甲十轮战罢：拉齐奥28分领跑，国米25分紧追</h3><div class="card-meta"><span class="src">NEWS.am Sport</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-league">联赛动态</span></div><div class="card-brief">意甲第十轮结束后，拉齐奥以二十八分独占榜首，国际米兰二十五分位居第二，罗马二十四分排名第三。较早流传的前五轮同积十三分榜单已经过时，不能代表十一月初的联赛形势。拉齐奥前十轮九胜一平保持不败，。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>意甲第十轮结束后，拉齐奥以二十八分独占榜首，国际米兰二十五分位居第二，罗马二十四分排名第三。较早流传的前五轮同积十三分榜单已经过时，不能代表十一月初的联赛形势。拉齐奥前十轮九胜一平保持不败，打进二十四球、丢八球；国米同期攻入二十六球、丢十三球，两队均有较强火力，但防守失球差达到五个。</p>
+<p>三分差距相当于一场胜利，国际米兰仍可以在后续轮次通过持续取分施压；而罗马与次席只有一分差距，争夺并非两队之间的封闭竞争。拉齐奥十轮失八球的成绩是领先的重要支撑，国际米兰虽然进球更多，却需要在每场创造机会的同时减少对手得分。积分排名展示的是已经结束的联赛比赛，不能将欧洲赛事的成绩直接加进意甲积分；这也解释了球队在跨赛事密集赛程中需要分别管理联赛与欧战目标。拉齐奥仍需守住现有优势。</p>
+<p>拉齐奥以二十八分处在榜首，国际米兰二十五分紧随，三分差距相当于一场比赛的胜负。意甲竞争因此对下一轮直接对话尤其敏感：领跑者失分和追赶者取胜会迅速缩小距离，十轮后的排序还不是赛季最终名次。</p>
+<p>来源：<a class="source-link" href="https://sport.news.am/eng/news/170003/serie-a-matchday-10-results-and-standings.html" target="_blank">NEWS.am Sport</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">17</div><div class="card-main"><h3>英超第十轮赛程：埃弗顿先战考文垂，阿森纳主迎赫尔</h3><div class="card-meta"><span class="src">英超官网</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-league">联赛动态</span></div><div class="card-brief">英超公布的赛程显示，埃弗顿对考文垂的比赛安排在英国当地十一月六日二十时，即北京时间十一月七日凌晨四时；阿森纳将在当地十一月七日迎战赫尔城，诺丁汉森林同日主场对阵曼城。当地十一月八日，水晶宫对。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>英超公布的赛程显示，埃弗顿对考文垂的比赛安排在英国当地十一月六日二十时，即北京时间十一月七日凌晨四时；阿森纳将在当地十一月七日迎战赫尔城，诺丁汉森林同日主场对阵曼城。当地十一月八日，水晶宫对利物浦，桑德兰对切尔西，曼联迎战阿斯顿维拉。赛程中的开球时间以联赛公布的调整为准，未列明具体时间的比赛不在此虚构时刻。</p>
+<p>赛程顺序会影响短期积分榜的阅读：埃弗顿率先出场，若获胜可先增加自己的积分，其他球队仍需等各自比赛结束才能完成同轮比较。阿森纳以二十四分进入这一轮，曼城二十一分紧随，前者主场面对赫尔，后者客赴森林；两场结果共同决定领跑差距的下一次变化。底部球队桑德兰遇到前四的切尔西，水晶宫则要应对第五名利物浦，而曼联面对维拉时也需要为远离降级区争分。各队同轮积分将在比赛后确定。</p>
+<p>埃弗顿与考文垂先在周五出场，阿森纳和赫尔周六交手，赛程跨越不同日期。阿森纳在欧冠客场踢完布拉格斯拉维亚后还要调整体能和阵容；这里的日期按赛事安排列出，并非所有比赛的北京时间开球时刻。</p>
+<p>来源：<a class="source-link" href="https://www.premierleague.com/en/news/4675097/all-380-fixtures-for-season-2026-27" target="_blank">英超官网</a></p></div></div>
+</div>
+<div class="section" id="s-player"><div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;"><span class="icon">⭐</span><h2>球员焦点</h2><span class="count">2 条</span></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">18</div><div class="card-main"><h3>梅西告别后首份阿根廷名单出炉，斯卡洛尼征召28人</h3><div class="card-meta"><span class="src">Clarín</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-player">球员焦点</span></div><div class="card-brief">阿根廷主帅斯卡洛尼公布十一月两场友谊赛的二十八人名单，这是梅西告别国家队后的首份征召。球队将在本土先后对阵乌拉圭和哥斯达黎加，比赛分别安排在十一月十三日和十七日。奥塔门迪同样已经告别国家队，。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>阿根廷主帅斯卡洛尼公布十一月两场友谊赛的二十八人名单，这是梅西告别国家队后的首份征召。球队将在本土先后对阵乌拉圭和哥斯达黎加，比赛分别安排在十一月十三日和十七日。奥塔门迪同样已经告别国家队，门将埃米利亚诺·马丁内斯虽然此前遭遇下颌骨骨折，仍然获得征召。切尔西后卫安塞尔米诺、帕尔马后卫特罗伊洛成为名单中的新面孔，蒙铁尔则重新归队。</p>
+<p>名单变动并非只有前队长缺席：罗梅罗和劳塔罗·马丁内斯因伤落选，德保罗和洛塞尔索没有进入教练组名单，莫利纳和帕雷德斯则受到停赛影响。因此这次阵容不能简单视为所有主力健康情况下的固定换代方案。面对乌拉圭与哥斯达黎加，斯卡洛尼可以观察新人在后防线的配合，也需要重新分配梅西离开后前场的组织任务。马丁内斯入选说明教练组仍重视他的经验，但能否上场仍取决于恢复情况。</p>
+<p>斯卡洛尼此次还需要处理罗梅罗、劳塔罗因伤缺席，以及莫利纳、帕雷德斯停赛带来的选择变化。两场友谊赛可以观察新人的适应情况，但一份二十八人名单同时受到伤停约束，不能直接等同于完整阵容下的长期首发。</p>
+<p>来源：<a class="source-link" href="https://www.clarin.com/deportes/lionel-scaloni-presento-primera-lista-seleccion-messi-sorpresas-ausencias_0_KoFdT0spbF.html?elqTrack=true" target="_blank">Clarín</a></p></div></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">19</div><div class="card-main"><h3>萨利巴恢复完整训练，阿森纳中卫轮换迎来选择</h3><div class="card-meta"><span class="src">Arseblog News</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-player">球员焦点</span></div><div class="card-brief">阿森纳中卫萨利巴在背伤导致长时间缺阵后恢复一线队完整训练。主帅阿尔特塔表示，法国后卫上周已经在一场闭门比赛中踢了四十五分钟，并进入对布拉格斯拉维亚的欧冠比赛名单。萨利巴的背部问题此前需要较长。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>阿森纳中卫萨利巴在背伤导致长时间缺阵后恢复一线队完整训练。主帅阿尔特塔表示，法国后卫上周已经在一场闭门比赛中踢了四十五分钟，并进入对布拉格斯拉维亚的欧冠比赛名单。萨利巴的背部问题此前需要较长康复，但没有接受手术；球队此前数月必须在缺少这名中卫的情况下安排联赛和欧洲赛场防线。</p>
+<p>回到合练与立即踢满正式比赛并不等价：闭门赛的四十五分钟提供了复出进度，连续比赛中的身体对抗和恢复仍是下一步考验。阿森纳第九轮客场击败利物浦后以二十四分领跑，球队不必因为单场积分压力直接将萨利巴推回完整负荷。随着他恢复可用，孔萨等后卫的出场时间将面对新的竞争，阿尔特塔也能在欧冠客场与周末联赛之间调整中卫组合。是否进入比赛名单已经得到确认，但首发和具体出场时间仍由教练决定。</p>
+<p>萨利巴在闭门赛踢了四十五分钟，是从训练回到比赛负荷的一个具体节点。阿森纳已经安排他随队准备欧冠客场，接下来仍需观察连续对抗后的恢复；进入名单并不意味着他已经可以稳定承担九十分钟或连续一周双赛。</p>
+<p>来源：<a class="source-link" href="https://arseblog.news/2026/11/arteta-saliba-ready-to-go-after-three-month-absence/" target="_blank">Arseblog News</a></p></div></div>
+</div>
+<div class="section" id="s-analysis"><div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;"><span class="icon">📊</span><h2>深度分析</h2><span class="count">1 条</span></div>
+<div class="card"><div class="card-top" onclick="this.parentElement.classList.toggle('open')"><div class="card-num">20</div><div class="card-main"><h3>桑德兰攻防数据反转：上季超预期的缓冲正在消失</h3><div class="card-meta"><span class="src">BBC Sport / Yahoo Sports</span><span class="t">北京时间 11月4日 08:30 前</span><span class="tag tg-analysis">深度分析</span></div><div class="card-brief">桑德兰上赛季是升班马中的突出样本：球队实际进球比预期进球多三个，实际失球比预期失球少六个，在面对联赛第三多射门的情况下，却只丢了第四少的球。报道指出，球队允许的单次射门平均预期进球为联赛第二。</div></div><div class="card-arrow">▾</div></div><div class="card-detail"><h4>深度解读</h4>
+<p>桑德兰上赛季是升班马中的突出样本：球队实际进球比预期进球多三个，实际失球比预期失球少六个，在面对联赛第三多射门的情况下，却只丢了第四少的球。报道指出，球队允许的单次射门平均预期进球为联赛第二低，门将扑救率接近百分之七十二，也排名第二。防线并非不让对手射门，而是尽量把机会留在威胁较小的位置。</p>
+<p>本赛季问题出在同一个机制的反面。桑德兰场均被射门次数变化不大，但对手每次射门的平均机会质量从联赛第二低变成第二高；门将罗夫斯面对更危险的射门，扑救率降到联赛最低的百分之五十。进攻端也出现落差：球队预期进球排名第十，实际进球却比预期少六个。若只按射门次数衡量防守，很容易漏掉禁区内机会质量的变化；而若把丢分全部归咎门将，也会忽略防线让对手更接近球门的结构性问题。桑德兰去年通过附加赛升级后取得欧战资格，现在则要同时解决把握机会和限制对手高质量射门两端的问题。</p>
+<p>桑德兰面临的关键不是某个单独进球，而是此前比赛结果与机会质量之间的差距是否持续收窄。对教练组而言，改善本方创造机会以及限制对手射门，比只等待门将或前锋恢复手感更可控；不过赛季早段样本仍可能受到赛程强弱影响。</p>
+<p>来源：<a class="source-link" href="https://staging-aws.sports.yahoo.com/articles/why-last-years-overachievers-struggling-100043156.html" target="_blank">BBC Sport / Yahoo Sports</a></p></div></div>
+</div>
+<div class="footer">共 22 条资讯 · 5 个板块 · 北京时间 11月4日 08:30 为观察时点<br>媒体转会传闻均以 🔹 标示；分析为基于已知资料的判断。</div></div></body></html>
