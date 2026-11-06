@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 芯片行业日报 · 2026-11-04</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#10b981; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0f3b2c,#1a4a3a,#10b981); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#6ee7b7; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d4f5e9; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-tech { background:#ecfdf5; color:#047857; }
+.tg-company { background:#eff6ff; color:#1d4ed8; }
+.tg-opinion { background:#f5f3ff; color:#6d28d9; }
+.tg-policy { background:#fef2f2; color:#b91c1c; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head>
+<body>
+<a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px;font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif;">← Back to Reports</a>
+<div class="container">
+<div class="cover"><h1>🔬 芯片行业日报 · 2026-11-06</h1><div class="sub">新产品/技术 · 企业动态 · 大咖观点 · 政策与资本<br/>聚焦最新动态，较早发布的行业背景按日期标注</div><div class="badge">2026-11-06 · 21 条资讯 · 4 个板块 · 北京时间 08:30 · 晨报</div></div>
+<nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list">
+<li><a href="#s-tech">💡 新产品/技术（7）</a></li>
+<li><a href="#s-company">🏢 企业动态（6）</a></li>
+<li><a href="#s-opinion">🎙️ 大咖观点（3）</a></li>
+<li><a href="#s-policy">🏛️ 政策与资本（5）</a></li>
+</ul></nav>
+<div class="section" id="s-tech">
+<div class="section-header" style="background:#ecfdf5;border-left:4px solid #10b981;">
+<span class="icon">💡</span><h2 style="color:#047857;">新产品/技术</h2><span class="count">7 条</span></div>
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div><div class="card-main"><h3>🔹 费半遭遇剧烈抛售，盘中一度跌一成一</h3>
+<div class="card-meta"><span class="src">Fortune／路透</span><span class="t">11月6日 美股已收盘</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">美国时间十一月五日，人工智能相关股票遭遇剧烈抛售。路透盘中快照显示费城半导体指数下跌百分之九点七五，期间一度跌约百分之十一，跌幅指向二〇二〇年三月以来最差单日表现。另据收。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>美国时间十一月五日，人工智能相关股票遭遇剧烈抛售。路透盘中快照显示费城半导体指数下跌百分之九点七五，期间一度跌约百分之十一，跌幅指向二〇二〇年三月以来最差单日表现。另据收盘报道，英伟达跌约百分之九，AMD 跌约百分之十七，SanDisk 跌约百分之二十二。</p><p>市场把选举后可能出现的数据中心许可、电力和人工智能监管约束纳入估值，担忧原计划建设的机房延后，进而影响加速器订单。电力供应商 Vistra 与散热设备商 Vertiv 也大跌，显示压力扩散到整个基础设施链；股价变化本身却不能证明任何具体采购合同已被取消。</p><p>AMD 与美光都承受抛压，尽管数据中心和内存需求此前表现强劲，说明盈利增速仍需对照已经偏高的市场预期。费半百分之九点七五是盘中快照而非本文宣称的最终收盘跌幅；数据中心审批只是投资者担忧的解释之一，后续云厂商资本预算和实际设备订单才能检验传导程度。</p>
+<p>来源：<a class="source-link" href="https://fortune.com/2026/11/05/wall-street-drop-off-tech-ai-plunge-2-trillion" target="_blank" rel="noopener noreferrer">Fortune／路透</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div><div class="card-main"><h3>🔹 Rubin 服务器带宽指标下调</h3>
+<div class="card-meta"><span class="src">TechRadar</span><span class="t">11月1日 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">报道指出英伟达调整了 Vera Rubin 系统的部分带宽规格：单颗 GPU 内存容量仍为二百八十八吉字节，稀疏推理算力指标仍为五十千万亿次每秒，但机架汇总内存带宽由每秒。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>报道指出英伟达调整了 Vera Rubin 系统的部分带宽规格：单颗 GPU 内存容量仍为二百八十八吉字节，稀疏推理算力指标仍为五十千万亿次每秒，但机架汇总内存带宽由每秒一千五百八十太字节降至一千四百，互连总带宽由二百六十降至二百一十六。双 GPU 超级芯片的带宽指标也由四十四降至三十八点五。</p><p>内存容量与带宽回答的是不同问题：前者决定可以容纳多少模型数据，后者影响运算单元多快得到这些数据。指标调整不必然使每个应用同比变慢，但带宽受限的推理工作负载可能更早遇到瓶颈；以计算能力为主的任务则可能受影响较小。机架级汇总数字还不能直接当作单个应用的实测速度。</p><p>微软、谷歌及云客户正在部署 Rubin 相关系统，采购者需要在自己的模型、批量大小和网络拓扑下重新评估吞吐量，而不是直接用早期标称值推算成本。报道反映的是公开规格变化，未给出所有配置的客户实测结果；实际影响还取决于软件调度以及工作负载能否充分利用剩余带宽。</p>
+<p>来源：<a class="source-link" href="https://www.techradar.com/pro/nvidia-forced-to-dial-back-key-bandwidth-targets-on-vera-rubin-hardware-tweaks-will-affect-target-specifications-for-memory-and-interconnect-fabric" target="_blank" rel="noopener noreferrer">TechRadar</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div><div class="card-main"><h3>✅ Vera CPU 发布智能体能效测试</h3>
+<div class="card-meta"><span class="src">NVIDIA Blog</span><span class="t">11月5日 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">英伟达十一月五日公布 Vera 处理器面向智能体工作负载的性能资料，称与其测试中最快的 x86 处理器相比，每瓦可运行的智能体数量达到一点六倍。合作方 Modal 的结果。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>英伟达十一月五日公布 Vera 处理器面向智能体工作负载的性能资料，称与其测试中最快的 x86 处理器相比，每瓦可运行的智能体数量达到一点六倍。合作方 Modal 的结果显示，在可比硬件上，每个核心的沙箱吞吐量最高可达两倍，且高负载时优势扩大；这些均为厂商或合作伙伴提供的特定测试。</p><p>智能体调用工具、执行代码和维护沙箱时，不只是等待图形处理器生成文字，中央处理器的延迟与并发能力也会决定整条任务链的速度。若更多任务能在同样功率下运行，数据中心可以把有限电力分配给更多用户；但单次任务速度、每瓦吞吐量和整机成本并不是同一个指标。</p><p>英伟达希望把 Vera 与其 GPU 及网络系统共同销售，因而有动力展示平台协同收益；AMD 的 EPYC 与英特尔 Xeon 则仍可借助成熟的软件生态竞争。不同模型、并发数、编译器与服务器功耗都会改变比较结果，采购方应检查完整测试条件，尤其要看实际任务成功率而不是只看沙箱启动数量。</p>
+<p>来源：<a class="source-link" href="https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents/" target="_blank" rel="noopener noreferrer">NVIDIA Blog</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div><div class="card-main"><h3>✅ Groq 3 推理机架采用片上内存</h3>
+<div class="card-meta"><span class="src">NVIDIA／Data Center Dynamics</span><span class="t">此前发布 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">英伟达更新数据中心路线图，列出二〇二六年下半年的 Groq 3 语言处理器和液冷 LPX 机架。该机架包含二百五十六颗处理器，每颗配置一百二十八吉字节片上静态内存，机架扩。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>英伟达更新数据中心路线图，列出二〇二六年下半年的 Groq 3 语言处理器和液冷 LPX 机架。该机架包含二百五十六颗处理器，每颗配置一百二十八吉字节片上静态内存，机架扩展互连带宽标称每秒六百四十太字节。路线图同时列出 Vera Rubin 平台及后续机架系统。</p><p>把更多模型数据保存在片上静态内存，可以减少从外部高带宽内存反复读取权重的等待，适合对生成响应时间敏感的推理场景。代价是片上容量昂贵且固定，模型过大时必须跨处理器切分，互连、调度及批处理方式就会影响能否保住延迟优势。</p><p>对英伟达而言，Groq 路线可以补充 GPU 面向不同推理负载的产品组合；对云服务商而言，应比较完整机架的供电、软件适配和实际服务成本，而非仅比较单颗处理器的内存数字。公开路线图是产品安排，不代表所有客户都已经获得相同配置或实现标称带宽。</p>
+<p>来源：<a class="source-link" href="https://www.datacenterdynamics.com/en/news/nvidia-updates-data-center-product-roadmap-following-lpu-launch-at-gtc-2026/" target="_blank" rel="noopener noreferrer">NVIDIA／Data Center Dynamics</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div><div class="card-main"><h3>🔹 Rubin Ultra 内存堆叠方案引发成本权衡</h3>
+<div class="card-meta"><span class="src">TrendForce</span><span class="t">10月20日 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">集邦咨询讨论英伟达 Rubin Ultra 从十二层高带宽内存转向八层的潜在方案，并预计第四季度动态随机存取内存合约价环比上涨约百分之二十。在堆叠数量和每层容量都不变的假。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>集邦咨询讨论英伟达 Rubin Ultra 从十二层高带宽内存转向八层的潜在方案，并预计第四季度动态随机存取内存合约价环比上涨约百分之二十。在堆叠数量和每层容量都不变的假设下，八层版本的每颗 GPU 内存容量比十二层少约三分之一。</p><p>同样数量的内存裸片理论上可配置约多一半的 GPU，因此减少堆叠层数可能缓解加速器交货受限的问题。但每个堆叠仍要一颗基底芯片，较少的数据芯片分摊同样基底成本，集邦预计二〇二七年八层产品每比特成本反而比十二层高百分之十至二十。</p><p>这一选择会影响英伟达客户能否在单卡容纳大型模型，也会影响三星、海力士和美光的产品组合。上述百分之五十是固定裸片供应下的算术上限，忽略封装、良率和其他零件瓶颈；集邦讨论的是可能的配置变化，不能写成英伟达已经确认所有 Rubin Ultra 都采用八层。实际模型精度和跨卡分片效率同样会改变每套系统需要的处理器数量。</p>
+<p>来源：<a class="source-link" href="https://trendforce.com/news/2026/10/20/news-dram-prices-seen-rising-20-qoq-in-4q26-des" target="_blank" rel="noopener noreferrer">TrendForce</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div><div class="card-main"><h3>🔹 新研究比较智能体推理的内存架构</h3>
+<div class="card-meta"><span class="src">研究论文</span><span class="t">10月 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">一篇十月发布的研究论文以生成式人工智能企业任务为背景，比较片上静态内存与分层内存架构，讨论 Groq、Cerebras 和 SambaNova 等方案。研究使用计算与内存。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>一篇十月发布的研究论文以生成式人工智能企业任务为背景，比较片上静态内存与分层内存架构，讨论 Groq、Cerebras 和 SambaNova 等方案。研究使用计算与内存带宽约束分析，并提出长流程智能体任务中，可靠性和尾部延迟可能与每秒生成词元数量同样重要。</p><p>智能体任务可能包含多次模型调用和工具步骤，即使单步出错概率不高，多步骤串联后整条流程的成功率仍会下降。更快的单次生成若伴随重试、工具等待或上下文不断增长，未必能降低一次成功任务的总成本；芯片架构比较必须把整条工作流包含进去。</p><p>对采购 Groq 推理系统或传统 GPU 的企业来说，合理的对照应记录成功完成任务的时间、能耗与费用，而不仅是设备宣传的峰值吞吐。该论文使用公开性能资料并提出可检验假设，不能替代针对特定模型和生产环境的独立基准，也不能据此断言某一芯片在所有业务中领先。</p>
+<p>来源：<a class="source-link" href="https://arxiv.org/abs/2610.07094" target="_blank" rel="noopener noreferrer">研究论文</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div><div class="card-main"><h3>🔹 新研究测量智能体推理的系统能耗</h3>
+<div class="card-meta"><span class="src">研究论文</span><span class="t">8月 时间不详</span><span class="tag tg-tech">新产品/技术</span></div><div class="card-brief">一项研究使用两颗英伟达 RTX PRO 6000 Blackwell 图形处理器，测量多种代表性大模型智能体任务的系统能耗。研究发现，在其测试条件下，顺序执行的智能体任务。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>一项研究使用两颗英伟达 RTX PRO 6000 Blackwell 图形处理器，测量多种代表性大模型智能体任务的系统能耗。研究发现，在其测试条件下，顺序执行的智能体任务每个输出词元消耗的系统能量明显高于饱和服务；连续批处理把系统级能效提高约三点二倍。</p><p>智能体会反复调用工具并等待结果，等待期间 GPU 可能仍消耗电力，而上下文增长也使每个输出词元需要处理更多输入。多个请求合并运行能够提高硬件利用率，但过度批处理也可能增加个别请求排队时间，因此吞吐量改善要与响应延迟一起衡量。</p><p>云服务商若为英伟达系统设计调度策略，可以通过提高并发改善单位工作能耗；企业用户则需关注从任务开始到完成的总耗电。该研究只测试特定硬件、模型及负载，其倍数不应直接套用到 Vera Rubin 机架或所有生产应用，更不意味着批处理总是最佳选择。测试中的等待时间与并发水平会明显改变设备利用率。</p>
+<p>来源：<a class="source-link" href="https://arxiv.org/abs/2609.29707" target="_blank" rel="noopener noreferrer">研究论文</a></p>
+</div></div>
+</div>
+<div class="section" id="s-company">
+<div class="section-header" style="background:#eff6ff;border-left:4px solid #2563eb;">
+<span class="icon">🏢</span><h2 style="color:#1d4ed8;">企业动态</h2><span class="count">6 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div><div class="card-main"><h3>✅ 高通财季营收达百亿美元，手机需求牵制展望</h3>
+<div class="card-meta"><span class="src">高通／SEC</span><span class="t">11月5日 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">高通十一月四日公布截至九月二十七日的财年第四季度业绩，调整后每股收益为二点一七美元。公司强调非手机业务预计同比增长超过百分之六十，并重申二〇二七财年数据中心收入五十亿美元。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>高通十一月四日公布截至九月二十七日的财年第四季度业绩，调整后每股收益为二点一七美元。公司强调非手机业务预计同比增长超过百分之六十，并重申二〇二七财年数据中心收入五十亿美元的目标。市场报道显示，投资者仍对手机相关前景及下一季度展望有所顾虑。</p><p>高通的芯片业务同时覆盖手机、汽车、物联网和新进入的数据中心市场。手机客户订单和调制解调器份额变化，会影响短期营收；汽车及服务器业务增长则需要产品设计进入客户平台并经过较长验证，因此新业务目标不能直接抵消某个季度手机收入下降。</p><p>对高通而言，五十亿美元是管理层提出的财年目标，不是已实现的数据中心销售。对 Arm 而言，高通采用授权架构的产品变化也会影响授权关系和版税讨论，但不同产品的协议并不相同。投资者可比较后续实际服务器出货和手机业务指引，而不应只用一次财报后的股价推断长期份额。</p>
+<p>来源：<a class="source-link" href="https://www.sec.gov/Archives/edgar/data/804328/000080432826000127/qcom092726erex991.htm" target="_blank" rel="noopener noreferrer">高通／SEC</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div><div class="card-main"><h3>✅ ASML：未来两年设备供应或难完全满足需求</h3>
+<div class="card-meta"><span class="src">ASML</span><span class="t">10月14日 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">光刻设备商 ASML 十月十四日公布第三季度净销售额一百一十七亿欧元、净利润五十亿欧元。公司表示，客户对中短期设备需求预测继续上调，主要与人工智能投资的规模和持续时间有关。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>光刻设备商 ASML 十月十四日公布第三季度净销售额一百一十七亿欧元、净利润五十亿欧元。公司表示，客户对中短期设备需求预测继续上调，主要与人工智能投资的规模和持续时间有关；按当时的供应计划，二〇二七及二〇二八年的设备供给可能无法完全覆盖客户需求。</p><p>极紫外光刻机交货周期长，客户通常要提前安排厂房、供电、净化环境和安装人员。晶圆厂即使获得大额订单，也不能在数周内增加完整先进制程产能；设备供应与客户扩厂之间的时间差，会让新增产能在几年而非单个季度内逐步出现。</p><p>台积电、三星及英特尔的设备采购计划将影响 ASML 的订单转化，但公司提到的是需求预测与计划供应之间的差距，不是对未来收入的保证。客户可能修改交货时间或产能计划；同时设备组合、验收时间和服务业务都会影响财报，不能仅凭需求强劲推算每季利润。</p>
+<p>来源：<a class="source-link" href="https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/10/14/cpr01_notified_Press%20Release%20Financial%20Results%20Q3%202026.pdf" target="_blank" rel="noopener noreferrer">ASML</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div><div class="card-main"><h3>🔹 台积电亚利桑那第二厂提前规划量产</h3>
+<div class="card-meta"><span class="src">Data Center Dynamics</span><span class="t">10月 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">台积电表示二〇二六年资本开支为五百六十亿美元，并加快美国亚利桑那项目扩张，第二座晶圆厂计划提前至二〇二七年下半年量产。管理层同时强调产能规划纪律，显示大规模投资仍要与客户。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>台积电表示二〇二六年资本开支为五百六十亿美元，并加快美国亚利桑那项目扩张，第二座晶圆厂计划提前至二〇二七年下半年量产。管理层同时强调产能规划纪律，显示大规模投资仍要与客户需求及财务回报相匹配；这些是公司此前披露的建设计划。</p><p>在美国增加先进制造可以把部分产能移近当地芯片设计商，降低跨境交付和地缘集中风险，但新厂还需要设备安装、人员培训、材料供应和客户认证。量产日期说明生产计划开始的时间，并不意味着当日即达到设计产能，更不能直接等同于可供某个客户使用的晶圆数量。</p><p>英伟达和 AMD 等无晶圆厂设计商可能受益于更分散的制造地点，台积电也必须承担海外建设及运营成本。亚利桑那第二厂是否如期爬坡，取决于施工、设备与人员等多个环节；五百六十亿美元是公司整体年度资本开支，不应误写成该州单一工厂的投资额。</p>
+<p>来源：<a class="source-link" href="https://www.datacenterdynamics.com/en/news/tsmc-announces-2026-capex-spend-of-56bn-after-posting-eighth-consecutive-quarter-of-growth/" target="_blank" rel="noopener noreferrer">Data Center Dynamics</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div><div class="card-main"><h3>🔹 Intel Nova Lake 面向高端桌面产品缺口</h3>
+<div class="card-meta"><span class="src">PC Gamer</span><span class="t">10月30日 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">英特尔管理层在十月底谈到 Nova Lake 产品组合，称公司此前高端桌面处理器存在产品空缺，新系列旨在补上这一部分。公司高管还表达了借助新产品争取处理器份额的预期；报道。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>英特尔管理层在十月底谈到 Nova Lake 产品组合，称公司此前高端桌面处理器存在产品空缺，新系列旨在补上这一部分。公司高管还表达了借助新产品争取处理器份额的预期；报道对比了此前偏向移动设备的 Panther Lake 和 Wildcat Lake 系列。</p><p>桌面处理器竞争不仅取决于处理器峰值速度，还涉及平台功耗、主板成本、软件兼容和整机厂供货。移动芯片与桌面芯片面向不同的散热及电力条件，即便名称属于同一家厂商，也不能直接把笔记本的生产节点和性能表现套用到桌面新品。</p><p>英特尔希望通过 Nova Lake 改善与 AMD 锐龙系列的竞争，而渠道库存和新主板价格可能决定消费者升级节奏。管理层所说的份额增长是预期，并非已经发生的市场结果；在独立评测与具体零售规格出现之前，无法判断新系列能否实现价格或能效优势。新平台若要求更换主板和内存，消费者的总升级支出也会超过处理器本身的售价。不同桌面机型的上市时间仍需以英特尔正式发布为准。</p>
+<p>来源：<a class="source-link" href="https://www.pcgamer.com/hardware/processors/intel-giving-us-a-reason-to-be-excited-for-nova-lake-weve-had-a-bit-of-a-hole-in-our-portfolio-for-high-end-desktop-nova-lake-filled-in-that-gap/" target="_blank" rel="noopener noreferrer">PC Gamer</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div><div class="card-main"><h3>🔹 华为昇腾客户被要求自行寻找部分内存</h3>
+<div class="card-meta"><span class="src">TrendForce</span><span class="t">11月3日 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">集邦咨询引述供应链消息称，华为下一代昇腾九六〇系列面临高带宽内存不足，部分人工智能芯片客户被要求自行采购内存。报道指其供应仍依赖三星和 SK 海力士，并称福建晋华在技术与。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>集邦咨询引述供应链消息称，华为下一代昇腾九六〇系列面临高带宽内存不足，部分人工智能芯片客户被要求自行采购内存。报道指其供应仍依赖三星和 SK 海力士，并称福建晋华在技术与产能上落后韩国厂商；这些信息属于媒体对供应链情况的报道，而非华为公布的完整采购清单。</p><p>高带宽内存需要多层芯片、先进封装及与加速器配套验证，不能简单以普通服务器内存替代。即使处理器设计与晶圆制造完成，没有足够且通过验证的内存堆叠，也难以按计划交付完整加速器；将采购责任转移给客户，会把价格和交期风险一并传导出去。</p><p>对华为客户而言，自行采购可能加大系统集成成本并造成不同批次的兼容性问题；对国内内存企业而言，缩小工艺和产能差距是获得稳定订单的关键。供应链报道未披露涉及客户数量、合同细节或最终交付规模，不能据此计算华为全部订单的缺口。</p>
+<p>来源：<a class="source-link" href="https://trendforce.com/news/2026/11/03/news-china-reportedly-obtains-smuggled-hbm-via-server-packages-huawei-960dt-faces-domestic-hbm-shortage" target="_blank" rel="noopener noreferrer">TrendForce</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div><div class="card-main"><h3>🔹 英伟达向客户提示 AI 服务器成本上升</h3>
+<div class="card-meta"><span class="src">雅虎财经／彭博</span><span class="t">此前报道 时间不详</span><span class="tag tg-company">企业动态</span></div><div class="card-brief">彭博报道，英伟达已告知部分大型客户，明年初交付的 Grace Blackwell 与 Vera Rubin 系统服务器价格涨幅将超过百分之十五。报道把高带宽内存紧缺与普通。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>彭博报道，英伟达已告知部分大型客户，明年初交付的 Grace Blackwell 与 Vera Rubin 系统服务器价格涨幅将超过百分之十五。报道把高带宽内存紧缺与普通内存价格飙升联系起来，并指出 Rubin 单颗 GPU 最多可配置二百八十八吉字节高带宽内存四代。</p><p>高带宽内存不仅是加速器的必要部件，其生产还会占用大量动态随机存取内存晶圆和先进封装资源。单柜配置大量处理器时，内存采购成本会在机架层面累积；即便图形处理器价格不变，内存、供电与系统部件涨价也可能抬高服务器报价。</p><p>微软、谷歌等大型云客户可能通过长期采购合同或改变配置吸收部分压力，但最终成本能否转嫁给云服务用户取决于合同及竞争。超过百分之十五是针对部分客户和特定交付系统的报道，并非英伟达所有产品统一涨价，也不能直接推算公司的利润率变化。还需要区分服务器整机价格与其中单颗加速器的售价。</p>
+<p>来源：<a class="source-link" href="https://finance.yahoo.com/technology/ai/articles/nvidia-reportedly-warns-biggest-customers-131500512.html" target="_blank" rel="noopener noreferrer">雅虎财经／彭博</a></p>
+</div></div>
+</div>
+<div class="section" id="s-opinion">
+<div class="section-header" style="background:#f5f3ff;border-left:4px solid #7c3aed;">
+<span class="icon">🎙️</span><h2 style="color:#6d28d9;">大咖观点</h2><span class="count">3 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div><div class="card-main"><h3>🔹 集邦：四季度服务器内存合约价格继续上涨</h3>
+<div class="card-meta"><span class="src">TrendForce</span><span class="t">11月4日 时间不详</span><span class="tag tg-opinion">大咖观点</span></div><div class="card-brief">集邦咨询十一月四日的内存市场公报显示，服务器动态随机存取内存合约价格上涨，不同容量的寄存式内存条涨幅有所差异，现货市场整体动能则较有限。公报还指出三星与 SK 海力士的内。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>集邦咨询十一月四日的内存市场公报显示，服务器动态随机存取内存合约价格上涨，不同容量的寄存式内存条涨幅有所差异，现货市场整体动能则较有限。公报还指出三星与 SK 海力士的内存出货量和价格上升，高带宽内存四代正在扩大生产。公报还称海力士明年的高带宽内存出货量与价格已谈定，三星明年供应也已售罄，长期供货协议在定价中占比上升。</p><p>合约市场与现货市场覆盖的买家、期限和交付条件不同，价格方向相同也不意味着涨幅必须一致。数据中心采购通常需要验证和稳定交货，长期协议占比上升可能使新一轮供需变化先体现在续约条款，而不是立即反映在零售现货报价中。</p><p>对服务器制造商戴尔及其云客户，采购不同容量内存条的成本变化可能影响整机配置；对海力士和三星，出货量与价格同时改善有利收入，但具体利润还受产品组合影响。公报描述的是其所跟踪时点及规格，不能把所有服务器内存涨幅都写成同一个百分比。</p>
+<p>来源：<a class="source-link" href="https://trendforce.com/research/download/RP261104XL" target="_blank" rel="noopener noreferrer">TrendForce</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div><div class="card-main"><h3>🔹 单一经纪商报 HBM3E 灰市价每条四千美元</h3>
+<div class="card-meta"><span class="src">Chip Dispatch</span><span class="t">11月 时间不详</span><span class="tag tg-opinion">大咖观点</span></div><div class="card-brief">Chip Dispatch 援引深圳经纪商报价称，部分流入中国的高带宽内存三代增强版灰市价格约为每条四千美元，一年前仅数百美元。按一颗加速器配置六至八条计算，最高约需三万。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>Chip Dispatch 援引深圳经纪商报价称，部分流入中国的高带宽内存三代增强版灰市价格约为每条四千美元，一年前仅数百美元。按一颗加速器配置六至八条计算，最高约需三万二千美元，仅是内存部分；该价格来自单一经纪商，属于指示性报价而非市场均价。</p><p>稀缺内存可能通过设备拆解、回收或非正规渠道流转，买方除支付溢价，还可能承担来源、品质和交货不稳定的风险。加速器厂商通常需要针对整套封装验证内存，单纯买到库存并不保证每条都能适配目标处理器，也不保证后续批次持续可得。</p><p>华为及其客户如果依赖稀缺的进口堆叠内存，计算卡成本可能随采购方式大幅变化；但四千美元报价无法证明全部芯片都以此成交。估算未计处理器、先进封装、测试及系统其他费用，也没有扣除不同配置或批量采购的折扣，不能作为最终售价预测。</p>
+<p>来源：<a class="source-link" href="https://chipdispatch.com/articles/smuggled-hbm3e-hits-4-000-a-unit-huawei-tells-clients-to-buy-their-own" target="_blank" rel="noopener noreferrer">Chip Dispatch</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div><div class="card-main"><h3>🔹 研究者关注 EUV 设备产能上限</h3>
+<div class="card-meta"><span class="src">路透／摩根大通</span><span class="t">9月14日 时间不详</span><span class="tag tg-opinion">大咖观点</span></div><div class="card-brief">路透九月援引摩根大通分析师称，ASML 正研究如何在二〇二八年生产超过一百一十台极紫外光刻设备，以应对人工智能带来的需求。分析师在与公司财务负责人会面后称，当时大部分新订。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>路透九月援引摩根大通分析师称，ASML 正研究如何在二〇二八年生产超过一百一十台极紫外光刻设备，以应对人工智能带来的需求。分析师在与公司财务负责人会面后称，当时大部分新订单涉及二〇二八年交付；这是一项外部研究所述的产能探索，不是已完成的出货。</p><p>先进制程芯片需要使用极紫外光刻，设备制造又依赖精密光学、真空和供应商零件，因此设备扩产需要长时间协调。客户提前预订可以提高排产可见度，但未来交付受到零部件供应和厂房验收约束，订单数量也并不等同于已经确认的收入。</p><p>台积电和其他先进代工厂若想扩大先进工艺，设备交期可能影响建设节奏；ASML 则需在扩大产能与防止未来需求回落之间权衡。一百一十台是研究中的二〇二八年产能目标方向，不能据此估算某家客户可获得的设备数量，也不能假定所有订单都不可撤销。</p>
+<p>来源：<a class="source-link" href="https://www.investing.com/news/stock-market-news/asml-examining-waysit-can-make-more-than-110-euv-tools-in-2028-jpmorgan-says-4899898" target="_blank" rel="noopener noreferrer">路透／摩根大通</a></p>
+</div></div>
+</div>
+<div class="section" id="s-policy">
+<div class="section-header" style="background:#fef2f2;border-left:4px solid #dc2626;">
+<span class="icon">🏛️</span><h2 style="color:#b91c1c;">政策与资本</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div><div class="card-main"><h3>🔹 低性能处理器封装被指用于绕过内存管控</h3>
+<div class="card-meta"><span class="src">Tom’s Hardware</span><span class="t">11月3日 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">媒体报道一种涉及高带宽内存的规避路径：将高端内存与低性能服务器处理器封装，利用相关出口审核侧重处理器性能的方式运输，随后拆下内存。报道提及经香港进入中国的路径；是否违法取。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>媒体报道一种涉及高带宽内存的规避路径：将高端内存与低性能服务器处理器封装，利用相关出口审核侧重处理器性能的方式运输，随后拆下内存。报道提及经香港进入中国的路径；是否违法取决于具体交易、适用规则和事实，不能仅根据设备外观判断。</p><p>如果监管只按整颗处理器的计算能力评估，而高价值内存可在目的地被拆取，零件与最终用途之间就可能出现监管盲点。拆解涉及加热、焊料和封装损伤，回收的内存仍需重新测试，因此物理上可行不等于所有拆下的器件都能用于高可靠服务器。</p><p>韩国内存供应商、香港转运企业及最终系统集成商面临不同的合规责任；检查封装组成、买家身份和用途可能增加交易时间与成本。该报道揭示的是被报道的特定方法，未提供流入数量或市场占比，不能把个别路径扩大为所有高带宽内存供应的来源。</p>
+<p>来源：<a class="source-link" href="https://www.tomshardware.com/tech-industry/semiconductors/ai-chip-smugglers-exploit-trade-control-loophole-to-bring-banned-hbm-from-south-korea-into-china-expensive-memory-chips-packaged-with-cheap-unsanctioned-processors-to-become-legal-exports" target="_blank" rel="noopener noreferrer">Tom’s Hardware</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div><div class="card-main"><h3>🔹 中国拟调整人工智能芯片设计技术出口清单</h3>
+<div class="card-meta"><span class="src">StackPath</span><span class="t">10月16日 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">有关中国技术出口清单草案的报道指出，拟议范围涉及十四纳米人工智能芯片设计、十八纳米动态随机存取内存设计，以及超过一万个加速器的集群等技术条目。报道所述征求意见截止时间为十。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>有关中国技术出口清单草案的报道指出，拟议范围涉及十四纳米人工智能芯片设计、十八纳米动态随机存取内存设计，以及超过一万个加速器的集群等技术条目。报道所述征求意见截止时间为十一月十五日；草案及其技术附录反映的是拟议范围，并非已经生效的最终禁令。</p><p>技术出口管理与实体芯片货物出口并非完全相同：设计方法、工艺知识或软件技术的跨境转移，可能涉及与设备实物不同的审查程序。技术门槛和具体定义决定哪些交易受到影响，企业需要区分开放征求意见的文本与正式公布后的执行要求。</p><p>中国芯片设计公司与境外研发合作伙伴若涉及相关技术转移，需要评估合同交付内容和适用许可，而不能只看芯片生产地。草案仍可能修改，十四纳米、十八纳米和集群规模也必须按正式技术定义理解；这条消息不代表所有相关芯片均被禁止出口。</p>
+<p>来源：<a class="source-link" href="https://stackpath.ie/radar/story/china-ai-tech-export-controls" target="_blank" rel="noopener noreferrer">StackPath</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div><div class="card-main"><h3>🔹 韩国扩大先进半导体设备战略物项管制范围</h3>
+<div class="card-meta"><span class="src">Kim &amp; Chang</span><span class="t">7月13日 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">韩国律所梳理该国七月公布的战略物项进出口公告修订，称高性能集成电路与先进半导体制造设备的管制框架经过重组，受控物项范围有所扩大。文章提醒出口商重新审查此前可能不属于战略物。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>韩国律所梳理该国七月公布的战略物项进出口公告修订，称高性能集成电路与先进半导体制造设备的管制框架经过重组，受控物项范围有所扩大。文章提醒出口商重新审查此前可能不属于战略物项的产品，避免沿用旧分类作出错误判断。</p><p>一台设备是否受控，取决于具体技术指标、最终用户和适用的许可条件，而不是仅由设备名称决定。设备厂商和晶圆厂在跨境交付时需要检查型号、零件以及维护服务，分类变化也可能使原有合同的交付时间受到许可流程影响。</p><p>三星和 SK 海力士与全球设备供应商存在密切合作，对旧型号和升级套件重新分类将增加内部审查工作。该律所文章是对已有规则的解释，并非十一月新宣布的全面禁令；对于具体交易，必须以韩国官方文本和相关许可决定为准，不能推断所有设备出口都会被拒。尤其应逐项核实相关设备的性能参数和实际目的地。</p>
+<p>来源：<a class="source-link" href="https://www.kimchang.com/en/insights/detail.kc?idx=35740&amp;sch_section=4" target="_blank" rel="noopener noreferrer">Kim &amp; Chang</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div><div class="card-main"><h3>🔹 美国芯片制造培训面临技术工人缺口</h3>
+<div class="card-meta"><span class="src">美联社</span><span class="t">11月5日 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">美联社十一月五日报道，美国社区学院正扩大半导体制造相关培训，以应对晶圆厂建设带来的潜在劳动力缺口。报道以亚利桑那州的 Rio Salado 学院为例，介绍当地教育机构与产。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>美联社十一月五日报道，美国社区学院正扩大半导体制造相关培训，以应对晶圆厂建设带来的潜在劳动力缺口。报道以亚利桑那州的 Rio Salado 学院为例，介绍当地教育机构与产业界如何调整课程，使学生获得进入芯片制造岗位所需的技术基础。</p><p>晶圆厂建设完成后，设备还需要维护、工艺监测及洁净室操作人员。先进设备能否稳定运行不仅取决于采购资金，还取决于当地能否持续培训和留住技师；如果员工供给跟不上建厂速度，设备安装和产线爬坡都可能面临额外压力。</p><p>对台积电亚利桑那项目和英特尔当地业务，社区学院课程能够扩大潜在招聘来源，但培训人数并不等于最终入职人数。实际效果要看毕业、招聘、留任及岗位技能匹配情况，报道也不能证明任何一家厂商的扩建一定会因劳动力不足而延迟。洁净室轮班、设备维护经验和施工岗位的培训需求也并不完全相同。</p>
+<p>来源：<a class="source-link" href="https://apnews.com/article/ef9cf98fcf9d4bfc48ccdc5177da03f0" target="_blank" rel="noopener noreferrer">美联社</a></p>
+</div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div><div class="card-main"><h3>🔹 美国收紧针对古巴的中国供应商制裁</h3>
+<div class="card-meta"><span class="src">美联社</span><span class="t">11月6日 时间不详</span><span class="tag tg-policy">政策与资本</span></div><div class="card-brief">美联社十一月五日报道，美国针对古巴扩大经济制裁，所涉对象包括中国电子进出口公司及北京一家科技企业。美方指控相关企业向古巴政府提供监控和安全设备，报道所述行动合计涉及八个实。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4>
+<p>美联社十一月五日报道，美国针对古巴扩大经济制裁，所涉对象包括中国电子进出口公司及北京一家科技企业。美方指控相关企业向古巴政府提供监控和安全设备，报道所述行动合计涉及八个实体及两名个人；被列名并不等于对整个中国芯片行业实施新禁令。</p><p>电子设备供应链可能包含芯片、通信部件与集成服务，交易对手被制裁会使银行结算、采购和转运环节面临更严格的筛查。制裁针对特定个人和实体时，企业需要识别合同实际对手及最终用途，不能仅凭产品属于普通电子设备就假定不存在交易限制。</p><p>受影响企业及其上下游供应商需要核查具体名单、禁令范围和适用例外；其他芯片制造商是否受影响则取决于与列名方的实际关系。美方指控与被指控方的立场应分开看待，报道也没有给出芯片产品占这些交易的金额，不能把整项制裁描述为专门针对半导体的措施。</p>
+<p>来源：<a class="source-link" href="https://apnews.com/article/93e6ce1f2cf83f2f4f74842babf694c6" target="_blank" rel="noopener noreferrer">美联社</a></p>
+</div></div>
+</div>
+<div class="footer">🔬 芯片行业日报 · 2026-11-04 · 数据来源：中英文网页检索、企业公告、研究报告与媒体报道；供应链传闻保留限定。<br/>共 21 条资讯 · 4 个板块 · 北京时间 08:30 晨报<br/><span style="color:#b45309;">美股行情为11月3日收盘；较早发布的技术、财报及政策背景标明日期，未核实具体时刻标记时间不详。企业展望、分析师观点与供应链消息不代表已经实现。</span></div></div></body></html>
