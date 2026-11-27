@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>⚽ 足球日报 · 2026-11-20 · 32 条资讯</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#16a34a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c4a2e,#14532d,#16a34a); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#86efac; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d1fae5; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-match { background:#f0fdf4; color:#15803d; }
+.tg-transfer { background:#fef2f2; color:#b91c1c; }
+.tg-league { background:#eff6ff; color:#1d4ed8; }
+.tg-player { background:#f5f3ff; color:#6d28d9; }
+.tg-analysis { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head><body><a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px">← Back to Reports</a><div class="container"><div class="cover"><h1>⚽ 足球行业日报 · 2026-11-27</h1><div class="sub">赛事战报 · 国家队与伤情 · 教练动态 · 转会观察</div><div class="badge">2026-11-27 · 25 条资讯 · 5 个板块 · 北京时间</div></div><nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list">
+<li><a href="#s-match">比赛战报 5</a></li>
+<li><a href="#s-transfer">转会动态 5</a></li>
+<li><a href="#s-league">联赛与赛事 5</a></li>
+<li><a href="#s-player">球员与教练 5</a></li>
+<li><a href="#s-analysis">深度分析 5</a></li>
+</ul></nav>
+<div class="section" id="s-match"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">⚽</span><h2>比赛战报</h2><span class="count">5 条</span></div>
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div><div class="card-main"><h3>十人伯恩茅斯逆转塞尔塔，欧联开局五连胜</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间11月27日01:45（中欧11月26日18:45）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">阿德利助攻扳平，替补拉扬打进反超球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>塞尔塔在欧联联赛阶段第五轮主场一比二负于伯恩茅斯。阿斯帕斯先尝试倒钩，被迪格雷戈里奥挡出，随后另一脚弧线球借门柱内侧弹入，帮主队取得领先。迪亚基特被罚下之后，伯恩茅斯处于人数劣势，但下半场开场不久，阿德利找到阿尔瓦罗·罗德里格斯，后者头球追平。替补登场的拉扬完成反超，打进个人本届赛事第四球。欧足联指出，伯恩茅斯成为第五支赢下自己最初五场欧足联赛事的俱乐部。昨天的前瞻把五连胜列为看点，现在可以补上比分与达成过程。复盘时可把阿斯帕斯两次终结对照起来，看守门员能否提前观察出脚，以及门框在第二次尝试中如何影响结果。客队的两个进球则分别落在易边后的抢开局和替补登场后的终结，两段回合可以用来检查少打一人时客队如何继续向禁区输送皮球。塞尔塔的领先与客队逆转之间，红牌把比赛划成了两个阶段。</p><p><a class="source-link" href="https://www.uefa.com/uefaeuropaleague/news/02ab-222a8b7281ee-613f6f283146-1000--europa-league-matchday-5-round-up-bournemouth-stay-perfect/" target="_blank" rel="noopener noreferrer">www.uefa.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div><div class="card-main"><h3>米兰连进四球逆转奥林匹亚科斯</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间11月27日01:45（希腊11月26日19:45）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">哈钦森先独自长驱破门，随后两次传中助攻。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>AC米兰客场四比二击败奥林匹亚科斯。迈尼昂上半场自摆乌龙，若昂·席尔瓦易边后不久扩大主队领先。哈钦森从本方半场起步，带球推进后以弧线球为米兰追回一球，随即传中找到后点的西塞，后者头球追平。他又一次把球送入禁区，普利希奇凌空打进反超球，迭戈·莫雷拉在补时反击中锁定比分。欧足联将这场胜利列为米兰首次在希腊球队的主场取胜。昨天前瞻提到主队此前保持不败，这场赛果更新了那条纪录。复盘米兰的前三个进球，可先比较哈钦森在第一次进攻时带球越过的距离，以及后两次传中时队友抵达门前的时间。两次传中分别由头球和凌空球完成终结，回看时还可比对跑动者启动的位置，以及接应前是否受到防守干扰。补时第四球则另属反击回合，适合放回比分已经反超的情境中理解。哈钦森参与的三个进球分别是追分、扳平与反超。</p><p><a class="source-link" href="https://www.uefa.com/uefaeuropaleague/news/02ab-222a8b7281ee-613f6f283146-1000--europa-league-matchday-5-round-up-bournemouth-stay-perfect/" target="_blank" rel="noopener noreferrer">www.uefa.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div><div class="card-main"><h3>尤文图斯主场四比一反超奥莫尼亚</h3><div class="card-meta"><span class="src">欧足联、尤文图斯官网</span><span class="t">北京时间11月27日04:00（中欧11月26日21:00开球）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">坎比亚索远射扳平，上下半场各有两名尤文球员破门。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>奥莫尼亚在都灵率先打破僵局，沙特卡接角球头球得分。坎比亚索以禁区外弧线球扳平，埃卡托随后从禁区内得分，尤文图斯带着领先进入更衣室。下半场，孔塞桑第一次射门被托马斯·卡明斯基挡出，跟进完成补射。博加随后在禁区边缘起脚，打进主队第四球。尤文图斯以四比一拿到欧联联赛阶段第五轮三分。四次得分分布于不同的进攻环节，坎比亚索用禁区外终结改变比分，埃卡托在禁区内接应，孔塞桑利用首脚射门后的第二次机会，博加再从禁区边缘完成最后一次得分。若用录像判断主队进攻方式的变化，可以把坎比亚索起脚时门前的空间和孔塞桑补射时门将的位置放在一起对照。奥莫尼亚最先破门的角球也值得单看，定位球的一次成功直接给比赛增加了都灵主队必须追分的阶段。进球前后的比赛状态也能帮助区分客队的定位球成效与主队的运动战反应。</p><p><a class="source-link" href="https://www.uefa.com/uefaeuropaleague/news/02ab-222a8b7281ee-613f6f283146-1000--europa-league-matchday-5-round-up-bournemouth-stay-perfect/" target="_blank" rel="noopener noreferrer">www.uefa.com</a> · <a class="source-link" href="https://www.juventus.com/en/news/articles/bianconeri-put-four-past-omonia-in-uel-triumph-26-11-29" target="_blank" rel="noopener noreferrer">www.juventus.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div><div class="card-main"><h3>比尔森胜利四球终结本菲卡全胜</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间11月27日01:45（中欧11月26日18:45）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">赫罗绍夫斯基首开纪录，卡邦戈在中场休息前后各进一球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>比尔森胜利在欧联联赛阶段第五轮四比零击败本菲卡，结束葡萄牙球队此前的全胜纪录。赫罗绍夫斯基用半凌空射门先得一分，普林斯·阿杜随后扩大领先，克里斯托夫·卡邦戈在中场休息前后各进一球。按欧足联列出的得分顺序，捷克球队在易边前已经拥有三球优势，回来后又完成第四次终结。读这场比赛时，终场比分与中场比分都有用。前者说明本菲卡当天没有进球，后者说明他们在整个下半场都要面对较大的追分缺口。若进一步回看录像，首球的半凌空、第二球出现前两队的站位，以及卡邦戈在易边前后的两次终结可分别作标记。它们能帮助辨认进球是来自同一种防守问题，还是来自几种不同的机会。欧足联也列出了双方下一轮各自的对手，比尔森将作客伯恩茅斯，本菲卡回到主场迎战克里特。比尔森下一轮对手刚完成开局五连胜，可作为观察赛程的背景。</p><p><a class="source-link" href="https://www.uefa.com/uefaeuropaleague/news/02ab-222a8b7281ee-613f6f283146-1000--europa-league-matchday-5-round-up-bournemouth-stay-perfect/" target="_blank" rel="noopener noreferrer">www.uefa.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div><div class="card-main"><h3>摩纳哥补时绝杀哈茨，保持欧协联全胜</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">北京时间11月27日04:00（英国11月26日20:00开球）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">巴洛贡梅开二度，并助攻队友得分。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>哈茨在爱丁堡二比三负于摩纳哥。约尔迪·阿尔特纳第十六分钟打进自己为哈茨的首球。巴洛贡随后罚进点球扳平，又为埃丹·迪奥普做球，客队反超。凯尔约塔在中场结束前以内旋射门再度追平，双方带着二比二进入下半场。欧足联记录，马托在终场前曾从门线上解围，挡下德图尔贝的尝试。补时阶段，马马杜·库利巴利送出直塞，巴洛贡完成个人第二个进球。赛后摩纳哥是本季欧协联联赛阶段唯一全胜球队。比赛的决胜阶段适合把门线解围和最终失球分别回看，前一回合的重点是防守球员如何在球门附近及时补位，后一回合则可观察传球从何处进入最后一线，以及巴洛贡如何选取接球位置。两队上半场即合计打进四球，最后的胜负则一直留到补时才分出。点球扳平和最后的直塞接应是巴洛贡两次进球的起点，助攻迪奥普则发生在两球之间。</p><p><a class="source-link" href="https://www.uefa.com/uefaconferenceleague/news/02ab-222a90fb4a54-c9b21edef3d8-1000--uefa-conference-league-matchday-4-round-up-ajax-brighton-cr/" target="_blank" rel="noopener noreferrer">www.uefa.com</a></p></div></div>
+</div>
+<div class="section" id="s-transfer"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">🔁</span><h2>转会动态</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div><div class="card-main"><h3>🔹 传闻｜埃弗顿据报倾向冬窗留住布兰斯韦特</h3><div class="card-meta"><span class="src">FootballTransfers</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">报道提到曼联继续关注，埃弗顿方面的出售意愿被看低。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>FootballTransfers在十一月二十六日的转会汇总中援引TEAMtalk称，埃弗顿不太可能同意在一月出售中卫贾拉德·布兰斯韦特。报道把他描述为曼联长期关注的对象，并称球员仍在曼联考虑范围内，但将冬窗交易视为难以实施。这里的消息同时涉及潜在买家的名单和现俱乐部的出售意愿，二者应分开理解。名单上的一个名字可以反映引援方向，实际推进则需要卖方参与谈判。报道还提到曼联冬窗开支能力和埃弗顿估值的判断，这两项均来自媒体，不能作为已经报出的价格或者已被拒绝的报价。后续若有新信息，可以按询价、正式报价、俱乐部协议和注册公告的顺序核对进度。当前报道能支持的状态停留在曼联被指仍有兴趣、埃弗顿被指倾向保留球员。公开报道也未披露双方已经为这笔转会排定谈判时间。报道对卖方意愿的描述，是当前判断谈判可能性的主要依据。</p><p><a class="source-link" href="https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/11/transfer-rumours-26-november-arsenal-chelsea-man-utd-jarrad-branthwaite-folarin-balogun-carlos-forbs" target="_blank" rel="noopener noreferrer">www.footballtransfers.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div><div class="card-main"><h3>🔹 传闻｜巴洛贡被曝优先考虑回英超</h3><div class="card-meta"><span class="src">FootballTransfers</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">转会记者称球员被推荐给曼联，摩纳哥的正式决定仍待确认。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>FootballTransfers援引记者萨沙·塔沃列里的消息称，摩纳哥前锋福拉林·巴洛贡把重返英超列为一月的优先方向，并被推荐给曼联。报道将他与波切蒂诺在美国男足共事的经历列为可能影响球员意向的背景，也提到此前一个窗口曾接近转投埃弗顿。上述描述来自报道方。尤其需要区分的是，球员被向某家俱乐部推荐，和那家俱乐部主动提出报价，是两种不同的进度。重返英超的意向也只是目的地范围，不能据此推定球员已经接受某一队的合同条件。跟踪这条线索，可以先查谁发起接触以及摩纳哥是否收到正式报价，再看报道中提到的个人意向是否有球员或俱乐部的公开证实。截至这篇消息所述阶段，能够归于报道的变化是曼联被指收到推荐，具体转会方式、费用和合同安排都还没有正式公告。报道提及此前的一次英超去向，可以解释媒体为何把这次风声放在回归英格兰的框架下。</p><p><a class="source-link" href="https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/11/transfer-rumours-26-november-arsenal-chelsea-man-utd-jarrad-branthwaite-folarin-balogun-carlos-forbs" target="_blank" rel="noopener noreferrer">www.footballtransfers.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div><div class="card-main"><h3>🔹 传闻｜阿森纳据报将福布斯列入边锋名单</h3><div class="card-meta"><span class="src">FootballTransfers</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">报道同时称布鲁日无意在冬窗听取报价。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>FootballTransfers转述Football Insider的报道说，布鲁日边锋卡洛斯·福布斯已进入阿森纳的考察名单。消息把球员在布鲁日的表现和重新进入葡萄牙成年国家队阵容作为背景，同时声称布鲁日无意在一月考虑报价，以免在国内联赛和欧冠赛季中段削弱阵容。这条报道涉及的两个动作是阿森纳据称列出候选人，以及布鲁日据称希望在冬窗维持阵容。即便考察消息属实，也还需要确认阿森纳是否将内部名单转化为正式接触。接下来可留意是否出现明确的报价时间、布鲁日主事人员的回应，以及球员是否公开谈到自己的安排。关于名单排序的说法应保留原有的媒体归属，因为这类排序可以随球队需求改变，也没有等同于正式谈判的证据。当前没有可供核对的签约公告或注册信息。布鲁日在国内和欧洲赛场都要安排轮换，这是报道给出留人判断的具体背景。</p><p><a class="source-link" href="https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/11/transfer-rumours-26-november-arsenal-chelsea-man-utd-jarrad-branthwaite-folarin-balogun-carlos-forbs" target="_blank" rel="noopener noreferrer">www.footballtransfers.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div><div class="card-main"><h3>🔹 传闻｜利物浦据报评估回购夸安萨</h3><div class="card-meta"><span class="src">FootballTransfers</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">媒体对条款金额的说法有差异，报道指向后续窗口。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>FootballTransfers援引TEAMtalk称，利物浦正在考虑是否行使勒沃库森后卫贾雷尔·夸安萨的回购条款。报道将这项考虑与利物浦下一年度的后卫补强需求联系起来，并提到队内有后卫合同将到期。关于条款价格，文章同时列出不同媒体的不同说法，因此本文仅保留存在价格分歧这一点。金额差异会影响对交易可行性的判断，而时间表同样重要，夏季可以考虑的操作无法直接推断为一月就会完成。若之后出现新消息，需要先核对回购条款在哪个窗口生效、是否有行使期限，以及俱乐部是否已经发出正式通知。即使合同允许以一定条件启动操作，评估、启动和最终签约仍然是各自独立的阶段。这次报道所指向的是利物浦可能把熟悉的中卫纳入计划，相关俱乐部的最终决定仍须以正式消息为准。在确认条款文本前，将两个价格分别归给报道来源，比取其中一个作为定价更准确。</p><p><a class="source-link" href="https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/11/transfer-rumours-26-november-arsenal-chelsea-man-utd-jarrad-branthwaite-folarin-balogun-carlos-forbs" target="_blank" rel="noopener noreferrer">www.footballtransfers.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div><div class="card-main"><h3>🔹 传闻｜曼联与纽卡斯尔据报关注胡安·米兰达</h3><div class="card-meta"><span class="src">FootballTransfers</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">报道将潜在冬窗接触与博洛尼亚续约意愿并列。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>FootballTransfers在转会汇总中援引《米兰体育报》的消息称，曼联和纽卡斯尔对博洛尼亚后卫胡安·米兰达有所动作，也提到两家意大利俱乐部可能跟进。报道说，米兰达当前合同在二〇二八年到期，博洛尼亚把争取续约视为优先事项。这个日期是媒体所述合同背景，不能据此断定俱乐部已经发出新的续约合同。消息中关于英超球队有所动作的说法也没有给出明确的报价细节，报道把一月接触描述为可能性。后续可观察博洛尼亚是否公开谈到续约，潜在买家是否交出可核查的报价，以及球员方面对留队的态度。把这些问题分开，有助于区分俱乐部了解球员可用性与真正开启转会谈判。就目前可读报道而言，故事的主线是外部兴趣与现东家留人意愿并存，球员去向仍未确定。报道也提及潜在买家中有意大利球队，但没有为本次汇总中的这两家逐一列出名称。</p><p><a class="source-link" href="https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/11/transfer-rumours-26-november-arsenal-chelsea-man-utd-jarrad-branthwaite-folarin-balogun-carlos-forbs" target="_blank" rel="noopener noreferrer">www.footballtransfers.com</a></p></div></div>
+</div>
+<div class="section" id="s-league"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">🏆</span><h2>联赛与赛事</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div><div class="card-main"><h3>五大联赛周五场次，北京时间集中在周六凌晨</h3><div class="card-meta"><span class="src">天空体育、切尔西官网</span><span class="t">北京时间11月28日03:30至04:00（欧洲当地11月27日晚）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">英超、西甲、意甲、德甲和法甲各有一场当地周五晚场。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>当地十一月二十七日，英超诺丁汉森林主场对切尔西，北京时间二十八日四点，切尔西官网确认球场为城市球场。同一北京时间，西甲莱万特迎战桑坦德竞技。德甲不来梅对门兴格拉德巴赫安排在北京时间三点半，意甲威尼斯对博洛尼亚与法甲布雷斯特对巴黎FC均安排在三点四十五分。天空体育的英国赛程以周五日期列出这些对阵，换算后，读者在北京时间的比赛日历应当翻到周六。这组赛程也可以作为周末观赛的起点，三点半最先开球，十五分钟后意甲和法甲两场加入，四点再新增英超与西甲。巴黎FC是当天前往布雷斯特的球队，队名应与巴黎圣日耳曼区分。赛程信息记录的是预定开球，赛况、首发和积分变化要待相应比赛发生，按各联赛的完场记录更新。五场里最早开始的是德国场，意大利与法国场同一时段开球，随后才到英格兰和西班牙。</p><p><a class="source-link" href="https://www.skysports.com/football-scores-fixtures/2026-11-27" target="_blank" rel="noopener noreferrer">www.skysports.com</a> · <a class="source-link" href="https://www.chelseafc.com/en/news/article/nottingham-forest-vs-chelsea-preview-tv-channel-kick-off-time-watch-26-27" target="_blank" rel="noopener noreferrer">www.chelseafc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div><div class="card-main"><h3>中国U17八球取胜，以小组第三晋级</h3><div class="card-meta"><span class="src">亚足联</span><span class="t">卡塔尔11月26日（北京时间11月26日至27日；时间不详）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">中国队积四分，以成绩较好的小组第三之一进入三十二强。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>卡塔尔U17世界杯H组末轮，中国队八比零击败斐济，以四分排名小组第三，并取得三十二强资格。亚足联战报记载，赵松源第三分钟取得进球，万项的点球一度被门将扑出，他后来在第二十八和第七十二分钟各进一球。邝兆镭也两次破门，斐济在第三十二分钟出现乌龙，两名中国替补又在下半场得分。这场球需要同时读比分和赛制。八球是对斐济一场的结果，四分则是三场小组赛累计，后者与小组第三名的比较共同决定了中国队的晋级路径。亚足联已确认中国队晋级，淘汰赛对阵应另查赛事更新。回看比赛可以关注两个具体节点，一是第三分钟出现的进球怎样改变开局，二是点球没有打进后，中国队如何继续创造机会，万项随后用两次运动中的得分让自己的比赛有了不同走向。替补球员同样有破门记录，分析防守疲劳和换人效果时可以用这两次得分定位录像。</p><p><a class="source-link" href="https://www.the-afc.com/en/national/fifa_u-17_world_cup.html/news/china-pr-tajikistan-confirm-progression" target="_blank" rel="noopener noreferrer">www.the-afc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div><div class="card-main"><h3>塔吉克斯坦战平塞内加尔，国少队拿到淘汰赛席位</h3><div class="card-meta"><span class="src">亚足联</span><span class="t">卡塔尔11月26日（北京时间11月26日至27日；时间不详）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">奥迪尔佐达罚进点球，塔吉克斯坦以一比一结束F组末轮。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>亚足联确认塔吉克斯坦在U17世界杯F组末轮一比一战平塞内加尔，并由此进入三十二强。塞内加尔的西迪·巴尔哈马·恩迪亚耶在第三十七分钟摆脱防守后低射，率先改写比分。塔吉克斯坦随后利用对方手球获得点球，梅赫鲁邦·奥迪尔佐达主罚扳平。两次得分来自不同的场景，塞内加尔靠运动战中的个人处理先得一分，塔吉克斯坦则在比分落后时把攻势转化成一次定位球机会。录像复盘可以把手球发生的回合与罚球过程分开看，前者交代机会如何获得，后者解释比赛比分如何回到平局。这一分在小组末轮有明确结果，塔吉克斯坦的晋级已可确认。同一份亚足联报道把其他队伍分列，乌兹别克斯坦还需等待小组赛收官，不能把等待其他比赛完成的状态混写成已经出线。同一天亚足联也报道了马里两球击败越南，后者以小组第三结束赛事。</p><p><a class="source-link" href="https://www.the-afc.com/en/national/fifa_u-17_world_cup.html/news/china-pr-tajikistan-confirm-progression" target="_blank" rel="noopener noreferrer">www.the-afc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div><div class="card-main"><h3>亚冠二级联赛C组，两场较量合计一球</h3><div class="card-meta"><span class="src">亚足联比赛页、亚足联赛事栏目</span><span class="t">亚足联11月26日发布（北京时间具体时间不详）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">赖扬一球胜费萨利，布赖代合作与纳赫达互交白卷。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>亚足联公布亚冠二级联赛C组两场结果，卡塔尔赖扬一比零击败约旦费萨利，沙特布赖代合作与阿曼纳赫达零比零战平。这里涉及四家来自不同协会的俱乐部，记赛果时应当将约旦费萨利写在赖扬这一场，将阿曼纳赫达写在布赖代合作这一场，避免把同组赛果交叉录入。从最终比分看，赖扬取得当轮这两场中的唯一进球，另一场的两队各自保住零封。两场比赛的积分增量也不同，取胜的赖扬拿到三分，布赖代合作与纳赫达各拿一分。若进一步判断这些结果对晋级的作用，应同时查看赛后积分、剩余场次和赛事同分规则。比分本身只能回答当轮收获，赛后席位还需用完整小组形势核对。两场信息均可从亚足联当日的赛事栏目回查，零比零一场另有独立比赛页面。同组两场放在一起看，能避免把不同赛区同名或译名相似的俱乐部串到一起。</p><p><a class="source-link" href="https://www.the-afc.com/en/matches/afc-champions-league-two/latest/2683726" target="_blank" rel="noopener noreferrer">www.the-afc.com</a> · <a class="source-link" href="https://www.the-afc.com/en/more/content/acl_homepage.html" target="_blank" rel="noopener noreferrer">www.the-afc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div><div class="card-main"><h3>亚冠二级联赛A组，阿布扎比统一与纳萨夫均赢一球</h3><div class="card-meta"><span class="src">亚足联赛事栏目</span><span class="t">亚足联11月26日发布（北京时间具体时间不详）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">阿布扎比统一客胜科威特SC，纳萨夫击败哈尔迪亚。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>亚足联的赛事栏目列出亚冠二级联赛A组两场赛果，阿联酋阿布扎比统一二比一击败科威特SC，乌兹别克斯坦纳萨夫一比零击败巴林哈尔迪亚。两场净胜球都是一个，科威特SC与哈尔迪亚的得分情况不同，前者在败局中打进一球，后者没有改写比分。对照赛程时，胜者一支是作客的阿布扎比统一，另一支是坐镇主场的纳萨夫。两个三分都来自本轮胜利，不能单凭这组单轮赛果就判断赛后谁占据榜首或已经提前晋级。讨论小组形势还应回查赛前累计积分、相互交手与同分排序。读者如果要比较两队的领先管理，可以从录像中记录第一球和最后一次有威胁进攻之间的比分状态，再看对手何时开始压上。亚足联的赛果栏目已经提供了可复核的对阵和终场结果，足以先更新本轮比赛记录。两场的进球总数相差两个，若只看胜负栏，这一点很容易被略过。</p><p><a class="source-link" href="https://www.the-afc.com/en/more/content/acl_homepage.html" target="_blank" rel="noopener noreferrer">www.the-afc.com</a></p></div></div>
+</div>
+<div class="section" id="s-player"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">👤</span><h2>球员与教练</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div><div class="card-main"><h3>切尔西确认凯塞多可出战森林，两名伤员继续缺阵</h3><div class="card-meta"><span class="src">切尔西官网</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">阿隆索称凯塞多已恢复训练，若昂·佩德罗和拉克鲁瓦仍无法回归。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>切尔西主帅哈维·阿隆索在科巴姆举行的赛前发布会上确认，莫伊塞斯·凯塞多可以参加对诺丁汉森林的比赛。凯塞多上轮对利兹联时在争顶落地后受伤，于上半场离场，阿隆索表示他本周已经训练。若昂·佩德罗仍在恢复大腿伤势，自十月击败埃弗顿一战后没有出场，这次无法复出。拉克鲁瓦十月在联赛杯对利物浦时出现腿筋问题，同样赶不上这场比赛。切尔西这份更新给出了三名球员在同一场比赛前的不同状态。凯塞多恢复参选资格，另两人仍处康复阶段。判断这对阵容的直接影响时，可以先核对正式比赛名单，再区分进入名单和获得首发。发布会只确认了能否为森林一战提供选择，出场时间、位置安排以及两名缺阵球员的下一次更新，都要以随后公布的信息为准。消息来自切尔西赛前发布会，适用范围是这一轮到访诺丁汉森林的比赛。</p><p><a class="source-link" href="https://www.chelseafc.com/en/news/article/xabi-alonso-confirms-chelsea-team-news-for-nottingham-forest" target="_blank" rel="noopener noreferrer">www.chelseafc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div><div class="card-main"><h3>巴萨医疗公告确认巴尔德右脚踝轻度扭伤</h3><div class="card-meta"><span class="src">巴塞罗那官网</span><span class="t">北京时间11月26日21:45（巴塞罗那11月26日14:45发布）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">伤退后已有诊断，能否出战拉科鲁尼亚取决于恢复。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>巴塞罗那公布亚历杭德罗·巴尔德的检查结果，确认右脚踝轻度扭伤。巴尔德上一场欧冠代表巴萨客战萨巴赫时伤退，昨天的报道只覆盖了退场和等待医疗结论，今天的新增信息是受伤部位、程度和俱乐部对下一场的处理。巴萨表示，周日对拉科鲁尼亚一战还没有将他排除，可用性要随着恢复进展再决定。轻度扭伤是公告提供的诊断描述，公告没有给出具体恢复周期或保证他在里亚索球场出场。跟踪这条伤情时，可把三件事依次核对，首先是这次公开的诊断，其次是赛前训练和名单更新，最后才是正式出场。球队可以在赛前继续评估，并根据球员随后的状态调整安排。若后续名单有变化，判断依据应来自最新的俱乐部消息和比赛名单，不能由伤情程度直接推算休战场数。这次检查发生在赛后，受伤当下的现场画面与正式诊断之间因此有了明确的时间顺序。</p><p><a class="source-link" href="https://www.fcbarcelona.com/en/news/4615012/medical-update-on-balde/amp" target="_blank" rel="noopener noreferrer">www.fcbarcelona.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div><div class="card-main"><h3>布伦特福德确认伊戈尔·蒂亚戈继续停赛</h3><div class="card-meta"><span class="src">布伦特福德官网</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">将执行三场停赛中的第二场，两名康复球员已参加B队比赛。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>布伦特福德对曼联的赛前人员更新显示，伊戈尔·蒂亚戈将执行三场停赛中的第二场。安德鲁斯同时更新了安东尼·米兰博和乔希·达席尔瓦的恢复，两人此前均有长期伤情，最近一次随B队出场各踢四十五分钟，并在建立重返一线队所需的比赛体能。球队还需应对希基、内森·柯林斯、富罗与里科·亨利继续缺阵的情况。这份消息同时涉及纪律停赛和康复管理，蒂亚戈的缺席属于已确定的停赛轮次，另两人的B队比赛则只是康复过程中的进度。主帅希望他们能在圣诞节前回到一线队正式比赛名单，具体时点仍取决于后续训练和选用。看本轮名单时，可以首先确认停赛球员的缺席和教练怎样安排锋线，再留意已参加B队比赛的两人是否在此后几周重新进入一线队名单。伤停名单同时牵涉后防和锋线，这也是对照本场替补席时需要留意的背景。</p><p><a class="source-link" href="https://www.brentfordfc.com/en/news/first-team-manchester-united-v-brentford-premier-league-28-11-2026-injury-update" target="_blank" rel="noopener noreferrer">www.brentfordfc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div><div class="card-main"><h3>斯帕莱蒂谈锋线供球，孔塞桑交代复出进球</h3><div class="card-meta"><span class="src">尤文图斯官网</span><span class="t">北京时间11月27日04:00（中欧11月26日21:00开球）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">尤文主帅认为球队有时持球偏久，使埃卡托找空间更难。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>尤文图斯官网发布了欧联赛后的采访，斯帕莱蒂认为球队一开始有些不稳，坎比亚索扳平后自信才逐渐回来。他肯定埃卡托的表现，也说上半场传给这名前锋的球偏少，队友有时把球留在脚下过久，增加了前锋寻找空间的难度。孔塞桑则说明了自己在埃卡托进球前看到对方跑动并传球的过程，感谢工作人员帮助康复，并把自己的进球献给在看台上的家人。教练与球员的发言分别提供了整体和单个回合的观察角度。若要检验供球时机，录像应从中场持球开始，记录埃卡托的第一次启动和队友实际传球的时间差。孔塞桑讲到的助攻可以作为一个具体样本，再与上半场其他有跑动而未接到球的回合做比较。这样能够把赛后对供球的评价对应到可追踪的场上动作。同场受访的博加说，自己平时也练习从该位置射门以及出脚前带球的动作。</p><p><a class="source-link" href="https://www.juventus.com/en/news/articles/press-room-comments-after-juventus-omonia-26-11-26" target="_blank" rel="noopener noreferrer">www.juventus.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div><div class="card-main"><h3>托马斯·弗兰克拿到执教水晶宫首胜</h3><div class="card-meta"><span class="src">欧足联、水晶宫官网</span><span class="t">北京时间11月27日04:00（英国11月26日20:00开球）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">水晶宫主场逆转皇家社会，麦克尼尔替补打进加盟后首球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>托马斯·弗兰克在塞尔赫斯特公园的首场水晶宫主场比赛中，以二比一击败皇家社会。欧足联确认这是他担任水晶宫主帅后的第一场胜利。马马杜·萨尔先为客队破门，乔恩·马丁被罚下后，马特塔罚进点球扳平。替补出场的德怀特·麦克尼尔在最后十分钟内完成反超，也打进个人水晶宫生涯首球。弗兰克的首胜与麦克尼尔的首球发生在同一场比赛，不过评估教练如何影响赛局，可以具体看换人和比分变化各出现在怎样的时点，以及客队被罚下一人之后水晶宫如何将球送入危险区域。赛季延续时，主场首战的结果是一个清晰的起点。它能够记录这场欧战中球队在落后后的处理，若要判断新教练的固定用人方式，还需对照接下来的首发和替补安排。水晶宫官网将这场球记作弗兰克上任后的主场首战，也确认了麦克尼尔是在终场前打进制胜球。</p><p><a class="source-link" href="https://www.uefa.com/uefaeuropaleague/news/02ab-222a8b7281ee-613f6f283146-1000--europa-league-matchday-5-round-up-bournemouth-stay-perfect/" target="_blank" rel="noopener noreferrer">www.uefa.com</a> · <a class="source-link" href="https://www.cpfc.co.uk/news/match-reports/report-highlights-crystal-palace-real-sociedad-november-2026/" target="_blank" rel="noopener noreferrer">www.cpfc.co.uk</a></p></div></div>
+</div>
+<div class="section" id="s-analysis"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">📊</span><h2>深度分析</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div><div class="card-main"><h3>里昂与利勒斯特罗姆互交白卷，两次末段判罚被改写</h3><div class="card-meta"><span class="src">欧足联、VG</span><span class="t">北京时间11月27日04:00（中欧11月26日21:00开球）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">主队点球被取消，客队埃尔凯尔的红牌也在复核后撤销。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>里昂在欧联赛场与利勒斯特罗姆零比零战平。挪威媒体VG报道，常规时间结束前约两分钟，裁判给里昂判了点球，随后经视频复核更改决定。紧接着，客队弗雷德里克·埃尔凯尔因一次铲球被出示红牌，视频助理再次介入，现场原判也被改变。VG描述的电视回放显示埃尔凯尔有触球，这一画面只是对复核过程的报道。若要解释最终判定，还应查裁判方面是否公布了完整理由，并把触球、随后接触与动作本身放回同一个回合。两次复核影响的对象不同，一次涉及主队能否获得点球，一次关系到客队员是否被罚离场。比赛记录时应根据最终决定标注事件。复盘比赛走势时则应保留两个最初判罚的先后，这能说明为什么零比零的终场比分并不能完整反映末段曾经出现的转折。两起事件接连发生，适合对照主裁最初看到的情况与回放能提供的信息。</p><p><a class="source-link" href="https://www.uefa.com/uefaeuropaleague/news/02ab-222a8b7281ee-613f6f283146-1000--europa-league-matchday-5-round-up-bournemouth-stay-perfect/" target="_blank" rel="noopener noreferrer">www.uefa.com</a> · <a class="source-link" href="https://www.vg.no/sport/i/0vnMP6/europa-league-lillestroem-lyon" target="_blank" rel="noopener noreferrer">www.vg.no</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">22</div><div class="card-main"><h3>贝西克塔斯在中立场取胜，赛事一度暂停</h3><div class="card-meta"><span class="src">欧足联、美联社</span><span class="t">北京时间11月27日01:45（格鲁吉亚11月26日21:45开球）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">美联社报道，比赛第26分钟中断，恢复比赛后踢至完场。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>贝西克塔斯与贝尔谢巴工人的比赛安排在格鲁吉亚巴统的中立场地。美联社报道，当地警方与部分贝西克塔斯支持者在其展示支持巴勒斯坦人的横幅后发生冲突，裁判在比赛第二十六分钟、比分仍为零比零时中断比赛，约半小时后恢复。欧足联的最终赛果显示贝西克塔斯二比一取胜。美联社还报道，贝西克塔斯指责当地安保使用了不相称的武力，土耳其足协则表示将推动调查。后两项是相关机构的公开表态，事件责任及处理结果有赖后续核实。复盘这场欧联比赛，需要区分实际比赛分钟与中断后重新开赛的时间，第二十六分钟记录的是场上进度，约半小时是暂停持续时间。公布最终比分也只说明两队完成了比赛。观察后续进展时，可依次核对赛事方面是否发布报告、足协是否获得回复以及有关机构是否公布处理结论。</p><p><a class="source-link" href="https://www.uefa.com/uefaeuropaleague/news/02ab-222a8b7281ee-613f6f283146-1000--europa-league-matchday-5-round-up-bournemouth-stay-perfect/" target="_blank" rel="noopener noreferrer">www.uefa.com</a> · <a class="source-link" href="https://apnews.com/article/47656d47d4ab9cf9b4736d82677a2db9" target="_blank" rel="noopener noreferrer">apnews.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">23</div><div class="card-main"><h3>弗赖堡最后时刻取胜，制胜球来自点球后的下一回合</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">当地11月26日（北京时间11月27日；时间不详）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">金特尔点球击柱，特温特未能解围，贝斯特随后打进制胜球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>弗赖堡在欧协联第四轮二比一击败特温特。铃木唯人反击推进后横传，伊里耶在第十一分钟完成主队首球。特温特下半场靠尤内斯·塔哈的直接任意球扳平。比赛末段，马蒂亚斯·金特尔罚点球击中门柱，特温特没能完成解围，尼克拉斯·贝斯特抓住随后的机会改写比分，送给此前全胜的特温特一场失利。三次得分对应不同的攻防情形，首球来自快速推进，扳平球由任意球直接攻门，制胜球发生在点球没有直接得分、客队仍未清理球权之后。查看技术录像时，可以把点球出脚和贝斯特最终触球之间的过程单独列出来，留意双方球员在第一落点和解围方向上的位置。计入进球事件的是贝斯特的下一次终结，点球首先以击柱告终，这两条记录同时保留才能还原最后阶段的比分变化。弗赖堡此前已有两胜，这场拿到第三胜，特温特则未能把此前的全胜持续到轮末。</p><p><a class="source-link" href="https://www.uefa.com/uefaconferenceleague/news/02ab-222a90fb4a54-c9b21edef3d8-1000--uefa-conference-league-matchday-4-round-up-ajax-brighton-cr/" target="_blank" rel="noopener noreferrer">www.uefa.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">24</div><div class="card-main"><h3>亚特兰大最后阶段连进三球，逆转九人巴尼亚卢卡战士</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">当地11月26日（北京时间11月27日；时间不详）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">波黑球队领先保持至第86分钟，随后被连入三球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>欧足联的欧协联第四轮战报记录，巴尼亚卢卡战士主场二比三负于亚特兰大。波黑球队有两名球员被罚下，却把二比零的领先保持到第八十六分钟，随后尼古拉·克尔斯托维奇、塞亚德·科拉希纳茨和达维德·扎帕科斯塔相继破门。要复盘这段逆转，可以将比分变化与人数变化画在同一条时间线上，并进一步核对每个进球前球的推进路线。两个红牌解释了为什么需要讨论人数优势，但摘要并未给出足以确认每个进球成因的详细数据。领先保持到第八十六分钟，说明比赛用了相当长的时间才走到第一个追分节点。此后短时间内从两球落后变成领先，适合进一步看扳回一球后守方站位是否调整，以及进攻方如何连续组织下一波进攻。三名得分者和最终比分由赛事战报确认，具体回合的战术归因仍应回到比赛画面。这也是从赛事摘要继续追查完整比赛记录的切入点。</p><p><a class="source-link" href="https://www.uefa.com/uefaconferenceleague/news/02ab-222a90fb4a54-c9b21edef3d8-1000--uefa-conference-league-matchday-4-round-up-ajax-brighton-cr/" target="_blank" rel="noopener noreferrer">www.uefa.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">25</div><div class="card-main"><h3>阿贾克斯四球取胜，布尼达用两种方式破门</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">当地11月26日（北京时间11月27日；时间不详）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">首球发生折射，第二球来自直接任意球，图恩一度击中门框。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>阿贾克斯在阿姆斯特丹四比零击败图恩，取得欧协联联赛阶段连续第三场胜利。雷亚内·布尼达第六分钟射门经折射入网，马科斯·莱昂纳多在中场休息前为一次团队配合收尾。布尼达在第七十分钟又以直接任意球破门，替补登场的贝尔赫伊斯打进最后一球。图恩也完成过有威胁的射门，福尔坎·杜尔松的一脚击中门框。复盘这场球时，可以把布尼达的两次终结分成两段，第一段观察出脚后折射改变了怎样的球路，第二段观察任意球从什么位置越过防守并飞入球门。团队配合产生的第二球则应从前面的传接动作开始回看，不能只留下最后触球。四比零记录的是终场得分差，图恩的击框仍是一条应保留的进攻事件，能用来标记客队曾经接近缩小差距的场景。两次破门的方式不同，而第二个个人进球出现在下半场，这让布尼达在两段比赛里都有直接贡献。</p><p><a class="source-link" href="https://www.uefa.com/uefaconferenceleague/news/02ab-222a90fb4a54-c9b21edef3d8-1000--uefa-conference-league-matchday-4-round-up-ajax-brighton-cr/" target="_blank" rel="noopener noreferrer">www.uefa.com</a></p></div></div>
+</div>
+<footer class="footer">⚽ 足球日报 · 2026-11-20 · 32 条 · 5 个板块<br>新闻报道时间与事件时间分别标示；转会传闻及媒体估计不代表官方确认，官宣以 ✅ 标注、传闻以 🔹 标注。</footer></div></body></html>
