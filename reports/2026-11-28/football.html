@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>⚽ 足球日报 · 2026-11-20 · 32 条资讯</title>
+<style>
+:root { --bg:#f7f8fa; --card-bg:#fff; --text:#111827; --muted:#6b7280; --accent:#16a34a; --border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:PingFang SC,Noto Sans SC,Microsoft YaHei,sans-serif; padding-bottom:60px; }
+.container { max-width:960px; margin:0 auto; padding:0 16px; }
+.cover { text-align:center; padding:56px 20px 40px; background:linear-gradient(135deg,#0c4a2e,#14532d,#16a34a); border-radius:0 0 20px 20px; margin:0 -16px 24px; }
+.cover h1 { font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:1px; }
+.cover .sub { margin-top:10px; color:#86efac; font-size:0.95rem; }
+.cover .badge { display:inline-block; margin-top:16px; padding:6px 18px; border-radius:999px; background:#ffffff1a; border:1px solid #ffffff33; color:#d1fae5; font-size:0.8rem; }
+.toc { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; margin-bottom:24px; }
+.toc-title { font-size:0.8rem; font-weight:700; color:var(--muted); margin-bottom:10px; }
+.toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.toc-list a { display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.82rem; transition:all .2s; }
+.toc-list a:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin-bottom:28px; }
+.section-header { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:var(--radius); margin-bottom:12px; }
+.section-header .icon { font-size:1.2rem; }
+.section-header h2 { font-size:1.05rem; font-weight:700; flex:1; }
+.section-header .count { font-size:0.75rem; color:var(--muted); background:var(--bg); padding:3px 10px; border-radius:999px; }
+.empty-section { color:var(--muted); font-size:0.85rem; padding:12px 16px; }
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:14px; }
+.metric-group-label { grid-column:1/-1; font-size:0.78rem; font-weight:700; color:var(--accent); padding:8px 2px 2px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 12px 10px; }
+.metric-label { font-size:0.72rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; }
+.metric-value { font-size:1.15rem; font-weight:800; color:var(--text); margin-top:4px; font-variant-numeric:tabular-nums; }
+.metric-change { font-size:0.72rem; font-weight:700; margin-top:2px; font-variant-numeric:tabular-nums; }
+.metric-change.pos { color:#15803d; }
+.metric-change.neg { color:#b91c1c; }
+.metric-change.flat { color:var(--muted); }
+.metric-explain { font-size:0.68rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:box-shadow .2s; }
+.card:hover { box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.card-top { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; }
+.card-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; background:var(--bg); color:var(--accent); margin-top:2px; }
+.card-main { flex:1; min-width:0; }
+.card-main h3 { font-size:0.95rem; font-weight:600; line-height:1.45; }
+.card-meta { font-size:0.75rem; color:var(--muted); margin-top:5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-brief { font-size:0.85rem; color:var(--muted); margin-top:6px; line-height:1.6; }
+.card-arrow { flex-shrink:0; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--muted); transition:transform .3s; margin-top:4px; }
+.card.open .card-arrow { transform:rotate(180deg); color:var(--accent); }
+.card-detail { display:none; border-top:1px solid var(--border); padding:14px 16px; }
+.card.open .card-detail { display:block; }
+.card-detail h4 { font-size:0.85rem; color:var(--accent); margin-bottom:8px; }
+.card-detail p { font-size:0.88rem; line-height:1.75; color:#374151; margin-bottom:10px; }
+.card-detail .source-link { display:inline-block; font-size:0.8rem; color:var(--accent); text-decoration:none; padding:4px 12px; border-radius:6px; background:#eff6ff; border:1px solid #bfdbfe; }
+.card-detail .source-link:hover { background:#dbeafe; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700; }
+.tag-verified { background:#16a34a33; color:#15803d; margin-left:6px; }
+.tag-unconfirmed { background:#d9770633; color:#92400e; margin-left:6px; }
+.tag-analysis { background:#7c3aed33; color:#6d28d9; margin-left:6px; }
+.tg-match { background:#f0fdf4; color:#15803d; }
+.tg-transfer { background:#fef2f2; color:#b91c1c; }
+.tg-league { background:#eff6ff; color:#1d4ed8; }
+.tg-player { background:#f5f3ff; color:#6d28d9; }
+.tg-analysis { background:#ecfeff; color:#0e7490; }
+.footer { text-align:center; padding:28px 0 12px; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); margin-top:32px; line-height:1.8; }
+@media (max-width:640px) { .cover h1 { font-size:1.7rem; } .card-top { padding:12px; gap:10px; } }
+</style>
+</head><body><a href="/reports/" style="display:block;padding:12px 20px;color:#6b7280;text-decoration:none;font-size:13px">← Back to Reports</a><div class="container"><div class="cover"><h1>⚽ 足球行业日报 · 2026-11-28</h1><div class="sub">赛事战报 · 国家队与伤情 · 教练动态 · 转会观察</div><div class="badge">2026-11-28 · 25 条资讯 · 5 个板块 · 北京时间</div></div><nav class="toc"><div class="toc-title">目录导航</div><ul class="toc-list">
+<li><a href="#s-match">比赛战报 5</a></li>
+<li><a href="#s-transfer">转会动态 5</a></li>
+<li><a href="#s-league">联赛与赛事 5</a></li>
+<li><a href="#s-player">球员与教练 5</a></li>
+<li><a href="#s-analysis">深度分析 5</a></li>
+</ul></nav>
+<div class="section" id="s-match"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">⚽</span><h2>比赛战报</h2><span class="count">5 条</span></div>
+<div class="card open">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">1</div><div class="card-main"><h3>森林3比2击败切尔西，吉布斯-怀特两度破门</h3><div class="card-meta"><span class="src">英超官网、《卫报》</span><span class="t">北京时间11月28日04:00开球（英国11月27日20:00）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">森林打进三球，替补出场的埃梅加两次为切尔西缩小差距。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>诺丁汉森林在城市球场以三比二击败切尔西。森林在开场不足五分钟时取得领先，穆尼奥斯从右路送出传中，伊戈尔·热苏斯转身凌空破门。下半场开局不久，麦卡蒂把球送进通道，德拉普抢到福法纳身前，后者犯规送出点球，吉布斯-怀特主罚命中。埃梅加中场休息后换下维尔贝克，很快接到内托射门折射后的来球，在近距离扳回一球。森林随后靠施拉格的传球撕开防线，吉布斯-怀特接应挑射，把领先扩大到三比一。埃梅加在远门柱用头球追回第二球，但切尔西没能再追平。森林继上一个联赛主场击败曼城后，又拿下一场主场胜利。《卫报》记载，赛后森林比降级区多三分。切尔西这两粒进球都发生在换人之后，第一球来自折射后的门前落点，第二球则来自远门柱的高空争夺。森林此役两次在切尔西追分后继续维持领先，最终凭第三球保住胜果。</p><p><a class="source-link" href="https://www.premierleague.com/en/news/4772242/match-report-nottingham-forest-3-2-chelsea" target="_blank" rel="noopener noreferrer">www.premierleague.com</a> <a class="source-link" href="https://www.theguardian.com/football/2026/nov/27/nottingham-forest-chelsea-premier-league-match-report" target="_blank" rel="noopener noreferrer">www.theguardian.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">2</div><div class="card-main"><h3>菲尔克鲁格补时破门，不来梅3比3战平门兴</h3><div class="card-meta"><span class="src">德甲官网</span><span class="t">北京时间11月28日03:30开球（德国11月27日20:30）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">门兴一度领先两球，不来梅第85分钟起连追两球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>德甲第十一轮，不来梅主场三比三战平门兴格拉德巴赫。德甲官方战报记载，雷赫尔在禁区内手球，迪克斯第二十七分钟主罚点球得分。第三十八分钟，门兴没有将传中解围到安全区域，丁克奇在禁区边缘打门，球击中立柱内侧入网。半场一比一后，宇野禅斗在下半场开局不久送出传球，奥诺拉完成破门。他在第七十八分钟再进一球，把门兴的领先扩大到三比一。丁克奇第八十五分钟打入个人第二球，菲尔克鲁格在伤停补时第二分钟抓住防守失误，近距离把比分改写为三比三。这一球也是菲尔克鲁格本赛季十一场德甲的第十一球。官方列出的预期进球为不来梅二点五二、门兴三点零九。门兴在半场后两次改写领先优势，最终双方各取一分，比分的最后一次变化发生在补时。两队各有一名球员梅开二度，最后的扳平球由此前尚未进球的菲尔克鲁格完成。</p><p><a class="source-link" href="https://www.bundesliga.com/en/bundesliga/news/werder-bremen-borussia-monchengladbach-match-report-highlights-matchday-11-fullkrug-40169" target="_blank" rel="noopener noreferrer">www.bundesliga.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">3</div><div class="card-main"><h3>威尼斯与博洛尼亚互交白卷</h3><div class="card-meta"><span class="src">博洛尼亚官网</span><span class="t">北京时间11月28日03:45开球（意大利11月27日20:45）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">博洛尼亚下半场调整多名攻击球员，两队最终各取一分。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>意甲第十三轮，威尼斯主场与博洛尼亚零比零战平。博洛尼亚官网公布了出场和换人记录，威尼斯由尼科拉带队，斯坦科维奇镇守球门，博洛尼亚由帕拉迪诺带队，斯科鲁普斯基首发。博洛尼亚下半场开始就用达米安换下维蒂克，第五十六分钟同时派上奥尔索利尼和坎比亚吉，分别替下贝尔纳代斯基和姆班古拉，第六十六分钟又用皮科利换下奥德高。威尼斯第七十一分钟更换了两名进攻球员，拉赫马尼与劳尔巴赫登场，第七十六分钟再做两处调整。俱乐部战报记录了六张黄牌，两边各三张，主裁判为科隆博。从换人时序看，客队较早重组前场，主队随后同时换掉两名首发前锋。两边的调整都发生在比分持平时，直到终场也没有改变比分。官网这份比赛记录主要提供阵容、换人和纪律信息，射门质量仍须结合比赛录像或技术统计判断。</p><p><a class="source-link" href="https://www.bolognafc.it/venezia-bologna-0-0/" target="_blank" rel="noopener noreferrer">www.bolognafc.it</a> <a class="source-link" href="https://www.bolognafc.it/en/fixture-dates-and-times-confirmed-through-to-matchday-19/" target="_blank" rel="noopener noreferrer">www.bolognafc.it</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">4</div><div class="card-main"><h3>桑坦德竞技下半场连进三球，客场逆转莱万特</h3><div class="card-meta"><span class="src">桑坦德竞技官网、Cadena SER</span><span class="t">北京时间11月28日04:00开球（西班牙11月27日21:00）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">巴勃罗·加西亚梅开二度，扎比里打进反超球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>西甲第十四轮，桑坦德竞技在瓦伦西亚城市球场三比一击败莱万特。伊万·罗梅罗在上半场末段帮主队取得领先，桑坦德竞技在下半场最后约二十五分钟连进三球。巴勃罗·加西亚为客队扳平，亚西尔·扎比里在第八十分钟以左脚斜射完成反超。莱万特随后还有追平机会，门将阿吉雷萨瓦拉扑出了埃塔·埃永的射门，加西亚再进一球锁定比分。桑坦德竞技官网赛后确认，球队联赛已经连赢三场，十四轮积二十分，这是俱乐部时隔十四年重返西甲后的赛季。比赛中段的比分和终场比分给出了两个不同的阶段，上半场结束时莱万特占先，决定胜负的进球全部来自易边之后。主队在一比二时仍有一次值得回看的终结机会，客队门将的扑救也因此和反超进球一样影响了最后几分钟的局面。客队带走三分后，把联赛连胜的场次延长到了三场。</p><p><a class="source-link" href="https://www.realracingclub.es/noticias/remontada-tres-victorias-seguidas-y-20-puntos-1-3" target="_blank" rel="noopener noreferrer">www.realracingclub.es</a> <a class="source-link" href="https://cadenaser.com/comunitat-valenciana/2026/11/28/el-levante-sucumbe-ante-la-pegada-del-racing-1-3-radio-valencia/" target="_blank" rel="noopener noreferrer">cadenaser.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">5</div><div class="card-main"><h3>布雷斯特1比0击败巴黎FC，塞尔维克完成八次扑救</h3><div class="card-meta"><span class="src">Sofascore、法甲官网</span><span class="t">北京时间11月28日03:45开球（法国11月27日20:45）</span><span class="tag tg-match">比赛战报</span></div><div class="card-brief">佐格贝打入全场唯一一球，巴黎FC下半场未能追平。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>法甲第十二轮首场，布雷斯特主场一比零击败巴黎FC。Sofascore的赛后统计把佐格贝列为全场唯一进球者，并记录门将埃吉尔·塞尔维克完成八次扑救。全场射门次数为布雷斯特十七次、巴黎FC十六次，双方总量只差一次。比赛进入下半场后，巴黎FC开始制造更好的机会，但进攻三区进入次数只有二十八比二十七的差距。布雷斯特全场二十一次解围中，有十二次发生在下半场。结合比赛进程，这组数字更适合用来描述布雷斯特守住领先的方式：比分很小，客队仍能推进并完成射门，主队要靠禁区附近的处理和门将扑救结束回合。巴黎FC没能把下半场机会转化为进球，佐格贝的一球就此决定三分归属。赛前时间可在法甲的第十二轮官方节目表核对，两支巴黎球队在本轮分别出赛，此役对手为巴黎FC。这些数据共同说明，巴黎FC的压力延续到了下半场，比赛仍以主队零封告终。</p><p><a class="source-link" href="https://www.sofascore.com/fr/news/brest-1-0-paris-fc-zogbe-marque-et-selvik-realise-huit-arrets" target="_blank" rel="noopener noreferrer">www.sofascore.com</a> <a class="source-link" href="https://ligue1.com/en/articles/l1_article_5843-programmation-tv-j12-ligue-1-2026-2027" target="_blank" rel="noopener noreferrer">ligue1.com</a></p></div></div>
+</div>
+<div class="section" id="s-transfer"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">🔁</span><h2>转会动态</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">6</div><div class="card-main"><h3>✅ 官宣｜利兹联与田中碧续约至2029年</h3><div class="card-meta"><span class="src">利兹联官网</span><span class="t">北京时间11月27日至28日（英国11月27日发布，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">日本中场续约，升超后的首个赛季各项赛事出场33次。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>利兹联宣布与日本国脚田中碧签下新合同，效力期限延长至二〇二九年。田中碧二〇二四年从杜塞尔多夫加盟，在利兹对赫尔城的主场比赛完成首秀，又在与同一对手的次回合交锋中打入自己为利兹攻进的首球。那一球当选俱乐部赛季最佳进球。他在升超赛季出战四十三场英冠，并由队友选为球队赛季最佳球员。升入英超后，他在对埃弗顿的赛季首轮完成英超首秀，上赛季各项赛事出场三十三次、打进四球，其中两粒联赛进球分别出现在对切尔西和利物浦的比赛中，另两球来自足总杯，利兹联最终打进了半决赛。俱乐部还披露，他在今年世界杯为日本出场三次，随队打进三十二强，随后又在十月和十一月获得国家队出场机会，将成年国家队出场次数推至四十七场。公告发布时，他本赛季已在各项赛事出场十二次，并在对布莱顿的比赛中贡献助攻。</p><p><a class="source-link" href="https://www.leedsunited.com/en/news/ao-tanaka-extends-his-stay-at-elland-road" target="_blank" rel="noopener noreferrer">www.leedsunited.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">7</div><div class="card-main"><h3>✅ 官宣｜卡尔弗特-勒温签下两年半新约</h3><div class="card-meta"><span class="src">利兹联官网</span><span class="t">北京时间11月26日至27日（英国11月26日发布，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">利兹联九号续留至2029年夏天，上赛季各项赛事打进15球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>利兹联公布前锋多米尼克·卡尔弗特-勒温的续约，新合同为期两年半，延续到二〇二九年夏天。这名英格兰国脚在俱乐部重返英超的首个赛季前加盟，联赛首秀是主场对纽卡斯尔，两场之后在客场三比一击败狼队的比赛中头球打进个人利兹首球。他上赛季曾连续六场破门，进球对手包括切尔西、利物浦和水晶宫，并在那段时期获评英超十二月最佳球员。俱乐部统计他在二〇二五至二六赛季各项赛事打进十五球，球队以英超第十四名完成保级，同时打进足总杯半决赛。本赛季他在对布伦特福德时扳平比分，对纽卡斯尔梅开二度，对曼联破门，又在对切尔西一战中罚入点球。利兹联还把他为诺亚·奥卡福创造机会的表现列入续约回顾，包括对热刺时参与制胜球和对切尔西时送出的助攻。国家队方面，公告记录他三月对乌拉圭时取得英格兰队第十二次出场，十月和十一月再获征召。</p><p><a class="source-link" href="https://www.leedsunited.com/en/news/dominic-calvert-lewin-commits-his-future-to-leeds-united" target="_blank" rel="noopener noreferrer">www.leedsunited.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">8</div><div class="card-main"><h3>✅ 官宣｜纽卡斯尔与青训中场布思签下首份职业合同</h3><div class="card-meta"><span class="src">纽卡斯尔联官网</span><span class="t">北京时间11月27日至28日（英国11月27日；具体时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">克里斯蒂安·布思在17岁生日签约，球员把进入U21队列为赛季目标。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>纽卡斯尔联青训部门宣布，防守型中场克里斯蒂安·布思在十七岁生日当天签下个人首份职业合同。布思出生于贝德福德，今夏从莱斯特城转入纽卡斯尔青训，随后加入克里斯·穆尔执教的十八岁以下梯队。他在莱斯特城已经踢过英超二级联赛，首次亮相是在二〇二五年十一月，当时年仅十五岁。布思在签约采访中说，转投纽卡斯尔时，他看重俱乐部通往一线队的机会。抵达前，他已经认识几位后来在青训营成为队友的球员，这些关系帮助他适应新环境。他点名路易斯·迈利和埃利奥特·安德森作为学习对象，希望研究这两名中场从纽卡青训进入一线队的经历。他也说，本赛季希望争取进入二十一岁以下梯队，并争取跟随一线队训练。青训主管史蒂夫·哈珀把此次签约归于布思加盟以来的进步，特别提到他融入训练环境以及与队友、教练建立联系的表现。</p><p><a class="source-link" href="https://www.newcastleunited.com/en/news/christian-boothe-pens-first-professional-deal-with-united" target="_blank" rel="noopener noreferrer">www.newcastleunited.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">9</div><div class="card-main"><h3>🔹 传闻｜曼联据报继续考察葡萄牙体育左后卫阿劳霍</h3><div class="card-meta"><span class="src">Sport Witness</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">报道援引匿名消息人士称，球员对曼联持开放态度，冬窗费用仍存疑问。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>据Sport Witness援引接近情况的消息人士，曼联在赴里斯本参加欧冠时，进一步考察了葡萄牙体育左后卫马克西·阿劳霍。在这场二比二的交锋中，阿劳霍踢满全场，并在第三十三分钟助攻路易斯·苏亚雷斯打进首球。报道说，曼联已关注这名乌拉圭国脚数月，今夏结束时仍未在该位置引援。报道也提到，卢克·肖的伤缺曾让曼联改用其他位置的球员客串左后卫。阿劳霍八月已与葡萄牙体育续约到二〇三〇年，报道所述的合同解约金为八千万欧元。消息人士估计冬窗若有五千万至六千万欧元的报价可能推动交易，同时判断曼联未必愿意在一月为边后卫投入这一金额。对于这则消息，可以分别看球员意愿、合同门槛和曼联的实际出价。目前可追溯的转会信息来自媒体的匿名消息，文中所说的费用区间属于消息人士的估计。比赛中的出场和助攻提供了球探考察的背景，是否会进入俱乐部之间的谈判还待后续披露。</p><p><a class="source-link" href="https://sportwitness.co.uk/exclusive-maxi-araujo-wants-manchester-united-transfer-and-e50-60m-will-seal-january-move/" target="_blank" rel="noopener noreferrer">sportwitness.co.uk</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">10</div><div class="card-main"><h3>🔹 传闻｜巴黎据报再次询问胡利安·阿尔瓦雷斯</h3><div class="card-meta"><span class="src">TEAMtalk</span><span class="t">北京时间11月26日至27日（当地11月26日，时间不详）</span><span class="tag tg-match">转会动态</span></div><div class="card-brief">报道指巴黎重新摸底，马竞无意在赛季中出售，阿森纳仍在关注。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>TEAMtalk记者格雷姆·贝利援引消息人士称，巴黎圣日耳曼在评估冬窗攻击线人选时，重新询问了马德里竞技前锋胡利安·阿尔瓦雷斯的情况。报道将这一动作放在德西雷·杜埃和赫维恰·克瓦拉茨赫利亚遭遇重伤的背景下，并称巴黎此前在夏窗也关注过这名阿根廷国脚。报道同时说，阿森纳知悉巴黎再次询问，仍在关注这名前锋，但马竞无意在赛季中出售，据报球员方面也没有考虑在一月离队。文中还列出阿尔瓦雷斯最近十次代表俱乐部和国家队出场的表现，其间有六球和四次助攻，并提到他在对维京的欧冠比赛中破门后获得西蒙尼公开支持。西蒙尼的表态强调球队需要阿尔瓦雷斯维持最佳状态，关于冬窗可能性的说法则来自记者转述。报道推进到的阶段是巴黎询问可行性，后续若有正式报价、谈判或者马竞态度变化，才会给这条线索增加新的信息。</p><p><a class="source-link" href="https://www.teamtalk.com/news/psg-get-instant-response-from-julian-alvarez-as-simeone-pledge-pricks-up-arsenal-ears" target="_blank" rel="noopener noreferrer">www.teamtalk.com</a></p></div></div>
+</div>
+<div class="section" id="s-league"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">🏆</span><h2>联赛与赛事</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">11</div><div class="card-main"><h3>中国U17三十二强对手确定，12月1日迎战塞尔维亚</h3><div class="card-meta"><span class="src">国际足联、懂球帝</span><span class="t">北京时间11月28日公布对阵（具体时间不详）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">国少队将于北京时间12月1日21:30开球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>国际足联确认卡塔尔U17世界杯三十二强赛程。中国队将在卡塔尔当地十二月一日十六点半、北京时间同日二十一点半与塞尔维亚队交手，场地为阿斯拜尔赛区五号球场。塞尔维亚在当地十一月二十七日的小组赛最后一轮以一比零击败哥伦比亚，拿到L组第一。中国与塞尔维亚的胜者将在十六强对上法国与乌干达之间的胜者。三十二强共十六场，分卡塔尔当地十一月三十日和十二月一日进行，每天八场。亚洲球队之间还有一场对决，韩国和日本将在北京时间十二月一日二十一点相遇。对于追踪中国队的读者，赛程更新的核心是对手、开球时间和下一轮的对阵路径均已明确。同一个比赛日里，韩日一战比中塞比赛早半小时开球，法国与乌干达被列在当天后段，中国队所在半区的下一轮对手取决于那场比赛的结果。这也是本轮两场涉及东亚球队的比赛。</p><p><a class="source-link" href="https://www.fifa.com/en/tournaments/mens/u17worldcup/qatar-2026/articles/last-32-fixtures-confirmed" target="_blank" rel="noopener noreferrer">www.fifa.com</a> <a class="source-link" href="https://m.dongqiudi.com/article/6704621.html" target="_blank" rel="noopener noreferrer">m.dongqiudi.com</a> <a class="source-link" href="https://m.17500.cn/zq/data-comp/course-19-0" target="_blank" rel="noopener noreferrer">m.17500.cn</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">12</div><div class="card-main"><h3>申花客场7比1取胜，亚冠二级联赛末轮还有晋级机会</h3><div class="card-meta"><span class="src">亚足联</span><span class="t">北京时间11月27日见亚足联报道（新加坡当地11月26日比赛）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">申花拿到小组第七分，下一轮将与柴桢直接争夺晋级资格。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>亚冠二级联赛G组，上海申花在新加坡惹兰勿刹体育场七比一击败淡滨尼流浪者。亚足联战报将比赛写为当地周四进行，十一月二十七日的赛事栏目收录了赛果。申花这场胜利后积七分，保有晋级机会。亚足联同时指出，同组的町田泽维亚已取得十六强资格，上海申花与柬埔寨柴桢将在下一轮直接交手，决定谁拿到本组另一张淘汰赛门票。同轮另一场，柴桢以二比零击败町田泽维亚。把两个赛果放在一起，可以看出申花的大胜带来了三分，而柴桢也在这一轮赢球，争夺因此要延续到双方直接对话。七比一是本轮申花在客场拿到的比分，七分则是五轮后的小组积分。末轮需要结合比赛结果以及赛会届时列出的最终小组名次判断晋级归属，当前确定的是町田泽维亚已占据一个十六强席位。亚足联对两组对手的报道给出了同一轮赛果和各队的晋级处境。</p><p><a class="source-link" href="https://www.the-afc.com/en/club/afc_champions_league_two.html/news/group-g-tampines-rovers-fc-sgp-1-7-shanghai-shenhua-fc-chn" target="_blank" rel="noopener noreferrer">www.the-afc.com</a> <a class="source-link" href="https://www.the-afc.com/en/club/afc_champions_league_two.html" target="_blank" rel="noopener noreferrer">www.the-afc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">13</div><div class="card-main"><h3>阿德莱德联客场大胜大埔，末轮对阵巴吞联</h3><div class="card-meta"><span class="src">亚足联</span><span class="t">北京时间11月27日见亚足联报道（中国香港当地11月26日比赛）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">伯基特一人打入四球，阿德莱德联五场后积九分。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>亚冠二级联赛F组，澳大利亚的阿德莱德联在客场七比一击败中国香港的大埔。亚足联战报记载，布罗迪·伯基特一人打入四球，阿德莱德联五场比赛累积九分，晋级机会仍在。亚足联公布其末轮将在欣德马什体育场对阵泰国巴吞联，也就是本轮另一场比赛的失利方。F组另一场由新加坡狮城水手客场三比零击败巴吞联，两场合计打进十一球，其中八球来自大埔与阿德莱德联的比赛。阿德莱德联这一轮取得的三分，使末轮直接交手仍与晋级有关。小组赛进入最后一轮后，两队不用等待另一场比赛才能知道彼此的得失，先要在同一块场地决定这场的积分归属。亚足联将大埔一战写为当地周四踢完，赛事栏目于十一月二十七日刊出相关战报，比赛日期和报道日期应分别查看。两支球队这一轮分别面对不同国家和地区的对手，末轮将改为直接相遇。</p><p><a class="source-link" href="https://www.the-afc.com/en/club/afc_champions_league_two.html/news/group-f-tai-po-fc-hkg-1-7-adelaide-united-fc-aus" target="_blank" rel="noopener noreferrer">www.the-afc.com</a> <a class="source-link" href="https://www.the-afc.com/en/club/afc_champions_league_two.html" target="_blank" rel="noopener noreferrer">www.the-afc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">14</div><div class="card-main"><h3>周六英超与德甲赛程，曼联和拜仁分别出战</h3><div class="card-meta"><span class="src">《卫报》、德甲官方赛程</span><span class="t">北京时间11月28日晚至29日凌晨（欧洲当地11月28日）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">德国场次从22:30开球，英超同晚23:00有两场。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>欧洲当地十一月二十八日的联赛赛程换算到北京时间后，德国较早的一批比赛在周六二十二点半开始。汉堡在主场对阵拜仁慕尼黑，科隆对埃尔弗斯贝格、美因茨对柏林联合、帕德博恩对沙尔克也同一时段开球。德甲稍晚的一场是斯图加特主场对法兰克福，开球时刻是北京时间十一月二十九日凌晨一点半。英超方面，北京时间十一月二十八日二十三点，利兹联迎战考文垂，曼联主场迎战布伦特福德。伊普斯维奇主场对阿斯顿维拉排在下一时段，同样是北京时间二十九日凌晨一点半。德国当地的十五点半相当于北京时间二十二点半，英国当地的十五点则相当于北京时间二十三点。周六晚的两批比赛只相隔半小时，斯图加特一场与维拉客场之战则同时开球。以上日期均以当地赛程公布的开球时间换算，晚场跨到了北京时间周日。</p><p><a class="source-link" href="https://www.theguardian.com/football/fixtures/2026/Nov/28" target="_blank" rel="noopener noreferrer">www.theguardian.com</a> <a class="source-link" href="https://products.bundesliga.com/fixtures" target="_blank" rel="noopener noreferrer">products.bundesliga.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">15</div><div class="card-main"><h3>法甲、西甲和意甲周末场次陆续开球</h3><div class="card-meta"><span class="src">法甲官网、《卫报》</span><span class="t">北京时间11月28日晚至29日凌晨（欧洲当地11月28日）</span><span class="tag tg-match">联赛与赛事</span></div><div class="card-brief">皇马、国米和巴黎圣日耳曼的主场比赛均在北京时间周日凌晨开球。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>欧洲当地十一月二十八日，西甲的皇家贝蒂斯对巴列卡诺较早开球，北京时间周六二十一点。马拉加与毕尔巴鄂竞技排在二十三点十五分，埃尔切对马德里竞技是周日凌晨一点半，皇家马德里对阿拉维斯是凌晨四点。意甲方面，弗罗西诺内与帕尔马从周六二十二点开始，都灵对拉齐奥安排在周日凌晨一点，国际米兰与热那亚安排在凌晨三点四十五分。法国方面，昂热对朗斯是周日零点十五分，巴黎圣日耳曼对洛里昂、勒芒对里尔、勒阿弗尔对斯特拉斯堡、尼斯对特鲁瓦，均在凌晨三点四十五分开球。法甲把这四场编在法国当地同一个晚场转播时段，该时段也与国米的比赛重合。西甲皇马场次较这个时段晚十五分钟，主队均写在前面，方便读者按开球时段和对阵检索比赛。法甲当地周六先安排一场比赛，其余四场集中在晚间同一时间举行。</p><p><a class="source-link" href="https://ligue1.com/en/articles/l1_article_5843-programmation-tv-j12-ligue-1-2026-2027" target="_blank" rel="noopener noreferrer">ligue1.com</a> <a class="source-link" href="https://www.theguardian.com/football/fixtures/2026/Nov/28" target="_blank" rel="noopener noreferrer">www.theguardian.com</a></p></div></div>
+</div>
+<div class="section" id="s-player"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">👤</span><h2>球员与教练</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">16</div><div class="card-main"><h3>卡什重返维拉比赛名单，鲁杰里与奥纳纳继续缺席</h3><div class="card-meta"><span class="src">阿斯顿维拉官网</span><span class="t">英国11月27日下午（北京时间11月27日晚至28日凌晨，具体时间不详）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">埃梅里确认边后卫卡什回归，马乔也恢复联赛出场资格。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>阿斯顿维拉右后卫马蒂·卡什回到对伊普斯维奇的比赛名单。俱乐部公告说，他此前在国际比赛窗口代表波兰对阵罗马尼亚时受伤，随后按照脑震荡复出流程，错过了对加拉塔萨雷的欧冠比赛和对桑德兰的联赛。埃梅里在赛前发布会上确认卡什回归。维拉本轮将在波特曼路球场作客，比赛定于英格兰当地十一月二十八日十七时三十分开球，即北京时间十一月二十九日凌晨一点半。另一名可随队前往萨福克郡的球员是布赖恩·马乔，他此前没有资格参加当地周二在土耳其进行的那场欧冠。马泰奥·鲁杰里仍然缺阵，埃梅里透露他的复出已接近。阿马杜·奥纳纳仍处于长期恢复阶段，俱乐部给出的目标是春季回归。这次更新交代了两位回到选人范围的球员和两位继续养伤的球员。卡什已明确进入比赛名单，实际首发人选和出场安排以赛前公布的阵容为准。</p><p><a class="source-link" href="https://www.avfc.co.uk/news/2026/november/27/prematch-team-news-for-tractor-boys-test/" target="_blank" rel="noopener noreferrer">www.avfc.co.uk</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">17</div><div class="card-main"><h3>塔尔科夫斯基停赛，莫耶斯谈德比中卫人选</h3><div class="card-meta"><span class="src">BBC Sport（AOL转载）</span><span class="t">北京时间11月27日22:36（英国11月27日14:36，报道时间）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">埃弗顿队长将缺席默西塞德德比，莫耶斯谈到迈克尔·基恩和杰克·奥布赖恩。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>埃弗顿主帅莫耶斯在默西塞德德比前谈到队长詹姆斯·塔尔科夫斯基停赛后的安排。塔尔科夫斯基将缺席在希尔迪金森球场进行的德比，比赛定于英国当地十一月二十九日中午开球，对应北京时间同日晚八点。莫耶斯没有公布顶替者，但肯定了迈克尔·基恩本赛季的状态，也提到杰克·奥布赖恩的贡献。回到赛前名单，值得留意的是谁和队友搭档镇守中路，以及奥布赖恩的站位。若由基恩接手中卫位置，边路与中路可以分别安排。若奥布赖恩移动到中路，还要看莫耶斯如何安排右后卫。这是依据发布会所谈人选作出的赛前观察，实际部署仍待首发名单确认。格拉利什在零比四负于布伦特福德时重新进入比赛名单，莫耶斯说他的经验能给球队带来帮助，并认为德比需要球员保持冷静，裁判也要有好的执法表现。埃弗顿在这场比赛面对同城对手，队长缺席之后的后防人员安排是发布会交代的具体变化，赛前公布的名单与开场站位可以进一步印证教练的选择。</p><p><a class="source-link" href="https://www.aol.com/articles/moyes-tarkowskis-absence-grealish-needing-143618000.html" target="_blank" rel="noopener noreferrer">www.aol.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">18</div><div class="card-main"><h3>库卢塞夫斯基接近首发，德泽尔比仍待评估两人</h3><div class="card-meta"><span class="src">托特纳姆热刺官网</span><span class="t">英国11月27日（北京时间11月27日至28日，时间不详）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">库卢塞夫斯基逐渐增加出场时间，阿达拉比奥尤恢复合练，贝里瓦尔患病。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>托特纳姆热刺主帅德泽尔比在对桑德兰的赛前发布会上更新了多名球员情况。中卫托辛·阿达拉比奥尤已恢复随队完整训练，教练将在赛前继续评估。中场卢卡斯·贝里瓦尔因病能否参加比赛同样待定，萨维奥和穆德里克继续缺阵，哈维·西蒙斯与威尔逊·奥多贝尔仍在长期伤停名单中。库卢塞夫斯基自十月十九日对考文垂时结束长时间缺席以来，已四次替补代表热刺登场，本月国家队窗口还两次代表瑞典出战。德泽尔比回看了其中两场国家队比赛，用来判断他的身体状态。库卢塞夫斯基一场踢边路，一场担任十号位，主帅特别肯定了第二场表现。他认为这名瑞典球员距离首发已很近，同时会与医疗和体能团队把握增加出场时间的时机。热刺赴光明球场的比赛定于英国当地十一月二十九日十四时零五分开球，即北京时间当晚二十二时零五分。</p><p><a class="source-link" href="https://www.tottenhamhotspur.com/news/1268639/team-news-roberto-on-bergvall-tosin-and-deki-latest-hes-very-close-to-starting-a-game" target="_blank" rel="noopener noreferrer">www.tottenhamhotspur.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">19</div><div class="card-main"><h3>加克波无缘德比，穆尼奥斯膝伤仍待训练检验</h3><div class="card-meta"><span class="src">利物浦官网</span><span class="t">英国11月27日（北京时间11月27日至28日，时间不详）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">伊劳拉确认加克波缺阵，穆尼奥斯膝部检查传来好消息，赫拉芬贝赫出战困难。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>利物浦主帅伊劳拉在默西塞德德比前更新了维克托·穆尼奥斯、科迪·加克波和瑞安·赫拉芬贝赫的伤情。穆尼奥斯在欧冠客场击败布鲁日一战中，于上半场遭遇碰撞并被换下。赛后的检查让利物浦得到积极消息，伊劳拉说球员膝部没有发现结构受损，但撞击造成了明显挫伤，穆尼奥斯周五没有训练，希望次日尝试。加克波确定缺阵。他是在荷兰对德国时遭遇肌肉伤的，伊劳拉提到类似情况通常需要两到三周恢复，也强调实际愈合进度会因人而异。赫拉芬贝赫赶上德比也有难度。教练说他的疼痛时轻时重，希望球员在能够无痛、自由活动时回来。三人各有一个具体的观察节点。穆尼奥斯要看尝试训练后的反应，加克波要给肌肉留出恢复时间，赫拉芬贝赫则需要等疼痛缓解，主帅表示球队会继续协助他恢复。利物浦本轮客场前往希尔迪金森球场对阵埃弗顿。</p><p><a class="source-link" href="https://stadion-edge.liverpoolfc.com/news/pre-everton-injury-update-victor-munoz-cody-gakpo-and-ryan-gravenberch" target="_blank" rel="noopener noreferrer">stadion-edge.liverpoolfc.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">20</div><div class="card-main"><h3>拉什福德恢复场地个人训练，波切蒂诺更新曼联伤情</h3><div class="card-meta"><span class="src">曼联官网</span><span class="t">英国11月27日下午（北京时间11月27日晚至28日凌晨，具体时间不详）</span><span class="tag tg-match">球员与教练</span></div><div class="card-brief">拉什福德开始个人场地训练，巴莱巴的恢复按医疗团队先前估计仍需时间。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>曼联主帅波切蒂诺在对布伦特福德的发布会上说，马库斯·拉什福德当天开始在场地上进行个人训练，球员自我感觉已有改善。教练组会观察他每次训练后的反应，再逐日增加恢复训练的进度。卡洛斯·巴莱巴是在十一月初对罗马的欧冠比赛期间受伤的，波切蒂诺转述了医疗团队当时给出的恢复估计，约为十至十二周。这是受伤时的估计，具体复出日期仍有待随后的训练和评估。发布会还提到队长布鲁诺·费尔南德斯因病错过周五训练，他本轮能否出场有待确定。波切蒂诺也谈到上任后的训练安排和一周多赛的影响。曼联周中赴葡萄牙踢欧战，布伦特福德本周没有踢比赛。波切蒂诺说，新教练组会分阶段引入自己的训练方式，当前要让球员保持能够出战的状态。他也表示，希望随着伤员逐步回归，有更多队员可供挑选和安排。</p><p><a class="source-link" href="https://www.manutd.com/en/news/every-word-pcohettino-press-conference-utd-brentford-27-nov-2026" target="_blank" rel="noopener noreferrer">www.manutd.com</a></p></div></div>
+</div>
+<div class="section" id="s-analysis"><div class="section-header" style="background:#ecfdf5;border-left:4px solid #16a34a"><span class="icon">📊</span><h2>深度分析</h2><span class="count">5 条</span></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">21</div><div class="card-main"><h3>欧足联复盘贝林厄姆如何在三个中场位置接应</h3><div class="card-meta"><span class="src">欧足联</span><span class="t">欧洲当地11月27日发布（北京时间11月27日至28日，时间不详）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">欧足联把替补登场后的表现拆成接应、抗压和前插三个片段。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>欧足联技术观察员史蒂夫·霍兰与球员发展负责人布鲁诺·谢鲁在当地十一月二十七日发布复盘，分析贝林厄姆如何改变皇马对埃因霍温一战的下半场。穆里尼奥中场休息时换上他，皇马最终由半场零比一落后打成五比一。贝林厄姆自己进球，还为维尼修斯送上助攻。欧足联首先用片段展示他在六号位、八号位和十号位附近提供接应的方式，谢鲁指出，即使接球前观察时间有限，他也有用一脚触球处理的选择。另一段录像展示他怎样跑到空当给队友传球角度，并依靠身体和脚下动作扛住逼抢。最后的进球片段从前插支援开始，他以左脚完成第一次触球，第二次触球调整，再用凌空射门把球送到门将够不到的位置。回看三个片段，可以顺着接球前的移动、第一次处理来球和随后的推进来理解这次换人的作用，也能看清进球之前的跑动如何创造终结机会。</p><p><a class="source-link" href="https://www.uefa.com/uefachampionsleague/news/02ab-222bc956c1e2-7dec48fd9718-1000--champions-league-performance-insights-the-keys-to-a-jude-be/" target="_blank" rel="noopener noreferrer">www.uefa.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">22</div><div class="card-main"><h3>德甲榜首周末的两种考验，弗赖堡遇上进球最多的莱比锡</h3><div class="card-meta"><span class="src">德甲官网</span><span class="t">北京时间11月29日22:30、30日02:30开球（德国11月29日）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">第十一轮前五仅差五分，两场周日对决都涉及前列球队。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>德甲官网在当地十一月二十七日发布第十一轮前瞻。进入本轮前，积分榜前五之间只差五分。德国当地周日首场较量在弗赖堡与莱比锡之间展开，弗赖堡近两场连续零封，联赛至今只丢十球，是当时失球第三少的球队。莱比锡则以三十二球领跑联赛进球榜，最近两场每场都打进五球，十月还曾单场攻入法兰克福六球。两队赛前仅差一分。稍晚开球的多特蒙德对勒沃库森提供另一组比较。多特门将科贝尔在十轮里六次零封，只被攻破球门七次，但球队进球数低于排名第十的奥格斯堡。勒沃库森刚取得两连胜，上赛季还曾在多特主场分别以一比零赢下联赛和德国杯交锋。两场对决的赛前数据可以用来观察强攻队如何把机会转化为进球，以及防守稳定的球队怎样在比分胶着时主动创造机会。弗赖堡与莱比锡先赛，多特与勒沃库森的结果则在当天最后一场产生。</p><p><a class="source-link" href="https://www.bundesliga.com/en/bundesliga/news/super-sunday-blockbuster-games-borussia-dortmund-bayer-leverkusen-freiburg-rb-leipzig-40117" target="_blank" rel="noopener noreferrer">www.bundesliga.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">23</div><div class="card-main"><h3>桑德兰对热刺的看点在于低位防守后的第一道出球</h3><div class="card-meta"><span class="src">英超官网</span><span class="t">北京时间11月29日22:05开球（英国11月29日）；前瞻当地11月27日发布，时间不详</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">桑德兰近四轮三次零封，热刺面对回撤防线时曾两次踢成零比零。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>英超官网在本轮战术前瞻中把桑德兰的低位防守列为热刺客场的看点。桑德兰上轮在维拉公园踢成零比零，只有百分之二十七的控球时间。作者阿莱克斯·凯布尔指出，桑德兰当时倾向于退守并保持队形，给维拉持球空间，同时保护靠近球门的区域。近四轮联赛，桑德兰三次零封，追平此前十六场的零封总数。前瞻指出，德泽尔比的球队偏好吸引对手上抢，再快速直传越过已经向前移动的防线。此前热刺面对诺丁汉森林和埃弗顿时均战成零比零。结合这些线索，这场球可以观察热刺有没有办法吸引桑德兰的中场或后卫离开防区，以及传球窗口出现后能否及时把球送到接应者脚下。桑德兰拿回球权时，第一次向前传递如果能找到接应，也会影响热刺能否连续发动下一波进攻。德泽尔比的临场选择还可从边路入手观察，例如边锋接球时有没有队友前插牵动边后卫。</p><p><a class="source-link" href="https://www.premierleague.com/en/news/4771399/ten-key-questions-for-matchweek-12s-fixtures/" target="_blank" rel="noopener noreferrer">www.premierleague.com</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">24</div><div class="card-main"><h3>西甲四场裁判名单公布，菲格罗亚担任皇马一战VAR</h3><div class="card-meta"><span class="src">西班牙足协裁判技术委员会</span><span class="t">北京时间11月28日21:00至29日04:00开球（西班牙11月28日）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">西班牙足协的文件逐场列明现场主裁与视频裁判，可用于核查比赛中的判罚职责。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>西班牙足协裁判技术委员会列出了西甲第十四轮周六四场比赛的执法安排。当地十一月二十八日十四点，皇家贝蒂斯对巴列卡诺，北京时间二十八日二十一点，路易斯·贝斯塔德主哨，吉列尔莫·夸德拉负责视频助理裁判。北京时间二十八日二十三点十五分，马拉加对毕尔巴鄂竞技，由米格尔·安赫尔·奥尔蒂斯主哨，卡洛斯·德尔塞罗担任视频助理。北京时间二十九日一点半，埃尔切对马竞，主裁亚历杭德罗·金特罗，视频助理为亚历杭德罗·穆尼斯。北京时间二十九日四点，皇马对阿拉维斯，塞萨尔·索托主哨，豪尔赫·菲格罗亚与鲁文·阿瓦洛斯分别担任视频助理裁判及其助手。名单还逐场列出现场助理和第四官员。赛后回看有争议的场面时，可以先用名单确认各岗位，再根据官方比赛记录查现场初判、视频介入与最终决定。四场比赛各有一套独立团队，核对时也应对照比赛本身。</p><p><a class="source-link" href="https://rfef.es/sites/default/files/designaciones_1a_division_masculina_-_temp_2026-27_-_jornada_14_sabado.pdf?cb=d0168500" target="_blank" rel="noopener noreferrer">rfef.es</a></p></div></div>
+<div class="card">
+<div class="card-top" onclick="this.parentElement.classList.toggle('open')">
+<div class="card-num">25</div><div class="card-main"><h3>马赛欧联看台事件出现新进展，检方与欧足联分别启动程序</h3><div class="card-meta"><span class="src">《世界报》</span><span class="t">法国11月27日（北京时间11月27日至28日，时间不详）</span><span class="tag tg-match">深度分析</span></div><div class="card-brief">马赛检方宣布展开两项调查，欧足联已启动纪律程序。</div></div><div class="card-arrow">▾</div></div>
+<div class="card-detail"><h4>深度解读</h4><p>法国当地十一月二十七日，马赛检方宣布就前一晚马赛与索菲亚列夫斯基的欧联杯比赛期间发生的看台事件展开两项调查。《世界报》援引当地警方消息称，保加利亚方面有十一人受伤，五人被送往医院，六人在现场接受处理。检方一项调查涉及涉嫌加重故意伤害，另一项调查涉及涉嫌煽动仇恨。欧足联也启动了单独的纪律程序。《世界报》援引欧足联纪律条例第十六条指出，该条例覆盖比赛前后及比赛期间场馆内和近旁的秩序与安全，可能涉及部分或全部看台关闭。截至该报道，能确认的新进展是两项司法调查与赛事纪律程序已经启动。两条程序分别涉及当地法律与赛事管理，调查范围、责任认定和后续措施各有依据。报道列出的闭门比赛属于可能采取的赛事处罚，具体措施仍要以欧足联公布的正式裁定为准。报道发布时尚未公布裁定日期。</p><p><a class="source-link" href="https://www.lemonde.fr/sport/article/2026/11/27/violences-au-velodrome-lors-du-match-om-levski-sofia-le-parquet-ouvre-deux-enquetes-le-club-phoceen-menace-de-lourdes-sanctions-de-l-uefa_6815862_3242.html" target="_blank" rel="noopener noreferrer">www.lemonde.fr</a></p></div></div>
+</div>
+<footer class="footer">⚽ 足球日报 · 2026-11-20 · 32 条 · 5 个板块<br>新闻报道时间与事件时间分别标示；转会传闻及媒体估计不代表官方确认，官宣以 ✅ 标注、传闻以 🔹 标注。</footer></div></body></html>
